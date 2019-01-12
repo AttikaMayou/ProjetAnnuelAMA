@@ -4,12 +4,11 @@ using UnityEngine;
 
 //Auteur : Margot
 
-
 namespace LastToTheGlobe.Scripts.Dev
 {
-    public class CharacterController: MonoBehaviour
+    public class CharacterControllerCC : MonoBehaviour
     {
-        private CharacterController controller;
+        private CharacterController Character;
 
         [SerializeField]
         [Tooltip("Vitesse de la course")]
@@ -45,7 +44,7 @@ namespace LastToTheGlobe.Scripts.Dev
         void Start()
         {
 
-            controller = GetComponent<CharacterController>();
+            Character = GetComponent<CharacterController>();
             animator = GetComponentInChildren<Animator>();
 
             // character au sol
@@ -62,7 +61,7 @@ namespace LastToTheGlobe.Scripts.Dev
             Forward = Input.GetAxis("Vertical");
             Strafe = Input.GetAxis("Horizontal");
 
-            if (controller.isGrounded)
+            if (Character.isGrounded)
             {
                 //Set movement
                 movement = new Vector3(Strafe, 0.0f, Forward);
@@ -90,7 +89,7 @@ namespace LastToTheGlobe.Scripts.Dev
             //Ajout de la gravité
             movement.y = movement.y - (gravity * Time.deltaTime);
             //Move player with DeltaTime
-            controller.Move(movement * Time.deltaTime);
+            Character.Move(movement * Time.deltaTime);
         }
     }
 }
