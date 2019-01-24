@@ -23,36 +23,40 @@ public class CharacterControllerRigidbody : MonoBehaviour
     [Tooltip("Vitesse du saut")]
     private float jumpSpeed;
 
-    private float Forward;
-    private float Strafe;
-    private float Speed = 5;
+    [SerializeField]
+    [Tooltip("Vitesse du dash")]
+    private float DashSpeed;
 
     [SerializeField]
     [Tooltip("Raycast position")]
     private Transform raycastOrigin;
 
-    public float ray;
+    private float Forward;
+    private float Strafe;
+    private float Speed = 5;
+    private bool CanDoubleJump = true;
+    private float ray;
 
-    // Start is called before the first frame update
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
+
     void Update()
-    {
-        
-    }
-    
-    void FixedUpdate()
     {
         // Récupération des floats vertical et horizontal de l'animator au script
         Forward = Input.GetAxis("Vertical");
         Strafe = Input.GetAxis("Horizontal");
 
         Vector3 movement = new Vector3(Strafe, 0.0f, Forward);
+    }
 
+    
+    void FixedUpdate()
+    {
         //Course
         if (Input.GetKey(KeyCode.LeftShift))
         {
@@ -63,12 +67,34 @@ public class CharacterControllerRigidbody : MonoBehaviour
             Speed = walkSpeed;
         }
 
+        //Dash
+        if (Input.GetKeyDown(KeyCode.LeftAlt))
+        {
+            Speed = DashSpeed;
+        }
+
         rb.velocity = new Vector3(Strafe * Speed, rb.velocity.y, Forward * Speed);
 
+
         //Saut
-        if (Input.GetKey(KeyCode.Space) && IsGrounded())
+        if (Input.GetKey(KeyCode.Space))
         {
-            rb.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
+            if(IsGrounded())
+            {
+                rb.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
+                CanDoubleJump = true;
+                //rb.velocity = new Vector3(Strafe * Speed, 0, Forward * Speed);
+            }
+            //Double saut
+            else
+            {
+                if(CanDoubleJump == true)
+                {
+                    //rb.velocity = new Vector3(Strafe * Speed, 0, Forward * Speed);
+                    rb.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
+                    CanDoubleJump = false;
+                }
+            }
         }
 
     }
