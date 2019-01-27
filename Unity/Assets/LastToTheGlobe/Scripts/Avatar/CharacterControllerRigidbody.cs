@@ -31,73 +31,51 @@ public class CharacterControllerRigidbody : MonoBehaviour
     [Tooltip("Raycast position")]
     private Transform raycastOrigin;
 
-    private float Forward;
-    private float Strafe;
-    private float Speed = 5;
+    private float forward;
+    private float strafe;
+    private float speed = 5;
     private float ray = 0.4f;
     private bool isGrounded = false;
-    private int JumpMax= 1;
-    private bool DashAsked = false;
+    private int jumpMax= 1;
+    private bool dashAsked = false;
 
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>(); 
     }
 
 
     void Update()
     {
         // Récupération des floats vertical et horizontal de l'animator au script
-        Forward = Input.GetAxis("Vertical");
-        Strafe = Input.GetAxis("Horizontal");
-
-        Vector3 movement = new Vector3(Strafe, 0.0f, Forward);
+        forward = Input.GetAxis("Vertical");
+        strafe = Input.GetAxis("Horizontal");
+        Vector3 movement = new Vector3(strafe, 0.0f, forward);
 
         //Course
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            Speed = runSpeed;
-        }
-        else
-        {
-            Speed = walkSpeed;
-        }
+        Running();
 
         //Dash
-        if (Input.GetKeyDown(KeyCode.LeftAlt))
-        {
-            DashAsked = true;
-        }
+        Dash();
 
         //Saut et double saut
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (JumpMax > 0)
-            {
-                rb.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
-                JumpMax--;
-            }
-        }
-        if (IsGrounded())
-        {
-            JumpMax = 1;
-        }
+        Jump();
     }
 
     
     void FixedUpdate()
     {
         //Dash
-        if (DashAsked)
+        if (dashAsked)
         {
-            rb.velocity = new Vector3(Strafe * DashSpeed, rb.velocity.y, Forward * DashSpeed);
-            DashAsked = false;
+            rb.velocity = new Vector3(strafe * DashSpeed, rb.velocity.y, forward * DashSpeed);
+            dashAsked = false;
         }
         //Déplacement
         else
         {
-            rb.velocity = new Vector3(Strafe * Speed, rb.velocity.y, Forward * Speed);
+            rb.velocity = new Vector3(strafe * speed, rb.velocity.y, forward * speed);
         }
     }
 
@@ -107,7 +85,44 @@ public class CharacterControllerRigidbody : MonoBehaviour
         return Physics.Raycast(raycastOrigin.position, Vector3.down, ray);
     }
 
+    //Course
+    private void Running()
+    {
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            speed = runSpeed;
+        }
+        else
+        {
+            speed = walkSpeed;
+        }
+    }
 
+    //Dash
+    private void Dash()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftAlt))
+        {
+            dashAsked = true;
+        }
+    }
+
+    //Saut et double saut
+    private void Jump()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (jumpMax > 0)
+            {
+                rb.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
+                jumpMax--;
+            }
+        }
+        if (IsGrounded())
+        {
+            jumpMax = 1;
+        }
+    }
 
 
 
