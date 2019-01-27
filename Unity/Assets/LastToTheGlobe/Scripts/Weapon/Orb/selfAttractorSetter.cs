@@ -20,6 +20,5 @@ public class selfAttractorSetter : MonoBehaviour
     {
         planetAttracting = player.GetComponent<AttractedScript>().attractor;
         this.GetComponent<AttractedScript>().attractor = planetAttracting;
-        this.GetComponent<OrbManager>().planetCenterPoint = planetAttracting;
     }
 }

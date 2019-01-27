@@ -6,6 +6,8 @@ public class AttractorScript : MonoBehaviour {
 
     public float speedRotation = 10f;
     public Vector3 dirForce;
+    public Transform selfTransform;
+    
 
 	public void Attractor(Rigidbody attractedRigidbody, Transform body, float Gravity)
     {

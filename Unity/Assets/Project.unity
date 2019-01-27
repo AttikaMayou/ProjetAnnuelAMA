@@ -477,6 +477,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedRotation: 10
   dirForce: {x: 0, y: 0, z: 0}
+  selfTransform: {fileID: 0}
 --- !u!135 &791589109
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -598,8 +599,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfOrbRigibody: {fileID: 853341637}
-  speed: 10
+  speed: 700
   playerTransform: {fileID: 493657353}
+  attractedScript: {fileID: 853341638}
 --- !u!135 &853341633
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1084,6 +1086,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedRotation: 10
   dirForce: {x: 0, y: 0, z: 0}
+  selfTransform: {fileID: 0}
 --- !u!135 &1594077468
 SphereCollider:
   m_ObjectHideFlags: 0
