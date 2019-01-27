@@ -34,9 +34,10 @@ public class CharacterControllerRigidbody : MonoBehaviour
     private float Forward;
     private float Strafe;
     private float Speed = 5;
-    private bool CanDoubleJump = true;
-    private float ray;
-
+    private float ray = 0.4f;
+    private bool isGrounded = false;
+    private int JumpMax= 1;
+    private bool DashAsked = false;
 
 
     void Start()
@@ -52,11 +53,7 @@ public class CharacterControllerRigidbody : MonoBehaviour
         Strafe = Input.GetAxis("Horizontal");
 
         Vector3 movement = new Vector3(Strafe, 0.0f, Forward);
-    }
 
-    
-    void FixedUpdate()
-    {
         //Course
         if (Input.GetKey(KeyCode.LeftShift))
         {
@@ -70,38 +67,43 @@ public class CharacterControllerRigidbody : MonoBehaviour
         //Dash
         if (Input.GetKeyDown(KeyCode.LeftAlt))
         {
-            Speed = DashSpeed;
+            DashAsked = true;
         }
 
-        rb.velocity = new Vector3(Strafe * Speed, rb.velocity.y, Forward * Speed);
-
-
-        //Saut
-        if (Input.GetKey(KeyCode.Space))
+        //Saut et double saut
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            if(IsGrounded())
+            if (JumpMax > 0)
             {
                 rb.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
-                CanDoubleJump = true;
-                //rb.velocity = new Vector3(Strafe * Speed, 0, Forward * Speed);
-            }
-            //Double saut
-            else
-            {
-                if(CanDoubleJump == true)
-                {
-                    //rb.velocity = new Vector3(Strafe * Speed, 0, Forward * Speed);
-                    rb.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
-                    CanDoubleJump = false;
-                }
+                JumpMax--;
             }
         }
+        if (IsGrounded())
+        {
+            JumpMax = 1;
+        }
+    }
 
+    
+    void FixedUpdate()
+    {
+        //Dash
+        if (DashAsked)
+        {
+            rb.velocity = new Vector3(Strafe * DashSpeed, rb.velocity.y, Forward * DashSpeed);
+            DashAsked = false;
+        }
+        //Déplacement
+        else
+        {
+            rb.velocity = new Vector3(Strafe * Speed, rb.velocity.y, Forward * Speed);
+        }
     }
 
     //Check si le character est au sol
     private bool IsGrounded()
-    {
+    { 
         return Physics.Raycast(raycastOrigin.position, Vector3.down, ray);
     }
 
