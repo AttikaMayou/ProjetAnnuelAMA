@@ -1,13 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using LastToTheGlobe.Scripts.Avatar;
 using UnityEngine;
+
+
+//Auteur : Abdallah
+
 
 public class AttractorScript : MonoBehaviour {
 
     public float speedRotation = 10f;
     public Vector3 dirForce;
     public Transform selfTransform;
-    
+    private AvatarExposerScript currentAvatar;
 
 	public void Attractor(Rigidbody attractedRigidbody, Transform body, float Gravity)
     {
@@ -26,18 +31,16 @@ public class AttractorScript : MonoBehaviour {
     {
         if(collider.tag == "Player")
         {
-            collider.gameObject.GetComponent<AttractedScript>().attractor = this;
-            collider.gameObject.GetComponent<characterTrampolineScript>().attractor = this;
-            collider.gameObject.GetComponent<ThirdPersonController>().attractor = this;
+            currentAvatar = collider.gameObject.GetComponent<AvatarExposerScript>();
+            currentAvatar.avatar.attractor = this;
         }
     }
     void OnTriggerExit(Collider collider)
     {
         if (collider.tag == "Player")
         {
-            collider.gameObject.GetComponent<AttractedScript>().attractor = null;
-            collider.gameObject.GetComponent<characterTrampolineScript>().attractor = null;
-            collider.gameObject.GetComponent<ThirdPersonController>().attractor = null;
+            currentAvatar = collider.gameObject.GetComponent<AvatarExposerScript>();
+            currentAvatar.avatar.attractor = this;
         }
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 //Auteur: Abdallah
 public class OrbManager : MonoBehaviour {
 
-    [SerializeField]private Rigidbody selfOrbRigibody;
+    [SerializeField]private Transform selfPosition;
 
     [SerializeField]private float speed = 5f;
 
@@ -23,17 +23,15 @@ public class OrbManager : MonoBehaviour {
     void OnEnable()
     {
         timeToDisable = Time.deltaTime;
-
-        selfOrbRigibody.position = playerTransform.position + playerTransform.forward * 2f;
-        //Direction = playerTransform.forward;
-        transform.forward = playerTransform.forward;
+        selfPosition.position = playerTransform.position + playerTransform.forward * 2f;
+        Direction = playerTransform.right;
         centerPointAttractor = attractedScript.attractor.selfTransform.position;
         
     }
 
     // Update is called once per frame
-    private void Update () {
-    transform.RotateAround(centerPointAttractor,playerTransform.right,1f);
+    private void FixedUpdate () {
+    transform.RotateAround(centerPointAttractor,Direction,speed);
 
     timeToDisable += Time.deltaTime;
         

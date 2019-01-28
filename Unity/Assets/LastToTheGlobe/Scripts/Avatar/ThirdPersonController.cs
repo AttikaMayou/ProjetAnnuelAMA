@@ -1,10 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Avatar = LastToTheGlobe.Scripts.Avatar.Avatar;
 
-public class ThirdPersonController : MonoBehaviour {
-
-    public AttractorScript attractor;
+public class ThirdPersonController : Avatar {
 
     [SerializeField]
     private GameObject cameraRotatorX;

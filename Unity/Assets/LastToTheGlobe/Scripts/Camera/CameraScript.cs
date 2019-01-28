@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//Auteur : Abdallah
+
 public class CameraScript : MonoBehaviour {
     [SerializeField]private string playerTag = "Player";
     [SerializeField] private float cameraOffsetOriginalX = -47.8f;

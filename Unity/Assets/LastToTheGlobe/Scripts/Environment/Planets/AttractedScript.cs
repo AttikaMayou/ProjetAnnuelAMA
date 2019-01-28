@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Auteur : Abdallah
+
 public class AttractedScript : MonoBehaviour {
 
     public AttractorScript attractor;
