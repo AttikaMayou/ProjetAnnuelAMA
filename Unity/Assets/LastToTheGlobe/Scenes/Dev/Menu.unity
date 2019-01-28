@@ -831,7 +831,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a331c4639dc15d8479f7901e655042af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  localPlayButton: {fileID: 2118110132}
+  onlinePlayButton: {fileID: 1864262947}
+  settingsButton: {fileID: 1488302072}
+  creditsButton: {fileID: 874663526}
+  createRoomButton: {fileID: 0}
+  joinRoomButton: {fileID: 0}
   welcomeMessageText: {fileID: 0}
+  messages: []
 --- !u!1 &1488302070
 GameObject:
   m_ObjectHideFlags: 0
