@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mime;
+using LastToTheGlobe.Scripts.UI;
 using Photon.Pun;
 using Photon.Pun.UtilityScripts;
 using Photon.Realtime;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 //Auteur : Attika
@@ -16,14 +18,16 @@ namespace LastToTheGlobe.Scripts.Dev
     {
         
         #region Private Variables
-        [SerializeField] private Button localPlayButton;
-        [SerializeField] private Button onlinePlayButton;
-        [SerializeField] private Button settingsButton;
-        [SerializeField] private Button creditsButton;
-        [SerializeField] private Button createRoomButton;
-        [SerializeField] private Button joinRoomButton;
-        [SerializeField] private Text welcomeMessageText;
-        [SerializeField] private List<string> messages = new List<string>();
+
+        [SerializeField] private ActivateObjects _mainMenu;
+        [SerializeField] private Button _localPlayButton;
+        [SerializeField] private Button _onlinePlayButton;
+        
+        [SerializeField] private ActivateObjects _playMenu;
+        [SerializeField] private Button _createRoomButton;
+        [SerializeField] private Button _joinRoomButton;
+        [SerializeField] private Text _welcomeMessageText;
+        [SerializeField] private List<string> _messages = new List<string>();
         #endregion
         
         #region Public Variables
@@ -39,8 +43,10 @@ namespace LastToTheGlobe.Scripts.Dev
 
         private void Awake()
         {
-            //Add listener on Buttons
-            
+            _localPlayButton.onClick.AddListener(LocalPlaySetup);
+            _onlinePlayButton.onClick.AddListener(OnlinePlaySetup);
+            _createRoomButton.onClick.AddListener(AskForRoomCreation);
+            _joinRoomButton.onClick.AddListener(AskForRoomJoin);
         }
 
         private void Start()
@@ -52,10 +58,10 @@ namespace LastToTheGlobe.Scripts.Dev
         
         #region Photon Callbacks
 
-        private void OnConnectedToServer()
+        public override void OnConnectedToMaster()
         {
-            createRoomButton.interactable = true;
-            joinRoomButton.interactable = true;
+            _createRoomButton.interactable = true;
+            _joinRoomButton.interactable = true;
         }
 
         public override void OnDisconnected(DisconnectCause cause)
@@ -70,10 +76,8 @@ namespace LastToTheGlobe.Scripts.Dev
 
         public override void OnJoinedRoom()
         {
-            localPlayButton.gameObject.SetActive(false);
-            onlinePlayButton.gameObject.SetActive(false);
-            createRoomButton.gameObject.SetActive(false);
-            joinRoomButton.gameObject.SetActive(false);
+            _mainMenu.Deactivation();
+            _playMenu.Deactivation();
             
             //TODO: add coroutine for welcome message
         }
@@ -105,23 +109,22 @@ namespace LastToTheGlobe.Scripts.Dev
             }
         }
 
+        public override void OnJoinRoomFailed(short returnCode, string message)
+        {
+            Debug.LogError("OnJoinRoomFailed() was called by PUN. \nCreate a new room.");
+            PhotonNetwork.CreateRoom(null, new RoomOptions() {MaxPlayers = 4}, null);
+        }
+        
         #endregion
         
         #region Public Methods
 
         public void ShowMainMenu()
         {
-            localPlayButton.gameObject.SetActive(true);
-            onlinePlayButton.gameObject.SetActive(true);
-            localPlayButton.interactable = true;
-            onlinePlayButton.interactable = true;
+            _mainMenu.Activation();
+            _playMenu.Deactivation();
             
-            createRoomButton.gameObject.SetActive(false);
-            joinRoomButton.gameObject.SetActive(false);
-            createRoomButton.interactable = false;
-            joinRoomButton.interactable = false;
-
-            welcomeMessageText.text = messages[0];
+            _welcomeMessageText.text = _messages[0];
         }
 
         public void AskForRoomCreation()
@@ -144,12 +147,10 @@ namespace LastToTheGlobe.Scripts.Dev
 
         private void LocalPlaySetup()
         {
-            localPlayButton.gameObject.SetActive(false);
-            onlinePlayButton.gameObject.SetActive(false);
-            createRoomButton.gameObject.SetActive(false);
-            joinRoomButton.gameObject.SetActive(false);
+            _mainMenu.Deactivation();
+            _playMenu.Deactivation();
 
-            welcomeMessageText.text = messages[1];
+           _welcomeMessageText.text = _messages[1];
             
             OfflinePlayReady?.Invoke();
             
@@ -158,16 +159,17 @@ namespace LastToTheGlobe.Scripts.Dev
 
         private void OnlinePlaySetup()
         {
-            localPlayButton.gameObject.SetActive(false);
-            onlinePlayButton.gameObject.SetActive(false);
-            createRoomButton.gameObject.SetActive(true);
-            joinRoomButton.gameObject.SetActive(true);
-            createRoomButton.interactable = false;
-            joinRoomButton.interactable = false;
+            _mainMenu.Deactivation();
+            _playMenu.Activation();
+            _createRoomButton.interactable = false;
+            _joinRoomButton.interactable = false;
 
-            welcomeMessageText.text = messages[2];
+            _welcomeMessageText.text = _messages[2];
 
-            PhotonNetwork.ConnectUsingSettings();
+            if (!PhotonNetwork.IsConnected)
+            {
+                PhotonNetwork.ConnectUsingSettings();
+            }
         }
         
         #endregion
