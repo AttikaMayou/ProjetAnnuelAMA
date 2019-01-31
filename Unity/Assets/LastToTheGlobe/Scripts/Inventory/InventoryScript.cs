@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Photon.Pun.UtilityScripts;
 using UnityEngine;
+using UnityEngine.Experimental.PlayerLoop;
 
 //Auteur : Attika
 
@@ -8,27 +9,44 @@ namespace LastToTheGlobe.Scripts.Inventory
 {
     public class InventoryScript : MonoBehaviour
     {
-        public int nbSlots = 5;
+        [SerializeField] private int nbSlots = 5;
         public bool isFull;
-        public List<ObjectScript> objectsInInventory;
+        private List<ObjectScript> objectsInInventory = new List<ObjectScript>();
 
-
+        private void Awake()
+        {
+            InitializeInventory();
+        }
+        
+        private void InitializeInventory()
+        {
+            //Add here if you want to put something in inventory at beginning of game 
+            //like this : objectsInInventory.Add(objectToAdd);
+        }
+        
         /// <summary>
         /// Add an object in itself inventory
         /// </summary>
         /// <param name="obj"></param>
         public void AddObjectInInventory(ObjectScript obj)
         {
-            if(objectsInInventory.Contains(obj)) return;
+            if(objectsInInventory.Contains(obj) || IsInventoryFull()) return;
             objectsInInventory.Add(obj);
             obj.SetObjectInInventory(true);
-            //TODO : add action in ObjectScript --> set object in inventory
+            SetInventoryStatus();
+        }
+
+        private void DeleteObjectFromInventory(ObjectScript obj)
+        {
+            if (!objectsInInventory.Contains(obj)) return;
+            objectsInInventory.Remove(obj);
+            SetInventoryStatus();
         }
         
         /// <summary>
         /// Remove all objects from itself inventory
         /// </summary>
-        public void EraseInventoryContent()
+        private void EraseInventoryContent()
         {
             if (!isFull || objectsInInventory.Count <= 0) return;
             foreach (var obj in objectsInInventory)
@@ -37,16 +55,16 @@ namespace LastToTheGlobe.Scripts.Inventory
                 //TODO : add action in ObjectScript --> set object free
             }
             objectsInInventory.Clear();
+            SetInventoryStatus();
         }
         
         /// <summary>
         /// Set the inventory status to full or not
         /// </summary>
         /// <returns></returns>
-        public void SetInventoryStatus()
+        private void SetInventoryStatus()
         {
-            isFull = objectsInInventory.Count > 0;
-           
+            isFull = objectsInInventory.Count >= nbSlots;
         }
         
         /// <summary>
