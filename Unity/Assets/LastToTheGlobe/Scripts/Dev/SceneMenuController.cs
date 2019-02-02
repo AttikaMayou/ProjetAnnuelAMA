@@ -52,12 +52,16 @@ namespace LastToTheGlobe.Scripts.Dev
             _onlinePlayButton.onClick.AddListener(OnlinePlaySetup);
             _createRoomButton.onClick.AddListener(AskForRoomCreation);
             _joinRoomButton.onClick.AddListener(AskForRoomJoin);
+
+            //Make sure to load a level on the master client and all clients in the same room sync automatically
             PhotonNetwork.AutomaticallySyncScene = true;
         }
 
         private void Start()
         {
             ShowMainMenu();
+            //Make sure to load a level on the master client and all clients in the same room sync automatically
+            PhotonNetwork.AutomaticallySyncScene = true;
         }
 
         #endregion
@@ -92,8 +96,7 @@ namespace LastToTheGlobe.Scripts.Dev
 
             if (!PhotonNetwork.InRoom)
                 return;
-            //Player Instantiate
-            PhotonNetwork.Instantiate(PlayerPrefab.name, SpawnPoint.transform.position, SpawnPoint.rotation, 0);
+
 
             //TODO: add coroutine for welcome message
         }
@@ -150,6 +153,11 @@ namespace LastToTheGlobe.Scripts.Dev
                 MaxPlayers = 4,
                 PlayerTtl = 10000
             });
+
+            PhotonNetwork.LoadLevel("Lobby");
+            //Player Instantiate
+            PhotonNetwork.Instantiate(PlayerPrefab.name, SpawnPoint.transform.position, SpawnPoint.rotation, 0);
+
         }
 
         public void AskForRoomJoin()
@@ -188,6 +196,8 @@ namespace LastToTheGlobe.Scripts.Dev
             }
         }
         
+
+        //loading de level
         #endregion
     }
 }

@@ -1165,8 +1165,8 @@ Camera:
   m_GameObject: {fileID: 1223914593}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.020217314, g: 0.0146849435, b: 0.2830189, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -1345,6 +1345,8 @@ MonoBehaviour:
   - Choose game mode
   - Let's Play
   - 'Create or join existing room ? '
+  PlayerPrefab: {fileID: 0}
+  SpawnPoint: {fileID: 0}
 --- !u!1 &1488302070
 GameObject:
   m_ObjectHideFlags: 0
