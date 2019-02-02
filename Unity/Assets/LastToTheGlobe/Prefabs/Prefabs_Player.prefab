@@ -61,12 +61,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d07952a9d7585944699c886ac45a3c64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  players: []
+  SpawnPoint: []
+  onlineIntentReceivers: []
+  startGameControllerScript: {fileID: 0}
+  photonView: {fileID: 0}
   rb: {fileID: 4206846927725383977}
   runSpeed: 6
   walkSpeed: 2.5
   jumpSpeed: 4
   DashSpeed: 50
   raycastOrigin: {fileID: 8173655240290249719}
+--- !u!114 &1870909369248891143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 667819243432969020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
 --- !u!114 &3566819201319964608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,39 +107,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 1870909369248891143}
   viewIdField: 0
-  InstantiationId: 0
+  InstantiationId: 2
   isRuntimeInstantiated: 0
---- !u!114 &3953114022738814416
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 667819243432969020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizeVelocity: 1
-  m_SynchronizeAngularVelocity: 1
-  m_TeleportEnabled: 0
-  m_TeleportIfDistanceGreaterThan: 3
---- !u!114 &1870909369248891143
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 667819243432969020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
 --- !u!114 &3750195556427820304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,6 +142,22 @@ MonoBehaviour:
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
+--- !u!114 &3953114022738814416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 667819243432969020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizeVelocity: 1
+  m_SynchronizeAngularVelocity: 1
+  m_TeleportEnabled: 0
+  m_TeleportIfDistanceGreaterThan: 3
 --- !u!1 &2064898232099817620
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,7 +243,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 7289733708614938198}
   viewIdField: 0
-  InstantiationId: 0
+  InstantiationId: 1
   isRuntimeInstantiated: 0
 --- !u!114 &7289733708614938198
 MonoBehaviour:
