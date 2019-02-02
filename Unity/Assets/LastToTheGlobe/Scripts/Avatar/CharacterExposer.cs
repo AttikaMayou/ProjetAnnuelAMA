@@ -11,7 +11,7 @@ namespace LastToTheGlobe.Scripts.Dev
     {
         //Parameters used to control character
         public Rigidbody rb;
-        public PhotonRigidbodyView CharacterRbView;
+        //public PhotonRigidbodyView CharacterRbView;
         //public Transform CharacterTransform;
         //public GameObject AvatarRootGameObject;
     }
