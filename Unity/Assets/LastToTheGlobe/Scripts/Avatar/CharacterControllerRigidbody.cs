@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using LastToTheGlobe.Scripts.Avatar;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Pun.UtilityScripts;
@@ -128,7 +129,7 @@ namespace LastToTheGlobe.Scripts.Dev
                 var intentReceiver = activatedIntentReceivers[i];
                 var avatar = players[i];
 
-                activatedAvatarsCount += avatar.AvatarRootGameObject.activeSelf ? 1 : 0;
+                activatedAvatarsCount += avatar.avatarRootGameObject.activeSelf ? 1 : 0;
 
                 if (intentReceiver.Jump)
                 {
@@ -266,7 +267,7 @@ namespace LastToTheGlobe.Scripts.Dev
 
             for (var i = 0; i < players.Length; i++)
             {
-                players[i].AvatarRootGameObject.SetActive(false);
+                players[i].avatarRootGameObject.SetActive(false);
             }
 
             startGameControllerScript.ShowMainMenu();
