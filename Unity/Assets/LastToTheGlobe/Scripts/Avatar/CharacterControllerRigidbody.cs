@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using LastToTheGlobe.Scripts.Avatar;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Pun.UtilityScripts;
@@ -130,7 +131,7 @@ namespace LastToTheGlobe.Scripts.Dev
                 var intentReceiver = activatedIntentReceivers[i];
                 var avatar = players[i];
 
-                activatedAvatarsCount += avatar.AvatarRootGameObject.activeSelf ? 1 : 0;
+                activatedAvatarsCount += avatar.avatarRootGameObject.activeSelf ? 1 : 0;
 
                 if (intentReceiver.Jump)
                 {
@@ -271,7 +272,7 @@ namespace LastToTheGlobe.Scripts.Dev
                 avatar.rb.angularVelocity = Vector3.zero;
                 avatar.rb.position = SpawnPoint[i].position;
                 avatar.rb.rotation = SpawnPoint[i].rotation;
-                avatar.CharacterRbView.enabled = activatedIntentReceivers == onlineIntentReceivers;
+                avatar.characterRbView.enabled = activatedIntentReceivers == onlineIntentReceivers;
             }
 
             EnableIntentReceivers();
@@ -285,7 +286,7 @@ namespace LastToTheGlobe.Scripts.Dev
 
             for (var i = 0; i < players.Length; i++)
             {
-                players[i].AvatarRootGameObject.SetActive(false);
+                players[i].avatarRootGameObject.SetActive(false);
             }
 
             startGameControllerScript.ShowMainMenu();
@@ -353,13 +354,13 @@ namespace LastToTheGlobe.Scripts.Dev
         [PunRPC]
         private void ActivateAvatarRPC(int avatarId)
         {
-            players[avatarId].AvatarRootGameObject.SetActive(true);
+            players[avatarId].avatarRootGameObject.SetActive(true);
         }
 
         [PunRPC]
         private void DeactivateAvatarRPC(int avatarId)
         {
-            players[avatarId].AvatarRootGameObject.SetActive(false);
+            players[avatarId].avatarRootGameObject.SetActive(false);
         }
     }
 }

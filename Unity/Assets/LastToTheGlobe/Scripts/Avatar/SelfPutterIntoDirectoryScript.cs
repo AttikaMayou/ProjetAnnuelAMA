@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using LastToTheGlobe.Scripts.Avatar;
 using LastToTheGlobe.Scripts.Dev;
 using UnityEngine;
 

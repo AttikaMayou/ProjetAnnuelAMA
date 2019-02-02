@@ -1,46 +1,49 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class characterTrampolineScript : MonoBehaviour
+//Auteur : Abdallah
+
+namespace LastToTheGlobe.Scripts.Environment.Planets
 {
+    public class characterTrampolineScript : MonoBehaviour
+    {
     
-    public AttractorScript attractor;
+        public AttractorScript attractor;
 
-    [SerializeField]
-    private Rigidbody playerRigibody;
+        [SerializeField]
+        private Rigidbody playerRigibody;
 
-    private bool canHyperJump;
+        private bool canHyperJump;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+        // Start is called before the first frame update
+        void Start()
+        {
         
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space) && canHyperJump)
-        {
-            playerRigibody.AddForce(attractor.dirForce * 1300f);
-        }
-    }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        if(collision.collider.tag == "jumper")
-        {
-            canHyperJump = true;
-        }
-    }
-
-    void OnCollisionExit(Collision collision)
-    {
-        if (collision.collider.tag == "jumper")
-        {
-            canHyperJump = false;
         }
 
+        // Update is called once per frame
+        void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Space) && canHyperJump)
+            {
+                playerRigibody.AddForce(attractor.dirForce * 1300f);
+            }
+        }
+
+        void OnCollisionEnter(Collision collision)
+        {
+            if(collision.collider.tag == "jumper")
+            {
+                canHyperJump = true;
+            }
+        }
+
+        void OnCollisionExit(Collision collision)
+        {
+            if (collision.collider.tag == "jumper")
+            {
+                canHyperJump = false;
+            }
+
+        }
     }
 }

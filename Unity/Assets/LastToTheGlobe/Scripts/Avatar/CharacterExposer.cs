@@ -1,24 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using LastToTheGlobe.Scripts.Environment.Planets;
 using Photon.Pun;
+using UnityEngine;
+using UnityEngine.Serialization;
 
 
-//Auteur: Margot
+//Auteur: Margot, Abdallah et Attika
 
-namespace LastToTheGlobe.Scripts.Dev
+namespace LastToTheGlobe.Scripts.Avatar
 {
     public class CharacterExposer : MonoBehaviour
     {
         //Parameters used to control character
         public Rigidbody rb;
-        public PhotonRigidbodyView CharacterRbView;
-        //public Transform CharacterTransform;
-        public GameObject AvatarRootGameObject;
-        public ThirdPersonController ThirdPersonController;
-        public characterTrampolineScript CharacterTrampolineScript;
-        public AttractedScript SelfPlayerAttractedScript;
-        public AttractedScript SelfOrbAttractedScript;
+        [FormerlySerializedAs("CharacterRbView")] public PhotonRigidbodyView characterRbView;
+        [FormerlySerializedAs("CharacterTransform")] public Transform characterTransform;
+        [FormerlySerializedAs("AvatarRootGameObject")] public GameObject avatarRootGameObject;
+        [FormerlySerializedAs("ThirdPersonController")] public ThirdPersonController thirdPersonController;
+        [FormerlySerializedAs("CharacterTrampolineScript")] public characterTrampolineScript characterTrampolineScript;
+        [FormerlySerializedAs("SelfPlayerAttractedScript")] public AttractedScript selfPlayerAttractedScript;
+        [FormerlySerializedAs("SelfOrbAttractedScript")] public AttractedScript selfOrbAttractedScript;
         public Collider Collider;
     }
 }
