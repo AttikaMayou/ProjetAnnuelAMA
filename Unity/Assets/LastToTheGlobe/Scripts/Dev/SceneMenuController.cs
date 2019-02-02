@@ -30,10 +30,6 @@ namespace LastToTheGlobe.Scripts.Dev
         [SerializeField] private Text _welcomeMessageText;
         [SerializeField] private List<string> _messages = new List<string>();
 
-        // Player parameters
-        [SerializeField] private GameObject PlayerPrefab;
-        [SerializeField] private Transform SpawnPoint;
-
         #endregion
 
         #region Public Variables
@@ -98,6 +94,12 @@ namespace LastToTheGlobe.Scripts.Dev
             if (!PhotonNetwork.InRoom)
                 return;
 
+            OnlinePlayReady?.Invoke();
+
+            if (PhotonNetwork.IsMasterClient)
+            {
+                PlayerJoined?.Invoke(0);
+            }
 
             //TODO: add coroutine for welcome message
         }
@@ -156,8 +158,6 @@ namespace LastToTheGlobe.Scripts.Dev
             });
 
             PhotonNetwork.LoadLevel("Lobby");
-            //Player Instantiate
-            PhotonNetwork.Instantiate(PlayerPrefab.name, SpawnPoint.transform.position, SpawnPoint.rotation, 0);
 
         }
 

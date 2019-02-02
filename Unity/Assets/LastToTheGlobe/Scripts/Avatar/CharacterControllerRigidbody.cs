@@ -16,9 +16,6 @@ namespace LastToTheGlobe.Scripts.Dev
         private CharacterExposer[] players;
 
         [SerializeField]
-        private Transform[] SpawnPoint;
-
-        [SerializeField]
         private AIntentReceiver[] onlineIntentReceivers;
 
         [SerializeField]
@@ -28,7 +25,8 @@ namespace LastToTheGlobe.Scripts.Dev
         private PhotonView photonView;
 
         private AIntentReceiver[] activatedIntentReceivers;
-        private bool GameStarted { get; set; }
+        private bool gameStarted { get; set; }
+        private Transform spawnPoint;
 
         //Parameters for players and movements control
         [SerializeField]
@@ -49,7 +47,7 @@ namespace LastToTheGlobe.Scripts.Dev
 
         [SerializeField]
         [Tooltip("Vitesse du dash")]
-        private float DashSpeed;
+        private float dashSpeed;
 
         [SerializeField]
         [Tooltip("Raycast position")]
@@ -105,7 +103,7 @@ namespace LastToTheGlobe.Scripts.Dev
             }
 
             // Do nothing if the game is not started
-            if (!GameStarted)
+            if (!gameStarted)
             {
                 return;
             }
@@ -188,7 +186,7 @@ namespace LastToTheGlobe.Scripts.Dev
             //Dash
             if (dashAsked)
             {
-                rb.velocity = new Vector3(strafe * DashSpeed, rb.velocity.y, forward * DashSpeed);
+                rb.velocity = new Vector3(strafe * dashSpeed, rb.velocity.y, forward * dashSpeed);
                 dashAsked = false;
             }
             //Déplacement
@@ -202,7 +200,6 @@ namespace LastToTheGlobe.Scripts.Dev
         private void ChooseAndSubscribeToOnlineIntentReceivers()
         {
             activatedIntentReceivers = onlineIntentReceivers;
-            ResetGame();
         }
 
         private void ActivateAvatar(int id)
@@ -262,25 +259,9 @@ namespace LastToTheGlobe.Scripts.Dev
             }
         }
 
-        private void ResetGame()
-        {
-            for (var i = 0; i < players.Length; i++)
-            {
-                var avatar = players[i];
-                avatar.rb.velocity = Vector3.zero;
-                avatar.rb.angularVelocity = Vector3.zero;
-                avatar.rb.position = SpawnPoint[i].position;
-                avatar.rb.rotation = SpawnPoint[i].rotation;
-                avatar.CharacterRbView.enabled = activatedIntentReceivers == onlineIntentReceivers;
-            }
-
-            EnableIntentReceivers();
-            GameStarted = true;
-        }
-
         private void EndGame()
         {
-            GameStarted = false;
+            gameStarted = false;
             activatedIntentReceivers = null;
 
             for (var i = 0; i < players.Length; i++)
@@ -341,19 +322,11 @@ namespace LastToTheGlobe.Scripts.Dev
             }
         }
 
-
-
-
-
-
-
-
-
-
         [PunRPC]
         private void ActivateAvatarRPC(int avatarId)
         {
-            players[avatarId].AvatarRootGameObject.SetActive(true);
+            //Instantiate prefab
+            spawnPoint.position = new Vector3(avatarId, 0, 0);
         }
 
         [PunRPC]
@@ -363,6 +336,3 @@ namespace LastToTheGlobe.Scripts.Dev
         }
     }
 }
-
-
-
