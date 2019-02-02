@@ -78,8 +78,8 @@ namespace LastToTheGlobe.Scripts.Dev
         {
             _mainMenu.Deactivation();
             _playMenu.Deactivation();
-            
-            //TODO: add coroutine for welcome message
+
+                //TODO: add coroutine for welcome message
         }
 
         public override void OnPlayerLeftRoom(Player otherPlayer)

@@ -28,7 +28,7 @@ namespace LastToTheGlobe.Scripts.Dev
                 Debug.LogError("PhotonNetwork : Trying to Load a level but we are not the master Client");
             }
 
-            PhotonNetwork.LoadLevel("Lobby");
+            PhotonNetwork.LoadLevel("Lobby" + PhotonNetwork.CurrentRoom.playerCount);
 
         }
 
