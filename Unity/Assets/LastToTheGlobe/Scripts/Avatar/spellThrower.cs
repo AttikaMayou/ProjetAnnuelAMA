@@ -9,12 +9,7 @@ public class spellThrower : MonoBehaviour {
     private GameObject testOrb;
 
     private bool canThrowSpell;
-
-	// Use this for initialization
-	void Start () {
-        //testOrb = Resources.Load<GameObject>("testOrb");
-	}
-	
+    
 	// Update is called once per frame
 	void Update () {
         if (Input.GetKeyDown(KeyCode.A) && canThrowSpell)

@@ -23,7 +23,7 @@ public class characterTrampolineScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && canHyperJump)
         {
-            playerRigibody.AddForce(attractor.dirForce * 2600f);
+            playerRigibody.AddForce(attractor.dirForce * 1300f);
         }
     }
 
