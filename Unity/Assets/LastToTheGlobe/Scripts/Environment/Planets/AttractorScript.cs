@@ -13,6 +13,7 @@ public class AttractorScript : MonoBehaviour {
     public Vector3 dirForce;
     public Transform selfTransform;
     private AvatarExposerScript currentAvatar;
+    [SerializeField]private PlayerColliderDirectoryScript PlayerColliderDirectoryScript;
 
 	public void Attractor(Rigidbody attractedRigidbody, Transform body, float Gravity)
     {
@@ -29,18 +30,26 @@ public class AttractorScript : MonoBehaviour {
     }
     void OnTriggerEnter(Collider collider)
     {
-        if(collider.tag == "Player")
+        if (collider.CompareTag("Player"))
         {
-            currentAvatar = collider.gameObject.GetComponent<AvatarExposerScript>();
-            currentAvatar.avatar.attractor = this;
+            var exposer = PlayerColliderDirectoryScript.GetExposer(collider);
+
+            exposer.ThirdPersonController.attractor = this;
+            exposer.CharacterTrampolineScript.attractor = this;
+            exposer.SelfPlayerAttractedScript.attractor = this;
+            exposer.SelfOrbAttractedScript.attractor = this;
         }
     }
     void OnTriggerExit(Collider collider)
     {
-        if (collider.tag == "Player")
+        if (collider.CompareTag("Player"))
         {
-            currentAvatar = collider.gameObject.GetComponent<AvatarExposerScript>();
-            currentAvatar.avatar.attractor = this;
+            var exposer = PlayerColliderDirectoryScript.GetExposer(collider);
+
+            exposer.ThirdPersonController.attractor = null;
+            exposer.CharacterTrampolineScript.attractor = null;
+            exposer.SelfPlayerAttractedScript.attractor = null;
+            exposer.SelfOrbAttractedScript.attractor = null;
         }
     }
 }

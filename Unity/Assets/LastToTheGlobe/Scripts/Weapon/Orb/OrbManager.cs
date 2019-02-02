@@ -11,9 +11,9 @@ public class OrbManager : MonoBehaviour {
 
     [SerializeField]private Transform playerTransform;
 
-    [SerializeField] private AttractedScript attractedScript;
+    [SerializeField]private AttractedScript attractedScript;
 
-    [SerializeField] private Vector3 centerPointAttractor;
+    private Vector3 centerPointAttractor;
 
     private Vector3 Direction;
 
@@ -26,7 +26,7 @@ public class OrbManager : MonoBehaviour {
         selfPosition.position = playerTransform.position + playerTransform.forward * 2f;
         Direction = playerTransform.right;
         centerPointAttractor = attractedScript.attractor.selfTransform.position;
-        
+
     }
 
     // Update is called once per frame
