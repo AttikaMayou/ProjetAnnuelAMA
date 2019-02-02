@@ -33,8 +33,9 @@ namespace LastToTheGlobe.Scripts.Dev
         // Player parameters
         [SerializeField] private GameObject PlayerPrefab;
         [SerializeField] private Transform SpawnPoint;
+
         #endregion
-        
+
         #region Public Variables
         public event Action OnlinePlayReady;
         public event Action OfflinePlayReady;
@@ -91,7 +92,7 @@ namespace LastToTheGlobe.Scripts.Dev
 
             if(PhotonNetwork.IsMasterClient)
             {
-                PhotonNetwork.LoadLevel("GameScene");
+                PhotonNetwork.LoadLevel("Lobby");
             }
 
             if (!PhotonNetwork.InRoom)
@@ -196,8 +197,6 @@ namespace LastToTheGlobe.Scripts.Dev
             }
         }
         
-
-        //loading de level
         #endregion
     }
 }
