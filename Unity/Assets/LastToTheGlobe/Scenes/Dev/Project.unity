@@ -228,10 +228,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 493657356}
-  ThirdPersonController: {fileID: 493657354}
-  CharacterTrampolineScript: {fileID: 493657357}
-  SelfPlayerAttractedScript: {fileID: 493657355}
-  SelfOrbAttractedScript: {fileID: 853341638}
+  characterRbView: {fileID: 0}
+  characterTransform: {fileID: 493657353}
+  avatarRootGameObject: {fileID: 0}
+  thirdPersonController: {fileID: 493657354}
+  characterTrampolineScript: {fileID: 493657357}
+  selfPlayerAttractedScript: {fileID: 493657355}
+  selfOrbAttractedScript: {fileID: 853341638}
   Collider: {fileID: 493657350}
 --- !u!114 &493657352
 MonoBehaviour:
@@ -247,6 +250,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerColliderDirectoryScript: {fileID: 1034539818}
   CharacterExposer: {fileID: 493657351}
+--- !u!4 &493657353 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 921340114207384114, guid: 3e281da1df1276f47bdb4e26e87c0c1a,
+    type: 3}
+  m_PrefabInstance: {fileID: 921340114159451963}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &493657354 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 921340114207384113, guid: 3e281da1df1276f47bdb4e26e87c0c1a,
@@ -767,6 +776,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameObject
       objectReference: {fileID: 0}
+    - target: {fileID: 921340114207384125, guid: 3e281da1df1276f47bdb4e26e87c0c1a,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: c9f50f0e7b247a14288f22566db179a3,
+        type: 2}
+    - target: {fileID: 921340114207384113, guid: 3e281da1df1276f47bdb4e26e87c0c1a,
+        type: 3}
+      propertyPath: attractor
+      value: 
+      objectReference: {fileID: 1594077467}
     - target: {fileID: 921340114157450938, guid: 3e281da1df1276f47bdb4e26e87c0c1a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -832,22 +852,16 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 1.3
       objectReference: {fileID: 0}
-    - target: {fileID: 921340114207384125, guid: 3e281da1df1276f47bdb4e26e87c0c1a,
-        type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 13400000, guid: c9f50f0e7b247a14288f22566db179a3,
-        type: 2}
-    - target: {fileID: 921340114207384113, guid: 3e281da1df1276f47bdb4e26e87c0c1a,
-        type: 3}
-      propertyPath: attractor
-      value: 
-      objectReference: {fileID: 1594077467}
     - target: {fileID: 921340114986486523, guid: 3e281da1df1276f47bdb4e26e87c0c1a,
         type: 3}
       propertyPath: selfPosition
       value: 
       objectReference: {fileID: 853341636}
+    - target: {fileID: 921340113134944631, guid: 3e281da1df1276f47bdb4e26e87c0c1a,
+        type: 3}
+      propertyPath: playerExposer
+      value: 
+      objectReference: {fileID: 493657351}
     m_RemovedComponents:
     - {fileID: 921340114986486524, guid: 3e281da1df1276f47bdb4e26e87c0c1a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3e281da1df1276f47bdb4e26e87c0c1a, type: 3}

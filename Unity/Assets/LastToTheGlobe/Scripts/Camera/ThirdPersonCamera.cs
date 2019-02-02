@@ -1,36 +1,39 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Serialization;
 
-public class ThirdPersonCamera : MonoBehaviour {
+//Auteur : Abdallah
 
-    public Transform playerTransform;
+namespace LastToTheGlobe.Scripts.Camera
+{
+    public class ThirdPersonCamera : MonoBehaviour {
 
-    private Vector3 cameraOffset;
+        public Transform playerTransform;
 
-    [Range(0.01f, 1.0f)]
-    public float SmoothFactor = 0.5f;
+        private Vector3 _cameraOffset;
 
-    public float distanceToPlayer = 5.0f;
+        [FormerlySerializedAs("SmoothFactor")] [Range(0.01f, 1.0f)]
+        public float smoothFactor = 0.5f;
 
-    public float RotationSpeed = 5.0f;
+        public float distanceToPlayer = 5.0f;
+
+        [FormerlySerializedAs("RotationSpeed")] public float rotationSpeed = 5.0f;
+
+        private Vector3 _newPos;
+
+        private void Start()
+        {
+            _cameraOffset = transform.position;
+        }
+
+        private void LateUpdate()
+        {
+            var camTurnAngleX = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * rotationSpeed, playerTransform.up);
+            _cameraOffset = camTurnAngleX * _cameraOffset;
+            transform.position = Vector3.Slerp(transform.position, _cameraOffset, smoothFactor);
+            transform.LookAt(playerTransform);
 
 
-    private Vector3 newPos; 
+        }
 
-    void Start()
-    {
-        cameraOffset = transform.position;
     }
-
-    void LateUpdate()
-    {
-        Quaternion camTurnAngleX = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * RotationSpeed, playerTransform.up);
-        cameraOffset = camTurnAngleX * cameraOffset;
-        transform.position = Vector3.Slerp(transform.position, cameraOffset, SmoothFactor);
-        transform.LookAt(playerTransform);
-
-
-    }
-
 }

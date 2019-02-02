@@ -34,10 +34,10 @@ public class AttractorScript : MonoBehaviour {
         {
             var exposer = PlayerColliderDirectoryScript.GetExposer(collider);
 
-            exposer.ThirdPersonController.attractor = this;
-            exposer.CharacterTrampolineScript.attractor = this;
-            exposer.SelfPlayerAttractedScript.attractor = this;
-            exposer.SelfOrbAttractedScript.attractor = this;
+            exposer.thirdPersonController.attractor = this;
+            exposer.characterTrampolineScript.attractor = this;
+            exposer.selfPlayerAttractedScript.attractor = this;
+            exposer.selfOrbAttractedScript.attractor = this;
         }
     }
     void OnTriggerExit(Collider collider)
@@ -46,10 +46,10 @@ public class AttractorScript : MonoBehaviour {
         {
             var exposer = PlayerColliderDirectoryScript.GetExposer(collider);
 
-            exposer.ThirdPersonController.attractor = null;
-            exposer.CharacterTrampolineScript.attractor = null;
-            exposer.SelfPlayerAttractedScript.attractor = null;
-            exposer.SelfOrbAttractedScript.attractor = null;
+            exposer.thirdPersonController.attractor = null;
+            exposer.characterTrampolineScript.attractor = null;
+            exposer.selfPlayerAttractedScript.attractor = null;
+            exposer.selfOrbAttractedScript.attractor = null;
         }
     }
 }

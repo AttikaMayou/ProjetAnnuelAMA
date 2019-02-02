@@ -1,38 +1,50 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using LastToTheGlobe.Scripts.Avatar;
 using UnityEngine;
 
 
-//Auteur : Abdallah
+//Auteur : Abdallah et Attika
 
-public class CameraScript : MonoBehaviour {
-    [SerializeField]private string playerTag = "Player";
-    [SerializeField] private float cameraOffsetOriginalX = -47.8f;
-    [SerializeField] private float cameraOffsetOriginalY = 124.6787f;
-    [SerializeField] private float cameraOffsetOriginalZ = 11.24362f;
-    private Vector3 cameraOffsetOriginal;
+namespace LastToTheGlobe.Scripts.Camera
+{
+    public class CameraScript : MonoBehaviour {
+        [SerializeField]private string playerTag = "Player";
+        [SerializeField] private float cameraOffsetOriginalX = -47.8f;
+        [SerializeField] private float cameraOffsetOriginalY = 124.6787f;
+        [SerializeField] private float cameraOffsetOriginalZ = 11.24362f;
+        private Vector3 _cameraOffsetOriginal;
 
+        private Transform _myTransform;
+        
+        public CharacterExposer playerExposer;
+        
+        [SerializeField]
+        private GameObject cameraRotatorX;
 
-    [SerializeField]
-    private GameObject cameraRotatorX;
+        private void Start ()
+        {
+            //Get this gameObject's transform
+            _myTransform = this.gameObject.transform;
+            //cameraOffset = Distance entre la caméra et le joueur
+            var position = playerExposer.characterTransform.position;
+            var y = position.y + 3.0f;
+            var z = position.z - 9.0f;
+            _cameraOffsetOriginal = position - new Vector3(position.x, y, z);
+        }
 
-    // Use this for initialization
-    void Start ()
-    {
-        //Récupération de la position du joueur au démarrage
-        Transform player = GameObject.FindGameObjectWithTag(playerTag).transform;
-        //cameraOffset = Distance entre la caméra et le joueur
-        cameraOffsetOriginal = player.position - new Vector3(player.position.x, player.position.y + 3f, player.position.z - 9f);
-    }
+        private void Update()
+        {
+              UpdatePosAndRot();
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-        //Récupération de la position du joueur à chaque frame
-        Transform player = GameObject.FindGameObjectWithTag(playerTag).transform;
-        transform.position = player.position;
-        transform.rotation = player.rotation * cameraRotatorX.transform.rotation;
-        transform.position -= transform.rotation * cameraOffsetOriginal;   
+        /// <summary>
+        /// This function is used to update the position and the rotation of the camera
+        /// </summary>
+        private void UpdatePosAndRot()
+        {
+            //Récupération de la position du joueur à chaque frame
+            var position = playerExposer.characterTransform.position;
+            _myTransform.rotation = playerExposer.characterTransform.rotation * cameraRotatorX.transform.rotation;
+            _myTransform.position = position - (_myTransform.rotation * _cameraOffsetOriginal); 
+        }
     }
 }
