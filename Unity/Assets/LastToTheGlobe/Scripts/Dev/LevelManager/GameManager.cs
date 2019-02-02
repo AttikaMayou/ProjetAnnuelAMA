@@ -21,14 +21,12 @@ namespace LastToTheGlobe.Scripts.Dev
         }
 
         //Load level lobby
-        public void LoadArena()
+        public void LoadLevel()
         {
-            if (!PhotonNetwork.IsMasterClient)
+            if (PhotonNetwork.IsMasterClient)
             {
-                Debug.LogError("PhotonNetwork : Trying to Load a level but we are not the master Client");
+                PhotonNetwork.LoadLevel("GameScene");
             }
-
-            PhotonNetwork.LoadLevel("Lobby" + PhotonNetwork.CurrentRoom.playerCount);
 
         }
 

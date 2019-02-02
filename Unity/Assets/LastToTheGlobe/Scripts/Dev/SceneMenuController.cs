@@ -11,6 +11,7 @@ using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 //Auteur : Attika
+// Modifications : Margot
 
 namespace LastToTheGlobe.Scripts.Dev
 {
@@ -28,6 +29,10 @@ namespace LastToTheGlobe.Scripts.Dev
         [SerializeField] private Button _joinRoomButton;
         [SerializeField] private Text _welcomeMessageText;
         [SerializeField] private List<string> _messages = new List<string>();
+
+        // Player parameters
+        [SerializeField] private GameObject PlayerPrefab;
+        [SerializeField] private Transform SpawnPoint;
         #endregion
         
         #region Public Variables
@@ -47,6 +52,7 @@ namespace LastToTheGlobe.Scripts.Dev
             _onlinePlayButton.onClick.AddListener(OnlinePlaySetup);
             _createRoomButton.onClick.AddListener(AskForRoomCreation);
             _joinRoomButton.onClick.AddListener(AskForRoomJoin);
+            PhotonNetwork.AutomaticallySyncScene = true;
         }
 
         private void Start()
@@ -79,7 +85,17 @@ namespace LastToTheGlobe.Scripts.Dev
             _mainMenu.Deactivation();
             _playMenu.Deactivation();
 
-                //TODO: add coroutine for welcome message
+            if(PhotonNetwork.IsMasterClient)
+            {
+                PhotonNetwork.LoadLevel("GameScene");
+            }
+
+            if (!PhotonNetwork.InRoom)
+                return;
+            //Player Instantiate
+            PhotonNetwork.Instantiate(PlayerPrefab.name, SpawnPoint.transform.position, SpawnPoint.rotation, 0);
+
+            //TODO: add coroutine for welcome message
         }
 
         public override void OnPlayerLeftRoom(Player otherPlayer)
