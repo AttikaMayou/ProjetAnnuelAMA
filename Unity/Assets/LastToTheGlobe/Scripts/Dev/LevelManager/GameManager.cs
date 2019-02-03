@@ -1,26 +1,20 @@
-﻿using System.Linq;
-using System.Security.Cryptography;
-using Photon.Pun;
-using Photon.Pun.UtilityScripts;
-using Photon.Realtime;
+﻿using Photon.Pun;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 //Auteur : Margot
 
-namespace LastToTheGlobe.Scripts.Dev
+namespace LastToTheGlobe.Scripts.Dev.LevelManager
 {
-
     public class GameManager : MonoBehaviourPunCallbacks
     {
         [Tooltip("Player's prefab")]
         [SerializeField]
         private GameObject playerPrefab;
 
-        private Scene scene;
+        private Scene _scene;
 
-        void Start()
+        private void Start()
         {
             if (playerPrefab == null)
             {

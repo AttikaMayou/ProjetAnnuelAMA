@@ -17,19 +17,23 @@ namespace LastToTheGlobe.Scripts.Dev
 {
     public class SceneMenuController : MonoBehaviourPunCallbacks
     {
-        
         #region Private Variables
-
-        [SerializeField] private ActivateObjects _mainMenu;
-        [SerializeField] private Button _localPlayButton;
-        [SerializeField] private Button _onlinePlayButton;
+        [Header("First Menu Objects")]
+        [FormerlySerializedAs("_mainMenu")] [SerializeField] private ActivateObjects mainMenu;
+        [FormerlySerializedAs("_localPlayButton")] [SerializeField] private Button localPlayButton;
+        [FormerlySerializedAs("_onlinePlayButton")] [SerializeField] private Button onlinePlayButton;
+       
+        [Header(("Second Menu Objects"))]
+        [FormerlySerializedAs("_playMenu")] [SerializeField] private ActivateObjects playMenu;
+        [FormerlySerializedAs("_createRoomButton")] [SerializeField] private Button createRoomButton;
+        [FormerlySerializedAs("_joinRoomButton")] [SerializeField] private Button joinRoomButton;
         
-        [SerializeField] private ActivateObjects _playMenu;
-        [SerializeField] private Button _createRoomButton;
-        [SerializeField] private Button _joinRoomButton;
-        [SerializeField] private Text _welcomeMessageText;
-        [SerializeField] private List<string> _messages = new List<string>();
+        [Header("Feedback Objects")]
+        [FormerlySerializedAs("_welcomeMessageText")] [SerializeField] private Text welcomeMessageText;
+        [FormerlySerializedAs("_messages")] [SerializeField] private List<string> messages = new List<string>();
 
+        [Header("Room Parameters")] 
+        [SerializeField] private int maxPlayersPerRoom;
         #endregion
 
         #region Public Variables
@@ -45,13 +49,13 @@ namespace LastToTheGlobe.Scripts.Dev
         #endregion
 
         #region MonoBehaviour Callbacks
-
         private void Awake()
         {
-            _localPlayButton.onClick.AddListener(LocalPlaySetup);
-            _onlinePlayButton.onClick.AddListener(OnlinePlaySetup);
-            _createRoomButton.onClick.AddListener(AskForRoomCreation);
-            _joinRoomButton.onClick.AddListener(AskForRoomJoin);
+            //Setup first menu buttons and deactivate others
+            localPlayButton.onClick.AddListener(LocalPlaySetup);
+            onlinePlayButton.onClick.AddListener(OnlinePlaySetup);
+            createRoomButton.onClick.AddListener(AskForRoomCreation);
+            joinRoomButton.onClick.AddListener(AskForRoomJoin);
 
             //Make sure to load a level on the master client and all clients in the same room sync automatically
             PhotonNetwork.AutomaticallySyncScene = true;
@@ -66,12 +70,73 @@ namespace LastToTheGlobe.Scripts.Dev
 
         #endregion
         
+        #region Public Methods
+        /// <summary>
+        /// Called to show the main menu in which the player is not connected yet
+        /// </summary>
+        public void ShowMainMenu()
+        {
+            mainMenu.Activation();
+            playMenu.Deactivation();
+                    
+            welcomeMessageText.text = messages[0];
+        }
+        #endregion
+                
+        #region Private Methods  
+        /// <summary>
+        /// Initialize the game to be played offline
+        /// </summary>
+        private void LocalPlaySetup()
+        {
+            mainMenu.Deactivation();
+            playMenu.Deactivation();
+        
+            welcomeMessageText.text = messages[1];
+                    
+            OfflinePlayReady?.Invoke();
+                    
+            PlayerJoined?.Invoke(0);
+        }
+        
+        /// <summary>
+        /// Initialize the game to be played online
+        /// </summary>
+        private void OnlinePlaySetup()
+        {
+            mainMenu.Deactivation();
+            playMenu.Activation();
+            createRoomButton.interactable = false;
+            joinRoomButton.interactable = false;
+        
+            welcomeMessageText.text = messages[2];
+        
+            if (!PhotonNetwork.IsConnected)
+            {
+                PhotonNetwork.ConnectUsingSettings();
+            }
+        }
+        
+        private void AskForRoomCreation()
+        {
+            PhotonNetwork.CreateRoom("Lobby", new RoomOptions
+            {
+                MaxPlayers = (byte)maxPlayersPerRoom,
+                PlayerTtl = 10000
+            });
+        }
+                
+        private void AskForRoomJoin()
+        {
+            PhotonNetwork.JoinRoom("Lobby");
+        }
+        #endregion
+                
         #region Photon Callbacks
-
         public override void OnConnectedToMaster()
         {
-            _createRoomButton.interactable = true;
-            _joinRoomButton.interactable = true;
+            createRoomButton.interactable = true;
+            joinRoomButton.interactable = true;
         }
 
         public override void OnDisconnected(DisconnectCause cause)
@@ -86,8 +151,8 @@ namespace LastToTheGlobe.Scripts.Dev
 
         public override void OnJoinedRoom()
         {
-            _mainMenu.Deactivation();
-            _playMenu.Deactivation();
+            mainMenu.Deactivation();
+            playMenu.Deactivation();
 
             //Load level "Lobby"
             if(PhotonNetwork.IsMasterClient)
@@ -102,10 +167,10 @@ namespace LastToTheGlobe.Scripts.Dev
 
             if (PhotonNetwork.IsMasterClient)
             {
-                PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
+                PhotonNetwork.Instantiate("PlayerControlled/PrefabTest", new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
+                PlayerJoined?.Invoke(0);
             }
-
-            //TODO: add coroutine for welcome message
+            //TODO: add logic for index attribution per players
         }
 
         public override void OnPlayerLeftRoom(Player otherPlayer)
@@ -143,61 +208,5 @@ namespace LastToTheGlobe.Scripts.Dev
         
         #endregion
         
-        #region Public Methods
-
-        public void ShowMainMenu()
-        {
-            _mainMenu.Activation();
-            _playMenu.Deactivation();
-            
-            _welcomeMessageText.text = _messages[0];
-        }
-
-        public void AskForRoomCreation()
-        {
-            PhotonNetwork.CreateRoom("Tmp", new RoomOptions
-            {
-                MaxPlayers = 4,
-                PlayerTtl = 10000
-            });
-        }
-
-        public void AskForRoomJoin()
-        {
-            PhotonNetwork.JoinRoom("Tmp");
-        }
-
-        #endregion
-        
-        #region Private Methods
-
-        private void LocalPlaySetup()
-        {
-            _mainMenu.Deactivation();
-            _playMenu.Deactivation();
-
-           _welcomeMessageText.text = _messages[1];
-            
-            OfflinePlayReady?.Invoke();
-            
-            PlayerJoined?.Invoke(0);
-        }
-
-        private void OnlinePlaySetup()
-        {
-            _mainMenu.Deactivation();
-            _playMenu.Activation();
-            _createRoomButton.interactable = false;
-            _joinRoomButton.interactable = false;
-
-            _welcomeMessageText.text = _messages[2];
-
-            if (!PhotonNetwork.IsConnected)
-            {
-                PhotonNetwork.ConnectUsingSettings();
-            }
-        }
-        
-        #endregion
     }
 }

@@ -3,8 +3,6 @@ using Photon.Pun.UtilityScripts;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-
-
 //Auteur : Margot
 //Modification :
 

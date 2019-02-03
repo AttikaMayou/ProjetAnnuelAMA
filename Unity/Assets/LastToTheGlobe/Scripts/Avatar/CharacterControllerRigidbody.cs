@@ -1,33 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using LastToTheGlobe.Scripts.Avatar;
-using UnityEngine;
+﻿using LastToTheGlobe.Scripts.Dev;
 using Photon.Pun;
-using Photon.Pun.UtilityScripts;
-using Photon.Realtime;
+using UnityEngine;
 
 //Auteur : Margot
 
-namespace LastToTheGlobe.Scripts.Dev
+namespace LastToTheGlobe.Scripts.Avatar
 {
     public class CharacterControllerRigidbody : MonoBehaviour
     {
-        //Parameters for Photon and replication
+        [Header("Photon and Replication Parameters")]
         [SerializeField]
         private CharacterExposer[] players;
-
         [SerializeField]
         private AIntentReceiver[] onlineIntentReceivers;
-
         [SerializeField]
         private SceneMenuController startGameControllerScript;
-
         [SerializeField]
         private PhotonView photonView;
-
-        private AIntentReceiver[] activatedIntentReceivers;
-        private bool gameStarted { get; set; }
-        private Transform spawnPoint;
+        private AIntentReceiver[] _activatedIntentReceivers;
+        private bool GameStarted { get; set; }
+        private Transform _spawnPoint;
 
         //Parameters for players and movements control
         [SerializeField]
@@ -54,13 +46,13 @@ namespace LastToTheGlobe.Scripts.Dev
         [Tooltip("Raycast position")]
         private Transform raycastOrigin;
 
-        private float forward;
-        private float strafe;
-        private float speed = 5;
-        private float ray = 0.4f;
-        private bool isGrounded = false;
-        private int jumpMax = 1;
-        private bool dashAsked = false;
+        private float _forward;
+        private float _strafe;
+        private float _speed = 5;
+        private float _ray = 0.4f;
+        private bool _isGrounded = false;
+        private int _jumpMax = 1;
+        private bool _dashAsked = false;
 
 
 
@@ -81,9 +73,9 @@ namespace LastToTheGlobe.Scripts.Dev
         void Update()
         {
             // Récupération des floats vertical et horizontal de l'animator au script
-            forward = Input.GetAxis("Vertical");
-            strafe = Input.GetAxis("Horizontal");
-            Vector3 movement = new Vector3(strafe, 0.0f, forward);
+            _forward = Input.GetAxis("Vertical");
+            _strafe = Input.GetAxis("Horizontal");
+            Vector3 movement = new Vector3(_strafe, 0.0f, _forward);
 
             //Course
             Running();
@@ -104,15 +96,15 @@ namespace LastToTheGlobe.Scripts.Dev
             }
 
             // Do nothing if the game is not started
-            if (!gameStarted)
+            if (!GameStarted)
             {
                 return;
             }
 
             // If intents and avatars are not setup properly
-            if (activatedIntentReceivers == null
+            if (_activatedIntentReceivers == null
                 || players == null
-                || players.Length != activatedIntentReceivers.Length)
+                || players.Length != _activatedIntentReceivers.Length)
             {
                 Debug.LogError("There is something wrong with avatars and intents setup !");
                 return;
@@ -122,11 +114,11 @@ namespace LastToTheGlobe.Scripts.Dev
             var fallenAvatarsCount = 0;
             var activatedAvatarsCount = 0;
 
-            for (var i = 0; i < activatedIntentReceivers.Length; i++)
+            for (var i = 0; i < _activatedIntentReceivers.Length; i++)
             {
                 var moveIntent = Vector3.zero;
 
-                var intentReceiver = activatedIntentReceivers[i];
+                var intentReceiver = _activatedIntentReceivers[i];
                 var avatar = players[i];
 
                 activatedAvatarsCount += avatar.avatarRootGameObject.activeSelf ? 1 : 0;
@@ -140,7 +132,7 @@ namespace LastToTheGlobe.Scripts.Dev
                             continue;
                         }
 
-                        rb.velocity = new Vector3(strafe * speed, rb.velocity.y, forward * speed);
+                        rb.velocity = new Vector3(_strafe * _speed, rb.velocity.y, _forward * _speed);
                     }
 
                     intentReceiver.Jump = false;
@@ -148,7 +140,7 @@ namespace LastToTheGlobe.Scripts.Dev
 
                 if (intentReceiver.MoveBack)
                 {
-                    moveIntent += rb.velocity = new Vector3(strafe * speed, rb.velocity.y, forward * speed); ;
+                    moveIntent += rb.velocity = new Vector3(_strafe * _speed, rb.velocity.y, _forward * _speed); ;
                 }
 
                 /*if (intentReceiver.MoveForward)
@@ -168,7 +160,7 @@ namespace LastToTheGlobe.Scripts.Dev
 
                 moveIntent = moveIntent.normalized;
 
-                rb.velocity = new Vector3(strafe * speed, rb.velocity.y, forward * speed);
+                rb.velocity = new Vector3(_strafe * _speed, rb.velocity.y, _forward * _speed);
 
                 fallenAvatarsCount++;
 
@@ -185,22 +177,22 @@ namespace LastToTheGlobe.Scripts.Dev
 
 
             //Dash
-            if (dashAsked)
+            if (_dashAsked)
             {
-                rb.velocity = new Vector3(strafe * dashSpeed, rb.velocity.y, forward * dashSpeed);
-                dashAsked = false;
+                rb.velocity = new Vector3(_strafe * dashSpeed, rb.velocity.y, _forward * dashSpeed);
+                _dashAsked = false;
             }
             //Déplacement
             else
             {
-                rb.velocity = new Vector3(strafe * speed, rb.velocity.y, forward * speed);
+                rb.velocity = new Vector3(_strafe * _speed, rb.velocity.y, _forward * _speed);
             }
         }
 
         //Functions for movements replication
         private void ChooseAndSubscribeToOnlineIntentReceivers()
         {
-            activatedIntentReceivers = onlineIntentReceivers;
+            _activatedIntentReceivers = onlineIntentReceivers;
         }
 
         private void ActivateAvatar(int id)
@@ -217,34 +209,34 @@ namespace LastToTheGlobe.Scripts.Dev
 
         private void DisableIntentReceivers()
         {
-            if (activatedIntentReceivers == null)
+            if (_activatedIntentReceivers == null)
             {
                 return;
             }
 
-            for (var i = 0; i < activatedIntentReceivers.Length; i++)
+            for (var i = 0; i < _activatedIntentReceivers.Length; i++)
             {
-                activatedIntentReceivers[i].enabled = false;
+                _activatedIntentReceivers[i].enabled = false;
             }
         }
 
         private void EnableIntentReceivers()
         {
-            if (activatedIntentReceivers == null)
+            if (_activatedIntentReceivers == null)
             {
                 return;
             }
 
-            for (var i = 0; i < activatedIntentReceivers.Length; i++)
+            for (var i = 0; i < _activatedIntentReceivers.Length; i++)
             {
-                activatedIntentReceivers[i].enabled = true;
-                activatedIntentReceivers[i].Dash = false;
-                activatedIntentReceivers[i].Jump = false;
-                activatedIntentReceivers[i].Run = false;
-                activatedIntentReceivers[i].MoveLeft = false;
-                activatedIntentReceivers[i].MoveBack = false;
-                activatedIntentReceivers[i].MoveRight = false;
-                activatedIntentReceivers[i].MoveForward = false;
+                _activatedIntentReceivers[i].enabled = true;
+                _activatedIntentReceivers[i].Dash = false;
+                _activatedIntentReceivers[i].Jump = false;
+                _activatedIntentReceivers[i].Run = false;
+                _activatedIntentReceivers[i].MoveLeft = false;
+                _activatedIntentReceivers[i].MoveBack = false;
+                _activatedIntentReceivers[i].MoveRight = false;
+                _activatedIntentReceivers[i].MoveForward = false;
             }
         }
 
@@ -262,8 +254,8 @@ namespace LastToTheGlobe.Scripts.Dev
 
         private void EndGame()
         {
-            gameStarted = false;
-            activatedIntentReceivers = null;
+            GameStarted = false;
+            _activatedIntentReceivers = null;
 
             for (var i = 0; i < players.Length; i++)
             {
@@ -284,18 +276,18 @@ namespace LastToTheGlobe.Scripts.Dev
         //Functions for players movements
         private bool IsGrounded()
         {
-            return Physics.Raycast(raycastOrigin.position, Vector3.down, ray);
+            return Physics.Raycast(raycastOrigin.position, Vector3.down, _ray);
         }
 
         private void Running()
         {
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                speed = runSpeed;
+                _speed = runSpeed;
             }
             else
             {
-                speed = walkSpeed;
+                _speed = walkSpeed;
             }
         }
 
@@ -303,7 +295,7 @@ namespace LastToTheGlobe.Scripts.Dev
         {
             if (Input.GetKeyDown(KeyCode.LeftAlt))
             {
-                dashAsked = true;
+                _dashAsked = true;
             }
         }
 
@@ -311,15 +303,15 @@ namespace LastToTheGlobe.Scripts.Dev
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                if (jumpMax > 0)
+                if (_jumpMax > 0)
                 {
                     rb.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
-                    jumpMax--;
+                    _jumpMax--;
                 }
             }
             if (IsGrounded())
             {
-                jumpMax = 1;
+                _jumpMax = 1;
             }
         }
 
@@ -327,7 +319,7 @@ namespace LastToTheGlobe.Scripts.Dev
         private void ActivateAvatarRPC(int avatarId)
         {
             //Instantiate prefab
-            spawnPoint.position = new Vector3(avatarId, 0, 0);
+            _spawnPoint.position = new Vector3(avatarId, 0, 0);
         }
 
         [PunRPC]
