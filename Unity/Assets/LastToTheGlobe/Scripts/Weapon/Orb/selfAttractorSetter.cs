@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using LastToTheGlobe.Scripts.Environment.Planets;
 using UnityEngine;
 
 public class selfAttractorSetter : MonoBehaviour
