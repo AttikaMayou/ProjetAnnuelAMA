@@ -14,21 +14,24 @@ namespace LastToTheGlobe.Scripts.Dev
 
     public class GameManager : MonoBehaviourPunCallbacks
     {
-        /*//Timer Parameters
-        private float timeLeft = 20;
-        private Text timerSeconds;
+        [Tooltip("Player's prefab")]
+        [SerializeField]
+        private GameObject playerPrefab;
+
+        private Scene scene;
 
         void Start()
         {
-            timerSeconds = GetComponent<Text>();
+            if (playerPrefab == null)
+            {
+                Debug.LogError("<Color=Red><a>Missing</a></Color> playerPrefab Reference. Please set it up in GameObject 'Game Manager'", this);
+            }
+            else
+            {
+                Debug.Log("We are Instantiating LocalPlayer");
+                PhotonNetwork.Instantiate(playerPrefab.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
+            }
         }
-
-        void Update()
-        {
-            timeLeft -= Time.deltaTime;
-            timerSeconds.text = timeLeft.ToString("f2");
-
-        }*/
 
         //Called when the local player left the room
         public override void OnLeftRoom()

@@ -333,7 +333,7 @@ namespace LastToTheGlobe.Scripts.Dev
         [PunRPC]
         private void DeactivateAvatarRPC(int avatarId)
         {
-            players[avatarId].AvatarRootGameObject.SetActive(false);
+            players[avatarId].avatarRootGameObject.SetActive(false);
         }
     }
 }

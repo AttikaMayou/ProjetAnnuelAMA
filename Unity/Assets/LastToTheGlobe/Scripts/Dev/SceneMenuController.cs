@@ -39,6 +39,9 @@ namespace LastToTheGlobe.Scripts.Dev
         public event Action<int> PlayerLeft;
         public event Action Disconnected;
         public event Action MasterClientSwitched;
+
+        [Tooltip("Prefab for Player")]
+        public GameObject playerPrefab;
         #endregion
 
         #region MonoBehaviour Callbacks
@@ -86,6 +89,7 @@ namespace LastToTheGlobe.Scripts.Dev
             _mainMenu.Deactivation();
             _playMenu.Deactivation();
 
+            //Load level "Lobby"
             if(PhotonNetwork.IsMasterClient)
             {
                 PhotonNetwork.LoadLevel("Lobby");
@@ -98,7 +102,7 @@ namespace LastToTheGlobe.Scripts.Dev
 
             if (PhotonNetwork.IsMasterClient)
             {
-                PlayerJoined?.Invoke(0);
+                PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
             }
 
             //TODO: add coroutine for welcome message
@@ -156,9 +160,6 @@ namespace LastToTheGlobe.Scripts.Dev
                 MaxPlayers = 4,
                 PlayerTtl = 10000
             });
-
-            PhotonNetwork.LoadLevel("Lobby");
-
         }
 
         public void AskForRoomJoin()
