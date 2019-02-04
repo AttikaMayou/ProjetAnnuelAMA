@@ -14,6 +14,9 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
 
         private bool canHyperJump;
 
+        private float cooldownFinished = 0f;
+        
+
         // Start is called before the first frame update
         void Start()
         {
@@ -23,9 +26,17 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space) && canHyperJump)
+            print(cooldownFinished);
+            if (Input.GetKeyDown(KeyCode.Space) && canHyperJump && cooldownFinished <= 0f)
             {
+                cooldownFinished = 10f;
                 playerRigibody.AddForce(attractor.dirForce * 1300f);
+                
+            }
+
+            while (cooldownFinished >= 0f)
+            {
+                cooldownFinished -= Time.deltaTime;
             }
         }
 
