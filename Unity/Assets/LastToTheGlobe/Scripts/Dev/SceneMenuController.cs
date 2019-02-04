@@ -203,7 +203,8 @@ namespace LastToTheGlobe.Scripts.Dev
         public override void OnJoinRoomFailed(short returnCode, string message)
         {
             Debug.LogError("OnJoinRoomFailed() was called by PUN. \nCreate a new room.");
-            PhotonNetwork.CreateRoom(null, new RoomOptions() {MaxPlayers = 4}, null);
+            PhotonNetwork.CreateRoom(null, new RoomOptions() {MaxPlayers = (byte)maxPlayersPerRoom}, null);
+            //TODO : handle this case (with try and catch errors) : is the player cannot connect ?  
         }
         
         #endregion
