@@ -12,111 +12,45 @@ public enum LastToTheGlobeScene
 {
     NONE,
     MainMenu,
-    Lobby
+    Lobby,
+    GameRoom
 }
 
 namespace LastToTheGlobe.Scripts.Dev.LevelManager
 {
     public class LevelLoadingManager : MonoBehaviourSingleton<LevelLoadingManager>
     {
-        private LastToTheGlobeScene _currScene = LastToTheGlobeScene.NONE;
+        private static LastToTheGlobeScene _currScene = LastToTheGlobeScene.NONE;
 
-        private bool _isProcessing;
-        private bool _levelLoaded;
-  
-        /// <summary>
-        /// Handle RPC loss by deactivating the queue when loading a new scene
-        /// </summary>
-        /// <returns></returns>
-        private IEnumerator SwitchToScene(LastToTheGlobeScene scene)
-        {
-            // To prevent multiple switch
-            _isProcessing = true;
-            
-            // To prevent loss of RPCs, disable temporary the queue that contains it
-            PhotonNetwork.IsMessageQueueRunning = false;
-            CustomLoadingScene(scene);
-            while (!_levelLoaded)
-            {
-                yield return null;
-            }
-            PhotonNetwork.IsMessageQueueRunning = true;
-        }
+        private static bool _isProcessing;
 
         /// <summary>
-        /// Called to load a scene properly and get the status
+        /// Load a given scene
         /// </summary>
         /// <param name="scene"></param>
-        /// <returns></returns>
-        private IEnumerator LoadSceneAsync(LastToTheGlobeScene scene)
+        private static IEnumerator CustomLoadingScene(LastToTheGlobeScene scene)
         {
-            if (!PhotonNetwork.IsMasterClient) yield break;
-
-            if (!PhotonNetwork.InRoom) yield break;
+            _isProcessing = true;
             
-            //TODO : mix this call with the PhotonNetwork function to load the level
-            //AsyncOperation sceneLoading = PhotonNetwork.LoadLevelAsync(scene.ToString(), LoadSceneMode.Additive);
-            AsyncOperation sceneLoading = SceneManager.LoadSceneAsync(scene.ToString());
-           
-            sceneLoading.allowSceneActivation = false;
+            if (scene == LastToTheGlobeScene.GameRoom)
+            {
+                if (!PhotonNetwork.IsMasterClient) yield return null;
+                
+                //Every clients will load the GameRoom as the same time
+                PhotonNetwork.AutomaticallySyncScene = true;
+            }
+            
+            //Load the levels asynchronously among clients
+            PhotonNetwork.LoadLevel((int)scene);
 
-            while (!sceneLoading.isDone)
+            while (PhotonNetwork.LevelLoadingProgress < 1)
             {
                 yield return new WaitForEndOfFrame();
-                if (sceneLoading.progress >= 0.9f)
-                {
-                    sceneLoading.allowSceneActivation = true;
-                }
-
-                yield return null;
             }
-
-            _currScene = scene;
-
-            PhotonNetwork.IsMessageQueueRunning = true;
 
             _isProcessing = false;
-        }
-        
-        /// <summary>
-        /// Called to unload a scene properly and get the status
-        /// </summary>
-        /// <param name="scene"></param>
-        /// <returns></returns>
-        private IEnumerator UnloadSceneAsync(LastToTheGlobeScene scene)
-        {
-            if (!PhotonNetwork.IsMasterClient) yield break;
             
-            _isProcessing = true;
-
-            if (_currScene != LastToTheGlobeScene.NONE)
-            {
-                PhotonNetwork.IsMessageQueueRunning = false;
-                string oldScene = _currScene.ToString();
-
-                AsyncOperation sceneUnloading = SceneManager.UnloadSceneAsync(_currScene.ToString());
-                while (!sceneUnloading.isDone)
-                {
-                    //TODO : add debug or UI for process bar if needed
-                    yield return new WaitForEndOfFrame();
-                }
-
-                yield return StartCoroutine(LoadSceneAsync(scene));
-            }
-            else
-            {
-                //In case there is no scene to unload
-                yield return StartCoroutine(LoadSceneAsync(scene));
-            }
-        }
-
-        /// <summary>
-        /// Load a given scene 
-        /// </summary>
-        /// <param name="sceneName"></param>
-        private static void CustomLoadingScene(LastToTheGlobeScene sceneName)
-        {
-            PhotonNetwork.LoadLevel((int)sceneName);
+            _currScene = scene;
         }
 
         /// <summary>
@@ -145,7 +79,7 @@ namespace LastToTheGlobe.Scripts.Dev.LevelManager
         /// Switch the player to the scene given in parameters
         /// </summary>
         /// <param name="scene"></param>
-        public void SwitchSceneTo(LastToTheGlobeScene scene)
+        public void SwitchToScene(LastToTheGlobeScene scene)
         {
             if (!IsSceneValid(scene))
             {
@@ -167,7 +101,7 @@ namespace LastToTheGlobe.Scripts.Dev.LevelManager
 
             if (!_isProcessing)
             {
-                StartCoroutine(UnloadSceneAsync(scene));
+                StartCoroutine(CustomLoadingScene(scene));
             }
         }
         
@@ -176,7 +110,8 @@ namespace LastToTheGlobe.Scripts.Dev.LevelManager
         /// </summary>
         public void BackToMainMenu()
         {
-            SwitchSceneTo(LastToTheGlobeScene.MainMenu);
+            SwitchToScene(LastToTheGlobeScene.MainMenu);
+            //TODO : add logic for quiting the room ? 
         }
     }
 }

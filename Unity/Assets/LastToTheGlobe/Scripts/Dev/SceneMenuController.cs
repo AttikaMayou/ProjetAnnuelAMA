@@ -154,6 +154,8 @@ namespace LastToTheGlobe.Scripts.Dev
             mainMenu.Deactivation();
             playMenu.Deactivation();
 
+            //TODO : add here the call for the class LevelLoadingManager
+            
             //Load level "Lobby"
             if(PhotonNetwork.IsMasterClient)
             {
