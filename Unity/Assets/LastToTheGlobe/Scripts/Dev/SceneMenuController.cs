@@ -160,6 +160,9 @@ namespace LastToTheGlobe.Scripts.Dev
             //Load level "Lobby"
             LevelLoadingManager.Instance.SwitchToScene(LastToTheGlobeScene.Lobby);
             
+            OnlinePlayReady?.Invoke();
+            PlayerJoined?.Invoke(0);
+            
 //            if (!PhotonNetwork.InRoom)
 //                return;
 //
