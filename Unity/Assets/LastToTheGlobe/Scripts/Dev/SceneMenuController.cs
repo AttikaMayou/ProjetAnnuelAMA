@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mime;
+using LastToTheGlobe.Scripts.Dev.LevelManager;
 using LastToTheGlobe.Scripts.UI;
 using Photon.Pun;
 using Photon.Pun.UtilityScripts;
@@ -159,7 +160,7 @@ namespace LastToTheGlobe.Scripts.Dev
             //Load level "Lobby"
             if(PhotonNetwork.IsMasterClient)
             {
-                PhotonNetwork.LoadLevel("Lobby");
+                LevelLoadingManager.Instance.SwitchToScene(LastToTheGlobeScene.Lobby);
             }
 
             if (!PhotonNetwork.InRoom)
@@ -169,7 +170,7 @@ namespace LastToTheGlobe.Scripts.Dev
 
             if (PhotonNetwork.IsMasterClient)
             {
-                PhotonNetwork.Instantiate("PlayerControlled/PrefabTest", new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
+                //PhotonNetwork.Instantiate("PlayerControlled/PrefabTest", new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
                 PlayerJoined?.Invoke(0);
             }
             //TODO: add logic for index attribution per players

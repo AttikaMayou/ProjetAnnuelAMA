@@ -39,6 +39,10 @@ namespace LastToTheGlobe.Scripts.Dev.LevelManager
                 //Every clients will load the GameRoom as the same time
                 PhotonNetwork.AutomaticallySyncScene = true;
             }
+            else
+            {
+                PhotonNetwork.AutomaticallySyncScene = false;
+            }
             
             //Load the levels asynchronously among clients
             PhotonNetwork.LoadLevel((int)scene);
