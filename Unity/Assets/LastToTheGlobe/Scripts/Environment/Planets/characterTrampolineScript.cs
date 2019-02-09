@@ -4,7 +4,7 @@
 
 namespace LastToTheGlobe.Scripts.Environment.Planets
 {
-    public class characterTrampolineScript : MonoBehaviour
+    public class characterTrampolineScript : Avatar.Avatar
     {
     
         public AttractorScript attractor;

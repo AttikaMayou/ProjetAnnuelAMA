@@ -1,12 +1,16 @@
 ﻿using LastToTheGlobe.Scripts.Environment.Planets;
 using UnityEngine;
 
+
 //Auteur : Abdallah
 
 namespace LastToTheGlobe.Scripts.Avatar
 {
-    public class ThirdPersonController : Avatar {
-
+    public class ThirdPersonController : Avatar
+    {
+        
+        [SerializeField] private AttractedScript attractedScript;
+        
         [Header("Camera Parameters")]
         [SerializeField]
         private GameObject cameraRotatorX;
@@ -26,7 +30,7 @@ namespace LastToTheGlobe.Scripts.Avatar
 
         private void Start ()
         {
-            //cameraRotatorX.transform.rotation = transform.rotation;
+            
         }
 
         private void FixedUpdate () 
@@ -81,7 +85,7 @@ namespace LastToTheGlobe.Scripts.Avatar
             if(hit.gameObject.CompareTag("planet"))
             {
                 _isJumping = false;
-                gameObject.GetComponent<AttractedScript>().firstStepOnGround = false;
+                attractedScript.firstStepOnGround = false;
             }
         }
     }

@@ -1,17 +1,19 @@
 ﻿using UnityEngine;
+using LastToTheGlobe.Scripts.Environment.Planets;
 
 //Auteur : Abdallah
 
 namespace LastToTheGlobe.Scripts.Environment.Planets
 {
-	public class AttractedScript : MonoBehaviour {
+	public class AttractedScript : Avatar.Avatar {
 
-		public AttractorScript attractor;
 		private Transform _myTransform;
 		[SerializeField]
 		private Rigidbody attractedRigidbody;
 		[SerializeField]
 		private float selfGravity = -10f;
+		
+		[HideInInspector]
 		public bool firstStepOnGround;
 
 		private void Start () {
@@ -23,11 +25,11 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
 
 		private void Update ()
 		{
-			if(firstStepOnGround && attractor != null)
+			if(firstStepOnGround && attractor)
 			{
 				attractor.Attractor(attractedRigidbody, _myTransform, -2600f);
 			}
-			else if (!firstStepOnGround && attractor != null)
+			else if (!firstStepOnGround && attractor)
 			{
 				attractor.Attractor(attractedRigidbody, _myTransform, selfGravity);
 			}
