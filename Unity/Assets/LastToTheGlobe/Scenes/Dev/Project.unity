@@ -525,7 +525,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6aff92dd8c5e12459bec4e41680a014, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterTrampolineScript: {fileID: 0}
 --- !u!4 &853341636 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 921340114986486527, guid: 3e281da1df1276f47bdb4e26e87c0c1a,
@@ -907,11 +906,16 @@ PrefabInstance:
         type: 3}
       propertyPath: attractor
       value: 
-      objectReference: {fileID: 1594077467}
+      objectReference: {fileID: 0}
+    - target: {fileID: 921340114207384112, guid: 3e281da1df1276f47bdb4e26e87c0c1a,
+        type: 3}
+      propertyPath: selfGravity
+      value: -10
+      objectReference: {fileID: 0}
     - target: {fileID: 921340114157450938, guid: 3e281da1df1276f47bdb4e26e87c0c1a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.3454123
+      value: -1.4
       objectReference: {fileID: 0}
     - target: {fileID: 921340114157450938, guid: 3e281da1df1276f47bdb4e26e87c0c1a,
         type: 3}

@@ -15,6 +15,7 @@ public class AttractorScript : MonoBehaviour {
     private AvatarExposerScript currentAvatar;
     [SerializeField]private PlayerColliderDirectoryScript PlayerColliderDirectoryScript;
 
+    
 	public void Attractor(Rigidbody attractedRigidbody, Transform body, float Gravity)
     {
         //Donne la direction de la gravité
