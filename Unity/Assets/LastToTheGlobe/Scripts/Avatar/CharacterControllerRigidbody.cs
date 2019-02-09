@@ -319,7 +319,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         private void ActivateAvatarRPC(int avatarId)
         {
             _spawnPoint.position = new Vector3(avatarId, 0, 0);
-            PhotonNetwork.Instantiate("PlayerControlled/PrefabTest", new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
+            PhotonNetwork.Instantiate("Resources/PrefabTest",_spawnPoint.position, Quaternion.identity, 0);
         }
 
         [PunRPC]
