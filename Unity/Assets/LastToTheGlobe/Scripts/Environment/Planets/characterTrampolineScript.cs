@@ -34,7 +34,7 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
                 
             }
 
-            while (cooldownFinished >= 0f)
+            if (cooldownFinished >= 0f)
             {
                 cooldownFinished -= Time.deltaTime;
             }
