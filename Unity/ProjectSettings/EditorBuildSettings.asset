@@ -5,8 +5,14 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: Assets/LastToTheGlobe/Scenes/Test/AnimationTest.unity
+    guid: 7a768bba216fedc428a569f3984087c7
   - enabled: 1
-    path: Assets/LastToTheGlobe/Scenes/Dev/Menu.unity
+    path: Assets/LastToTheGlobe/Scenes/_masterScene.unity
+    guid: 3cf2b77f91d7d0848bb5f059a71c7248
+  - enabled: 1
+    path: Assets/LastToTheGlobe/Scenes/Dev/MainMenu.unity
     guid: 1e8bc0460bad79b4c8b767d6f7c653b2
   - enabled: 1
     path: Assets/LastToTheGlobe/Scenes/Dev/Lobby.unity
@@ -14,7 +20,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/LastToTheGlobe/Scenes/Dev/GameMap/GameRoom.unity
     guid: 6be4d4053deab774b8bb7de05ee04641
-  - enabled: 0
-    path: Assets/LastToTheGlobe/Scenes/Test/AnimationTest.unity
-    guid: 7a768bba216fedc428a569f3984087c7
   m_configObjects: {}
