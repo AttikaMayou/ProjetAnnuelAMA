@@ -26,11 +26,11 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
         // Update is called once per frame
         void Update()
         {
-            print(cooldownFinished);
+            
             if (Input.GetKeyDown(KeyCode.Space) && canHyperJump && cooldownFinished <= 0f)
             {
                 cooldownFinished = 10f;
-                playerRigibody.AddForce(attractor.dirForce * 1300f);
+                playerRigibody.AddForce(transform.up * 1300f);
                 
             }
 
