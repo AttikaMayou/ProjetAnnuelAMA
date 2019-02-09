@@ -158,21 +158,18 @@ namespace LastToTheGlobe.Scripts.Dev
             //TODO : add here the call for the class LevelLoadingManager
             
             //Load level "Lobby"
-            if(PhotonNetwork.IsMasterClient)
-            {
-                LevelLoadingManager.Instance.SwitchToScene(LastToTheGlobeScene.Lobby);
-            }
-
-            if (!PhotonNetwork.InRoom)
-                return;
-
-            OnlinePlayReady?.Invoke();
-
-            if (PhotonNetwork.IsMasterClient)
-            {
-                //PhotonNetwork.Instantiate("PlayerControlled/PrefabTest", new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
-                PlayerJoined?.Invoke(0);
-            }
+            LevelLoadingManager.Instance.SwitchToScene(LastToTheGlobeScene.Lobby);
+            
+//            if (!PhotonNetwork.InRoom)
+//                return;
+//
+//            OnlinePlayReady?.Invoke();
+//
+//            if (PhotonNetwork.IsMasterClient)
+//            {
+//                //PhotonNetwork.Instantiate("PlayerControlled/PrefabTest", new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
+//                PlayerJoined?.Invoke(0);
+//            }
             //TODO: add logic for index attribution per players
         }
 
