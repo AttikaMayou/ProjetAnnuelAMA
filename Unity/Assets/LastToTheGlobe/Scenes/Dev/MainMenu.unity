@@ -1301,6 +1301,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1323043324}
   - component: {fileID: 1323043325}
+  - component: {fileID: 1323043326}
   m_Layer: 0
   m_Name: Controller
   m_TagString: Untagged
@@ -1334,19 +1335,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a331c4639dc15d8479f7901e655042af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mainMenu: {fileID: 1093429163}
-  _localPlayButton: {fileID: 2118110132}
-  _onlinePlayButton: {fileID: 1864262947}
-  _playMenu: {fileID: 366109413}
-  _createRoomButton: {fileID: 822759533}
-  _joinRoomButton: {fileID: 962232121}
-  _welcomeMessageText: {fileID: 1014885378}
-  _messages:
-  - Choose game mode
-  - Let's Play
-  - 'Create or join existing room ? '
-  playerPrefab: {fileID: 3977826159220439645, guid: de70daa85cdc8c74e9cdae4dad8c0d10,
-    type: 3}
+  mainMenu: {fileID: 1093429163}
+  localPlayButton: {fileID: 2118110132}
+  onlinePlayButton: {fileID: 1864262947}
+  playMenu: {fileID: 366109413}
+  createRoomButton: {fileID: 822759533}
+  joinRoomButton: {fileID: 962232121}
+  maxPlayersPerRoom: 4
+--- !u!114 &1323043326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1323043323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b28dd60f6abf16d4094cf0f642a043e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dontDestroyOnLoad: 1
 --- !u!1 &1488302070
 GameObject:
   m_ObjectHideFlags: 0

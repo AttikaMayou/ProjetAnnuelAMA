@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mime;
+using LastToTheGlobe.Scripts.Avatar;
 using LastToTheGlobe.Scripts.Dev.LevelManager;
 using LastToTheGlobe.Scripts.UI;
 using Photon.Pun;
@@ -20,18 +21,18 @@ namespace LastToTheGlobe.Scripts.Dev
     {
         #region Private Variables
         [Header("First Menu Objects")]
-        [FormerlySerializedAs("_mainMenu")] [SerializeField] private ActivateObjects mainMenu;
-        [FormerlySerializedAs("_localPlayButton")] [SerializeField] private Button localPlayButton;
-        [FormerlySerializedAs("_onlinePlayButton")] [SerializeField] private Button onlinePlayButton;
+        [SerializeField] private ActivateObjects mainMenu;
+        [SerializeField] private Button localPlayButton;
+        [SerializeField] private Button onlinePlayButton;
        
         [Header(("Second Menu Objects"))]
-        [FormerlySerializedAs("_playMenu")] [SerializeField] private ActivateObjects playMenu;
-        [FormerlySerializedAs("_createRoomButton")] [SerializeField] private Button createRoomButton;
-        [FormerlySerializedAs("_joinRoomButton")] [SerializeField] private Button joinRoomButton;
+        [SerializeField] private ActivateObjects playMenu;
+        [SerializeField] private Button createRoomButton;
+        [SerializeField] private Button joinRoomButton;
         
-        [Header("Feedback Objects")]
-        [FormerlySerializedAs("_welcomeMessageText")] [SerializeField] private Text welcomeMessageText;
-        [FormerlySerializedAs("_messages")] [SerializeField] private List<string> messages = new List<string>();
+//        [Header("Feedback Objects")]
+//        [SerializeField] private Text welcomeMessageText;
+//        [SerializeField] private List<string> messages = new List<string>();
 
         [Header("Room Parameters")] 
         [SerializeField] private int maxPlayersPerRoom;
@@ -45,8 +46,8 @@ namespace LastToTheGlobe.Scripts.Dev
         public event Action Disconnected;
         public event Action MasterClientSwitched;
 
-        [Tooltip("Prefab for Player")]
-        public GameObject playerPrefab;
+//        [Tooltip("Prefab for Player")]
+//        public GameObject playerPrefab;
         #endregion
 
         #region MonoBehaviour Callbacks
@@ -80,7 +81,7 @@ namespace LastToTheGlobe.Scripts.Dev
             mainMenu.Activation();
             playMenu.Deactivation();
                     
-            welcomeMessageText.text = messages[0];
+            //welcomeMessageText.text = messages[0];
         }
         #endregion
                 
@@ -93,7 +94,7 @@ namespace LastToTheGlobe.Scripts.Dev
             mainMenu.Deactivation();
             playMenu.Deactivation();
         
-            welcomeMessageText.text = messages[1];
+            //welcomeMessageText.text = messages[1];
                     
             OfflinePlayReady?.Invoke();
                     
@@ -110,7 +111,7 @@ namespace LastToTheGlobe.Scripts.Dev
             createRoomButton.interactable = false;
             joinRoomButton.interactable = false;
         
-            welcomeMessageText.text = messages[2];
+            //welcomeMessageText.text = messages[2];
         
             if (!PhotonNetwork.IsConnected)
             {
@@ -154,14 +155,16 @@ namespace LastToTheGlobe.Scripts.Dev
         {
             mainMenu.Deactivation();
             playMenu.Deactivation();
-
-            //TODO : add here the call for the class LevelLoadingManager
             
             //Load level "Lobby"
             LevelLoadingManager.Instance.SwitchToScene(LastToTheGlobeScene.Lobby);
             
             OnlinePlayReady?.Invoke();
-            PlayerJoined?.Invoke(0);
+
+            if (PhotonNetwork.IsMasterClient)
+            {
+                PlayerJoined?.Invoke(IndexAttribution.Instance.AttributeIndexToPlayers());
+            }
             
 //            if (!PhotonNetwork.InRoom)
 //                return;
@@ -173,7 +176,6 @@ namespace LastToTheGlobe.Scripts.Dev
 //                //PhotonNetwork.Instantiate("PlayerControlled/PrefabTest", new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
 //                PlayerJoined?.Invoke(0);
 //            }
-            //TODO: add logic for index attribution per players
         }
 
         public override void OnPlayerLeftRoom(Player otherPlayer)

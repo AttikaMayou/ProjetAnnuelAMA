@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 //Auteur : Margot
-//Modification :
+//Modification : Attika
 
 namespace LastToTheGlobe.Scripts.Dev
 {
@@ -19,10 +19,11 @@ namespace LastToTheGlobe.Scripts.Dev
 
         public void Update()
         {
-//            if (PlayerNumbering.SortedPlayers.Length <= PlayerIndex || PlayerNumbering.SortedPlayers[PlayerIndex].ActorNumber != PhotonNetwork.LocalPlayer.ActorNumber)
-//            {
-//                return;
-//            }
+            if (PlayerNumbering.SortedPlayers.Length <= PlayerIndex ||
+             PlayerNumbering.SortedPlayers[PlayerIndex].ActorNumber != PhotonNetwork.LocalPlayer.ActorNumber)
+            {
+                return;
+            }
 
             //Movement Intent
             if (Input.GetKeyDown(KeyCode.Z))

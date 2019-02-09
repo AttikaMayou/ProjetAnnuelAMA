@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 //Auteur : Attika
 
 // Make sure that scene in the Builds Settings are in this exact order and named like following
+// NONE scene corresponds to the login screen temporary
 public enum LastToTheGlobeScene
 {
     NONE,
