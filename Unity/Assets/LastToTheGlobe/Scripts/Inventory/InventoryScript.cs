@@ -9,7 +9,7 @@ namespace LastToTheGlobe.Scripts.Inventory
 {
     public class InventoryScript : MonoBehaviour
     {
-        [SerializeField] private int nbSlots = 5;
+        [SerializeField] private int nbSlots = 4;
         public bool isFull;
         private List<ObjectScript> objectsInInventory = new List<ObjectScript>();
 
