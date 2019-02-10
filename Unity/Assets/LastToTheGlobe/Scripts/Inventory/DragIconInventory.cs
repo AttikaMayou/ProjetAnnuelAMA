@@ -10,33 +10,42 @@ public class DragIconInventory : MonoBehaviour, IBeginDragHandler, IDragHandler,
 {
     public static GameObject item;
     private Vector3 startPosition = Vector3.zero;
-    private Transform startParent;
+    private CanvasGroup canvasGroup;
+    private Transform parentToReturnTo;
+    private Transform canvas;
+
+    void Awake()
+    {
+        canvasGroup = GetComponent<CanvasGroup>();
+    }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
         item = gameObject;
         startPosition = transform.position;
-        startParent = transform.parent;
-        //GetComponent<CanvasGroup>().blocksRaycasts = false;
-        //transform.SetParent(transform.root);
+        parentToReturnTo = transform.parent;
+        canvasGroup.blocksRaycasts = false;
+        transform.SetParent(transform.root);
+
+        canvas = GameObject.FindGameObjectWithTag("UI Canvas").transform;
+        transform.SetParent(canvas);
     }
 
     public void OnDrag(PointerEventData eventData)
     {
         transform.position = Input.mousePosition;
-
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        
         item = null;
-        //GetComponent<CanvasGroup>().blocksRaycasts = true;
-        //if(transform.parent == startParent || transform.parent == transform.root)
-        //{
+        canvasGroup.blocksRaycasts = true;
+        if(transform.parent == canvas)
+        {
             transform.position = startPosition;
-            //transform.SetParent(startParent);
-        //}
-
+            transform.SetParent(parentToReturnTo);
+        }
 
     }
 }

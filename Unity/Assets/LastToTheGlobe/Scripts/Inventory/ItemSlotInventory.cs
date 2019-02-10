@@ -9,10 +9,9 @@ public class ItemSlotInventory : MonoBehaviour, IDropHandler
 {
     public GameObject item
     {
-        //properties
         get
         {
-            if(transform.childCount>0)
+            if(transform.childCount >0)
             {
                 return transform.GetChild(0).gameObject;
             }
@@ -27,7 +26,6 @@ public class ItemSlotInventory : MonoBehaviour, IDropHandler
         {
             DragIconInventory.item.transform.SetParent(transform);
         }
-
-
     }
 }
+
