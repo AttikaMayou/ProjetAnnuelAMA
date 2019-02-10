@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 6755710489323588107}
   - component: {fileID: 6755710489323588105}
   - component: {fileID: 6755710489323588104}
+  - component: {fileID: 7866110405705172114}
+  - component: {fileID: 7050057704422318033}
   m_Layer: 5
   m_Name: Dash
   m_TagString: Untagged
@@ -34,8 +36,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 71.5, y: 75}
-  m_SizeDelta: {x: 143, y: 150}
+  m_AnchoredPosition: {x: 574, y: 315.5}
+  m_SizeDelta: {x: 577.5, y: 631}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6755710489323588105
 CanvasRenderer:
@@ -74,3 +76,27 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!225 &7866110405705172114
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6755710489323588106}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &7050057704422318033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6755710489323588106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6996f784f1e30ab409422237950ea0e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
