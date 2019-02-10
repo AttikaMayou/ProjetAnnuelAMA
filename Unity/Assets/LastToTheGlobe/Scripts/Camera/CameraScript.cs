@@ -8,9 +8,9 @@ namespace LastToTheGlobe.Scripts.Camera
 {
     public class CameraScript : MonoBehaviour {
         [SerializeField]private string playerTag = "Player";
-        [SerializeField] private float cameraOffsetOriginalX = -47.8f;
-        [SerializeField] private float cameraOffsetOriginalY = 124.6787f;
-        [SerializeField] private float cameraOffsetOriginalZ = 11.24362f;
+        [SerializeField] private float cameraOffsetOriginalX = -47f;
+        [SerializeField] private float cameraOffsetOriginalY = 124f;
+        [SerializeField] private float cameraOffsetOriginalZ = 11f;
         private Vector3 _cameraOffsetOriginal;
 
         private Transform _myTransform;
