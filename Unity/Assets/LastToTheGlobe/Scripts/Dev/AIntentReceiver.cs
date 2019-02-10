@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 
 //Auteur : Margot
-//Modification : 
 
 namespace LastToTheGlobe.Scripts.Dev
 {

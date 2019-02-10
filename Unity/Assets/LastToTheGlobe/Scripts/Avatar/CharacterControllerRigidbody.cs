@@ -3,6 +3,7 @@ using Photon.Pun;
 using UnityEngine;
 
 //Auteur : Margot
+//Modification : Attika
 
 namespace LastToTheGlobe.Scripts.Avatar
 {
@@ -87,7 +88,7 @@ namespace LastToTheGlobe.Scripts.Avatar
             Jump();
         }
 
-        void FixedUpdate()
+        private void FixedUpdate()
         {
             // If on network, only the master client can move objects
             if (PhotonNetwork.IsConnected && !PhotonNetwork.IsMasterClient)
@@ -319,6 +320,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         private void ActivateAvatarRPC(int avatarId)
         {
             _spawnPoint.position = new Vector3(avatarId, 0, 0);
+            //TODO : change the path to get the right prefab to be instantiated
             PhotonNetwork.Instantiate("Resources/PrefabTest",_spawnPoint.position, Quaternion.identity, 0);
         }
 
