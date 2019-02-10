@@ -163,7 +163,7 @@ namespace LastToTheGlobe.Scripts.Dev
 
             if (PhotonNetwork.IsMasterClient)
             {
-                PlayerJoined?.Invoke(IndexAttribution.Instance.AttributeIndexToPlayers());
+                PlayerJoined?.Invoke(IndexAttribution.AttributeIndexToPlayers());
             }
             
 //            if (!PhotonNetwork.InRoom)

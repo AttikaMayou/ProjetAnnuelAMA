@@ -10,17 +10,17 @@ namespace LastToTheGlobe.Scripts.Avatar
     public class IndexAttribution : MonoBehaviourSingleton<IndexAttribution>
     {
          
-        public int AttributeIndexToPlayers()
+        public static int AttributeIndexToPlayers()
         {
-            var i = 0;
-            for (; i < PlayerNumbering.SortedPlayers.Length; i++)
-            {
-                if (PhotonNetwork.LocalPlayer.ActorNumber == PlayerNumbering.SortedPlayers[i].ActorNumber)
-                {
-                    return i;
-                }
-            }
-            return i;
+//            var i = 0;
+//            for (; i < PlayerNumbering.SortedPlayers.Length; i++)
+//            {
+//                if (PhotonNetwork.LocalPlayer.ActorNumber == PlayerNumbering.SortedPlayers[i].ActorNumber)
+//                {
+//                    return i;
+//                }
+//            }
+            return 0;
         }
     }
 }
