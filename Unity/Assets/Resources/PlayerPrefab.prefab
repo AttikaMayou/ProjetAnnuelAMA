@@ -55,7 +55,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 0}
-  viewIdField: 1
+  viewIdField: 0
   InstantiationId: 1
   isRuntimeInstantiated: 0
 --- !u!1 &189441187
@@ -480,7 +480,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f9decbe4d285534db304e34c5fa7786, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 1657187005}
+  orbTransform: {fileID: 793513943}
+  orbRb: {fileID: 0}
+  playerExposer: {fileID: 1657187010}
   speed: 1
 --- !u!1 &868919373
 GameObject:
@@ -896,9 +898,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13b72d4f03b499d48a31177d5ed082e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selfPosition: {fileID: 853341636}
+  orbTransform: {fileID: 853341636}
+  orbRb: {fileID: 1473459482}
   speed: 2
-  playerTransform: {fileID: 0}
+  maxTimeUsing: 2
+  playerTransform: {fileID: 1657187005}
   attractedScript: {fileID: 853341638}
 --- !u!114 &853341638
 MonoBehaviour:
@@ -913,9 +917,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attractor: {fileID: 0}
-  attractedRigidbody: {fileID: 1473459482}
+  attractedRb: {fileID: 1473459482}
   selfGravity: -15
-  firstStepOnGround: 0
+  isGrounded: 0
 --- !u!54 &1473459482
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -944,11 +948,11 @@ GameObject:
   - component: {fileID: 1657187012}
   - component: {fileID: 1657187011}
   - component: {fileID: 1657187010}
-  - component: {fileID: 1657187009}
   - component: {fileID: 1657187008}
   - component: {fileID: 1657187007}
   - component: {fileID: 1657187006}
   - component: {fileID: 1657187013}
+  - component: {fileID: 2724814111383584020}
   m_Layer: 0
   m_Name: SK_Character_Placeholder
   m_TagString: Player
@@ -1024,29 +1028,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9feee40d0a70b4c4a87520ded64c4cda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 1657187012}
+  playerRb: {fileID: 1657187012}
   characterRbView: {fileID: 0}
   characterTransform: {fileID: 1657187005}
   avatarRootGameObject: {fileID: 1657187004}
   thirdPersonController: {fileID: 1657187006}
-  characterTrampolineScript: {fileID: 1657187009}
+  characterTrampolineScript: {fileID: 2724814111383584020}
   selfPlayerAttractedScript: {fileID: 1657187007}
   selfOrbAttractedScript: {fileID: 853341638}
-  Collider: {fileID: 1657187011}
---- !u!114 &1657187009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1657187004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72cffb1a49895f8449faf0bce9d8a672, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attractor: {fileID: 0}
-  playerRigibody: {fileID: 1657187012}
+  playerCollider: {fileID: 1657187011}
 --- !u!114 &1657187008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1073,9 +1063,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attractor: {fileID: 0}
-  attractedRigidbody: {fileID: 1657187012}
+  attractedRb: {fileID: 1657187012}
   selfGravity: -10
-  firstStepOnGround: 0
+  isGrounded: 0
 --- !u!114 &1657187006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1089,6 +1079,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attractor: {fileID: 0}
+  attractedScript: {fileID: 0}
   cameraRotatorX: {fileID: 1820016407}
   rotationSpeed: 5
   speed: 5
@@ -1107,8 +1098,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b346721f634e86429ae5e581ead9981, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerColliderDirectoryScript: {fileID: 0}
-  CharacterExposer: {fileID: 1657187010}
+  playerColliderDirectoryScript: {fileID: 0}
+  characterExposer: {fileID: 1657187010}
+--- !u!114 &2724814111383584020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657187004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72cffb1a49895f8449faf0bce9d8a672, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attractor: {fileID: 0}
+  playerExposer: {fileID: 1657187010}
+  defensiveOrbInput: 32
 --- !u!1 &1724258141
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,9 +10,10 @@ namespace LastToTheGlobe.Scripts.Dev
 {
     public class OnlineIntentReceiver : AIntentReceiver
     {
+        [FormerlySerializedAs("PlayerIndex")]
         [FormerlySerializedAs("PlayerActorId")]
         [SerializeField]
-        private int PlayerIndex;
+        private int playerIndex;
 
         [SerializeField]
         private PhotonView photonView;
