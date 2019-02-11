@@ -1,21 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using LastToTheGlobe.Scripts.Weapon.Orb;
 using UnityEngine;
 
 //Auteur : Abdallah
+//Modification : Attika
 
-public class DefensiveOrbAnimation : MonoBehaviour
+namespace LastToTheGlobe.Scripts.Avatar
 {
-    [SerializeField] private Transform playerTransform;
-    [SerializeField] private float speed = 1f;
-
-    private float actualTime = 0f;
-    // Update is called once per frame
-    void Update()
+    public class DefensiveOrbAnimation : OrbExposerScript
     {
-        actualTime += Time.deltaTime;
-        actualTime %= (Mathf.PI * 2);
-        transform.RotateAround(playerTransform.position, playerTransform.up, speed);
-        transform.Translate(new Vector3(0,Mathf.Cos(actualTime) * Time.deltaTime/2,0),Space.Self);
+        [SerializeField] private CharacterExposer playerExposer;
+        [SerializeField] private float speed = 1f;
+
+        private float _actualTime = 0f;
+        
+        private void Update()
+        {
+            _actualTime += Time.deltaTime;
+            _actualTime %= (Mathf.PI * 2);
+            orbTransform.RotateAround(playerExposer.characterTransform.position,
+                                        playerExposer.characterTransform.up, speed);
+            orbTransform.Translate(new Vector3(0,Mathf.Cos(_actualTime) * 
+                                                 Time.deltaTime/2,0),Space.Self);
+        }
     }
 }
