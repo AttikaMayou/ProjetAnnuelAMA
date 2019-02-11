@@ -14,7 +14,7 @@ public class SelfPutterIntoDirectoryScript : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        PlayerColliderDirectoryScript.CharacterExposers.Add(CharacterExposer);
+        PlayerColliderDirectoryScript.characterExposers.Add(CharacterExposer);
     }
 
     

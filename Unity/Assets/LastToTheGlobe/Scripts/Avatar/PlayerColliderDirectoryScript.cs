@@ -1,28 +1,34 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using LastToTheGlobe.Scripts.Avatar;
-using LastToTheGlobe.Scripts.Dev;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 //Auteur : Abdallah
-public class PlayerColliderDirectoryScript : MonoBehaviour
+
+namespace LastToTheGlobe.Scripts.Avatar
 {
-    [SerializeField]
-    public List<CharacterExposer> CharacterExposers;
+    public class PlayerColliderDirectoryScript : MonoBehaviour
+    {
+        [SerializeField]
+        public List<CharacterExposer> characterExposers;
     
-    private readonly Dictionary<Collider, CharacterExposer> directory = new Dictionary<Collider, CharacterExposer>();
+        private readonly Dictionary<Collider, CharacterExposer> directory = new Dictionary<Collider, CharacterExposer>();
 
-    private void Awake()
-    {
-        foreach (var exposer in CharacterExposers)
+        private void Awake()
         {
-            directory.Add(exposer.Collider, exposer);
+            if (characterExposers == null)
+            {
+                Debug.LogError("CharacterExposers list is empty");
+                return;
+            }
+            foreach (var exposer in characterExposers)
+            {
+                directory.Add(exposer.playerCollider, exposer);
+            }
         }
-    }
 
-    public CharacterExposer GetExposer(Collider col)
-    {
-        return directory[col];
+        public CharacterExposer GetExposer(Collider col)
+        {
+            return directory?[col];
+        }
     }
 }

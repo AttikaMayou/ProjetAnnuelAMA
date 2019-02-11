@@ -1,50 +1,53 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using LastToTheGlobe.Scripts.Avatar;
+﻿using LastToTheGlobe.Scripts.Avatar;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 
 //Auteur : Abdallah
+//Modification : Attika
 
+namespace LastToTheGlobe.Scripts.Environment.Planets
+{
+    public class AttractorScript : PlanetExposerScript {
 
-public class AttractorScript : MonoBehaviour {
+        public float speedRotation = 10f;
+        public Vector3 dirForce;
+        private AvatarExposerScript currentAvatar;
+        [SerializeField] private PlayerColliderDirectoryScript playerColliderDirectoryScript;
 
-    public float speedRotation = 10f;
-    public Vector3 dirForce;
-    public Transform selfTransform;
-    private AvatarExposerScript currentAvatar;
-    [SerializeField]private PlayerColliderDirectoryScript PlayerColliderDirectoryScript;
-
-	public void Attractor(Rigidbody attractedRigidbody, Transform body, float Gravity)
-    {
-        //Donne la direction de la gravité
-        Vector3 gravityUp = (body.position - transform.position).normalized;
-        Vector3 bodyUp = body.up;
-
-        attractedRigidbody.AddForce(gravityUp * Gravity);
-
-        //Permet de replacer l'axe vertical du perso sur l'axe de la gravité
-        Quaternion targetRotation = Quaternion.FromToRotation(bodyUp, gravityUp) * body.rotation;
-        body.rotation = Quaternion.Slerp(body.rotation, targetRotation, speedRotation * Time.deltaTime);
-        dirForce = gravityUp;
-    }
-    void OnTriggerEnter(Collider collider)
-    {
-        if (collider.CompareTag("Player"))
+        public void Attractor(Rigidbody attractedRb, Transform body, float gravity)
         {
-            var exposer = PlayerColliderDirectoryScript.GetExposer(collider);
+            //Donne la direction de la gravité
+            var gravityUp = (body.position - transform.position).normalized;
+            var bodyUp = body.up;
+
+            attractedRb.AddForce(gravityUp * gravity);
+
+            //Synchronise l'axe vertical du joueur (up) avec l'axe gravité choisi
+            var rotation = body.rotation;
+            Quaternion targetRotation = Quaternion.FromToRotation(bodyUp, gravityUp) * rotation;
+            rotation = Quaternion.Slerp(rotation, targetRotation, speedRotation * Time.deltaTime);
+            body.rotation = rotation;
+            dirForce = gravityUp;
+        }
+
+        private void OnTriggerEnter(Collider coll)
+        {
+            if (!coll.CompareTag("Player")) return;
+            
+            var exposer = playerColliderDirectoryScript.GetExposer(coll);
 
             exposer.thirdPersonController.attractor = this;
             exposer.characterTrampolineScript.attractor = this;
             exposer.selfPlayerAttractedScript.attractor = this;
             exposer.selfOrbAttractedScript.attractor = this;
         }
-    }
-    void OnTriggerExit(Collider collider)
-    {
-        if (collider.CompareTag("Player"))
+
+        private void OnTriggerExit(Collider coll)
         {
-            var exposer = PlayerColliderDirectoryScript.GetExposer(collider);
+            if (!coll.CompareTag("Player")) return;
+            
+            var exposer = playerColliderDirectoryScript.GetExposer(coll);
 
             exposer.thirdPersonController.attractor = null;
             exposer.characterTrampolineScript.attractor = null;

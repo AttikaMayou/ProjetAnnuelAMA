@@ -1,37 +1,25 @@
-﻿using UnityEngine;
+﻿using LastToTheGlobe.Scripts.Avatar;
+using UnityEngine;
+using UnityEngine.Serialization;
 
 //Auteur : Abdallah
+//Modification : Attika
 
 namespace LastToTheGlobe.Scripts.Environment.Planets
 {
-    public class characterTrampolineScript : Avatar.Avatar
+    public class CharacterTrampolineScript : Avatar.Avatar
     {
-    
-        public AttractorScript attractor;
-
-        [SerializeField]
-        private Rigidbody playerRigibody;
-
+        [SerializeField] private CharacterExposer playerExposer;
+        public KeyCode defensiveOrbInput;
         private bool canHyperJump;
+        private float cooldownFinished = 0.0f;
 
-        private float cooldownFinished = 0f;
-        
-
-        // Start is called before the first frame update
-        void Start()
+        private void Update()
         {
-        
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-            
-            if (Input.GetKeyDown(KeyCode.Space) && canHyperJump && cooldownFinished <= 0f)
+            if (Input.GetKeyDown(defensiveOrbInput) && canHyperJump && cooldownFinished <= 0f)
             {
                 cooldownFinished = 10f;
-                playerRigibody.AddForce(transform.up * 1300f);
-                
+                playerExposer.playerRb.AddForce(transform.up * 1300f);
             }
 
             if (cooldownFinished >= 0f)
@@ -40,17 +28,17 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
             }
         }
 
-        void OnCollisionEnter(Collision collision)
+        private void OnCollisionEnter(Collision collision)
         {
-            if(collision.collider.tag == "jumper")
+            if(collision.collider.CompareTag("jumper"))
             {
                 canHyperJump = true;
             }
         }
 
-        void OnCollisionExit(Collision collision)
+        private void OnCollisionExit(Collision collision)
         {
-            if (collision.collider.tag == "jumper")
+            if (collision.collider.CompareTag("jumper"))
             {
                 canHyperJump = false;
             }

@@ -1,10 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 //Auteur : Abdallah
 
-public class PlanetExposerScript : MonoBehaviour
+namespace LastToTheGlobe.Scripts.Environment.Planets
 {
-    
+    public class PlanetExposerScript : MonoBehaviour
+    {
+        public Transform planetTransform;
+    }
 }

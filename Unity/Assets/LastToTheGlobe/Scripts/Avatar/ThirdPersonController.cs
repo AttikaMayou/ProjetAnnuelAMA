@@ -1,14 +1,13 @@
 ﻿using LastToTheGlobe.Scripts.Environment.Planets;
 using UnityEngine;
 
-
 //Auteur : Abdallah
+//Modification : Attika
 
 namespace LastToTheGlobe.Scripts.Avatar
 {
     public class ThirdPersonController : Avatar
     {
-        
         [SerializeField] private AttractedScript attractedScript;
         
         [Header("Camera Parameters")]
@@ -79,14 +78,13 @@ namespace LastToTheGlobe.Scripts.Avatar
                 _isJumping = true;
             }
         }
+        
         //Autorisation du saut
         private void OnCollisionEnter(Collision hit)
         {
-            if(hit.gameObject.CompareTag("planet"))
-            {
-                _isJumping = false;
-                attractedScript.firstStepOnGround = false;
-            }
+            if (!hit.gameObject.CompareTag("planet")) return;
+            _isJumping = false;
+            attractedScript.isGrounded = false;
         }
     }
 }

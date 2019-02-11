@@ -1,39 +1,39 @@
 ﻿using UnityEngine;
-using LastToTheGlobe.Scripts.Environment.Planets;
+using UnityEngine.Serialization;
 
 //Auteur : Abdallah
+//Modification : Attika
 
 namespace LastToTheGlobe.Scripts.Environment.Planets
 {
 	public class AttractedScript : Avatar.Avatar {
 
-		private Transform _myTransform;
 		[SerializeField]
-		private Rigidbody attractedRigidbody;
+		private Rigidbody attractedRb;
 		[SerializeField]
 		private float selfGravity = -10f;
 		
+		//Bool parameter that indicate if the player is on ground or not
 		[HideInInspector]
-		public bool firstStepOnGround;
+		public bool isGrounded;
 
-		private void Start () {
-
-			attractedRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
-			attractedRigidbody.useGravity = false;
-			_myTransform = transform;
+		private void Awake ()
+		{
+			if (!attractedRb) return;
+			attractedRb.constraints = RigidbodyConstraints.FreezeRotation;
+			attractedRb.useGravity = false;
 		}
 
 		private void Update ()
 		{
-			if(firstStepOnGround && attractor)
+			if(isGrounded && attractor && attractedRb)
 			{
-				attractor.Attractor(attractedRigidbody, _myTransform, -2600f);
+				attractor.Attractor(attractedRb, this.transform, -2600f);
 			}
-			else if (!firstStepOnGround && attractor)
+			else if (!isGrounded && attractor && attractedRb)
 			{
-				attractor.Attractor(attractedRigidbody, _myTransform, selfGravity);
+				attractor.Attractor(attractedRb, this.transform, selfGravity);
 			}
-        
 		}
 	}
 }

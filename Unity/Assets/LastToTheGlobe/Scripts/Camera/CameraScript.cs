@@ -2,7 +2,8 @@
 using UnityEngine;
 
 
-//Auteur : Abdallah et Attika
+//Auteur : Abdallah
+//Modification : Attika
 
 namespace LastToTheGlobe.Scripts.Camera
 {
