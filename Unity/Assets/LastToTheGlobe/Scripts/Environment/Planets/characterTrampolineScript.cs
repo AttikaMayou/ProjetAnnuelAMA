@@ -7,7 +7,7 @@ using UnityEngine.Serialization;
 
 namespace LastToTheGlobe.Scripts.Environment.Planets
 {
-    public class CharacterTrampolineScript : Avatar.Avatar
+    public class CharacterTrampolineScript : MonoBehaviour
     {
         [SerializeField] private CharacterExposer playerExposer;
         public KeyCode defensiveOrbInput;

@@ -33,7 +33,7 @@ namespace LastToTheGlobe.Scripts.Avatar
 
         private void FixedUpdate () 
         {
-            //Gestion des déplacements autour de la planète
+            //Get inputs from the player
             _moveDir = new Vector3(Input.GetAxisRaw("Horizontal"),
                 0,
                 Input.GetAxisRaw("Vertical")).normalized;
@@ -42,19 +42,19 @@ namespace LastToTheGlobe.Scripts.Avatar
             rb.MovePosition(rb.position + transform.TransformDirection(_moveDir) * speed * Time.deltaTime);
         
         
-            //Permet de tourner le personnage pour donner la direction à la caméra sur l'axe horizontale
+            //Rotate the character so the camera can follow
             transform.Rotate(new Vector3(0,
                 Input.GetAxis("Mouse X") * rotationSpeed,
                 0));
         
         
-            //Permet de tourner le gameobject qui donne la direction à la caméra sur l'axe vertical
+            //Rotate cameraRotatorX to give the camera the right vertical axe
             playerExposer.cameraRotatorX.transform.Rotate(new Vector3(-(Input.GetAxis("Mouse Y") * rotationSpeed),
                 0,
                 0), Space.Self);
         
         
-            //Les deux conditions juste en dessous permettent à la caméra de ne pas aller trop haut ni trop bas
+            //Prevent the camera from going too high or too low
             //Les valeurs qui était mise sont des valeurs qui peuvent être pris par la variable cameraRotatorX.transform.rotation.x (-1 - 1)
             if (playerExposer.cameraRotatorX.transform.rotation.x >= 0.42f)
             {
@@ -63,6 +63,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                     _rotation.z, _rotation.w);
                 playerExposer.cameraRotatorX.transform.rotation = _rotation;
             }
+            
             if (playerExposer.cameraRotatorX.transform.rotation.x <= -0.2f)
             {
                 _rotation = 
@@ -71,19 +72,16 @@ namespace LastToTheGlobe.Scripts.Avatar
                 playerExposer.cameraRotatorX.transform.rotation = _rotation;
             }
         
-            //Gestion du saut en appliquant force plus èlevé que la gravité.
-            if(Input.GetKey(KeyCode.Space) && !_isJumping)
-            {
+            //Apply a stronger force to jump
+            if (!Input.GetKey(KeyCode.Space) || _isJumping) return;
+            _jumpDir = attractor.dirForce;
+            rb.AddForce(_jumpDir * 250);
 
-                _jumpDir = attractor.dirForce;
-                rb.AddForce(_jumpDir * 250);
-
-                //Interdiction du saut
-                _isJumping = true;
-            }
+            //To avoid double jump
+            _isJumping = true;
         }
         
-        //Autorisation du saut
+        //Get jump again
         private void OnCollisionEnter(Collision hit)
         {
             if (!hit.gameObject.CompareTag("planet")) return;

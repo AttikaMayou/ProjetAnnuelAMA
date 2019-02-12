@@ -45,7 +45,7 @@ namespace LastToTheGlobe.Scripts.Camera
         }
         
         /// <summary>
-        /// This function is used to update the position and the rotation of the camera according to the player's
+        /// This function is used to update the position and the rotation of the camera according to the player's one
         /// </summary>
         private void UpdatePosAndRot()
         {
@@ -56,7 +56,7 @@ namespace LastToTheGlobe.Scripts.Camera
             _myTransform.position = position - (_myTransform.rotation * _cameraOffsetOriginal); 
         }
 
-        //Dunno what this function will serve to....
+        //Dunno what this function will serve to... But here it is
         private void ResetCamPosition()
         {
             var originPos = new Vector3(cameraOffsetOriginalX, 

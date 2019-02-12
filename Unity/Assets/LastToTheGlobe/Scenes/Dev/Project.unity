@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -203,6 +203,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &771492421 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6007325744886493300, guid: 98010e924c5875f4bbbf318e24ca1c4d,
+    type: 3}
+  m_PrefabInstance: {fileID: 6007325743729017198}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &791589107
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,7 +244,6 @@ MonoBehaviour:
   planetTransform: {fileID: 0}
   speedRotation: 10
   dirForce: {x: 0, y: 0, z: 0}
-  playerColliderDirectoryScript: {fileID: 1034539818}
 --- !u!135 &791589109
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -652,5 +657,10 @@ PrefabInstance:
       propertyPath: PlayerColliderDirectoryScript
       value: 
       objectReference: {fileID: 1034539818}
+    - target: {fileID: 6007325744886493301, guid: 98010e924c5875f4bbbf318e24ca1c4d,
+        type: 3}
+      propertyPath: planetTransform
+      value: 
+      objectReference: {fileID: 771492421}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98010e924c5875f4bbbf318e24ca1c4d, type: 3}
