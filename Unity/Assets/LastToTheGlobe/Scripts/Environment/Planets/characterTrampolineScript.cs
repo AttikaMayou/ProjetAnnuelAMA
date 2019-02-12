@@ -11,20 +11,20 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
     {
         [SerializeField] private CharacterExposer playerExposer;
         public KeyCode defensiveOrbInput;
-        private bool canHyperJump;
-        private float cooldownFinished = 0.0f;
+        private bool _canHyperJump;
+        private float _cooldownFinished = 0.0f;
 
         private void Update()
         {
-            if (Input.GetKeyDown(defensiveOrbInput) && canHyperJump && cooldownFinished <= 0f)
+            if (Input.GetKeyDown(defensiveOrbInput) && _canHyperJump && _cooldownFinished <= 0f)
             {
-                cooldownFinished = 10f;
-                playerExposer.playerRb.AddForce(transform.up * 1300f);
+                _cooldownFinished = 10f;
+                playerExposer.characterRb.AddForce(transform.up * 1300f);
             }
 
-            if (cooldownFinished >= 0f)
+            if (_cooldownFinished >= 0f)
             {
-                cooldownFinished -= Time.deltaTime;
+                _cooldownFinished -= Time.deltaTime;
             }
         }
 
@@ -32,7 +32,7 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
         {
             if(collision.collider.CompareTag("jumper"))
             {
-                canHyperJump = true;
+                _canHyperJump = true;
             }
         }
 
@@ -40,7 +40,7 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
         {
             if (collision.collider.CompareTag("jumper"))
             {
-                canHyperJump = false;
+                _canHyperJump = false;
             }
 
         }

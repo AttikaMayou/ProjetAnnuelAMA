@@ -1,4 +1,5 @@
-﻿using LastToTheGlobe.Scripts.Environment.Planets;
+﻿using LastToTheGlobe.Scripts.Camera;
+using LastToTheGlobe.Scripts.Environment.Planets;
 using UnityEngine;
 
 //Auteur : Abdallah
@@ -9,14 +10,17 @@ namespace LastToTheGlobe.Scripts.Avatar
     public class ThirdPersonController : Avatar
     {
         [SerializeField] private AttractedScript attractedScript;
+
+        [Header("Character Exposer")] 
+        public CharacterExposer playerExposer;
         
         [Header("Camera Parameters")]
-        [SerializeField]
-        private GameObject cameraRotatorX;
+        public CameraScript myCamera;
         [SerializeField]
         private float rotationSpeed = 5.0f;
-        
-        [Header("Movement Parameters")]
+
+        [Header("Movement Parameters")] 
+        private Quaternion _rotation;
         private Vector3 _moveDir;
         private Vector3 _jumpDir;
         public float speed;
@@ -26,11 +30,6 @@ namespace LastToTheGlobe.Scripts.Avatar
         [Header("Orb Objects")]
         public GameObject orb;
         public GameObject orbSpawned;
-
-        private void Start ()
-        {
-            
-        }
 
         private void FixedUpdate () 
         {
@@ -50,22 +49,27 @@ namespace LastToTheGlobe.Scripts.Avatar
         
         
             //Permet de tourner le gameobject qui donne la direction à la caméra sur l'axe vertical
-            cameraRotatorX.transform.Rotate(new Vector3(-(Input.GetAxis("Mouse Y") * rotationSpeed),
+            playerExposer.cameraRotatorX.transform.Rotate(new Vector3(-(Input.GetAxis("Mouse Y") * rotationSpeed),
                 0,
                 0), Space.Self);
         
         
             //Les deux conditions juste en dessous permettent à la caméra de ne pas aller trop haut ni trop bas
             //Les valeurs qui était mise sont des valeurs qui peuvent être pris par la variable cameraRotatorX.transform.rotation.x (-1 - 1)
-            if (cameraRotatorX.transform.rotation.x >= 0.42f)
+            if (playerExposer.cameraRotatorX.transform.rotation.x >= 0.42f)
             {
-                cameraRotatorX.transform.rotation = new Quaternion(0.42f, cameraRotatorX.transform.rotation.y, cameraRotatorX.transform.rotation.z, cameraRotatorX.transform.rotation.w);
+                _rotation = 
+                    new Quaternion(0.42f, _rotation.y, 
+                    _rotation.z, _rotation.w);
+                playerExposer.cameraRotatorX.transform.rotation = _rotation;
             }
-            if (cameraRotatorX.transform.rotation.x <= -0.2f)
+            if (playerExposer.cameraRotatorX.transform.rotation.x <= -0.2f)
             {
-                cameraRotatorX.transform.rotation = new Quaternion(-0.2f, cameraRotatorX.transform.rotation.y, cameraRotatorX.transform.rotation.z, cameraRotatorX.transform.rotation.w);
+                _rotation = 
+                    new Quaternion(-0.2f, _rotation.y, 
+                        _rotation.z, _rotation.w);
+                playerExposer.cameraRotatorX.transform.rotation = _rotation;
             }
-        
         
             //Gestion du saut en appliquant force plus èlevé que la gravité.
             if(Input.GetKey(KeyCode.Space) && !_isJumping)

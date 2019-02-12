@@ -370,7 +370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c920667e4e3150f44adc56a957ae33a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerIndex: 0
+  playerIndex: 0
   photonView: {fileID: 162885994}
 --- !u!114 &162885994
 MonoBehaviour:
@@ -1241,7 +1241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c920667e4e3150f44adc56a957ae33a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerIndex: 3
+  playerIndex: 3
   photonView: {fileID: 1082667373}
 --- !u!1 &1093429161
 GameObject:
@@ -1474,6 +1474,7 @@ GameObject:
   - component: {fileID: 1323043326}
   - component: {fileID: 1323043327}
   - component: {fileID: 1323043328}
+  - component: {fileID: 1323043329}
   m_Layer: 0
   m_Name: Controller
   m_TagString: Untagged
@@ -1567,9 +1568,22 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 0}
-  viewIdField: 1
-  InstantiationId: 1
+  viewIdField: 6
+  InstantiationId: 6
   isRuntimeInstantiated: 0
+--- !u!114 &1323043329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1323043323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a2b2df99fcda764cb5332f7bf298de7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterExposers: []
 --- !u!1 &1488302070
 GameObject:
   m_ObjectHideFlags: 0
@@ -1754,7 +1768,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c920667e4e3150f44adc56a957ae33a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerIndex: 1
+  playerIndex: 1
   photonView: {fileID: 1489789781}
 --- !u!1 &1631320598
 GameObject:
@@ -1822,7 +1836,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c920667e4e3150f44adc56a957ae33a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerIndex: 2
+  playerIndex: 2
   photonView: {fileID: 1631320600}
 --- !u!1 &1632737034
 GameObject:

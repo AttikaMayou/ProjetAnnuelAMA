@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 61829513}
   - component: {fileID: 914292598807510612}
+  - component: {fileID: 4787419682226983373}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Untagged
@@ -32,7 +33,6 @@ Transform:
   - {fileID: 1820016408}
   - {fileID: 853341636}
   - {fileID: 1657187005}
-  - {fileID: 670384605}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -51,13 +51,28 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 0
+  Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 0}
-  viewIdField: 0
+  - {fileID: 4787419682226983373}
+  viewIdField: 1
   InstantiationId: 1
   isRuntimeInstantiated: 0
+--- !u!114 &4787419682226983373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61829512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
 --- !u!1 &189441187
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,107 +304,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!1 &670384604
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 670384605}
-  - component: {fileID: 670384608}
-  - component: {fileID: 670384607}
-  - component: {fileID: 670384606}
-  m_Layer: 0
-  m_Name: PlayerCamera
-  m_TagString: MainCamera
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &670384605
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 670384604}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 61829513}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!20 &670384608
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 670384604}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_GateFitMode: 2
-  m_FocalLength: 50
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: -1
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
---- !u!81 &670384607
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 670384604}
-  m_Enabled: 1
---- !u!114 &670384606
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 670384604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf1918ffa8f669d448487e6250e654a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerTag: Player
-  cameraOffsetOriginalX: -47.8
-  cameraOffsetOriginalY: 124.6787
-  cameraOffsetOriginalZ: 11.24362
-  playerExposer: {fileID: 1657187010}
-  cameraRotatorX: {fileID: 1820016407}
 --- !u!1 &793513942
 GameObject:
   m_ObjectHideFlags: 0
@@ -951,7 +865,6 @@ GameObject:
   - component: {fileID: 1657187008}
   - component: {fileID: 1657187007}
   - component: {fileID: 1657187006}
-  - component: {fileID: 1657187013}
   - component: {fileID: 2724814111383584020}
   m_Layer: 0
   m_Name: SK_Character_Placeholder
@@ -1028,15 +941,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9feee40d0a70b4c4a87520ded64c4cda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerRb: {fileID: 1657187012}
-  characterRbView: {fileID: 0}
+  characterRb: {fileID: 1657187012}
+  characterLocalPhotonView: {fileID: 914292598807510612}
+  characterTrView: {fileID: 4787419682226983373}
   characterTransform: {fileID: 1657187005}
   avatarRootGameObject: {fileID: 1657187004}
+  cameraRotatorX: {fileID: 1820016407}
   thirdPersonController: {fileID: 1657187006}
   characterTrampolineScript: {fileID: 2724814111383584020}
   selfPlayerAttractedScript: {fileID: 1657187007}
   selfOrbAttractedScript: {fileID: 853341638}
-  playerCollider: {fileID: 1657187011}
+  characterCollider: {fileID: 1657187011}
 --- !u!114 &1657187008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1079,27 +994,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attractor: {fileID: 0}
-  attractedScript: {fileID: 0}
-  cameraRotatorX: {fileID: 1820016407}
+  attractedScript: {fileID: 1657187007}
+  playerExposer: {fileID: 1657187010}
+  myCamera: {fileID: 0}
   rotationSpeed: 5
   speed: 5
   rb: {fileID: 1657187012}
-  orb: {fileID: 0}
-  orbSpawned: {fileID: 0}
---- !u!114 &1657187013
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1657187004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b346721f634e86429ae5e581ead9981, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerColliderDirectoryScript: {fileID: 0}
-  characterExposer: {fileID: 1657187010}
+  orb: {fileID: 1473459481}
+  orbSpawned: {fileID: 1473459481}
 --- !u!114 &2724814111383584020
 MonoBehaviour:
   m_ObjectHideFlags: 0
