@@ -28,18 +28,18 @@ namespace LastToTheGlobe.Scripts.Avatar
         //Reference itself to the ColliderDirectory and CameraScript when it spawns 
         private void Awake()
         {
+            if (!characterLocalPhotonView.IsMine && PhotonNetwork.IsConnected) return;
             Debug.Log("Awake of the CharacterExposer : " + gameObject.name);
             PlayerColliderDirectoryScript.Instance.AddExposer(this);
-            //if (!characterLocalPhotonView.IsMine) return;
             AvatarsController.Instance.camInScene.playerExposer = this;
             AvatarsController.Instance.camInScene.InitializeCameraPosition();
             AvatarsController.Instance.camInScene.startFollowing = true;
             thirdPersonController.myCamera = AvatarsController.Instance.camInScene;
 
-            if (characterLocalPhotonView.IsMine)
-            {
-                AvatarsController.LocalPlayerInstance = this.gameObject;
-            }
+            //Reference the LocalPlayerInstance to the AvatarsController with this gameObject
+            AvatarsController.LocalPlayerInstance = this.gameObject;
+            
+            //The prefab should not be destroyed when switching scene (Lobby to GameRoom for example)
             DontDestroyOnLoad(this.avatarRootGameObject);
         }
     }
