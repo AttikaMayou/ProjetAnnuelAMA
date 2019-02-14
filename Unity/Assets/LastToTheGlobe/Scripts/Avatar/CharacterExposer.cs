@@ -1,4 +1,5 @@
 ﻿using LastToTheGlobe.Scripts.Camera;
+using LastToTheGlobe.Scripts.Dev;
 using LastToTheGlobe.Scripts.Environment.Planets;
 using LastToTheGlobe.Scripts.Management;
 using Photon.Pun;
@@ -29,11 +30,17 @@ namespace LastToTheGlobe.Scripts.Avatar
         {
             Debug.Log("Awake of the CharacterExposer : " + gameObject.name);
             PlayerColliderDirectoryScript.Instance.AddExposer(this);
-            if (!characterLocalPhotonView.IsMine) return;
-            CameraScript.Instance.playerExposer = this;
-            CameraScript.Instance.InitializeCameraPosition();
-            CameraScript.Instance.startFollowing = true;
-            thirdPersonController.myCamera = CameraScript.Instance;
+            //if (!characterLocalPhotonView.IsMine) return;
+            AvatarsController.Instance.camInScene.playerExposer = this;
+            AvatarsController.Instance.camInScene.InitializeCameraPosition();
+            AvatarsController.Instance.camInScene.startFollowing = true;
+            thirdPersonController.myCamera = AvatarsController.Instance.camInScene;
+
+            if (characterLocalPhotonView.IsMine)
+            {
+                AvatarsController.LocalPlayerInstance = this.gameObject;
+            }
+            DontDestroyOnLoad(this.avatarRootGameObject);
         }
     }
 }

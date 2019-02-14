@@ -1,4 +1,6 @@
 ﻿using LastToTheGlobe.Scripts.Avatar;
+using LastToTheGlobe.Scripts.Camera;
+using LastToTheGlobe.Scripts.Singleton;
 using Photon.Pun;
 using UnityEngine;
 
@@ -7,7 +9,7 @@ using UnityEngine;
 
 namespace LastToTheGlobe.Scripts.Dev
 {
-    public class AvatarsController : MonoBehaviour
+    public class AvatarsController : MonoBehaviourSingleton<AvatarsController>
     {
         [Header("Photon and Replication Parameters")]
         //[SerializeField] private CharacterExposer[] players;
@@ -19,6 +21,9 @@ namespace LastToTheGlobe.Scripts.Dev
         //private Transform _spawnPoint;
         private Vector3 _spawnPoint;
         [SerializeField] private GameObject playerPrefab;
+
+        public CameraScript camInScene;
+        public static GameObject LocalPlayerInstance;
         
         #region MonoBehaviour Callbacks
 
@@ -26,6 +31,8 @@ namespace LastToTheGlobe.Scripts.Dev
         {
             startGameController.OnlinePlayReady += ChooseAndSubscribeToOnlineIntentReceivers;
             startGameController.PlayerJoined += InstantiateAvatar;
+            
+            DontDestroyOnLoad(camInScene.gameObject);
         }
         
         #endregion
@@ -42,10 +49,12 @@ namespace LastToTheGlobe.Scripts.Dev
         {
             if (PhotonNetwork.IsConnected)
             {
+                Debug.Log("RPC callback called");
                 photonView.RPC("InstantiateAvatarRPC", RpcTarget.AllBuffered, id);
             }
             else
             {
+                Debug.Log("No RPC Callback called");
                 InstantiateAvatarRPC(id);
             }
         }
@@ -67,6 +76,8 @@ namespace LastToTheGlobe.Scripts.Dev
         [PunRPC]
         private void InstantiateAvatarRPC(int avatarId)
         {
+            if (LocalPlayerInstance != null) return;
+            if (!photonView.IsMine) return;
             _spawnPoint = new Vector3(avatarId, 0, 0);
             PhotonNetwork.Instantiate(playerPrefab.name, _spawnPoint,
                 Quaternion.identity, 0);

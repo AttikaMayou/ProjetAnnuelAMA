@@ -40,10 +40,16 @@ namespace LastToTheGlobe.Scripts.Management
         /// <param name="player"></param>
         public void AddExposer(CharacterExposer player)
         {
+            if (characterExposers == null)
+            {
+                characterExposers = new List<CharacterExposer>();
+            }
+            
             if (!characterExposers.Contains(player) && player)
             {
                 characterExposers.Add(player);
             }
+            
             AddPlayerInDirectory(player);
         }
 

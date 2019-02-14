@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace LastToTheGlobe.Scripts.Camera
 {
-    public class CameraScript : MonoBehaviourSingleton<CameraScript> {
+    public class CameraScript : MonoBehaviour {
         
         [SerializeField] private string playerTag = "Player";
         [SerializeField] private float cameraOffsetOriginalX = -47f;
@@ -38,7 +38,7 @@ namespace LastToTheGlobe.Scripts.Camera
             _cameraOffsetOriginal = position - new Vector3(position.x, y, z);
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             if(startFollowing)
                 UpdatePosAndRot();
