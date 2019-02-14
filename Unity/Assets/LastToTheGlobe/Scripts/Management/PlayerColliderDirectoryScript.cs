@@ -55,6 +55,7 @@ namespace LastToTheGlobe.Scripts.Management
 
         private void AddPlayerInDirectory(CharacterExposer player)
         {
+            Debug.Log("add one player to directory");
             if (_directory.ContainsValue(player)) return;
             _directory.Add(player.characterCollider, player);
         }
