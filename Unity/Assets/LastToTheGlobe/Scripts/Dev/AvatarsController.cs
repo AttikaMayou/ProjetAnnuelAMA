@@ -43,18 +43,16 @@ namespace LastToTheGlobe.Scripts.Dev
         {
             _activatedIntentReceivers = onlineIntentReceivers;
             EnableIntentReceivers();
-        }
+        } 
 
         private void InstantiateAvatar(int id)
         {
             if (PhotonNetwork.IsConnected)
             {
-                Debug.Log("RPC callback called");
                 photonView.RPC("InstantiateAvatarRPC", RpcTarget.AllBuffered, id);
             }
             else
             {
-                Debug.Log("No RPC Callback called");
                 InstantiateAvatarRPC(id);
             }
         }
@@ -68,11 +66,9 @@ namespace LastToTheGlobe.Scripts.Dev
                 intentReceiver.enabled = true;
             }
         }
-        
         #endregion
         
         #region RPC Methods
-
         [PunRPC]
         private void InstantiateAvatarRPC(int avatarId)
         {
