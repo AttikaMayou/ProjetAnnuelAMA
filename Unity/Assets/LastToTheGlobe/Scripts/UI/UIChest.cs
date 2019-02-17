@@ -7,7 +7,6 @@ namespace LastToTheGlobe.Scripts.Inventory
 {
     public class UIChest : MonoBehaviour
     {
-
         private bool OpenChest = false;
         private bool CanOpenChest = false;
         [SerializeField] private Image pressE;
@@ -51,18 +50,18 @@ namespace LastToTheGlobe.Scripts.Inventory
 
 
 
-        void OnTriggerEnter(Collider collider)
+        void OnTriggerEnter(Collider chest)
         {
-            if (collider.CompareTag("Player"))
+            if (chest.CompareTag("Player"))
             {
                 //Affiche touche E
                 CanOpenChest = true;
             }
         }
 
-        void OnTriggerExit(Collider collider)
+        void OnTriggerExit(Collider chest)
         {
-            if (collider.CompareTag("Player"))
+            if (chest.CompareTag("Player"))
             {
                 //Ferme touche E
                 CanOpenChest = false;
