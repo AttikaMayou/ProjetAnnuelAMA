@@ -78,6 +78,7 @@ namespace LastToTheGlobe.Scripts.Dev
         {
             if (LocalPlayerInstance != null) return;
             if (!photonView.IsMine) return;
+            if (!PhotonNetwork.InRoom) return;
             _spawnPoint = new Vector3(avatarId, 0, 0);
             PhotonNetwork.Instantiate(playerPrefab.name, _spawnPoint,
                 Quaternion.identity, 0);
