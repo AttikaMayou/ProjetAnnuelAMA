@@ -1474,6 +1474,7 @@ GameObject:
   - component: {fileID: 1323043327}
   - component: {fileID: 1323043328}
   - component: {fileID: 1323043329}
+  - component: {fileID: 1323043331}
   m_Layer: 0
   m_Name: Controller
   m_TagString: Untagged
@@ -1547,7 +1548,7 @@ MonoBehaviour:
   - {fileID: 1082667374}
   startGameController: {fileID: 1323043325}
   photonView: {fileID: 1323043328}
-  playerPrefab: {fileID: 61829512, guid: cb27d954703f839468d2cea3b467316a, type: 3}
+  playerPrefab: {fileID: 125, guid: cb27d954703f839468d2cea3b467316a, type: 3}
   camInScene: {fileID: 485625805}
 --- !u!114 &1323043328
 MonoBehaviour:
@@ -1584,6 +1585,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterExposers: []
+--- !u!114 &1323043331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1323043323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd12be88848e0f34fa53daadbeeca2b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1488302070
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mime;
@@ -132,6 +133,44 @@ namespace LastToTheGlobe.Scripts.Dev
         {
             PhotonNetwork.JoinRoom("Lobby");
         }
+
+        private IEnumerator InvokePlayerJoinedMethod(int actorNumber)
+        {
+            yield return new WaitForSeconds(0.1f);
+            var i = 0;
+            for (; i < PlayerNumbering.SortedPlayers.Length; i++)
+            {
+                if (actorNumber == PlayerNumbering.SortedPlayers[i].ActorNumber)
+                {
+                    break;
+                }
+            }
+
+            PlayerJoined?.Invoke(i);
+        }
+
+        private IEnumerator InvokeRoomJoinedMethod()
+        {
+            yield return new WaitForSeconds(0.1f);
+            var i = 0;
+            for (; i < PlayerNumbering.SortedPlayers.Length; i++)
+            {
+                if (PhotonNetwork.LocalPlayer.ActorNumber == PlayerNumbering.SortedPlayers[i].ActorNumber)
+                {
+                    break;
+                }
+            }
+            
+            Debug.Log("You are Actor : " + PhotonNetwork.LocalPlayer.ActorNumber + " \n You are controlling Avatar " + i);
+            
+            OnlinePlayReady?.Invoke();
+
+            if (PhotonNetwork.IsMasterClient)
+            {
+                PlayerJoined?.Invoke(i);
+            }
+        }
+        
         #endregion
                 
         #region Photon Callbacks
@@ -158,23 +197,17 @@ namespace LastToTheGlobe.Scripts.Dev
             
             //Load level "Lobby"
             LevelLoadingManager.Instance.SwitchToScene(LastToTheGlobeScene.Lobby);
-            
-            OnlinePlayReady?.Invoke();
 
-            if (PhotonNetwork.IsMasterClient)
-            {
-                PlayerJoined?.Invoke(IndexAttribution.AttributeIndexToPlayers());
-            }
-            
-//            if (!PhotonNetwork.InRoom)
-//                return;
-//
+            StartCoroutine(InvokeRoomJoinedMethod());
+
+//            //Attribute index to player
+//            var index = IndexAttribution.AttributeIndexToPlayers();
+//            
 //            OnlinePlayReady?.Invoke();
 //
 //            if (PhotonNetwork.IsMasterClient)
 //            {
-//                //PhotonNetwork.Instantiate("PlayerControlled/PrefabTest", new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
-//                PlayerJoined?.Invoke(0);
+//                PlayerJoined?.Invoke(index);
 //            }
         }
 
@@ -201,7 +234,7 @@ namespace LastToTheGlobe.Scripts.Dev
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                //TODO: add coroutine for welcome message
+                StartCoroutine(InvokePlayerJoinedMethod(newPlayer.ActorNumber));
             }
         }
 
