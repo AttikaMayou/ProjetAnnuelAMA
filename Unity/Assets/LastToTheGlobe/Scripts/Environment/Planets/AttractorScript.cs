@@ -14,19 +14,18 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
         public float speedRotation = 10f;
         public Vector3 dirForce;
         private AvatarExposerScript currentAvatar;
-        [SerializeField] private PlayerColliderDirectoryScript playerColliderDirectoryScript;
-
+        
         public void Attractor(Rigidbody attractedRb, Transform body, float gravity)
         {
-            //Donne la direction de la gravité
+            //Give the direction of gravity
             var gravityUp = (body.position - transform.position).normalized;
             var bodyUp = body.up;
 
             attractedRb.AddForce(gravityUp * gravity);
 
-            //Synchronise l'axe vertical du joueur (up) avec l'axe gravité choisi
+            //Sync the vertical axe's player (up) with the gravity direction chosen before=
             var rotation = body.rotation;
-            Quaternion targetRotation = Quaternion.FromToRotation(bodyUp, gravityUp) * rotation;
+            var targetRotation = Quaternion.FromToRotation(bodyUp, gravityUp) * rotation;
             rotation = Quaternion.Slerp(rotation, targetRotation, speedRotation * Time.deltaTime);
             body.rotation = rotation;
             dirForce = gravityUp;
@@ -36,10 +35,9 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
         {
             if (!coll.CompareTag("Player")) return;
             
-            var exposer = playerColliderDirectoryScript.GetExposer(coll);
+            var exposer = PlayerColliderDirectoryScript.Instance.GetExposer(coll);
 
             exposer.thirdPersonController.attractor = this;
-            exposer.characterTrampolineScript.attractor = this;
             exposer.selfPlayerAttractedScript.attractor = this;
             exposer.selfOrbAttractedScript.attractor = this;
         }
@@ -48,10 +46,9 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
         {
             if (!coll.CompareTag("Player")) return;
             
-            var exposer = playerColliderDirectoryScript.GetExposer(coll);
+            var exposer = PlayerColliderDirectoryScript.Instance.GetExposer(coll);
 
             exposer.thirdPersonController.attractor = null;
-            exposer.characterTrampolineScript.attractor = null;
             exposer.selfPlayerAttractedScript.attractor = null;
             exposer.selfOrbAttractedScript.attractor = null;
         }
