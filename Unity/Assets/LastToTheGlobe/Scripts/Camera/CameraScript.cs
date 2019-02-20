@@ -40,8 +40,10 @@ namespace LastToTheGlobe.Scripts.Camera
             
             //Initialize position
             var position = targetPlayer.transform.position;
-            var y = position.y + 3.0f;
-            var z = position.z - 9.0f;
+            Debug.Log(position);
+            //var x = position.x + 3.0f;
+            var y = position.y + 1.0f;
+            var z = position.z - 5.3f;
             _cameraOffsetOriginal = position - new Vector3(position.x, y, z);
             
             //Initializing rotation
@@ -62,8 +64,9 @@ namespace LastToTheGlobe.Scripts.Camera
             if (!targetPlayer || !playerExposer) return;
             //Update the player's position each frame
             var position = targetPlayer.transform.position;
+            _myTransform.position = position;
             _myTransform.rotation = targetPlayer.transform.rotation * playerExposer.cameraRotatorX.transform.rotation;
-            _myTransform.position = position - (_myTransform.rotation * _cameraOffsetOriginal); 
+            _myTransform.position -= _myTransform.rotation * _cameraOffsetOriginal; 
         }
 
         //Dunno what this function will serve to... But here it is
