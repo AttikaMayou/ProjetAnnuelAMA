@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using LastToTheGlobe.Scripts.Avatar;
 
 //Auteur: Margot
 
@@ -9,7 +10,7 @@ public class UIVictory : MonoBehaviour
 {
     [SerializeField] private Canvas victory;
     [SerializeField] private Canvas defeat;
-
+    [SerializeField] private AvatarLifeManager myLife;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +21,7 @@ public class UIVictory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(myLife <= 0)
+        if(myLife.myLife <= 0)
         {
             defeat.enabled = true;
             victory.enabled = false;
