@@ -1,11 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
+using Photon.Pun;
+
+//Auteur: Margot
 
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private Canvas playerInventory;
     [SerializeField] private Canvas tutorial;
+    [SerializeField] private Text nbPlayerText;
+    [SerializeField] private int life;
 
     void Start()
     {
@@ -28,5 +34,12 @@ public class UIManager : MonoBehaviour
         {
             tutorial.enabled = false;
         }
+    }
+    
+    //Player currently in the game
+    public void updateNbPlayer()
+    {
+        int nbPlayers = PhotonNetwork.PlayerList.Length;
+        nbPlayerText.text = "Joueurs : " + nbPlayers.ToString();
     }
 }
