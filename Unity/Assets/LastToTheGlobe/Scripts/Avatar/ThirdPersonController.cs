@@ -3,7 +3,7 @@ using LastToTheGlobe.Scripts.Environment.Planets;
 using UnityEngine;
 
 //Auteur : Abdallah
-//Modification : Attika
+//Modification : Attika, Margot
 
 namespace LastToTheGlobe.Scripts.Avatar
 {
@@ -19,29 +19,55 @@ namespace LastToTheGlobe.Scripts.Avatar
         [SerializeField]
         private float rotationSpeed = 5.0f;
 
-        [Header("Movement Parameters")] 
-        private Quaternion _rotation;
-        private Vector3 _moveDir;
-        private Vector3 _jumpDir;
-        public float speed;
-        private bool _isJumping = false;
+        [Header("Movement Parameters")]
+        [SerializeField]
+        [Tooltip("Rigidbody du player")]
         public Rigidbody rb;
-   
+        [SerializeField]
+        [Tooltip("Vitesse de la marche")]
+        private float speed;
+        [SerializeField]
+        [Tooltip("Vitesse de la course")]
+        private float runSpeed;
+        [SerializeField]
+        [Tooltip("Vitesse du saut")]
+        private float jumpSpeed;
+        [SerializeField]
+        [Tooltip("Vitesse du dash")]
+        private float dashSpeed;
+        private bool _isJumping = false;
+        private float _forward;
+        private float _strafe;
+        private Quaternion _rotation;
+        private Vector3 _jumpDir;
+        private int _jumpMax = 1;
+        private bool _dashAsked = false;
+
         [Header("Orb Objects")]
         public GameObject orb;
         public GameObject orbSpawned;
 
-        private void FixedUpdate () 
+            private void FixedUpdate () 
         {
-            //Get inputs from the player
-            _moveDir = new Vector3(Input.GetAxisRaw("Horizontal"),
-                0,
-                Input.GetAxisRaw("Vertical")).normalized;
-        
-        
+            // Récupération des floats vertical et horizontal de l'animator au script
+            _forward = Input.GetAxis("Vertical");
+            _strafe = Input.GetAxis("Horizontal");
+            Vector3 _moveDir = new Vector3(_strafe, 0.0f, _forward);
+
             rb.MovePosition(rb.position + transform.TransformDirection(_moveDir) * speed * Time.deltaTime);
-        
-        
+            Running();
+            //Dash
+            if (_dashAsked)
+            {
+                rb.MovePosition(rb.position + transform.TransformDirection(_moveDir) * dashSpeed * Time.deltaTime);
+                _dashAsked = false;
+            }
+            //Déplacement
+            else
+            {
+                rb.MovePosition(rb.position + transform.TransformDirection(_moveDir) * speed * Time.deltaTime);
+            }
+
             //Rotate the character so the camera can follow
             transform.Rotate(new Vector3(0,
                 Input.GetAxis("Mouse X") * rotationSpeed,
@@ -87,6 +113,42 @@ namespace LastToTheGlobe.Scripts.Avatar
             if (!hit.gameObject.CompareTag("Planet")) return;
             _isJumping = false;
             attractedScript.isGrounded = false;
+        }
+
+        private void Running()
+        {
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                speed = runSpeed;
+            }
+            else
+            {
+                speed = speed;
+            }
+        }
+
+        private void Dash()
+        {
+            if (Input.GetKeyDown(KeyCode.LeftAlt))
+            {
+                _dashAsked = true;
+            }
+        }
+
+        private void Jump()
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if (_jumpMax > 0)
+                {
+                    rb.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
+                    _jumpMax--;
+                }
+            }
+            if (IsGrounded())
+            {
+                jumpMax = 1;
+            }
         }
     }
 }
