@@ -72,16 +72,17 @@ namespace LastToTheGlobe.Scripts.Dev
         [PunRPC]
         private void InstantiateAvatarRPC(int avatarId)
         {
+            //if (!PhotonNetwork.InRoom) return;
             if (_localPlayerInstance != null)
             {
-                Debug.LogError("LocalPlayer is not null");
+                Debug.LogError("Calling this on :" + _localPlayerInstance.name);
                 return;
             }
-            //if (!PhotonNetwork.InRoom) return;
             
             _spawnPoint = new Vector3(avatarId, 0, 0);
             var newPlayer = PhotonNetwork.Instantiate(playerPrefab.name, _spawnPoint,
                 Quaternion.identity, 0);
+            newPlayer.gameObject.name = "Player " + avatarId.ToString();
             
             //Reference the localPlayerInstance with this new gameObject
             _localPlayerInstance = newPlayer;
