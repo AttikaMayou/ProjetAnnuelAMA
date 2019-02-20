@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2669700270276466924}
   - component: {fileID: 8944984179605147246}
   m_Layer: 0
-  m_Name: Jumper
+  m_Name: jumper
   m_TagString: Jumper
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86,7 +86,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1963491872576424134}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.49999994

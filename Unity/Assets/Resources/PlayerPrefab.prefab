@@ -55,8 +55,8 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 769}
-  viewIdField: 7
-  InstantiationId: 7
+  viewIdField: 0
+  InstantiationId: 2
   isRuntimeInstantiated: 0
 --- !u!114 &769
 MonoBehaviour:
@@ -419,8 +419,8 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 801}
-  viewIdField: 8
-  InstantiationId: 8
+  viewIdField: 0
+  InstantiationId: 7
   isRuntimeInstantiated: 0
 --- !u!114 &801
 MonoBehaviour:
@@ -757,9 +757,9 @@ GameObject:
   - component: {fileID: 721}
   - component: {fileID: 736}
   - component: {fileID: 767}
+  - component: {fileID: 1893538762791976952}
   - component: {fileID: 766}
   - component: {fileID: 765}
-  - component: {fileID: 803}
   - component: {fileID: 797}
   - component: {fileID: 798}
   m_Layer: 0
@@ -844,10 +844,24 @@ MonoBehaviour:
   avatarRootGameObject: {fileID: 125}
   cameraRotatorX: {fileID: 137}
   thirdPersonController: {fileID: 765}
-  characterTrampolineScript: {fileID: 803}
+  characterTrampolineScript: {fileID: 0}
   selfPlayerAttractedScript: {fileID: 766}
   selfOrbAttractedScript: {fileID: 763}
   characterCollider: {fileID: 736}
+--- !u!114 &1893538762791976952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f1d4c2fe6ee37e4a910ead48599a9df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerExposer: {fileID: 767}
+  defensiveOrbInput: 114
 --- !u!114 &766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -892,20 +906,6 @@ MonoBehaviour:
   jumpInput: 32
   runInput: 0
   dashInput: 0
---- !u!114 &803
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 135}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72cffb1a49895f8449faf0bce9d8a672, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerExposer: {fileID: 767}
-  defensiveOrbInput: 32
 --- !u!114 &797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -925,8 +925,8 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 798}
-  viewIdField: 12
-  InstantiationId: 12
+  viewIdField: 0
+  InstantiationId: 9
   isRuntimeInstantiated: 0
 --- !u!114 &798
 MonoBehaviour:
@@ -1434,12 +1434,12 @@ PrefabInstance:
     - target: {fileID: 5107946470935551180, guid: 501d9991fbb3e6b45b291e93d1d426dc,
         type: 3}
       propertyPath: viewIdField
-      value: 9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5107946470935551180, guid: 501d9991fbb3e6b45b291e93d1d426dc,
         type: 3}
       propertyPath: InstantiationId
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 501d9991fbb3e6b45b291e93d1d426dc, type: 3}
