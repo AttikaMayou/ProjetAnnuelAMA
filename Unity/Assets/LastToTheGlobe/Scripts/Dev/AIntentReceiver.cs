@@ -13,6 +13,7 @@ namespace LastToTheGlobe.Scripts.Dev
         public bool Run { get; set; }
         public bool Jump { get; set; }
         public bool Dash { get; set; }
+        public bool Shoot { get; set; }
 
     }
 }

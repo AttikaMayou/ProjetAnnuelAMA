@@ -27,6 +27,11 @@ namespace LastToTheGlobe.Scripts.Dev
 //            }
 
             //Movement Intent
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                photonView.RPC("LaunchBulletRPC", RpcTarget.MasterClient, true);
+            }
+            
             if (Input.GetKeyDown(KeyCode.Z))
             {
                 photonView.RPC("MoveForwardRPC", RpcTarget.MasterClient, true);
@@ -149,6 +154,15 @@ namespace LastToTheGlobe.Scripts.Dev
             }
         }
 
-
+        [PunRPC]
+        void LaunchBulletRPC()
+        {
+            if (PhotonNetwork.IsMasterClient)
+            {
+                Shoot = true;
+            }
+        }
+        
+        
     }
 }

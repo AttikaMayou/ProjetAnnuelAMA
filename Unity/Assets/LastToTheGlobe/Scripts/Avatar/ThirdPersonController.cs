@@ -122,7 +122,7 @@ namespace LastToTheGlobe.Scripts.Avatar
             {
                 _canThrowSpell = false;
                 //orb.SetActive(true);
-                AvatarsController.Instance.LaunchBullet(playerExposer);
+                //AvatarsController.Instance.LaunchBullet(playerExposer);
             }
 
             //Detects the current status of the offensive orb to update if necessary

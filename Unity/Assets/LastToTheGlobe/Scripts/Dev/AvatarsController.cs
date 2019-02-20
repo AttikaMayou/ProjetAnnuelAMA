@@ -83,6 +83,59 @@ namespace LastToTheGlobe.Scripts.Dev
             }
         }
 
+        private void FixedUpdate()
+        {
+            // If on network, only the master client can move objects
+            if (PhotonNetwork.IsConnected && !PhotonNetwork.IsMasterClient)
+            {
+                return;
+            }
+            
+            // If intents and avatars are not setup properly
+            if (_activatedIntentReceivers == null)
+            {
+                Debug.LogError("There is something wrong with avatars and intents setup !");
+                return;
+            }
+
+            var activatedAvatarCount = 0;
+
+            for (var i = 0; i < _activatedIntentReceivers.Length; i++)
+            {
+                var moveIntent = Vector3.zero;
+
+                var intentReceiver = _activatedIntentReceivers[i];
+
+                var exposers = PlayerColliderDirectoryScript.Instance.characterExposers;
+                activatedAvatarCount = exposers.Count;
+
+                if (intentReceiver.Shoot)
+                {
+                    for (var j = 0; j < exposers.Count; j++)
+                    {
+                        if (i == j)
+                        {
+                            continue;
+                        }
+                        
+                        LaunchBullet(exposers[j]);
+                    }
+                }
+            }
+        }
+        
+        private void LaunchBullet(CharacterExposer player)
+        {
+            if (PhotonNetwork.IsConnected)
+            {
+                photonView.RPC("InstantiateBullet", RpcTarget.AllBuffered, player); 
+            }
+            else
+            {
+                InstantiateBullet(player);
+            }
+        }
+        
         private void EndGame()
         {
             startGameController.ShowMainMenu();
@@ -104,18 +157,6 @@ namespace LastToTheGlobe.Scripts.Dev
         {
             yield return new WaitForSeconds(2.0f);
             SynchronizePlayersDirectory(exposer);
-        }
-
-        public void LaunchBullet(CharacterExposer player)
-        {
-            if (PhotonNetwork.IsConnected)
-            {
-                photonView.RPC("InstantiateBullet", RpcTarget.AllBuffered, player); 
-            }
-            else
-            {
-                InstantiateBullet(player);
-            }
         }
         #endregion
         
