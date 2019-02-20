@@ -118,7 +118,7 @@ namespace LastToTheGlobe.Scripts.Dev
         private void SyncPlayersDirectory(List<CharacterExposer> list)
         {
             if (PhotonNetwork.IsMasterClient) return;
-            PlayerColliderDirectoryScript.Instance.characterExposers = list;
+            PlayerColliderDirectoryScript.Instance.SyncData(list);
         }
         
         #endregion

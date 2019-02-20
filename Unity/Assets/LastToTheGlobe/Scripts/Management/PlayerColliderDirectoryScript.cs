@@ -55,11 +55,21 @@ namespace LastToTheGlobe.Scripts.Management
             AddPlayerInDirectory(player);
         }
 
+
+        public void SyncData(IEnumerable<CharacterExposer> list)
+        {
+            foreach (var exposer in list)
+            {
+                AddExposer(exposer);
+            }
+        }
+
         private void AddPlayerInDirectory(CharacterExposer player)
         {
             Debug.Log("add one player to directory");
             if (_directory.ContainsValue(player)) return;
             _directory.Add(player.characterCollider, player);
         }
+        
     }
 }
