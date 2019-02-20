@@ -34,16 +34,16 @@ namespace LastToTheGlobe.Scripts.Avatar
             PlayerColliderDirectoryScript.Instance.AddExposer(this);
             
             //Wait for the camera to have the player reference before initializing follow behaviour
-            StartCoroutine(InitializeCameraRefernces());
+            StartCoroutine(InitializeCameraReferences());
             
             //The prefab should not be destroyed when switching scene (Lobby to GameRoom for example)
             DontDestroyOnLoad(this.avatarRootGameObject);
         }
 
-
-        private IEnumerator InitializeCameraRefernces()
+        private IEnumerator InitializeCameraReferences()
         {
             yield return new WaitForSeconds(1.0f);
+            AvatarsController.Instance.camInScene.targetPlayer = this.gameObject;
             AvatarsController.Instance.camInScene.playerExposer = this;
             AvatarsController.Instance.camInScene.InitializeCameraPosition();
             AvatarsController.Instance.camInScene.startFollowing = true;

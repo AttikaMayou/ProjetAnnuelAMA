@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1957377143894371973}
   - component: {fileID: 6007325744886493298}
   - component: {fileID: 6007325744886493301}
+  - component: {fileID: 2134505513476480626}
   m_Layer: 0
   m_Name: Planet
   m_TagString: Planet
@@ -121,3 +122,16 @@ MonoBehaviour:
   planetTransform: {fileID: 6007325744886493300}
   speedRotation: 10
   dirForce: {x: 0, y: 0, z: 0}
+--- !u!135 &2134505513476480626
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6007325744886493304}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
