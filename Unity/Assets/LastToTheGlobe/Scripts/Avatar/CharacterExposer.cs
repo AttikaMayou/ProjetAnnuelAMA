@@ -34,6 +34,7 @@ namespace LastToTheGlobe.Scripts.Avatar
             {
                 Debug.Log("Awake of the CharacterExposer : " + gameObject.name);
                 PlayerColliderDirectoryScript.Instance.AddExposer(this);
+                StartCoroutine(AvatarsController.Instance.WaitBeforeSyncData());
             }
 
             if (!characterLocalPhotonView.IsMine && PhotonNetwork.IsConnected) return;

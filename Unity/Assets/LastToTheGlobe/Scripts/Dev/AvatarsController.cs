@@ -1,5 +1,8 @@
-﻿using LastToTheGlobe.Scripts.Avatar;
+﻿using System.Collections;
+using System.Collections.Generic;
+using LastToTheGlobe.Scripts.Avatar;
 using LastToTheGlobe.Scripts.Camera;
+using LastToTheGlobe.Scripts.Management;
 using LastToTheGlobe.Scripts.Singleton;
 using Photon.Pun;
 using UnityEngine;
@@ -66,6 +69,27 @@ namespace LastToTheGlobe.Scripts.Dev
                 intentReceiver.enabled = true;
             }
         }
+
+        private void SynchronizePlayersDirectory(List<CharacterExposer> list)
+        {
+            if (PhotonNetwork.IsConnected)
+            {
+                photonView.RPC("SyncPlayersDirectory", RpcTarget.Others, list);
+            }
+            else
+            {
+                SyncPlayersDirectory(list);
+            }
+
+        }
+        #endregion
+        
+        #region Public Methods
+        public IEnumerator WaitBeforeSyncData()
+        {
+            yield return new WaitForSeconds(2.0f);
+            SynchronizePlayersDirectory(PlayerColliderDirectoryScript.Instance.characterExposers);
+        }
         #endregion
         
         #region RPC Methods
@@ -88,6 +112,13 @@ namespace LastToTheGlobe.Scripts.Dev
             //Reference the localPlayerInstance with this new gameObject
             _localPlayerInstance = newPlayer;
             camInScene.targetPlayer = newPlayer;
+        }
+
+        [PunRPC]
+        private void SyncPlayersDirectory(List<CharacterExposer> list)
+        {
+            if (PhotonNetwork.IsMasterClient) return;
+            PlayerColliderDirectoryScript.Instance.characterExposers = list;
         }
         
         #endregion
