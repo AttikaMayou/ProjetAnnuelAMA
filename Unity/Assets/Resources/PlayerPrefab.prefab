@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 356}
+  - component: {fileID: 768}
   - component: {fileID: 769}
-  - component: {fileID: 770}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Untagged
@@ -36,7 +36,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &769
+--- !u!114 &768
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -54,11 +54,11 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 770}
-  viewIdField: 0
+  - {fileID: 769}
+  viewIdField: 1
   InstantiationId: 1
   isRuntimeInstantiated: 0
---- !u!114 &770
+--- !u!114 &769
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -316,8 +316,8 @@ GameObject:
   - component: {fileID: 654}
   - component: {fileID: 585}
   - component: {fileID: 762}
-  - component: {fileID: 7358449027653051290}
-  - component: {fileID: 2534844706500834702}
+  - component: {fileID: 806}
+  - component: {fileID: 801}
   m_Layer: 0
   m_Name: DeffensiveOrb
   m_TagString: Untagged
@@ -398,9 +398,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orbTransform: {fileID: 360}
   orbRb: {fileID: 0}
-  playerExposer: {fileID: 768}
+  playerExposer: {fileID: 767}
   speed: 1
---- !u!114 &7358449027653051290
+--- !u!114 &806
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -418,11 +418,11 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 2534844706500834702}
-  viewIdField: 0
-  InstantiationId: 0
+  - {fileID: 801}
+  viewIdField: 9
+  InstantiationId: 9
   isRuntimeInstantiated: 0
---- !u!114 &2534844706500834702
+--- !u!114 &801
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -760,9 +760,9 @@ GameObject:
   - component: {fileID: 764}
   - component: {fileID: 763}
   - component: {fileID: 720}
-  - component: {fileID: 1778184411423099674}
-  - component: {fileID: 6302334725106414269}
-  - component: {fileID: 1518441293459090973}
+  - component: {fileID: 800}
+  - component: {fileID: 804}
+  - component: {fileID: 799}
   m_Layer: 0
   m_Name: OffensiveOrb
   m_TagString: Untagged
@@ -892,7 +892,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1778184411423099674
+--- !u!114 &800
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -910,12 +910,12 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 6302334725106414269}
-  - {fileID: 1518441293459090973}
-  viewIdField: 0
-  InstantiationId: 0
+  - {fileID: 804}
+  - {fileID: 799}
+  viewIdField: 8
+  InstantiationId: 8
   isRuntimeInstantiated: 0
---- !u!114 &6302334725106414269
+--- !u!114 &804
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -930,7 +930,7 @@ MonoBehaviour:
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
---- !u!114 &1518441293459090973
+--- !u!114 &799
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -957,12 +957,12 @@ GameObject:
   - component: {fileID: 366}
   - component: {fileID: 721}
   - component: {fileID: 736}
-  - component: {fileID: 768}
+  - component: {fileID: 767}
   - component: {fileID: 766}
   - component: {fileID: 765}
-  - component: {fileID: 4497055652888796246}
-  - component: {fileID: 905308837428202271}
-  - component: {fileID: 1299387712718162985}
+  - component: {fileID: 803}
+  - component: {fileID: 797}
+  - component: {fileID: 798}
   m_Layer: 0
   m_Name: SK_Character_Placeholder
   m_TagString: Player
@@ -1026,7 +1026,7 @@ CapsuleCollider:
   m_Height: 1.6910229
   m_Direction: 1
   m_Center: {x: -0.013080463, y: 0.84670496, z: 0}
---- !u!114 &768
+--- !u!114 &767
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1039,13 +1039,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterRb: {fileID: 721}
-  characterLocalPhotonView: {fileID: 769}
-  characterTrView: {fileID: 770}
+  characterLocalPhotonView: {fileID: 768}
+  characterTrView: {fileID: 769}
   characterTransform: {fileID: 366}
   avatarRootGameObject: {fileID: 125}
   cameraRotatorX: {fileID: 137}
   thirdPersonController: {fileID: 765}
-  characterTrampolineScript: {fileID: 4497055652888796246}
+  characterTrampolineScript: {fileID: 803}
   selfPlayerAttractedScript: {fileID: 766}
   selfOrbAttractedScript: {fileID: 763}
   characterCollider: {fileID: 736}
@@ -1079,7 +1079,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attractor: {fileID: 0}
   attractedScript: {fileID: 766}
-  playerExposer: {fileID: 768}
+  playerExposer: {fileID: 767}
   myCamera: {fileID: 0}
   rotationSpeed: 5
   rb: {fileID: 721}
@@ -1093,7 +1093,7 @@ MonoBehaviour:
   jumpInput: 32
   runInput: 0
   dashInput: 0
---- !u!114 &4497055652888796246
+--- !u!114 &803
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1105,9 +1105,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72cffb1a49895f8449faf0bce9d8a672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerExposer: {fileID: 768}
+  playerExposer: {fileID: 767}
   defensiveOrbInput: 32
---- !u!114 &905308837428202271
+--- !u!114 &797
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1125,11 +1125,11 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 1299387712718162985}
-  viewIdField: 0
+  - {fileID: 798}
+  viewIdField: 7
   InstantiationId: 7
   isRuntimeInstantiated: 0
---- !u!114 &1299387712718162985
+--- !u!114 &798
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

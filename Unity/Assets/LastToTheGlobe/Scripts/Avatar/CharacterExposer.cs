@@ -30,12 +30,12 @@ namespace LastToTheGlobe.Scripts.Avatar
         private void Awake()
         {
             //Only the master add the players to directory
-            if (PhotonNetwork.IsMasterClient)
-            {
+//            if (PhotonNetwork.IsMasterClient)
+//            {
                 Debug.Log("Awake of the CharacterExposer : " + gameObject.name);
                 PlayerColliderDirectoryScript.Instance.AddExposer(this);
-                StartCoroutine(AvatarsController.Instance.WaitBeforeSyncData(this));
-            }
+                //StartCoroutine(AvatarsController.Instance.WaitBeforeSyncData(this));
+//            }
 
             if (!characterLocalPhotonView.IsMine && PhotonNetwork.IsConnected) return;
             //Wait for the camera to have the player reference before initializing follow behaviour
