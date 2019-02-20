@@ -68,6 +68,14 @@ namespace LastToTheGlobe.Scripts.Dev
             foreach (var intentReceiver in _activatedIntentReceivers)
             {
                 intentReceiver.enabled = true;
+                intentReceiver.Shoot = false;
+                intentReceiver.Dash = false;
+                intentReceiver.MoveBack = false;
+                intentReceiver.MoveLeft = false;
+                intentReceiver.MoveRight = false;
+                intentReceiver.MoveForward = false;
+                intentReceiver.Run = false;
+                intentReceiver.Jump = false;
             }
         }
 

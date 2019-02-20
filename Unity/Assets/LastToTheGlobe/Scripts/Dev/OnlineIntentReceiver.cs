@@ -20,11 +20,11 @@ namespace LastToTheGlobe.Scripts.Dev
 
         public void Update()
         {
-//            if (PlayerNumbering.SortedPlayers.Length <= PlayerIndex ||
-//             PlayerNumbering.SortedPlayers[PlayerIndex].ActorNumber != PhotonNetwork.LocalPlayer.ActorNumber)
-//            {
-//                return;
-//            }
+            if (PlayerNumbering.SortedPlayers.Length <= playerIndex ||
+                          PlayerNumbering.SortedPlayers[playerIndex].ActorNumber != PhotonNetwork.LocalPlayer.ActorNumber)
+                         {
+                             return;
+                         }
 
             //Movement Intent
             if (Input.GetKeyDown(KeyCode.A))
