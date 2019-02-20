@@ -28,13 +28,13 @@ namespace LastToTheGlobe.Scripts.Avatar
         private float speed;
         [SerializeField]
         [Tooltip("Vitesse de la course")]
-        private float runSpeed;
+        private float runSpeed = 8;
         [SerializeField]
         [Tooltip("Vitesse du saut")]
-        private float jumpSpeed;
+        private float jumpSpeed = 5;
         [SerializeField]
         [Tooltip("Vitesse du dash")]
-        private float dashSpeed;
+        private float dashSpeed = 30;
         private bool _isJumping = false;
         private float _forward;
         private float _strafe;
@@ -42,6 +42,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         private Vector3 _jumpDir;
         private int _jumpMax = 1;
         private bool _dashAsked = false;
+        private bool _runAsked = false;
 
         [Header("Orb References")]
         public GameObject orb;
@@ -51,6 +52,8 @@ namespace LastToTheGlobe.Scripts.Avatar
         [Header("Inputs")] 
         public KeyCode offensiveOrbInput;
         public KeyCode jumpInput;
+        public KeyCode runInput;
+        public KeyCode dashInput;
 
         private void FixedUpdate () 
         {
@@ -58,9 +61,17 @@ namespace LastToTheGlobe.Scripts.Avatar
             _forward = Input.GetAxis("Vertical");
             _strafe = Input.GetAxis("Horizontal");
             Vector3 _moveDir = new Vector3(_strafe, 0.0f, _forward);
-            Running();
 
-            //rb.MovePosition(rb.position + transform.TransformDirection(_moveDir) * speed * Time.deltaTime);
+            Running();
+            if (_runAsked == true)
+            {
+                speed = runSpeed;
+                _runAsked = false;
+            }
+            else
+            {
+                rb.MovePosition(rb.position + transform.TransformDirection(_moveDir) * speed * Time.deltaTime);
+            }
 
             //Dash
             if (_dashAsked)
@@ -69,8 +80,11 @@ namespace LastToTheGlobe.Scripts.Avatar
                 _dashAsked = false;
                 Debug.Log("DashAsked");
             }
-            //Déplacement
-            rb.MovePosition(rb.position + transform.TransformDirection(_moveDir) * speed * Time.deltaTime);
+            else
+            {
+                rb.MovePosition(rb.position + transform.TransformDirection(_moveDir) * speed * Time.deltaTime);
+            }
+            
 
             //Rotate the character so the camera can follow
             transform.Rotate(new Vector3(0,
@@ -103,7 +117,7 @@ namespace LastToTheGlobe.Scripts.Avatar
             }*/
 
             //Detects the input to throw an offensiveOrb
-            if (Input.GetKeyDown(offensiveOrbInput) && _canThrowSpell)
+            if (Input.GetKeyDown(offensiveOrbInput) && _canThrowSpell && playerExposer.characterLocalPhotonView.IsMine)
             {
                 _canThrowSpell = false;
                 orb.SetActive(true);
@@ -134,24 +148,20 @@ namespace LastToTheGlobe.Scripts.Avatar
 
         private void Running()
         {
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKey(runInput))
             {
-                speed = runSpeed;
-            }
-            else
-            {
-                speed = speed;
+                _runAsked = true;
             }
         }
 
         private void Dash()
         {
-            if (Input.GetKeyDown(KeyCode.LeftAlt))
+            if (Input.GetKeyDown(dashInput))
             {
                 _dashAsked = true;
             }
         }
-
+/*
         private void Jump()
         {
             if (Input.GetKeyDown(KeyCode.Space))
@@ -162,6 +172,6 @@ namespace LastToTheGlobe.Scripts.Avatar
                     _jumpMax--;
                 }
             }
-        }
+        }*/
     }
 }
