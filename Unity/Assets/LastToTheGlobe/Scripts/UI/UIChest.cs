@@ -7,8 +7,8 @@ namespace LastToTheGlobe.Scripts.Inventory
 {
     public class UIChest : MonoBehaviour
     {
-        private bool OpenChest = false;
-        private bool CanOpenChest = false;
+        private bool openChest = false;
+        private bool canOpenChest = false;
         [SerializeField] private Image pressE;
         [SerializeField] private Canvas playerInventory;
         [SerializeField] private Canvas chestInventory;
@@ -21,7 +21,7 @@ namespace LastToTheGlobe.Scripts.Inventory
 
         void Update()
         {
-            if(CanOpenChest)
+            if(canOpenChest)
             {
                 pressE.enabled = true;
             }
@@ -32,30 +32,32 @@ namespace LastToTheGlobe.Scripts.Inventory
 
             if (Input.GetKeyDown(KeyCode.E))
             {
-                if(CanOpenChest)
+                if(canOpenChest)
                 {
-                    CanOpenChest = false;
-                    pressE.enabled = false;
                     playerInventory.enabled = true;
                     chestInventory.enabled = true;
-                    OpenChest = true;
+                    canOpenChest = false;
+                    pressE.enabled = false;
+                    openChest = true;
                 }
-                else
+                else if(!canOpenChest)
                 {
                     playerInventory.enabled = false;
                     chestInventory.enabled = false;
+                    pressE.enabled = true;
+                    canOpenChest = true;
+                    openChest = false;
                 }
             }
         }
 
 
-
-        void OnTriggerEnter(Collider chest)
+    void OnTriggerEnter(Collider chest)
         {
             if (chest.CompareTag("Player"))
             {
                 //Affiche touche E
-                CanOpenChest = true;
+                canOpenChest = true;
             }
         }
 
@@ -64,7 +66,7 @@ namespace LastToTheGlobe.Scripts.Inventory
             if (chest.CompareTag("Player"))
             {
                 //Ferme touche E
-                CanOpenChest = false;
+                canOpenChest = false;
             }
         }
     }

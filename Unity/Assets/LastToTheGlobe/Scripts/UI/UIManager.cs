@@ -13,6 +13,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text nbPlayerText;
     [SerializeField] private int life;
 
+    private bool canOpenInventory = false;
+
+
     void Start()
     {
         playerInventory.enabled = false;
@@ -21,11 +24,21 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
+        //UI Inventory
         if (Input.GetKeyDown(KeyCode.I))
         {
-            playerInventory.enabled = true;
+            if(!canOpenInventory)
+            {
+                playerInventory.enabled = true;
+                canOpenInventory = true;
+            }
+            else if(canOpenInventory)
+            {
+                playerInventory.enabled = false;
+                canOpenInventory = false;
+            }
         }
-
+        //UI Tutorial
         if (Input.GetKey(KeyCode.F1))
         {
             tutorial.enabled = true;
@@ -35,7 +48,7 @@ public class UIManager : MonoBehaviour
             tutorial.enabled = false;
         }
     }
-    
+
     //Player currently in the game
     public void updateNbPlayer()
     {
