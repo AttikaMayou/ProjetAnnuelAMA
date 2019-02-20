@@ -3,7 +3,7 @@ using LastToTheGlobe.Scripts.Environment.Planets;
 using UnityEngine;
 
 //Auteur : Abdallah
-//Modification : Attika, Margot
+//Modification : Attika
 
 namespace LastToTheGlobe.Scripts.Avatar
 {
@@ -19,55 +19,33 @@ namespace LastToTheGlobe.Scripts.Avatar
         [SerializeField]
         private float rotationSpeed = 5.0f;
 
-        [Header("Movement Parameters")]
-        [SerializeField]
-        [Tooltip("Rigidbody du player")]
-        public Rigidbody rb;
-        [SerializeField]
-        [Tooltip("Vitesse de la marche")]
-        private float speed;
-        [SerializeField]
-        [Tooltip("Vitesse de la course")]
-        private float runSpeed;
-        [SerializeField]
-        [Tooltip("Vitesse du saut")]
-        private float jumpSpeed;
-        [SerializeField]
-        [Tooltip("Vitesse du dash")]
-        private float dashSpeed;
-        private bool _isJumping = false;
-        private float _forward;
-        private float _strafe;
+        [Header("Movement Parameters")] 
         private Quaternion _rotation;
+        private Vector3 _moveDir;
         private Vector3 _jumpDir;
-        private int _jumpMax = 1;
-        private bool _dashAsked = false;
-
-        [Header("Orb Objects")]
+        public float speed;
+        private bool _isJumping = false;
+        public Rigidbody rb;
+   
+        [Header("Orb References")]
         public GameObject orb;
         public GameObject orbSpawned;
+        private bool _canThrowSpell;
 
-            private void FixedUpdate () 
+        [Header("Inputs")] 
+        public KeyCode offensiveOrbInput;
+        public KeyCode jumpInput;
+
+        private void FixedUpdate () 
         {
-            // Récupération des floats vertical et horizontal de l'animator au script
-            _forward = Input.GetAxis("Vertical");
-            _strafe = Input.GetAxis("Horizontal");
-            Vector3 _moveDir = new Vector3(_strafe, 0.0f, _forward);
-
+            //Get inputs from the player
+            _moveDir = new Vector3(Input.GetAxisRaw("Horizontal"),
+                0,
+                Input.GetAxisRaw("Vertical")).normalized;
+        
+        
             rb.MovePosition(rb.position + transform.TransformDirection(_moveDir) * speed * Time.deltaTime);
-            Running();
-            //Dash
-            if (_dashAsked)
-            {
-                rb.MovePosition(rb.position + transform.TransformDirection(_moveDir) * dashSpeed * Time.deltaTime);
-                _dashAsked = false;
-            }
-            //Déplacement
-            else
-            {
-                rb.MovePosition(rb.position + transform.TransformDirection(_moveDir) * speed * Time.deltaTime);
-            }
-
+        
             //Rotate the character so the camera can follow
             transform.Rotate(new Vector3(0,
                 Input.GetAxis("Mouse X") * rotationSpeed,
@@ -81,7 +59,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         
         
             //Prevent the camera from going too high or too low
-            //Les valeurs qui était mise sont des valeurs qui peuvent être pris par la variable cameraRotatorX.transform.rotation.x (-1 - 1)
+            //Les valeurs qui étaient mises sont des valeurs qui peuvent être pris par la variable cameraRotatorX.transform.rotation.x (-1 - 1)
             if (playerExposer.cameraRotatorX.transform.rotation.x >= 0.42f)
             {
                 _rotation = 
@@ -97,9 +75,22 @@ namespace LastToTheGlobe.Scripts.Avatar
                         _rotation.z, _rotation.w);
                 playerExposer.cameraRotatorX.transform.rotation = _rotation;
             }
-        
+
+            //Detects the input to throw an offensiveOrb
+            if (Input.GetKeyDown(offensiveOrbInput) && _canThrowSpell)
+            {
+                _canThrowSpell = false;
+                orb.SetActive(true);
+            }
+
+            //Detects the current status of the offensive orb to update if necessary
+            if (!orb.activeSelf)
+            {
+                _canThrowSpell = true;
+            }
+            
             //Apply a stronger force to jump
-            if (!Input.GetKey(KeyCode.Space) || _isJumping) return;
+            if (!Input.GetKey(jumpInput) || _isJumping) return;
             _jumpDir = attractor.dirForce;
             rb.AddForce(_jumpDir * 250);
 
@@ -113,42 +104,6 @@ namespace LastToTheGlobe.Scripts.Avatar
             if (!hit.gameObject.CompareTag("Planet")) return;
             _isJumping = false;
             attractedScript.isGrounded = false;
-        }
-
-        private void Running()
-        {
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                speed = runSpeed;
-            }
-            else
-            {
-                speed = speed;
-            }
-        }
-
-        private void Dash()
-        {
-            if (Input.GetKeyDown(KeyCode.LeftAlt))
-            {
-                _dashAsked = true;
-            }
-        }
-
-        private void Jump()
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                if (_jumpMax > 0)
-                {
-                    rb.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
-                    _jumpMax--;
-                }
-            }
-            if (IsGrounded())
-            {
-                jumpMax = 1;
-            }
         }
     }
 }

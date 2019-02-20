@@ -862,10 +862,9 @@ GameObject:
   - component: {fileID: 721}
   - component: {fileID: 736}
   - component: {fileID: 768}
-  - component: {fileID: 767}
   - component: {fileID: 766}
   - component: {fileID: 765}
-  - component: {fileID: 771}
+  - component: {fileID: 4497055652888796246}
   - component: {fileID: 905308837428202271}
   - component: {fileID: 1299387712718162985}
   m_Layer: 0
@@ -950,23 +949,10 @@ MonoBehaviour:
   avatarRootGameObject: {fileID: 125}
   cameraRotatorX: {fileID: 137}
   thirdPersonController: {fileID: 765}
-  characterTrampolineScript: {fileID: 771}
+  characterTrampolineScript: {fileID: 4497055652888796246}
   selfPlayerAttractedScript: {fileID: 766}
   selfOrbAttractedScript: {fileID: 763}
   characterCollider: {fileID: 736}
---- !u!114 &767
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 135}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08ceb91067d928443b153e1e37230648, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  testOrb: {fileID: 134}
 --- !u!114 &766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1004,7 +990,9 @@ MonoBehaviour:
   rb: {fileID: 721}
   orb: {fileID: 134}
   orbSpawned: {fileID: 134}
---- !u!114 &771
+  offensiveOrbInput: 97
+  jumpInput: 32
+--- !u!114 &4497055652888796246
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
