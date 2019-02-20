@@ -63,7 +63,11 @@ namespace LastToTheGlobe.Scripts.Dev
 
         private void EnableIntentReceivers()
         {
-            if (_activatedIntentReceivers == null) return;
+            if (_activatedIntentReceivers == null)
+            {
+                Debug.Log("there is no intent receivers");
+                return;
+            }
 
             foreach (var intentReceiver in _activatedIntentReceivers)
             {

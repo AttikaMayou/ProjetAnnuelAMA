@@ -155,11 +155,11 @@ namespace LastToTheGlobe.Scripts.Dev
         }
 
         [PunRPC]
-        void LaunchBulletRPC()
+        void LaunchBulletRPC(bool intent)
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                Shoot = true;
+                Shoot = intent;
             }
         }
         
