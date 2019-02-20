@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1
+  m_AmbientIntensity: 3
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 6bb3302e1f6b1824198d4f97cbcd9a32, type: 2}
@@ -37,8 +37,8 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12998594, g: 0.114734575, b: 0.067177705, a: 1}
+  m_Sun: {fileID: 342152366}
+  m_IndirectSpecularColor: {r: 0.011361849, g: 0.036405846, b: 0.06786512, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -51,7 +51,7 @@ LightmapSettings:
     m_IndirectOutputScale: 1
     m_AlbedoBoost: 1
     m_EnvironmentLightingMode: 0
-    m_EnableBakedLightmaps: 1
+    m_EnableBakedLightmaps: 0
     m_EnableRealtimeLightmaps: 1
   m_LightmapEditorSettings:
     serializedVersion: 10
@@ -289,6 +289,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Planet
       objectReference: {fileID: 0}
+    - target: {fileID: 6007325744886493304, guid: 98010e924c5875f4bbbf318e24ca1c4d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6007325744886493300, guid: 98010e924c5875f4bbbf318e24ca1c4d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -470,15 +475,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Planet (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6007325744886493304, guid: 98010e924c5875f4bbbf318e24ca1c4d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6007325744886493300, guid: 98010e924c5875f4bbbf318e24ca1c4d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -94.328255
+      value: -100.7
       objectReference: {fileID: 0}
     - target: {fileID: 6007325744886493300, guid: 98010e924c5875f4bbbf318e24ca1c4d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 138.5881
+      value: 166.3
       objectReference: {fileID: 0}
     - target: {fileID: 6007325744886493300, guid: 98010e924c5875f4bbbf318e24ca1c4d,
         type: 3}
@@ -704,6 +714,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Planet (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6007325744886493304, guid: 98010e924c5875f4bbbf318e24ca1c4d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6007325744886493300, guid: 98010e924c5875f4bbbf318e24ca1c4d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -788,6 +803,75 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1296129704}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &342152364
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 342152365}
+  - component: {fileID: 342152366}
+  m_Layer: 0
+  m_Name: Directional Light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!4 &342152365
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 342152364}
+  m_LocalRotation: {x: 0.1666702, y: 0.6880578, z: 0.6842359, w: -0.17498226}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1803215557}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -89.259, y: -100.713005, z: 308.674}
+--- !u!108 &342152366
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 342152364}
+  m_Enabled: 1
+  serializedVersion: 8
+  m_Type: 1
+  m_Color: {r: 1, g: 0.8398271, b: 0.3820755, a: 1}
+  m_Intensity: 1
+  m_Range: 10
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 2
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 20
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!1 &392010804
 GameObject:
   m_ObjectHideFlags: 0
@@ -1326,6 +1410,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Planet (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6007325744886493304, guid: 98010e924c5875f4bbbf318e24ca1c4d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6007325744886493300, guid: 98010e924c5875f4bbbf318e24ca1c4d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1334,12 +1423,12 @@ PrefabInstance:
     - target: {fileID: 6007325744886493300, guid: 98010e924c5875f4bbbf318e24ca1c4d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 85.0881
+      value: 66.3
       objectReference: {fileID: 0}
     - target: {fileID: 6007325744886493300, guid: 98010e924c5875f4bbbf318e24ca1c4d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -214.06671
+      value: -207.2
       objectReference: {fileID: 0}
     - target: {fileID: 6007325744886493300, guid: 98010e924c5875f4bbbf318e24ca1c4d,
         type: 3}
@@ -1626,7 +1715,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 784320912}
   m_LocalRotation: {x: -0.045267392, y: -0.2579512, z: 0.1645634, w: 0.9509632}
-  m_LocalPosition: {x: -21.70948, y: -12.752441, z: -2.8515015}
+  m_LocalPosition: {x: -21.70948, y: -31.540535, z: 4.015213}
   m_LocalScale: {x: 0.90831894, y: 3.2351005, z: 3.2350998}
   m_Children: []
   m_Father: {fileID: 1085749354}
@@ -2260,7 +2349,7 @@ PrefabInstance:
     - target: {fileID: 6007325744886493300, guid: 41748f9dd88b5f74dbf520c3ce021d5a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 75.28809
+      value: 27.8
       objectReference: {fileID: 0}
     - target: {fileID: 6007325744886493300, guid: 41748f9dd88b5f74dbf520c3ce021d5a,
         type: 3}
@@ -2601,7 +2690,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1557397636}
   m_LocalRotation: {x: 0.10102912, y: -0.9037107, z: 0.16146386, w: 0.38344422}
-  m_LocalPosition: {x: -40.99948, y: -18.332443, z: -0.46150208}
+  m_LocalPosition: {x: -40.99948, y: -37.120537, z: 6.4052124}
   m_LocalScale: {x: 0.908319, y: 3.2350998, z: 3.2351005}
   m_Children: []
   m_Father: {fileID: 1085749354}
@@ -2704,7 +2793,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1650047698}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -88.328255, y: -314.9119, z: -154.4654}
+  m_LocalPosition: {x: -88.328255, y: -294, z: -154.4654}
   m_LocalScale: {x: 538.14996, y: 538.14996, z: 538.14996}
   m_Children: []
   m_Father: {fileID: 1261707274}
@@ -2730,7 +2819,7 @@ PrefabInstance:
     - target: {fileID: 6007325744886493300, guid: 41748f9dd88b5f74dbf520c3ce021d5a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 75.5881
+      value: 28.100002
       objectReference: {fileID: 0}
     - target: {fileID: 6007325744886493300, guid: 41748f9dd88b5f74dbf520c3ce021d5a,
         type: 3}
@@ -2877,7 +2966,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 566.68854, y: 344.33267, z: -6.156585}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 342152365}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

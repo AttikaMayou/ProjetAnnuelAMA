@@ -1,4 +1,6 @@
 ﻿using LastToTheGlobe.Scripts.Dev;
+using LastToTheGlobe.Scripts.Camera;
+using LastToTheGlobe.Scripts.Environment.Planets;
 using Photon.Pun;
 using UnityEngine;
 
@@ -9,8 +11,12 @@ namespace LastToTheGlobe.Scripts.Avatar
 {
     public class CharacterControllerRigidbody : MonoBehaviour
     {
+        [SerializeField] private AttractedScript attractedScript;
+
+        [Header("Character Exposer")]
+        public CharacterExposer playerExposer;
+
         [Header("Photon and Replication Parameters")]
-        [SerializeField]
         private CharacterExposer[] players;
         [SerializeField]
         private AIntentReceiver[] onlineIntentReceivers;
@@ -22,19 +28,25 @@ namespace LastToTheGlobe.Scripts.Avatar
         private bool GameStarted { get; set; }
         private Transform _spawnPoint;
 
+        [Header("Camera Parameters")]
+        public CameraScript myCamera;
+        [SerializeField]
+        private float rotationSpeed = 5.0f;
+
         //Parameters for players and movements control
+        [Header("Parameters for players and movements control")]
         [SerializeField]
         [Tooltip("Character")]
         private Rigidbody rb;
 
         [SerializeField]
-        [Tooltip("Vitesse de la course")]
-        private float runSpeed;
+        [Tooltip("Vitesse du joueur")]
+        private float _speed;
 
         [SerializeField]
-        [Tooltip("Vitesse de la marche")]
-        private float walkSpeed;
-
+        [Tooltip("Vitesse de la course")]
+        private float runSpeed;
+       
         [SerializeField]
         [Tooltip("Vitesse du saut")]
         private float jumpSpeed;
@@ -47,15 +59,14 @@ namespace LastToTheGlobe.Scripts.Avatar
         [Tooltip("Raycast position")]
         private Transform raycastOrigin;
 
-        private float _forward;
-        private float _strafe;
-        private float _speed = 5;
+        [Header("Orb Objects")]
+        public GameObject orb;
+        public GameObject orbSpawned;
+
         private float _ray = 0.4f;
         private bool _isGrounded = false;
         private int _jumpMax = 1;
-        private bool _dashAsked = false;
-
-
+        private Quaternion _rotation;
 
         void Awake()
         {
@@ -68,28 +79,40 @@ namespace LastToTheGlobe.Scripts.Avatar
 
         void Start()
         {
-            rb = GetComponent<Rigidbody>();
-        }
-
-        void Update()
-        {
-            // Récupération des floats vertical et horizontal de l'animator au script
-            _forward = Input.GetAxis("Vertical");
-            _strafe = Input.GetAxis("Horizontal");
-            Vector3 movement = new Vector3(_strafe, 0.0f, _forward);
-
-            //Course
-            Running();
-
-            //Dash
-            Dash();
-
-            //Saut et double saut
-            Jump();
         }
 
         private void FixedUpdate()
         {
+            //Rotate the character so the camera can follow
+            transform.Rotate(new Vector3(0,
+                Input.GetAxis("Mouse X") * rotationSpeed,
+                0));
+
+
+            //Rotate cameraRotatorX to give the camera the right vertical axe
+            playerExposer.cameraRotatorX.transform.Rotate(new Vector3(-(Input.GetAxis("Mouse Y") * rotationSpeed),
+                0,
+                0), Space.Self);
+
+
+            //Prevent the camera from going too high or too low
+            //Les valeurs qui était mise sont des valeurs qui peuvent être pris par la variable cameraRotatorX.transform.rotation.x (-1 - 1)
+            if (playerExposer.cameraRotatorX.transform.rotation.x >= 0.42f)
+            {
+                _rotation =
+                    new Quaternion(0.42f, _rotation.y,
+                    _rotation.z, _rotation.w);
+                playerExposer.cameraRotatorX.transform.rotation = _rotation;
+            }
+
+            if (playerExposer.cameraRotatorX.transform.rotation.x <= -0.2f)
+            {
+                _rotation =
+                    new Quaternion(-0.2f, _rotation.y,
+                        _rotation.z, _rotation.w);
+                playerExposer.cameraRotatorX.transform.rotation = _rotation;
+            }
+
             // If on network, only the master client can move objects
             if (PhotonNetwork.IsConnected && !PhotonNetwork.IsMasterClient)
             {
@@ -111,57 +134,65 @@ namespace LastToTheGlobe.Scripts.Avatar
                 return;
             }
 
-            //Movements
+            //Intents for movement
             var fallenAvatarsCount = 0;
             var activatedAvatarsCount = 0;
 
             for (var i = 0; i < _activatedIntentReceivers.Length; i++)
             {
-                var moveIntent = Vector3.zero;
+                Vector3 movement = Vector3.zero;
 
                 var intentReceiver = _activatedIntentReceivers[i];
                 var avatar = players[i];
 
                 activatedAvatarsCount += avatar.avatarRootGameObject.activeSelf ? 1 : 0;
 
-                if (intentReceiver.Jump)
-                {
-                    for (var j = 0; j < players.Length; j++)
-                    {
-                        if (i == j)
-                        {
-                            continue;
-                        }
-
-                        rb.velocity = new Vector3(_strafe * _speed, rb.velocity.y, _forward * _speed);
-                    }
-
-                    intentReceiver.Jump = false;
-                }
-
                 if (intentReceiver.MoveBack)
                 {
-                    moveIntent += rb.velocity = new Vector3(_strafe * _speed, rb.velocity.y, _forward * _speed); ;
+                    movement += Vector3.back;
                 }
 
-                /*if (intentReceiver.MoveForward)
+                if (intentReceiver.MoveForward)
                 {
-                    moveIntent += rb.velocity = new Vector3(strafe * speed, rb.velocity.y, forward * speed); ;
+                    movement += Vector3.forward;
                 }
 
-                if (intentReceiver.WantToMoveLeft)
+                if (intentReceiver.MoveLeft)
                 {
-                    moveIntent += Vector3.left;
+                    movement += Vector3.left;
                 }
 
-                if (intentReceiver.WantToMoveRight)
+                if (intentReceiver.MoveRight)
                 {
-                    moveIntent += Vector3.right;
-                }*/
+                    movement += Vector3.right;
+                }
 
-                moveIntent = moveIntent.normalized;
+                if(intentReceiver.Dash)
+                {
+                    _speed = dashSpeed;
+                }
 
-                rb.velocity = new Vector3(_strafe * _speed, rb.velocity.y, _forward * _speed);
+                if(intentReceiver.Run)
+                {
+                    _speed = runSpeed;
+                }
+
+                if (intentReceiver.Jump)
+                {
+                    if (_jumpMax > 0)
+                    {
+                        rb.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
+                        _jumpMax--;
+                        intentReceiver.Jump = false;
+                    }
+                    if (IsGrounded())
+                    {
+                        _jumpMax = 1;
+                    }
+                }
+
+                movement = movement.normalized;
+                rb.AddForce(movement * _speed);
 
                 fallenAvatarsCount++;
 
@@ -169,24 +200,6 @@ namespace LastToTheGlobe.Scripts.Avatar
                 {
                     EndGame();
                 }
-
-
-            }
-
-
-
-
-
-            //Dash
-            if (_dashAsked)
-            {
-                rb.velocity = new Vector3(_strafe * dashSpeed, rb.velocity.y, _forward * dashSpeed);
-                _dashAsked = false;
-            }
-            //Déplacement
-            else
-            {
-                rb.velocity = new Vector3(_strafe * _speed, rb.velocity.y, _forward * _speed);
             }
         }
 
@@ -273,47 +286,10 @@ namespace LastToTheGlobe.Scripts.Avatar
             }
         }
 
-
         //Functions for players movements
         private bool IsGrounded()
         {
             return Physics.Raycast(raycastOrigin.position, Vector3.down, _ray);
-        }
-
-        private void Running()
-        {
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                _speed = runSpeed;
-            }
-            else
-            {
-                _speed = walkSpeed;
-            }
-        }
-
-        private void Dash()
-        {
-            if (Input.GetKeyDown(KeyCode.LeftAlt))
-            {
-                _dashAsked = true;
-            }
-        }
-
-        private void Jump()
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                if (_jumpMax > 0)
-                {
-                    rb.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
-                    _jumpMax--;
-                }
-            }
-            if (IsGrounded())
-            {
-                _jumpMax = 1;
-            }
         }
 
         [PunRPC]
