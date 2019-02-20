@@ -391,8 +391,8 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 0}
-  viewIdField: 2
-  InstantiationId: 2
+  viewIdField: 11
+  InstantiationId: 11
   isRuntimeInstantiated: 0
 --- !u!1 &237933031
 GameObject:
@@ -1549,6 +1549,8 @@ MonoBehaviour:
   startGameController: {fileID: 1323043325}
   photonView: {fileID: 1323043328}
   playerPrefab: {fileID: 125, guid: cb27d954703f839468d2cea3b467316a, type: 3}
+  bulletPrefab: {fileID: 5107946470935551850, guid: 501d9991fbb3e6b45b291e93d1d426dc,
+    type: 3}
   camInScene: {fileID: 485625805}
 --- !u!114 &1323043328
 MonoBehaviour:
