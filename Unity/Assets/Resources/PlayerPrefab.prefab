@@ -55,7 +55,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 770}
-  viewIdField: 0
+  viewIdField: 1
   InstantiationId: 1
   isRuntimeInstantiated: 0
 --- !u!114 &770
@@ -814,7 +814,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orbTransform: {fileID: 361}
   orbRb: {fileID: 720}
-  speed: 2
+  speed: 5
   maxTimeUsing: 2
   playerTransform: {fileID: 366}
   attractedScript: {fileID: 763}
@@ -1025,8 +1025,8 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 1299387712718162985}
-  viewIdField: 0
-  InstantiationId: 0
+  viewIdField: 7
+  InstantiationId: 7
   isRuntimeInstantiated: 0
 --- !u!114 &1299387712718162985
 MonoBehaviour:

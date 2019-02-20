@@ -30,7 +30,8 @@ namespace LastToTheGlobe.Scripts.Management
                 return _value;
             }
             Debug.LogError("The Collider has no CharacterExposer associated : " +
-                           "something wrong happened at instantiation of the player whom it belongs");
+                           "something wrong happened at instantiation of the player whom it belongs to this gameObject : " +
+                           col.gameObject.name);
             return null;
         }
 

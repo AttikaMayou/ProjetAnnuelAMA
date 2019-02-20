@@ -9,26 +9,26 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb
     public class OrbManager : OrbExposerScript {
 
         [Header("Orb Parameters")]
-        [SerializeField]private float speed = 5f;
+        [SerializeField] private float speed = 5.0f;
         private Vector3 _direction;
-        private float timeUsing;
+        private float _timeUsing;
         public float maxTimeUsing;
-        private Vector3 initialPos;
+        private Vector3 _initialPos;
         
         [Header("Player and Attraction References")]
-        [SerializeField]private Transform playerTransform;
-        [SerializeField]private AttractedScript attractedScript;
+        [SerializeField] private Transform playerTransform;
+        [SerializeField] private AttractedScript attractedScript;
         private Vector3 _centerPointAttractor;
 
         private void Awake()
         {
-            initialPos = orbTransform.position;
+            _initialPos = orbTransform.position;
         }
 
         private void OnEnable()
         {
             //timeUsing = Time.deltaTime;
-            timeUsing = 0.0f;
+            _timeUsing = 0.0f;
             orbTransform.position = playerTransform.position + playerTransform.forward * 2f;
             _direction = playerTransform.right;
             _centerPointAttractor = attractedScript.attractor.planetTransform.position;
@@ -37,16 +37,16 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb
         private void FixedUpdate () {
             transform.RotateAround(_centerPointAttractor,_direction,speed);
 
-            timeUsing += Time.deltaTime;
+            _timeUsing += Time.deltaTime;
 
-            if (!(timeUsing >= maxTimeUsing)) return;
-            timeUsing = 0.0f;
+            if (!(_timeUsing >= maxTimeUsing)) return;
+            _timeUsing = 0.0f;
             ResetOrb();
         }
 
         private void ResetOrb()
         {
-            orbTransform.position = initialPos;
+            orbTransform.position = _initialPos;
             this.gameObject.SetActive(false);
         }
     }
