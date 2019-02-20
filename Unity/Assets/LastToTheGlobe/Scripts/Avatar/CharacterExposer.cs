@@ -25,17 +25,17 @@ namespace LastToTheGlobe.Scripts.Avatar
         public AttractedScript selfPlayerAttractedScript;
         public AttractedScript selfOrbAttractedScript;
         public Collider characterCollider;
-
+        
         //Reference itself to the ColliderDirectory and CameraScript when it spawns 
         private void Awake()
         {
             //Only the master add the players to directory
-//            if (PhotonNetwork.IsMasterClient)
-//            {
+            if (PhotonNetwork.IsMasterClient)
+            {
                 Debug.Log("Awake of the CharacterExposer : " + gameObject.name);
                 PlayerColliderDirectoryScript.Instance.AddExposer(this);
                 //StartCoroutine(AvatarsController.Instance.WaitBeforeSyncData(this));
-//            }
+            }
 
             if (!characterLocalPhotonView.IsMine && PhotonNetwork.IsConnected) return;
             //Wait for the camera to have the player reference before initializing follow behaviour

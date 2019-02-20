@@ -2,6 +2,7 @@
 using LastToTheGlobe.Scripts.Avatar;
 using LastToTheGlobe.Scripts.Dev;
 using LastToTheGlobe.Scripts.Singleton;
+using Photon.Pun;
 using UnityEngine;
 
 //Auteur : Abdallah
@@ -26,6 +27,7 @@ namespace LastToTheGlobe.Scripts.Management
         /// <returns></returns>
         public CharacterExposer GetExposer(Collider col)
         {
+            if (!PhotonNetwork.IsMasterClient) return null;
             if (_directory.TryGetValue(col, out _value))
             {
                 return _value;
