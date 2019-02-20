@@ -27,9 +27,14 @@ namespace LastToTheGlobe.Scripts.Avatar
         private bool _isJumping = false;
         public Rigidbody rb;
    
-        [Header("Orb Objects")]
+        [Header("Orb References")]
         public GameObject orb;
         public GameObject orbSpawned;
+        private bool _canThrowSpell;
+
+        [Header("Inputs")] 
+        public KeyCode offensiveOrbInput;
+        public KeyCode jumpInput;
 
         private void FixedUpdate () 
         {
@@ -40,7 +45,6 @@ namespace LastToTheGlobe.Scripts.Avatar
         
         
             rb.MovePosition(rb.position + transform.TransformDirection(_moveDir) * speed * Time.deltaTime);
-        
         
             //Rotate the character so the camera can follow
             transform.Rotate(new Vector3(0,
@@ -55,7 +59,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         
         
             //Prevent the camera from going too high or too low
-            //Les valeurs qui était mise sont des valeurs qui peuvent être pris par la variable cameraRotatorX.transform.rotation.x (-1 - 1)
+            //Les valeurs qui étaient mises sont des valeurs qui peuvent être pris par la variable cameraRotatorX.transform.rotation.x (-1 - 1)
             if (playerExposer.cameraRotatorX.transform.rotation.x >= 0.42f)
             {
                 _rotation = 
@@ -71,9 +75,22 @@ namespace LastToTheGlobe.Scripts.Avatar
                         _rotation.z, _rotation.w);
                 playerExposer.cameraRotatorX.transform.rotation = _rotation;
             }
-        
+
+            //Detects the input to throw an offensiveOrb
+            if (Input.GetKeyDown(offensiveOrbInput) && _canThrowSpell)
+            {
+                _canThrowSpell = false;
+                orb.SetActive(true);
+            }
+
+            //Detects the current status of the offensive orb to update if necessary
+            if (!orb.activeSelf)
+            {
+                _canThrowSpell = true;
+            }
+            
             //Apply a stronger force to jump
-            if (!Input.GetKey(KeyCode.Space) || _isJumping) return;
+            if (!Input.GetKey(jumpInput) || _isJumping) return;
             _jumpDir = attractor.dirForce;
             rb.AddForce(_jumpDir * 250);
 
