@@ -55,7 +55,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 770}
-  viewIdField: 1
+  viewIdField: 0
   InstantiationId: 1
   isRuntimeInstantiated: 0
 --- !u!114 &770
@@ -316,6 +316,8 @@ GameObject:
   - component: {fileID: 654}
   - component: {fileID: 585}
   - component: {fileID: 762}
+  - component: {fileID: 7358449027653051290}
+  - component: {fileID: 2534844706500834702}
   m_Layer: 0
   m_Name: DeffensiveOrb
   m_TagString: Untagged
@@ -398,6 +400,43 @@ MonoBehaviour:
   orbRb: {fileID: 0}
   playerExposer: {fileID: 768}
   speed: 1
+--- !u!114 &7358449027653051290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 2534844706500834702}
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &2534844706500834702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
 --- !u!1 &130
 GameObject:
   m_ObjectHideFlags: 0
@@ -721,6 +760,9 @@ GameObject:
   - component: {fileID: 764}
   - component: {fileID: 763}
   - component: {fileID: 720}
+  - component: {fileID: 1778184411423099674}
+  - component: {fileID: 6302334725106414269}
+  - component: {fileID: 1518441293459090973}
   m_Layer: 0
   m_Name: OffensiveOrb
   m_TagString: Untagged
@@ -737,7 +779,7 @@ Transform:
   m_GameObject: {fileID: 134}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 356}
   m_RootOrder: 2
@@ -814,7 +856,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orbTransform: {fileID: 361}
   orbRb: {fileID: 720}
-  speed: 5
+  speed: 2
   maxTimeUsing: 2
   playerTransform: {fileID: 366}
   attractedScript: {fileID: 763}
@@ -850,6 +892,60 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1778184411423099674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 6302334725106414269}
+  - {fileID: 1518441293459090973}
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &6302334725106414269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+--- !u!114 &1518441293459090973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizeVelocity: 1
+  m_SynchronizeAngularVelocity: 1
+  m_TeleportEnabled: 0
+  m_TeleportIfDistanceGreaterThan: 3
 --- !u!1 &135
 GameObject:
   m_ObjectHideFlags: 0
@@ -986,12 +1082,17 @@ MonoBehaviour:
   playerExposer: {fileID: 768}
   myCamera: {fileID: 0}
   rotationSpeed: 5
-  speed: 5
   rb: {fileID: 721}
+  speed: 5
+  runSpeed: 0
+  jumpSpeed: 0
+  dashSpeed: 0
   orb: {fileID: 134}
   orbSpawned: {fileID: 134}
   offensiveOrbInput: 97
   jumpInput: 32
+  runInput: 0
+  dashInput: 0
 --- !u!114 &4497055652888796246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1025,7 +1126,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 1299387712718162985}
-  viewIdField: 7
+  viewIdField: 0
   InstantiationId: 7
   isRuntimeInstantiated: 0
 --- !u!114 &1299387712718162985

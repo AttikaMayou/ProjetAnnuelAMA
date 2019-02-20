@@ -36,6 +36,7 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
             if (!coll.CompareTag("Player")) return;
             
             var exposer = PlayerColliderDirectoryScript.Instance.GetExposer(coll);
+            if (!exposer) return;
 
             exposer.thirdPersonController.attractor = this;
             exposer.selfPlayerAttractedScript.attractor = this;
@@ -47,7 +48,8 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
             if (!coll.CompareTag("Player")) return;
             
             var exposer = PlayerColliderDirectoryScript.Instance.GetExposer(coll);
-
+            if (!exposer) return;
+            
             exposer.thirdPersonController.attractor = null;
             exposer.selfPlayerAttractedScript.attractor = null;
             exposer.selfOrbAttractedScript.attractor = null;

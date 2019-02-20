@@ -84,7 +84,7 @@ namespace LastToTheGlobe.Scripts.Dev
                 Quaternion.identity, 0);
             Debug.Log("Nom du joueur avant le rename : " +newPlayer.name);
             newPlayer.gameObject.name = "Player " + avatarId.ToString();
-            
+            newPlayer.gameObject.SetActive(true);
             //Reference the localPlayerInstance with this new gameObject
             _localPlayerInstance = newPlayer;
             camInScene.targetPlayer = newPlayer;
