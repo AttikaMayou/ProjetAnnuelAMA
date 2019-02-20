@@ -23,7 +23,7 @@ namespace LastToTheGlobe.Scripts.Dev
         [SerializeField] private GameObject playerPrefab;
 
         public CameraScript camInScene;
-        public static GameObject LocalPlayerInstance;
+        private static GameObject _localPlayerInstance;
         
         #region MonoBehaviour Callbacks
 
@@ -72,12 +72,20 @@ namespace LastToTheGlobe.Scripts.Dev
         [PunRPC]
         private void InstantiateAvatarRPC(int avatarId)
         {
-            if (LocalPlayerInstance != null) return;
-            if (!photonView.IsMine) return;
-            if (!PhotonNetwork.InRoom) return;
+            if (_localPlayerInstance != null)
+            {
+                Debug.LogError("LocalPlayer is not null");
+                return;
+            }
+            //if (!PhotonNetwork.InRoom) return;
+            
             _spawnPoint = new Vector3(avatarId, 0, 0);
-            PhotonNetwork.Instantiate(playerPrefab.name, _spawnPoint,
+            var newPlayer = PhotonNetwork.Instantiate(playerPrefab.name, _spawnPoint,
                 Quaternion.identity, 0);
+            
+            //Reference the localPlayerInstance with this new gameObject
+            _localPlayerInstance = newPlayer;
+            camInScene.targetPlayer = newPlayer;
         }
         
         #endregion

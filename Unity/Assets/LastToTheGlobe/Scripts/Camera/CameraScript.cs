@@ -19,6 +19,7 @@ namespace LastToTheGlobe.Scripts.Camera
         
         [Header("Local Player References")]
         public CharacterExposer playerExposer;
+        public GameObject targetPlayer;
 
         public bool startFollowing;
 
@@ -31,8 +32,8 @@ namespace LastToTheGlobe.Scripts.Camera
         public void InitializeCameraPosition()
         {
             //cameraOffset = Distance between camera and player
-            if (!playerExposer) return;
-            var position = playerExposer.characterTransform.position;
+            if (!targetPlayer) return;
+            var position = targetPlayer.transform.position;
             var y = position.y + 3.0f;
             var z = position.z - 9.0f;
             _cameraOffsetOriginal = position - new Vector3(position.x, y, z);
@@ -49,10 +50,10 @@ namespace LastToTheGlobe.Scripts.Camera
         /// </summary>
         private void UpdatePosAndRot()
         {
-            if (!playerExposer) return;
+            if (!targetPlayer || !playerExposer) return;
             //Update the player's position each frame
-            var position = playerExposer.characterTransform.position;
-            _myTransform.rotation = playerExposer.characterTransform.rotation * playerExposer.cameraRotatorX.transform.rotation;
+            var position = targetPlayer.transform.position;
+            _myTransform.rotation = targetPlayer.transform.rotation * playerExposer.cameraRotatorX.transform.rotation;
             _myTransform.position = position - (_myTransform.rotation * _cameraOffsetOriginal); 
         }
 

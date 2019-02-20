@@ -165,6 +165,7 @@ namespace LastToTheGlobe.Scripts.Dev
             
             OnlinePlayReady?.Invoke();
 
+            //Only the MasterClient should instantiate players
             if (PhotonNetwork.IsMasterClient)
             {
                 PlayerJoined?.Invoke(i);

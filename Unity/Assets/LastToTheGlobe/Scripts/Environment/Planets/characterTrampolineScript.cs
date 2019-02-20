@@ -30,7 +30,7 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
 
         private void OnCollisionEnter(Collision collision)
         {
-            if(collision.collider.CompareTag("jumper"))
+            if(collision.collider.CompareTag("Jumper"))
             {
                 _canHyperJump = true;
             }
@@ -38,7 +38,7 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
 
         private void OnCollisionExit(Collision collision)
         {
-            if (collision.collider.CompareTag("jumper"))
+            if (collision.collider.CompareTag("Jumper"))
             {
                 _canHyperJump = false;
             }

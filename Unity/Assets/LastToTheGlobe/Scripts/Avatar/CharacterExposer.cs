@@ -35,9 +35,6 @@ namespace LastToTheGlobe.Scripts.Avatar
             AvatarsController.Instance.camInScene.InitializeCameraPosition();
             AvatarsController.Instance.camInScene.startFollowing = true;
             thirdPersonController.myCamera = AvatarsController.Instance.camInScene;
-
-            //Reference the LocalPlayerInstance to the AvatarsController with this gameObject
-            AvatarsController.LocalPlayerInstance = this.gameObject;
             
             //The prefab should not be destroyed when switching scene (Lobby to GameRoom for example)
             DontDestroyOnLoad(this.avatarRootGameObject);

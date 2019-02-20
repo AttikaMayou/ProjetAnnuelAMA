@@ -84,7 +84,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         //Get jump again
         private void OnCollisionEnter(Collision hit)
         {
-            if (!hit.gameObject.CompareTag("planet")) return;
+            if (!hit.gameObject.CompareTag("Planet")) return;
             _isJumping = false;
             attractedScript.isGrounded = false;
         }
