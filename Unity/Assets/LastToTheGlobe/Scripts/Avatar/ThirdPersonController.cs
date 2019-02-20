@@ -1,4 +1,5 @@
 ﻿using LastToTheGlobe.Scripts.Camera;
+using LastToTheGlobe.Scripts.Dev;
 using LastToTheGlobe.Scripts.Environment.Planets;
 using UnityEngine;
 
@@ -120,7 +121,8 @@ namespace LastToTheGlobe.Scripts.Avatar
             if (Input.GetKeyDown(offensiveOrbInput) && _canThrowSpell && playerExposer.characterLocalPhotonView.IsMine)
             {
                 _canThrowSpell = false;
-                orb.SetActive(true);
+                //orb.SetActive(true);
+                AvatarsController.Instance.LaunchBullet(playerExposer);
             }
 
             //Detects the current status of the offensive orb to update if necessary

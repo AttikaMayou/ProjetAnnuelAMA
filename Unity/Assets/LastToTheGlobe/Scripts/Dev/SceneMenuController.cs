@@ -44,6 +44,7 @@ namespace LastToTheGlobe.Scripts.Dev
         public event Action OfflinePlayReady;
         public event Action<int> PlayerJoined;
         public event Action<int> PlayerLeft;
+        public event Action GameCanStart;
         public event Action Disconnected;
         public event Action MasterClientSwitched;
 

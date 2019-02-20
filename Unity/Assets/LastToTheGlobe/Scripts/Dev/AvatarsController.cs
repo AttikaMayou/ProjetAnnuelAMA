@@ -24,6 +24,7 @@ namespace LastToTheGlobe.Scripts.Dev
         //private Transform _spawnPoint;
         private Vector3 _spawnPoint;
         [SerializeField] private GameObject playerPrefab;
+        [SerializeField] private GameObject bulletPrefab;
 
         public CameraScript camInScene;
         private static GameObject _localPlayerInstance;
@@ -80,7 +81,21 @@ namespace LastToTheGlobe.Scripts.Dev
             {
                 SyncPlayersDirectory(exposer);
             }
+        }
 
+        private void EndGame()
+        {
+            startGameController.ShowMainMenu();
+            if (PhotonNetwork.IsConnected)
+            {
+                PhotonNetwork.LeaveRoom();
+                PhotonNetwork.Disconnect();
+            }
+        }
+
+        private void WinGame()
+        {
+            
         }
         #endregion
         
@@ -89,6 +104,18 @@ namespace LastToTheGlobe.Scripts.Dev
         {
             yield return new WaitForSeconds(2.0f);
             SynchronizePlayersDirectory(exposer);
+        }
+
+        public void LaunchBullet(CharacterExposer player)
+        {
+            if (PhotonNetwork.IsConnected)
+            {
+                photonView.RPC("InstantiateBullet", RpcTarget.AllBuffered, player); 
+            }
+            else
+            {
+                InstantiateBullet(player);
+            }
         }
         #endregion
         
@@ -114,6 +141,16 @@ namespace LastToTheGlobe.Scripts.Dev
             camInScene.targetPlayer = newPlayer;
         }
 
+        [PunRPC]
+        private void InstantiateBullet(CharacterExposer player)
+        {
+            if (!PhotonNetwork.IsMasterClient) return;
+
+            var bullet = PhotonNetwork.Instantiate(bulletPrefab.name,
+                (player.characterTransform.position + player.characterTransform.forward * 2.0f),
+                Quaternion.identity, 0);
+        }
+        
         [PunRPC]
         private void SyncPlayersDirectory(CharacterExposer exposer)
         {
