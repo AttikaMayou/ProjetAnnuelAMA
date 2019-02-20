@@ -198,7 +198,7 @@ namespace LastToTheGlobe.Scripts.Dev
             playMenu.Deactivation();
             
             //Load level "Lobby"
-            LevelLoadingManager.Instance.SwitchToScene(LastToTheGlobeScene.Lobby);
+            LevelLoadingManager.Instance.SwitchToScene(LastToTheGlobeScene.GameRoom);
 
             StartCoroutine(InvokeRoomJoinedMethod());
 
