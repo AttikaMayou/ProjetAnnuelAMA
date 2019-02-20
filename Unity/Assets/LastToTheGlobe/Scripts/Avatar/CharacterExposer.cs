@@ -1,4 +1,5 @@
-﻿using LastToTheGlobe.Scripts.Camera;
+﻿using System.Collections;
+using LastToTheGlobe.Scripts.Camera;
 using LastToTheGlobe.Scripts.Dev;
 using LastToTheGlobe.Scripts.Environment.Planets;
 using LastToTheGlobe.Scripts.Management;
@@ -31,13 +32,22 @@ namespace LastToTheGlobe.Scripts.Avatar
             if (!characterLocalPhotonView.IsMine && PhotonNetwork.IsConnected) return;
             Debug.Log("Awake of the CharacterExposer : " + gameObject.name);
             PlayerColliderDirectoryScript.Instance.AddExposer(this);
+            
+            //Wait for the camera to have the player reference before initializing follow behaviour
+            StartCoroutine(InitializeCameraRefernces());
+            
+            //The prefab should not be destroyed when switching scene (Lobby to GameRoom for example)
+            DontDestroyOnLoad(this.avatarRootGameObject);
+        }
+
+
+        private IEnumerator InitializeCameraRefernces()
+        {
+            yield return new WaitForSeconds(1.0f);
             AvatarsController.Instance.camInScene.playerExposer = this;
             AvatarsController.Instance.camInScene.InitializeCameraPosition();
             AvatarsController.Instance.camInScene.startFollowing = true;
             thirdPersonController.myCamera = AvatarsController.Instance.camInScene;
-            
-            //The prefab should not be destroyed when switching scene (Lobby to GameRoom for example)
-            DontDestroyOnLoad(this.avatarRootGameObject);
         }
     }
 }

@@ -82,6 +82,7 @@ namespace LastToTheGlobe.Scripts.Dev
             _spawnPoint = new Vector3(avatarId, 0, 0);
             var newPlayer = PhotonNetwork.Instantiate(playerPrefab.name, _spawnPoint,
                 Quaternion.identity, 0);
+            Debug.Log("Nom du joueur avant le rename : " +newPlayer.name);
             newPlayer.gameObject.name = "Player " + avatarId.ToString();
             
             //Reference the localPlayerInstance with this new gameObject

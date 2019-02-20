@@ -9,10 +9,10 @@ namespace LastToTheGlobe.Scripts.Camera
 {
     public class CameraScript : MonoBehaviour {
         
-        [SerializeField] private string playerTag = "Player";
-        [SerializeField] private float cameraOffsetOriginalX = -47f;
-        [SerializeField] private float cameraOffsetOriginalY = 124f;
-        [SerializeField] private float cameraOffsetOriginalZ = 11f;
+//        [SerializeField] private string playerTag = "Player";
+//        [SerializeField] private float cameraOffsetOriginalX = -47f;
+//        [SerializeField] private float cameraOffsetOriginalY = 124f;
+//        [SerializeField] private float cameraOffsetOriginalZ = 11f;
         private Vector3 _cameraOffsetOriginal;
 
         private Transform _myTransform;
@@ -32,11 +32,20 @@ namespace LastToTheGlobe.Scripts.Camera
         public void InitializeCameraPosition()
         {
             //cameraOffset = Distance between camera and player
-            if (!targetPlayer) return;
+            if (!targetPlayer || !playerExposer)
+            {
+                Debug.LogError("No targetPlayer to follow !");
+                return;
+            }
+            
+            //Initialize position
             var position = targetPlayer.transform.position;
             var y = position.y + 3.0f;
             var z = position.z - 9.0f;
             _cameraOffsetOriginal = position - new Vector3(position.x, y, z);
+            
+            //Initializing rotation
+            _myTransform.rotation = targetPlayer.transform.rotation * playerExposer.cameraRotatorX.transform.rotation;
         }
 
         private void FixedUpdate()
@@ -58,12 +67,12 @@ namespace LastToTheGlobe.Scripts.Camera
         }
 
         //Dunno what this function will serve to... But here it is
-        private void ResetCamPosition()
-        {
-            var originPos = new Vector3(cameraOffsetOriginalX, 
-                                        cameraOffsetOriginalY,
-                                        cameraOffsetOriginalZ);
-            _myTransform.position = originPos;
-        }
+//        private void ResetCamPosition()
+//        {
+//            var originPos = new Vector3(cameraOffsetOriginalX, 
+//                                        cameraOffsetOriginalY,
+//                                        cameraOffsetOriginalZ);
+//            _myTransform.position = originPos;
+//        }
     }
 }

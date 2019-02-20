@@ -13,7 +13,7 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
 
         public float speedRotation = 10f;
         public Vector3 dirForce;
-        private AvatarExposerScript currentAvatar;
+        private AvatarExposerScript _currentAvatar;
         
         public void Attractor(Rigidbody attractedRb, Transform body, float gravity)
         {
