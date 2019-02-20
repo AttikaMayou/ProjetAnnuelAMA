@@ -70,25 +70,25 @@ namespace LastToTheGlobe.Scripts.Dev
             }
         }
 
-        private void SynchronizePlayersDirectory(List<CharacterExposer> list)
+        private void SynchronizePlayersDirectory(CharacterExposer exposer)
         {
             if (PhotonNetwork.IsConnected)
             {
-                photonView.RPC("SyncPlayersDirectory", RpcTarget.Others, list);
+                photonView.RPC("SyncPlayersDirectory", RpcTarget.Others, exposer);
             }
             else
             {
-                SyncPlayersDirectory(list);
+                SyncPlayersDirectory(exposer);
             }
 
         }
         #endregion
         
         #region Public Methods
-        public IEnumerator WaitBeforeSyncData()
+        public IEnumerator WaitBeforeSyncData(CharacterExposer exposer)
         {
             yield return new WaitForSeconds(2.0f);
-            SynchronizePlayersDirectory(PlayerColliderDirectoryScript.Instance.characterExposers);
+            SynchronizePlayersDirectory(exposer);
         }
         #endregion
         
@@ -115,10 +115,10 @@ namespace LastToTheGlobe.Scripts.Dev
         }
 
         [PunRPC]
-        private void SyncPlayersDirectory(List<CharacterExposer> list)
+        private void SyncPlayersDirectory(CharacterExposer exposer)
         {
             if (PhotonNetwork.IsMasterClient) return;
-            PlayerColliderDirectoryScript.Instance.SyncData(list);
+            PlayerColliderDirectoryScript.Instance.SyncData(exposer);
         }
         
         #endregion

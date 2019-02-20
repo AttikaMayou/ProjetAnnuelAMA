@@ -55,13 +55,9 @@ namespace LastToTheGlobe.Scripts.Management
             AddPlayerInDirectory(player);
         }
 
-
-        public void SyncData(IEnumerable<CharacterExposer> list)
+        public void SyncData(CharacterExposer exposer)
         {
-            foreach (var exposer in list)
-            {
-                AddExposer(exposer);
-            }
+            AddExposer(exposer);
         }
 
         private void AddPlayerInDirectory(CharacterExposer player)
