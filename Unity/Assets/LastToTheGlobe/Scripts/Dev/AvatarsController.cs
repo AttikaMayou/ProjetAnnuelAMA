@@ -6,6 +6,7 @@ using LastToTheGlobe.Scripts.Management;
 using LastToTheGlobe.Scripts.Singleton;
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 //Auteur : Margot
 //Modification : Attika
@@ -21,6 +22,7 @@ namespace LastToTheGlobe.Scripts.Dev
         [SerializeField] private SceneMenuController startGameController;
         [SerializeField] private PhotonView photonView;
         private AIntentReceiver[] _activatedIntentReceivers;
+        [FormerlySerializedAs("_gameStarted")] [SerializeField] private bool gameStarted;
         //private Transform _spawnPoint;
         private Vector3 _spawnPoint;
         [SerializeField] private GameObject playerPrefab;
@@ -33,12 +35,12 @@ namespace LastToTheGlobe.Scripts.Dev
 
         private void Awake()
         {
+            gameStarted = false;
             startGameController.OnlinePlayReady += ChooseAndSubscribeToOnlineIntentReceivers;
             startGameController.PlayerJoined += InstantiateAvatar;
             
             DontDestroyOnLoad(camInScene.gameObject);
         }
-        
         #endregion
         
         #region Private Methods
@@ -81,6 +83,8 @@ namespace LastToTheGlobe.Scripts.Dev
                 intentReceiver.Run = false;
                 intentReceiver.Jump = false;
             }
+
+            gameStarted = true;
         }
 
         private void SynchronizePlayersDirectory(CharacterExposer exposer)
@@ -102,6 +106,8 @@ namespace LastToTheGlobe.Scripts.Dev
             {
                 return;
             }
+
+            if (!gameStarted) return;
             
             // If intents and avatars are not setup properly
             if (_activatedIntentReceivers == null)

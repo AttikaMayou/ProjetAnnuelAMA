@@ -55,7 +55,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 769}
-  viewIdField: 0
+  viewIdField: 2
   InstantiationId: 2
   isRuntimeInstantiated: 0
 --- !u!114 &769
@@ -419,7 +419,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 801}
-  viewIdField: 0
+  viewIdField: 7
   InstantiationId: 7
   isRuntimeInstantiated: 0
 --- !u!114 &801
@@ -844,7 +844,7 @@ MonoBehaviour:
   avatarRootGameObject: {fileID: 125}
   cameraRotatorX: {fileID: 137}
   thirdPersonController: {fileID: 765}
-  characterTrampolineScript: {fileID: 0}
+  bumperScript: {fileID: 1893538762791976952}
   selfPlayerAttractedScript: {fileID: 766}
   selfOrbAttractedScript: {fileID: 763}
   characterCollider: {fileID: 736}
@@ -897,15 +897,15 @@ MonoBehaviour:
   rotationSpeed: 5
   rb: {fileID: 721}
   speed: 5
-  runSpeed: 0
-  jumpSpeed: 0
-  dashSpeed: 0
+  runSpeed: 10
+  jumpSpeed: 5
+  dashSpeed: 20
   orb: {fileID: 134}
   orbSpawned: {fileID: 134}
   offensiveOrbInput: 97
   jumpInput: 32
-  runInput: 0
-  dashInput: 0
+  runInput: 304
+  dashInput: 308
 --- !u!114 &797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -925,7 +925,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 798}
-  viewIdField: 0
+  viewIdField: 9
   InstantiationId: 9
   isRuntimeInstantiated: 0
 --- !u!114 &798
@@ -1434,7 +1434,7 @@ PrefabInstance:
     - target: {fileID: 5107946470935551180, guid: 501d9991fbb3e6b45b291e93d1d426dc,
         type: 3}
       propertyPath: viewIdField
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5107946470935551180, guid: 501d9991fbb3e6b45b291e93d1d426dc,
         type: 3}

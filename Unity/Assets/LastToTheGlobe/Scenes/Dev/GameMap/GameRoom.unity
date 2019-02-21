@@ -200,7 +200,7 @@ GameObject:
   - component: {fileID: 95520495}
   m_Layer: 0
   m_Name: Sphere (4)
-  m_TagString: Untagged
+  m_TagString: Jumper
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -386,7 +386,7 @@ GameObject:
   - component: {fileID: 172480269}
   m_Layer: 0
   m_Name: Sphere (3)
-  m_TagString: Untagged
+  m_TagString: Jumper
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1133,6 +1133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   victory: {fileID: 1736225761}
   defeat: {fileID: 1337265133}
+  myLife: {fileID: 0}
 --- !u!1001 &459407987
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1302,7 +1303,7 @@ GameObject:
   - component: {fileID: 536850071}
   m_Layer: 0
   m_Name: Sphere (2)
-  m_TagString: Untagged
+  m_TagString: Jumper
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1659,7 +1660,7 @@ GameObject:
   - component: {fileID: 784320913}
   m_Layer: 0
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: Jumper
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2765,7 +2766,7 @@ GameObject:
   - component: {fileID: 1557397637}
   m_Layer: 0
   m_Name: Sphere (1)
-  m_TagString: Untagged
+  m_TagString: Jumper
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3017,12 +3018,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 14.872656
       objectReference: {fileID: 0}
-    - target: {fileID: 3695318120092403947, guid: 41748f9dd88b5f74dbf520c3ce021d5a,
-        type: 3}
-      propertyPath: m_Icon
-      value: 
-      objectReference: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000,
-        type: 0}
     - target: {fileID: 2661115315994588125, guid: 41748f9dd88b5f74dbf520c3ce021d5a,
         type: 3}
       propertyPath: pressE
@@ -3038,6 +3033,12 @@ PrefabInstance:
       propertyPath: chestInventory
       value: 
       objectReference: {fileID: 428598644}
+    - target: {fileID: 3695318120092403947, guid: 41748f9dd88b5f74dbf520c3ce021d5a,
+        type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000,
+        type: 0}
     - target: {fileID: 2661115315994588134, guid: 41748f9dd88b5f74dbf520c3ce021d5a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3289,7 +3290,7 @@ GameObject:
   - component: {fileID: 1867279671}
   m_Layer: 0
   m_Name: Sphere (5)
-  m_TagString: Untagged
+  m_TagString: Jumper
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -21,7 +21,8 @@ namespace LastToTheGlobe.Scripts.Avatar
         public GameObject avatarRootGameObject;
         public GameObject cameraRotatorX;
         public ThirdPersonController thirdPersonController;
-        public CharacterTrampolineScript characterTrampolineScript;
+        //public CharacterTrampolineScript characterTrampolineScript;
+        public Trampoline bumperScript;
         public AttractedScript selfPlayerAttractedScript;
         public AttractedScript selfOrbAttractedScript;
         public Collider characterCollider;
