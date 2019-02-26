@@ -10,8 +10,6 @@ namespace LastToTheGlobe.Scripts.Dev
 {
     public class OnlineIntentReceiver : AIntentReceiver
     {
-        [FormerlySerializedAs("PlayerIndex")]
-        [FormerlySerializedAs("PlayerActorId")]
         [SerializeField]
         private int playerIndex;
 
@@ -21,10 +19,10 @@ namespace LastToTheGlobe.Scripts.Dev
         public void Update()
         {
             if (PlayerNumbering.SortedPlayers.Length <= playerIndex ||
-                          PlayerNumbering.SortedPlayers[playerIndex].ActorNumber != PhotonNetwork.LocalPlayer.ActorNumber)
-                         {
-                             return;
-                         }
+                PlayerNumbering.SortedPlayers[playerIndex].ActorNumber != PhotonNetwork.LocalPlayer.ActorNumber)
+            {
+                return;
+            }
 
             //Movement Intent
             if (Input.GetKeyDown(KeyCode.A))
