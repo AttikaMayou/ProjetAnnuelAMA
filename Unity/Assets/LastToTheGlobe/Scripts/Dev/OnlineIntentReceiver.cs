@@ -15,14 +15,17 @@ namespace LastToTheGlobe.Scripts.Dev
 
         [SerializeField]
         private PhotonView photonView;
-
-        public void Update()
+        
+        public void FixedUpdate()
         {
             if (PlayerNumbering.SortedPlayers.Length <= playerIndex ||
                 PlayerNumbering.SortedPlayers[playerIndex].ActorNumber != PhotonNetwork.LocalPlayer.ActorNumber)
             {
                 return;
             }
+
+            forward = Input.GetAxis("Vertical");
+            strafe = Input.GetAxis("Horizontal");
             
             //Movement Intent
             if (Input.GetKeyDown(KeyCode.Z))
@@ -106,7 +109,7 @@ namespace LastToTheGlobe.Scripts.Dev
         }
 
         [PunRPC]
-        void MoveLeftRPC(bool intent)
+        void MoveLeftRPC(bool intent, float forwardInput, float strafeInput)
         {
             if (PhotonNetwork.IsMasterClient)
             {
@@ -115,7 +118,7 @@ namespace LastToTheGlobe.Scripts.Dev
         }
 
         [PunRPC]
-        void MoveBackRPC(bool intent)
+        void MoveBackRPC(bool intent, float forwardInput, float strafeInput)
         {
             if (PhotonNetwork.IsMasterClient)
             {
@@ -124,7 +127,7 @@ namespace LastToTheGlobe.Scripts.Dev
         }
 
         [PunRPC]
-        void MoveRightRPC(bool intent)
+        void MoveRightRPC(bool intent, float forwardInput, float strafeInput)
         {
             if (PhotonNetwork.IsMasterClient)
             {
@@ -133,7 +136,7 @@ namespace LastToTheGlobe.Scripts.Dev
         }
 
         [PunRPC]
-        void MoveForwardRPC(bool intent)
+        void MoveForwardRPC(bool intent, float forwardInput, float strafeInput)
         {
             if (PhotonNetwork.IsMasterClient)
             {

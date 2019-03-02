@@ -16,23 +16,32 @@ namespace LastToTheGlobe.Scripts.Dev
     public class AvatarsController : MonoBehaviourSingleton<AvatarsController>
     {
         [Header("Photon and Replication Parameters")]
-        //[SerializeField] private CharacterExposer[] players;
+        [SerializeField] private CharacterExposer[] players;
+        
         [SerializeField] private AIntentReceiver[] onlineIntentReceivers;
+        
         //[SerializeField] private AIntentReceiver[] offlineIntentReceivers;
+        
         [SerializeField] private SceneMenuController startGameController;
+        
         [SerializeField] private PhotonView photonView;
+        
         private AIntentReceiver[] _activatedIntentReceivers;
+        
         [FormerlySerializedAs("_gameStarted")] [SerializeField] private bool gameStarted;
-        //private Transform _spawnPoint;
+        
         private Vector3 _spawnPoint;
+        
         [SerializeField] private GameObject playerPrefab;
+        
         [SerializeField] private GameObject bulletPrefab;
+        
 
         public CameraScript camInScene;
+        
         private static GameObject _localPlayerInstance;
         
         #region MonoBehaviour Callbacks
-
         private void Awake()
         {
             gameStarted = false;
@@ -41,6 +50,56 @@ namespace LastToTheGlobe.Scripts.Dev
             
             DontDestroyOnLoad(camInScene.gameObject);
         }
+      
+        private void FixedUpdate()
+        {
+            // If on network, only the master client can move objects
+            if (PhotonNetwork.IsConnected && !PhotonNetwork.IsMasterClient)
+            {
+                return;
+            }
+
+            //Do nothing if the game is not started 
+            if (!gameStarted) return;
+            
+            // If intents and avatars are not setup properly
+            if (_activatedIntentReceivers == null 
+                || players == null
+                || players.Length != _activatedIntentReceivers.Length)
+            {
+                Debug.LogError("There is something wrong with avatars and intents setup !");
+                return;
+            }
+
+            var activatedAvatarCount = 0;
+
+            for (var i = 0; i < _activatedIntentReceivers.Length; i++)
+            {
+                var moveIntent = Vector3.zero;
+
+                var intentReceiver = _activatedIntentReceivers[i];
+                var player = players[i];
+
+                if (intentReceiver.Shoot)
+                {
+                    if (PhotonNetwork.IsConnected)
+                    {
+                        photonView.RPC("InstantiateBullet", RpcTarget.AllBuffered, player); 
+                    }
+
+                    intentReceiver.Shoot = false;
+                }
+
+                if (intentReceiver.MoveBack || intentReceiver.MoveForward
+                 || intentReceiver.MoveLeft || intentReceiver.MoveRight)
+                {
+                    moveIntent += new Vector3(intentReceiver.strafe, 0.0f, intentReceiver.forward);
+                }
+                
+                
+            }
+        }
+
         #endregion
         
         #region Private Methods
@@ -49,6 +108,7 @@ namespace LastToTheGlobe.Scripts.Dev
         {
             _activatedIntentReceivers = onlineIntentReceivers;
             EnableIntentReceivers();
+            gameStarted = true;
         } 
 
         private void InstantiateAvatar(int id)
@@ -82,99 +142,23 @@ namespace LastToTheGlobe.Scripts.Dev
                 intentReceiver.MoveForward = false;
                 intentReceiver.Run = false;
                 intentReceiver.Jump = false;
-            }
-
-            gameStarted = true;
-        }
-
-        private void SynchronizePlayersDirectory(CharacterExposer exposer)
-        {
-            if (PhotonNetwork.IsConnected)
-            {
-                photonView.RPC("SyncPlayersDirectory", RpcTarget.Others, exposer);
-            }
-            else
-            {
-                SyncPlayersDirectory(exposer);
-            }
-        }
-
-        private void FixedUpdate()
-        {
-            // If on network, only the master client can move objects
-            if (PhotonNetwork.IsConnected && !PhotonNetwork.IsMasterClient)
-            {
-                return;
-            }
-
-            if (!gameStarted) return;
-            
-            // If intents and avatars are not setup properly
-            if (_activatedIntentReceivers == null)
-            {
-                Debug.LogError("There is something wrong with avatars and intents setup !");
-                return;
-            }
-
-            var activatedAvatarCount = 0;
-
-            for (var i = 0; i < _activatedIntentReceivers.Length; i++)
-            {
-                var moveIntent = Vector3.zero;
-
-                var intentReceiver = _activatedIntentReceivers[i];
-
-                var exposers = PlayerColliderDirectoryScript.Instance.characterExposers;
-                activatedAvatarCount = exposers.Count;
-
-                if (intentReceiver.Shoot)
-                {
-                    for (var j = 0; j < exposers.Count; j++)
-                    {
-                        if (i == j)
-                        {
-                            continue;
-                        }
-                        
-                        LaunchBullet(exposers[j]);
-                    }
-                }
-            }
-        }
-        
-        private void LaunchBullet(CharacterExposer player)
-        {
-            if (PhotonNetwork.IsConnected)
-            {
-                photonView.RPC("InstantiateBullet", RpcTarget.AllBuffered, player); 
-            }
-            else
-            {
-                InstantiateBullet(player);
+                intentReceiver.Bump = false;
+                intentReceiver.Interract = false;
             }
         }
         
         private void EndGame()
         {
             startGameController.ShowMainMenu();
-            if (PhotonNetwork.IsConnected)
-            {
-                PhotonNetwork.LeaveRoom();
-                PhotonNetwork.Disconnect();
-            }
+            
+//            if (!PhotonNetwork.IsConnected) return;
+            PhotonNetwork.LeaveRoom();
+            PhotonNetwork.Disconnect();
         }
 
         private void WinGame()
         {
             
-        }
-        #endregion
-        
-        #region Public Methods
-        public IEnumerator WaitBeforeSyncData(CharacterExposer exposer)
-        {
-            yield return new WaitForSeconds(2.0f);
-            SynchronizePlayersDirectory(exposer);
         }
         #endregion
         
