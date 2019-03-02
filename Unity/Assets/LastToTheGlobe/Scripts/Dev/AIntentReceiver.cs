@@ -14,6 +14,7 @@ namespace LastToTheGlobe.Scripts.Dev
         public bool Jump { get; set; }
         public bool Dash { get; set; }
         public bool Shoot { get; set; }
-
+        public bool Bump { get; set; }
+        public bool Interract { get; set; }
     }
 }
