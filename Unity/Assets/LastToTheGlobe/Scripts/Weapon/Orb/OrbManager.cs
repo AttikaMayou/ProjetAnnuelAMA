@@ -28,7 +28,9 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb
         private void OnEnable()
         {
             //timeUsing = Time.deltaTime;
+            
             _timeUsing = 0.0f;
+            maxTimeUsing = 3f;
             orbTransform.position = playerTransform.position + playerTransform.forward * 2f;
             _direction = playerTransform.right;
             _centerPointAttractor = attractedScript.attractor.planetTransform.position;
@@ -36,13 +38,15 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb
         
         private void FixedUpdate () {
             transform.RotateAround(_centerPointAttractor,_direction,speed);
-
+            print(_timeUsing);
+            print(maxTimeUsing);
             _timeUsing += Time.deltaTime;
 
             if (!(_timeUsing >= maxTimeUsing)) return;
             _timeUsing = 0.0f;
             ResetOrb();
         }
+
 
         private void ResetOrb()
         {
