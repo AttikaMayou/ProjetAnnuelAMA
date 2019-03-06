@@ -55,8 +55,7 @@ public class ItemSlotInventory : MonoBehaviourSingleton<ItemSlotInventory>, IDro
 
     public void OnRemoveButton()
     {
-        Debug.Log("Press Remove Button");
-        //DragIconInventory._instance.Remove(item);
+        ClearSlot();
     }
 }
 
