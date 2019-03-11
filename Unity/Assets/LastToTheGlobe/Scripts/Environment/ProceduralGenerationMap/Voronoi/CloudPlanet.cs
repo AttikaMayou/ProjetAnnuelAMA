@@ -11,7 +11,7 @@ namespace Voronoi
     public class CloudPlanet : MonoBehaviour
     {
         [SerializeField]
-        [Tooltip ("Nombre de planètes")]
+        [Tooltip("Nombre de planètes")]
         int NumberOfVertices = 10;
         // TODO: changer nombres de vertices en fonction des joueurs connectés
 
@@ -43,21 +43,42 @@ namespace Voronoi
             Vertex3[] vertices = new Vertex3[NumberOfVertices];
 
             //Génération aléatoire des points
-            for (int i = 0; i<NumberOfVertices; i++)
+            for (int i = 0; i < NumberOfVertices; i++)
             {
                 float x = size * Random.Range(-1.0f, 1.0f);
                 float y = size * Random.Range(-1.0f, 1.0f);
                 float z = size * Random.Range(-1.0f, 1.0f);
 
                 vertices[i] = new Vertex3(x, y, z);
+
                 Instantiate(basicPlanet, new Vector3(x, y, z), Quaternion.identity);
                 // TODO: tableau de sphères (futur tableau de planètes) + planètes radius qui change en fonction de la distance avec 
                 // la planète la plus proche + biomes aléatoire et spawnplanete
                 //créer ID pour planete (ID spawn, ID planet, ID endplanet)
-                Debug.Log("vertex" + i);
-            }   
+
+            }
+
+            for (int i = 0; i < NumberOfVertices; i++)
+            {
+                if (i == 0)
+                {
+                    float distance = new Vertex3.distancePlanet(vertices[i].x, vertices[i].y, vertices[i].z);
+
+                    Debug.Log("distance à i = 0  :" + distance);
+                }
+                else
+                {
+                    float distance = new distancePlanet(vertices[i - 1].x, vertices[i - 1].y, vertices[i - 1].z);
+                    Debug.Log("distance à i > 0 :" + distance);
+                    Debug.Log("Position[0]:" + vertices[i].x);
+                    Debug.Log("Position[0] de i-1:" + vertices[i - 1].x);
+                    Debug.Log("i = " + i);
+                    Debug.Log("i-1 =" + (i-1));
+                }
+
+            }
+
         }
 
     }
-
 }
