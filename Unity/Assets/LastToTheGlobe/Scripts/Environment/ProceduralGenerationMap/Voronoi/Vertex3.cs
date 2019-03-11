@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 //Auteur : Margot
 
-namespace Voronoi.CloudVertices
+namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi
 {
     //Class Vertex pour la génération des points aléatoires dans l'espace
     public class Vertex3
@@ -38,7 +36,7 @@ namespace Voronoi.CloudVertices
             Position = new float[] { x, y, z };
         }
 
-        public float distancePlanet(float px, float py, float pz)
+        public float DistancePlanet(float px, float py, float pz)
         {
             float x = Position[0] - px;
             float y = Position[1] - py;

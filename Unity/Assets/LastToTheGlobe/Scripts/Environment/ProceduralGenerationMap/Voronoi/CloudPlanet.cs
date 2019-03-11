@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Voronoi.CloudVertices;
+﻿using UnityEngine;
+using LastToTheGlobe.Scripts;
 
 //Auteur : Margot
 
-namespace Voronoi
+namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi
 {
     //[ExecuteInEditMode]
     public class CloudPlanet : MonoBehaviour
@@ -36,7 +34,7 @@ namespace Voronoi
         //private GameObject victoryPlanet;
 
 
-        void Start()
+        private void Start()
         {
             Random.InitState(seed);
 
@@ -62,13 +60,13 @@ namespace Voronoi
             {
                 if (i == 0)
                 {
-                    float distance = new Vertex3.distancePlanet(vertices[i].x, vertices[i].y, vertices[i].z);
+                    float distance = vertices[i].DistancePlanet(vertices[i].x, vertices[i].y, vertices[i].z);
 
                     Debug.Log("distance à i = 0  :" + distance);
                 }
                 else
                 {
-                    float distance = new distancePlanet(vertices[i - 1].x, vertices[i - 1].y, vertices[i - 1].z);
+                    float distance = vertices[i].DistancePlanet(vertices[i - 1].x, vertices[i - 1].y, vertices[i - 1].z);
                     Debug.Log("distance à i > 0 :" + distance);
                     Debug.Log("Position[0]:" + vertices[i].x);
                     Debug.Log("Position[0] de i-1:" + vertices[i - 1].x);
