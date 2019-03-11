@@ -35,6 +35,8 @@ namespace LastToTheGlobe.Scripts.Dev
         [SerializeField] private GameObject playerPrefab;
         
         [SerializeField] private GameObject bulletPrefab;
+
+        [SerializeField] private float speed;
         
 
         public CameraScript camInScene;
@@ -71,8 +73,6 @@ namespace LastToTheGlobe.Scripts.Dev
                 return;
             }
 
-            var activatedAvatarCount = 0;
-
             for (var i = 0; i < _activatedIntentReceivers.Length; i++)
             {
                 var moveIntent = Vector3.zero;
@@ -95,8 +95,10 @@ namespace LastToTheGlobe.Scripts.Dev
                 {
                     moveIntent += new Vector3(intentReceiver.strafe, 0.0f, intentReceiver.forward);
                 }
-                
-                
+
+                var rb = player.characterRb;
+                var tr = player.characterTransform;
+                player.characterRb.MovePosition(rb.position + tr.TransformDirection(moveIntent) * speed * Time.deltaTime);
             }
         }
 
