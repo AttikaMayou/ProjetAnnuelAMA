@@ -31,42 +31,42 @@ namespace LastToTheGlobe.Scripts.Dev
             //Movement Intent
             if (Input.GetKeyDown(KeyCode.Z))
             {
-                photonView.RPC("MoveForwardRPC", RpcTarget.MasterClient, true);
+                photonView.RPC("MoveForwardRPC", RpcTarget.MasterClient, true, forward, strafe);
             }
             
             if (Input.GetKeyUp(KeyCode.Z))
             {
-                photonView.RPC("MoveForwardRPC", RpcTarget.MasterClient, false);
+                photonView.RPC("MoveForwardRPC", RpcTarget.MasterClient, false, forward, strafe);
             }
 
             if (Input.GetKeyDown(KeyCode.S))
             {
-                photonView.RPC("MoveBackRPC", RpcTarget.MasterClient, true);
+                photonView.RPC("MoveBackRPC", RpcTarget.MasterClient, true, forward, strafe);
             }
 
             if (Input.GetKeyUp(KeyCode.S))
             {
-                photonView.RPC("MoveBackRPC", RpcTarget.MasterClient, false);
+                photonView.RPC("MoveBackRPC", RpcTarget.MasterClient, false, forward, strafe);
             }
 
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                photonView.RPC("MoveLeftRPC", RpcTarget.MasterClient, true);
+                photonView.RPC("MoveLeftRPC", RpcTarget.MasterClient, true, forward, strafe);
             }
 
             if (Input.GetKeyUp(KeyCode.Q))
             {
-                photonView.RPC("MoveLeftRPC", RpcTarget.MasterClient, false);
+                photonView.RPC("MoveLeftRPC", RpcTarget.MasterClient, false, forward, strafe);
             }
 
             if (Input.GetKeyDown(KeyCode.D))
             {
-                photonView.RPC("MoveRightRPC", RpcTarget.MasterClient, true);
+                photonView.RPC("MoveRightRPC", RpcTarget.MasterClient, true, forward, strafe);
             }
 
             if (Input.GetKeyUp(KeyCode.D))
             {
-                photonView.RPC("MoveRightRPC", RpcTarget.MasterClient, false);
+                photonView.RPC("MoveRightRPC", RpcTarget.MasterClient, false, forward, strafe);
             }
             
             if (Input.GetKeyDown(KeyCode.LeftShift))
