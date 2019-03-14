@@ -20,7 +20,6 @@ namespace LastToTheGlobe.Scripts.Avatar
         public Transform characterTransform;
         public GameObject avatarRootGameObject;
         public GameObject cameraRotatorX;
-        public ThirdPersonController thirdPersonController;
         //public CharacterTrampolineScript characterTrampolineScript;
         public Trampoline bumperScript;
         public AttractedScript selfPlayerAttractedScript;
@@ -53,7 +52,7 @@ namespace LastToTheGlobe.Scripts.Avatar
             AvatarsController.Instance.camInScene.playerExposer = this;
             AvatarsController.Instance.camInScene.InitializeCameraPosition();
             AvatarsController.Instance.camInScene.startFollowing = true;
-            thirdPersonController.myCamera = AvatarsController.Instance.camInScene;
+           //thirdPersonController.myCamera = AvatarsController.Instance.camInScene;
         }
     }
 }

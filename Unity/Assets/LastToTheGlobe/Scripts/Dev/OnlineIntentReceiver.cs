@@ -15,8 +15,8 @@ namespace LastToTheGlobe.Scripts.Dev
 
         [SerializeField]
         private PhotonView photonView;
-
-        public void Update()
+        
+        public void FixedUpdate()
         {
             if (PlayerNumbering.SortedPlayers.Length <= playerIndex ||
                 PlayerNumbering.SortedPlayers[playerIndex].ActorNumber != PhotonNetwork.LocalPlayer.ActorNumber)
@@ -24,18 +24,16 @@ namespace LastToTheGlobe.Scripts.Dev
                 return;
             }
 
-            //Movement Intent
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                photonView.RPC("LaunchBulletRPC", RpcTarget.MasterClient, true);
-            }
+            forward = Input.GetAxis("Vertical");
+            strafe = Input.GetAxis("Horizontal");
             
+            //Movement Intent
             if (Input.GetKeyDown(KeyCode.Z))
             {
                 photonView.RPC("MoveForwardRPC", RpcTarget.MasterClient, true);
             }
-
-            if (Input.GetKeyDown(KeyCode.Z))
+            
+            if (Input.GetKeyUp(KeyCode.Z))
             {
                 photonView.RPC("MoveForwardRPC", RpcTarget.MasterClient, false);
             }
@@ -45,12 +43,12 @@ namespace LastToTheGlobe.Scripts.Dev
                 photonView.RPC("MoveBackRPC", RpcTarget.MasterClient, true);
             }
 
-            if (Input.GetKeyDown(KeyCode.S))
+            if (Input.GetKeyUp(KeyCode.S))
             {
                 photonView.RPC("MoveBackRPC", RpcTarget.MasterClient, false);
             }
 
-            if (Input.GetKeyUp(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.Q))
             {
                 photonView.RPC("MoveLeftRPC", RpcTarget.MasterClient, true);
             }
@@ -60,7 +58,7 @@ namespace LastToTheGlobe.Scripts.Dev
                 photonView.RPC("MoveLeftRPC", RpcTarget.MasterClient, false);
             }
 
-            if (Input.GetKeyUp(KeyCode.D))
+            if (Input.GetKeyDown(KeyCode.D))
             {
                 photonView.RPC("MoveRightRPC", RpcTarget.MasterClient, true);
             }
@@ -69,8 +67,8 @@ namespace LastToTheGlobe.Scripts.Dev
             {
                 photonView.RPC("MoveRightRPC", RpcTarget.MasterClient, false);
             }
-
-            if (Input.GetKeyUp(KeyCode.LeftShift))
+            
+            if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 photonView.RPC("RunRPC", RpcTarget.MasterClient, true);
             }
@@ -80,26 +78,38 @@ namespace LastToTheGlobe.Scripts.Dev
                 photonView.RPC("RunRPC", RpcTarget.MasterClient, false);
             }
 
-            if (Input.GetKeyUp(KeyCode.LeftAlt))
+            if (Input.GetKeyDown(KeyCode.LeftAlt))
             {
-                photonView.RPC("DashRPC", RpcTarget.MasterClient, true);
-            }
-
-            if (Input.GetKeyUp(KeyCode.LeftAlt))
-            {
-                photonView.RPC("DashRPC", RpcTarget.MasterClient, false);
+                photonView.RPC("DashRPC", RpcTarget.MasterClient);
             }
 
             if (Input.GetKeyUp(KeyCode.Space))
             {
-                photonView.RPC("JumpRPC", RpcTarget.MasterClient, true);
+                photonView.RPC("JumpRPC", RpcTarget.MasterClient);
             }
 
-            //Ajout double jump
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                photonView.RPC("UseBumpRPC", RpcTarget.MasterClient);
+            }
+            
+            //Attack Intent
+            if (Input.GetMouseButtonDown(0))
+            {
+                photonView.RPC("LaunchBulletRPC", RpcTarget.MasterClient);
+            }
+            
+            //Interraction Intent
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                photonView.RPC("InterractRPC", RpcTarget.MasterClient);
+            }
+
+            //TODO : Add double jump
         }
 
         [PunRPC]
-        void MoveLeftRPC(bool intent)
+        void MoveLeftRPC(bool intent, float forwardInput, float strafeInput)
         {
             if (PhotonNetwork.IsMasterClient)
             {
@@ -108,7 +118,7 @@ namespace LastToTheGlobe.Scripts.Dev
         }
 
         [PunRPC]
-        void MoveBackRPC(bool intent)
+        void MoveBackRPC(bool intent, float forwardInput, float strafeInput)
         {
             if (PhotonNetwork.IsMasterClient)
             {
@@ -117,7 +127,7 @@ namespace LastToTheGlobe.Scripts.Dev
         }
 
         [PunRPC]
-        void MoveRightRPC(bool intent)
+        void MoveRightRPC(bool intent, float forwardInput, float strafeInput)
         {
             if (PhotonNetwork.IsMasterClient)
             {
@@ -126,7 +136,7 @@ namespace LastToTheGlobe.Scripts.Dev
         }
 
         [PunRPC]
-        void MoveForwardRPC(bool intent)
+        void MoveForwardRPC(bool intent, float forwardInput, float strafeInput)
         {
             if (PhotonNetwork.IsMasterClient)
             {
@@ -153,14 +163,39 @@ namespace LastToTheGlobe.Scripts.Dev
         }
 
         [PunRPC]
-        void LaunchBulletRPC(bool intent)
+        void RunRPC(bool intent)
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                Shoot = intent;
+                Run = intent;
             }
         }
-        
-        
+
+        [PunRPC]
+        void LaunchBulletRPC()
+        {
+            if (PhotonNetwork.IsMasterClient)
+            {
+                Shoot = true;
+            }
+        }
+
+        [PunRPC]
+        void UseBumpRPC()
+        {
+            if (PhotonNetwork.IsMasterClient)
+            {
+                Bump = true;
+            }
+        }
+
+        [PunRPC]
+        void InterractRPC()
+        {
+            if (PhotonNetwork.IsMasterClient)
+            {
+                Interract = true;
+            }
+        }
     }
 }
