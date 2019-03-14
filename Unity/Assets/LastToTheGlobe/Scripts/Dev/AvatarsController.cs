@@ -184,6 +184,11 @@ namespace LastToTheGlobe.Scripts.Dev
             //Reference the localPlayerInstance with this new gameObject
             _localPlayerInstance = newPlayer;
             camInScene.targetPlayer = newPlayer;
+
+            for (var j = 0; j < PlayerColliderDirectoryScript.Instance.characterExposers.Count; j++)
+            {
+                players[j] = PlayerColliderDirectoryScript.Instance.characterExposers[j];
+            }
         }
 
         [PunRPC]
