@@ -1,5 +1,6 @@
 ﻿using Photon.Pun;
 using Photon.Pun.UtilityScripts;
+using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -113,6 +114,7 @@ namespace LastToTheGlobe.Scripts.Dev
         {
             if (PhotonNetwork.IsMasterClient)
             {
+                Debug.Log("I get the message : Move Left");
                 MoveLeft = intent;
             }
         }
@@ -122,6 +124,7 @@ namespace LastToTheGlobe.Scripts.Dev
         {
             if (PhotonNetwork.IsMasterClient)
             {
+                Debug.Log("I get the message : Move Back");
                 MoveBack = intent;
             }
         }
@@ -131,6 +134,7 @@ namespace LastToTheGlobe.Scripts.Dev
         {
             if (PhotonNetwork.IsMasterClient)
             {
+                Debug.Log("I get the message : Move Right");
                 MoveRight = intent;
             }
         }
@@ -140,6 +144,7 @@ namespace LastToTheGlobe.Scripts.Dev
         {
             if (PhotonNetwork.IsMasterClient)
             {
+                Debug.Log("I get the message : Move Froward");
                 MoveForward = intent;
             }
         }
