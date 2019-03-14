@@ -70,6 +70,7 @@ namespace LastToTheGlobe.Scripts.Dev
                 || players.Length != _activatedIntentReceivers.Length)
             {
                 Debug.LogError("There is something wrong with avatars and intents setup !");
+                SyncPlayersArray();
                 return;
             }
 
@@ -93,19 +94,27 @@ namespace LastToTheGlobe.Scripts.Dev
                 if (intentReceiver.MoveBack || intentReceiver.MoveForward
                  || intentReceiver.MoveLeft || intentReceiver.MoveRight)
                 {
+                    Debug.Log(intentReceiver.strafe + "----------------");
                     moveIntent += new Vector3(intentReceiver.strafe, 0.0f, intentReceiver.forward);
                 }
 
+                Debug.Log(player.characterRb);
                 var rb = player.characterRb;
                 var tr = player.characterTransform;
                 player.characterRb.MovePosition(rb.position + tr.TransformDirection(moveIntent) * speed * Time.deltaTime);
             }
         }
-
         #endregion
         
         #region Private Methods
-
+        private void SyncPlayersArray()
+        {
+            for (var j = 0; j < PlayerColliderDirectoryScript.Instance.characterExposers.Count; j++)
+            {
+                players[j] = PlayerColliderDirectoryScript.Instance.characterExposers[j];
+            }
+        }
+        
         private void ChooseAndSubscribeToOnlineIntentReceivers()
         {
             _activatedIntentReceivers = onlineIntentReceivers;
@@ -171,7 +180,7 @@ namespace LastToTheGlobe.Scripts.Dev
             //if (!PhotonNetwork.InRoom) return;
             if (_localPlayerInstance != null)
             {
-                Debug.LogError("Calling this on :" + _localPlayerInstance.name);
+                Debug.LogError("Calling instantiation on :" + _localPlayerInstance.name + " which avatar id is : " + avatarId);
                 return;
             }
             
@@ -184,11 +193,8 @@ namespace LastToTheGlobe.Scripts.Dev
             //Reference the localPlayerInstance with this new gameObject
             _localPlayerInstance = newPlayer;
             camInScene.targetPlayer = newPlayer;
-
-            for (var j = 0; j < PlayerColliderDirectoryScript.Instance.characterExposers.Count; j++)
-            {
-                players[j] = PlayerColliderDirectoryScript.Instance.characterExposers[j];
-            }
+            
+            SyncPlayersArray();
         }
 
         [PunRPC]

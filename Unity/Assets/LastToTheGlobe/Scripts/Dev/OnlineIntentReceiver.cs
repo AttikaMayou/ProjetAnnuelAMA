@@ -116,6 +116,8 @@ namespace LastToTheGlobe.Scripts.Dev
             {
                 Debug.Log("I get the message : Move Left");
                 MoveLeft = intent;
+                forward = forwardInput;
+                strafe = strafeInput;
             }
         }
 
@@ -126,6 +128,8 @@ namespace LastToTheGlobe.Scripts.Dev
             {
                 Debug.Log("I get the message : Move Back");
                 MoveBack = intent;
+                forward = forwardInput;
+                strafe = strafeInput;
             }
         }
 
@@ -136,6 +140,8 @@ namespace LastToTheGlobe.Scripts.Dev
             {
                 Debug.Log("I get the message : Move Right");
                 MoveRight = intent;
+                forward = forwardInput;
+                strafe = strafeInput;
             }
         }
 
@@ -146,6 +152,8 @@ namespace LastToTheGlobe.Scripts.Dev
             {
                 Debug.Log("I get the message : Move Froward");
                 MoveForward = intent;
+                forward = forwardInput;
+                strafe = strafeInput;
             }
         }
 
