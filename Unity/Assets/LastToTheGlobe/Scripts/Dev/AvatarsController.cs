@@ -81,15 +81,15 @@ namespace LastToTheGlobe.Scripts.Dev
                 var intentReceiver = _activatedIntentReceivers[i];
                 var player = players[i];
 
-                if (intentReceiver.Shoot)
-                {
-                    if (PhotonNetwork.IsConnected)
-                    {
-                        photonView.RPC("InstantiateBullet", RpcTarget.AllBuffered, player); 
-                    }
-
-                    intentReceiver.Shoot = false;
-                }
+//                if (intentReceiver.Shoot)
+//                {
+//                    if (PhotonNetwork.IsConnected)
+//                    {
+//                        photonView.RPC("InstantiateBullet", RpcTarget.AllBuffered, player); 
+//                    }
+//
+//                    intentReceiver.Shoot = false;
+//                }
 
                 if (intentReceiver.MoveBack || intentReceiver.MoveForward
                  || intentReceiver.MoveLeft || intentReceiver.MoveRight)
@@ -98,7 +98,10 @@ namespace LastToTheGlobe.Scripts.Dev
                     moveIntent += new Vector3(intentReceiver.strafe, 0.0f, intentReceiver.forward);
                 }
 
-                Debug.Log(player.characterRb);
+                if (player == null)
+                {
+                    continue;
+                }
                 var rb = player.characterRb;
                 var tr = player.characterTransform;
                 player.characterRb.MovePosition(rb.position + tr.TransformDirection(moveIntent) * speed * Time.deltaTime);
@@ -181,6 +184,7 @@ namespace LastToTheGlobe.Scripts.Dev
             if (_localPlayerInstance != null)
             {
                 Debug.LogError("Calling instantiation on :" + _localPlayerInstance.name + " which avatar id is : " + avatarId);
+                SyncPlayersArray();
                 return;
             }
             
