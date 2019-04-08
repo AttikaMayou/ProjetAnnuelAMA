@@ -1,4 +1,5 @@
 ﻿using LastToTheGlobe.Scripts.Environment.Planets;
+//using NUnit.Framework.Constraints;
 using UnityEngine;
 
 //Auteur: Abdallah
@@ -14,6 +15,7 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb
         private float _timeUsing;
         public float maxTimeUsing;
         private Vector3 _initialPos;
+        public bool charged;
         
         [Header("Player and Attraction References")]
         [SerializeField] private Transform playerTransform;
@@ -34,10 +36,21 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb
             orbTransform.position = playerTransform.position + playerTransform.forward * 2f;
             _direction = playerTransform.right;
             _centerPointAttractor = attractedScript.attractor.planetTransform.position;
+            
+            
         }
         
         private void FixedUpdate () {
-            transform.RotateAround(_centerPointAttractor,_direction,speed);
+
+            if (charged)
+            {
+                transform.RotateAround(_centerPointAttractor,_direction,speed);
+            }
+            else
+            {
+                orbRb.MovePosition(transform.position + playerTransform.forward);
+            }
+            
             print(_timeUsing);
             print(maxTimeUsing);
             _timeUsing += Time.deltaTime;
@@ -45,6 +58,7 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb
             if (!(_timeUsing >= maxTimeUsing)) return;
             _timeUsing = 0.0f;
             ResetOrb();
+            charged = false;
         }
 
 
