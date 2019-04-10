@@ -1,30 +1,27 @@
-﻿using Photon.Pun;
+﻿using System.Runtime.CompilerServices;
+using Photon.Pun;
 using Photon.Pun.UtilityScripts;
-//using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 //Auteur : Margot
 //Modification : Attika
 
-namespace LastToTheGlobe.Scripts.Dev
+namespace LastToTheGlobe.Scripts.Network
 {
     public class OnlineIntentReceiver : AIntentReceiver
     {
-        [SerializeField]
-        private int playerIndex;
+        [SerializeField] private int playerIndex;
 
-        [SerializeField]
-        private PhotonView photonView;
-        
-        public void FixedUpdate()
+        [SerializeField] private PhotonView photonView;
+
+        private void FixedUpdate()
         {
             if (PlayerNumbering.SortedPlayers.Length <= playerIndex ||
                 PlayerNumbering.SortedPlayers[playerIndex].ActorNumber != PhotonNetwork.LocalPlayer.ActorNumber)
             {
                 return;
             }
-
+            
             forward = Input.GetAxis("Vertical");
             strafe = Input.GetAxis("Horizontal");
             
@@ -93,22 +90,21 @@ namespace LastToTheGlobe.Scripts.Dev
             {
                 photonView.RPC("UseBumpRPC", RpcTarget.MasterClient);
             }
-            
             //Attack Intent
             if (Input.GetMouseButtonDown(0))
             {
                 photonView.RPC("LaunchBulletRPC", RpcTarget.MasterClient);
             }
             
-            //Interraction Intent
+            //Interaction Intent
             if (Input.GetKeyDown(KeyCode.E))
             {
-                photonView.RPC("InterractRPC", RpcTarget.MasterClient);
+                photonView.RPC("InteractRPC", RpcTarget.MasterClient);
             }
 
             //TODO : Add double jump
         }
-
+        
         [PunRPC]
         void MoveLeftRPC(bool intent, float forwardInput, float strafeInput)
         {
@@ -203,12 +199,13 @@ namespace LastToTheGlobe.Scripts.Dev
         }
 
         [PunRPC]
-        void InterractRPC()
+        void InteractRPC()
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                Interract = true;
+                Interact = true;
             }
         }
+        
     }
 }

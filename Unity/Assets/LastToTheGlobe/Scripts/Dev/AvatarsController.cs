@@ -81,6 +81,10 @@ namespace LastToTheGlobe.Scripts.Dev
                 var intentReceiver = _activatedIntentReceivers[i];
                 var player = players[i];
 
+                if (player == null)
+                {
+                    continue;
+                }
 //                if (intentReceiver.Shoot)
 //                {
 //                    if (PhotonNetwork.IsConnected)
@@ -98,10 +102,6 @@ namespace LastToTheGlobe.Scripts.Dev
                     moveIntent += new Vector3(intentReceiver.strafe, 0.0f, intentReceiver.forward);
                 }
 
-                if (player == null)
-                {
-                    continue;
-                }
                 var rb = player.characterRb;
                 var tr = player.characterTransform;
                 player.characterRb.MovePosition(rb.position + tr.TransformDirection(moveIntent) * speed * Time.deltaTime);

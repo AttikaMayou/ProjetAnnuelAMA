@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 //Auteur : Attika
 
@@ -8,11 +7,11 @@ namespace LastToTheGlobe.Scripts.UI
 {
     public class ActivateObjects : MonoBehaviour
     {
-        public List<GameObject> Objects;
+        public List<GameObject> objects;
 
         public void Activation()
         {
-            foreach (var obj in Objects)
+            foreach (var obj in objects)
             {
                 obj.SetActive(true);
             }
@@ -20,11 +19,10 @@ namespace LastToTheGlobe.Scripts.UI
         
         public void Deactivation()
         {
-            foreach (var obj in Objects)
+            foreach (var obj in objects)
             {
                 obj.SetActive(false);
             }
         }
-        
     }
 }
