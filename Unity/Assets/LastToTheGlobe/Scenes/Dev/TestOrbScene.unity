@@ -149,6 +149,7 @@ MonoBehaviour:
   orbRb: {fileID: 266969507}
   speed: 5
   maxTimeUsing: 0
+  charged: 0
   playerTransform: {fileID: 761712092}
   attractedScript: {fileID: 761712094}
 --- !u!54 &266969507
@@ -401,7 +402,10 @@ MonoBehaviour:
   selfGravity: -10
   isGrounded: 0
   theAttractor: {fileID: 1579956543}
-  Sphere: {fileID: 266969505}
+  sphere: {fileID: 266969505}
+  _om: {fileID: 266969506}
+  _timeElapsed: 0
+  _launched: 0
 --- !u!1 &922460114
 GameObject:
   m_ObjectHideFlags: 0
