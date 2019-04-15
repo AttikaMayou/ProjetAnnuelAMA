@@ -110,7 +110,7 @@ namespace LastToTheGlobe.Scripts.Network
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                Debug.Log("I get the message : Move Left");
+                Debug.Log("I get the message : Move Left on this avatar : " + playerIndex);
                 MoveLeft = intent;
                 forward = forwardInput;
                 strafe = strafeInput;
@@ -122,7 +122,7 @@ namespace LastToTheGlobe.Scripts.Network
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                Debug.Log("I get the message : Move Back");
+                Debug.Log("I get the message : Move Back on this avatar : " + playerIndex);
                 MoveBack = intent;
                 forward = forwardInput;
                 strafe = strafeInput;
@@ -134,7 +134,7 @@ namespace LastToTheGlobe.Scripts.Network
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                Debug.Log("I get the message : Move Right");
+                Debug.Log("I get the message : Move Right on this avatar : " + playerIndex);
                 MoveRight = intent;
                 forward = forwardInput;
                 strafe = strafeInput;
@@ -146,7 +146,7 @@ namespace LastToTheGlobe.Scripts.Network
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                Debug.Log("I get the message : Move Froward");
+                Debug.Log("I get the message : Move Froward on this avatar : " + playerIndex);
                 MoveForward = intent;
                 forward = forwardInput;
                 strafe = strafeInput;

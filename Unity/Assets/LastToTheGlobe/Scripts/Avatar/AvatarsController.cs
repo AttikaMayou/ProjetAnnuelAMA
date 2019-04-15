@@ -15,7 +15,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         [Header("Photon and Replication Parameters")] 
         [SerializeField] private CharacterExposerScript[] players;
         [SerializeField] private AIntentReceiver[] onlineIntentReceivers;
-        private AIntentReceiver[] _activatedIntentReceivers;
+        [SerializeField] private AIntentReceiver[] _activatedIntentReceivers;
         [SerializeField] private PhotonView photonView;
 
         [Header("Camera Parameters")] 

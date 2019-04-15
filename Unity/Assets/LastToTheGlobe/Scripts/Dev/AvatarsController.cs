@@ -26,7 +26,7 @@ namespace LastToTheGlobe.Scripts.Dev
         
         [SerializeField] private PhotonView photonView;
         
-        private AIntentReceiver[] _activatedIntentReceivers;
+        [SerializeField] private AIntentReceiver[] _activatedIntentReceivers;
         
         [FormerlySerializedAs("_gameStarted")] [SerializeField] private bool gameStarted;
         
@@ -157,7 +157,7 @@ namespace LastToTheGlobe.Scripts.Dev
                 intentReceiver.Run = false;
                 intentReceiver.Jump = false;
                 intentReceiver.Bump = false;
-                intentReceiver.Interract = false;
+                intentReceiver.Interact = false;
             }
         }
         

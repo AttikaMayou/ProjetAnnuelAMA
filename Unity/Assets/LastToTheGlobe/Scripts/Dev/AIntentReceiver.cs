@@ -16,7 +16,7 @@ namespace LastToTheGlobe.Scripts.Dev
         public bool Dash { get; set; }
         public bool Shoot { get; set; }
         public bool Bump { get; set; }
-        public bool Interract { get; set; }
+        public bool Interact { get; set; }
         
         public float forward;
         public float strafe;
