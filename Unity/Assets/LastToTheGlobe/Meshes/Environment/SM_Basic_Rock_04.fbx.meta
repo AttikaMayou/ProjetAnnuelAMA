@@ -11,7 +11,12 @@ ModelImporter:
     2300000: SM_Basic_Rock_04
     3300000: SM_Basic_Rock_04
     4300000: SM_Basic_Rock_04
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BasicShader
+    second: {fileID: 2100000, guid: 3cc3248648d33f340b51ce2ff307456c, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

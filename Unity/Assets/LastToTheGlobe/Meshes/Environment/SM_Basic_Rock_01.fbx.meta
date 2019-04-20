@@ -11,11 +11,16 @@ ModelImporter:
     2300000: SM_Basic_Rock_01
     3300000: SM_Basic_Rock_01
     4300000: SM_Basic_Rock_01
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BasicShader
+    second: {fileID: 2100000, guid: 3cc3248648d33f340b51ce2ff307456c, type: 2}
   materials:
     importMaterials: 1
-    materialName: 0
-    materialSearch: 1
+    materialName: 1
+    materialSearch: 0
     materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
@@ -73,7 +78,7 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2

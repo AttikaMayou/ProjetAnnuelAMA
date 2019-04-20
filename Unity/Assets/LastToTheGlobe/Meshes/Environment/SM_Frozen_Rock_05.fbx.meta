@@ -11,7 +11,12 @@ ModelImporter:
     2300000: SM_Frozen_Rock_05
     3300000: SM_Frozen_Rock_05
     4300000: SM_Frozen_Rock_05
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FrozenShader
+    second: {fileID: 2100000, guid: 699f62f3fd8ed0d4f9307266f82f0655, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
