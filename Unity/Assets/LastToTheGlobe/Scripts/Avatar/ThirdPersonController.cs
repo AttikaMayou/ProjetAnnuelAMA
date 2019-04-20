@@ -143,9 +143,16 @@ namespace LastToTheGlobe.Scripts.Avatar
         //Get jump again
         private void OnCollisionEnter(Collision hit)
         {
-            if (!hit.gameObject.CompareTag("Planet")) return;
-            _isJumping = false;
-            attractedScript.isGrounded = false;
+            if (!hit.gameObject.CompareTag("Planet"))
+            {
+                _isJumping = false;
+                attractedScript.isGrounded = false;
+            }
+            if (hit.gameObject.CompareTag("Item"))
+            {
+                print("hello");
+            }
+            
         }
 
         private void Running()
@@ -163,6 +170,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                 _dashAsked = true;
             }
         }
+
 /*
         private void Jump()
         {
