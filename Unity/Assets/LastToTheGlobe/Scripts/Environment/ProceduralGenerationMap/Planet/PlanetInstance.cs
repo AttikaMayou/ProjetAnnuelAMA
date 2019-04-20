@@ -10,10 +10,13 @@ using UnityEngine;
 public class PlanetInstance : MonoBehaviour
 {
     [SerializeField]
-    private int resolution = 1;
+    private int resolution = 5;
 
-    //[SerializeField]
-    //private int numberMeshFilters = 6;
+    [SerializeField]
+    private float radius = 1.0f ;
+
+    [SerializeField]
+    private int numberMeshFilters = 6;
 
     MeshFilter[] meshFilters;
     CreationPlanetMesh[] planetFaces;
@@ -29,21 +32,21 @@ public class PlanetInstance : MonoBehaviour
     {
         if(meshFilters == null || meshFilters.Length == 0)
         {
-            meshFilters = new MeshFilter[6];
+            meshFilters = new MeshFilter[numberMeshFilters];
         }
 
-        planetFaces = new CreationPlanetMesh[6];
+        planetFaces = new CreationPlanetMesh[numberMeshFilters];
 
         Vector3[] directions = { Vector3.up, Vector3.down, Vector3.left, Vector3.right, Vector3.forward, Vector3.back };
 
-        for(int i = 0; i < 6; i ++)
+        for(int i = 0; i < numberMeshFilters; i ++)
         {
             if (meshFilters[i] == null)
             {
-                GameObject meshObj = new GameObject("mesh");
+                GameObject meshObj = new GameObject("PlanetFace");
                 meshObj.transform.parent = transform;
+                meshObj.transform.localScale = new Vector3(radius, radius, radius);
 
-                // TODO : à modifier en fonction des planètes choisies et de leurs ID
                 meshObj.AddComponent<MeshRenderer>().sharedMaterial = new Material(Shader.Find("Standard"));
                 meshFilters[i] = meshObj.AddComponent<MeshFilter>();
                 meshFilters[i].sharedMesh = new Mesh();
@@ -53,6 +56,7 @@ public class PlanetInstance : MonoBehaviour
         }
     }
 
+    //faces generation
     void GenerateMesh()
     {
         foreach (CreationPlanetMesh face in planetFaces)
