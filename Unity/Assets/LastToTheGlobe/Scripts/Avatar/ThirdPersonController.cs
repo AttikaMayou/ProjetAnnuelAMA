@@ -1,6 +1,8 @@
 ﻿using LastToTheGlobe.Scripts.Camera;
 using LastToTheGlobe.Scripts.Dev;
 using LastToTheGlobe.Scripts.Environment.Planets;
+using LastToTheGlobe.Scripts.Inventory;
+using LastToTheGlobe.Scripts.Weapon.Orb;
 using UnityEngine;
 
 //Auteur : Abdallah
@@ -19,6 +21,10 @@ namespace LastToTheGlobe.Scripts.Avatar
         public CameraScript myCamera;
         [SerializeField]
         private float rotationSpeed = 5.0f;
+
+        [Header("Skills & Bonus")] 
+        private Skills _skills = new Skills();
+        private Bonus _bonus = new Bonus();
 
         [Header("Movement Parameters")]
         [SerializeField]
@@ -47,6 +53,7 @@ namespace LastToTheGlobe.Scripts.Avatar
 
         [Header("Orb References")]
         public GameObject orb;
+        public OrbManager _om;
         public GameObject orbSpawned;
         private bool _canThrowSpell;
 
@@ -77,9 +84,7 @@ namespace LastToTheGlobe.Scripts.Avatar
             //Dash
             if (_dashAsked)
             {
-                rb.MovePosition(rb.position + transform.TransformDirection(_moveDir) * dashSpeed * Time.deltaTime);
-                _dashAsked = false;
-                Debug.Log("DashAsked");
+                _dashAsked = _skills.Dash(rb, _moveDir, dashSpeed, _dashAsked);
             }
             else
             {
@@ -120,6 +125,8 @@ namespace LastToTheGlobe.Scripts.Avatar
             //Detects the input to throw an offensiveOrb
             if (Input.GetKeyDown(offensiveOrbInput) && _canThrowSpell && playerExposer.characterLocalPhotonView.IsMine)
             {
+                
+                throwingOrb()
                 _canThrowSpell = false;
                 //orb.SetActive(true);
                 //AvatarsController.Instance.LaunchBullet(playerExposer);
@@ -148,10 +155,6 @@ namespace LastToTheGlobe.Scripts.Avatar
                 _isJumping = false;
                 attractedScript.isGrounded = false;
             }
-            if (hit.gameObject.CompareTag("Item"))
-            {
-                print("hello");
-            }
             
         }
 
@@ -168,6 +171,32 @@ namespace LastToTheGlobe.Scripts.Avatar
             if (Input.GetKeyDown(dashInput))
             {
                 _dashAsked = true;
+                
+            }
+        }
+
+        private void throwingOrb()
+        {
+            
+            if (Input.GetKey(KeyCode.A))
+            {
+                _launched = true;
+                _timeElapsed = _timeElapsed + Time.deltaTime;
+                
+            }
+            
+            if (_timeElapsed >= 1.5f && _launched && Input.GetKeyUp(KeyCode.A))
+            {
+                _om.charged = true;
+                orb.SetActive(true);
+                _timeElapsed = 0;
+                _launched = false;
+            }
+            if(_launched && Input.GetKeyUp(KeyCode.A))
+            {
+                orb.SetActive(true);
+                _timeElapsed = 0;
+                _launched = false;
             }
         }
 
