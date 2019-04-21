@@ -370,6 +370,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c920667e4e3150f44adc56a957ae33a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  forward: 0
+  strafe: 0
   playerIndex: 0
   photonView: {fileID: 162885994}
 --- !u!114 &162885994
@@ -1322,6 +1324,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c920667e4e3150f44adc56a957ae33a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  forward: 0
+  strafe: 0
   playerIndex: 3
   photonView: {fileID: 1082667373}
 --- !u!1 &1093429161
@@ -1541,6 +1545,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f8b9579851fac34f8f51fed0d2ada8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  players:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   onlineIntentReceivers:
   - {fileID: 162885993}
   - {fileID: 1489789782}
@@ -1548,9 +1557,11 @@ MonoBehaviour:
   - {fileID: 1082667374}
   startGameController: {fileID: 1323043325}
   photonView: {fileID: 1323043328}
+  gameStarted: 0
   playerPrefab: {fileID: 125, guid: cb27d954703f839468d2cea3b467316a, type: 3}
   bulletPrefab: {fileID: 5107946470935551850, guid: 501d9991fbb3e6b45b291e93d1d426dc,
     type: 3}
+  speed: 5
   camInScene: {fileID: 485625805}
 --- !u!114 &1323043328
 MonoBehaviour:
@@ -1783,6 +1794,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c920667e4e3150f44adc56a957ae33a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  forward: 0
+  strafe: 0
   playerIndex: 1
   photonView: {fileID: 1489789781}
 --- !u!1 &1631320598
@@ -1851,6 +1864,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c920667e4e3150f44adc56a957ae33a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  forward: 0
+  strafe: 0
   playerIndex: 2
   photonView: {fileID: 1631320600}
 --- !u!1 &1632737034

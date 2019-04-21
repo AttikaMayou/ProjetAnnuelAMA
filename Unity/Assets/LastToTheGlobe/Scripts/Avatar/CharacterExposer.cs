@@ -20,7 +20,6 @@ namespace LastToTheGlobe.Scripts.Avatar
         public Transform characterTransform;
         public GameObject avatarRootGameObject;
         public GameObject cameraRotatorX;
-        public ThirdPersonController thirdPersonController;
         //public CharacterTrampolineScript characterTrampolineScript;
         public Trampoline bumperScript;
         public AttractedScript selfPlayerAttractedScript;
@@ -40,20 +39,20 @@ namespace LastToTheGlobe.Scripts.Avatar
 
             if (!characterLocalPhotonView.IsMine && PhotonNetwork.IsConnected) return;
             //Wait for the camera to have the player reference before initializing follow behaviour
-            StartCoroutine(InitializeCameraReferences());
+            //StartCoroutine(InitializeCameraReferences());
             
             //The prefab should not be destroyed when switching scene (Lobby to GameRoom for example)
             DontDestroyOnLoad(this.avatarRootGameObject);
         }
 
-        private IEnumerator InitializeCameraReferences()
-        {
-            yield return new WaitForSeconds(1.0f);
-            AvatarsController.Instance.camInScene.targetPlayer = this.gameObject;
-            AvatarsController.Instance.camInScene.playerExposer = this;
-            AvatarsController.Instance.camInScene.InitializeCameraPosition();
-            AvatarsController.Instance.camInScene.startFollowing = true;
-            thirdPersonController.myCamera = AvatarsController.Instance.camInScene;
-        }
+//        private IEnumerator InitializeCameraReferences()
+//        {
+//            yield return new WaitForSeconds(1.0f);
+//            AvatarsController.Instance.camInScene.targetPlayer = this.gameObject;
+//            AvatarsController.Instance.camInScene.playerExposer = this;
+//            AvatarsController.Instance.camInScene.InitializeCameraPosition();
+//            AvatarsController.Instance.camInScene.startFollowing = true;
+//           //thirdPersonController.myCamera = AvatarsController.Instance.camInScene;
+//        }
     }
 }

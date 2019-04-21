@@ -38,7 +38,7 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
             var exposer = PlayerColliderDirectoryScript.Instance.GetExposer(coll);
             if (!exposer) return;
 
-            exposer.thirdPersonController.attractor = this;
+            //exposer.thirdPersonController.attractor = this;
             exposer.selfPlayerAttractedScript.attractor = this;
             exposer.selfOrbAttractedScript.attractor = this;
         }
@@ -50,7 +50,7 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
             var exposer = PlayerColliderDirectoryScript.Instance.GetExposer(coll);
             if (!exposer) return;
             
-            exposer.thirdPersonController.attractor = null;
+            //exposer.thirdPersonController.attractor = null;
             exposer.selfPlayerAttractedScript.attractor = null;
             exposer.selfOrbAttractedScript.attractor = null;
         }
