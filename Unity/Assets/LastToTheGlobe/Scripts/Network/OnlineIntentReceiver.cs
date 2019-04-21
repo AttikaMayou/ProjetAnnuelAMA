@@ -34,6 +34,7 @@ namespace LastToTheGlobe.Scripts.Network
                 if (timer <= _dashTime)
                 {
                     canDash = true;
+                    return;
                 }
             }
             
@@ -97,7 +98,7 @@ namespace LastToTheGlobe.Scripts.Network
                 canDash = false;
             }
 
-            if (Input.GetKeyUp(KeyCode.Space))
+            if (Input.GetKeyUp(KeyCode.Space) && canJump)
             {
                 photonView.RPC("JumpRPC", RpcTarget.MasterClient);
             }

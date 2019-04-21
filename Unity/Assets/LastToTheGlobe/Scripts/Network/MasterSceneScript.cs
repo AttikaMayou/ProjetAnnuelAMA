@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 //Auteur : Attika
 //Dirty script while we don't have a profile save management
-//This script is suppose to log on the player when he launch the game
+//This script is suppose to log on the player when he launches the game
 
 namespace LastToTheGlobe.Scripts.Network
 {

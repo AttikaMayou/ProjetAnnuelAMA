@@ -22,6 +22,7 @@ namespace LastToTheGlobe.Scripts.Network
        public float speed = 5.0f;
 
        protected bool canDash = true;
+       protected bool canJump = true;
        protected const float walkSpeed = 5.0f;
        protected const float runSpeed = 8.0f;
        protected const float dashSpeed = 15.0f;

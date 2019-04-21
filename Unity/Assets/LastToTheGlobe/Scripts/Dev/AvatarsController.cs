@@ -70,7 +70,7 @@ namespace LastToTheGlobe.Scripts.Dev
                 || players.Length != _activatedIntentReceivers.Length)
             {
                 Debug.LogError("There is something wrong with avatars and intents setup !");
-                SyncPlayersArray();
+                //SyncPlayersArray();
                 return;
             }
 
@@ -110,13 +110,13 @@ namespace LastToTheGlobe.Scripts.Dev
         #endregion
         
         #region Private Methods
-        private void SyncPlayersArray()
-        {
-            for (var j = 0; j < PlayerColliderDirectoryScript.Instance.characterExposers.Count; j++)
-            {
-                players[j] = PlayerColliderDirectoryScript.Instance.characterExposers[j];
-            }
-        }
+//        private void SyncPlayersArray()
+//        {
+//            for (var j = 0; j < PlayerColliderDirectoryScript.Instance.characterExposers.Count; j++)
+//            {
+//                players[j] = PlayerColliderDirectoryScript.Instance.characterExposers[j];
+//            }
+//        }
         
         private void ChooseAndSubscribeToOnlineIntentReceivers()
         {
@@ -184,7 +184,7 @@ namespace LastToTheGlobe.Scripts.Dev
             if (_localPlayerInstance != null)
             {
                 Debug.LogError("Calling instantiation on :" + _localPlayerInstance.name + " which avatar id is : " + avatarId);
-                SyncPlayersArray();
+                //SyncPlayersArray();
                 return;
             }
             
@@ -198,7 +198,7 @@ namespace LastToTheGlobe.Scripts.Dev
             _localPlayerInstance = newPlayer;
             camInScene.targetPlayer = newPlayer;
             
-            SyncPlayersArray();
+            //SyncPlayersArray();
         }
 
         [PunRPC]
@@ -209,13 +209,6 @@ namespace LastToTheGlobe.Scripts.Dev
             var bullet = PhotonNetwork.Instantiate(bulletPrefab.name,
                 (player.characterTransform.position + player.characterTransform.forward * 2.0f),
                 Quaternion.identity, 0);
-        }
-        
-        [PunRPC]
-        private void SyncPlayersDirectory(CharacterExposer exposer)
-        {
-            if (PhotonNetwork.IsMasterClient) return;
-            PlayerColliderDirectoryScript.Instance.SyncData(exposer);
         }
         
         #endregion

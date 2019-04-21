@@ -61,6 +61,9 @@ namespace LastToTheGlobe.Scripts.Avatar
                 var intent = _activatedIntentReceivers[i];
                 var player = players[i];
 
+                var rb = player.characterRb;
+                var tr = player.characterTr;
+
                 if (player == null) continue;
 
                 if (intent.MoveBack || intent.MoveForward
@@ -71,7 +74,9 @@ namespace LastToTheGlobe.Scripts.Avatar
 
                 if (intent.Jump)
                 {
-                    
+                    var jumpDir = player.attractor.dirForce;
+                    rb.AddForce(jumpDir * 250);
+                    intent.Jump = false;
                 }
 
                 if (intent.Shoot)
@@ -88,11 +93,8 @@ namespace LastToTheGlobe.Scripts.Avatar
                 {
                     
                 }
-
-                var rb = player.characterRb;
-                var tr = player.characterTr;
                 
-                player.characterRb.MovePosition(rb.position + tr.TransformDirection(moveIntent) * intent.speed * Time.deltaTime);
+                rb.MovePosition(rb.position + tr.TransformDirection(moveIntent) * intent.speed * Time.deltaTime);
             }
         }
 
