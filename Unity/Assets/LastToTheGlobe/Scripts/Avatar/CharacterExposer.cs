@@ -2,6 +2,7 @@
 using LastToTheGlobe.Scripts.Camera;
 using LastToTheGlobe.Scripts.Dev;
 using LastToTheGlobe.Scripts.Environment.Planets;
+using LastToTheGlobe.Scripts.Inventory;
 using LastToTheGlobe.Scripts.Management;
 using Photon.Pun;
 using UnityEngine;
@@ -25,6 +26,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         public AttractedScript selfPlayerAttractedScript;
         public AttractedScript selfOrbAttractedScript;
         public Collider characterCollider;
+        public InventoryScript inventoryScript;
         
         //Character Parameters
         public Vector3 _movedir;

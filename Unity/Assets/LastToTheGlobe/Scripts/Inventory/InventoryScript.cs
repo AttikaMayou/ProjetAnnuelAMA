@@ -11,7 +11,7 @@ namespace LastToTheGlobe.Scripts.Inventory
     {
         [SerializeField] private int nbSlots = 4;
         public bool isFull;
-        private List<ObjectScript> objectsInInventory = new List<ObjectScript>();
+        public List<ObjectScript> objectsInInventory = new List<ObjectScript>();
 
         private void Awake()
         {

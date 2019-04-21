@@ -65,10 +65,14 @@ namespace LastToTheGlobe.Scripts.Avatar
         public KeyCode runInput;
         public KeyCode skillInput;
 
+        [Header("Inventory")] 
+        private List<ObjectScript> inventoryList;
+        
         private void Start()
         {
             _skills.characterExposer = playerExposer;
             playerExposer.dashSpeed = dashSpeed;
+            inventoryList = playerExposer.inventoryScript.objectsInInventory;
         }
 
         private void FixedUpdate () 
@@ -93,9 +97,16 @@ namespace LastToTheGlobe.Scripts.Avatar
             //Skill
             if (_skillAsked)
             {
-                playerExposer._movedir = _moveDir;
-                _skills.skillsMethods["Dash"]();
-                _skillAsked = false;
+                foreach (ObjectScript item in inventoryList)
+                {
+                    if (item.typeOfObject == 2)
+                    {
+                        _skills.skillsMethods[item.objectName]();    
+                    }
+                    
+                    _skillAsked = false;    
+                }
+                
             }
             else
             {
@@ -182,6 +193,7 @@ namespace LastToTheGlobe.Scripts.Avatar
             //Ce n'est pas la touche du Dash mais les Skills en générale
             if (Input.GetKeyDown(skillInput))
             {
+                inventoryList = playerExposer.inventoryScript.objectsInInventory;
                 _skillAsked = true;
                 
             }

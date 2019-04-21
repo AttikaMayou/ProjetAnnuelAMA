@@ -9,6 +9,13 @@ namespace LastToTheGlobe.Scripts.Inventory
         public bool isInInventory;
         public bool isConsume;
         public int nbOfConsumption = 0;
+        public string objectName;
+        /*
+         Consommable = 0
+         Bonus = 1
+         Skills = 2
+         */
+        public int typeOfObject = 2;
 
         /// <summary>
         /// Set an object in inventory or delete it from inventory
