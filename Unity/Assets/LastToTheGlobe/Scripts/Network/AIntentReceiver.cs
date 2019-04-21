@@ -17,8 +17,8 @@ namespace LastToTheGlobe.Scripts.Network
        public bool Bump { get; set; }
        public bool Interact { get; set; }
 
-       public float forward;
-       public float strafe;
+       public float forward = 0;
+       public float strafe = 0;
        public float speed = 5.0f;
 
        protected bool canDash = true;

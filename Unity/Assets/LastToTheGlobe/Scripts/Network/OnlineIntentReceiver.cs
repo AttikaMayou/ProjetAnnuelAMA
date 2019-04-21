@@ -16,7 +16,7 @@ namespace LastToTheGlobe.Scripts.Network
 
         private float _dashTime = 1.0f;
 
-        private void FixedUpdate()
+        private void Update()
         {
             if (PlayerNumbering.SortedPlayers.Length <= playerIndex ||
                 PlayerNumbering.SortedPlayers[playerIndex].ActorNumber != PhotonNetwork.LocalPlayer.ActorNumber)
@@ -24,8 +24,8 @@ namespace LastToTheGlobe.Scripts.Network
                 return;
             }
             
-            forward = Input.GetAxis("Vertical");
-            strafe = Input.GetAxis("Horizontal");
+            forward = Input.GetAxisRaw("Vertical");
+            strafe = Input.GetAxisRaw("Horizontal");
 
             //Cooldown dash
             if (!canDash)
@@ -47,7 +47,7 @@ namespace LastToTheGlobe.Scripts.Network
             
             if (Input.GetKeyUp(KeyCode.Z))
             {
-                photonView.RPC("MoveForwardRPC", RpcTarget.MasterClient, false, forward, strafe);
+                photonView.RPC("MoveForwardRPC", RpcTarget.MasterClient, false, 0, 0);
             }
 
             if (Input.GetKeyDown(KeyCode.S))
@@ -57,7 +57,7 @@ namespace LastToTheGlobe.Scripts.Network
 
             if (Input.GetKeyUp(KeyCode.S))
             {
-                photonView.RPC("MoveBackRPC", RpcTarget.MasterClient, false, forward, strafe);
+                photonView.RPC("MoveBackRPC", RpcTarget.MasterClient, false, 0, 0);
             }
 
             if (Input.GetKeyDown(KeyCode.Q))
@@ -67,7 +67,7 @@ namespace LastToTheGlobe.Scripts.Network
 
             if (Input.GetKeyUp(KeyCode.Q))
             {
-                photonView.RPC("MoveLeftRPC", RpcTarget.MasterClient, false, forward, strafe);
+                photonView.RPC("MoveLeftRPC", RpcTarget.MasterClient, false, 0, 0);
             }
 
             if (Input.GetKeyDown(KeyCode.D))
@@ -77,7 +77,7 @@ namespace LastToTheGlobe.Scripts.Network
 
             if (Input.GetKeyUp(KeyCode.D))
             {
-                photonView.RPC("MoveRightRPC", RpcTarget.MasterClient, false, forward, strafe);
+                photonView.RPC("MoveRightRPC", RpcTarget.MasterClient, false, 0, 0);
             }
             
             if (Input.GetKeyDown(KeyCode.LeftShift))
@@ -121,6 +121,7 @@ namespace LastToTheGlobe.Scripts.Network
                 photonView.RPC("InteractRPC", RpcTarget.MasterClient);
             }
 
+            Debug.Log("I get the message : Move Foward on this avatar : " + playerIndex);
             //TODO : Add double jump
         }
 
