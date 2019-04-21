@@ -177,7 +177,7 @@ namespace LastToTheGlobe.Scripts.Avatar
             }
         }
 
-        private void throwingOrb()
+        /*private void throwingOrb()
         {
             
             if (Input.GetKey(KeyCode.A))
@@ -200,7 +200,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                 _timeElapsed = 0;
                 _launched = false;
             }
-        }
+        }*/
 
 /*
         private void Jump()

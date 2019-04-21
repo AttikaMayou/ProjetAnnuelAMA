@@ -21,7 +21,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         private void OnCollisionEnter(Collision other)
         {
             if (!other.gameObject.CompareTag("Bullet")) return;
-            if (other.gameObject == myExposer.thirdPersonController.orb) return;
+            //if (other.gameObject == myExposer.thirdPersonController.orb) return;
             myLife -= attackDmg;
         }
 

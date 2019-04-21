@@ -21,16 +21,16 @@ public class UIVictory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(myLife.myLife <= 0)
-        {
-            defeat.enabled = true;
-            victory.enabled = false;
-        }
-        
-        if(PhotonNetwork.PlayerList.Length == 1)
-        {
-            victory.enabled = true;
-            defeat.enabled = false;
-        }
+//        if(myLife.myLife <= 0)
+//        {
+//            defeat.enabled = true;
+//            victory.enabled = false;
+//        }
+//        
+//        if(PhotonNetwork.PlayerList.Length == 1)
+//        {
+//            victory.enabled = true;
+//            defeat.enabled = false;
+//        }
     }
 }
