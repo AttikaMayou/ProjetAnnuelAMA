@@ -24,8 +24,8 @@ namespace LastToTheGlobe.Scripts.Network
                 return;
             }
             
-            forward = Input.GetAxis("Vertical");
-            strafe = Input.GetAxis("Horizontal");
+            forward = Input.GetAxisRaw("Vertical");
+            strafe = Input.GetAxisRaw("Horizontal");
 
             //Cooldown dash
             if (!canDash)
@@ -121,6 +121,7 @@ namespace LastToTheGlobe.Scripts.Network
                 photonView.RPC("InteractRPC", RpcTarget.MasterClient);
             }
 
+            Debug.Log("I get the message : Move Foward on this avatar : " + playerIndex);
             //TODO : Add double jump
         }
 
