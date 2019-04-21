@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using LastToTheGlobe.Scripts.Weapon.Orb;
+using UnityEngine;
 
 namespace LastToTheGlobe.Scripts.Environment.Planets
 {
@@ -6,7 +7,10 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
     {
         // Start is called before the first frame update
         [SerializeField] private AttractorScript theAttractor;
-        [SerializeField] private GameObject Sphere;
+        [SerializeField] private GameObject sphere;
+        [SerializeField] private OrbManager _om;
+        [SerializeField] private float _timeElapsed;
+        [SerializeField] private bool _launched;
         void Start()
         {
             attractor = theAttractor;
@@ -14,8 +18,30 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
 
         private void Update()
         {
-            if (!Input.GetKeyDown(KeyCode.A)) return;
-            Sphere.SetActive(true);
+            
+            if (Input.GetKey(KeyCode.A))
+            {
+                _launched = true;
+                _timeElapsed = _timeElapsed + Time.deltaTime;
+                
+            }
+            
+            if (_timeElapsed >= 1.5f && _launched && Input.GetKeyUp(KeyCode.A))
+            {
+                print("lol");
+                _om.charged = true;
+                sphere.SetActive(true);
+                _timeElapsed = 0;
+                _launched = false;
+            }
+            if(_launched && Input.GetKeyUp(KeyCode.A))
+            {
+                print("lol_2");
+                sphere.SetActive(true);
+                _timeElapsed = 0;
+                _launched = false;
+            }
+            
         }
     }
 }
