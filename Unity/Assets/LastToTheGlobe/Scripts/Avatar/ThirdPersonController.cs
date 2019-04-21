@@ -51,11 +51,13 @@ namespace LastToTheGlobe.Scripts.Avatar
         private bool _dashAsked = false;
         private bool _runAsked = false;
 
-        [Header("Orb References")]
+        [Header("Orb Parameter")]
         public GameObject orb;
         public OrbManager _om;
         public GameObject orbSpawned;
         private bool _canThrowSpell;
+        private bool _launched = false;
+        private float _timeElapsed = 0;
 
         [Header("Inputs")] 
         public KeyCode offensiveOrbInput;
@@ -125,8 +127,8 @@ namespace LastToTheGlobe.Scripts.Avatar
             //Detects the input to throw an offensiveOrb
             if (Input.GetKeyDown(offensiveOrbInput) && _canThrowSpell && playerExposer.characterLocalPhotonView.IsMine)
             {
-                
-                throwingOrb()
+
+                throwingOrb();
                 _canThrowSpell = false;
                 //orb.SetActive(true);
                 //AvatarsController.Instance.LaunchBullet(playerExposer);
