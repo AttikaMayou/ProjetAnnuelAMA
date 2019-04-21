@@ -26,6 +26,9 @@ namespace LastToTheGlobe.Scripts.Avatar
         [SerializeField] private StartMenuController startMenuController;
         [SerializeField] private bool gameStarted;
         [SerializeField] private int speed;
+        [SerializeField] private int walkSpeed;
+        [SerializeField] private int runSpeed;
+        [SerializeField] private int dashSpeed;
         
         #region MonoBehaviour Callbacks
 
@@ -70,9 +73,13 @@ namespace LastToTheGlobe.Scripts.Avatar
                     moveIntent += new Vector3(intent.strafe, 0.0f, intent.forward);
                 }
 
-                if(intent.Run) 
+                if(intent.Run && !intent.Dash)
                 {
-                
+                    speed = runSpeed;
+                }
+                else
+                {
+                    speed = walkSpeed;
                 }
 
                 if (intent.Jump)
@@ -80,9 +87,13 @@ namespace LastToTheGlobe.Scripts.Avatar
                     
                 }
 
-                if (intent.Dash)
+                if (intent.Dash && !intent.Run)
                 {
-                    
+                    speed = dashSpeed;
+                }
+                else
+                {
+                    speed = walkSpeed;
                 }
 
                 if (intent.Shoot)
