@@ -21,8 +21,7 @@ public class PlanetInstance : MonoBehaviour
     MeshFilter[] meshFilters;
     CreationPlanetMesh[] planetFaces;
 
-    //Can change in editor
-    private void OnValidate()
+    private void Start()
     {
         Initialize();
         GenerateMesh();
