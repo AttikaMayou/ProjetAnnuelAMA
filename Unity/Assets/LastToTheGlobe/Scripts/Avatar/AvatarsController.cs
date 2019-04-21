@@ -76,7 +76,6 @@ namespace LastToTheGlobe.Scripts.Avatar
                 {
                     var jumpDir = player.attractor.dirForce;
                     rb.AddForce(jumpDir * 250);
-                    intent.Jump = false;
                 }
 
                 if (intent.Shoot)

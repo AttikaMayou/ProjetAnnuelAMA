@@ -27,6 +27,7 @@ namespace LastToTheGlobe.Scripts.Network
             forward = Input.GetAxis("Vertical");
             strafe = Input.GetAxis("Horizontal");
 
+            //Cooldown dash
             if (!canDash)
             {
                 var timer = 0.0f;
@@ -122,7 +123,16 @@ namespace LastToTheGlobe.Scripts.Network
 
             //TODO : Add double jump
         }
-        
+
+        private void OnCollisionEnter(Collision other)
+        {
+            if (!other.gameObject.CompareTag("Planet"))
+            {
+                canJump = true;
+            }
+        }
+
+        #region RPC
         [PunRPC]
         void MoveLeftRPC(bool intent, float forwardInput, float strafeInput)
         {
@@ -181,6 +191,7 @@ namespace LastToTheGlobe.Scripts.Network
             if (PhotonNetwork.IsMasterClient)
             {
                 Debug.Log("I get the message : Jump on this avatar : " + playerIndex);
+                canJump = false;
                 Jump = true;
             }
         }
@@ -235,5 +246,6 @@ namespace LastToTheGlobe.Scripts.Network
             }
         }
         
+        #endregion
     }
 }
