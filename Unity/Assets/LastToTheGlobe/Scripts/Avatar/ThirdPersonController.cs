@@ -125,8 +125,8 @@ namespace LastToTheGlobe.Scripts.Avatar
             //Detects the input to throw an offensiveOrb
             if (Input.GetKeyDown(offensiveOrbInput) && _canThrowSpell && playerExposer.characterLocalPhotonView.IsMine)
             {
-                
-                throwingOrb()
+
+                //throwingOrb();
                 _canThrowSpell = false;
                 //orb.SetActive(true);
                 //AvatarsController.Instance.LaunchBullet(playerExposer);
@@ -175,7 +175,7 @@ namespace LastToTheGlobe.Scripts.Avatar
             }
         }
 
-        private void throwingOrb()
+        /*private void throwingOrb()
         {
             
             if (Input.GetKey(KeyCode.A))
@@ -198,7 +198,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                 _timeElapsed = 0;
                 _launched = false;
             }
-        }
+        }*/
 
 /*
         private void Jump()
