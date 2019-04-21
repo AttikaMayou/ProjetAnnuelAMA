@@ -9,8 +9,8 @@ using UnityEditor;
 //Noise Generation and application of height map
 //----------------------------------
 
-/*
-public class Noise : Editor
+
+public class Noise //: Editor
 {
     Noise noise = new Noise();
 
@@ -23,4 +23,3 @@ public class Noise : Editor
     }
 
 }
-*/

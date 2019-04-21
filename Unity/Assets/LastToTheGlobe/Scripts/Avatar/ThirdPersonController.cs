@@ -51,11 +51,13 @@ namespace LastToTheGlobe.Scripts.Avatar
         private bool _dashAsked = false;
         private bool _runAsked = false;
 
-        [Header("Orb References")]
+        [Header("Orb Parameter")]
         public GameObject orb;
         public OrbManager _om;
         public GameObject orbSpawned;
         private bool _canThrowSpell;
+        private bool _launched = false;
+        private float _timeElapsed = 0;
 
         [Header("Inputs")] 
         public KeyCode offensiveOrbInput;
@@ -175,7 +177,7 @@ namespace LastToTheGlobe.Scripts.Avatar
             }
         }
 
-        /*private void throwingOrb()
+        private void throwingOrb()
         {
             
             if (Input.GetKey(KeyCode.A))
@@ -198,7 +200,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                 _timeElapsed = 0;
                 _launched = false;
             }
-        }*/
+        }
 
 /*
         private void Jump()
