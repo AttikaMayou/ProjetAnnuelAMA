@@ -106,6 +106,7 @@ namespace LastToTheGlobe.Scripts.Network
             {
                 photonView.RPC("UseBumpRPC", RpcTarget.MasterClient);
             }
+            
             //Attack Intent
             if (Input.GetMouseButtonDown(0))
             {
@@ -178,6 +179,7 @@ namespace LastToTheGlobe.Scripts.Network
         {
             if (PhotonNetwork.IsMasterClient)
             {
+                Debug.Log("I get the message : Jump on this avatar : " + playerIndex);
                 Jump = true;
             }
         }
@@ -187,6 +189,7 @@ namespace LastToTheGlobe.Scripts.Network
         {
             if (PhotonNetwork.IsMasterClient)
             {
+                Debug.Log("I get the message : Dash on this avatar : " + playerIndex);
                 Dash = true;
             }
         }
@@ -195,7 +198,8 @@ namespace LastToTheGlobe.Scripts.Network
         void RunRPC(bool intent)
         {
             if (PhotonNetwork.IsMasterClient)
-            {
+            { 
+                Debug.Log("I get the message : Run on this avatar : " + playerIndex);
                 Run = intent;
             }
         }
@@ -205,6 +209,7 @@ namespace LastToTheGlobe.Scripts.Network
         {
             if (PhotonNetwork.IsMasterClient)
             {
+                Debug.Log("I get the message : Shoot on this avatar : " + playerIndex);
                 Shoot = true;
             }
         }
@@ -214,6 +219,7 @@ namespace LastToTheGlobe.Scripts.Network
         {
             if (PhotonNetwork.IsMasterClient)
             {
+                Debug.Log("I get the message : Bump on this avatar : " + playerIndex);
                 Bump = true;
             }
         }
@@ -223,6 +229,7 @@ namespace LastToTheGlobe.Scripts.Network
         {
             if (PhotonNetwork.IsMasterClient)
             {
+                Debug.Log("I get the message : Interact on this avatar : " + playerIndex);
                 Interact = true;
             }
         }
