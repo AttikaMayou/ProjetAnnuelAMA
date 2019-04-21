@@ -23,10 +23,10 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1
+  m_AmbientIntensity: 2.73
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 073b1ee561def20429e655b5c8893ad4, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 6bb3302e1f6b1824198d4f97cbcd9a32, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.99999905, g: 0.99999905, b: 0.99999905, a: 1}
+  m_IndirectSpecularColor: {r: 0.064969644, g: 0.08154082, b: 0.11215174, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -216,7 +216,7 @@ Camera:
   m_GameObject: {fileID: 892813401}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
+  m_ClearFlags: 1
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
@@ -292,11 +292,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97b499ac0087c6a48bf103bec179e7d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NumberOfVertices: 10
-  seed: 5
-  size: 100
-  basicPlanet: {fileID: 6007325744886493304, guid: 98010e924c5875f4bbbf318e24ca1c4d,
-    type: 3}
+  NumberOfVertices: 20
+  size: 200
+  basicPlanet: {fileID: 1683045703}
 --- !u!4 &997781116
 Transform:
   m_ObjectHideFlags: 0
@@ -310,4 +308,160 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1683045703
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1683045709}
+  - component: {fileID: 1683045708}
+  - component: {fileID: 1683045707}
+  - component: {fileID: 1683045706}
+  - component: {fileID: 1683045705}
+  - component: {fileID: 1683045704}
+  m_Layer: 0
+  m_Name: planet (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1683045704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1683045703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 239f1fc46b7f51d4196d7e4d526d9182, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numberObjectMax: 50
+  numberTreesMax: 10
+  planet: {fileID: 1683045703}
+  basicTrees:
+  - {fileID: 100002, guid: e395a9683976cad4a8026fc75262df60, type: 3}
+  - {fileID: 100002, guid: 316195a121f1e3d4d86fc20bc4d2efb0, type: 3}
+  - {fileID: 100002, guid: e35658e14eca4104cbfdadd9b7b91e57, type: 3}
+  - {fileID: 100002, guid: e9617eb9a3d7643478771e5d0f1d64f7, type: 3}
+  basicRock:
+  - {fileID: 100002, guid: bef5520269dc9224a843b7739af6bae4, type: 3}
+  - {fileID: 100002, guid: 6751c9dd76d5c4349a3e18279fe976b5, type: 3}
+  - {fileID: 100002, guid: b9e171cb2798e68449d998d741637915, type: 3}
+  - {fileID: 100002, guid: 5557fc2222dad454dade9623865f0837, type: 3}
+  - {fileID: 100002, guid: 45b3ff8bb6c7e60449fc034075db1a3e, type: 3}
+  - {fileID: 100002, guid: 4e576e625ab8c5c4682891005ea13fe6, type: 3}
+  frozenTrees:
+  - {fileID: 100002, guid: d112be487ad492f4986d1294f631481a, type: 3}
+  - {fileID: 100002, guid: 9d05eb18e7440e54f866c6748c300369, type: 3}
+  frozenRock:
+  - {fileID: 100002, guid: ab8a2617628f87543b49b960f810628c, type: 3}
+  - {fileID: 100002, guid: c11b710527429f744ab0304135c898b9, type: 3}
+  - {fileID: 100002, guid: 85e7ad73de50348409267db0a10a561a, type: 3}
+  - {fileID: 100002, guid: 37a9f11da876ab549a782670457dc55a, type: 3}
+  - {fileID: 100002, guid: 987bc6907aa38a04e92611bb95b51669, type: 3}
+  - {fileID: 100002, guid: 28d548ec17754a041be5d4eaaa4f314f, type: 3}
+  - {fileID: 100002, guid: bd921404e51fb744f903bc79b0f2d03f, type: 3}
+  - {fileID: 100002, guid: c587a0b47cbfe774bba3b579a20c5289, type: 3}
+  desertTrees:
+  - {fileID: 100002, guid: 2cae1b5f170f1b846996d17bff1d8aae, type: 3}
+  desertRock:
+  - {fileID: 100002, guid: 3e5faf235fd10f44c9e169ba8b8ca094, type: 3}
+  - {fileID: 100002, guid: 328e601ad2090514094df46da4588eab, type: 3}
+  - {fileID: 100002, guid: 69913ea94ef05034aab52a77f897bce6, type: 3}
+  - {fileID: 100002, guid: 3108d454170f1eb4ab8f2cac89788ae3, type: 3}
+  - {fileID: 100002, guid: d161bde20f19f2240b94f4057008a6bc, type: 3}
+  - {fileID: 100002, guid: 7acb702f0d858b547942f61eb90e1898, type: 3}
+  - {fileID: 100002, guid: 417d7efe09660e44a8d36b78dc776bf5, type: 3}
+  - {fileID: 100002, guid: 1175087b9ddbd4a46982b68c732dab1b, type: 3}
+--- !u!114 &1683045705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1683045703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a5bd6bd42ddbd2419549c2a53b27916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planet: {fileID: 1683045703}
+--- !u!135 &1683045706
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1683045703}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1683045707
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1683045703}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &1683045708
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1683045703}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1683045709
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1683045703}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.5176244, y: 3.3, z: 4.2}
+  m_LocalScale: {x: 21, y: 21, z: 21}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

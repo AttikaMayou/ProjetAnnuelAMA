@@ -15,17 +15,17 @@ namespace LastToTheGlobe.Scripts.Management
         //TODO : Add methods to remove a CharacterExposer from the list and the directory dictionary
         
         [SerializeField]
-        public List<CharacterExposer> characterExposers;
+        public List<CharacterExposerScript> characterExposers;
     
-        private readonly Dictionary<Collider, CharacterExposer> _directory = new Dictionary<Collider, CharacterExposer>();
-        private CharacterExposer _value;
+        private readonly Dictionary<Collider, CharacterExposerScript> _directory = new Dictionary<Collider, CharacterExposerScript>();
+        private CharacterExposerScript _value;
         
         /// <summary>
         /// Get the player whom belongs to the collider
         /// </summary>
         /// <param name="col"></param>
         /// <returns></returns>
-        public CharacterExposer GetExposer(Collider col)
+        public CharacterExposerScript GetExposer(Collider col)
         {
             if (!PhotonNetwork.IsMasterClient) return null;
             if (_directory.TryGetValue(col, out _value))
@@ -42,11 +42,11 @@ namespace LastToTheGlobe.Scripts.Management
         /// Add player in the list of CharactersExposers
         /// </summary>
         /// <param name="player"></param>
-        public void AddExposer(CharacterExposer player)
+        public void AddExposer(CharacterExposerScript player)
         {
             if (characterExposers == null)
             {
-                characterExposers = new List<CharacterExposer>();
+                characterExposers = new List<CharacterExposerScript>();
             }
             
             if (!characterExposers.Contains(player) && player)
@@ -57,12 +57,12 @@ namespace LastToTheGlobe.Scripts.Management
             AddPlayerInDirectory(player);
         }
 
-        public void SyncData(CharacterExposer exposer)
+        public void SyncData(CharacterExposerScript exposer)
         {
             AddExposer(exposer);
         }
 
-        private void AddPlayerInDirectory(CharacterExposer player)
+        private void AddPlayerInDirectory(CharacterExposerScript player)
         {
             Debug.Log("add one player to directory");
             if (_directory.ContainsValue(player)) return;

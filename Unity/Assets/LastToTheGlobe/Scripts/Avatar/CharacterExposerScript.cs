@@ -1,19 +1,20 @@
-﻿using UnityEngine;
+﻿using LastToTheGlobe.Scripts.Environment.Planets;
+using UnityEngine;
 using Photon.Pun;
 
 //Auteur : Margot, Abdallah et Attika
 
 namespace LastToTheGlobe.Scripts.Avatar
 {
-    public class CharacterExposerScript : MonoBehaviour
+    public class CharacterExposerScript : Avatar
     {
         public GameObject characterRootGameObject;
         [Header("Player Control Parameters")] 
         public Rigidbody characterRb;
         public Transform characterTr;
         //public Bumper bumperScript;
-        //public AttractedScript selfPlayerAttractedScript;
-        //public AttractedScript selfOrbAttractedScript;
+        public AttractedScript selfPlayerAttractedScript;
+        public AttractedScript selfOrbAttractedScript;
         public Collider characterCollider;
         [Header("Network Parameters")]
         public PhotonView characterPhotonView;

@@ -113,6 +113,7 @@ MonoBehaviour:
   orbRb: {fileID: 5107946470935551292}
   speed: 2
   maxTimeUsing: 2
+  charged: 0
   playerTransform: {fileID: 0}
   attractedScript: {fileID: 5107946470935551255}
 --- !u!114 &5107946470935551255
@@ -168,7 +169,7 @@ MonoBehaviour:
   - {fileID: 5107946470935551176}
   - {fileID: 5107946470935551219}
   viewIdField: 0
-  InstantiationId: 8
+  InstantiationId: 23
   isRuntimeInstantiated: 0
 --- !u!114 &5107946470935551176
 MonoBehaviour:

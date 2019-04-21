@@ -14,6 +14,8 @@ namespace LastToTheGlobe.Scripts.Network
 
         [SerializeField] private PhotonView photonView;
 
+        private float _dashTime = 1.0f;
+
         private void FixedUpdate()
         {
             if (PlayerNumbering.SortedPlayers.Length <= playerIndex ||
@@ -24,6 +26,18 @@ namespace LastToTheGlobe.Scripts.Network
             
             forward = Input.GetAxis("Vertical");
             strafe = Input.GetAxis("Horizontal");
+
+            //Cooldown dash
+            if (!canDash)
+            {
+                var timer = 0.0f;
+                timer += Time.deltaTime;
+                if (timer <= _dashTime)
+                {
+                    canDash = true;
+                    return;
+                }
+            }
             
             //Movement Intent
             if (Input.GetKeyDown(KeyCode.Z))
@@ -68,20 +82,24 @@ namespace LastToTheGlobe.Scripts.Network
             
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
+                speed = runSpeed;
                 photonView.RPC("RunRPC", RpcTarget.MasterClient, true);
             }
 
             if (Input.GetKeyUp(KeyCode.LeftShift))
             {
+                speed = walkSpeed;
                 photonView.RPC("RunRPC", RpcTarget.MasterClient, false);
             }
 
-            if (Input.GetKeyDown(KeyCode.LeftAlt))
+            if (Input.GetKeyDown(KeyCode.LeftAlt) && canDash)
             {
+                speed = dashSpeed;
                 photonView.RPC("DashRPC", RpcTarget.MasterClient);
+                canDash = false;
             }
 
-            if (Input.GetKeyUp(KeyCode.Space))
+            if (Input.GetKeyUp(KeyCode.Space) && canJump)
             {
                 photonView.RPC("JumpRPC", RpcTarget.MasterClient);
             }
@@ -90,6 +108,7 @@ namespace LastToTheGlobe.Scripts.Network
             {
                 photonView.RPC("UseBumpRPC", RpcTarget.MasterClient);
             }
+            
             //Attack Intent
             if (Input.GetMouseButtonDown(0))
             {
@@ -104,12 +123,22 @@ namespace LastToTheGlobe.Scripts.Network
 
             //TODO : Add double jump
         }
-        
+
+        private void OnCollisionEnter(Collision other)
+        {
+            if (!other.gameObject.CompareTag("Planet"))
+            {
+                canJump = true;
+            }
+        }
+
+        #region RPC
         [PunRPC]
         void MoveLeftRPC(bool intent, float forwardInput, float strafeInput)
         {
             if (PhotonNetwork.IsMasterClient)
             {
+                speed = walkSpeed;
                 Debug.Log("I get the message : Move Left on this avatar : " + playerIndex);
                 MoveLeft = intent;
                 forward = forwardInput;
@@ -122,6 +151,7 @@ namespace LastToTheGlobe.Scripts.Network
         {
             if (PhotonNetwork.IsMasterClient)
             {
+                speed = walkSpeed;
                 Debug.Log("I get the message : Move Back on this avatar : " + playerIndex);
                 MoveBack = intent;
                 forward = forwardInput;
@@ -134,6 +164,7 @@ namespace LastToTheGlobe.Scripts.Network
         {
             if (PhotonNetwork.IsMasterClient)
             {
+                speed = walkSpeed;
                 Debug.Log("I get the message : Move Right on this avatar : " + playerIndex);
                 MoveRight = intent;
                 forward = forwardInput;
@@ -146,6 +177,7 @@ namespace LastToTheGlobe.Scripts.Network
         {
             if (PhotonNetwork.IsMasterClient)
             {
+                speed = walkSpeed;
                 Debug.Log("I get the message : Move Froward on this avatar : " + playerIndex);
                 MoveForward = intent;
                 forward = forwardInput;
@@ -158,6 +190,8 @@ namespace LastToTheGlobe.Scripts.Network
         {
             if (PhotonNetwork.IsMasterClient)
             {
+                Debug.Log("I get the message : Jump on this avatar : " + playerIndex);
+                canJump = false;
                 Jump = true;
             }
         }
@@ -167,6 +201,7 @@ namespace LastToTheGlobe.Scripts.Network
         {
             if (PhotonNetwork.IsMasterClient)
             {
+                Debug.Log("I get the message : Dash on this avatar : " + playerIndex);
                 Dash = true;
             }
         }
@@ -175,7 +210,8 @@ namespace LastToTheGlobe.Scripts.Network
         void RunRPC(bool intent)
         {
             if (PhotonNetwork.IsMasterClient)
-            {
+            { 
+                Debug.Log("I get the message : Run on this avatar : " + playerIndex);
                 Run = intent;
             }
         }
@@ -185,6 +221,7 @@ namespace LastToTheGlobe.Scripts.Network
         {
             if (PhotonNetwork.IsMasterClient)
             {
+                Debug.Log("I get the message : Shoot on this avatar : " + playerIndex);
                 Shoot = true;
             }
         }
@@ -194,6 +231,7 @@ namespace LastToTheGlobe.Scripts.Network
         {
             if (PhotonNetwork.IsMasterClient)
             {
+                Debug.Log("I get the message : Bump on this avatar : " + playerIndex);
                 Bump = true;
             }
         }
@@ -203,9 +241,11 @@ namespace LastToTheGlobe.Scripts.Network
         {
             if (PhotonNetwork.IsMasterClient)
             {
+                Debug.Log("I get the message : Interact on this avatar : " + playerIndex);
                 Interact = true;
             }
         }
         
+        #endregion
     }
 }

@@ -14,10 +14,6 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi
         // TODO: changer nombres de vertices en fonction des joueurs connectés
 
         [SerializeField]
-        public int seed = 0;
-        //TODO : changer seed SEULEMENT quand MasterClient click play
-
-        [SerializeField]
         [Tooltip("Volume de la map")]
         public float size = 10;
 
@@ -33,10 +29,12 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi
         //[Tooltip("Planète de victoire")]
         //private GameObject victoryPlanet;
 
+        private int seed;
 
         private void Start()
         {
-            Random.InitState(seed);
+            //TODO : vérifier que ça ne change que lorsque la room se crée et pas à chaque join room
+            seed = Random.Range(1, 200);
 
             Vertex3[] vertices = new Vertex3[NumberOfVertices];
 
