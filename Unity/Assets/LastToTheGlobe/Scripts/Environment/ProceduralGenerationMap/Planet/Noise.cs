@@ -10,7 +10,7 @@ using UnityEditor;
 //----------------------------------
 
 
-public class Noise : Editor
+public class Noise //: Editor
 {
     Noise noise = new Noise();
 
