@@ -1,50 +1,61 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 //Auteur : Margot
 
-public class PlanetFeature : MonoBehaviour
+public enum PlanetType
 {
-    [SerializeField]
-    private GameObject planet;
-    //Planet tag
+    Basic,
+    Frozen,
+    Desert
+}
 
-    string[] tags = new string[] { "basic", "frozen", "desert" };
-
-    private float scale;
-    private int indexRandom;
-
-    //TODO : transformer planet en prefab
-
-    private void Start()
+namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
+{
+    public class PlanetFeature : MonoBehaviour
     {
+        [SerializeField]
+        private GameObject planet;
         //Planet tag
-        indexRandom = (int)Random.Range(0, 3);
-        planet.tag = tags[indexRandom];
+
+        string[] tags = new string[] { "basic", "frozen", "desert" };
+
+        public PlanetType myType;
         
-        //Size Planet
-        scale = Random.Range(20f, 50f);
-        planet.transform.localScale = new Vector3(scale, scale, scale);
+        private float scale;
+        private int indexRandom;
 
-        //Planet Material
-        if (planet.CompareTag("frozen"))
-        {
-            Material matFrozen = Resources.Load("M_FrozenPlanet", typeof(Material)) as Material;
-            planet.GetComponent<Renderer>().material = matFrozen;
-        }
-        else if (planet.CompareTag("desert"))
-        {
-            Material matdesert = Resources.Load("M_DesertPlanet", typeof(Material)) as Material;
-            planet.GetComponent<Renderer>().material = matdesert;
-        }
-        else
-        {
-            Material matBasic = Resources.Load("M_BasicPlanet", typeof(Material)) as Material;
-            planet.GetComponent<Renderer>().material = matBasic;
-        }
+        //TODO : transformer planet en prefab
 
+        private void Start()
+        {
+            //Planet tag
+            indexRandom = (int)Random.Range(0, 3);
+            myType = (PlanetType)indexRandom;
+            planet.tag = tags[indexRandom];
+        
+            //Size Planet
+            scale = Random.Range(20f, 50f);
+            planet.transform.localScale = new Vector3(scale, scale, scale);
+
+            //Planet Material
+            if (myType == PlanetType.Frozen)
+            {
+                Material matFrozen = Resources.Load("M_FrozenPlanet", typeof(Material)) as Material;
+                planet.GetComponent<Renderer>().material = matFrozen;
+            }
+            else if (myType == PlanetType.Desert)
+            {
+                Material matdesert = Resources.Load("M_DesertPlanet", typeof(Material)) as Material;
+                planet.GetComponent<Renderer>().material = matdesert;
+            }
+            else
+            {
+                Material matBasic = Resources.Load("M_BasicPlanet", typeof(Material)) as Material;
+                planet.GetComponent<Renderer>().material = matBasic;
+            }
+
+
+        }
 
     }
-
 }

@@ -36,7 +36,7 @@ namespace LastToTheGlobe.Scripts.Avatar
             startMenuController.PlayerJoined += ActivateAvatar;
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
             if (!PhotonNetwork.IsMasterClient && PhotonNetwork.IsConnected)
             {
@@ -144,12 +144,6 @@ namespace LastToTheGlobe.Scripts.Avatar
             {
                 ActivateAvatarRPC(id);
             }
-
-//            //Not sure if that the best way to do it
-//            myCamera.targetPlayer = players[id].characterRootGameObject;
-//            myCamera.playerExposer = players[id];
-//            myCamera.InitializeCameraPosition();
-//            myCamera.startFollowing = true;
         }
 
         #endregion
@@ -160,6 +154,9 @@ namespace LastToTheGlobe.Scripts.Avatar
         private void ActivateAvatarRPC(int avatarId)
         {
             players[avatarId].characterRootGameObject.SetActive(true);
+            myCamera.playerExposer = players[avatarId];
+            myCamera.InitializeCameraPosition();
+            myCamera.startFollowing = true;
         }
 
         [PunRPC]
