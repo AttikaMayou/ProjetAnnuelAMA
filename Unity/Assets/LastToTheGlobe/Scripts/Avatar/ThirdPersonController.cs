@@ -128,7 +128,7 @@ namespace LastToTheGlobe.Scripts.Avatar
             if (Input.GetKeyDown(offensiveOrbInput) && _canThrowSpell && playerExposer.characterLocalPhotonView.IsMine)
             {
 
-                throwingOrb();
+                //throwingOrb();
                 _canThrowSpell = false;
                 //orb.SetActive(true);
                 //AvatarsController.Instance.LaunchBullet(playerExposer);

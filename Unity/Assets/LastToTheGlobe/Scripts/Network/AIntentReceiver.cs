@@ -19,5 +19,9 @@ namespace LastToTheGlobe.Scripts.Network
 
        public float forward;
        public float strafe;
+       public float speed = 5.0f;
+       public const float walkSpeed = 5.0f;
+       public const float runSpeed = 8.0f;
+       public const float dashSpeed = 15.0f;
     }
 }
