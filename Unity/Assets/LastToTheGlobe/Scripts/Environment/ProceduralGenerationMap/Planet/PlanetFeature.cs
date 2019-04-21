@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Auteur : Margot
+
 public class PlanetFeature : MonoBehaviour
 {
     [SerializeField]
