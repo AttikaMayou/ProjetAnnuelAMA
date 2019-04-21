@@ -40,7 +40,6 @@ public class AssetInstanciation : MonoBehaviour
 
     void Start()
     {
-
         Vector3 planetPosition = gameObject.transform.position;
 
         if (planet.CompareTag("frozen"))
@@ -59,16 +58,14 @@ public class AssetInstanciation : MonoBehaviour
             listRock = basicRock;
         }
 
-        //TODO : régler problème index trees à zero ne fait rien spawn
-
         if (numberTreesMax > 0 && numberObjectMax >0)
         {
             //Spawn Trees
             for (int i = 0; i <= numberTreesMax; i++)
             {
-                randomScaleTree = Random.Range(0.05f, 0.2f);
+                randomScaleTree = Random.Range(0.05f, 0.15f);
 
-                Vector3 spawnPosition = Random.onUnitSphere * ((planet.transform.localScale.x / 2) + listTrees[0].transform.localScale.y - 0.02f) + planet.transform.position;
+                Vector3 spawnPosition = Random.onUnitSphere * ((gameObject.transform.localScale.x / 2) + listTrees[0].transform.localScale.y - 0.02f) + planet.transform.position;
                 GameObject newtree = Instantiate(listTrees[GetRandomTree()], spawnPosition, Quaternion.identity) as GameObject;
 
                 newtree.transform.LookAt(planetPosition);

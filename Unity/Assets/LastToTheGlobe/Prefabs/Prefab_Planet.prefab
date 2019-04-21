@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 59376299386121679}
   - component: {fileID: 7133264487355679582}
   - component: {fileID: 7379251916970071378}
+  - component: {fileID: 1458994458360624214}
   - component: {fileID: 1858473706720287329}
   m_Layer: 0
-  m_Name: SM_PlanetLOD0
+  m_Name: Prefab_Planet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8676525294529552842}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 70.41888, y: 31.597057, z: -5.9876246}
+  m_LocalPosition: {x: 71.52, y: 31.597057, z: -5.9876246}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
@@ -92,6 +93,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.999
   m_Center: {x: 0.000000029802322, y: 0, z: -0.00000008940697}
+--- !u!114 &1458994458360624214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8676525294529552842}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a5bd6bd42ddbd2419549c2a53b27916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planet: {fileID: 8676525294529552842}
 --- !u!114 &1858473706720287329
 MonoBehaviour:
   m_ObjectHideFlags: 0
