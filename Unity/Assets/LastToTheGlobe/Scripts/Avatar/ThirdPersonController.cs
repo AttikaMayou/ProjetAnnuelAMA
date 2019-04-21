@@ -48,7 +48,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         private Quaternion _rotation;
         private Vector3 _jumpDir;
         private int _jumpMax = 1;
-        private bool _dashAsked = false;
+        private bool _skillAsked = false;
         private bool _runAsked = false;
 
         [Header("Orb Parameter")]
@@ -63,7 +63,13 @@ namespace LastToTheGlobe.Scripts.Avatar
         public KeyCode offensiveOrbInput;
         public KeyCode jumpInput;
         public KeyCode runInput;
-        public KeyCode dashInput;
+        public KeyCode skillInput;
+
+        private void Start()
+        {
+            _skills.characterExposer = playerExposer;
+            playerExposer.dashSpeed = dashSpeed;
+        }
 
         private void FixedUpdate () 
         {
@@ -72,6 +78,7 @@ namespace LastToTheGlobe.Scripts.Avatar
             _strafe = Input.GetAxis("Horizontal");
             Vector3 _moveDir = new Vector3(_strafe, 0.0f, _forward);
 
+            Skill();
             Running();
             if (_runAsked == true)
             {
@@ -83,10 +90,12 @@ namespace LastToTheGlobe.Scripts.Avatar
                 rb.MovePosition(rb.position + transform.TransformDirection(_moveDir) * speed * Time.deltaTime);
             }
 
-            //Dash
-            if (_dashAsked)
+            //Skill
+            if (_skillAsked)
             {
-                _dashAsked = _skills.Dash(rb, _moveDir, dashSpeed, _dashAsked);
+                playerExposer._movedir = _moveDir;
+                _skills.skillsMethods["Dash"]();
+                _skillAsked = false;
             }
             else
             {
@@ -168,11 +177,12 @@ namespace LastToTheGlobe.Scripts.Avatar
             }
         }
 
-        private void Dash()
+        private void Skill()
         {
-            if (Input.GetKeyDown(dashInput))
+            //Ce n'est pas la touche du Dash mais les Skills en générale
+            if (Input.GetKeyDown(skillInput))
             {
-                _dashAsked = true;
+                _skillAsked = true;
                 
             }
         }

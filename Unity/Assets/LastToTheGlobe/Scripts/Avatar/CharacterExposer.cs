@@ -26,6 +26,10 @@ namespace LastToTheGlobe.Scripts.Avatar
         public AttractedScript selfOrbAttractedScript;
         public Collider characterCollider;
         
+        //Character Parameters
+        public Vector3 _movedir;
+        public float dashSpeed = 30;
+        
         //Reference itself to the ColliderDirectory and CameraScript when it spawns 
         private void Awake()
         {
