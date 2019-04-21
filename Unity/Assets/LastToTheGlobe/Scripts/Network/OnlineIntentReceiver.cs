@@ -14,6 +14,8 @@ namespace LastToTheGlobe.Scripts.Network
 
         [SerializeField] private PhotonView photonView;
 
+        private float _dashTime = 1.0f;
+
         private void FixedUpdate()
         {
             if (PlayerNumbering.SortedPlayers.Length <= playerIndex ||
@@ -24,6 +26,16 @@ namespace LastToTheGlobe.Scripts.Network
             
             forward = Input.GetAxis("Vertical");
             strafe = Input.GetAxis("Horizontal");
+
+            if (!canDash)
+            {
+                var timer = 0.0f;
+                timer += Time.deltaTime;
+                if (timer <= _dashTime)
+                {
+                    canDash = true;
+                }
+            }
             
             //Movement Intent
             if (Input.GetKeyDown(KeyCode.Z))
@@ -68,17 +80,21 @@ namespace LastToTheGlobe.Scripts.Network
             
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
+                speed = runSpeed;
                 photonView.RPC("RunRPC", RpcTarget.MasterClient, true);
             }
 
             if (Input.GetKeyUp(KeyCode.LeftShift))
             {
+                speed = walkSpeed;
                 photonView.RPC("RunRPC", RpcTarget.MasterClient, false);
             }
 
-            if (Input.GetKeyDown(KeyCode.LeftAlt))
+            if (Input.GetKeyDown(KeyCode.LeftAlt) && canDash)
             {
+                speed = dashSpeed;
                 photonView.RPC("DashRPC", RpcTarget.MasterClient);
+                canDash = false;
             }
 
             if (Input.GetKeyUp(KeyCode.Space))
@@ -171,7 +187,6 @@ namespace LastToTheGlobe.Scripts.Network
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                speed = dashSpeed;
                 Dash = true;
             }
         }
@@ -181,7 +196,6 @@ namespace LastToTheGlobe.Scripts.Network
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                speed = intent ? runSpeed : walkSpeed;
                 Run = intent;
             }
         }
