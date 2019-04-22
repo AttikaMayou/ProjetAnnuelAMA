@@ -14,15 +14,19 @@ namespace LastToTheGlobe.Scripts.Network
        public bool Jump { get; set; }
        public bool Dash { get; set; }
        public bool Shoot { get; set; }
+       
+       public bool ShootLoaded { get; set; }
        public bool Bump { get; set; }
        public bool Interact { get; set; }
 
        public float forward = 0;
        public float strafe = 0;
        public float speed = 5.0f;
+       public float loadShotValue = 0.0f;
 
-       protected bool canDash = true;
-       protected bool canJump = true;
+       public bool canDash = true;
+       public bool canJump = true;
+       public bool canShoot = true;
        protected const float walkSpeed = 5.0f;
        protected const float runSpeed = 8.0f;
        protected const float dashSpeed = 15.0f;
