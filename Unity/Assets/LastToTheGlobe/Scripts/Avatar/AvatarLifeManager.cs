@@ -11,16 +11,15 @@ namespace LastToTheGlobe.Scripts.Avatar
 {
     public class AvatarLifeManager : MonoBehaviour
     {
-        private ActivateObjects defeat = new ActivateObjects();
+        private ActivateObjects defeat;
+        private ActivateObjects lifeUI;
 
         [Header("Balance Settings")] 
         public int lifeStartingPoint = 100;
         public int attackDmg;
-
         public bool inLife = true;
-        
         public int myLife = 100;
-        public CharacterExposerScript myExposer;
+        private CharacterExposerScript myExposer;
 
         [SerializeField]
         private Text textHealth;
@@ -31,7 +30,8 @@ namespace LastToTheGlobe.Scripts.Avatar
         private void Awake()
         {
             myLife = lifeStartingPoint;
-            myExposer.defeatUI.Deactivation();
+            //defeat.Deactivation();
+            //myExposer.lifeUI.Activation();
         }
 
         private void OnCollisionEnter(Collision other)
@@ -68,14 +68,14 @@ namespace LastToTheGlobe.Scripts.Avatar
                 else
                 {
                     myLife -= 10;
-                    textHealth.text = "Health :" + myLife;
+                    textHealth.text = "Health : " + myLife;
                 }
             }
 
             if (myLife <= 0)
             {
                 inLife = false;
-                myExposer.defeatUI.Activation();
+                //myExposer.defeatUI.Activation();
             }
         }
 
