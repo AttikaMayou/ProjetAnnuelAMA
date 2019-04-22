@@ -1,4 +1,5 @@
 ﻿using LastToTheGlobe.Scripts.Environment.Planets;
+using LastToTheGlobe.Scripts.UI;
 using UnityEngine;
 using Photon.Pun;
 
@@ -21,6 +22,13 @@ namespace LastToTheGlobe.Scripts.Avatar
         public PhotonRigidbodyView characterRbPhotonView;
         [Header("Camera Control Parameters")] 
         public Transform cameraRotateX;
+
+        [Header("UI references")] 
+        public ActivateObjects inventoryUI;
+        public ActivateObjects lifeUI;
+        public ActivateObjects victoryUI;
+        public ActivateObjects defeatUI;
+        
 
         //Reference itself to the ColliderDirectory and CameraScript when activated
         private void OnEnable()
