@@ -16,6 +16,8 @@ namespace LastToTheGlobe.Scripts.Avatar
 {
     public class AvatarsController : MonoBehaviour
     {
+        public bool debug = true;
+        
         [Header("Photon and Replication Parameters")] 
         [SerializeField] private CharacterExposerScript[] players;
         [SerializeField] private AIntentReceiver[] onlineIntentReceivers;
@@ -37,7 +39,6 @@ namespace LastToTheGlobe.Scripts.Avatar
         //spawn point tab
         private GameObject[] _spawnPointInPlanet;
         
-        
         [SerializeField] private CloudPlanet environmentController;
         private int _seed;
         
@@ -58,12 +59,6 @@ namespace LastToTheGlobe.Scripts.Avatar
             startMenuController.SetCamera += SetupCamera;
             FindAllSpawnPoint();
             startMenuController.GameCanStart += LaunchGameRoom;
-        }
-        
-        private void Start() 
-        {
-            if (!PhotonNetwork.IsMasterClient) return;
-            _seed = environmentController.GetSeed();
         }
 
         private void FixedUpdate()
@@ -142,6 +137,9 @@ namespace LastToTheGlobe.Scripts.Avatar
 
         #region Private Methods
 
+        /// <summary>
+        /// Set the intentReceivers tab
+        /// </summary>
         private void ChooseAndSubscribeToIntentReceivers()
         {
             _activatedIntentReceivers = onlineIntentReceivers;
@@ -149,6 +147,9 @@ namespace LastToTheGlobe.Scripts.Avatar
             gameStarted = true;
         }
 
+        /// <summary>
+        /// Activate the intentReceivers and set defaults values
+        /// </summary>
         private void EnableIntentReceivers()
         {
             if (_activatedIntentReceivers == null)
@@ -203,6 +204,9 @@ namespace LastToTheGlobe.Scripts.Avatar
             myCamera.playerExposer = players[id];
             myCamera.InitializeCameraPosition();
             myCamera.startFollowing = true;
+            _seed = environmentController.GetSeed();
+            if(debug) Debug.Log("Seed on AvatarsController is : " + _seed);
+            environmentController.SetSeed(_seed);
         }
 
         /// <summary>

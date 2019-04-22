@@ -3072,7 +3072,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97b499ac0087c6a48bf103bec179e7d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NumberOfVertices: 30
+  debug: 1
+  numberOfVertices: 30
   size: 250
   basicPlanet: {fileID: 1683045703}
   spawnPlanet: {fileID: 2002198910}
@@ -3173,6 +3174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3bd8c4922724214a931ba95f9398673, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debug: 1
   players:
   - {fileID: 4032840750276786282}
   - {fileID: 1508058190}
@@ -3203,8 +3205,9 @@ MonoBehaviour:
   gameStarted: 0
   onLobby: 0
   gameLaunched: 0
-  nbMinPlayers: 3
+  nbMinPlayers: 2
   countdown: 10
+  environmentController: {fileID: 997781115}
 --- !u!114 &1023363635
 MonoBehaviour:
   m_ObjectHideFlags: 0
