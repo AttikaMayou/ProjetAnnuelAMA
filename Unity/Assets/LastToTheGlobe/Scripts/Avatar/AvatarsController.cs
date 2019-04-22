@@ -222,9 +222,10 @@ namespace LastToTheGlobe.Scripts.Avatar
         private void ActivateAvatarRPC(int avatarId)
         {
             players[avatarId].characterRootGameObject.SetActive(true);
-//            myCamera.playerExposer = players[avatarId];
-//            myCamera.InitializeCameraPosition();
-//            myCamera.startFollowing = true;
+            if (photonView.IsMine != players[avatarId].characterPhotonView) return;
+            myCamera.playerExposer = players[avatarId];
+            myCamera.InitializeCameraPosition();
+            myCamera.startFollowing = true;
         }
 
         [PunRPC]
