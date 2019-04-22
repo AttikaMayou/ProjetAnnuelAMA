@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
 //Auteur : Margot
+//retouche : Attika
 
 public enum PlanetType
 {
@@ -31,7 +32,7 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
             //Planet tag
             indexRandom = (int)Random.Range(0, 3);
             myType = (PlanetType)indexRandom;
-            planet.tag = tags[indexRandom];
+            //planet.tag = tags[indexRandom];
         
             //Size Planet
             scale = Random.Range(20f, 50f);
