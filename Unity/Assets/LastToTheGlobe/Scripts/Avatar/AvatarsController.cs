@@ -234,12 +234,12 @@ namespace LastToTheGlobe.Scripts.Avatar
         private IEnumerator CountdownBeforeSwitchingScene(float time)
         {
             yield return new WaitForSeconds(time);
-            LevelLoadingManager.Instance.SwitchToScene(LastToTheGlobeScene.GameRoom);
+            //LevelLoadingManager.Instance.SwitchToScene(LastToTheGlobeScene.GameRoom);
 
             //Teleport player in planet
             for(int i = 0; i<= players.Length; i++)
             {
-                players[i].characterTr.position = _spawnPointInPlanet[i].transform.position;
+                players[i].characterRootGameObject.transform.position = _spawnPointInPlanet[i].transform.position;
             }
 
         }
