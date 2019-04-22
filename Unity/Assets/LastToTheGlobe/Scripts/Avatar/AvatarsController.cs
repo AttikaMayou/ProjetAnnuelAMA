@@ -171,6 +171,15 @@ namespace LastToTheGlobe.Scripts.Avatar
                 {
                     
                 }
+
+                if (intent.canJump)
+                {
+                    player.selfPlayerAttractedScript.attractor.Attractor(rb, tr, -2600.0f);
+                }
+                else
+                {
+                    player.selfPlayerAttractedScript.attractor.Attractor(rb, tr, player.selfPlayerAttractedScript.selfGravity);
+                }
                 
                 rb.MovePosition(rb.position + tr.TransformDirection(moveIntent) * intent.speed * Time.deltaTime);
                 tr.Rotate(new Vector3(0, intent.rotationOnX, 0));

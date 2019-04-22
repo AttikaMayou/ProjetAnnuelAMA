@@ -10,8 +10,7 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
 	{
 		[SerializeField]
 		private Rigidbody attractedRb;
-		[SerializeField]
-		private float selfGravity = -10f;
+		public float selfGravity = -10.0f;
 		
 		//Bool parameter that indicate if the player is on ground or not
 		[HideInInspector]

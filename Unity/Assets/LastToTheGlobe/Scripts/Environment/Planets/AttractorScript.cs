@@ -25,7 +25,7 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
 
             attractedRb.AddForce(gravityUp * gravity);
 
-            //Sync the vertical axe's player (up) with the gravity direction chosen before=
+            //Sync the vertical axe's player (up) with the gravity direction chosen before
             var rotation = body.rotation;
             var targetRotation = Quaternion.FromToRotation(bodyUp, gravityUp) * rotation;
             rotation = Quaternion.Slerp(rotation, targetRotation, speedRotation * Time.deltaTime);
@@ -43,7 +43,7 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
 
             //exposer.thirdPersonController.attractor = this;
             exposer.selfPlayerAttractedScript.attractor = this;
-            exposer.selfOrbAttractedScript.attractor = this;
+            //exposer.selfOrbAttractedScript.attractor = this;
         }
 
         private void OnTriggerExit(Collider coll)
@@ -55,7 +55,7 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
             
             //exposer.thirdPersonController.attractor = null;
             exposer.selfPlayerAttractedScript.attractor = null;
-            exposer.selfOrbAttractedScript.attractor = null;
+            //exposer.selfOrbAttractedScript.attractor = null;
         }
     }
 }
