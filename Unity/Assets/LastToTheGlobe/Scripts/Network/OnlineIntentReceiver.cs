@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System;
+using System.Runtime.CompilerServices;
 using Photon.Pun;
 using Photon.Pun.UtilityScripts;
 using UnityEngine;
@@ -16,6 +17,8 @@ namespace LastToTheGlobe.Scripts.Network
 
         private float _dashTime = 1.0f;
 
+        public bool debug = true;
+        
         private void Update()
         {
             if (PlayerNumbering.SortedPlayers.Length <= playerIndex ||
@@ -40,7 +43,7 @@ namespace LastToTheGlobe.Scripts.Network
             }
             
             //Movement Intent
-            if (Input.GetKeyDown(KeyCode.Z))
+            if (Input.GetKeyDown(KeyCode.Z))// && Math.Abs(forward) <  0.1f && Math.Abs(strafe) < 0.1f)
             {
                 photonView.RPC("MoveForwardRPC", RpcTarget.MasterClient, true, forward, strafe);
             }
@@ -50,7 +53,7 @@ namespace LastToTheGlobe.Scripts.Network
                 photonView.RPC("MoveForwardRPC", RpcTarget.MasterClient, false, 0, 0);
             }
 
-            if (Input.GetKeyDown(KeyCode.S))
+            if (Input.GetKeyDown(KeyCode.S))// && Math.Abs(forward) <  0.1f && Math.Abs(strafe) < 0.1f)
             {
                 photonView.RPC("MoveBackRPC", RpcTarget.MasterClient, true, forward, strafe);
             }
@@ -60,7 +63,7 @@ namespace LastToTheGlobe.Scripts.Network
                 photonView.RPC("MoveBackRPC", RpcTarget.MasterClient, false, 0, 0);
             }
 
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.Q))// && Math.Abs(forward) <  0.1f && Math.Abs(strafe) < 0.1f)
             {
                 photonView.RPC("MoveLeftRPC", RpcTarget.MasterClient, true, forward, strafe);
             }
@@ -70,7 +73,7 @@ namespace LastToTheGlobe.Scripts.Network
                 photonView.RPC("MoveLeftRPC", RpcTarget.MasterClient, false, 0, 0);
             }
 
-            if (Input.GetKeyDown(KeyCode.D))
+            if (Input.GetKeyDown(KeyCode.D))// && Math.Abs(forward) <  0.1f && Math.Abs(strafe) < 0.1f)
             {
                 photonView.RPC("MoveRightRPC", RpcTarget.MasterClient, true, forward, strafe);
             }
@@ -135,12 +138,33 @@ namespace LastToTheGlobe.Scripts.Network
 
         #region RPC
         [PunRPC]
+        void MoveLeftRPC(bool intent, int forwardInput, int strafeInput)
+        {
+            if (PhotonNetwork.IsMasterClient)
+            {
+                speed = walkSpeed;
+                if (debug)
+                {
+                    Debug.Log("I get the message : Move Left on this avatar : " + playerIndex);
+                    Debug.Log("Strafe value : " + strafeInput + " ; Forward value : " + forwardInput);
+                }
+                MoveLeft = intent;
+                forward = forwardInput;
+                strafe = strafeInput;
+            }
+        }
+        
+        [PunRPC]
         void MoveLeftRPC(bool intent, float forwardInput, float strafeInput)
         {
             if (PhotonNetwork.IsMasterClient)
             {
                 speed = walkSpeed;
-                Debug.Log("I get the message : Move Left on this avatar : " + playerIndex);
+                if (debug)
+                {
+                    Debug.Log("I get the message : Move Left on this avatar : " + playerIndex);
+                    Debug.Log("Strafe value : " + strafeInput + " ; Forward value : " + forwardInput);
+                }
                 MoveLeft = intent;
                 forward = forwardInput;
                 strafe = strafeInput;
@@ -148,12 +172,33 @@ namespace LastToTheGlobe.Scripts.Network
         }
 
         [PunRPC]
+        void MoveBackRPC(bool intent, int forwardInput, int strafeInput)
+        {
+            if (PhotonNetwork.IsMasterClient)
+            {
+                speed = walkSpeed;
+                if (debug)
+                {
+                    Debug.Log("I get the message : Move Left on this avatar : " + playerIndex);
+                    Debug.Log("Strafe value : " + strafeInput + " ; Forward value : " + forwardInput);
+                }
+                MoveBack = intent;
+                forward = forwardInput;
+                strafe = strafeInput;
+            }
+        }
+        
+        [PunRPC]
         void MoveBackRPC(bool intent, float forwardInput, float strafeInput)
         {
             if (PhotonNetwork.IsMasterClient)
             {
                 speed = walkSpeed;
-                Debug.Log("I get the message : Move Back on this avatar : " + playerIndex);
+                if (debug)
+                {
+                    Debug.Log("I get the message : Move Left on this avatar : " + playerIndex);
+                    Debug.Log("Strafe value : " + strafeInput + " ; Forward value : " + forwardInput);
+                }
                 MoveBack = intent;
                 forward = forwardInput;
                 strafe = strafeInput;
@@ -161,12 +206,33 @@ namespace LastToTheGlobe.Scripts.Network
         }
 
         [PunRPC]
+        void MoveRightRPC(bool intent, int forwardInput, int strafeInput)
+        {
+            if (PhotonNetwork.IsMasterClient)
+            {
+                speed = walkSpeed;
+                if (debug)
+                {
+                    Debug.Log("I get the message : Move Left on this avatar : " + playerIndex);
+                    Debug.Log("Strafe value : " + strafeInput + " ; Forward value : " + forwardInput);
+                }
+                MoveRight = intent;
+                forward = forwardInput;
+                strafe = strafeInput;
+            }
+        }
+        
+        [PunRPC]
         void MoveRightRPC(bool intent, float forwardInput, float strafeInput)
         {
             if (PhotonNetwork.IsMasterClient)
             {
                 speed = walkSpeed;
-                Debug.Log("I get the message : Move Right on this avatar : " + playerIndex);
+                if (debug)
+                {
+                    Debug.Log("I get the message : Move Left on this avatar : " + playerIndex);
+                    Debug.Log("Strafe value : " + strafeInput + " ; Forward value : " + forwardInput);
+                }
                 MoveRight = intent;
                 forward = forwardInput;
                 strafe = strafeInput;
@@ -174,12 +240,33 @@ namespace LastToTheGlobe.Scripts.Network
         }
 
         [PunRPC]
+        void MoveForwardRPC(bool intent, int forwardInput, int strafeInput)
+        {
+            if (PhotonNetwork.IsMasterClient)
+            {
+                speed = walkSpeed;
+                if (debug)
+                {
+                    Debug.Log("I get the message : Move Left on this avatar : " + playerIndex);
+                    Debug.Log("Strafe value : " + strafeInput + " ; Forward value : " + forwardInput);
+                }
+                MoveForward = intent;
+                forward = forwardInput;
+                strafe = strafeInput;
+            }
+        }
+        
+        [PunRPC]
         void MoveForwardRPC(bool intent, float forwardInput, float strafeInput)
         {
             if (PhotonNetwork.IsMasterClient)
             {
                 speed = walkSpeed;
-                Debug.Log("I get the message : Move Froward on this avatar : " + playerIndex);
+                if (debug)
+                {
+                    Debug.Log("I get the message : Move Left on this avatar : " + playerIndex);
+                    Debug.Log("Strafe value : " + strafeInput + " ; Forward value : " + forwardInput);
+                }
                 MoveForward = intent;
                 forward = forwardInput;
                 strafe = strafeInput;
@@ -191,7 +278,10 @@ namespace LastToTheGlobe.Scripts.Network
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                Debug.Log("I get the message : Jump on this avatar : " + playerIndex);
+                if (debug)
+                {
+                    Debug.Log("I get the message : Move Left on this avatar : " + playerIndex);
+                }
                 canJump = false;
                 Jump = true;
             }
@@ -202,7 +292,10 @@ namespace LastToTheGlobe.Scripts.Network
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                Debug.Log("I get the message : Dash on this avatar : " + playerIndex);
+                if (debug)
+                {
+                    Debug.Log("I get the message : Move Left on this avatar : " + playerIndex);
+                }
                 Dash = true;
             }
         }
@@ -212,7 +305,10 @@ namespace LastToTheGlobe.Scripts.Network
         {
             if (PhotonNetwork.IsMasterClient)
             { 
-                Debug.Log("I get the message : Run on this avatar : " + playerIndex);
+                if (debug)
+                {
+                    Debug.Log("I get the message : Move Left on this avatar : " + playerIndex);
+                }
                 Run = intent;
             }
         }
@@ -222,7 +318,10 @@ namespace LastToTheGlobe.Scripts.Network
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                Debug.Log("I get the message : Shoot on this avatar : " + playerIndex);
+                if (debug)
+                {
+                    Debug.Log("I get the message : Move Left on this avatar : " + playerIndex);
+                }
                 Shoot = true;
             }
         }
@@ -232,7 +331,10 @@ namespace LastToTheGlobe.Scripts.Network
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                Debug.Log("I get the message : Bump on this avatar : " + playerIndex);
+                if (debug)
+                {
+                    Debug.Log("I get the message : Move Left on this avatar : " + playerIndex);
+                }
                 Bump = true;
             }
         }
@@ -242,7 +344,10 @@ namespace LastToTheGlobe.Scripts.Network
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                Debug.Log("I get the message : Interact on this avatar : " + playerIndex);
+                if (debug)
+                {
+                    Debug.Log("I get the message : Move Left on this avatar : " + playerIndex);
+                }
                 Interact = true;
             }
         }
