@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace LastToTheGlobe.Scripts.Inventory
 {
-    public class Skills : ObjectScript
+    public class Skills : ScriptableObject
     {
         public delegate void SkillsMethod();
 
@@ -28,7 +28,7 @@ namespace LastToTheGlobe.Scripts.Inventory
 
         private void Dash()
         {
-            rb.MovePosition(rb.position + transform.TransformDirection(characterExposer._movedir) * characterExposer.dashSpeed * Time.deltaTime);
+            rb.MovePosition(rb.position + rb.transform.TransformDirection(characterExposer._movedir) * characterExposer.dashSpeed * Time.deltaTime);
         }
     }
 }

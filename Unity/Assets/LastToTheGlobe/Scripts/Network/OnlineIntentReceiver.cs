@@ -124,7 +124,6 @@ namespace LastToTheGlobe.Scripts.Network
                 photonView.RPC("InteractRPC", RpcTarget.MasterClient);
             }
 
-            Debug.Log("I get the message : Move Foward on this avatar : " + playerIndex);
             //TODO : Add double jump
         }
 

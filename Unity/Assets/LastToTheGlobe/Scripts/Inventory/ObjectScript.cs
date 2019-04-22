@@ -4,7 +4,7 @@
 
 namespace LastToTheGlobe.Scripts.Inventory
 {
-    public class ObjectScript : MonoBehaviour
+    public class ObjectScript : ScriptableObject
     {
         public bool isInInventory;
         public bool isConsume;

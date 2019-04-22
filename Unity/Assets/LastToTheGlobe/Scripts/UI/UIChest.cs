@@ -9,14 +9,16 @@ namespace LastToTheGlobe.Scripts.Inventory
     {
         private bool openChest = false;
         private bool canOpenChest = false;
-        [SerializeField] private Image pressE;
-        [SerializeField] private Canvas playerInventory;
-        [SerializeField] private Canvas chestInventory;
-
+        [SerializeField] public Canvas pressE;
+        [SerializeField] public Canvas playerInventory;
+        [SerializeField] public Canvas chestInventory;
+        [HideInInspector] public bool playerOpenChest = false;
+        
         void Start()
         {
-            playerInventory.enabled = false;
-            chestInventory.enabled = false;
+            pressE.gameObject.SetActive(false);
+            playerInventory.gameObject.SetActive(false);
+            chestInventory.gameObject.SetActive(false);
             openChest = false;
             canOpenChest = false;
         }
@@ -24,30 +26,17 @@ namespace LastToTheGlobe.Scripts.Inventory
         void Update()
         {
 
-            if (canOpenChest)
-            {
-                pressE.enabled = true;
-            }
-            else
-            {
-                pressE.enabled = false;
-            }
-
-            if (Input.GetKeyDown(KeyCode.E))
+            if (playerOpenChest)
             {
                 if(canOpenChest)
                 {
-                    playerInventory.enabled = true;
-                    chestInventory.enabled = true;
+                    print("Hello");
+                    
                     canOpenChest = false;
-                    pressE.enabled = false;
                     openChest = true;
                 }
                 else if(!canOpenChest)
                 {
-                    playerInventory.enabled = false;
-                    chestInventory.enabled = false;
-                    pressE.enabled = true;
                     canOpenChest = true;
                     openChest = false;
                 }
@@ -55,19 +44,32 @@ namespace LastToTheGlobe.Scripts.Inventory
         }
 
 
-        void OnTriggerEnter(Collider other)
+        void OnCollisionEnter(Collision other)
         {
+            if (other.gameObject.CompareTag("Player"))
+            {
+                other.gameObject.SendMessage("CloseToChest", this);
                 MeshRenderer meshRend = GetComponent<MeshRenderer>();
                 meshRend.material.color = Color.green;
                 //Affiche touche E
                 canOpenChest = true;
+                
+            }
+                
         }
-
-        void OnTriggerExit(Collider other)
+        
+        void OnCollisionExit(Collision other)
         {
-            MeshRenderer meshRend = GetComponent<MeshRenderer>();
-            meshRend.material.color = Color.magenta;
-            canOpenChest = false;
+            if (other.gameObject.CompareTag("Player"))
+            {
+                other.gameObject.SendMessage("AwayFromChest", this);
+                MeshRenderer meshRend = GetComponent<MeshRenderer>();
+                meshRend.material.color = Color.magenta;
+                canOpenChest = false;
+                pressE.gameObject.SetActive(false);
+                
+            }
+            
         }
     }
 }

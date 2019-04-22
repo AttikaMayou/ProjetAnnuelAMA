@@ -64,6 +64,11 @@ namespace LastToTheGlobe.Scripts.Avatar
         public KeyCode jumpInput;
         public KeyCode runInput;
         public KeyCode skillInput;
+
+        [Header("Chest")] 
+        private bool _nearChest = false;
+
+        private bool _chestIsOpened = false;
         
         
         private void Start()
@@ -91,7 +96,17 @@ namespace LastToTheGlobe.Scripts.Avatar
                 rb.MovePosition(rb.position + transform.TransformDirection(_moveDir) * speed * Time.deltaTime);
             }
 
-            //Skill
+            if (Input.GetKeyDown(KeyCode.E) && _nearChest)
+            {    
+                
+                print("CHEST IS OPEN");
+            }
+            print(_nearChest);
+
+            
+                
+/*====================================================Skill==========================================================================*/
+
             if (_skillAsked)
             {
                 foreach (ObjectScript item in playerExposer.inventoryScript.objectsInInventory)
@@ -105,10 +120,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                 }
                 
             }
-            else
-            {
-                rb.MovePosition(rb.position + transform.TransformDirection(_moveDir) * speed * Time.deltaTime);
-            }
+/*====================================================================================================================================*/
             
 
             //Rotate the character so the camera can follow
@@ -174,8 +186,21 @@ namespace LastToTheGlobe.Scripts.Avatar
                 _isJumping = false;
                 attractedScript.isGrounded = false;
             }
-            
         }
+
+
+        public void CloseToChest(UIChest chest)
+        {
+            _nearChest = true;
+        }
+
+        public void AwayFromChest(UIChest chest)
+        {
+            
+            _nearChest = false;
+        }
+
+        
 
         private void Running()
         {
@@ -219,6 +244,8 @@ namespace LastToTheGlobe.Scripts.Avatar
                 _launched = false;
             }
         }
+
+        
 
 /*
         private void Jump()
