@@ -24,7 +24,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         private float rotationSpeed = 5.0f;
 
         [Header("Skills & Bonus")] 
-        private Skills _skills = new Skills();
+        private Skills _skills = ScriptableObject.CreateInstance<Skills>();
         private Bonus _bonus = new Bonus();
 
         [Header("Movement Parameters")]
