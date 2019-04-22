@@ -8,6 +8,8 @@ namespace LastToTheGlobe.Scripts.Camera
 {
     public class CameraControllerScript : MonoBehaviour
     {
+        public bool debug = true;
+        
         private Vector3 _cameraOffsetOriginal;
 
         private Transform _myTr;
@@ -28,6 +30,7 @@ namespace LastToTheGlobe.Scripts.Camera
 
         public void InitializeCameraPosition()
         {
+            if(debug) Debug.Log("initialization of the camera");
             //cameraOffset = Distance between the camera and player
             if (!playerExposer)
             {

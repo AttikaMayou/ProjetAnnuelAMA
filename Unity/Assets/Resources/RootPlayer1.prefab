@@ -107,7 +107,6 @@ GameObject:
   - component: {fileID: 4032840751649765454}
   - component: {fileID: 823833752871783993}
   - component: {fileID: 1014064465940019215}
-  - component: {fileID: 7129656405552248134}
   - component: {fileID: 3778464610303677338}
   m_Layer: 0
   m_Name: RootPlayer1
@@ -169,8 +168,8 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 4032840751649765441}
-  viewIdField: 0
-  InstantiationId: 7
+  viewIdField: 8
+  InstantiationId: 8
   isRuntimeInstantiated: 0
 --- !u!114 &4032840751649765441
 MonoBehaviour:
@@ -210,7 +209,6 @@ MonoBehaviour:
   characterPhotonView: {fileID: 4032840751649765452}
   characterRbPhotonView: {fileID: 4032840751649765441}
   cameraRotatorX: {fileID: 7674971413621576116}
-  inventoryUI: {fileID: 0}
   lifeUI: {fileID: 0}
   victoryUI: {fileID: 0}
   defeatUI: {fileID: 0}
@@ -251,21 +249,6 @@ MonoBehaviour:
   myLife: 100
   textHealth: {fileID: 0}
   textHeathOther: {fileID: 0}
---- !u!114 &7129656405552248134
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4032840751649765450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf1918ffa8f669d448487e6250e654a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerExposer: {fileID: 4032840751649765454}
-  targetPlayer: {fileID: 4032840751649765450}
-  startFollowing: 0
 --- !u!114 &3778464610303677338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,8 +262,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerExposer: {fileID: 4032840751649765454}
-  myCamera: {fileID: 7129656405552248134}
+  myCamera: {fileID: 0}
   rotationSpeed: 5
+  speed: 5
 --- !u!1 &6889678066327008207
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,7 +292,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6889678066327008207}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.342, y: 0.382, z: -0.03}
+  m_LocalPosition: {x: 0.41, y: 0.382, z: -0.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4032840751649765453}
@@ -409,11 +393,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4032840751649765453}
     m_Modifications:
-    - target: {fileID: 5107946470935551850, guid: 501d9991fbb3e6b45b291e93d1d426dc,
-        type: 3}
-      propertyPath: m_Name
-      value: OffensiveOrb
-      objectReference: {fileID: 0}
     - target: {fileID: 5107946470935551621, guid: 501d9991fbb3e6b45b291e93d1d426dc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -469,6 +448,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5107946470935551850, guid: 501d9991fbb3e6b45b291e93d1d426dc,
+        type: 3}
+      propertyPath: m_Name
+      value: OffensiveOrb
+      objectReference: {fileID: 0}
     - target: {fileID: 5107946470935551248, guid: 501d9991fbb3e6b45b291e93d1d426dc,
         type: 3}
       propertyPath: playerTransform
@@ -477,12 +461,12 @@ PrefabInstance:
     - target: {fileID: 5107946470935551180, guid: 501d9991fbb3e6b45b291e93d1d426dc,
         type: 3}
       propertyPath: viewIdField
-      value: 0
+      value: 31
       objectReference: {fileID: 0}
     - target: {fileID: 5107946470935551180, guid: 501d9991fbb3e6b45b291e93d1d426dc,
         type: 3}
       propertyPath: InstantiationId
-      value: 8
+      value: 31
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 501d9991fbb3e6b45b291e93d1d426dc, type: 3}
