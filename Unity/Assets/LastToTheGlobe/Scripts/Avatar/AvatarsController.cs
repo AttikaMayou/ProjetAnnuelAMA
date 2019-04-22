@@ -32,6 +32,8 @@ namespace LastToTheGlobe.Scripts.Avatar
         [SerializeField] private int nbMinPlayers = 2;
         [SerializeField] private float countdown = 10.0f;
         private float _countdownStartValue;
+        //spawn point tab
+        private GameObject[] _spawnPointInPlanet;
         
         #region MonoBehaviour Callbacks
 
@@ -47,6 +49,7 @@ namespace LastToTheGlobe.Scripts.Avatar
             startMenuController.OnlinePlayReady += ChooseAndSubscribeToIntentReceivers;
             startMenuController.PlayerJoined += ActivateAvatar;
             startMenuController.SetCamera += SetupCamera;
+            FindAllSpawnPoint();
             startMenuController.GameCanStart += LaunchGameRoom;
         }
 
@@ -232,6 +235,18 @@ namespace LastToTheGlobe.Scripts.Avatar
         {
             yield return new WaitForSeconds(time);
             LevelLoadingManager.Instance.SwitchToScene(LastToTheGlobeScene.GameRoom);
+
+            //Teleport player in planet
+            for(int i = 0; i<= players.Length; i++)
+            {
+                players[i].characterTr.position = _spawnPointInPlanet[i].transform.position;
+            }
+
+        }
+
+        private void FindAllSpawnPoint()
+        {
+            _spawnPointInPlanet = GameObject.FindGameObjectsWithTag("SpawnPlanet");
         }
 
         #endregion
