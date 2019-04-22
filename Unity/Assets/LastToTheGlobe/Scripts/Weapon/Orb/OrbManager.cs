@@ -18,7 +18,7 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb
         public bool charged;
         
         [Header("Player and Attraction References")]
-        [SerializeField] private Transform playerTransform;
+        public Transform playerTransform;
         [SerializeField] private AttractedScript attractedScript;
         private Vector3 _centerPointAttractor;
 

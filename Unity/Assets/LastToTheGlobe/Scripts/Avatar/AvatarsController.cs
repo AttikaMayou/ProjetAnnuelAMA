@@ -124,6 +124,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                 if (intent.Shoot)
                 {
                     var orb = GetOrbsWithinPool();
+                    orb.playerTransform = player.characterTr;
                     orb.gameObject.SetActive(true);
                     intent.canShoot = true;
                 }
@@ -131,6 +132,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                 if (intent.ShootLoaded)
                 {
                     var orb = GetOrbsWithinPool();
+                    orb.playerTransform = player.characterTr;
                     orb.charged = true;
                     orb.gameObject.SetActive(true);
                     intent.canShoot = true;
