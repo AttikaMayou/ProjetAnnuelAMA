@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 823833752871783993}
   - component: {fileID: 1014064465940019215}
   - component: {fileID: 3778464610303677338}
+  - component: {fileID: 2230906660700671784}
   m_Layer: 0
   m_Name: RootPlayer1
   m_TagString: Player
@@ -261,10 +262,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbbdb5ad2d0824545ade9680df13d120, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debug: 1
   playerExposer: {fileID: 4032840751649765454}
-  myCamera: {fileID: 0}
   rotationSpeed: 5
   speed: 5
+--- !u!136 &2230906660700671784
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4032840751649765450}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6889678066327008207
 GameObject:
   m_ObjectHideFlags: 0
@@ -283,7 +298,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2413772523093540992
 Transform:
   m_ObjectHideFlags: 0

@@ -27,7 +27,9 @@ namespace LastToTheGlobe.Scripts.Management
         /// <returns></returns>
         public CharacterExposerScript GetExposer(Collider col)
         {
+            Debug.Log("trying to find the player from this collider : " + col);
             if (!PhotonNetwork.IsMasterClient) return null;
+            Debug.Log("I am the master");
             if (_directory.TryGetValue(col, out _value))
             {
                 return _value;

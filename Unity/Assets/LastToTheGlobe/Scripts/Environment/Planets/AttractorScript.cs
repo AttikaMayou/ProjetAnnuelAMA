@@ -9,8 +9,10 @@ using UnityEngine.Serialization;
 
 namespace LastToTheGlobe.Scripts.Environment.Planets
 {
-    public class AttractorScript : PlanetExposerScript {
-
+    public class AttractorScript : PlanetExposerScript
+    {
+        public bool debug = true;
+        
         public float speedRotation = 10f;
         public Vector3 dirForce;
         private AvatarExposerScript _currentAvatar;
@@ -34,6 +36,7 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
         private void OnTriggerEnter(Collider coll)
         {
             if (!coll.CompareTag("Player")) return;
+            if(debug) Debug.Log("there is a player who entered");
             
             var exposer = PlayerColliderDirectoryScript.Instance.GetExposer(coll);
             if (!exposer) return;
