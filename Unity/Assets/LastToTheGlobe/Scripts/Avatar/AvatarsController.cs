@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using LastToTheGlobe.Scripts.Camera;
 using LastToTheGlobe.Scripts.Dev.LevelManager;
+using LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi;
 using LastToTheGlobe.Scripts.Network;
 using Photon.Pun;
 using Photon.Pun.UtilityScripts;
@@ -36,6 +37,10 @@ namespace LastToTheGlobe.Scripts.Avatar
         //spawn point tab
         private GameObject[] _spawnPointInPlanet;
         
+        
+        [SerializeField] private CloudPlanet environmentController;
+        private int _seed;
+        
         #region MonoBehaviour Callbacks
 
         private void Awake()
@@ -53,6 +58,12 @@ namespace LastToTheGlobe.Scripts.Avatar
             startMenuController.SetCamera += SetupCamera;
             FindAllSpawnPoint();
             startMenuController.GameCanStart += LaunchGameRoom;
+        }
+        
+        private void Start() 
+        {
+            if (!PhotonNetwork.IsMasterClient) return;
+            _seed = environmentController.GetSeed();
         }
 
         private void FixedUpdate()
