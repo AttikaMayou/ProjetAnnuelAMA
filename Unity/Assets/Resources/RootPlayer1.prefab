@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 4032840751649765454}
   - component: {fileID: 823833752871783993}
   - component: {fileID: 1014064465940019215}
+  - component: {fileID: 3778464610303677338}
   m_Layer: 0
   m_Name: RootPlayer1
   m_TagString: Player
@@ -166,7 +167,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 4032840751649765441}
-  viewIdField: 7
+  viewIdField: 0
   InstantiationId: 7
   isRuntimeInstantiated: 0
 --- !u!114 &4032840751649765441
@@ -207,6 +208,13 @@ MonoBehaviour:
   characterPhotonView: {fileID: 4032840751649765452}
   characterRbPhotonView: {fileID: 4032840751649765441}
   cameraRotateX: {fileID: 8088274135208552126}
+  inventoryUI: {fileID: 0}
+  lifeUI: {fileID: 0}
+  victoryUI: {fileID: 0}
+  defeatUI: {fileID: 0}
+  inventoryScript: {fileID: 0}
+  _movedir: {x: 0, y: 0, z: 0}
+  dashSpeed: 30
 --- !u!114 &823833752871783993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,14 +243,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 619285616129e784abaf8d005dc104b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defeat: {fileID: 0}
   lifeStartingPoint: 100
   attackDmg: 0
   inLife: 1
   myLife: 100
-  myExposer: {fileID: 0}
+  myExposer: {fileID: 4032840751649765454}
   textHealth: {fileID: 0}
   textHeathOther: {fileID: 0}
+--- !u!114 &3778464610303677338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4032840751649765450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbbdb5ad2d0824545ade9680df13d120, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  exposer: {fileID: 4032840751649765454}
 --- !u!1 &7674971413621576116
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,6 +300,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4032840751649765453}
     m_Modifications:
+    - target: {fileID: 5107946470935551850, guid: 501d9991fbb3e6b45b291e93d1d426dc,
+        type: 3}
+      propertyPath: m_Name
+      value: OffensiveOrb
+      objectReference: {fileID: 0}
     - target: {fileID: 5107946470935551621, guid: 501d9991fbb3e6b45b291e93d1d426dc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -335,11 +360,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5107946470935551850, guid: 501d9991fbb3e6b45b291e93d1d426dc,
-        type: 3}
-      propertyPath: m_Name
-      value: OffensiveOrb
-      objectReference: {fileID: 0}
     - target: {fileID: 5107946470935551248, guid: 501d9991fbb3e6b45b291e93d1d426dc,
         type: 3}
       propertyPath: playerTransform
@@ -348,7 +368,7 @@ PrefabInstance:
     - target: {fileID: 5107946470935551180, guid: 501d9991fbb3e6b45b291e93d1d426dc,
         type: 3}
       propertyPath: viewIdField
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5107946470935551180, guid: 501d9991fbb3e6b45b291e93d1d426dc,
         type: 3}

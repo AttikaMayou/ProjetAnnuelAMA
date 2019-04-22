@@ -177,7 +177,7 @@ namespace LastToTheGlobe.Scripts.Network
                 speed = walkSpeed;
                 if (debug)
                 {
-                    Debug.Log("I get the message : Move Left on this avatar : " + playerIndex);
+                    Debug.Log("I get the message : Move Back on this avatar : " + playerIndex);
                     Debug.Log("Strafe value : " + strafeInput + " ; Forward value : " + forwardInput);
                 }
                 MoveBack = intent;
@@ -194,7 +194,7 @@ namespace LastToTheGlobe.Scripts.Network
                 speed = walkSpeed;
                 if (debug)
                 {
-                    Debug.Log("I get the message : Move Left on this avatar : " + playerIndex);
+                    Debug.Log("I get the message : Move Back on this avatar : " + playerIndex);
                     Debug.Log("Strafe value : " + strafeInput + " ; Forward value : " + forwardInput);
                 }
                 MoveBack = intent;
@@ -211,7 +211,7 @@ namespace LastToTheGlobe.Scripts.Network
                 speed = walkSpeed;
                 if (debug)
                 {
-                    Debug.Log("I get the message : Move Left on this avatar : " + playerIndex);
+                    Debug.Log("I get the message : Move Right on this avatar : " + playerIndex);
                     Debug.Log("Strafe value : " + strafeInput + " ; Forward value : " + forwardInput);
                 }
                 MoveRight = intent;
@@ -228,7 +228,7 @@ namespace LastToTheGlobe.Scripts.Network
                 speed = walkSpeed;
                 if (debug)
                 {
-                    Debug.Log("I get the message : Move Left on this avatar : " + playerIndex);
+                    Debug.Log("I get the message : Move Right on this avatar : " + playerIndex);
                     Debug.Log("Strafe value : " + strafeInput + " ; Forward value : " + forwardInput);
                 }
                 MoveRight = intent;
@@ -245,7 +245,7 @@ namespace LastToTheGlobe.Scripts.Network
                 speed = walkSpeed;
                 if (debug)
                 {
-                    Debug.Log("I get the message : Move Left on this avatar : " + playerIndex);
+                    Debug.Log("I get the message : Move Forward on this avatar : " + playerIndex);
                     Debug.Log("Strafe value : " + strafeInput + " ; Forward value : " + forwardInput);
                 }
                 MoveForward = intent;
@@ -262,7 +262,7 @@ namespace LastToTheGlobe.Scripts.Network
                 speed = walkSpeed;
                 if (debug)
                 {
-                    Debug.Log("I get the message : Move Left on this avatar : " + playerIndex);
+                    Debug.Log("I get the message : Move Forward on this avatar : " + playerIndex);
                     Debug.Log("Strafe value : " + strafeInput + " ; Forward value : " + forwardInput);
                 }
                 MoveForward = intent;
@@ -278,7 +278,7 @@ namespace LastToTheGlobe.Scripts.Network
             {
                 if (debug)
                 {
-                    Debug.Log("I get the message : Move Left on this avatar : " + playerIndex);
+                    Debug.Log("I get the message : Jump on this avatar : " + playerIndex);
                 }
                 canJump = false;
                 Jump = true;
@@ -292,7 +292,7 @@ namespace LastToTheGlobe.Scripts.Network
             {
                 if (debug)
                 {
-                    Debug.Log("I get the message : Move Left on this avatar : " + playerIndex);
+                    Debug.Log("I get the message : Dash on this avatar : " + playerIndex);
                 }
                 Dash = true;
             }
@@ -305,7 +305,7 @@ namespace LastToTheGlobe.Scripts.Network
             { 
                 if (debug)
                 {
-                    Debug.Log("I get the message : Move Left on this avatar : " + playerIndex);
+                    Debug.Log("I get the message : Run on this avatar : " + playerIndex);
                 }
                 Run = intent;
             }
@@ -318,7 +318,7 @@ namespace LastToTheGlobe.Scripts.Network
             {
                 if (debug)
                 {
-                    Debug.Log("I get the message : Move Left on this avatar : " + playerIndex);
+                    Debug.Log("I get the message : Shoot on this avatar : " + playerIndex);
                 }
                 Shoot = true;
             }
@@ -331,7 +331,7 @@ namespace LastToTheGlobe.Scripts.Network
             {
                 if (debug)
                 {
-                    Debug.Log("I get the message : Move Left on this avatar : " + playerIndex);
+                    Debug.Log("I get the message : Bump on this avatar : " + playerIndex);
                 }
                 Bump = true;
             }
@@ -344,7 +344,7 @@ namespace LastToTheGlobe.Scripts.Network
             {
                 if (debug)
                 {
-                    Debug.Log("I get the message : Move Left on this avatar : " + playerIndex);
+                    Debug.Log("I get the message : Interact on this avatar : " + playerIndex);
                 }
                 Interact = true;
             }

@@ -141,7 +141,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         
             //Prevent the camera from going too high or too low
             //Les valeurs qui étaient mises sont des valeurs qui peuvent être pris par la variable cameraRotatorX.transform.rotation.x (-1 - 1)
-            /*if (playerExposer.cameraRotatorX.transform.rotation.x >= 0.42f)
+            if (playerExposer.cameraRotatorX.transform.rotation.x >= 0.42f)
             {
                 _rotation = 
                     new Quaternion(0.42f, _rotation.y, 
@@ -155,7 +155,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                     new Quaternion(-0.2f, _rotation.y, 
                         _rotation.z, _rotation.w);
                 playerExposer.cameraRotatorX.transform.rotation = _rotation;
-            }*/
+            }
 
             //Detects the input to throw an offensiveOrb
             if (Input.GetKeyDown(offensiveOrbInput) && _canThrowSpell && playerExposer.characterLocalPhotonView.IsMine)

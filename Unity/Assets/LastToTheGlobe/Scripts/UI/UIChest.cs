@@ -46,7 +46,11 @@ namespace LastToTheGlobe.Scripts.Inventory
             }
         }
 
-
+        public void OnResponseCloseToChest()
+        {
+            
+        }
+        
         void OnCollisionEnter(Collision other)
         {
             if (other.gameObject.CompareTag("Player"))
