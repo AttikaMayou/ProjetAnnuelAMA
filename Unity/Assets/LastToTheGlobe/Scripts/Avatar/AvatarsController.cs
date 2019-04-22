@@ -175,6 +175,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         {
             if (!CheckIfEnoughPlayers()) return;
             onLobby = true;
+            startMenuController.ShowLobbyCountdown();
             StartCoroutine(CountdownBeforeSwitchingScene(_countdownStartValue));
         }
 
