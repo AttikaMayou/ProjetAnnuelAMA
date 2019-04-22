@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Pun.UtilityScripts;
+using LastToTheGlobe.Scripts.UI;
 
 //Auteur : Attika
 //modification : Margot
@@ -10,7 +11,7 @@ namespace LastToTheGlobe.Scripts.Avatar
 {
     public class AvatarLifeManager : MonoBehaviour
     {
-        [SerializeField] private Canvas defeat;
+        private ActivateObjects defeat = new ActivateObjects();
 
         [Header("Balance Settings")] 
         public int lifeStartingPoint = 100;
@@ -19,7 +20,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         public bool inLife = true;
         
         public int myLife = 100;
-        public CharacterExposer myExposer;
+        public CharacterExposerScript myExposer;
 
         [SerializeField]
         private Text textHealth;
@@ -27,19 +28,15 @@ namespace LastToTheGlobe.Scripts.Avatar
         [SerializeField]
         private Text textHeathOther;
 
-        private void Start()
-        {
-            defeat.enabled = false;
-        }
-
         private void Awake()
         {
             myLife = lifeStartingPoint;
+            myExposer.
         }
 
         private void OnCollisionEnter(Collision other)
         {
-            if (other.gameObject.tag == "Bullet" && myExposer.characterLocalPhotonView.IsMine)
+            if (other.gameObject.tag == "Bullet" && myExposer.characterPhotonView.IsMine)
             {
                 if(myLife <= 0)
                 {
@@ -52,7 +49,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                     textHealth.text = "Health :" + myLife;
                 }
 
-                myExposer.characterLocalPhotonView.RPC("MajMine", RpcTarget.Others, myLife);
+                myExposer.characterPhotonView.RPC("MajMine", RpcTarget.Others, myLife);
             }
             else
             {
@@ -78,7 +75,7 @@ namespace LastToTheGlobe.Scripts.Avatar
             if (myLife <= 0)
             {
                 inLife = false;
-                defeat.enabled = true;
+                defeat.Activation();
             }
         }
 
