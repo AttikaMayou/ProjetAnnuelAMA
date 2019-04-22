@@ -144,7 +144,8 @@ namespace LastToTheGlobe.Scripts.Network
                 }
             }
             
-            //PlayerJoined?.Invoke(i);
+            PlayerJoined?.Invoke(i);
+            GameCanStart?.Invoke();
         }
 
         private IEnumerator InvokeRoomJoinedMethod()
