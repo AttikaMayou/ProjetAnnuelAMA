@@ -271,7 +271,7 @@ namespace LastToTheGlobe.Scripts.Avatar
             for(var i = 0; i<= players.Length; i++)
             {
                 if (!players[i].isActiveAndEnabled) break;
-                players[i].characterRootGameObject.transform.position = _spawnPointInPlanet[i].transform.position;
+                players[i].characterRootGameObject.transform.position = spawnPos[i + 1];
                 if (debug)
                 {
                     Debug.Log("Previous pos : " + players[i].characterRootGameObject.transform.position);
@@ -296,7 +296,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                     i++;
                 }
             }
-            spawnPos = new Vector3[_spawnPointInPlanet.Length];
+            spawnPos = new Vector3[_spawnPointInPlanet.Length + 1];
             for (var i =0; i < _spawnPointInPlanet.Length; i++)
             {
                 spawnPos[i] = _spawnPointInPlanet[i].transform.position;
