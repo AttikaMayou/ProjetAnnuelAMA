@@ -22,7 +22,9 @@ namespace LastToTheGlobe.Scripts.Avatar
         public PhotonView characterPhotonView;
         public PhotonRigidbodyView characterRbPhotonView;
         [Header("Camera Control Parameters")] 
-        public Transform cameraRotateX;
+        public GameObject cameraRotatorX;
+        
+        
 
         [Header("UI references")] 
         public ActivateObjects inventoryUI;
