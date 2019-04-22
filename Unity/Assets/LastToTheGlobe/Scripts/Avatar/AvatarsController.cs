@@ -8,6 +8,7 @@ using Photon.Pun.UtilityScripts;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 
 //Auteur : Attika
 //Modification : Margot
@@ -38,6 +39,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         private float _countdownStartValue;
         //spawn point tab
         private GameObject[] _spawnPointInPlanet;
+        [SerializeField] private Vector3[] spawnPos;
         
         [SerializeField] private CloudPlanet environmentController;
         private int _seed;
@@ -293,6 +295,11 @@ namespace LastToTheGlobe.Scripts.Avatar
                     Debug.Log("Spawn Point : " + i + " is " + point);
                     i++;
                 }
+            }
+            spawnPos = new Vector3[_spawnPointInPlanet.Length];
+            for (var i =0; i < _spawnPointInPlanet.Length; i++)
+            {
+                spawnPos[i] = _spawnPointInPlanet[i].transform.position;
             }
         }
 
