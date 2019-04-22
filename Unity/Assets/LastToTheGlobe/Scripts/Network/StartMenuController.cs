@@ -41,6 +41,8 @@ namespace LastToTheGlobe.Scripts.Network
 
         public event Action OnlinePlayReady;
         public event Action<int> PlayerJoined;
+
+        public event Action<int> SetCamera;
         public event Action<int> PlayerLeft;
         public event Action GameCanStart;
         public event Action Disconnected;
@@ -145,6 +147,7 @@ namespace LastToTheGlobe.Scripts.Network
             }
             
             PlayerJoined?.Invoke(i);
+            SetCamera?.Invoke(i);
             GameCanStart?.Invoke();
         }
 
@@ -166,8 +169,9 @@ namespace LastToTheGlobe.Scripts.Network
             if (PhotonNetwork.IsMasterClient)
             {
                 PlayerJoined?.Invoke(i);
-                GameCanStart?.Invoke();
             }
+            GameCanStart?.Invoke();
+            SetCamera?.Invoke(i);
         }
         
         #endregion

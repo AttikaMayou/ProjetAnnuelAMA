@@ -40,10 +40,13 @@ namespace LastToTheGlobe.Scripts.Avatar
             gameStarted = false;
             onLobby = false;
 
+            myCamera.enabled = false;
+
             _countdownStartValue = countdown;
             
             startMenuController.OnlinePlayReady += ChooseAndSubscribeToIntentReceivers;
             startMenuController.PlayerJoined += ActivateAvatar;
+            startMenuController.SetCamera += SetupCamera;
             startMenuController.GameCanStart += LaunchGameRoom;
         }
 
@@ -169,6 +172,22 @@ namespace LastToTheGlobe.Scripts.Avatar
         }
 
         /// <summary>
+        /// Called to set the right local target to camera
+        /// </summary>
+        /// <param name="id"></param>
+        private void SetupCamera(int id)
+        {
+            //if (photonView.IsMine != players[id].characterPhotonView) return;
+            if (!myCamera.enabled)
+            {
+                myCamera.enabled = true;
+                myCamera.playerExposer = players[id];
+                myCamera.InitializeCameraPosition();
+                myCamera.startFollowing = true;
+            }
+        }
+
+        /// <summary>
         /// Each time a player join the lobby, we check if we're enough. If yes, we load the GameRoom after a countdown
         /// </summary>
         private void LaunchGameRoom()
@@ -223,10 +242,6 @@ namespace LastToTheGlobe.Scripts.Avatar
         private void ActivateAvatarRPC(int avatarId)
         {
             players[avatarId].characterRootGameObject.SetActive(true);
-            if (photonView.IsMine != players[avatarId].characterPhotonView) return;
-            myCamera.playerExposer = players[avatarId];
-            myCamera.InitializeCameraPosition();
-            myCamera.startFollowing = true;
         }
 
         [PunRPC]
