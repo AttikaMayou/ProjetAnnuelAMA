@@ -18,7 +18,7 @@ namespace LastToTheGlobe.Scripts.Camera
         private Transform _myTransform;
         
         [Header("Local Player References")]
-        public CharacterExposer playerExposer;
+        public CharacterExposerScript playerExposer;
         public GameObject targetPlayer;
 
         public bool startFollowing;

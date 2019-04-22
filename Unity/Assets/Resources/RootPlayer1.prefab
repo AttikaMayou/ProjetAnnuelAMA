@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 4032840751649765454}
   - component: {fileID: 823833752871783993}
   - component: {fileID: 1014064465940019215}
+  - component: {fileID: 7129656405552248134}
   - component: {fileID: 3778464610303677338}
   m_Layer: 0
   m_Name: RootPlayer1
@@ -128,7 +129,7 @@ Transform:
   m_Children:
   - {fileID: 4032840750367864675}
   - {fileID: 8088274135208552126}
-  - {fileID: 3096348836995314485}
+  - {fileID: 7789928403194244853}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -167,7 +168,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 4032840751649765441}
-  viewIdField: 7
+  viewIdField: 0
   InstantiationId: 7
   isRuntimeInstantiated: 0
 --- !u!114 &4032840751649765441
@@ -203,7 +204,7 @@ MonoBehaviour:
   characterRb: {fileID: 4032840751649765455}
   characterTr: {fileID: 4032840751649765453}
   selfPlayerAttractedScript: {fileID: 823833752871783993}
-  selfOrbAttractedScript: {fileID: 3096348836995313831}
+  selfOrbAttractedScript: {fileID: 7789928403194243239}
   characterCollider: {fileID: 4032840750367864674}
   characterPhotonView: {fileID: 4032840751649765452}
   characterRbPhotonView: {fileID: 4032840751649765441}
@@ -250,6 +251,21 @@ MonoBehaviour:
   myExposer: {fileID: 4032840751649765454}
   textHealth: {fileID: 0}
   textHeathOther: {fileID: 0}
+--- !u!114 &7129656405552248134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4032840751649765450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf1918ffa8f669d448487e6250e654a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerExposer: {fileID: 4032840751649765454}
+  targetPlayer: {fileID: 4032840751649765450}
+  startFollowing: 0
 --- !u!114 &3778464610303677338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,8 +278,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbbdb5ad2d0824545ade9680df13d120, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerExposer: {fileID: 0}
-  myCamera: {fileID: 0}
+  playerExposer: {fileID: 4032840751649765454}
+  myCamera: {fileID: 7129656405552248134}
   rotationSpeed: 5
 --- !u!1 &7674971413621576116
 GameObject:
@@ -370,7 +386,7 @@ PrefabInstance:
     - target: {fileID: 5107946470935551180, guid: 501d9991fbb3e6b45b291e93d1d426dc,
         type: 3}
       propertyPath: viewIdField
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5107946470935551180, guid: 501d9991fbb3e6b45b291e93d1d426dc,
         type: 3}
@@ -379,13 +395,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 501d9991fbb3e6b45b291e93d1d426dc, type: 3}
---- !u!4 &3096348836995314485 stripped
+--- !u!4 &7789928403194244853 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5107946470935551621, guid: 501d9991fbb3e6b45b291e93d1d426dc,
     type: 3}
   m_PrefabInstance: {fileID: 7789928403194244528}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3096348836995313831 stripped
+--- !u!114 &7789928403194243239 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5107946470935551255, guid: 501d9991fbb3e6b45b291e93d1d426dc,
     type: 3}
