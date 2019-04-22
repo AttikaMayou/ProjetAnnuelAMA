@@ -1,8 +1,10 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using LastToTheGlobe.Scripts.Camera;
 using LastToTheGlobe.Scripts.Dev.LevelManager;
 using LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi;
 using LastToTheGlobe.Scripts.Network;
+using LastToTheGlobe.Scripts.Weapon.Orb;
 using Photon.Pun;
 using Photon.Pun.UtilityScripts;
 using UnityEditor;
@@ -24,6 +26,13 @@ namespace LastToTheGlobe.Scripts.Avatar
         [SerializeField] private AIntentReceiver[] onlineIntentReceivers;
         [SerializeField] private AIntentReceiver[] _activatedIntentReceivers;
         [SerializeField] private PhotonView photonView;
+        
+        [Header("Environment Parameters")]
+        //spawn point tab
+        private GameObject[] _spawnPointInPlanet;
+        [SerializeField] private Vector3[] spawnPos;
+        [SerializeField] private CloudPlanet environmentController;
+        private int _seed = 0;
 
         [Header("Camera Parameters")] 
         public CameraControllerScript myCamera;
@@ -37,12 +46,9 @@ namespace LastToTheGlobe.Scripts.Avatar
         [SerializeField] private int nbMinPlayers = 2;
         [SerializeField] private float countdown = 10.0f;
         private float _countdownStartValue;
-        //spawn point tab
-        private GameObject[] _spawnPointInPlanet;
-        [SerializeField] private Vector3[] spawnPos;
         
-        [SerializeField] private CloudPlanet environmentController;
-        private int _seed = 0;
+        [SerializeField] private List<OrbManager> orbsPool = new List<OrbManager>();
+        
         
         #region MonoBehaviour Callbacks
 
@@ -117,7 +123,17 @@ namespace LastToTheGlobe.Scripts.Avatar
 
                 if (intent.Shoot)
                 {
-                    
+                    var orb = GetOrbsWithinPool();
+                    orb.gameObject.SetActive(true);
+                    intent.canShoot = true;
+                }
+
+                if (intent.ShootLoaded)
+                {
+                    var orb = GetOrbsWithinPool();
+                    orb.charged = true;
+                    orb.gameObject.SetActive(true);
+                    intent.canShoot = true;
                 }
 
                 if (intent.Bump)
@@ -302,6 +318,22 @@ namespace LastToTheGlobe.Scripts.Avatar
             {
                 spawnPos[i] = _spawnPointInPlanet[i].transform.position;
             }
+        }
+
+        private OrbManager GetOrbsWithinPool()
+        {
+            foreach (var orb in orbsPool)
+            {
+                if (orb.enabled)
+                {
+                    continue;
+                }
+                else
+                {
+                    return orb;
+                }
+            }
+            return new OrbManager();
         }
 
         #endregion

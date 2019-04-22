@@ -2,7 +2,9 @@
 using System.Runtime.CompilerServices;
 using Photon.Pun;
 using Photon.Pun.UtilityScripts;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.Experimental.UIElements;
 
 //Auteur : Margot
 //Modification : Attika
@@ -30,6 +32,28 @@ namespace LastToTheGlobe.Scripts.Network
             forward = Input.GetAxisRaw("Vertical");
             strafe = Input.GetAxisRaw("Horizontal");
 
+            //Attack Intent
+            if (Input.GetMouseButton(0) && canShoot)
+            {
+                canShoot = false;
+            }
+            
+            if (!canShoot)
+            {
+                loadShotValue += Time.deltaTime;
+                if(loadShotValue >= 1.5f && Input.GetMouseButtonUp(0))
+                {
+                    //shootLoaded = true;
+                    photonView.RPC("LaunchLoadedBulletRPC", RpcTarget.MasterClient);
+                    loadShotValue = 0.0f;
+                }
+
+                if (Input.GetMouseButtonUp(0))
+                {
+                    photonView.RPC("LaunchBulletRPC", RpcTarget.MasterClient);
+                }
+            }
+            
             //Cooldown dash
             if (!canDash)
             {
@@ -37,7 +61,7 @@ namespace LastToTheGlobe.Scripts.Network
                 timer += Time.deltaTime;
                 if (timer <= _dashTime)
                 {
-                    canDash = true;
+                    //canDash = true;
                     return;
                 }
             }
@@ -99,7 +123,7 @@ namespace LastToTheGlobe.Scripts.Network
             {
                 speed = dashSpeed;
                 photonView.RPC("DashRPC", RpcTarget.MasterClient);
-                canDash = false;
+                //canDash = false;
             }
 
             if (Input.GetKeyUp(KeyCode.Space) && canJump)
@@ -110,12 +134,6 @@ namespace LastToTheGlobe.Scripts.Network
             if (Input.GetKeyDown(KeyCode.R))
             {
                 photonView.RPC("UseBumpRPC", RpcTarget.MasterClient);
-            }
-            
-            //Attack Intent
-            if (Input.GetMouseButtonDown(0))
-            {
-                photonView.RPC("LaunchBulletRPC", RpcTarget.MasterClient);
             }
             
             //Interaction Intent
@@ -320,7 +338,24 @@ namespace LastToTheGlobe.Scripts.Network
                 {
                     Debug.Log("I get the message : Shoot on this avatar : " + playerIndex);
                 }
+
+                canShoot = false;
                 Shoot = true;
+            }
+        }
+
+        [PunRPC]
+        void LaunchLoadedBulletRPC()
+        {
+            if (PhotonNetwork.IsMasterClient)
+            {
+                if (debug)
+                {
+                    Debug.Log("I get the message : Shoot Loaded on this avatar : " + playerIndex);
+                }
+
+                canShoot = false;
+                ShootLoaded = true;
             }
         }
 
