@@ -42,7 +42,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         [SerializeField] private Vector3[] spawnPos;
         
         [SerializeField] private CloudPlanet environmentController;
-        private int _seed;
+        private int _seed = 0;
         
         #region MonoBehaviour Callbacks
 
@@ -206,15 +206,6 @@ namespace LastToTheGlobe.Scripts.Avatar
             myCamera.playerExposer = players[id];
             myCamera.InitializeCameraPosition();
             myCamera.startFollowing = true;
-            if(id == 0)
-                _seed = environmentController.GetSeed();
-            if (PhotonNetwork.IsMasterClient)
-            {
-                photonView.RPC("SendSeedToPlayers", RpcTarget.Others, _seed);
-                if(debug) Debug.Log("Seed on player " + id + " is : " + _seed);
-                environmentController.SetSeed(_seed);
-                FindAllSpawnPoint();
-            }
         }
 
         /// <summary>
@@ -222,7 +213,15 @@ namespace LastToTheGlobe.Scripts.Avatar
         /// </summary>
         private void LaunchGameRoom()
         {
-            if (!PhotonNetwork.IsMasterClient || !CheckIfEnoughPlayers() || gameLaunched) return;
+            if (!PhotonNetwork.IsMasterClient) return;
+            if (PhotonNetwork.IsMasterClient && _seed == 0)
+            {
+                _seed = environmentController.GetSeed();
+            }
+            photonView.RPC("SendSeedToPlayers", RpcTarget.Others, _seed);
+            environmentController.SetSeed(_seed);
+            FindAllSpawnPoint();
+            if(!CheckIfEnoughPlayers() || gameLaunched) return;
             onLobby = true;
             startMenuController.ShowLobbyCountdown();
             StartCoroutine(CountdownBeforeSwitchingScene(_countdownStartValue));
