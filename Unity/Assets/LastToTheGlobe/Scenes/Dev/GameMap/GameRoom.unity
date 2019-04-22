@@ -3073,22 +3073,22 @@ PrefabInstance:
     - target: {fileID: 921340114157450938, guid: 3e281da1df1276f47bdb4e26e87c0c1a,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 921340114157450938, guid: 3e281da1df1276f47bdb4e26e87c0c1a,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.4983886
       objectReference: {fileID: 0}
     - target: {fileID: 921340114157450938, guid: 3e281da1df1276f47bdb4e26e87c0c1a,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 921340114157450938, guid: 3e281da1df1276f47bdb4e26e87c0c1a,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.8669538
       objectReference: {fileID: 0}
     - target: {fileID: 921340114157450938, guid: 3e281da1df1276f47bdb4e26e87c0c1a,
         type: 3}
@@ -3103,7 +3103,7 @@ PrefabInstance:
     - target: {fileID: 921340114157450938, guid: 3e281da1df1276f47bdb4e26e87c0c1a,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 59.787003
       objectReference: {fileID: 0}
     - target: {fileID: 921340114157450938, guid: 3e281da1df1276f47bdb4e26e87c0c1a,
         type: 3}
@@ -3142,10 +3142,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NumberOfVertices: 30
-  size: 200
+  size: 250
   basicPlanet: {fileID: 1683045703}
   spawnPlanet: {fileID: 2002198910}
-  numberOfPlayer: 5
+  numberOfPlayer: 10
   victoryPlanet: {fileID: 6007325744886493304, guid: 98010e924c5875f4bbbf318e24ca1c4d,
     type: 3}
 --- !u!4 &997781116
@@ -6568,13 +6568,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2025786747}
-  m_LocalRotation: {x: 0.13052616, y: 0, z: 0, w: 0.9914449}
+  m_LocalRotation: {x: 0.0019744432, y: -0.72956353, z: -0.013701225, w: 0.683773}
   m_LocalPosition: {x: 1872.4, y: 173.5, z: -92.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 15, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.99100006, y: -93.701004, z: -1.2390001}
 --- !u!114 &2025786751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7475,6 +7475,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUDPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 4530374371341051882, guid: 19083d05772af8b4dbec64b8289d90d4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4530374371341051883, guid: 19083d05772af8b4dbec64b8289d90d4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7903,6 +7908,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_FontData.m_MaxSize
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6127932795919295448, guid: f846f5579a0e9ab4b829d5e791690c57,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 26.649902
+      objectReference: {fileID: 0}
+    - target: {fileID: 6127932796194335466, guid: f846f5579a0e9ab4b829d5e791690c57,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 215.27002
+      objectReference: {fileID: 0}
+    - target: {fileID: 6127932796194335466, guid: f846f5579a0e9ab4b829d5e791690c57,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -65.397705
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f846f5579a0e9ab4b829d5e791690c57, type: 3}
