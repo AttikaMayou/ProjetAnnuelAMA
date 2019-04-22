@@ -124,6 +124,11 @@ namespace LastToTheGlobe.Scripts.Avatar
 
                 if (intent.Jump)
                 {
+                    if (player.attractor == null)
+                    {
+                        Debug.LogError("There is no attractor near us !");
+                        return;
+                    }
                     var jumpDir = player.attractor.dirForce;
                     rb.AddForce(jumpDir * 250);
                 }
@@ -139,6 +144,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                     orb.playerTransform = player.characterTr;
                     orb.gameObject.SetActive(true);
                     intent.canShoot = true;
+                    intent.Shoot = false;
                 }
 
                 if (intent.ShootLoaded)
@@ -153,6 +159,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                     orb.charged = true;
                     orb.gameObject.SetActive(true);
                     intent.canShoot = true;
+                    intent.ShootLoaded = false;
                 }
 
                 if (intent.Bump)
@@ -347,8 +354,9 @@ namespace LastToTheGlobe.Scripts.Avatar
         {
             foreach (var orb in orbsPool)
             {
-                if (orb.enabled)
+                if (orb.gameObject.activeSelf)
                 {
+                    if(debug) Debug.Log("orb is enabled");
                     continue;
                 }
                 else

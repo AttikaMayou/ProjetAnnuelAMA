@@ -7,8 +7,11 @@ using UnityEngine;
 
 namespace LastToTheGlobe.Scripts.Weapon.Orb
 {
-    public class OrbManager : OrbExposerScript {
+    public class OrbManager : OrbExposerScript
+    {
 
+        public bool debug = true;
+        
         [Header("Orb Parameters")]
         [SerializeField] private float speed = 5.0f;
         private Vector3 _direction;
@@ -33,11 +36,10 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb
             
             _timeUsing = 0.0f;
             maxTimeUsing = 3f;
+            if (!playerTransform) return;
             orbTransform.position = playerTransform.position + playerTransform.forward * 2f;
             _direction = playerTransform.right;
             _centerPointAttractor = attractedScript.attractor.planetTransform.position;
-            
-            
         }
         
         private void FixedUpdate () {
@@ -50,9 +52,12 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb
             {
                 orbRb.MovePosition(transform.position + playerTransform.forward);
             }
-            
-            print(_timeUsing);
-            print(maxTimeUsing);
+
+            if (debug)
+            {
+                print(_timeUsing);
+                print(maxTimeUsing);
+            }
             _timeUsing += Time.deltaTime;
 
             if (!(_timeUsing >= maxTimeUsing)) return;
@@ -61,10 +66,9 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb
             charged = false;
         }
 
-
         private void ResetOrb()
         {
-            Debug.Log("reset pos of the offensive orb");
+            if(debug) Debug.Log("reset pos of the offensive orb");
             orbTransform.position = _initialPos;
             this.gameObject.SetActive(false);
         }

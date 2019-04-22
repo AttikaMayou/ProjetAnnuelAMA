@@ -36,7 +36,7 @@ namespace LastToTheGlobe.Scripts.Avatar
 
         private void OnCollisionEnter(Collision other)
         {
-            if (other.gameObject.tag == "Bullet" && myExposer.characterPhotonView.IsMine)
+            if (other.gameObject.CompareTag("Bullet") && myExposer.characterPhotonView.IsMine)
             {
                 if(myLife <= 0)
                 {
