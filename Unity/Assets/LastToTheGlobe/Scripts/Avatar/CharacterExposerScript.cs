@@ -24,8 +24,6 @@ namespace LastToTheGlobe.Scripts.Avatar
         [Header("Camera Control Parameters")] 
         public GameObject cameraRotatorX;
         
-        
-
         [Header("UI references")] 
         public ActivateObjects inventoryUI;
         public ActivateObjects lifeUI;
