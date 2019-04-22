@@ -206,14 +206,15 @@ namespace LastToTheGlobe.Scripts.Avatar
             myCamera.playerExposer = players[id];
             myCamera.InitializeCameraPosition();
             myCamera.startFollowing = true;
-            _seed = environmentController.GetSeed();
+            if(id == 0)
+                _seed = environmentController.GetSeed();
             if (PhotonNetwork.IsMasterClient)
             {
                 photonView.RPC("SendSeedToPlayers", RpcTarget.Others, _seed);
+                if(debug) Debug.Log("Seed on player " + id + " is : " + _seed);
+                environmentController.SetSeed(_seed);
+                FindAllSpawnPoint();
             }
-            if(debug) Debug.Log("Seed on player " + id + " is : " + _seed);
-            environmentController.SetSeed(_seed);
-            FindAllSpawnPoint();
         }
 
         /// <summary>

@@ -28,7 +28,6 @@ namespace LastToTheGlobe.Scripts.Avatar
         public ActivateObjects lifeUI;
         public ActivateObjects victoryUI;
         public ActivateObjects defeatUI;
-        
 
         //Reference itself to the ColliderDirectory and CameraScript when activated
         private void OnEnable()
