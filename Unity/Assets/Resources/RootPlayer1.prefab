@@ -212,6 +212,9 @@ MonoBehaviour:
   lifeUI: {fileID: 0}
   victoryUI: {fileID: 0}
   defeatUI: {fileID: 0}
+  inventoryScript: {fileID: 0}
+  _movedir: {x: 0, y: 0, z: 0}
+  dashSpeed: 30
 --- !u!114 &823833752871783993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,7 +262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbbdb5ad2d0824545ade9680df13d120, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  exposer: {fileID: 0}
+  exposer: {fileID: 4032840751649765454}
 --- !u!1 &7674971413621576116
 GameObject:
   m_ObjectHideFlags: 0
