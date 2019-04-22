@@ -57,7 +57,6 @@ namespace LastToTheGlobe.Scripts.Avatar
             startMenuController.OnlinePlayReady += ChooseAndSubscribeToIntentReceivers;
             startMenuController.PlayerJoined += ActivateAvatar;
             startMenuController.SetCamera += SetupCamera;
-            FindAllSpawnPoint();
             startMenuController.GameCanStart += LaunchGameRoom;
         }
 
@@ -212,6 +211,7 @@ namespace LastToTheGlobe.Scripts.Avatar
             }
             if(debug) Debug.Log("Seed on player " + id + " is : " + _seed);
             environmentController.SetSeed(_seed);
+            FindAllSpawnPoint();
         }
 
         /// <summary>
@@ -259,10 +259,15 @@ namespace LastToTheGlobe.Scripts.Avatar
         {
             yield return new WaitForSeconds(time);
             //LevelLoadingManager.Instance.SwitchToScene(LastToTheGlobeScene.GameRoom);
-
-            //Teleport player in planet
-            for(int i = 0; i<= players.Length; i++)
+            if (_spawnPointInPlanet.Length <= 1)
             {
+                Debug.LogError("There is a problem with the map instantiation");
+                yield break;
+            }
+            //Teleport player in planet
+            for(var i = 0; i<= players.Length; i++)
+            {
+                if (!players[i].isActiveAndEnabled) break;
                 players[i].characterRootGameObject.transform.position = _spawnPointInPlanet[i].transform.position;
                 yield return new WaitForSeconds(0.5f);
             }
@@ -273,6 +278,15 @@ namespace LastToTheGlobe.Scripts.Avatar
         private void FindAllSpawnPoint()
         {
             _spawnPointInPlanet = GameObject.FindGameObjectsWithTag("SpawnPoint");
+            if (debug)
+            {
+                var i = 0;
+                foreach (var point in _spawnPointInPlanet)
+                {
+                    Debug.Log("Spawn Point : " + i + " is " + point);
+                    i++;
+                }
+            }
         }
 
         #endregion
@@ -295,6 +309,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         private void SendSeedToPlayers(int seed)
         {
             _seed = seed;
+            if (debug) Debug.Log("My seed is : " + seed);
         }
 
         #endregion
