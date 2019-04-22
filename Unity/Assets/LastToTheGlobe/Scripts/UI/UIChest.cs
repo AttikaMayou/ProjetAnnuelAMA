@@ -17,11 +17,14 @@ namespace LastToTheGlobe.Scripts.Inventory
         {
             playerInventory.enabled = false;
             chestInventory.enabled = false;
+            openChest = false;
+            canOpenChest = false;
         }
 
         void Update()
         {
-            if(canOpenChest)
+
+            if (canOpenChest)
             {
                 pressE.enabled = true;
             }
@@ -52,22 +55,19 @@ namespace LastToTheGlobe.Scripts.Inventory
         }
 
 
-    void OnTriggerEnter(Collider chest)
+        void OnTriggerEnter(Collider other)
         {
-            if (chest.CompareTag("Player"))
-            {
+                MeshRenderer meshRend = GetComponent<MeshRenderer>();
+                meshRend.material.color = Color.green;
                 //Affiche touche E
                 canOpenChest = true;
-            }
         }
 
-        void OnTriggerExit(Collider chest)
+        void OnTriggerExit(Collider other)
         {
-            if (chest.CompareTag("Player"))
-            {
-                //Ferme touche E
-                canOpenChest = false;
-            }
+            MeshRenderer meshRend = GetComponent<MeshRenderer>();
+            meshRend.material.color = Color.magenta;
+            canOpenChest = false;
         }
     }
 }
