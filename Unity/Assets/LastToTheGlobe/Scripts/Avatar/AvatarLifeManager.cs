@@ -30,7 +30,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         private void Awake()
         {
             myLife = lifeStartingPoint;
-            defeat.Deactivation();
+            //defeat.Deactivation();
             //myExposer.lifeUI.Activation();
         }
 
