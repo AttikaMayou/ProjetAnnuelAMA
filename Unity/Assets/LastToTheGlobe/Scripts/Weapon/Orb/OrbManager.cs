@@ -40,8 +40,6 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb
             orbTransform.position = playerTransform.position + playerTransform.forward * 2f;
             _direction = playerTransform.right;
             _centerPointAttractor = attractedScript.attractor.planetTransform.position;
-            
-            
         }
         
         private void FixedUpdate () {
