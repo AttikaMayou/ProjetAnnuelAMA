@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi;
 using LastToTheGlobe.Scripts.UI;
 using Photon.Pun;
 using Photon.Pun.UtilityScripts;
@@ -169,8 +170,8 @@ namespace LastToTheGlobe.Scripts.Network
             if (PhotonNetwork.IsMasterClient)
             {
                 PlayerJoined?.Invoke(i);
+                GameCanStart?.Invoke();
             }
-            GameCanStart?.Invoke();
             SetCamera?.Invoke(i);
         }
         
