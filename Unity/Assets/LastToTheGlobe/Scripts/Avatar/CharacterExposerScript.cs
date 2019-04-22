@@ -1,5 +1,6 @@
 ﻿using LastToTheGlobe.Scripts.Environment.Planets;
 using LastToTheGlobe.Scripts.Inventory;
+using LastToTheGlobe.Scripts.Management;
 using LastToTheGlobe.Scripts.UI;
 using UnityEngine;
 using Photon.Pun;
@@ -25,7 +26,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         public GameObject cameraRotatorX;
         
         [Header("UI references")] 
-        public ActivateObjects inventoryUI;
+        //public ActivateObjects inventoryUI;
         public ActivateObjects lifeUI;
         public ActivateObjects victoryUI;
         public ActivateObjects defeatUI;
@@ -42,7 +43,7 @@ namespace LastToTheGlobe.Scripts.Avatar
             //only the Master Client and the player to the directory
             if (PhotonNetwork.IsMasterClient)
             {
-                //TODO : add this script to the directory
+                PlayerColliderDirectoryScript.Instance.AddExposer(this);
             }
         }
     }

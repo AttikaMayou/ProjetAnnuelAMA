@@ -4337,6 +4337,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 955490085}
   m_CullTransparentMesh: 0
+--- !u!114 &965428813 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1818730119912776350, guid: 19083d05772af8b4dbec64b8289d90d4,
+    type: 3}
+  m_PrefabInstance: {fileID: 4530374370568545406}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62fccbecf97d57d43a997f51cceb9308, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &973798957
 GameObject:
   m_ObjectHideFlags: 0
@@ -4769,6 +4781,10 @@ MonoBehaviour:
   environmentController: {fileID: 997781115}
   myCamera: {fileID: 2025786751}
   rotationSpeed: 5
+  inventoryUI: {fileID: 0}
+  lifeUI: {fileID: 965428813}
+  victoryUI: {fileID: 1377665779}
+  defeatUI: {fileID: 1895880734}
   startMenuController: {fileID: 1023363632}
   gameStarted: 0
   onLobby: 0
