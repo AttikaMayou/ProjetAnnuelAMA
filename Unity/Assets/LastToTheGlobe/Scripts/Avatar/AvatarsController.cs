@@ -1,6 +1,9 @@
-﻿using LastToTheGlobe.Scripts.Camera;
+﻿using System.Collections;
+using LastToTheGlobe.Scripts.Camera;
+using LastToTheGlobe.Scripts.Dev.LevelManager;
 using LastToTheGlobe.Scripts.Network;
 using Photon.Pun;
+using Photon.Pun.UtilityScripts;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
@@ -25,15 +28,23 @@ namespace LastToTheGlobe.Scripts.Avatar
         [Header("Game Control Parameters And References")]
         [SerializeField] private StartMenuController startMenuController;
         [SerializeField] private bool gameStarted;
+        [SerializeField] private bool onLobby;
+        [SerializeField] private int nbMinPlayers = 2;
+        [SerializeField] private float countdown = 10.0f;
+        private float _countdownStartValue;
         
         #region MonoBehaviour Callbacks
 
         private void Awake()
         {
             gameStarted = false;
+            onLobby = false;
+
+            _countdownStartValue = countdown;
             
             startMenuController.OnlinePlayReady += ChooseAndSubscribeToIntentReceivers;
             startMenuController.PlayerJoined += ActivateAvatar;
+            startMenuController.GameCanStart += LaunchGameRoom;
         }
 
         private void FixedUpdate()
@@ -53,6 +64,17 @@ namespace LastToTheGlobe.Scripts.Avatar
                 return;
             }
 
+            if (onLobby)
+            {
+                countdown -= Time.deltaTime;
+                startMenuController.UpdateCountdownValue(countdown);
+                if (countdown <= 0.0f)
+                {
+                    countdown = 0.0f;
+                    onLobby = false;
+                }
+            }
+            
             var i = 0;
             for (; i < _activatedIntentReceivers.Length; i++)
             {
@@ -144,6 +166,52 @@ namespace LastToTheGlobe.Scripts.Avatar
             {
                 ActivateAvatarRPC(id);
             }
+        }
+
+        /// <summary>
+        /// Each time a player join the lobby, we check if we're enough. If yes, we load the GameRoom after a countdown
+        /// </summary>
+        private void LaunchGameRoom()
+        {
+            if (!CheckIfEnoughPlayers()) return;
+            onLobby = true;
+            StartCoroutine(CountdownBeforeSwitchingScene(_countdownStartValue));
+        }
+
+        /// <summary>
+        /// Check if there is enough players to start the game and leave Lobby
+        /// </summary>
+        /// <returns></returns>
+        private bool CheckIfEnoughPlayers()
+        {
+            if (!gameStarted) return false;
+
+            var j = 0;
+            var i = 0;
+            for (; i < players.Length; i++)
+            {
+                if (players[i].isActiveAndEnabled)
+                {
+                    j++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            return j >= nbMinPlayers;
+        }
+
+        /// <summary>
+        /// Wait the time indicated before switching scene to GameRoom
+        /// </summary>
+        /// <param name="time"></param>
+        /// <returns></returns>
+        private IEnumerator CountdownBeforeSwitchingScene(float time)
+        {
+            yield return new WaitForSeconds(time);
+            LevelLoadingManager.Instance.SwitchToScene(LastToTheGlobeScene.GameRoom);
         }
 
         #endregion
