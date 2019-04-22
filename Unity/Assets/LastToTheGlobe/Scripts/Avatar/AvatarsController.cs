@@ -164,6 +164,10 @@ namespace LastToTheGlobe.Scripts.Avatar
             }
         }
 
+        /// <summary>
+        /// Called to activate the avatar root gameObject when a player join the game
+        /// </summary>
+        /// <param name="id"></param>
         private void ActivateAvatar(int id)
         {
             if (PhotonNetwork.IsConnected)
@@ -183,13 +187,11 @@ namespace LastToTheGlobe.Scripts.Avatar
         private void SetupCamera(int id)
         {
             //if (photonView.IsMine != players[id].characterPhotonView) return;
-            if (!myCamera.enabled)
-            {
-                myCamera.enabled = true;
-                myCamera.playerExposer = players[id];
-                myCamera.InitializeCameraPosition();
-                myCamera.startFollowing = true;
-            }
+            if (myCamera.enabled) return;
+            myCamera.enabled = true;
+            myCamera.playerExposer = players[id];
+            myCamera.InitializeCameraPosition();
+            myCamera.startFollowing = true;
         }
 
         /// <summary>
@@ -197,7 +199,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         /// </summary>
         private void LaunchGameRoom()
         {
-            if (!CheckIfEnoughPlayers()) return;
+            if (!PhotonNetwork.IsMasterClient || !CheckIfEnoughPlayers() || gameLaunched) return;
             onLobby = true;
             startMenuController.ShowLobbyCountdown();
             StartCoroutine(CountdownBeforeSwitchingScene(_countdownStartValue));
