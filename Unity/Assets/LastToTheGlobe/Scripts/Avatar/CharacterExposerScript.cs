@@ -1,4 +1,5 @@
 ﻿using LastToTheGlobe.Scripts.Environment.Planets;
+using LastToTheGlobe.Scripts.Inventory;
 using LastToTheGlobe.Scripts.UI;
 using UnityEngine;
 using Photon.Pun;
@@ -28,6 +29,12 @@ namespace LastToTheGlobe.Scripts.Avatar
         public ActivateObjects lifeUI;
         public ActivateObjects victoryUI;
         public ActivateObjects defeatUI;
+        
+        public InventoryScript inventoryScript;
+        
+        //Character Parameters
+        public Vector3 _movedir;
+        public float dashSpeed = 30;
 
         //Reference itself to the ColliderDirectory and CameraScript when activated
         private void OnEnable()
