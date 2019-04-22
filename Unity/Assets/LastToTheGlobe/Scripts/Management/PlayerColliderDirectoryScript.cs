@@ -34,7 +34,7 @@ namespace LastToTheGlobe.Scripts.Management
             {
                 return _value;
             }
-            Debug.LogError("The Collider has no CharacterExposer associated : " +
+            Debug.LogError("The Collider has no CharacterExposerScript associated : " +
                            "something wrong happened at instantiation of the player whom it belongs to this gameObject : " +
                            col.gameObject.name);
             return null;
@@ -59,16 +59,16 @@ namespace LastToTheGlobe.Scripts.Management
             AddPlayerInDirectory(player);
         }
 
-        public void SyncData(CharacterExposerScript exposer)
-        {
-            AddExposer(exposer);
-        }
-
         private void AddPlayerInDirectory(CharacterExposerScript player)
         {
             Debug.Log("add one player to directory");
-            if (_directory.ContainsValue(player)) return;
+            if (_directory.ContainsValue(player))
+            {
+                Debug.Log("directory already contains player");
+                return;
+            }
             _directory.Add(player.characterCollider, player);
+            Debug.Log("Directory key : " + player.characterCollider + " and value : " + player);
         }
         
     }
