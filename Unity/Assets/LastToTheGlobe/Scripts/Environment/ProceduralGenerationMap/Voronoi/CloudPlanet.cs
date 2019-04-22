@@ -12,6 +12,8 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi
     //[ExecuteInEditMode]
     public class CloudPlanet : MonoBehaviour
     {
+        public bool debug = true;
+        
         [FormerlySerializedAs("NumberOfVertices")]
         [SerializeField]
         [Tooltip("Nombre de planètes")]
@@ -44,8 +46,10 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi
         {
             //TODO : vérifier que ça ne change que lorsque la room se crée et pas à chaque join room
             _seed = Random.Range(1, 200);
+            if(debug) Debug.Log("Seed is : " + _seed);
 
             if (!PhotonNetwork.IsMasterClient) return;
+            if(debug) Debug.Log("master has passed here");
             GenerateMap();
         }
         
