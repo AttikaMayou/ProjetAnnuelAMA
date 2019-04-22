@@ -31,7 +31,12 @@ namespace LastToTheGlobe.Scripts.Network
             
             forward = Input.GetAxisRaw("Vertical");
             strafe = Input.GetAxisRaw("Horizontal");
+            rotationOnX = Input.GetAxis("Mouse X");
+            rotationOnY = Input.GetAxis("Mouse Y");
 
+            //TODO : check if the rotation updates relative to previous rotation
+            photonView.RPC("UpdateCameraRotation", RpcTarget.MasterClient, rotationOnX, rotationOnY);
+            
             //Attack Intent
             if (Input.GetMouseButton(0) && canShoot)
             {
@@ -153,6 +158,37 @@ namespace LastToTheGlobe.Scripts.Network
         }
 
         #region RPC
+
+        [PunRPC]
+        void UpdateCameraRotation(float rotationX, float rotationY)
+        {
+            if (PhotonNetwork.IsMasterClient)
+            {
+                if (debug)
+                {
+                    Debug.Log("I get the message : UpdateRotation on this avatar : " + playerIndex);
+                    Debug.Log("X rotation : " + rotationX + " and Y : " + rotationY);
+                    rotationOnX = rotationX;
+                    rotationOnY = rotationY;
+                }
+            }
+        }
+        
+        [PunRPC]
+        void UpdateCameraRotation(int rotationX, int rotationY)
+        {
+            if (PhotonNetwork.IsMasterClient)
+            {
+                if (debug)
+                {
+                    Debug.Log("I get the message : UpdateRotation on this avatar : " + playerIndex);
+                    Debug.Log("X rotation : " + rotationX + " and Y : " + rotationY);
+                    rotationOnX = rotationX;
+                    rotationOnY = rotationY;
+                }
+            }
+        }
+        
         [PunRPC]
         void MoveLeftRPC(bool intent, int forwardInput, int strafeInput)
         {

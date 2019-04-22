@@ -173,6 +173,8 @@ namespace LastToTheGlobe.Scripts.Avatar
                 }
                 
                 rb.MovePosition(rb.position + tr.TransformDirection(moveIntent) * intent.speed * Time.deltaTime);
+                tr.Rotate(new Vector3(0, intent.rotationOnX, 0));
+                player.cameraRotatorX.transform.Rotate(new Vector3(-intent.rotationOnY, 0, 0), Space.Self);
             }
         }
 

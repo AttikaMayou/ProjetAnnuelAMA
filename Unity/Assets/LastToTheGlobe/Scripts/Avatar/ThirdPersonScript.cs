@@ -21,14 +21,14 @@ namespace LastToTheGlobe.Scripts.Avatar
         private void FixedUpdate()
         {
             //Permet de tourner le personnage pour donner la direction à la caméra sur l'axe horizontale
-            transform.Rotate(new Vector3(0,
-                Input.GetAxis("Mouse X") * rotationSpeed,
-                0));
-        
-            //Permet de tourner le gameobject qui donne la direction à la caméra sur l'axe vertical
-            playerExposer.cameraRotatorX.transform.Rotate(new Vector3(-(Input.GetAxis("Mouse Y") * rotationSpeed),
-                0,
-                0), Space.Self);
+//            transform.Rotate(new Vector3(0,
+//                Input.GetAxis("Mouse X") * rotationSpeed,
+//                0));
+//        
+//            //Permet de tourner le gameobject qui donne la direction à la caméra sur l'axe vertical
+//            playerExposer.cameraRotatorX.transform.Rotate(new Vector3(-(Input.GetAxis("Mouse Y") * rotationSpeed),
+//                0,
+//                0), Space.Self);
 
             //Prevent the camera from going too high or too low
             //Les valeurs qui étaient mises sont des valeurs qui peuvent être pris par la variable cameraRotatorX.transform.rotation.x (-1 - 1)

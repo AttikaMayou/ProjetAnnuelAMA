@@ -9,7 +9,6 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb
 {
     public class OrbManager : OrbExposerScript
     {
-
         public bool debug = true;
         
         [Header("Orb Parameters")]
@@ -36,7 +35,7 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb
             
             _timeUsing = 0.0f;
             maxTimeUsing = 3f;
-            if (!playerTransform) return;
+            if (!playerTransform || !attractedScript) return;
             orbTransform.position = playerTransform.position + playerTransform.forward * 2f;
             _direction = playerTransform.right;
             _centerPointAttractor = attractedScript.attractor.planetTransform.position;

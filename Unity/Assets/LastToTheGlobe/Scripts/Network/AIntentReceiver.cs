@@ -19,10 +19,13 @@ namespace LastToTheGlobe.Scripts.Network
        public bool Bump { get; set; }
        public bool Interact { get; set; }
 
-       public float forward = 0;
-       public float strafe = 0;
+       public float forward = 0.0f;
+       public float strafe = 0.0f;
        public float speed = 5.0f;
        public float loadShotValue = 0.0f;
+       public float rotationOnX = 0.0f;
+       public float rotationOnY = 0.0f;
+       public float rotationSpeed = 5.0f;
 
        public bool canDash = true;
        public bool canJump = true;
