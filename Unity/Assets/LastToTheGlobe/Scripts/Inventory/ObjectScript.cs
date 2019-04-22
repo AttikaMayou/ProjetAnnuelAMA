@@ -1,21 +1,24 @@
 ﻿using UnityEngine;
 
 //Auteur : Attika
+//Modification : Abdallah
 
 namespace LastToTheGlobe.Scripts.Inventory
 {
-    public class ObjectScript : MonoBehaviour
+    public class ObjectScript : ScriptableObject
     {
         public bool isInInventory;
         public bool isConsume;
-        public int nbOfConsumption = 0;
+        public float lifePoint = 0;
         public string objectName;
-        /*
-         Consommable = 0
-         Bonus = 1
-         Skills = 2
-         */
-        public int typeOfObject = 2;
+        public enum _typeOfItem
+        {
+            Consumable,
+            Bonus,
+            Skill
+        };
+
+        public _typeOfItem itemType = _typeOfItem.Consumable;
 
         /// <summary>
         /// Set an object in inventory or delete it from inventory

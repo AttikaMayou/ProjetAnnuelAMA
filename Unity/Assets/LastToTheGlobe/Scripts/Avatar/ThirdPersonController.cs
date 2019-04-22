@@ -3,6 +3,7 @@ using LastToTheGlobe.Scripts.Dev;
 using LastToTheGlobe.Scripts.Environment.Planets;
 using LastToTheGlobe.Scripts.Inventory;
 using LastToTheGlobe.Scripts.Weapon.Orb;
+using System.Collections;
 using UnityEngine;
 
 //Auteur : Abdallah
@@ -64,12 +65,20 @@ namespace LastToTheGlobe.Scripts.Avatar
         public KeyCode jumpInput;
         public KeyCode runInput;
         public KeyCode skillInput;
+
+        [Header("Chest")] 
+        private bool _nearChest = false;
+
+        private IEnumerator enume;
+
+        private UIChest _actualChest;
         
         
         private void Start()
         {
             _skills.characterExposer = playerExposer;
             playerExposer.dashSpeed = dashSpeed;
+            enume = ChestState().GetEnumerator();
         }
 
         private void FixedUpdate () 
@@ -91,12 +100,22 @@ namespace LastToTheGlobe.Scripts.Avatar
                 rb.MovePosition(rb.position + transform.TransformDirection(_moveDir) * speed * Time.deltaTime);
             }
 
-            //Skill
+            if (Input.GetKeyDown(KeyCode.E) && _nearChest)
+            {
+                enume.MoveNext();
+                if (enume.Current.ToString() ==  "Closed") enume = ChestState().GetEnumerator();
+            
+            }
+
+            
+                
+/*====================================================Skill==========================================================================*/
+
             if (_skillAsked)
             {
                 foreach (ObjectScript item in playerExposer.inventoryScript.objectsInInventory)
                 {
-                    if (item.typeOfObject == 2)
+                    if (item.itemType == ObjectScript._typeOfItem.Consumable)
                     {
                         _skills.skillsMethods[item.objectName]();    
                     }
@@ -105,10 +124,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                 }
                 
             }
-            else
-            {
-                rb.MovePosition(rb.position + transform.TransformDirection(_moveDir) * speed * Time.deltaTime);
-            }
+/*====================================================================================================================================*/
             
 
             //Rotate the character so the camera can follow
@@ -174,7 +190,6 @@ namespace LastToTheGlobe.Scripts.Avatar
                 _isJumping = false;
                 attractedScript.isGrounded = false;
             }
-            
         }
 
         private void Running()
@@ -219,6 +234,55 @@ namespace LastToTheGlobe.Scripts.Avatar
                 _launched = false;
             }
         }
+        
+        public void CloseToChest(UIChest chest)
+        {
+            _actualChest = chest;
+            _nearChest = true;
+            _actualChest.pressE.gameObject.SetActive(true);
+        
+        }
+
+        public void AwayFromChest(UIChest chest)
+        {
+            _actualChest.pressE.gameObject.SetActive(false);
+            _actualChest.playerInventory.gameObject.SetActive(false);
+            _actualChest.chestInventory.gameObject.SetActive(false);
+            _actualChest.playerOpenChest = false;
+            _actualChest = null;
+            _nearChest = false;
+            if (enume.Current.ToString() == "Open")
+            {
+                enume = ChestState().GetEnumerator();
+            }
+        }
+
+        private IEnumerable ChestState()
+        {
+            _actualChest.playerInventory.gameObject.SetActive(true);
+            _actualChest.chestInventory.gameObject.SetActive(true);
+            _actualChest.pressE.gameObject.SetActive(false);
+            _actualChest.playerOpenChest = true;
+            print("Open");
+            yield return "Open";
+        
+            _actualChest.playerInventory.gameObject.SetActive(false);
+            _actualChest.chestInventory.gameObject.SetActive(false);
+            _actualChest.playerOpenChest = false;
+            print("Closed");
+            if (_nearChest)
+            {
+                _actualChest.pressE.gameObject.SetActive(true);
+            }
+            else
+            {
+                _actualChest.pressE.gameObject.SetActive(false);
+            }
+        
+            yield return "Closed";
+        }
+
+        
 
 /*
         private void Jump()

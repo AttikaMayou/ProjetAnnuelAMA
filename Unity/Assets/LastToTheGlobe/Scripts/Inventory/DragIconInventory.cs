@@ -1,14 +1,27 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System.Collections;
 
 
 //Auteur : Margot 
+//Modification : Abdallah
 
 public class DragIconInventory : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     public static GameObject item;
+    public static string name;
+    public enum _typeOfItem
+    {
+        Consumable,
+        Bonus,
+        Skill
+    };
+
+    public static _typeOfItem itemType = _typeOfItem.Consumable;
+    public static float lifePoint;
     private Vector3 startPosition = Vector3.zero;
     private CanvasGroup canvasGroup;
     private Transform parentToReturnTo;

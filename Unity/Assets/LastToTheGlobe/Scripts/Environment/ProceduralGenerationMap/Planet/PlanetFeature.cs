@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 //Auteur : Margot
-//retouche : Attika
+//Modifications : Attika
 
 public enum PlanetType
 {
@@ -16,43 +16,48 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
     {
         [SerializeField]
         private GameObject planet;
-        //Planet tag
 
-        string[] tags = new string[] { "basic", "frozen", "desert" };
-
-        public PlanetType myType;
+        public PlanetType myType = PlanetType.Basic;
         
-        private float scale;
-        private int indexRandom;
+        private float _scale;
+        private int _indexRandom;
 
         //TODO : transformer planet en prefab
 
         private void Start()
         {
             //Planet tag
-            indexRandom = (int)Random.Range(0, 3);
-            myType = (PlanetType)indexRandom;
+            _indexRandom = (int)Random.Range(0, 3);
+            myType = (PlanetType)_indexRandom;
             //planet.tag = tags[indexRandom];
         
             //Size Planet
-            scale = Random.Range(20f, 50f);
-            planet.transform.localScale = new Vector3(scale, scale, scale);
+            _scale = Random.Range(20f, 50f);
+            planet.transform.localScale = new Vector3(_scale, _scale, _scale);
 
-            //Planet Material
-            if (myType == PlanetType.Frozen)
+            switch (myType)
             {
-                Material matFrozen = Resources.Load("M_FrozenPlanet", typeof(Material)) as Material;
-                planet.GetComponent<Renderer>().material = matFrozen;
-            }
-            else if (myType == PlanetType.Desert)
-            {
-                Material matdesert = Resources.Load("M_DesertPlanet", typeof(Material)) as Material;
-                planet.GetComponent<Renderer>().material = matdesert;
-            }
-            else
-            {
-                Material matBasic = Resources.Load("M_BasicPlanet", typeof(Material)) as Material;
-                planet.GetComponent<Renderer>().material = matBasic;
+                //Planet Material
+                case PlanetType.Frozen:
+                {
+                    var matFrozen = Resources.Load("M_FrozenPlanet", typeof(Material)) as Material;
+                    planet.GetComponent<Renderer>().material = matFrozen;
+                    break;
+                }
+                case PlanetType.Desert:
+                {
+                    var matDesert = Resources.Load("M_DesertPlanet", typeof(Material)) as Material;
+                    planet.GetComponent<Renderer>().material = matDesert;
+                    break;
+                }
+                case PlanetType.Basic:
+                    break;
+                default:
+                {
+                    var matBasic = Resources.Load("M_BasicPlanet", typeof(Material)) as Material;
+                    planet.GetComponent<Renderer>().material = matBasic;
+                    break;
+                }
             }
 
 

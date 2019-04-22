@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Random = UnityEngine.Random;
 
 //Auteur: Margot
-//retouche : Attika
+//Modifications : Attika
 
 namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
 {
@@ -32,99 +34,102 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
         [SerializeField]
         private List<GameObject> desertRock;
 
-        private int numberObjectMax = 1;
-        private int numberTreesMax;
-        private int maxObject;
-        private List<GameObject> listTrees;
-        private List<GameObject> listRock;
-        private float randomScaleTree;
-        private float randomScaleRock;
+        private int _numberObjectMax = 1;
+        private int _numberTreesMax;
+        private int _maxObject;
+        private List<GameObject> _listTrees;
+        private List<GameObject> _listRock;
+        private float _randomScaleTree;
+        private float _randomScaleRock;
 
-        void Start()
+        private void Start()
         {
-            Vector3 planetPosition = gameObject.transform.position;
-            numberObjectMax = (int)Random.Range(1, 200);
-            numberTreesMax = (int)Random.Range(0, 50);
+            var planetPosition = gameObject.transform.position;
+            _numberObjectMax = (int)Random.Range(1, 200);
+            _numberTreesMax = (int)Random.Range(0, 50);
 
-            if (planetFt.myType == PlanetType.Frozen)
+            switch (planetFt.myType)
             {
-                listTrees = frozenTrees;
-                listRock = frozenRock;
-            }
-            else if (planetFt.myType == PlanetType.Desert)
-            {
-                listTrees = desertTrees;
-                listRock = desertRock;
-            }
-            else if (planetFt.myType == PlanetType.Basic)
-            { 
-                listTrees = basicTrees;
-                listRock = basicRock;
+                case PlanetType.Frozen:
+                    _listTrees = frozenTrees;
+                    _listRock = frozenRock;
+                    break;
+                case PlanetType.Desert:
+                    _listTrees = desertTrees;
+                    _listRock = desertRock;
+                    break;
+                case PlanetType.Basic:
+                    _listTrees = basicTrees;
+                    _listRock = basicRock;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
 
-            if (numberTreesMax > 0)
+            if (_numberTreesMax > 0)
             {
                 //Spawn Trees
-                for (int i = 0; i <= numberTreesMax; i++)
+                for (int i = 0; i <= _numberTreesMax; i++)
                 {
-                    randomScaleTree = Random.Range(0.05f, 0.15f);
+                    _randomScaleTree = Random.Range(0.05f, 0.15f);
 
-                    Vector3 spawnPosition = Random.onUnitSphere * ((planet.transform.localScale.x / 2) + listTrees[0].transform.localScale.y - 0.02f) + planet.transform.position;
-                    GameObject newtree = Instantiate(listTrees[GetRandomTree()], spawnPosition, Quaternion.identity) as GameObject;
+                    var spawnPosition = Random.onUnitSphere * ((planet.transform.localScale.x / 2) + _listTrees[0].transform.localScale.y - 0.02f) + planet.transform.position;
+                    var newTree = Instantiate(_listTrees[GetRandomTree()], spawnPosition, Quaternion.identity) as GameObject;
 
-                    newtree.transform.LookAt(planetPosition);
-                    newtree.transform.localScale = new Vector3(randomScaleTree, randomScaleTree, randomScaleTree);
-                    newtree.transform.Rotate(-90, 0, 0);
-                    newtree.transform.parent = transform;
+                    newTree.transform.LookAt(planetPosition);
+                    newTree.transform.localScale = new Vector3(_randomScaleTree, _randomScaleTree, _randomScaleTree);
+                    newTree.transform.Rotate(-90, 0, 0);
+                    newTree.transform.parent = transform;
                 }
             }
 
             //Spawn Rock
-            for (int i = numberTreesMax; i < numberObjectMax; i++)
+            for (var i = _numberTreesMax; i < _numberObjectMax; i++)
             {
-                randomScaleRock = Random.Range(0.02f, 0.06f);
+                _randomScaleRock = Random.Range(0.02f, 0.06f);
 
-                Vector3 spawnPosition = Random.onUnitSphere * ((planet.transform.localScale.x / 2) + listRock[0].transform.localScale.y - 0.05f) + planet.transform.position;
-                GameObject newrock = Instantiate(listRock[GetRandomRock()], spawnPosition, Quaternion.identity) as GameObject;
+                var spawnPosition = Random.onUnitSphere * ((planet.transform.localScale.x / 2) + _listRock[0].transform.localScale.y - 0.05f) + planet.transform.position;
+                var newRock = Instantiate(_listRock[GetRandomRock()], spawnPosition, Quaternion.identity) as GameObject;
 
-                newrock.transform.LookAt(planetPosition);
-                newrock.transform.localScale = new Vector3(randomScaleRock, randomScaleRock, randomScaleRock);
-                newrock.transform.Rotate(-90, 0, 0);
-                newrock.transform.parent = transform;
+                newRock.transform.LookAt(planetPosition);
+                newRock.transform.localScale = new Vector3(_randomScaleRock, _randomScaleRock, _randomScaleRock);
+                newRock.transform.Rotate(-90, 0, 0);
+                newRock.transform.parent = transform;
             }
-        
         }
 
         private int GetRandomTree()
         {
-            if (planetFt.myType == PlanetType.Frozen)
+            switch (planetFt.myType)
             {
-                return (int)Random.Range(0, frozenTrees.Count - 1);
+                case PlanetType.Frozen:
+                    return (int)Random.Range(0, frozenTrees.Count - 1);
+                case PlanetType.Desert:
+                    return (int)Random.Range(0, desertTrees.Count - 1);
+                case PlanetType.Basic:
+                    break;
+                default:
+                    return (int)Random.Range(0, basicTrees.Count - 1);
             }
-            else if (planetFt.myType == PlanetType.Desert)
-            {
-                return (int)Random.Range(0, desertTrees.Count - 1);
-            }
-            else
-            {
-                return (int)Random.Range(0, basicTrees.Count - 1);
-            }
+
+            return 0;
         }
 
         private int GetRandomRock()
         {
-            if (planetFt.myType == PlanetType.Frozen)
+            switch (planetFt.myType)
             {
-                return (int)Random.Range(0, frozenRock.Count - 1);
+                case PlanetType.Frozen:
+                    return (int)Random.Range(0, frozenRock.Count - 1);
+                case PlanetType.Desert:
+                    return (int)Random.Range(0, desertRock.Count - 1);
+                case PlanetType.Basic:
+                    break;
+                default:
+                    return (int)Random.Range(0, basicRock.Count - 1);
             }
-            else if (planetFt.myType == PlanetType.Desert)
-            {
-                return (int)Random.Range(0, desertRock.Count - 1);
-            }
-            else
-            {
-                return (int)Random.Range(0, basicRock.Count - 1);
-            }
+
+            return 0;
         }
 
     }

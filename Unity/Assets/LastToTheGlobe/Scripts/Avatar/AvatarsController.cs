@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using LastToTheGlobe.Scripts.Camera;
 using LastToTheGlobe.Scripts.Dev.LevelManager;
+using LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi;
 using LastToTheGlobe.Scripts.Network;
 using Photon.Pun;
 using Photon.Pun.UtilityScripts;
@@ -15,6 +16,8 @@ namespace LastToTheGlobe.Scripts.Avatar
 {
     public class AvatarsController : MonoBehaviour
     {
+        public bool debug = true;
+        
         [Header("Photon and Replication Parameters")] 
         [SerializeField] private CharacterExposerScript[] players;
         [SerializeField] private AIntentReceiver[] onlineIntentReceivers;
@@ -36,6 +39,9 @@ namespace LastToTheGlobe.Scripts.Avatar
         //spawn point tab
         private GameObject[] _spawnPointInPlanet;
         
+        [SerializeField] private CloudPlanet environmentController;
+        private int _seed;
+        
         #region MonoBehaviour Callbacks
 
         private void Awake()
@@ -51,7 +57,6 @@ namespace LastToTheGlobe.Scripts.Avatar
             startMenuController.OnlinePlayReady += ChooseAndSubscribeToIntentReceivers;
             startMenuController.PlayerJoined += ActivateAvatar;
             startMenuController.SetCamera += SetupCamera;
-            FindAllSpawnPoint();
             startMenuController.GameCanStart += LaunchGameRoom;
         }
 
@@ -129,8 +134,12 @@ namespace LastToTheGlobe.Scripts.Avatar
 
         #endregion
 
+        
         #region Private Methods
 
+        /// <summary>
+        /// Set the intentReceivers tab
+        /// </summary>
         private void ChooseAndSubscribeToIntentReceivers()
         {
             _activatedIntentReceivers = onlineIntentReceivers;
@@ -138,6 +147,9 @@ namespace LastToTheGlobe.Scripts.Avatar
             gameStarted = true;
         }
 
+        /// <summary>
+        /// Activate the intentReceivers and set defaults values
+        /// </summary>
         private void EnableIntentReceivers()
         {
             if (_activatedIntentReceivers == null)
@@ -164,6 +176,10 @@ namespace LastToTheGlobe.Scripts.Avatar
             }
         }
 
+        /// <summary>
+        /// Called to activate the avatar root gameObject when a player join the game
+        /// </summary>
+        /// <param name="id"></param>
         private void ActivateAvatar(int id)
         {
             if (PhotonNetwork.IsConnected)
@@ -183,13 +199,19 @@ namespace LastToTheGlobe.Scripts.Avatar
         private void SetupCamera(int id)
         {
             //if (photonView.IsMine != players[id].characterPhotonView) return;
-            if (!myCamera.enabled)
+            if (myCamera.enabled) return;
+            myCamera.enabled = true;
+            myCamera.playerExposer = players[id];
+            myCamera.InitializeCameraPosition();
+            myCamera.startFollowing = true;
+            _seed = environmentController.GetSeed();
+            if (PhotonNetwork.IsMasterClient)
             {
-                myCamera.enabled = true;
-                myCamera.playerExposer = players[id];
-                myCamera.InitializeCameraPosition();
-                myCamera.startFollowing = true;
+                photonView.RPC("SendSeedToPlayers", RpcTarget.Others, _seed);
             }
+            if(debug) Debug.Log("Seed on player " + id + " is : " + _seed);
+            environmentController.SetSeed(_seed);
+            FindAllSpawnPoint();
         }
 
         /// <summary>
@@ -197,7 +219,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         /// </summary>
         private void LaunchGameRoom()
         {
-            if (!CheckIfEnoughPlayers()) return;
+            if (!PhotonNetwork.IsMasterClient || !CheckIfEnoughPlayers() || gameLaunched) return;
             onLobby = true;
             startMenuController.ShowLobbyCountdown();
             StartCoroutine(CountdownBeforeSwitchingScene(_countdownStartValue));
@@ -229,19 +251,31 @@ namespace LastToTheGlobe.Scripts.Avatar
         }
 
         /// <summary>
-        /// Wait the time indicated before switching scene to GameRoom
+        /// Wait the time indicated before teleport players to the spawn points
         /// </summary>
         /// <param name="time"></param>
         /// <returns></returns>
         private IEnumerator CountdownBeforeSwitchingScene(float time)
         {
             yield return new WaitForSeconds(time);
-            //LevelLoadingManager.Instance.SwitchToScene(LastToTheGlobeScene.GameRoom);
-
-            //Teleport player in planet
-            for(int i = 0; i<= players.Length; i++)
+            
+            if (_spawnPointInPlanet.Length <= 1)
             {
+                Debug.LogError("There is a problem with the map instantiation");
+                yield break;
+            }
+            
+            //Teleport players on planets
+            for(var i = 0; i<= players.Length; i++)
+            {
+                if (!players[i].isActiveAndEnabled) break;
                 players[i].characterRootGameObject.transform.position = _spawnPointInPlanet[i].transform.position;
+                if (debug)
+                {
+                    Debug.Log("Previous pos : " + players[i].characterRootGameObject.transform.position);
+                    Debug.Log("Final position : " +_spawnPointInPlanet[i].transform.position);
+                    Debug.Log("Local position :  " + _spawnPointInPlanet[i].transform.localPosition);
+                }
                 yield return new WaitForSeconds(0.5f);
             }
 
@@ -251,6 +285,15 @@ namespace LastToTheGlobe.Scripts.Avatar
         private void FindAllSpawnPoint()
         {
             _spawnPointInPlanet = GameObject.FindGameObjectsWithTag("SpawnPoint");
+            if (debug)
+            {
+                var i = 0;
+                foreach (var point in _spawnPointInPlanet)
+                {
+                    Debug.Log("Spawn Point : " + i + " is " + point);
+                    i++;
+                }
+            }
         }
 
         #endregion
@@ -267,6 +310,13 @@ namespace LastToTheGlobe.Scripts.Avatar
         private void DeactivateAvatarRPC(int avatarId)
         {
             players[avatarId].characterRootGameObject.SetActive(false);
+        }
+
+        [PunRPC]
+        private void SendSeedToPlayers(int seed)
+        {
+            _seed = seed;
+            if (debug) Debug.Log("My seed is : " + seed);
         }
 
         #endregion

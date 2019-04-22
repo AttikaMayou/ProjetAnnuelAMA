@@ -1,16 +1,23 @@
-﻿using UnityEngine;
+﻿using System.Runtime.InteropServices.WindowsRuntime;
+using UnityEngine;
 using LastToTheGlobe.Scripts;
+using Photon.Pun;
+using UnityEngine.Serialization;
 
 //Auteur : Margot
+//Modifications : Attika
 
 namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi
 {
     //[ExecuteInEditMode]
     public class CloudPlanet : MonoBehaviour
     {
+        public bool debug = true;
+        
+        [FormerlySerializedAs("NumberOfVertices")]
         [SerializeField]
         [Tooltip("Nombre de planètes")]
-        private int NumberOfVertices = 10;
+        private int numberOfVertices = 10;
         // TODO: changer nombres de vertices en fonction des joueurs connectés
 
         [SerializeField]
@@ -33,21 +40,30 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi
         [Tooltip("Planète de victoire")]
         private GameObject victoryPlanet;
 
-        private int seed;
-
-        private void Start()
+        private int _seed;
+        
+        public int GetSeed()
         {
-            //TODO : vérifier que ça ne change que lorsque la room se crée et pas à chaque join room
-            seed = 1; // Random.Range(1, 200);
+            return Random.Range(1, 200);
+            if(debug) Debug.Log("Seed is : " + _seed);
+        }
 
-            Vertex3[] vertices = new Vertex3[NumberOfVertices];
+        public void SetSeed(int value)
+        {
+            _seed = value;
+            GenerateMap();
+        }
+
+        private void GenerateMap()
+        {
+            var vertices = new Vertex3[numberOfVertices];
 
             //Génération aléatoire des points pour planètes basics
-            for (int i = 0; i < NumberOfVertices; i++)
+            for (int i = 0; i < numberOfVertices; i++)
             {
-                float x = size * Random.Range(-1.0f, 1.0f);
-                float y = size * Random.Range(-1.0f, 1.0f);
-                float z = size * Random.Range(-1.0f, 1.0f);
+                var x = size * Random.Range(-1.0f, 1.0f);
+                var y = size * Random.Range(-1.0f, 1.0f);
+                var z = size * Random.Range(-1.0f, 1.0f);
 
                 vertices[i] = new Vertex3(x, y, z);
 
@@ -56,11 +72,11 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi
             }
 
             //Génération aléatoire des points pour planètes spawns
-            for (int i = 0; i < numberOfPlayer; i++)
+            for (var i = 0; i < numberOfPlayer; i++)
             {
-                float x = size * Random.Range(-0.7f, 0.7f);
-                float y = size * Random.Range(-1f, -1.2f);
-                float z = size * Random.Range(-0.7f, 0.7f);
+                var x = size * Random.Range(-0.7f, 0.7f);
+                var y = size * Random.Range(-1f, -1.2f);
+                var z = size * Random.Range(-0.7f, 0.7f);
 
                 vertices[i] = new Vertex3(x, y, z);
 
