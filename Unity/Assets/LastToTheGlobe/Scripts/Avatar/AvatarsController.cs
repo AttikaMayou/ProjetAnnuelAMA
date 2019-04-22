@@ -135,6 +135,7 @@ namespace LastToTheGlobe.Scripts.Avatar
 
         #endregion
 
+        
         #region Private Methods
 
         /// <summary>

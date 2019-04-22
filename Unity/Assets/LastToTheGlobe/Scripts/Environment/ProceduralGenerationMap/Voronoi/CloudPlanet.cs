@@ -41,17 +41,11 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi
         private GameObject victoryPlanet;
 
         private int _seed;
-
-        private void Start()
-        {
-            //TODO : vérifier que ça ne change que lorsque la room se crée et pas à chaque join room
-            _seed = Random.Range(1, 200);
-            if(debug) Debug.Log("Seed is : " + _seed);
-        }
         
         public int GetSeed()
         {
-            return _seed;
+            return Random.Range(1, 200);
+            if(debug) Debug.Log("Seed is : " + _seed);
         }
 
         public void SetSeed(int value)
