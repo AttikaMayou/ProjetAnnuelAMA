@@ -217,8 +217,10 @@ namespace LastToTheGlobe.Scripts.Avatar
             if (PhotonNetwork.IsMasterClient && _seed == 0)
             {
                 _seed = environmentController.GetSeed();
+                if(debug) Debug.Log("seed is " + _seed);
             }
             photonView.RPC("SendSeedToPlayers", RpcTarget.Others, _seed);
+            if(debug) Debug.Log("seed is (not zero) " + _seed);
             environmentController.SetSeed(_seed);
             FindAllSpawnPoint();
             if(!CheckIfEnoughPlayers() || gameLaunched) return;
@@ -297,7 +299,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                 }
             }
             spawnPos = new Vector3[_spawnPointInPlanet.Length + 1];
-            for (var i =0; i < _spawnPointInPlanet.Length; i++)
+            for (var i = 0; i < _spawnPointInPlanet.Length; i++)
             {
                 spawnPos[i] = _spawnPointInPlanet[i].transform.position;
             }
@@ -324,6 +326,8 @@ namespace LastToTheGlobe.Scripts.Avatar
         {
             _seed = seed;
             if (debug) Debug.Log("My seed is : " + seed);
+            environmentController.SetSeed(_seed);
+            FindAllSpawnPoint();
         }
 
         #endregion
