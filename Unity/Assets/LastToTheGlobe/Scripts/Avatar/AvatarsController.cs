@@ -141,7 +141,6 @@ namespace LastToTheGlobe.Scripts.Avatar
                         Debug.LogError("Orbs pools return null reference");
                         return;
                     }
-                    orb.enabled = true;
                     orb.playerTransform = player.characterTr;
                     orb.gameObject.SetActive(true);
                     intent.canShoot = true;
@@ -156,7 +155,6 @@ namespace LastToTheGlobe.Scripts.Avatar
                         Debug.LogError("Orbs pools return null reference");
                         return;
                     }
-                    orb.enabled = true;
                     orb.playerTransform = player.characterTr;
                     orb.charged = true;
                     orb.gameObject.SetActive(true);
@@ -356,7 +354,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         {
             foreach (var orb in orbsPool)
             {
-                if (orb.enabled)
+                if (orb.gameObject.activeSelf)
                 {
                     if(debug) Debug.Log("orb is enabled");
                     continue;

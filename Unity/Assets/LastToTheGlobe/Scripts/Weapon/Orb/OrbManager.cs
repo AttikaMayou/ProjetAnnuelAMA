@@ -61,7 +61,6 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb
             charged = false;
         }
 
-
         private void ResetOrb()
         {
             Debug.Log("reset pos of the offensive orb");
