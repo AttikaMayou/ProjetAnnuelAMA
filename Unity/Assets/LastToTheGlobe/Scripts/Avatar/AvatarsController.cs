@@ -206,7 +206,11 @@ namespace LastToTheGlobe.Scripts.Avatar
             myCamera.InitializeCameraPosition();
             myCamera.startFollowing = true;
             _seed = environmentController.GetSeed();
-            if(debug) Debug.Log("Seed on AvatarsController is : " + _seed);
+            if (PhotonNetwork.IsMasterClient)
+            {
+                photonView.RPC("SendSeedToPlayers", RpcTarget.Others, _seed);
+            }
+            if(debug) Debug.Log("Seed on player " + id + " is : " + _seed);
             environmentController.SetSeed(_seed);
         }
 
@@ -285,6 +289,12 @@ namespace LastToTheGlobe.Scripts.Avatar
         private void DeactivateAvatarRPC(int avatarId)
         {
             players[avatarId].characterRootGameObject.SetActive(false);
+        }
+
+        [PunRPC]
+        private void SendSeedToPlayers(int seed)
+        {
+            _seed = seed;
         }
 
         #endregion
