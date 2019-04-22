@@ -31,7 +31,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         private void Awake()
         {
             myLife = lifeStartingPoint;
-            myExposer.
+            myExposer.defeatUI.Deactivation();
         }
 
         private void OnCollisionEnter(Collision other)
