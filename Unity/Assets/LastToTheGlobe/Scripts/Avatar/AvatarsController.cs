@@ -172,11 +172,11 @@ namespace LastToTheGlobe.Scripts.Avatar
                     
                 }
 
-                if (intent.canJump)
+                if (intent.canJump && player.selfPlayerAttractedScript.attractor)
                 {
                     player.selfPlayerAttractedScript.attractor.Attractor(rb, tr, -2600.0f);
                 }
-                else
+                else if(!intent.canJump && player.selfPlayerAttractedScript.attractor)
                 {
                     player.selfPlayerAttractedScript.attractor.Attractor(rb, tr, player.selfPlayerAttractedScript.selfGravity);
                 }

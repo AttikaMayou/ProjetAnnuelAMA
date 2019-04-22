@@ -26,14 +26,14 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
 		private void Update ()
 		{
 			//print(attractor.planetTransform.position);
-			if(isGrounded && attractor && attractedRb)
-			{
-				attractor.Attractor(attractedRb, this.transform, -2600f);
-			}
-			else if (!isGrounded && attractor && attractedRb)
-			{
-				attractor.Attractor(attractedRb, this.transform, selfGravity);
-			}
+//			if(isGrounded && attractor && attractedRb)
+//			{
+//				attractor.Attractor(attractedRb, this.transform, -2600f);
+//			}
+//			else if (!isGrounded && attractor && attractedRb)
+//			{
+//				attractor.Attractor(attractedRb, this.transform, selfGravity);
+//			}
 		}
 	}
 }
