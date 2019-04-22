@@ -342,9 +342,11 @@ namespace LastToTheGlobe.Scripts.Avatar
                 }
                 else
                 {
+                    if (debug) Debug.Log("Orb selected is " + orb);
                     return orb;
                 }
             }
+            if(debug) Debug.Log("There is no orb available");
             return new OrbManager();
         }
 
