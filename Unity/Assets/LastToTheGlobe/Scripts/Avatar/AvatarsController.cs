@@ -246,7 +246,7 @@ namespace LastToTheGlobe.Scripts.Avatar
 
         private void FindAllSpawnPoint()
         {
-            _spawnPointInPlanet = GameObject.FindGameObjectsWithTag("SpawnPlanet");
+            _spawnPointInPlanet = GameObject.FindGameObjectsWithTag("SpawnPoint");
         }
 
         #endregion
