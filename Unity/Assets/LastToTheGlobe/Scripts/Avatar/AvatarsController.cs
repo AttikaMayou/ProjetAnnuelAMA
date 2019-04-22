@@ -4,6 +4,7 @@ using LastToTheGlobe.Scripts.Camera;
 using LastToTheGlobe.Scripts.Dev.LevelManager;
 using LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi;
 using LastToTheGlobe.Scripts.Network;
+using LastToTheGlobe.Scripts.UI;
 using LastToTheGlobe.Scripts.Weapon.Orb;
 using Photon.Pun;
 using Photon.Pun.UtilityScripts;
@@ -37,6 +38,12 @@ namespace LastToTheGlobe.Scripts.Avatar
         [Header("Camera Parameters")] 
         public CameraControllerScript myCamera;
         [SerializeField] private float rotationSpeed = 5.0f;
+
+        [Header("UI Parameters")] 
+        //public ActivateObjects inventoryUI;
+        public ActivateObjects lifeUI;
+        public ActivateObjects victoryUI;
+        public ActivateObjects defeatUI;
         
         [Header("Game Control Parameters And References")]
         [SerializeField] private StartMenuController startMenuController;
@@ -234,6 +241,10 @@ namespace LastToTheGlobe.Scripts.Avatar
             myCamera.playerExposer = players[id];
             myCamera.InitializeCameraPosition();
             myCamera.startFollowing = true;
+            players[id].lifeUI = lifeUI;
+            players[id].victoryUI = victoryUI;
+            players[id].defeatUI = defeatUI;
+            if(debug) Debug.Log("Camera is set for " + id);
         }
 
         /// <summary>
