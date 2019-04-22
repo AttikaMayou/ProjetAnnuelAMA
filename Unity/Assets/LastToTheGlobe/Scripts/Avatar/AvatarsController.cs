@@ -175,6 +175,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         {
             if (!CheckIfEnoughPlayers()) return;
             onLobby = true;
+            startMenuController.ShowLobbyCountdown();
             StartCoroutine(CountdownBeforeSwitchingScene(_countdownStartValue));
         }
 
@@ -222,9 +223,10 @@ namespace LastToTheGlobe.Scripts.Avatar
         private void ActivateAvatarRPC(int avatarId)
         {
             players[avatarId].characterRootGameObject.SetActive(true);
-//            myCamera.playerExposer = players[avatarId];
-//            myCamera.InitializeCameraPosition();
-//            myCamera.startFollowing = true;
+            if (photonView.IsMine != players[avatarId].characterPhotonView) return;
+            myCamera.playerExposer = players[avatarId];
+            myCamera.InitializeCameraPosition();
+            myCamera.startFollowing = true;
         }
 
         [PunRPC]
