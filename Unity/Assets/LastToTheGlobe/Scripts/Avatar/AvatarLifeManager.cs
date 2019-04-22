@@ -31,7 +31,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         private void Awake()
         {
             myLife = lifeStartingPoint;
-            myExposer.
+            myExposer.defeatUI.Deactivation();
         }
 
         private void OnCollisionEnter(Collision other)
@@ -75,7 +75,7 @@ namespace LastToTheGlobe.Scripts.Avatar
             if (myLife <= 0)
             {
                 inLife = false;
-                defeat.Activation();
+                myExposer.defeatUI.Activation();
             }
         }
 
