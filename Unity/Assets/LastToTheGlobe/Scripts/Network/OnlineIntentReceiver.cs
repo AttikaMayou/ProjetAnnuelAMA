@@ -129,7 +129,7 @@ namespace LastToTheGlobe.Scripts.Network
 
         private void OnCollisionEnter(Collision other)
         {
-            if (!other.gameObject.CompareTag("Planet"))
+            if (other.gameObject.CompareTag("Planet"))
             {
                 canJump = true;
             }
