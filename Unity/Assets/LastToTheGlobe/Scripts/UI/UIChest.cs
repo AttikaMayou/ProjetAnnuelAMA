@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Auteur : Margot 
+//Modification : Abdallah
+
 namespace LastToTheGlobe.Scripts.Inventory
 {
     public class UIChest : MonoBehaviour

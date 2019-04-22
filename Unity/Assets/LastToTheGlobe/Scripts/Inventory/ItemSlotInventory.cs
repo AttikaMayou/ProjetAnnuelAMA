@@ -1,11 +1,13 @@
 ﻿using LastToTheGlobe.Scripts.Singleton;
 using System.Collections;
 using System.Collections.Generic;
+using LastToTheGlobe.Scripts.Inventory;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 //Auteur : Margot
+//Modification : Abdallah
 
 public class ItemSlotInventory : MonoBehaviourSingleton<ItemSlotInventory>, IDropHandler
 {
@@ -13,7 +15,8 @@ public class ItemSlotInventory : MonoBehaviourSingleton<ItemSlotInventory>, IDro
     private Button removeButton;
     [SerializeField]
     private Image removeButtonIcon;
-
+    public InventoryScript inventoryScript;
+    
     public GameObject item
     {
         get
@@ -38,9 +41,30 @@ public class ItemSlotInventory : MonoBehaviourSingleton<ItemSlotInventory>, IDro
         //Ajout de l'icon dans le slot si vide
         if(!item)
         {
+            ObjectScript objToAdd = ScriptableObject.CreateInstance<ObjectScript>();
             DragIconInventory.item.transform.SetParent(transform);
             removeButton.interactable = true;
             removeButtonIcon.enabled = true;
+            if (DragIconInventory.itemType == DragIconInventory._typeOfItem.Consumable)
+            {
+                
+                objToAdd.itemType = ObjectScript._typeOfItem.Consumable;
+                objToAdd.objectName = DragIconInventory.name;
+                objToAdd.lifePoint = DragIconInventory.lifePoint;
+                inventoryScript.AddObjectInInventory(objToAdd);
+            }
+            else if (DragIconInventory.itemType == DragIconInventory._typeOfItem.Bonus)
+            {
+                objToAdd.itemType = ObjectScript._typeOfItem.Bonus;
+                objToAdd.objectName = DragIconInventory.name;
+                inventoryScript.AddObjectInInventory(objToAdd);
+            }
+            else
+            {
+                objToAdd.itemType = ObjectScript._typeOfItem.Skill;
+                objToAdd.objectName = DragIconInventory.name;
+                inventoryScript.AddObjectInInventory(objToAdd);                
+            }
         }
     }
 

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Experimental.PlayerLoop;
 
 //Auteur : Attika
+//Modification : Abdallah
 
 namespace LastToTheGlobe.Scripts.Inventory
 {
