@@ -169,8 +169,8 @@ namespace LastToTheGlobe.Scripts.Network
             if (PhotonNetwork.IsMasterClient)
             {
                 PlayerJoined?.Invoke(i);
+                GameCanStart?.Invoke();
             }
-            GameCanStart?.Invoke();
             SetCamera?.Invoke(i);
         }
         
