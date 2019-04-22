@@ -70,7 +70,7 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
                     randomScaleTree = Random.Range(0.05f, 0.15f);
 
                     Vector3 spawnPosition = Random.onUnitSphere * ((planet.transform.localScale.x / 2) + listTrees[0].transform.localScale.y - 0.02f) + planet.transform.position;
-                    GameObject newtree = PhotonNetwork.Instantiate(listTrees[GetRandomTree()].name, spawnPosition, Quaternion.identity) as GameObject;
+                    GameObject newtree = Instantiate(listTrees[GetRandomTree()], spawnPosition, Quaternion.identity) as GameObject;
 
                     newtree.transform.LookAt(planetPosition);
                     newtree.transform.localScale = new Vector3(randomScaleTree, randomScaleTree, randomScaleTree);
@@ -85,7 +85,7 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
                 randomScaleRock = Random.Range(0.02f, 0.06f);
 
                 Vector3 spawnPosition = Random.onUnitSphere * ((planet.transform.localScale.x / 2) + listRock[0].transform.localScale.y - 0.05f) + planet.transform.position;
-                GameObject newrock = PhotonNetwork.Instantiate(listRock[GetRandomRock()].name, spawnPosition, Quaternion.identity) as GameObject;
+                GameObject newrock = Instantiate(listRock[GetRandomRock()], spawnPosition, Quaternion.identity) as GameObject;
 
                 newrock.transform.LookAt(planetPosition);
                 newrock.transform.localScale = new Vector3(randomScaleRock, randomScaleRock, randomScaleRock);

@@ -26,7 +26,7 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi
         private GameObject spawnPlanet;
 
         [SerializeField]
-        private int numberOfPlayer = 5;
+        private int numberOfPlayer = 10;
         //TODO : récupérer le nombre de joueurs en jeu
 
         [SerializeField]
@@ -38,7 +38,7 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi
         private void Start()
         {
             //TODO : vérifier que ça ne change que lorsque la room se crée et pas à chaque join room
-            seed = Random.Range(1, 200);
+            seed = 1; // Random.Range(1, 200);
 
             Vertex3[] vertices = new Vertex3[NumberOfVertices];
 

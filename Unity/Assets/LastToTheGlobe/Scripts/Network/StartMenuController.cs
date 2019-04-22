@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using LastToTheGlobe.Scripts.UI;
 using Photon.Pun;
 using Photon.Pun.UtilityScripts;
 using Photon.Realtime;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,6 +28,10 @@ namespace LastToTheGlobe.Scripts.Network
         [SerializeField] private Button createRoomButton;
         [SerializeField] private Button joinRoomButton;
 
+        [Header("LobbyMenu objects")]
+        [SerializeField] private ActivateObjects lobbyMenu;
+        [SerializeField] private TextMeshProUGUI countdown;
+        
         [Header("Room Parameters")] 
         [SerializeField] private int maxPlayersPerRoom;
         
@@ -35,6 +41,8 @@ namespace LastToTheGlobe.Scripts.Network
 
         public event Action OnlinePlayReady;
         public event Action<int> PlayerJoined;
+
+        public event Action<int> SetCamera;
         public event Action<int> PlayerLeft;
         public event Action GameCanStart;
         public event Action Disconnected;
@@ -71,6 +79,26 @@ namespace LastToTheGlobe.Scripts.Network
         {
             mainMenu.Activation();
             playMenu.Deactivation();
+            lobbyMenu.Deactivation();
+        }
+        
+        /// <summary>
+        /// Called to show the lobby countdown when the game is ready to begin !
+        /// </summary>
+        public void ShowLobbyCountdown()
+        {
+            lobbyMenu.Activation();
+            playMenu.Deactivation();
+            mainMenu.Deactivation();
+        }
+
+        /// <summary>
+        /// Update the countdown value
+        /// </summary>
+        /// <param name="time"></param>
+        public void UpdateCountdownValue(float time)
+        {
+            countdown.text = time.ToString(CultureInfo.InvariantCulture);
         }
         
         #endregion
@@ -81,6 +109,7 @@ namespace LastToTheGlobe.Scripts.Network
         {
             mainMenu.Deactivation();
             playMenu.Activation();
+            lobbyMenu.Deactivation();
             createRoomButton.interactable = false;
             joinRoomButton.interactable = false;
             
@@ -118,6 +147,8 @@ namespace LastToTheGlobe.Scripts.Network
             }
             
             PlayerJoined?.Invoke(i);
+            SetCamera?.Invoke(i);
+            GameCanStart?.Invoke();
         }
 
         private IEnumerator InvokeRoomJoinedMethod()
@@ -139,6 +170,8 @@ namespace LastToTheGlobe.Scripts.Network
             {
                 PlayerJoined?.Invoke(i);
             }
+            GameCanStart?.Invoke();
+            SetCamera?.Invoke(i);
         }
         
         #endregion

@@ -1,6 +1,9 @@
-﻿using LastToTheGlobe.Scripts.Camera;
+﻿using System.Collections;
+using LastToTheGlobe.Scripts.Camera;
+using LastToTheGlobe.Scripts.Dev.LevelManager;
 using LastToTheGlobe.Scripts.Network;
 using Photon.Pun;
+using Photon.Pun.UtilityScripts;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
@@ -25,19 +28,46 @@ namespace LastToTheGlobe.Scripts.Avatar
         [Header("Game Control Parameters And References")]
         [SerializeField] private StartMenuController startMenuController;
         [SerializeField] private bool gameStarted;
+        [SerializeField] private bool onLobby;
+        [SerializeField] private bool gameLaunched;
+        [SerializeField] private int nbMinPlayers = 2;
+        [SerializeField] private float countdown = 10.0f;
+        private float _countdownStartValue;
+        //spawn point tab
+        private GameObject[] _spawnPointInPlanet;
         
         #region MonoBehaviour Callbacks
 
         private void Awake()
         {
             gameStarted = false;
+            onLobby = false;
+            gameLaunched = false;
+
+            myCamera.enabled = false;
+
+            _countdownStartValue = countdown;
             
             startMenuController.OnlinePlayReady += ChooseAndSubscribeToIntentReceivers;
             startMenuController.PlayerJoined += ActivateAvatar;
+            startMenuController.SetCamera += SetupCamera;
+            FindAllSpawnPoint();
+            startMenuController.GameCanStart += LaunchGameRoom;
         }
 
         private void FixedUpdate()
         {
+            if (onLobby && !gameLaunched)
+            {
+                countdown -= Time.deltaTime;
+                startMenuController.UpdateCountdownValue(countdown);
+                if (countdown <= 0.0f)
+                {
+                    countdown = 0.0f;
+                    onLobby = false;
+                }
+            }
+            
             if (!PhotonNetwork.IsMasterClient && PhotonNetwork.IsConnected)
             {
                 return;
@@ -52,7 +82,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                 Debug.LogError("There is something wrong with avatars and intents setup !");
                 return;
             }
-
+            
             var i = 0;
             for (; i < _activatedIntentReceivers.Length; i++)
             {
@@ -146,6 +176,83 @@ namespace LastToTheGlobe.Scripts.Avatar
             }
         }
 
+        /// <summary>
+        /// Called to set the right local target to camera
+        /// </summary>
+        /// <param name="id"></param>
+        private void SetupCamera(int id)
+        {
+            //if (photonView.IsMine != players[id].characterPhotonView) return;
+            if (!myCamera.enabled)
+            {
+                myCamera.enabled = true;
+                myCamera.playerExposer = players[id];
+                myCamera.InitializeCameraPosition();
+                myCamera.startFollowing = true;
+            }
+        }
+
+        /// <summary>
+        /// Each time a player join the lobby, we check if we're enough. If yes, we load the GameRoom after a countdown
+        /// </summary>
+        private void LaunchGameRoom()
+        {
+            if (!CheckIfEnoughPlayers()) return;
+            onLobby = true;
+            startMenuController.ShowLobbyCountdown();
+            StartCoroutine(CountdownBeforeSwitchingScene(_countdownStartValue));
+        }
+
+        /// <summary>
+        /// Check if there is enough players to start the game and leave Lobby
+        /// </summary>
+        /// <returns></returns>
+        private bool CheckIfEnoughPlayers()
+        {
+            if (!gameStarted) return false;
+
+            var j = 0;
+            var i = 0;
+            for (; i < players.Length; i++)
+            {
+                if (players[i].isActiveAndEnabled)
+                {
+                    j++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            return j >= nbMinPlayers;
+        }
+
+        /// <summary>
+        /// Wait the time indicated before switching scene to GameRoom
+        /// </summary>
+        /// <param name="time"></param>
+        /// <returns></returns>
+        private IEnumerator CountdownBeforeSwitchingScene(float time)
+        {
+            yield return new WaitForSeconds(time);
+            //LevelLoadingManager.Instance.SwitchToScene(LastToTheGlobeScene.GameRoom);
+
+            //Teleport player in planet
+            for(int i = 0; i<= players.Length; i++)
+            {
+                players[i].characterRootGameObject.transform.position = _spawnPointInPlanet[i].transform.position;
+                yield return new WaitForSeconds(0.5f);
+            }
+
+            gameLaunched = true;
+        }
+
+        private void FindAllSpawnPoint()
+        {
+            _spawnPointInPlanet = GameObject.FindGameObjectsWithTag("SpawnPoint");
+        }
+
         #endregion
 
         #region RPC Methods
@@ -154,9 +261,6 @@ namespace LastToTheGlobe.Scripts.Avatar
         private void ActivateAvatarRPC(int avatarId)
         {
             players[avatarId].characterRootGameObject.SetActive(true);
-//            myCamera.playerExposer = players[avatarId];
-//            myCamera.InitializeCameraPosition();
-//            myCamera.startFollowing = true;
         }
 
         [PunRPC]

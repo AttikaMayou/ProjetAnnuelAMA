@@ -11,7 +11,7 @@ namespace LastToTheGlobe.Scripts.Dev
     {
         public void SwitchToMainMenu()
         {
-            SceneManager.LoadScene("MainMenu");
+            SceneManager.LoadScene("GameRoom");
         }
     }
 }

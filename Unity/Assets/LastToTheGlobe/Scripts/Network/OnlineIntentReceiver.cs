@@ -123,13 +123,12 @@ namespace LastToTheGlobe.Scripts.Network
             {
                 photonView.RPC("InteractRPC", RpcTarget.MasterClient);
             }
-
             //TODO : Add double jump
         }
 
         private void OnCollisionEnter(Collision other)
         {
-            if (!other.gameObject.CompareTag("Planet"))
+            if (other.gameObject.CompareTag("Planet"))
             {
                 canJump = true;
             }

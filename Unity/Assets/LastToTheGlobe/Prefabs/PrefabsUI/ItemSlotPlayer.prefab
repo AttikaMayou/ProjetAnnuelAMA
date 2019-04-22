@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2212207739455034101}
   - component: {fileID: 2212207739455034107}
   - component: {fileID: 2212207739455034100}
-  - component: {fileID: 2212207739455034105}
   - component: {fileID: 2212207739455034106}
   m_Layer: 5
   m_Name: ItemSlotPlayer
@@ -77,30 +76,6 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
---- !u!114 &2212207739455034105
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2212207739455034102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -2095666955, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
-  m_ChildAlignment: 4
-  m_StartCorner: 0
-  m_StartAxis: 0
-  m_CellSize: {x: 100, y: 100}
-  m_Spacing: {x: 0, y: 0}
-  m_Constraint: 0
-  m_ConstraintCount: 2
 --- !u!114 &2212207739455034106
 MonoBehaviour:
   m_ObjectHideFlags: 0
