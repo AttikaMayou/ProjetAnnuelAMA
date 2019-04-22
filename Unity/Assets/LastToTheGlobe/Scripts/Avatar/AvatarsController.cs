@@ -36,7 +36,7 @@ namespace LastToTheGlobe.Scripts.Avatar
             startMenuController.PlayerJoined += ActivateAvatar;
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             if (!PhotonNetwork.IsMasterClient && PhotonNetwork.IsConnected)
             {
