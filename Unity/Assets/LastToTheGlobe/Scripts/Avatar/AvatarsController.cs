@@ -29,6 +29,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         [SerializeField] private StartMenuController startMenuController;
         [SerializeField] private bool gameStarted;
         [SerializeField] private bool onLobby;
+        [SerializeField] private bool gameLaunched;
         [SerializeField] private int nbMinPlayers = 2;
         [SerializeField] private float countdown = 10.0f;
         private float _countdownStartValue;
@@ -41,6 +42,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         {
             gameStarted = false;
             onLobby = false;
+            gameLaunched = false;
 
             myCamera.enabled = false;
 
@@ -55,6 +57,17 @@ namespace LastToTheGlobe.Scripts.Avatar
 
         private void FixedUpdate()
         {
+            if (onLobby && !gameLaunched)
+            {
+                countdown -= Time.deltaTime;
+                startMenuController.UpdateCountdownValue(countdown);
+                if (countdown <= 0.0f)
+                {
+                    countdown = 0.0f;
+                    onLobby = false;
+                }
+            }
+            
             if (!PhotonNetwork.IsMasterClient && PhotonNetwork.IsConnected)
             {
                 return;
@@ -68,17 +81,6 @@ namespace LastToTheGlobe.Scripts.Avatar
             {
                 Debug.LogError("There is something wrong with avatars and intents setup !");
                 return;
-            }
-
-            if (onLobby)
-            {
-                countdown -= Time.deltaTime;
-                startMenuController.UpdateCountdownValue(countdown);
-                if (countdown <= 0.0f)
-                {
-                    countdown = 0.0f;
-                    onLobby = false;
-                }
             }
             
             var i = 0;
@@ -240,8 +242,10 @@ namespace LastToTheGlobe.Scripts.Avatar
             for(int i = 0; i<= players.Length; i++)
             {
                 players[i].characterRootGameObject.transform.position = _spawnPointInPlanet[i].transform.position;
+                yield return new WaitForSeconds(0.5f);
             }
 
+            gameLaunched = true;
         }
 
         private void FindAllSpawnPoint()
