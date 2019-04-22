@@ -251,24 +251,31 @@ namespace LastToTheGlobe.Scripts.Avatar
         }
 
         /// <summary>
-        /// Wait the time indicated before switching scene to GameRoom
+        /// Wait the time indicated before teleport players to the spawn points
         /// </summary>
         /// <param name="time"></param>
         /// <returns></returns>
         private IEnumerator CountdownBeforeSwitchingScene(float time)
         {
             yield return new WaitForSeconds(time);
-            //LevelLoadingManager.Instance.SwitchToScene(LastToTheGlobeScene.GameRoom);
+            
             if (_spawnPointInPlanet.Length <= 1)
             {
                 Debug.LogError("There is a problem with the map instantiation");
                 yield break;
             }
-            //Teleport player in planet
+            
+            //Teleport players on planets
             for(var i = 0; i<= players.Length; i++)
             {
                 if (!players[i].isActiveAndEnabled) break;
                 players[i].characterRootGameObject.transform.position = _spawnPointInPlanet[i].transform.position;
+                if (debug)
+                {
+                    Debug.Log("Previous pos : " + players[i].characterRootGameObject.transform.position);
+                    Debug.Log("Final position : " +_spawnPointInPlanet[i].transform.position);
+                    Debug.Log("Local position :  " + _spawnPointInPlanet[i].transform.localPosition);
+                }
                 yield return new WaitForSeconds(0.5f);
             }
 
