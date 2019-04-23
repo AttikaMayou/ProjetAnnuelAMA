@@ -51,8 +51,6 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
                     break;
                 }
                 case PlanetType.Basic:
-                    break;
-                default:
                 {
                     var matBasic = Resources.Load("M_BasicPlanet", typeof(Material)) as Material;
                     planet.GetComponent<Renderer>().material = matBasic;
