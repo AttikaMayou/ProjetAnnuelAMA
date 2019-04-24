@@ -27,10 +27,10 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb
         private void OnEnable()
         {
             //timeUsing = Time.deltaTime;
-            _initialPos = transform.position;
             _timeUsing = 0.0f;
             maxTimeUsing = 3f;
             if (!playerTransform || !attractor) return;
+            _initialPos = playerTransform.position;
             transform.position = playerTransform.position + playerTransform.forward * 2f;
             _direction = playerTransform.right;
             _centerPointAttractor = attractor.transform.position;
@@ -65,6 +65,11 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb
             if(debug) Debug.Log("reset pos of the offensive orb");
             transform.position = _initialPos;
             this.gameObject.SetActive(false);
+        }
+
+        public void InitializeOrPosition()
+        {
+            transform.position = playerTransform.position + playerTransform.forward * 2f;
         }
     }
 }

@@ -143,6 +143,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                         _currentOrb.attractor = player.attractor;
                         _currentOrb.charged = false;
                         _currentOrb.gameObject.SetActive(true);
+                        _currentOrb.InitializeOrPosition();
                         intent.canShoot = true;
                         intent.Shoot = false;
                         _currentOrb = null;
@@ -160,6 +161,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                         _currentOrb.attractor = player.attractor;
                         _currentOrb.charged = true;
                         _currentOrb.gameObject.SetActive(true);
+                        _currentOrb.InitializeOrPosition();
                         intent.canShoot = true;
                         intent.Shoot = false;
                         _currentOrb = null;
