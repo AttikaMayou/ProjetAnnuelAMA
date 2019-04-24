@@ -63,7 +63,9 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
                     _listRock = basicRock;
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    _listTrees = basicTrees;
+                    _listRock = basicRock;
+                    break;
             }
 
             if (_numberTreesMax > 0)
