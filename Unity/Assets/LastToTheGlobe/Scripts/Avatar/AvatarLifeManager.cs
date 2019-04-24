@@ -19,7 +19,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         public int attackDmg;
         public bool inLife = true;
         public int myLife = 100;
-        private CharacterExposerScript myExposer;
+        [SerializeField] private CharacterExposerScript myExposer;
 
         [SerializeField]
         private Text textHealth;
