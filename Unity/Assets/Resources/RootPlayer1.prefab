@@ -107,8 +107,6 @@ GameObject:
   - component: {fileID: 4032840751649765454}
   - component: {fileID: 823833752871783993}
   - component: {fileID: 1014064465940019215}
-  - component: {fileID: 3778464610303677338}
-  - component: {fileID: 2230906660700671784}
   m_Layer: 0
   m_Name: RootPlayer1
   m_TagString: Player
@@ -205,7 +203,6 @@ MonoBehaviour:
   characterRb: {fileID: 4032840751649765455}
   characterTr: {fileID: 4032840751649765453}
   selfPlayerAttractedScript: {fileID: 823833752871783993}
-  selfOrbAttractedScript: {fileID: 3096348836995313831}
   characterCollider: {fileID: 4032840750367864674}
   characterPhotonView: {fileID: 4032840751649765452}
   characterRbPhotonView: {fileID: 4032840751649765441}
@@ -250,36 +247,6 @@ MonoBehaviour:
   myLife: 100
   textHealth: {fileID: 0}
   textHeathOther: {fileID: 0}
---- !u!114 &3778464610303677338
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4032840751649765450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbbdb5ad2d0824545ade9680df13d120, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  debug: 1
-  playerExposer: {fileID: 4032840751649765454}
-  rotationSpeed: 5
-  speed: 5
---- !u!136 &2230906660700671784
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4032840751649765450}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6889678066327008207
 GameObject:
   m_ObjectHideFlags: 0
@@ -408,6 +375,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4032840751649765453}
     m_Modifications:
+    - target: {fileID: 5107946470935551850, guid: 501d9991fbb3e6b45b291e93d1d426dc,
+        type: 3}
+      propertyPath: m_Name
+      value: OffensiveOrb
+      objectReference: {fileID: 0}
     - target: {fileID: 5107946470935551621, guid: 501d9991fbb3e6b45b291e93d1d426dc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -463,11 +435,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5107946470935551850, guid: 501d9991fbb3e6b45b291e93d1d426dc,
-        type: 3}
-      propertyPath: m_Name
-      value: OffensiveOrb
-      objectReference: {fileID: 0}
     - target: {fileID: 5107946470935551248, guid: 501d9991fbb3e6b45b291e93d1d426dc,
         type: 3}
       propertyPath: playerTransform
@@ -491,15 +458,3 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7789928403194244528}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3096348836995313831 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5107946470935551255, guid: 501d9991fbb3e6b45b291e93d1d426dc,
-    type: 3}
-  m_PrefabInstance: {fileID: 7789928403194244528}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 249b15e905980bf468684913a564571f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
