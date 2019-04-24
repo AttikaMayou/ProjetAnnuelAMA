@@ -135,30 +135,36 @@ namespace LastToTheGlobe.Scripts.Avatar
 
                 if (intent.Shoot)
                 {
+                    if(debug) Debug.Log("Shoot intent");
                     if (_currentOrb == null)
                     {
                         _currentOrb = GetOrbsWithinPool();
                         _currentOrb.playerTransform = player.characterTr;
+                        _currentOrb.attractor = player.attractor;
+                        _currentOrb.charged = false;
                         _currentOrb.gameObject.SetActive(true);
                         intent.canShoot = true;
                         intent.Shoot = false;
                         _currentOrb = null;
+                        //TODO : when the orb is reset --> canShoot = true
                     }
                 }
 
                 if (intent.ShootLoaded)
                 {
-                    var orb = GetOrbsWithinPool();
-                    if (orb == null)
+                    if(debug) Debug.Log("Loaded shoot intent");
+                    if (_currentOrb == null)
                     {
-                        Debug.LogError("Orbs pools return null reference");
-                        return;
+                        _currentOrb = GetOrbsWithinPool();
+                        _currentOrb.playerTransform = player.characterTr;
+                        _currentOrb.attractor = player.attractor;
+                        _currentOrb.charged = true;
+                        _currentOrb.gameObject.SetActive(true);
+                        intent.canShoot = true;
+                        intent.Shoot = false;
+                        _currentOrb = null;
+                        //TODO : when the orb is reset --> canShoot = true
                     }
-                    orb.playerTransform = player.characterTr;
-                    orb.charged = true;
-                    orb.gameObject.SetActive(true);
-                    intent.canShoot = true;
-                    intent.ShootLoaded = false;
                 }
 
                 if (intent.Bump)

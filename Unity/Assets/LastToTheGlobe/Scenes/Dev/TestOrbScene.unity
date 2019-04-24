@@ -145,13 +145,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13b72d4f03b499d48a31177d5ed082e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orbTransform: {fileID: 266969511}
+  attractor: {fileID: 0}
+  debug: 1
   orbRb: {fileID: 266969507}
   speed: 5
   maxTimeUsing: 0
   charged: 0
   playerTransform: {fileID: 761712092}
-  attractedScript: {fileID: 761712094}
 --- !u!54 &266969507
 Rigidbody:
   m_ObjectHideFlags: 0

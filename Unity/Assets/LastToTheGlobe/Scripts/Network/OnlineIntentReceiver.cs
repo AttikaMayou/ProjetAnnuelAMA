@@ -168,9 +168,9 @@ namespace LastToTheGlobe.Scripts.Network
                 {
                     Debug.Log("I get the message : UpdateRotation on this avatar : " + playerIndex);
                     Debug.Log("X rotation : " + rotationX + " and Y : " + rotationY);
-                    rotationOnX = rotationX;
-                    rotationOnY = rotationY;
                 }
+                rotationOnX = rotationX;
+                rotationOnY = rotationY;
             }
         }
         
@@ -183,9 +183,9 @@ namespace LastToTheGlobe.Scripts.Network
                 {
                     Debug.Log("I get the message : UpdateRotation on this avatar : " + playerIndex);
                     Debug.Log("X rotation : " + rotationX + " and Y : " + rotationY);
-                    rotationOnX = rotationX;
-                    rotationOnY = rotationY;
                 }
+                rotationOnX = rotationX;
+                rotationOnY = rotationY;
             }
         }
         
