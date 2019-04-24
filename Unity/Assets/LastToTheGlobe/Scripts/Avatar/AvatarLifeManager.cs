@@ -11,8 +11,8 @@ namespace LastToTheGlobe.Scripts.Avatar
 {
     public class AvatarLifeManager : MonoBehaviour
     {
-        private ActivateObjects defeat;
-        private ActivateObjects lifeUI;
+        [SerializeField] private ActivateObjects defeat;
+        [SerializeField] private ActivateObjects lifeUI;
 
         [Header("Balance Settings")] 
         public int lifeStartingPoint = 100;
@@ -30,7 +30,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         private void Awake()
         {
             myLife = lifeStartingPoint;
-            //defeat.Deactivation();
+            defeat.Deactivation();
             //myExposer.lifeUI.Activation();
         }
 
@@ -41,7 +41,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                 if(myLife <= 0)
                 {
                     textHealth.text = "Health : 0";
-
+                    defeat.Activation();
                 }
                 else
                 {
