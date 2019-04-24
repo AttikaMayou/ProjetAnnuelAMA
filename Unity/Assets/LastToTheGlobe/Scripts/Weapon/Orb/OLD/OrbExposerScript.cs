@@ -8,6 +8,6 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb
     {
         [Header("Orb Object Components")]
         public Transform orbTransform;
-        public Rigidbody orbRb;
+        
     }
 }

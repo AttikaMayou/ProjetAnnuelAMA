@@ -7,11 +7,12 @@ using UnityEngine;
 
 namespace LastToTheGlobe.Scripts.Weapon.Orb
 {
-    public class OrbManager : OrbExposerScript
+    public class OrbManager : Avatar.Avatar
     {
         public bool debug = true;
         
         [Header("Orb Parameters")]
+        [SerializeField] private Rigidbody orbRb;
         [SerializeField] private float speed = 5.0f;
         private Vector3 _direction;
         private float _timeUsing;
@@ -21,24 +22,18 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb
         
         [Header("Player and Attraction References")]
         public Transform playerTransform;
-        [SerializeField] private AttractedScript attractedScript;
         private Vector3 _centerPointAttractor;
-
-        private void Awake()
-        {
-            _initialPos = orbTransform.position;
-        }
 
         private void OnEnable()
         {
             //timeUsing = Time.deltaTime;
-            
+            _initialPos = transform.position;
             _timeUsing = 0.0f;
             maxTimeUsing = 3f;
-            if (!playerTransform || !attractedScript.attractor) return;
-            orbTransform.position = playerTransform.position + playerTransform.forward * 2f;
+            if (!playerTransform || !attractor) return;
+            transform.position = playerTransform.position + playerTransform.forward * 2f;
             _direction = playerTransform.right;
-            _centerPointAttractor = attractedScript.attractor.planetTransform.position;
+            _centerPointAttractor = attractor.transform.position;
         }
         
         private void FixedUpdate () {
@@ -68,7 +63,7 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb
         private void ResetOrb()
         {
             if(debug) Debug.Log("reset pos of the offensive orb");
-            orbTransform.position = _initialPos;
+            transform.position = _initialPos;
             this.gameObject.SetActive(false);
         }
     }

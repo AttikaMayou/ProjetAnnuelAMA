@@ -2,7 +2,7 @@
 
 //Auteur : Abdallah
 
-namespace LastToTheGlobe.Scripts.Environment.Planets
+namespace LastToTheGlobe.Scripts.Environment.Planets.OLD
 {
     public class PlanetExposerScript : MonoBehaviour
     {

@@ -55,7 +55,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         private float _countdownStartValue;
         
         [SerializeField] private List<OrbManager> orbsPool = new List<OrbManager>();
-        
+        private OrbManager _currentOrb;
         
         #region MonoBehaviour Callbacks
 
@@ -135,16 +135,15 @@ namespace LastToTheGlobe.Scripts.Avatar
 
                 if (intent.Shoot)
                 {
-                    var orb = GetOrbsWithinPool();
-                    if (orb == null)
+                    if (_currentOrb == null)
                     {
-                        Debug.LogError("Orbs pools return null reference");
-                        return;
+                        _currentOrb = GetOrbsWithinPool();
+                        _currentOrb.playerTransform = player.characterTr;
+                        _currentOrb.gameObject.SetActive(true);
+                        intent.canShoot = true;
+                        intent.Shoot = false;
+                        _currentOrb = null;
                     }
-                    orb.playerTransform = player.characterTr;
-                    orb.gameObject.SetActive(true);
-                    intent.canShoot = true;
-                    intent.Shoot = false;
                 }
 
                 if (intent.ShootLoaded)
@@ -172,13 +171,13 @@ namespace LastToTheGlobe.Scripts.Avatar
                     
                 }
 
-                if (intent.canJump && player.selfPlayerAttractedScript.attractor)
+                if (intent.canJump && player.attractor)
                 {
-                    player.selfPlayerAttractedScript.attractor.Attractor(rb, tr, -2600.0f);
+                    player.attractor.Attractor(rb, tr, -2600.0f);
                 }
-                else if(!intent.canJump && player.selfPlayerAttractedScript.attractor)
+                else if(!intent.canJump && player.attractor)
                 {
-                    player.selfPlayerAttractedScript.attractor.Attractor(rb, tr, player.selfPlayerAttractedScript.selfGravity);
+                    player.attractor.Attractor(rb, tr, player.GetGravity());
                 }
                 
                 rb.MovePosition(rb.position + tr.TransformDirection(moveIntent) * intent.speed * Time.deltaTime);
@@ -189,7 +188,6 @@ namespace LastToTheGlobe.Scripts.Avatar
 
         #endregion
 
-        
         #region Private Methods
 
         /// <summary>

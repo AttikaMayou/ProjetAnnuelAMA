@@ -13,13 +13,13 @@ namespace LastToTheGlobe.Scripts.Network
 {
     public class OnlineIntentReceiver : AIntentReceiver
     {
+        public bool debug = true;
+        
         [SerializeField] private int playerIndex;
 
         [SerializeField] private PhotonView photonView;
 
         private float _dashTime = 1.0f;
-
-        public bool debug = true;
         
         private void Update()
         {

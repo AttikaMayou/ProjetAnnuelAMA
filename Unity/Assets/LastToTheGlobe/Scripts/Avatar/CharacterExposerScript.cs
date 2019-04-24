@@ -15,9 +15,6 @@ namespace LastToTheGlobe.Scripts.Avatar
         [Header("Player Control Parameters")] 
         public Rigidbody characterRb;
         public Transform characterTr;
-        //public Bumper bumperScript;
-        public AttractedScript selfPlayerAttractedScript;
-        //public AttractedScript selfOrbAttractedScript;
         public Collider characterCollider;
         [Header("Network Parameters")]
         public PhotonView characterPhotonView;

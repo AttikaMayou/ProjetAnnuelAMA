@@ -1,4 +1,5 @@
 ﻿using LastToTheGlobe.Scripts.Avatar;
+using LastToTheGlobe.Scripts.Environment.Planets.OLD;
 using LastToTheGlobe.Scripts.Management;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -9,13 +10,12 @@ using UnityEngine.Serialization;
 
 namespace LastToTheGlobe.Scripts.Environment.Planets
 {
-    public class AttractorScript : PlanetExposerScript
+    public class AttractorScript : MonoBehaviour
     {
         public bool debug = true;
         
         public float speedRotation = 10f;
         public Vector3 dirForce;
-        //private AvatarExposerScript _currentAvatar;
         
         public void Attractor(Rigidbody attractedRb, Transform body, float gravity)
         {
@@ -42,7 +42,7 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
             if (!exposer) return;
 
             //exposer.thirdPersonController.attractor = this;
-            exposer.selfPlayerAttractedScript.attractor = this;
+            exposer.attractor = this;
             //exposer.selfOrbAttractedScript.attractor = this;
         }
 
@@ -54,7 +54,7 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
             if (!exposer) return;
             
             //exposer.thirdPersonController.attractor = null;
-            exposer.selfPlayerAttractedScript.attractor = null;
+            exposer.attractor = null;
             //exposer.selfOrbAttractedScript.attractor = null;
         }
     }
