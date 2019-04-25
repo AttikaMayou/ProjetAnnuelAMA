@@ -42,7 +42,6 @@ namespace LastToTheGlobe.Scripts.Network
 
         public event Action OnlinePlayReady;
         public event Action<int> PlayerJoined;
-
         public event Action<int> SetCamera;
         public event Action<int> PlayerLeft;
         public event Action GameCanStart;
@@ -200,8 +199,6 @@ namespace LastToTheGlobe.Scripts.Network
             mainMenu.Deactivation();
             playMenu.Deactivation();
             
-            //TODO : Load physical level Lobby 
-
             StartCoroutine(InvokeRoomJoinedMethod());
         }
 

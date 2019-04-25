@@ -17,7 +17,7 @@ namespace LastToTheGlobe.Scripts.Inventory
         public CharacterExposer characterExposer;
         
         //Setting Class Parameters
-        private Rigidbody rb;
+        protected Rigidbody rb;
         
         
         private void Start()
@@ -29,6 +29,16 @@ namespace LastToTheGlobe.Scripts.Inventory
         private void Dash()
         {
             rb.MovePosition(rb.position + rb.transform.TransformDirection(characterExposer._movedir) * characterExposer.dashSpeed * Time.deltaTime);
+        }
+
+        public virtual void SkillAction()
+        {
+            ConsumeSkill();
+        }
+
+        private void ConsumeSkill()
+        {
+            //TODO : erase from the inventory
         }
     }
 }

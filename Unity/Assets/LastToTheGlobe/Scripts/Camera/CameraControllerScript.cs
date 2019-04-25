@@ -37,7 +37,7 @@ namespace LastToTheGlobe.Scripts.Camera
                 Debug.LogError("No targetPlayer to follow");
                 return;
             }
-
+            
             var position = playerExposer.characterTr.position;
             var y = position.y + yAdd;
             var z = position.z + zAdd;

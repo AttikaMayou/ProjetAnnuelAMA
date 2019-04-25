@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 //Dirty script while we dont have a profile save management
 //This script is suppose to log on the player when he launch the game
 
-namespace LastToTheGlobe.Scripts.Dev
+namespace LastToTheGlobe.Scripts.Management
 {
     public class FirstScreenScript : MonoBehaviour
     {

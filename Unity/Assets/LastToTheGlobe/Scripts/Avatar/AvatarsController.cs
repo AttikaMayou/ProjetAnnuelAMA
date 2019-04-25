@@ -25,13 +25,13 @@ namespace LastToTheGlobe.Scripts.Avatar
         [Header("Photon and Replication Parameters")] 
         [SerializeField] private CharacterExposerScript[] players;
         [SerializeField] private AIntentReceiver[] onlineIntentReceivers;
-        [SerializeField] private AIntentReceiver[] _activatedIntentReceivers;
+        private AIntentReceiver[] _activatedIntentReceivers;
         [SerializeField] private PhotonView photonView;
         
         [Header("Environment Parameters")]
         //spawn point tab
         private GameObject[] _spawnPointInPlanet;
-        [SerializeField] private Vector3[] spawnPos;
+        private Vector3[] _spawnPos;
         [SerializeField] private CloudPlanet environmentController;
         private int _seed = 0;
 
@@ -215,7 +215,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         {
             if (_activatedIntentReceivers == null)
             {
-                Debug.Log("there is no intent receivers");
+                Debug.LogError("there is no intent receivers");
                 return;
             }
 
@@ -228,8 +228,11 @@ namespace LastToTheGlobe.Scripts.Avatar
                 intent.MoveRight = false;
                 intent.Run = false;
                 intent.Jump = false;
+                intent.canJump = true;
                 intent.Dash = false;
+                intent.canDash = true;
                 intent.Shoot = false;
+                intent.canShoot = true;
                 intent.Bump = false;
                 intent.Interact = false;
                 intent.forward = 0.0f;
@@ -335,7 +338,7 @@ namespace LastToTheGlobe.Scripts.Avatar
             for(var i = 0; i<= players.Length; i++)
             {
                 if (!players[i].isActiveAndEnabled) break;
-                players[i].characterRootGameObject.transform.position = spawnPos[i + 1];
+                players[i].characterRootGameObject.transform.position = _spawnPos[i + 1];
                 if (debug)
                 {
                     Debug.Log("Previous pos : " + players[i].characterRootGameObject.transform.position);
@@ -360,10 +363,10 @@ namespace LastToTheGlobe.Scripts.Avatar
                     i++;
                 }
             }
-            spawnPos = new Vector3[_spawnPointInPlanet.Length + 1];
+            _spawnPos = new Vector3[_spawnPointInPlanet.Length + 1];
             for (var i = 0; i < _spawnPointInPlanet.Length; i++)
             {
-                spawnPos[i] = _spawnPointInPlanet[i].transform.position;
+                _spawnPos[i] = _spawnPointInPlanet[i].transform.position;
             }
         }
 
