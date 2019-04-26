@@ -34,7 +34,7 @@ namespace LastToTheGlobe.Scripts.Camera
             //cameraOffset = Distance between the camera and player
             if (!playerExposer)
             {
-                Debug.LogError("No targetPlayer to follow");
+                Debug.LogError("No target player to follow");
                 return;
             }
             

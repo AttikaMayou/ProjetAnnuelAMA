@@ -20,11 +20,7 @@ namespace LastToTheGlobe.Scripts.Management
         private readonly Dictionary<Collider, CharacterExposerScript> _directory = new Dictionary<Collider, CharacterExposerScript>();
         private CharacterExposerScript _value;
         
-        /// <summary>
         /// Get the player whom belongs to the collider
-        /// </summary>
-        /// <param name="col"></param>
-        /// <returns></returns>
         public CharacterExposerScript GetExposer(Collider col)
         {
             Debug.Log("trying to find the player from this collider : " + col);
@@ -40,10 +36,7 @@ namespace LastToTheGlobe.Scripts.Management
             return null;
         }
 
-        /// <summary>
         /// Add player in the list of CharactersExposers
-        /// </summary>
-        /// <param name="player"></param>
         public void AddExposer(CharacterExposerScript player)
         {
             if (characterExposers == null)

@@ -179,29 +179,31 @@ namespace LastToTheGlobe.Scripts.Avatar
                 {
                     
                 }
-
-                if (intent.canJump && player.attractor)
-                {
-                    player.attractor.Attractor(rb, tr, -2600.0f);
-                }
-                else if(!intent.canJump && player.attractor)
-                {
-                    player.attractor.Attractor(rb, tr, player.GetGravity());
-                }
-                
                 rb.MovePosition(rb.position + tr.TransformDirection(moveIntent) * intent.speed * Time.deltaTime);
                 tr.Rotate(new Vector3(0, intent.rotationOnX, 0));
                 player.cameraRotatorX.transform.Rotate(new Vector3(-intent.rotationOnY, 0, 0), Space.Self);
-            }
+
+                if (player.attractor == null)
+                {
+                    Debug.LogError("There is no attractor near us !");
+                    return;
+                }
+                player.attractor.Attractor(rb, tr, -2600.0f);
+                /*if (intent.canJump && player.attractor)
+                {
+                }
+                else if(!intent.canJump && player.attractor)
+                {
+                }*/
+               
+                }
         }
 
         #endregion
 
         #region Private Methods
 
-        /// <summary>
         /// Set the intentReceivers tab
-        /// </summary>
         private void ChooseAndSubscribeToIntentReceivers()
         {
             _activatedIntentReceivers = onlineIntentReceivers;
@@ -209,9 +211,7 @@ namespace LastToTheGlobe.Scripts.Avatar
             gameStarted = true;
         }
 
-        /// <summary>
         /// Activate the intentReceivers and set defaults values
-        /// </summary>
         private void EnableIntentReceivers()
         {
             if (_activatedIntentReceivers == null)

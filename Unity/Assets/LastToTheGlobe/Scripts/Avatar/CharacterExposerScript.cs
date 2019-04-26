@@ -21,6 +21,8 @@ namespace LastToTheGlobe.Scripts.Avatar
         public PhotonRigidbodyView characterRbPhotonView;
         [Header("Camera Control Parameters")] 
         public GameObject cameraRotatorX;
+
+        public AttractorScript attractorDebug;
         
         [Header("UI references")] 
         //public ActivateObjects inventoryUI;
@@ -42,6 +44,11 @@ namespace LastToTheGlobe.Scripts.Avatar
             {
                 PlayerColliderDirectoryScript.Instance.AddExposer(this);
             }
+        }
+
+        private void LateUpdate()
+        {
+            attractorDebug = attractor;
         }
     }
 }
