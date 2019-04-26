@@ -45,7 +45,6 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi
         public int GetSeed()
         {
             return Random.Range(1, 200);
-            if(debug) Debug.Log("Seed is : " + _seed);
         }
 
         public void SetSeed(int value)

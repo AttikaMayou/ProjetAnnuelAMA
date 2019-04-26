@@ -73,6 +73,7 @@ namespace LastToTheGlobe.Scripts.Avatar
             startMenuController.PlayerJoined += ActivateAvatar;
             startMenuController.SetCamera += SetupCamera;
             startMenuController.GameCanStart += LaunchGameRoom;
+            //startMenuController.GameCanStart += SetSeed;
         }
 
         private void FixedUpdate()
@@ -240,10 +241,7 @@ namespace LastToTheGlobe.Scripts.Avatar
             }
         }
 
-        /// <summary>
         /// Called to activate the avatar root gameObject when a player join the game
-        /// </summary>
-        /// <param name="id"></param>
         private void ActivateAvatar(int id)
         {
             if (PhotonNetwork.IsConnected)
@@ -256,10 +254,7 @@ namespace LastToTheGlobe.Scripts.Avatar
             }
         }
 
-        /// <summary>
         /// Called to set the right local target to camera
-        /// </summary>
-        /// <param name="id"></param>
         private void SetupCamera(int id)
         {
             //if (photonView.IsMine != players[id].characterPhotonView) return;
@@ -274,9 +269,7 @@ namespace LastToTheGlobe.Scripts.Avatar
             if(debug) Debug.Log("Camera is set for " + id);
         }
 
-        /// <summary>
         /// Each time a player join the lobby, we check if we're enough. If yes, we load the GameRoom after a countdown
-        /// </summary>
         private void LaunchGameRoom()
         {
             if (!PhotonNetwork.IsMasterClient) return;
@@ -287,10 +280,19 @@ namespace LastToTheGlobe.Scripts.Avatar
                 FindAllSpawnPoint();
                 if(debug) Debug.Log("seed is " + _seed);
             }
-            photonView.RPC("SendSeedToPlayers", RpcTarget.Others, _seed);
+
+            if (PhotonNetwork.IsConnected)
+            {
+                photonView.RPC("SendSeedToPlayers", RpcTarget.Others, _seed);
+            }
+            else
+            {
+                SendSeedToPlayers(_seed);
+            }
             if(!CheckIfEnoughPlayers() || gameLaunched) return;
             onLobby = true;
             startMenuController.ShowLobbyCountdown();
+            //TODO : call this for all players
             StartCoroutine(CountdownBeforeSwitchingScene(_countdownStartValue));
         }
 
@@ -300,6 +302,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         /// <returns></returns>
         private bool CheckIfEnoughPlayers()
         {
+            //TODO : refacto this function with Photon functions
             if (!gameStarted) return false;
 
             var j = 0;
@@ -319,11 +322,7 @@ namespace LastToTheGlobe.Scripts.Avatar
             return j >= nbMinPlayers;
         }
 
-        /// <summary>
         /// Wait the time indicated before teleport players to the spawn points
-        /// </summary>
-        /// <param name="time"></param>
-        /// <returns></returns>
         private IEnumerator CountdownBeforeSwitchingScene(float time)
         {
             yield return new WaitForSeconds(time);
@@ -338,6 +337,7 @@ namespace LastToTheGlobe.Scripts.Avatar
             for(var i = 0; i<= players.Length; i++)
             {
                 if (!players[i].isActiveAndEnabled) break;
+                //TODO : deactivate rb and set isKinematic = false 
                 players[i].characterRootGameObject.transform.position = _spawnPos[i + 1];
                 if (debug)
                 {
@@ -354,6 +354,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         private void FindAllSpawnPoint()
         {
             _spawnPointInPlanet = GameObject.FindGameObjectsWithTag("SpawnPoint");
+            //TODO : do not use tags to find all spawn points
             if (debug)
             {
                 var i = 0;
