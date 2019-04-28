@@ -40,8 +40,9 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
             {
                 Debug.Log("there is a player or an orb who entered");
             }
-            
-            var exposer = PlayerColliderDirectoryScript.Instance.GetExposer(coll);
+
+            var exposer = ColliderDirectoryScript.Instance.GetCharacterExposer(coll);
+                //PlayerColliderDirectoryScript.Instance.GetExposer(coll);
             if (!exposer) return;
 
             //exposer.thirdPersonController.attractor = this;
@@ -52,8 +53,9 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
         private void OnTriggerExit(Collider coll)
         {
             if (!coll.CompareTag("Player")) return;
-            
-            var exposer = PlayerColliderDirectoryScript.Instance.GetExposer(coll);
+
+            var exposer = ColliderDirectoryScript.Instance.GetCharacterExposer(coll);
+                //PlayerColliderDirectoryScript.Instance.GetExposer(coll);
             if (!exposer) return;
             
             //exposer.thirdPersonController.attractor = null;
