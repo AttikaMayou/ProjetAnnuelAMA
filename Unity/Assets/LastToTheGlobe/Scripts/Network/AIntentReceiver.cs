@@ -26,7 +26,7 @@ namespace LastToTheGlobe.Scripts.Network
        public float rotationOnX = 0.0f;
        public float rotationOnY = 0.0f;
        public float rotationSpeed = 5.0f;
-
+ 
        public bool canDash = true;
        public bool canJump = true;
        public bool canShoot = true;
