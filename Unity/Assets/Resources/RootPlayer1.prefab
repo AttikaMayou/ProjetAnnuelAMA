@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4032840750367864674}
   m_Layer: 0
   m_Name: PlayerModel
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -200,6 +200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attractor: {fileID: 0}
+  debug: 1
   characterRootGameObject: {fileID: 4032840751649765450}
   characterRb: {fileID: 4032840751649765455}
   characterTr: {fileID: 4032840751649765453}
