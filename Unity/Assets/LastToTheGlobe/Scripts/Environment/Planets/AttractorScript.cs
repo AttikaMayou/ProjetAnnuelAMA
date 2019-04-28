@@ -1,5 +1,4 @@
 ﻿using LastToTheGlobe.Scripts.Avatar;
-using LastToTheGlobe.Scripts.Environment.Planets.OLD;
 using LastToTheGlobe.Scripts.Management;
 using UnityEngine;
 using UnityEngine.Serialization;

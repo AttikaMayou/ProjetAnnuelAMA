@@ -3,7 +3,7 @@
 //Auteur : Abdallah
 //Modifications : Attika
 
-namespace LastToTheGlobe.Scripts.Environment.Planets.OLD
+namespace LastToTheGlobe.Scripts.Environment.Planets
 {
     public class PlanetExposerScript : MonoBehaviour
     {

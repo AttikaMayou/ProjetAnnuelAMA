@@ -2,7 +2,7 @@
 using LastToTheGlobe.Scripts.Singleton;
 using UnityEngine;
 using System.Collections.Generic;
-using LastToTheGlobe.Scripts.Environment.Planets.OLD;
+using LastToTheGlobe.Scripts.Environment.Planets;
 using Photon.Pun;
 using UnityEngine.Serialization;
 
