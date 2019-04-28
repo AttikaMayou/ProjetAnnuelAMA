@@ -11,6 +11,8 @@ namespace LastToTheGlobe.Scripts.Avatar
 {
     public class CharacterExposerScript : Avatar
     {
+        public bool debug = true;
+        
         public GameObject characterRootGameObject;
         [Header("Player Control Parameters")] 
         public Rigidbody characterRb;
@@ -49,7 +51,8 @@ namespace LastToTheGlobe.Scripts.Avatar
 
         private void LateUpdate()
         {
-            attractorDebug = attractor;
+            if(debug)
+                attractorDebug = attractor;
         }
     }
 }

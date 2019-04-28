@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using LastToTheGlobe.Scripts.Management;
+using Photon.Pun;
+using UnityEngine;
 
-//Auteur : Abdallah
-//Modifications : Attika
+//Auteur : Attika
 
 namespace LastToTheGlobe.Scripts.Environment.Planets
 {
@@ -9,5 +10,13 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
     {
         public Transform planetTransform;
         public Collider planetCollider;
+
+        private void OnEnable()
+        {
+            if (PhotonNetwork.IsMasterClient)
+            {
+                ColliderDirectoryScript.Instance.AddPlanetExposer(this);
+            }
+        }
     }
 }
