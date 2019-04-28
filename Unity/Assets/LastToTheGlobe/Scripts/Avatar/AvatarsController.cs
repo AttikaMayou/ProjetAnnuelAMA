@@ -188,6 +188,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                     Debug.LogError("There is no attractor near us !");
                     return;
                 }
+                //TODO : make this master client server like 
                 player.attractor.Attractor(rb, tr, -2600.0f);
                 /*if (intent.canJump && player.attractor)
                 {

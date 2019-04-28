@@ -1,5 +1,6 @@
 ﻿using LastToTheGlobe.Scripts.Avatar;
 using LastToTheGlobe.Scripts.Management;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -18,6 +19,8 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
         
         public void Attractor(Rigidbody attractedRb, Transform body, float gravity)
         {
+            if (!PhotonNetwork.IsMasterClient) return;
+            
             //Give the direction of gravity
             var gravityUp = (body.position - transform.position).normalized;
             var bodyUp = body.up;
