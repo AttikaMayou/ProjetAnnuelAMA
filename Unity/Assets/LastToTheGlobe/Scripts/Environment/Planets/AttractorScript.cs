@@ -34,32 +34,35 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
 
         private void OnTriggerEnter(Collider coll)
         {
-            if (!coll.CompareTag("Player") || !coll.CompareTag("Bullet")) return;
             if (debug)
             {
                 Debug.Log("there is a player or an orb who entered");
             }
 
-            var exposer = ColliderDirectoryScript.Instance.GetCharacterExposer(coll);
-                //PlayerColliderDirectoryScript.Instance.GetExposer(coll);
-            if (!exposer) return;
+            if (coll.CompareTag("Player"))
+            {
+                var exposer = ColliderDirectoryScript.Instance.GetCharacterExposer(coll);
+                exposer.attractor = this;
+            }
 
-            //exposer.thirdPersonController.attractor = this;
-            exposer.attractor = this;
-            //exposer.selfOrbAttractedScript.attractor = this;
+            if (coll.CompareTag("Bullet"))
+            {
+                //TODO : add attractor to bullet object
+            }
         }
 
         private void OnTriggerExit(Collider coll)
         {
-            if (!coll.CompareTag("Player")) return;
-
-            var exposer = ColliderDirectoryScript.Instance.GetCharacterExposer(coll);
-                //PlayerColliderDirectoryScript.Instance.GetExposer(coll);
-            if (!exposer) return;
+            if (coll.CompareTag("Player"))
+            {
+                var exposer = ColliderDirectoryScript.Instance.GetCharacterExposer(coll);
+                exposer.attractor = null;
+            }
             
-            //exposer.thirdPersonController.attractor = null;
-            exposer.attractor = null;
-            //exposer.selfOrbAttractedScript.attractor = null;
+            if (coll.CompareTag("Bullet"))
+            {
+                //TODO : add null to attractor of the bullet object
+            }
         }
     }
 }

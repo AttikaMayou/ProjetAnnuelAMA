@@ -280,7 +280,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                 FindAllSpawnPoint();
                 if(debug) Debug.Log("seed is " + _seed);
             }
-
+ 
             if (PhotonNetwork.IsConnected)
             {
                 photonView.RPC("SendSeedToPlayers", RpcTarget.Others, _seed);
