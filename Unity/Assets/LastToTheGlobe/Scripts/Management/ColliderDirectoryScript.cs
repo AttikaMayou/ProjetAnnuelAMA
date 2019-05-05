@@ -103,7 +103,6 @@ namespace LastToTheGlobe.Scripts.Management
             return _orbsDirectory.TryGetValue(col, out _orbValue) ? _orbValue : null;
         }
         
-
         public void AddOrbManager(OrbManager orb)
         {
             if (orbManagers == null)

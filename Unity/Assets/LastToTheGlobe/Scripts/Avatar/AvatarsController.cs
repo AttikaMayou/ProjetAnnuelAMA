@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using LastToTheGlobe.Scripts.Camera;
 using LastToTheGlobe.Scripts.Dev.LevelManager;
 using LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi;
+using LastToTheGlobe.Scripts.Management;
 using LastToTheGlobe.Scripts.Network;
 using LastToTheGlobe.Scripts.UI;
 using LastToTheGlobe.Scripts.Weapon.Orb;
@@ -66,6 +67,9 @@ namespace LastToTheGlobe.Scripts.Avatar
             gameLaunched = false;
 
             myCamera.enabled = false;
+            
+            //Ajout de tous les colliders des orbs dans le directory
+            InitializeOrbColliderDirectory();
 
             _countdownStartValue = countdown;
             
@@ -388,7 +392,17 @@ namespace LastToTheGlobe.Scripts.Avatar
                 }
             }
             if(debug) Debug.Log("There is no orb available");
-            return new OrbManager();
+            return null;
+        }
+
+        //Ajout de tous les colliders des orbs dans le directory
+        private void InitializeOrbColliderDirectory()
+        {
+            if (!PhotonNetwork.IsMasterClient) return;
+            foreach (var orb in orbsPool)
+            {
+                ColliderDirectoryScript.Instance.AddOrbManager(orb);
+            }
         }
 
         #endregion
