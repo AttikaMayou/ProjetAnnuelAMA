@@ -3,6 +3,7 @@ using UnityEngine;
 using LastToTheGlobe.Scripts;
 using Photon.Pun;
 using UnityEngine.Serialization;
+using Photon.Pun.UtilityScripts;
 
 //Auteur : Margot
 //Modifications : Attika
@@ -25,6 +26,14 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi
         private float size = 10;
 
         [SerializeField]
+        [Tooltip("Scale minimum d'une planète")]
+        public int scaleMin = 30;
+
+        [SerializeField]
+        [Tooltip("Scale maximum d'une planète")]
+        public int scaleMax = 70;
+
+        [SerializeField]
         [Tooltip("Les planètes les plus répandues")]
         private GameObject basicPlanet;
 
@@ -33,23 +42,25 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi
         private GameObject spawnPlanet;
 
         [SerializeField]
-        private int numberOfPlayer = 10;
-        //TODO : récupérer le nombre de joueurs en jeu
-
-        [SerializeField]
         [Tooltip("Planète de victoire")]
         private GameObject victoryPlanet;
 
+        [SerializeField]
+        private int numberOfPlayer = 10;
+        //TODO : récupérer le nombre de joueurs en jeu
+
         private int _seed;
-        
+
         public int GetSeed()
         {
-            return Random.Range(1, 200);
+            _seed = Random.Range(1, 200);
+            return _seed;
         }
 
         public void SetSeed(int value)
         {
             _seed = value;
+            Debug.Log("seed dans CloudPlanet :" + _seed);
             GenerateMap();
         }
 

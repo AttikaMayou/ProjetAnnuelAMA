@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi;
 
 //Auteur : Margot
 //Modifications : Attika
@@ -17,23 +18,51 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
         [SerializeField]
         private GameObject planet;
 
+        [SerializeField]
+        private CloudPlanet environmentController;
+
         public PlanetType myType = PlanetType.Basic;
-        
+
+        private int _scaleMax;
+        private int _scaleMin;
+
+        private int _seed;
         private float _scale;
         private int _indexRandom;
 
-        //TODO : transformer planet en prefab
-
-        private void Start()
+        public void GeneratePlanetFeature(int _seed, int _scaleMax, int _scaleMin)
         {
-            //Planet tag
-            _indexRandom = (int)Random.Range(0, 3);
+            Debug.Log("seed dans PlanetFeature :" + _seed);
+            CreateBiome();
+        }
+
+        private int GetSeedFromCloudPlanet()
+        {
+            _seed = environmentController.GetSeed();
+            return _seed;
+        }
+
+        private int GetScaleMaxFromCloudPlanet()
+        {
+            _scaleMax = environmentController.scaleMax;
+            return _scaleMax;
+        }
+
+        private int GetScaleMinFromCloudPlanet()
+        {
+            _scaleMin = environmentController.scaleMax;
+            return _scaleMin;
+        }
+
+        private void CreateBiome()
+        {
+            _indexRandom = _seed % 3; // (int)Random.Range(0, 3);
             myType = (PlanetType)_indexRandom;
-            //planet.tag = tags[indexRandom];
-        
-            //Size Planet
-            _scale = Random.Range(20f, 50f);
+
+            _scale = Random.Range(_scaleMin, _scaleMax);
             planet.transform.localScale = new Vector3(_scale, _scale, _scale);
+
+            Debug.Log("seed dans planetFeature :" + _seed);
 
             switch (myType)
             {
