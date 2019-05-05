@@ -45,7 +45,6 @@ namespace LastToTheGlobe.Scripts.Avatar
             if (PhotonNetwork.IsMasterClient)
             {
                 ColliderDirectoryScript.Instance.AddCharacterExposer(this);
-                //PlayerColliderDirectoryScript.Instance.AddExposer(this);
             }
         }
 

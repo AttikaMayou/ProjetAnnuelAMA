@@ -197,7 +197,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                 {
                 }*/
                
-                }
+            }
         }
 
         #endregion

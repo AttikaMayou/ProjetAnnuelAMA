@@ -13,6 +13,7 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb
         
         [Header("Orb Parameters")]
         [SerializeField] private Rigidbody orbRb;
+        public Collider orbCd;
         [SerializeField] private float speed = 5.0f;
         private Vector3 _direction;
         private float _timeUsing;
