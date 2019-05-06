@@ -1,4 +1,6 @@
 ﻿using LastToTheGlobe.Scripts.Environment.Planets;
+using LastToTheGlobe.Scripts.Management;
+using Photon.Pun;
 //using NUnit.Framework.Constraints;
 using UnityEngine;
 
@@ -35,6 +37,9 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb
             transform.position = playerTransform.position + playerTransform.forward * 2f;
             _direction = playerTransform.right;
             _centerPointAttractor = attractor.transform.position;
+            if (!PhotonNetwork.IsMasterClient) return;
+            ColliderDirectoryScript.Instance.AddOrbManager(this);
+            if(debug) Debug.Log("add an orb to Directory");
         }
         
         private void FixedUpdate () {

@@ -67,9 +67,6 @@ namespace LastToTheGlobe.Scripts.Avatar
             gameLaunched = false;
 
             myCamera.enabled = false;
-            
-            //Ajout de tous les colliders des orbs dans le directory
-            InitializeOrbColliderDirectory();
 
             _countdownStartValue = countdown;
             
@@ -393,16 +390,6 @@ namespace LastToTheGlobe.Scripts.Avatar
             }
             if(debug) Debug.Log("There is no orb available");
             return null;
-        }
-
-        //Ajout de tous les colliders des orbs dans le directory
-        private void InitializeOrbColliderDirectory()
-        {
-            if (!PhotonNetwork.IsMasterClient) return;
-            foreach (var orb in orbsPool)
-            {
-                ColliderDirectoryScript.Instance.AddOrbManager(orb);
-            }
         }
 
         #endregion
