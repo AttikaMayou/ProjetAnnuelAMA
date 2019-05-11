@@ -24,7 +24,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         private float rotationSpeed = 5.0f;
 
         [Header("Skills & Bonus")] 
-        private Skills _skills = ScriptableObject.CreateInstance<Skills>();
+        //private Skills _skills = ScriptableObject.CreateInstance<Skills>();
         private Bonus _bonus = new Bonus();
 
         [Header("Movement Parameters")]
@@ -76,7 +76,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         
         private void Start()
         {
-            _skills.characterExposer = playerExposer;
+            //_skills.characterExposer = playerExposer;
             playerExposer.dashSpeed = dashSpeed;
             enume = ChestState().GetEnumerator();
         }
@@ -117,7 +117,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                 {
                     if (item.itemType == ObjectScript._typeOfItem.Consumable)
                     {
-                        _skills.skillsMethods[item.objectName]();    
+                        //_skills.skillsMethods[item.objectName]();    
                     }
                     
                     _skillAsked = false;    

@@ -7,7 +7,7 @@ using UnityEngine;
 // Script to generate planet's mesh
 //-------------------------------------------
 
-public class PlanetInstance : MonoBehaviour
+public class PlanetInstanceOLD : MonoBehaviour
 {
     [SerializeField]
     private int resolution = 5;
