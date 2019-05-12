@@ -4,6 +4,7 @@ using LastToTheGlobe.Scripts;
 using Photon.Pun;
 using UnityEngine.Serialization;
 using Photon.Pun.UtilityScripts;
+using LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet;
 
 //Auteur : Margot
 //Modifications : Attika
@@ -14,11 +15,11 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi
     public class CloudPlanet : MonoBehaviour
     {
         public bool debug = true;
-        
+
         [FormerlySerializedAs("NumberOfVertices")]
         [SerializeField]
         [Tooltip("Nombre de planètes")]
-        private int numberOfVertices = 10;
+        private float numberOfVertices = 10;
         // TODO: changer nombres de vertices en fonction des joueurs connectés
 
         [SerializeField]
@@ -49,7 +50,10 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi
         private int numberOfPlayer = 10;
         //TODO : récupérer le nombre de joueurs en jeu
 
+        private PlanetFeature planetFeature;
         private int _seed;
+        private Vector3[] vertices;
+
 
         public int GetSeed()
         {
@@ -61,41 +65,59 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi
         {
             _seed = value;
             Debug.Log("seed dans CloudPlanet :" + _seed);
-            GenerateMap();
+            GenerateNoise();
+            Debug.Log("scale :" + scaleMin);
+            planetFeature.CreateBiome(value);
         }
 
-        private void GenerateMap()
+        //génération aléatoire des points 
+        //TODO : set size of the planet and push points
+        private Vector3[] GenerateNoise()
         {
-            var vertices = new Vertex3[numberOfVertices];
-
-            //Génération aléatoire des points pour planètes basics
-            for (int i = 0; i < numberOfVertices; i++)
-            {
-                var x = size * Random.Range(-1.0f, 1.0f);
-                var y = size * Random.Range(-1.0f, 1.0f);
-                var z = size * Random.Range(-1.0f, 1.0f);
-
-                vertices[i] = new Vertex3(x, y, z);
-
-                Instantiate(basicPlanet, new Vector3(x, y, z), Quaternion.identity);
-
-            }
+            int i = 0;
 
             //Génération aléatoire des points pour planètes spawns
-            for (var i = 0; i < numberOfPlayer; i++)
+            for (i = 0; i < numberOfPlayer; i++)
             {
                 var x = size * Random.Range(-0.7f, 0.7f);
                 var y = size * Random.Range(-1f, -1.2f);
                 var z = size * Random.Range(-0.7f, 0.7f);
 
-                vertices[i] = new Vertex3(x, y, z);
-
-                Instantiate(spawnPlanet, new Vector3(x, y, z), Quaternion.identity);
+                vertices[i] = new Vector3(x, y, z);
+                Debug.Log("vertices:" + vertices[0].x);
+                //Instantiate(spawnPlanet, new Vector3(x, y, z), Quaternion.identity);
 
             }
 
-            Instantiate(victoryPlanet, new Vector3(0, size * Random.Range(1.2f, 1.5f), 0), Quaternion.identity);
+            //Génération aléatoire des points pour planètes basics
+            for (i = i; i < numberOfVertices; i++)
+            {
+                var x = size * Random.Range(-1.0f, 1.0f);
+                var y = size * Random.Range(-1.0f, 1.0f);
+                var z = size * Random.Range(-1.0f, 1.0f);
+
+                vertices[i] = new Vector3(x, y, z);
+                //Instantiate(basicPlanet, new Vector3(x, y, z), Quaternion.identity);
+                Debug.Log(vertices[i]);
+
+            }
+
+            return vertices;
+            //Instantiate(victoryPlanet, new Vector3(0, size * Random.Range(1.2f, 1.5f), 0), Quaternion.identity);
         }
+
+
+
+        private void InstanciationPlanet(Vector3 vertices)
+        {
+            for (int i =0; i < numberOfPlayer + numberOfVertices + 1; i++)
+            {
+                //Instantiate(spawnPlanet, new Vector3(vertices[i]), Quaternion.identity);
+            }
+
+           // Instantiate(spawnPlanet, new Vector3(x, y, z), Quaternion.identity);
+        }
+
 
 
             /* distance entre les points
@@ -119,6 +141,17 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi
 
             }*/
 
+/*
 
+        public void GenerateMap(int _seed)
+        {
+            //génère le noise
+            GenerateNoise(Type );
+            //génère le type de planètes 
+            planetFeature.CreateBiome(_seed);
+            //instancie les objets à la surface
+
+            //instancie les props à la surface
+        }*/
     }
 }

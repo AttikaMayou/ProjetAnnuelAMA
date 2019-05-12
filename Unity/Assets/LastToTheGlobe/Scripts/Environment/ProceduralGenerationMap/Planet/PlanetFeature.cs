@@ -30,37 +30,24 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
         private float _scale;
         private int _indexRandom;
 
-        public void GeneratePlanetFeature(int _seed, int _scaleMax, int _scaleMin)
-        {
-            Debug.Log("seed dans PlanetFeature :" + _seed);
-            CreateBiome();
-        }
 
-        private int GetSeedFromCloudPlanet()
-        {
-            _seed = environmentController.GetSeed();
-            return _seed;
-        }
-
-        private int GetScaleMaxFromCloudPlanet()
+        private int GetScaleMinFromCloudPlanet()
         {
             _scaleMax = environmentController.scaleMax;
             return _scaleMax;
         }
 
-        private int GetScaleMinFromCloudPlanet()
+        private int GetScaleMaxFromCloudPlanet()
         {
             _scaleMin = environmentController.scaleMax;
             return _scaleMin;
         }
 
-        private void CreateBiome()
+        //retourne le type de planet et set son material
+        public PlanetType CreateBiome(int _seed)
         {
-            _indexRandom = _seed % 3; // (int)Random.Range(0, 3);
+            _indexRandom = _seed % 3;
             myType = (PlanetType)_indexRandom;
-
-            _scale = Random.Range(_scaleMin, _scaleMax);
-            planet.transform.localScale = new Vector3(_scale, _scale, _scale);
 
             Debug.Log("seed dans planetFeature :" + _seed);
 
@@ -86,6 +73,8 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
                     break;
                 }
             }
+
+            return myType;
 
 
         }
