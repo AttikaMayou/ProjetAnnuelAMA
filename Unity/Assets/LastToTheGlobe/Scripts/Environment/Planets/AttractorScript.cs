@@ -35,6 +35,7 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
 
         private void OnTriggerEnter(Collider coll)
         {
+            Debug.Log("ON TRIGGER ENTER");
             if (!coll.CompareTag("Player") || !coll.CompareTag("Bullet")) return;
             if (debug)
             {
@@ -42,11 +43,15 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
             }
             
             var exposer = PlayerColliderDirectoryScript.Instance.GetExposer(coll);
-            if (!exposer) return;
-
-            //exposer.thirdPersonController.attractor = this;
-            exposer.attractor = this;
-            //exposer.selfOrbAttractedScript.attractor = this;
+            if (!exposer)
+            {
+                Debug.Log("couldn't find player/orb in the Directory");
+            }
+            else
+            {
+                Debug.Log(exposer);
+                exposer.attractor = this;
+            }
         }
 
         private void OnTriggerExit(Collider coll)
