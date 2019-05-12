@@ -4,13 +4,6 @@ using LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi;
 //Auteur : Margot
 //Modifications : Attika
 
-public enum PlanetType
-{
-    Basic,
-    Frozen,
-    Desert
-}
-
 namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
 {
     public class PlanetFeature : MonoBehaviour
