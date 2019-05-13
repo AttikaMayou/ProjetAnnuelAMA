@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using LastToTheGlobe.Scripts.Camera;
 using LastToTheGlobe.Scripts.Dev.LevelManager;
 using LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi;
+using LastToTheGlobe.Scripts.Management;
 using LastToTheGlobe.Scripts.Network;
 using LastToTheGlobe.Scripts.UI;
 using LastToTheGlobe.Scripts.Weapon.Orb;
@@ -188,6 +189,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                     Debug.LogError("There is no attractor near us !");
                     return;
                 }
+                //TODO : make this master client server like 
                 player.attractor.Attractor(rb, tr, -2600.0f);
                 /*if (intent.canJump && player.attractor)
                 {
@@ -196,7 +198,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                 {
                 }*/
                
-                }
+            }
         }
 
         #endregion
@@ -280,7 +282,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                 FindAllSpawnPoint();
                 if(debug) Debug.Log("seed is " + _seed);
             }
-
+ 
             if (PhotonNetwork.IsConnected)
             {
                 photonView.RPC("SendSeedToPlayers", RpcTarget.Others, _seed);
@@ -387,7 +389,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                 }
             }
             if(debug) Debug.Log("There is no orb available");
-            return new OrbManager();
+            return null;
         }
 
         #endregion

@@ -1,6 +1,6 @@
 ﻿using LastToTheGlobe.Scripts.Avatar;
-using LastToTheGlobe.Scripts.Environment.Planets.OLD;
 using LastToTheGlobe.Scripts.Management;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -19,6 +19,8 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
         
         public void Attractor(Rigidbody attractedRb, Transform body, float gravity)
         {
+            if (!PhotonNetwork.IsMasterClient) return;
+            
             //Give the direction of gravity
             var gravityUp = (body.position - transform.position).normalized;
             var bodyUp = body.up;
@@ -56,14 +58,16 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
 
         private void OnTriggerExit(Collider coll)
         {
-            if (!coll.CompareTag("Player")) return;
+            if (coll.CompareTag("Player"))
+            {
+                var exposer = ColliderDirectoryScript.Instance.GetCharacterExposer(coll);
+                exposer.attractor = null;
+            }
             
-            var exposer = PlayerColliderDirectoryScript.Instance.GetExposer(coll);
-            if (!exposer) return;
-            
-            //exposer.thirdPersonController.attractor = null;
-            exposer.attractor = null;
-            //exposer.selfOrbAttractedScript.attractor = null;
+            if (coll.CompareTag("Bullet"))
+            {
+                //TODO : add null to attractor of the bullet object
+            }
         }
     }
 }

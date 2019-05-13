@@ -48,7 +48,7 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi
 
         [SerializeField]
         private int numberOfPlayer = 10;
-        //TODO : récupérer le nombre de joueurs en jeu
+        //TODO : récupérer le nombre de joueurs en jeu --> ColliderDirectoryScript.Instance.characterExposers.Count()
 
         private PlanetFeature planetFeature;
         private int _seed;
