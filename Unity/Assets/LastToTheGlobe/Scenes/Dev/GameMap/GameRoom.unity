@@ -2006,12 +2006,12 @@ PrefabInstance:
     - target: {fileID: 3096348836995314044, guid: 1f452279093f47548bb24503b9a3d21e,
         type: 3}
       propertyPath: viewIdField
-      value: 30
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3096348836995314044, guid: 1f452279093f47548bb24503b9a3d21e,
         type: 3}
       propertyPath: InstantiationId
-      value: 30
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1014064465940019215, guid: 1f452279093f47548bb24503b9a3d21e,
         type: 3}
@@ -3319,6 +3319,7 @@ MonoBehaviour:
   debug: 1
   characterExposers: []
   planetExposers: []
+  orbManagers: []
 --- !u!1001 &697464774
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4917,6 +4918,7 @@ MonoBehaviour:
   victoryPlanet: {fileID: 6007325744886493304, guid: 98010e924c5875f4bbbf318e24ca1c4d,
     type: 3}
   numberOfPlayer: 2
+  planetTab: []
 --- !u!4 &997781116
 Transform:
   m_ObjectHideFlags: 0
@@ -8073,7 +8075,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 10
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -8101,7 +8103,7 @@ MonoBehaviour:
     spaceCount: 5
     wordCount: 5
     linkCount: 0
-    lineCount: 3
+    lineCount: 1
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 0
@@ -9029,7 +9031,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 2
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -9057,7 +9059,7 @@ MonoBehaviour:
     spaceCount: 0
     wordCount: 2
     linkCount: 0
-    lineCount: 2
+    lineCount: 1
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 0
