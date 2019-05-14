@@ -10,16 +10,32 @@ public enum PlanetType
     Desert
 }
 
+public enum AssetType
+{
+    Tree,
+    Rock
+}
+
 public struct PlanetStruct
 {
     //position et radius de la planète
-    public Vertex3 positionPlanet;
-    public int radiusPlanet;
+    public Vertex3 planetLocation;
+    public float radiusPlanet;
 
     //type de planète
-    public PlanetType typePlanet;
-    public Renderer materialPlanet;
+    public PlanetType planetType;
+    public Renderer planetMaterial;
 
+    // assets sur cette planète
+    public AssetStruct[] planetAssets;
 
+}
+
+public struct AssetStruct
+{
+    // position et type de l'asset
+    public AssetType assetType; // tree or rock
+    public int meshTypeID; // index in the list
+    public Vector3 relativeLocation; // location on the planet
 
 }

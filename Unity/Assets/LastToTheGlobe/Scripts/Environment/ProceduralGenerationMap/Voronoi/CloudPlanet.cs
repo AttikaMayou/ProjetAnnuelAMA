@@ -16,6 +16,9 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi
     {
         public bool debug = true;
 
+        [Syncvar (hook=functName)]
+        Random.State seedServeur;
+
         [FormerlySerializedAs("NumberOfVertices")]
         [SerializeField]
         [Tooltip("Nombre de planètes")]
@@ -51,32 +54,39 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi
         //TODO : récupérer le nombre de joueurs en jeu --> ColliderDirectoryScript.Instance.characterExposers.Count()
 
         private PlanetFeature planetFeature;
-        private int _seed;
-        private Vertex3[] vertices;
-        public GameObject[] planetTab;
-        private GameObject planet;
+        //private int _seed;
+        //private Vertex3[] planetsLocations;
+        //private GameObject[] planets;
+        private PlanetStruct[] planetsData;
 
-        public int GetSeed()
+
+        /*public int GetSeed()
         {
+            Random.seed
             _seed = Random.Range(1, 200);
             return _seed;
-        }
+        }*/
 
-        public void SetSeed(int value)
+        public void GenerateMap()//int value)
         {
-            _seed = value;
-            Debug.Log("seed dans CloudPlanet :" + _seed);
-            GenerateNoise();
+
+            //CloudPlanet.vertices = new Vertex3[numberOfPlayer + numberOfVertices + 1];
+            //GeneratePlanetsLocations(ref planetsLocations); // new Vertex3[numberOfPlayer + numberOfVertices + 1];
+            GeneratePlanetsLocations();
+            //_seed = value;
+            //Debug.Log("seed dans CloudPlanet :" + _seed);
+
             //Debug.Log("scale :" + scaleMin);
             //planetFeature.CreateBiome(value);
         }
 
         //génération aléatoire des points 
         //TODO : set size of the planet and push points
-        private Vertex3[] GenerateNoise()
+        private void GeneratePlanetsLocations()
         {
+
+            //Random.state = seedServeur;
             int i = 0;
-            Vertex3[] vertices = new Vertex3[numberOfPlayer + numberOfVertices + 1];
 
             //Génération aléatoire des points pour planètes spawns
             for (i = 0; i <= numberOfPlayer; i++)
@@ -85,8 +95,8 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi
                 var y = size * Random.Range(-1f, -1.2f);
                 var z = size * Random.Range(-0.7f, 0.7f);
 
-                vertices[i] = new Vertex3(x, y, z);
-                planet = Instantiate(spawnPlanet, new Vector3(x, y, z), Quaternion.identity);
+                //planetsLocations[i] = new Vertex3(x, y, z);
+                //planet = Instantiate(spawnPlanet, new Vector3(x, y, z), Quaternion.identity);
                 //planetTab[i] = planet;
                 //Debug.Log("planet:" + planetTab[0]);
             }
@@ -98,15 +108,14 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi
                 var y = size * Random.Range(-1.0f, 1.0f);
                 var z = size * Random.Range(-1.0f, 1.0f);
 
-                vertices[i] = new Vertex3(x, y, z);
-                planet = Instantiate(basicPlanet, new Vector3(x, y, z), Quaternion.identity);
+                //planetsLocations[i] = new Vertex3(x, y, z);
+                //planet = Instantiate(basicPlanet, new Vector3(x, y, z), Quaternion.identity);
 
             }
-            planet = Instantiate(victoryPlanet, new Vector3(0, size * Random.Range(1.2f, 1.5f), 0), Quaternion.identity);
+            //planet = Instantiate(victoryPlanet, new Vector3(0, size * Random.Range(1.2f, 1.5f), 0), Quaternion.identity);
             Debug.Log("i : " + i);
             Debug.Log("numberOfPlayer:" + numberOfPlayer);
             Debug.Log("numberOfVertices :" + numberOfVertices);
-            return vertices;
         }
 
 
@@ -130,18 +139,5 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi
                 }
 
             }*/
-
-/*
-
-        public void GenerateMap(int _seed)
-        {
-            //génère le noise
-            GenerateNoise(Type );
-            //génère le type de planètes 
-            planetFeature.CreateBiome(_seed);
-            //instancie les objets à la surface
-
-            //instancie les props à la surface
-        }*/
     }
 }
