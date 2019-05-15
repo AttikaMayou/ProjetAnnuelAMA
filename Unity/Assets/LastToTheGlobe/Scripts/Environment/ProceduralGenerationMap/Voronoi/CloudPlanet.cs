@@ -16,7 +16,7 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi
     {
         public bool debug = true;
 
-        [Syncvar (hook=functName)]
+        //[Syncvar (hook=functName)]
         Random.State seedServeur;
 
         [FormerlySerializedAs("NumberOfVertices")]

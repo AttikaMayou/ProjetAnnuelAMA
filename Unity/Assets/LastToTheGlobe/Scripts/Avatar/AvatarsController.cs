@@ -277,8 +277,8 @@ namespace LastToTheGlobe.Scripts.Avatar
             if (!PhotonNetwork.IsMasterClient) return;
             if (PhotonNetwork.IsMasterClient && _seed == 0)
             {
-                _seed = environmentController.GetSeed();
-                environmentController.SetSeed(_seed);
+//                _seed = environmentController.GetSeed();
+//                environmentController.SetSeed(_seed);
                 FindAllSpawnPoint();
                 if(debug) Debug.Log("seed is " + _seed);
             }
@@ -413,7 +413,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         {
             _seed = seed;
             if (debug) Debug.Log("My seed is : " + seed);
-            environmentController.SetSeed(_seed);
+            //environmentController.SetSeed(_seed);
         }
 
         #endregion
