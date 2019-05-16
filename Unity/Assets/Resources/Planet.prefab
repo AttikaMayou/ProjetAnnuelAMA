@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 9194414416188521499}
   - component: {fileID: 9194414416188521477}
   - component: {fileID: 6735178410109926678}
+  - component: {fileID: 6245519833785899078}
   m_Layer: 0
   m_Name: Planet
   m_TagString: Planet
@@ -123,6 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planet: {fileID: 9194414416188521490}
+  environmentController: {fileID: 0}
   myType: 0
 --- !u!114 &9194414416188521501
 MonoBehaviour:
@@ -204,6 +206,7 @@ MonoBehaviour:
   debug: 1
   speedRotation: 10
   dirForce: {x: 0, y: 0, z: 0}
+  photonView: {fileID: 6245519833785899078}
 --- !u!114 &6735178410109926678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,3 +221,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   planetTransform: {fileID: 9194414416188521496}
   planetCollider: {fileID: 9194414416188521498}
+--- !u!114 &6245519833785899078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9194414416188521490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 0
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
