@@ -11,6 +11,8 @@ namespace LastToTheGlobe.Scripts.Avatar
 {
     public class CharacterExposerScript : Avatar
     {
+        public bool debug = true;
+        
         public GameObject characterRootGameObject;
         [Header("Player Control Parameters")] 
         public Rigidbody characterRb;
@@ -42,13 +44,14 @@ namespace LastToTheGlobe.Scripts.Avatar
             //only the Master Client and the player to the directory
             if (PhotonNetwork.IsMasterClient)
             {
-                PlayerColliderDirectoryScript.Instance.AddExposer(this);
+                ColliderDirectoryScript.Instance.AddCharacterExposer(this);
             }
         }
 
         private void LateUpdate()
         {
-            attractorDebug = attractor;
+            if(debug)
+                attractorDebug = attractor;
         }
     }
 }

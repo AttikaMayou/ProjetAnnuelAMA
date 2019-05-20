@@ -1,9 +1,8 @@
 ﻿using LastToTheGlobe.Scripts.Avatar;
-using LastToTheGlobe.Scripts.Environment.Planets.OLD;
 using LastToTheGlobe.Scripts.Management;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.Serialization;
-
 
 //Auteur : Abdallah
 //Modification : Attika
@@ -16,21 +15,12 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
         
         public float speedRotation = 10f;
         public Vector3 dirForce;
+
+        [SerializeField] private PhotonView photonView;
         
         public void Attractor(Rigidbody attractedRb, Transform body, float gravity)
         {
-            //Give the direction of gravity
-            var gravityUp = (body.position - transform.position).normalized;
-            var bodyUp = body.up;
-
-            attractedRb.AddForce(gravityUp * gravity);
-
-            //Sync the vertical axe's player (up) with the gravity direction chosen before
-            var rotation = body.rotation;
-            var targetRotation = Quaternion.FromToRotation(bodyUp, gravityUp) * rotation;
-            rotation = Quaternion.Slerp(rotation, targetRotation, speedRotation * Time.deltaTime);
-            body.rotation = rotation;
-            dirForce = gravityUp;
+            photonView.RPC("AttractObject", RpcTarget.MasterClient, attractedRb, body, gravity);
         }
 
         private void OnTriggerEnter(Collider coll)
@@ -56,14 +46,33 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
 
         private void OnTriggerExit(Collider coll)
         {
-            if (!coll.CompareTag("Player")) return;
+            if (coll.CompareTag("Player"))
+            {
+                var exposer = ColliderDirectoryScript.Instance.GetCharacterExposer(coll);
+                exposer.attractor = null;
+            }
             
-            var exposer = PlayerColliderDirectoryScript.Instance.GetExposer(coll);
-            if (!exposer) return;
-            
-            //exposer.thirdPersonController.attractor = null;
-            exposer.attractor = null;
-            //exposer.selfOrbAttractedScript.attractor = null;
+            if (coll.CompareTag("Bullet"))
+            {
+                //TODO : add null to attractor of the bullet object
+            }
+        }
+
+        [PunRPC]
+        void AttractObject(Rigidbody attractedRb, Transform body, float gravity)
+        {
+            //Give the direction of gravity
+            var gravityUp = (body.position - transform.position).normalized;
+            var bodyUp = body.up;
+
+            attractedRb.AddForce(gravityUp * gravity);
+
+            //Sync the vertical axe's player (up) with the gravity direction chosen before
+            var rotation = body.rotation;
+            var targetRotation = Quaternion.FromToRotation(bodyUp, gravityUp) * rotation;
+            rotation = Quaternion.Slerp(rotation, targetRotation, speedRotation * Time.deltaTime);
+            body.rotation = rotation;
+            dirForce = gravityUp;
         }
     }
 }
