@@ -9,12 +9,12 @@ using Random = UnityEngine.Random;
 
 namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
 {
-    public class AssetInstanciation : MonoBehaviour
+    public class AssetInstanciation_PUN : MonoBehaviour
     {
         [SerializeField]
         private GameObject planet;
         [SerializeField]
-        private PlanetFeature planetFt;
+        private PlanetFeature_PUN planetFt;
 
         [SerializeField]
         private List<GameObject> basicTrees;

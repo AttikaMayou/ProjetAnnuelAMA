@@ -12,7 +12,7 @@ using LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet;
 namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi
 {
     //[ExecuteInEditMode]
-    public class CloudPlanet : MonoBehaviour
+    public class CloudPlanet_PUN : MonoBehaviour
     {
         public bool debug = true;
 
@@ -50,7 +50,7 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi
         private int numberOfPlayer = 10;
         //TODO : récupérer le nombre de joueurs en jeu
 
-        private PlanetFeature planetFeature;
+        private PlanetFeature_PUN planetFeature;
         private int _seed;
         private Vertex3[] vertices;
         public GameObject[] planetTab;
@@ -66,7 +66,11 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi
         {
             _seed = value;
             Debug.Log("seed dans CloudPlanet :" + _seed);
-            GenerateNoise();
+
+            if(PhotonNetwork.IsMasterClient)
+            {
+                GenerateNoise();
+            }
             //Debug.Log("scale :" + scaleMin);
             //planetFeature.CreateBiome(value);
         }
@@ -86,7 +90,7 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi
                 var z = size * Random.Range(-0.7f, 0.7f);
 
                 vertices[i] = new Vertex3(x, y, z);
-                planet = Instantiate(spawnPlanet, new Vector3(x, y, z), Quaternion.identity);
+                PhotonNetwork.Instantiate(spawnPlanet.name, new Vector3(x, y, z), Quaternion.identity);
                 //planetTab[i] = planet;
                 //Debug.Log("planet:" + planetTab[0]);
             }
@@ -99,10 +103,12 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi
                 var z = size * Random.Range(-1.0f, 1.0f);
 
                 vertices[i] = new Vertex3(x, y, z);
-                planet = Instantiate(basicPlanet, new Vector3(x, y, z), Quaternion.identity);
+                PhotonNetwork.Instantiate(basicPlanet.name, new Vector3(x, y, z), Quaternion.identity);
 
             }
-            planet = Instantiate(victoryPlanet, new Vector3(0, size * Random.Range(1.2f, 1.5f), 0), Quaternion.identity);
+
+            PhotonNetwork.Instantiate(victoryPlanet.name, new Vector3(0, size * Random.Range(1.2f, 1.5f), 0), Quaternion.identity);
+
             Debug.Log("i : " + i);
             Debug.Log("numberOfPlayer:" + numberOfPlayer);
             Debug.Log("numberOfVertices :" + numberOfVertices);
