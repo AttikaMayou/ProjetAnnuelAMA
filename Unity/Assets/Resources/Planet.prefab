@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &9194414416188521490
+--- !u!1 &541
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,16 +8,18 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9194414416188521496}
-  - component: {fileID: 9194414416188521497}
-  - component: {fileID: 9194414416188521502}
-  - component: {fileID: 9194414416188521498}
-  - component: {fileID: 9194414416188521503}
-  - component: {fileID: 9194414416188521500}
-  - component: {fileID: 9194414416188521501}
-  - component: {fileID: 9194414416188521499}
-  - component: {fileID: 9194414416188521477}
-  - component: {fileID: 6735178410109926678}
+  - component: {fileID: 880}
+  - component: {fileID: 1156}
+  - component: {fileID: 1019}
+  - component: {fileID: 1200}
+  - component: {fileID: 1201}
+  - component: {fileID: 1336}
+  - component: {fileID: 1337}
+  - component: {fileID: 1335}
+  - component: {fileID: 1334}
+  - component: {fileID: 1326}
+  - component: {fileID: 1324}
+  - component: {fileID: 1327}
   m_Layer: 0
   m_Name: Planet
   m_TagString: Planet
@@ -25,13 +27,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &9194414416188521496
+--- !u!4 &880
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9194414416188521490}
+  m_GameObject: {fileID: 541}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -95.81063, y: 82.3881, z: -363.6667}
   m_LocalScale: {x: 21, y: 21, z: 21}
@@ -39,21 +41,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &9194414416188521497
+--- !u!33 &1156
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9194414416188521490}
+  m_GameObject: {fileID: 541}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &9194414416188521502
+--- !u!23 &1019
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9194414416188521490}
+  m_GameObject: {fileID: 541}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -84,60 +86,61 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &9194414416188521498
+--- !u!135 &1200
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9194414416188521490}
+  m_GameObject: {fileID: 541}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.8619496
   m_Center: {x: 0, y: -0.022469567, z: -0.006162008}
---- !u!135 &9194414416188521503
+--- !u!135 &1201
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9194414416188521490}
+  m_GameObject: {fileID: 541}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &9194414416188521500
+--- !u!114 &1336
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9194414416188521490}
+  m_GameObject: {fileID: 541}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a5bd6bd42ddbd2419549c2a53b27916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planet: {fileID: 9194414416188521490}
+  planet: {fileID: 541}
+  environmentController: {fileID: 0}
   myType: 0
---- !u!114 &9194414416188521501
+--- !u!114 &1337
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9194414416188521490}
+  m_GameObject: {fileID: 541}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 239f1fc46b7f51d4196d7e4d526d9182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planet: {fileID: 9194414416188521490}
-  planetFt: {fileID: 9194414416188521500}
+  planet: {fileID: 541}
+  planetFt: {fileID: 1336}
   basicTrees:
   - {fileID: 100002, guid: e395a9683976cad4a8026fc75262df60, type: 3}
   - {fileID: 100002, guid: 316195a121f1e3d4d86fc20bc4d2efb0, type: 3}
@@ -173,13 +176,13 @@ MonoBehaviour:
   - {fileID: 100002, guid: 7acb702f0d858b547942f61eb90e1898, type: 3}
   - {fileID: 100002, guid: 417d7efe09660e44a8d36b78dc776bf5, type: 3}
   - {fileID: 100002, guid: 1175087b9ddbd4a46982b68c732dab1b, type: 3}
---- !u!114 &9194414416188521499
+--- !u!114 &1335
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9194414416188521490}
+  m_GameObject: {fileID: 541}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d99268119346174478b5e1aa299e59cc, type: 3}
@@ -188,14 +191,14 @@ MonoBehaviour:
   tremplin: {fileID: 1963491872576424134, guid: bf62e091e3a648e449f1ae21a25c6606,
     type: 3}
   chest: {fileID: 0}
-  planet: {fileID: 9194414416188521490}
---- !u!114 &9194414416188521477
+  planet: {fileID: 541}
+--- !u!114 &1334
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9194414416188521490}
+  m_GameObject: {fileID: 541}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 917c2123bde88734f9ca74bda0e6f01f, type: 3}
@@ -204,17 +207,54 @@ MonoBehaviour:
   debug: 1
   speedRotation: 10
   dirForce: {x: 0, y: 0, z: 0}
---- !u!114 &6735178410109926678
+--- !u!114 &1326
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9194414416188521490}
+  m_GameObject: {fileID: 541}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 22d56e4cfea04bf4696856bb028a9ff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planetTransform: {fileID: 9194414416188521496}
-  planetCollider: {fileID: 9194414416188521498}
+  planetTransform: {fileID: 880}
+  planetCollider: {fileID: 1200}
+--- !u!114 &1324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 0
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  viewIdField: 8
+  InstantiationId: 8
+  isRuntimeInstantiated: 0
+--- !u!114 &1327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0

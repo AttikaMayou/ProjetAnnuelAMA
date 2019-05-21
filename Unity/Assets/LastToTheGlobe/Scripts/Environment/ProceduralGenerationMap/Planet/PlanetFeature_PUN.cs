@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿ using UnityEngine;
 using LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi;
 
 //Auteur : Margot
@@ -6,13 +6,13 @@ using LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi;
 
 namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
 {
-    public class PlanetFeature : MonoBehaviour
+    public class PlanetFeature_PUN : MonoBehaviour
     {
         [SerializeField]
         private GameObject planet;
 
         [SerializeField]
-        private CloudPlanet environmentController;
+        private CloudPlanet_PUN environmentController;
 
         public PlanetType myType = PlanetType.Basic;
 

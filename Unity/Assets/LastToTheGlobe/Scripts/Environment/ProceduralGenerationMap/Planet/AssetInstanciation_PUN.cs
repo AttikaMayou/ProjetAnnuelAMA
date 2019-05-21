@@ -9,12 +9,12 @@ using Random = UnityEngine.Random;
 
 namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
 {
-    public class AssetInstanciation : MonoBehaviour
+    public class AssetInstanciation_PUN : MonoBehaviour
     {
         [SerializeField]
         private GameObject planet;
         [SerializeField]
-        private PlanetFeature planetFt;
+        private PlanetFeature_PUN planetFt;
 
         [SerializeField]
         private List<GameObject> basicTrees;
@@ -109,6 +109,8 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
                 case PlanetType.Desert:
                     return (int)Random.Range(0, desertTrees.Count - 1);
                 case PlanetType.Basic:
+                    break;
+                default:
                     return (int)Random.Range(0, basicTrees.Count - 1);
             }
 
@@ -124,6 +126,8 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
                 case PlanetType.Desert:
                     return (int)Random.Range(0, desertRock.Count - 1);
                 case PlanetType.Basic:
+                    break;
+                default:
                     return (int)Random.Range(0, basicRock.Count - 1);
             }
 

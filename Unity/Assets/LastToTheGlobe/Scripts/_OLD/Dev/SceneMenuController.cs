@@ -1,22 +1,17 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Mime;
-using LastToTheGlobe.Scripts.Avatar;
 using LastToTheGlobe.Scripts.Dev.LevelManager;
 using LastToTheGlobe.Scripts.UI;
 using Photon.Pun;
 using Photon.Pun.UtilityScripts;
 using Photon.Realtime;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 //Auteur : Attika
 // Modifications : Margot
 
-namespace LastToTheGlobe.Scripts.Dev
+namespace LastToTheGlobe.Scripts._OLD.Dev
 {
     public class SceneMenuController : MonoBehaviourPunCallbacks
     {
