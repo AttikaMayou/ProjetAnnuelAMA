@@ -16,8 +16,8 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi
     {
         public bool debug = true;
 
-        [Syncvar (hook=functName)]
-        Random.State seedServeur;
+        //[Syncvar (hook=functName)]
+        //Random.State seedServeur;
 
         [FormerlySerializedAs("NumberOfVertices")]
         [SerializeField]
@@ -53,7 +53,7 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi
         private int numberOfPlayer = 10;
         //TODO : récupérer le nombre de joueurs en jeu --> ColliderDirectoryScript.Instance.characterExposers.Count()
 
-        private PlanetFeature planetFeature;
+        //private PlanetFeature planetFeature;
         //private int _seed;
         //private Vertex3[] planetsLocations;
         //private GameObject[] planets;
