@@ -59,6 +59,7 @@ namespace LastToTheGlobe.Scripts.Camera
             if (!playerExposer) return;
 
             var position = playerExposer.characterTr.position;
+            //transform.forward = playerExposer.characterCollider.transform.forward;
             _myTr.rotation = playerExposer.characterTr.rotation * playerExposer.cameraRotatorX.transform.rotation;
             position -= _myTr.rotation * _cameraOffsetOriginal;
             _myTr.position = position;
