@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using LastToTheGlobe.Scripts.Camera;
 using LastToTheGlobe.Scripts.Dev.LevelManager;
-using LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi;
+using LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV;
 using LastToTheGlobe.Scripts.Management;
 using LastToTheGlobe.Scripts.Network;
 using LastToTheGlobe.Scripts.UI;
@@ -33,7 +33,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         //spawn point tab
         private GameObject[] _spawnPointInPlanet;
         private Vector3[] _spawnPos;
-        [SerializeField] private CloudPlanet environmentController;
+        [SerializeField] private CloudPlanet_PUN environmentController;
         private int _seed = 0;
 
         [Header("Camera Parameters")] 
@@ -283,8 +283,9 @@ namespace LastToTheGlobe.Scripts.Avatar
             if (!PhotonNetwork.IsMasterClient) return;
             if (PhotonNetwork.IsMasterClient && _seed == 0)
             {
-//                _seed = environmentController.GetSeed();
-//                environmentController.SetSeed(_seed);
+                // _seed = environmentController.GetSeed();
+                _seed = 10;
+                environmentController.SetSeed(_seed);
                 FindAllSpawnPoint();
                 if(debug) Debug.Log("seed is " + _seed);
             }

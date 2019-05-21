@@ -62,11 +62,7 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV
         {
             _seed = value;
             Debug.Log("seed dans CloudPlanet :" + _seed);
-
-            if(PhotonNetwork.IsMasterClient)
-            {
-                GenerateNoise();
-            }
+            GenerateNoise();
             //Debug.Log("scale :" + scaleMin);
             //planetFeature.CreateBiome(value);
         }
