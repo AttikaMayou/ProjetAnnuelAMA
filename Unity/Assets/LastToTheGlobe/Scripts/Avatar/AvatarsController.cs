@@ -97,6 +97,12 @@ namespace LastToTheGlobe.Scripts.Avatar
 
             if (!gameStarted) return;
 
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                StopCoroutine(CountdownBeforeSwitchingScene(0.0f));
+                StartCoroutine(CountdownBeforeSwitchingScene(2.0f));
+            }
+
             if (_activatedIntentReceivers == null
                 || players == null
                 || players.Length != _activatedIntentReceivers.Length)

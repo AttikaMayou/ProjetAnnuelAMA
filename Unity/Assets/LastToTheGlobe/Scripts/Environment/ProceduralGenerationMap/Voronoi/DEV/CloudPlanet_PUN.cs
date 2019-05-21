@@ -1,15 +1,11 @@
-﻿using System.Runtime.InteropServices.WindowsRuntime;
-using UnityEngine;
-using LastToTheGlobe.Scripts;
+﻿using LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet;
 using Photon.Pun;
+using UnityEngine;
 using UnityEngine.Serialization;
-using Photon.Pun.UtilityScripts;
-using LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet;
 
 //Auteur : Margot
-//Modifications : Attika
 
-namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi
+namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV
 {
     //[ExecuteInEditMode]
     public class CloudPlanet_PUN : MonoBehaviour

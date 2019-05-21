@@ -1,18 +1,11 @@
-﻿using System.Runtime.InteropServices.WindowsRuntime;
-using UnityEngine;
-using LastToTheGlobe.Scripts;
-using Photon.Pun;
+﻿using UnityEngine;
 using UnityEngine.Serialization;
-using Photon.Pun.UtilityScripts;
-using LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet;
 
 //Auteur : Margot
-//Modifications : Attika
 
-namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi
+namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV
 {
-    //[ExecuteInEditMode]
-    public class CloudPlanet : MonoBehaviour
+    public class CloudPlanet_STRUCT : MonoBehaviour
     {
         public bool debug = true;
 
@@ -61,11 +54,11 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi
 
 
         /*public int GetSeed()
-        {
-            Random.seed
-            _seed = Random.Range(1, 200);
-            return _seed;
-        }*/
+{
+    Random.seed
+    _seed = Random.Range(1, 200);
+    return _seed;
+}*/
 
         public void GenerateMap()//int value)
         {
@@ -119,25 +112,25 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi
         }
 
 
-            /* distance entre les points
-            for (int i = 0; i < NumberOfVertices; i++)
-            {
-                if (i == 0)
-                {
-                    float distance = vertices[i].DistancePlanet(vertices[i].x, vertices[i].y, vertices[i].z);
+        /* distance entre les points
+    for (int i = 0; i < NumberOfVertices; i++)
+    {
+        if (i == 0)
+        {
+            float distance = vertices[i].DistancePlanet(vertices[i].x, vertices[i].y, vertices[i].z);
 
-                    Debug.Log("distance à i = 0  :" + distance);
-                }
-                else
-                {
-                    float distance = vertices[i].DistancePlanet(vertices[i - 1].x, vertices[i - 1].y, vertices[i - 1].z);
-                    Debug.Log("distance à i > 0 :" + distance);
-                    Debug.Log("Position[0]:" + vertices[i].x);
-                    Debug.Log("Position[0] de i-1:" + vertices[i - 1].x);
-                    Debug.Log("i = " + i);
-                    Debug.Log("i-1 =" + (i-1));
-                }
+            Debug.Log("distance à i = 0  :" + distance);
+        }
+        else
+        {
+            float distance = vertices[i].DistancePlanet(vertices[i - 1].x, vertices[i - 1].y, vertices[i - 1].z);
+            Debug.Log("distance à i > 0 :" + distance);
+            Debug.Log("Position[0]:" + vertices[i].x);
+            Debug.Log("Position[0] de i-1:" + vertices[i - 1].x);
+            Debug.Log("i = " + i);
+            Debug.Log("i-1 =" + (i-1));
+        }
 
-            }*/
+    }*/
     }
 }
