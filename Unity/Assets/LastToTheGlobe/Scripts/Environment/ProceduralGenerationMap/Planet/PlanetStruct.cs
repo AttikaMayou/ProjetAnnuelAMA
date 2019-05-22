@@ -22,12 +22,15 @@ public struct PlanetStruct
     public Vertex3 planetLocation;
     public float radiusPlanet;
 
+    public GameObject gameObjectPlanet;
+
     //type de planète
     public PlanetType planetType;
     public Renderer planetMaterial;
 
     // assets sur cette planète
     public AssetStruct[] planetAssets;
+    //TODO : ajout fonction set scale + fonction set material
 
 }
 

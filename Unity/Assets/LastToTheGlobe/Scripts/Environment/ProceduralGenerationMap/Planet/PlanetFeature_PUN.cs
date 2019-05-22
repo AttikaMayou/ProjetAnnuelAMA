@@ -17,33 +17,16 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
 
         public PlanetType myType = PlanetType.Basic;
 
-        private int _scaleMax;
-        private int _scaleMin;
-
-        private int _seed;
-        private float _scale;
+        private float _scaleMax;
+        private float _scaleMin;
         private int _indexRandom;
 
-
-        private int GetScaleMinFromCloudPlanet()
-        {
-            _scaleMax = environmentController.scaleMax;
-            return _scaleMax;
-        }
-
-        private int GetScaleMaxFromCloudPlanet()
-        {
-            _scaleMin = environmentController.scaleMax;
-            return _scaleMin;
-        }
-
         //retourne le type de planet et set son material
-        public PlanetType CreateBiome(int _seed)
+        public PlanetType CreateBiome()// int _seed)
         {
-            _indexRandom = _seed % 3;
-            myType = (PlanetType)_indexRandom;
+            //_indexRandom = _seed % 3;
 
-            Debug.Log("seed dans planetFeature :" + _seed);
+            myType = (PlanetType)Random.Range(1f, 3f);//(PlanetType)_indexRandom;
 
             switch (myType)
             {

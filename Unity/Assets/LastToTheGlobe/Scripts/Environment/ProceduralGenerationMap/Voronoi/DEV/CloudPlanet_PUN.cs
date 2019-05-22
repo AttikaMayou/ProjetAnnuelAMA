@@ -24,11 +24,11 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV
 
         [SerializeField]
         [Tooltip("Scale minimum d'une planète")]
-        public int scaleMin = 30;
+        public float scaleMin = 30;
 
         [SerializeField]
         [Tooltip("Scale maximum d'une planète")]
-        public int scaleMax = 70;
+        public float scaleMax = 70;
 
         [SerializeField]
         [Tooltip("Les planètes les plus répandues")]
@@ -47,10 +47,11 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV
         //TODO : récupérer le nombre de joueurs en jeu
 
         private PlanetFeature_PUN planetFeature;
+        private float planetSize = 1;
         private int _seed;
         private Vertex3[] vertices;
         public GameObject[] planetTab;
-        private GameObject planet;
+        private PlanetStruct newPlanet;
 
         public int GetSeed()
         {
@@ -63,8 +64,6 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV
             _seed = value;
             Debug.Log("seed dans CloudPlanet :" + _seed);
             GenerateNoise();
-            //Debug.Log("scale :" + scaleMin);
-            //planetFeature.CreateBiome(value);
         }
 
         //génération aléatoire des points 
@@ -82,28 +81,31 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV
                 var z = size * Random.Range(-0.7f, 0.7f);
 
                 vertices[i] = new Vertex3(x, y, z);
-                PhotonNetwork.Instantiate(spawnPlanet.name, new Vector3(x, y, z), Quaternion.identity);
-                //planetTab[i] = planet;
-                //Debug.Log("planet:" + planetTab[0]);
+                GameObject newPlanet = PhotonNetwork.Instantiate(spawnPlanet.name, new Vector3(x, y, z), Quaternion.identity);
             }
 
             //Génération aléatoire des points pour planètes basics
             for (; i <= numberOfVertices; i++)
             {
+
+                planetSize = Random.Range(scaleMin, scaleMax);
                 var x = size * Random.Range(-1.0f, 1.0f);
                 var y = size * Random.Range(-1.0f, 1.0f);
                 var z = size * Random.Range(-1.0f, 1.0f);
 
                 vertices[i] = new Vertex3(x, y, z);
-                PhotonNetwork.Instantiate(basicPlanet.name, new Vector3(x, y, z), Quaternion.identity);
 
+                newPlanet.planetLocation = vertices[i];
+                newPlanet.gameObjectPlanet = PhotonNetwork.Instantiate(basicPlanet.name, new Vector3(x, y, z), Quaternion.identity);
+                newPlanet.gameObjectPlanet.transform.localScale = new Vector3(planetSize, planetSize, planetSize);
+                //newPlanet.radiusPlanet =
+                //newPlanet.planetType = planetFeature.myType;
+                //Debug.Log("type de la planète n°:" + i + planetFeature.myType);
+                //newPlanet.planetType = new PlanetType.CreateBiome();
             }
 
             PhotonNetwork.Instantiate(victoryPlanet.name, new Vector3(0, size * Random.Range(1.2f, 1.5f), 0), Quaternion.identity);
 
-            Debug.Log("i : " + i);
-            Debug.Log("numberOfPlayer:" + numberOfPlayer);
-            Debug.Log("numberOfVertices :" + numberOfVertices);
             return vertices;
         }
 
