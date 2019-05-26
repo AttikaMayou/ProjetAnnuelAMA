@@ -37,7 +37,7 @@ Transform:
   - {fileID: 576}
   - {fileID: 580}
   - {fileID: 575}
-  - {fileID: 1526199561881979547}
+  - {fileID: 4186147918488248628}
   - {fileID: 574}
   - {fileID: 579}
   m_Father: {fileID: 0}
@@ -116,10 +116,10 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 0
+  Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 0}
+  - {fileID: 1255}
   viewIdField: 8
   InstantiationId: 8
   isRuntimeInstantiated: 0
@@ -615,11 +615,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 578}
     m_Modifications:
-    - target: {fileID: 1963491872576424134, guid: bf62e091e3a648e449f1ae21a25c6606,
-        type: 3}
-      propertyPath: m_Name
-      value: Jumper
-      objectReference: {fileID: 0}
     - target: {fileID: 3401916670773471376, guid: bf62e091e3a648e449f1ae21a25c6606,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -655,9 +650,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1963491872576424134, guid: bf62e091e3a648e449f1ae21a25c6606,
+        type: 3}
+      propertyPath: m_Name
+      value: Jumper
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf62e091e3a648e449f1ae21a25c6606, type: 3}
---- !u!4 &1526199561881979547 stripped
+--- !u!4 &4186147918488248628 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3401916670773471376, guid: bf62e091e3a648e449f1ae21a25c6606,
     type: 3}

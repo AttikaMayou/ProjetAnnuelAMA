@@ -13,13 +13,13 @@ GameObject:
   - component: {fileID: 909}
   - component: {fileID: 1177}
   - component: {fileID: 1178}
-  - component: {fileID: 1266}
-  - component: {fileID: 1267}
   - component: {fileID: 1265}
+  - component: {fileID: 1266}
   - component: {fileID: 1264}
+  - component: {fileID: 1263}
   - component: {fileID: 1262}
   - component: {fileID: 1261}
-  - component: {fileID: 1263}
+  - component: {fileID: 1267}
   m_Layer: 0
   m_Name: Planet
   m_TagString: Planet
@@ -112,7 +112,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1266
+--- !u!114 &1265
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,7 +127,7 @@ MonoBehaviour:
   planet: {fileID: 239}
   environmentController: {fileID: 0}
   myType: 0
---- !u!114 &1267
+--- !u!114 &1266
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planet: {fileID: 239}
-  planetFt: {fileID: 1266}
+  planetFt: {fileID: 1265}
   basicTrees:
   - {fileID: 100002, guid: e395a9683976cad4a8026fc75262df60, type: 3}
   - {fileID: 100002, guid: 316195a121f1e3d4d86fc20bc4d2efb0, type: 3}
@@ -176,7 +176,7 @@ MonoBehaviour:
   - {fileID: 100002, guid: 7acb702f0d858b547942f61eb90e1898, type: 3}
   - {fileID: 100002, guid: 417d7efe09660e44a8d36b78dc776bf5, type: 3}
   - {fileID: 100002, guid: 1175087b9ddbd4a46982b68c732dab1b, type: 3}
---- !u!114 &1265
+--- !u!114 &1264
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -192,7 +192,7 @@ MonoBehaviour:
     type: 3}
   chest: {fileID: 0}
   planet: {fileID: 239}
---- !u!114 &1264
+--- !u!114 &1263
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -237,14 +237,14 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 0
+  Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 0}
+  - {fileID: 1267}
   viewIdField: 65
   InstantiationId: 65
   isRuntimeInstantiated: 0
---- !u!114 &1263
+--- !u!114 &1267
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -253,9 +253,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 239}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Script: {fileID: 11500000, guid: 8efc6b1d64977384eb3405357896c656, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
+  m_PositionModel:
+    SynchronizeEnabled: 1
+    TeleportEnabled: 1
+    TeleportIfDistanceGreaterThan: 3
+    InterpolateOption: 2
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 1
+    ExtrapolateOption: 0
+    ExtrapolateSpeed: 1
+    ExtrapolateIncludingRoundTripTime: 1
+    ExtrapolateNumberOfStoredPositions: 1
+  m_RotationModel:
+    SynchronizeEnabled: 1
+    InterpolateOption: 1
+    InterpolateRotateTowardsSpeed: 180
+    InterpolateLerpSpeed: 5
+  m_ScaleModel:
+    SynchronizeEnabled: 1
+    InterpolateOption: 0
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 0

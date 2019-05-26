@@ -50,7 +50,7 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV
         private float planetSize = 1;
         private int _seed;
         private Vertex3[] vertices;
-        public GameObject[] planetTab;
+        //public GameObject[] planetTab;
         private PlanetStruct newPlanet;
 
         public int GetSeed()
@@ -67,7 +67,6 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV
         }
 
         //génération aléatoire des points 
-        //TODO : set size of the planet and push points
         private Vertex3[] GenerateNoise()
         {
             int i = 0;
@@ -98,50 +97,20 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV
                 newPlanet.planetLocation = vertices[i];
                 newPlanet.gameObjectPlanet = PhotonNetwork.Instantiate(basicPlanet.name, new Vector3(x, y, z), Quaternion.identity);
                 newPlanet.gameObjectPlanet.transform.localScale = new Vector3(planetSize, planetSize, planetSize);
-                //newPlanet.radiusPlanet =
-                //newPlanet.planetType = planetFeature.myType;
-                //Debug.Log("type de la planète n°:" + i + planetFeature.myType);
-                //newPlanet.planetType = new PlanetType.CreateBiome();
+
+
+                //assignation d'un biome
+                //planet.planetType = planetFeature.CreateBiome(basicPlanet);
+
             }
 
-            PhotonNetwork.Instantiate(victoryPlanet.name, new Vector3(0, size * Random.Range(1.2f, 1.5f), 0), Quaternion.identity);
+            victoryPlanet = PhotonNetwork.Instantiate(victoryPlanet.name, new Vector3(0, size * Random.Range(1f, 1.2f), 0), Quaternion.identity);
+            victoryPlanet.transform.localScale = new Vector3(planetSize / 2, planetSize / 2, planetSize / 2);
 
             return vertices;
         }
 
 
-            /* distance entre les points
-            for (int i = 0; i < NumberOfVertices; i++)
-            {
-                if (i == 0)
-                {
-                    float distance = vertices[i].DistancePlanet(vertices[i].x, vertices[i].y, vertices[i].z);
-
-                    Debug.Log("distance à i = 0  :" + distance);
-                }
-                else
-                {
-                    float distance = vertices[i].DistancePlanet(vertices[i - 1].x, vertices[i - 1].y, vertices[i - 1].z);
-                    Debug.Log("distance à i > 0 :" + distance);
-                    Debug.Log("Position[0]:" + vertices[i].x);
-                    Debug.Log("Position[0] de i-1:" + vertices[i - 1].x);
-                    Debug.Log("i = " + i);
-                    Debug.Log("i-1 =" + (i-1));
-                }
-
-            }*/
-
-/*
-
-        public void GenerateMap(int _seed)
-        {
-            //génère le noise
-            GenerateNoise(Type );
-            //génère le type de planètes 
-            planetFeature.CreateBiome(_seed);
-            //instancie les objets à la surface
-
-            //instancie les props à la surface
-        }*/
+        //TODO : check if planet is in another 
     }
 }

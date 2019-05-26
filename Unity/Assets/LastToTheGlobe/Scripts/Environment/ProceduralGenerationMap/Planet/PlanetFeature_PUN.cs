@@ -22,7 +22,7 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
         private int _indexRandom;
 
         //retourne le type de planet et set son material
-        public PlanetType CreateBiome()// int _seed)
+        public PlanetType CreateBiome(GameObject planet)// int _seed)
         {
             //_indexRandom = _seed % 3;
 
