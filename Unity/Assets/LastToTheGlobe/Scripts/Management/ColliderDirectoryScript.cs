@@ -14,6 +14,7 @@ namespace Assets.LastToTheGlobe.Scripts.Management
     public class ColliderDirectoryScript : MonoBehaviourSingleton<ColliderDirectoryScript>
     {
         public bool debug = true;
+        public bool isInitialized = false;
         
         public List<CharacterExposerScript> CharacterExposers;
         public List<PlanetExposerScript> PlanetExposers;
@@ -39,6 +40,7 @@ namespace Assets.LastToTheGlobe.Scripts.Management
 
         public void AddCharacterExposer(CharacterExposerScript player)
         {
+            if (!isInitialized) isInitialized = true;
             if (CharacterExposers == null)
             {
                 CharacterExposers = new List<CharacterExposerScript>();
