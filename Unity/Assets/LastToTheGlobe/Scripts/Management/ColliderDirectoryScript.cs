@@ -33,6 +33,7 @@ namespace Assets.LastToTheGlobe.Scripts.Management
         //Get the player whom belongs to the collider
         public CharacterExposerScript GetCharacterExposer(Collider col)
         {
+            if(debug) Debug.Log("Directory status : " + isInitialized);
             if(debug) Debug.Log("trying to find player from this collider : " + col);
             if (!PhotonNetwork.IsMasterClient) return null;
             return _playersDirectory.TryGetValue(col, out _playerValue) ? _playerValue : null;
@@ -40,7 +41,6 @@ namespace Assets.LastToTheGlobe.Scripts.Management
 
         public void AddCharacterExposer(CharacterExposerScript player)
         {
-            if(debug) Debug.Log("Directory status : " + isInitialized);
             if (!isInitialized) isInitialized = true;
             if (CharacterExposers == null)
             {
