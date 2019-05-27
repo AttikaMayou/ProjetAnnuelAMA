@@ -13,8 +13,6 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
     {
         public bool debug = true;
 
-        public int id;
-        
         public GameObject characterRootGameObject;
         [Header("Player Control Parameters")] 
         public Rigidbody characterRb;
@@ -50,12 +48,6 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
             }
         }
 
-        //Give the player his ID
-        public void SetId(int value)
-        {
-            id = value;
-        }
-        
         private void LateUpdate()
         {
             if(debug)

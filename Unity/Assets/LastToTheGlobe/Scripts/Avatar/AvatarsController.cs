@@ -195,14 +195,14 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                     return;
                 }
                 //TODO : make this master client server like 
-                player.attractor.Attractor(rb, tr, -2600.0f);
+                player.attractor.Attractor(i, -2600.0f);
                 /*if (intent.canJump && player.attractor)
                 {
                 }
                 else if(!intent.canJump && player.attractor)
                 {
                 }*/
-               
+
             }
         }
 
