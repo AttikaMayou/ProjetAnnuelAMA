@@ -191,7 +191,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
 
                 if (player.attractor == null)
                 {
-                    Debug.LogError("There is no attractor near us !");
+                    //Debug.LogError("There is no attractor near us !");
                     return;
                 }
                 //TODO : make this master client server like 

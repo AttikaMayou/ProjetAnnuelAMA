@@ -11,7 +11,7 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
     public class AttractorScript : MonoBehaviour
     {
         public bool debug = true;
-        
+
         public float speedRotation = 10f;
         public Vector3 dirForce;
 
@@ -24,6 +24,11 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
 
         private void OnTriggerEnter(Collider coll)
         {
+            if (!ColliderDirectoryScript.Instance.isInitialized)
+            {
+                if (debug) Debug.Log("wait before trying to attract players - lobby situation");
+                return;
+            }
             Debug.Log("ON TRIGGER ENTER" + coll.gameObject.name);
             if (!coll.CompareTag("Player") && !coll.CompareTag("Bullet")) return;
             Debug.Log("ON TRIGGER ENTER POUET" + coll.gameObject.name);
