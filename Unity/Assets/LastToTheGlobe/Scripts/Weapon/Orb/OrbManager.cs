@@ -1,16 +1,13 @@
 ﻿using Assets.LastToTheGlobe.Scripts.Management;
-using LastToTheGlobe.Scripts.Environment.Planets;
-using LastToTheGlobe.Scripts.Management;
 using Photon.Pun;
-//using NUnit.Framework.Constraints;
 using UnityEngine;
 
 //Auteur: Abdallah
 //Modification : Attika
 
-namespace LastToTheGlobe.Scripts.Weapon.Orb
+namespace Assets.LastToTheGlobe.Scripts.Weapon.Orb
 {
-    public class OrbManager : Avatar.Avatar
+    public class OrbManager : global::LastToTheGlobe.Scripts.Avatar.Avatar
     {
         public bool debug = true;
         

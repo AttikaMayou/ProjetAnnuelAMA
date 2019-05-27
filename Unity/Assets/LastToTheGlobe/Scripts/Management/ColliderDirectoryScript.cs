@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Assets.LastToTheGlobe.Scripts.Avatar;
-using LastToTheGlobe.Scripts.Avatar;
+using Assets.LastToTheGlobe.Scripts.Weapon.Orb;
 using LastToTheGlobe.Scripts.Environment.Planets;
 using LastToTheGlobe.Scripts.Singleton;
 using LastToTheGlobe.Scripts.Weapon.Orb;
@@ -14,9 +14,9 @@ namespace Assets.LastToTheGlobe.Scripts.Management
     public class ColliderDirectoryScript : MonoBehaviourSingleton<ColliderDirectoryScript>
     {
         public bool debug = true;
-        public List<CharacterExposerScript> characterExposers;
-        public List<PlanetExposerScript> planetExposers;
-        public List<OrbManager> orbManagers;
+        public List<CharacterExposerScript> CharacterExposers;
+        public List<PlanetExposerScript> PlanetExposers;
+        public List<OrbManager> OrbManagers;
         
         private Dictionary<Collider, CharacterExposerScript> _playersDirectory = new Dictionary<Collider, CharacterExposerScript>();
         private CharacterExposerScript _playerValue;
@@ -38,14 +38,14 @@ namespace Assets.LastToTheGlobe.Scripts.Management
 
         public void AddCharacterExposer(CharacterExposerScript player)
         {
-            if (characterExposers == null)
+            if (CharacterExposers == null)
             {
-                characterExposers = new List<CharacterExposerScript>();
+                CharacterExposers = new List<CharacterExposerScript>();
             }
 
-            if (!characterExposers.Contains(player) && player)
+            if (!CharacterExposers.Contains(player) && player)
             {
-                characterExposers.Add(player);
+                CharacterExposers.Add(player);
             }
             
             AddPlayerInDirectory(player);
@@ -71,14 +71,14 @@ namespace Assets.LastToTheGlobe.Scripts.Management
 
         public void AddPlanetExposer(PlanetExposerScript planet)
         {
-            if (planetExposers == null)
+            if (PlanetExposers == null)
             {
-                planetExposers = new List<PlanetExposerScript>();
+                PlanetExposers = new List<PlanetExposerScript>();
             }
 
-            if (!planetExposers.Contains(planet) && planet)
+            if (!PlanetExposers.Contains(planet) && planet)
             {
-                planetExposers.Add(planet);
+                PlanetExposers.Add(planet);
             }
 
             AddPlanetInDirectory(planet);
@@ -105,14 +105,14 @@ namespace Assets.LastToTheGlobe.Scripts.Management
         
         public void AddOrbManager(OrbManager orb)
         {
-            if (orbManagers == null)
+            if (OrbManagers == null)
             {
-                orbManagers = new List<OrbManager>();
+                OrbManagers = new List<OrbManager>();
             }
 
-            if (!orbManagers.Contains(orb) && orb)
+            if (!OrbManagers.Contains(orb) && orb)
             {
-                orbManagers.Add(orb);
+                OrbManagers.Add(orb);
             }
             
             AddOrbInDirectory(orb);

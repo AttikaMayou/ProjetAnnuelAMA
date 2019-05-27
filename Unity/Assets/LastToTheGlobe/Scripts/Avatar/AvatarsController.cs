@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Assets.LastToTheGlobe.Scripts.Avatar;
 using Assets.LastToTheGlobe.Scripts.Camera;
+using Assets.LastToTheGlobe.Scripts.Weapon.Orb;
 using LastToTheGlobe.Scripts.Camera;
 using LastToTheGlobe.Scripts.Dev.LevelManager;
 using LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV;
@@ -10,11 +11,7 @@ using LastToTheGlobe.Scripts.Network;
 using LastToTheGlobe.Scripts.UI;
 using LastToTheGlobe.Scripts.Weapon.Orb;
 using Photon.Pun;
-using Photon.Pun.UtilityScripts;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.Serialization;
 
 //Auteur : Attika
 //Modification : Margot

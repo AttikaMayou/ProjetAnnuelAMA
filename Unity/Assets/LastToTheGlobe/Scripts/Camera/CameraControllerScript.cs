@@ -1,5 +1,4 @@
 ﻿using Assets.LastToTheGlobe.Scripts.Avatar;
-using LastToTheGlobe.Scripts.Avatar;
 using UnityEngine;
 
 //Auteur : Abdallah
