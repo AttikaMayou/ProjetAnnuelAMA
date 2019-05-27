@@ -25,13 +25,15 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
 
         private void OnTriggerEnter(Collider coll)
         {
-            Debug.Log("ON TRIGGER ENTER");
-            if (!coll.CompareTag("Player") || !coll.CompareTag("Bullet")) return;
+            Debug.Log("ON TRIGGER ENTER" + coll.gameObject.name);
+            if (!coll.CompareTag("Player") && !coll.CompareTag("Bullet")) return;
+            Debug.Log("ON TRIGGER ENTER POUET" + coll.gameObject.name);
             if (debug)
             {
                 Debug.Log("there is a player or an orb who entered");
             }
             
+            Debug.Log("ON TRIGGER ENTER PUOIT" + coll.gameObject.name);
             var exposer = PlayerColliderDirectoryScript.Instance.GetExposer(coll);
             if (!exposer)
             {

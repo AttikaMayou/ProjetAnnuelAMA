@@ -43,7 +43,7 @@ namespace LastToTheGlobe.Scripts.Camera
             var z = position.z + zAdd;
             _cameraOffsetOriginal = position - new Vector3(position.x, y, z);
 
-            _myTr.rotation = playerExposer.characterTr.rotation * playerExposer.cameraRotatorX.transform.rotation;
+            _myTr.rotation = playerExposer.cameraRotatorX.transform.rotation;
         }
 
         private void FixedUpdate()
@@ -60,7 +60,8 @@ namespace LastToTheGlobe.Scripts.Camera
 
             var position = playerExposer.characterTr.position;
             //transform.forward = playerExposer.characterCollider.transform.forward;
-            _myTr.rotation = playerExposer.characterTr.rotation * playerExposer.cameraRotatorX.transform.rotation;
+            
+            _myTr.rotation = playerExposer.cameraRotatorX.transform.rotation;
             position -= _myTr.rotation * _cameraOffsetOriginal;
             _myTr.position = position;
         }
