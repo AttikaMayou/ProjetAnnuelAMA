@@ -22,32 +22,26 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
         private int _indexRandom;
 
         //retourne le type de planet et set son material
-        public static PlanetType CreateBiome(GameObject planet, out string mat)// int _seed)
+        public static PlanetType CreateBiome(GameObject planet, out string mat) 
         {
-            //_indexRandom = _seed % 3;
             var type = (int)Random.Range(1f, 4f); 
-            //myType = (PlanetType)Random.Range(1f, 3f);//(PlanetType)_indexRandom;
             
             switch ((PlanetType)type)
             {
                 //Planet Material
                 case PlanetType.Frozen:
                 {
-                    //var matFrozen = Resources.Load("M_FrozenPlanet", typeof(Material)) as Material;
                     mat = "M_FrozenPlanet";
-                    //planet.GetComponent<Renderer>().material = matFrozen;
                     break;
                 }
                 case PlanetType.Desert:
                 {
                     mat = "M_DesertPlanet";
-                    //planet.GetComponent<Renderer>().material = matDesert;
                     break;
                 }
                 case PlanetType.Basic:
                 {
                     mat = "M_BasicPlanet";
-                        //planet.GetComponent<Renderer>().material = matBasic;
                     break;
                 }
                 default:

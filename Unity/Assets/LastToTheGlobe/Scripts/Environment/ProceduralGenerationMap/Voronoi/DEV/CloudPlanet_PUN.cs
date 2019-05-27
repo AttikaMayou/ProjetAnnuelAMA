@@ -50,26 +50,19 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV
         private float planetSize = 1;
         private int _seed;
         private Vertex3[] vertices;
-        //public GameObject[] planetTab;
         private PlanetStruct newPlanet;
+        private AssetInstanciation_PUN assetInstance;
 
         private string matName;
-
-        public int GetSeed()
-        {
-            _seed = Random.Range(1, 200);
-            return _seed;
-        }
 
         public void SetSeed(int value)
         {
             _seed = value;
-            Debug.Log("seed dans CloudPlanet :" + _seed);
-            GenerateNoise();
+            GenerateBiome();
         }
 
         //génération aléatoire des points 
-        private Vertex3[] GenerateNoise()
+        private Vertex3[] GenerateBiome()
         {
             int i = 0;
             Vertex3[] vertices = new Vertex3[numberOfPlayer + numberOfVertices + 1];
@@ -100,15 +93,14 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV
                 newPlanet.gameObjectPlanet = PhotonNetwork.Instantiate(basicPlanet.name, new Vector3(x, y, z), Quaternion.identity);
                 newPlanet.gameObjectPlanet.transform.localScale = new Vector3(planetSize, planetSize, planetSize);
 
-
                 //assignation d'un biome
                 newPlanet.planetType = PlanetFeature_PUN.CreateBiome(basicPlanet, out matName);
-                //matFrozen = Resources.Load("M_FrozenPlanet", typeof(Material)) as Material;
                 Material mat = Resources.Load(matName, typeof(Material)) as Material;
                 newPlanet.gameObjectPlanet.GetComponent<Renderer>().material = mat;
-
-
-
+                //instanciation assets
+                AssetInstanciation_PUN asset = newPlanet.gameObjectPlanet.GetComponent<AssetInstanciation_PUN>();
+                asset.type = (int)newPlanet.planetType;
+                asset.SpawnAssets();
             }
 
             victoryPlanet = PhotonNetwork.Instantiate(victoryPlanet.name, new Vector3(0, size * Random.Range(1f, 1.2f), 0), Quaternion.identity);

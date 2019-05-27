@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1251}
   - component: {fileID: 1253}
   - component: {fileID: 1252}
-  - component: {fileID: 1255}
+  - component: {fileID: 1254}
   m_Layer: 8
   m_Name: SM_SpawnPlanet
   m_TagString: Planet
@@ -103,11 +103,11 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 1255}
-  viewIdField: 0
+  - {fileID: 1254}
+  viewIdField: 8
   InstantiationId: 8
   isRuntimeInstantiated: 0
---- !u!114 &1255
+--- !u!114 &1254
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -599,11 +599,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 578}
     m_Modifications:
-    - target: {fileID: 1963491872576424134, guid: bf62e091e3a648e449f1ae21a25c6606,
-        type: 3}
-      propertyPath: m_Name
-      value: Jumper
-      objectReference: {fileID: 0}
     - target: {fileID: 3401916670773471376, guid: bf62e091e3a648e449f1ae21a25c6606,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -638,6 +633,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1963491872576424134, guid: bf62e091e3a648e449f1ae21a25c6606,
+        type: 3}
+      propertyPath: m_Name
+      value: Jumper
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf62e091e3a648e449f1ae21a25c6606, type: 3}
