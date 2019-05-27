@@ -17,9 +17,9 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
 
         [SerializeField] private PhotonView photonView;
         
-        public void Attractor(Rigidbody attractedRb, Transform body, float gravity)
+        public void Attractor(int playerId)
         {
-            photonView.RPC("AttractObject", RpcTarget.MasterClient, attractedRb, body, gravity);
+            photonView.RPC("AttractObject", RpcTarget.MasterClient, playerId);
         }
 
         private void OnTriggerEnter(Collider coll)
@@ -60,7 +60,7 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
         }
 
         [PunRPC]
-        void AttractObject(Rigidbody attractedRb, Transform body, float gravity)
+        void AttractObject(int playerId/*Rigidbody attractedRb, Transform body, float gravity*/)
         {
             //Give the direction of gravity
             var gravityUp = (body.position - transform.position).normalized;

@@ -14,6 +14,8 @@ namespace Assets.LastToTheGlobe.Scripts.Management
     public class ColliderDirectoryScript : MonoBehaviourSingleton<ColliderDirectoryScript>
     {
         public bool debug = true;
+        public int nbPlayers;
+        
         public List<CharacterExposerScript> CharacterExposers;
         public List<PlanetExposerScript> PlanetExposers;
         public List<OrbManager> OrbManagers;
@@ -56,7 +58,9 @@ namespace Assets.LastToTheGlobe.Scripts.Management
             if(debug) Debug.Log("add one player to directory");
             if (_playersDirectory.ContainsValue(player)) return;
             _playersDirectory.Add(player.characterCollider, player);
+            player.SetId(nbPlayers);
             if(debug) Debug.LogFormat("Directory key : {0} and value : {1}", player.characterCollider, player);
+            IncrementNumberOfPlayers();
         }
         #endregion
         
@@ -128,5 +132,11 @@ namespace Assets.LastToTheGlobe.Scripts.Management
         
         #endregion
 
+        private void IncrementNumberOfPlayers()
+        {
+            //TODO : handle the case when players disconnect
+            nbPlayers++;
+        }
+        
     }
 }
