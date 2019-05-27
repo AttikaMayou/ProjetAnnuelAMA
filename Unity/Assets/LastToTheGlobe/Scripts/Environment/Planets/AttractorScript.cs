@@ -1,4 +1,5 @@
 ﻿using Assets.LastToTheGlobe.Scripts.Management;
+using Assets.LastToTheGlobe.Scripts.Management.OLD;
 using LastToTheGlobe.Scripts.Management;
 using Photon.Pun;
 using UnityEngine;
@@ -55,7 +56,7 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
             if (coll.CompareTag("Player"))
             {
                 var exposer = ColliderDirectoryScript.Instance.GetCharacterExposer(coll);
-                exposer.attractor = null;
+                //exposer.attractor = null;
             }
             
             if (coll.CompareTag("Bullet"))

@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using Assets.LastToTheGlobe.Scripts.Avatar;
-using LastToTheGlobe.Scripts.Avatar;
-using LastToTheGlobe.Scripts.Dev;
 using LastToTheGlobe.Scripts.Singleton;
 using Photon.Pun;
 using UnityEngine;
@@ -9,7 +7,7 @@ using UnityEngine;
 //Auteur : Abdallah
 //Modification : Attika
 
-namespace LastToTheGlobe.Scripts.Management
+namespace Assets.LastToTheGlobe.Scripts.Management.OLD
 {
     public class PlayerColliderDirectoryScript : MonoBehaviourSingleton<PlayerColliderDirectoryScript>
     {
