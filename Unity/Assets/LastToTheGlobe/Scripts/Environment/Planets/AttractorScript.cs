@@ -1,13 +1,12 @@
-﻿using LastToTheGlobe.Scripts.Avatar;
+﻿using Assets.LastToTheGlobe.Scripts.Management;
 using LastToTheGlobe.Scripts.Management;
 using Photon.Pun;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 //Auteur : Abdallah
 //Modification : Attika
 
-namespace LastToTheGlobe.Scripts.Environment.Planets
+namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
 {
     public class AttractorScript : MonoBehaviour
     {

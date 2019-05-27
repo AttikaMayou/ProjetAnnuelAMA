@@ -1,10 +1,11 @@
-﻿using LastToTheGlobe.Scripts.Avatar;
+﻿using Assets.LastToTheGlobe.Scripts.Avatar;
+using LastToTheGlobe.Scripts.Avatar;
 using UnityEngine;
 
 //Auteur : Abdallah
 //Modification : Attika
 
-namespace LastToTheGlobe.Scripts.Camera
+namespace Assets.LastToTheGlobe.Scripts.Camera
 {
     public class CameraControllerScript : MonoBehaviour
     {

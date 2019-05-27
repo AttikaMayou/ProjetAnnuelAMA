@@ -1,4 +1,5 @@
-﻿using LastToTheGlobe.Scripts.Management;
+﻿using Assets.LastToTheGlobe.Scripts.Management;
+using LastToTheGlobe.Scripts.Management;
 using Photon.Pun;
 using UnityEngine;
 

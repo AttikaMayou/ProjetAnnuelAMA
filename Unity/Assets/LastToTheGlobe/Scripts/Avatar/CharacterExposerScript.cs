@@ -1,15 +1,15 @@
-﻿using LastToTheGlobe.Scripts.Environment.Planets;
+﻿using Assets.LastToTheGlobe.Scripts.Environment.Planets;
+using Assets.LastToTheGlobe.Scripts.Management;
 using LastToTheGlobe.Scripts.Inventory;
-using LastToTheGlobe.Scripts.Management;
 using LastToTheGlobe.Scripts.UI;
-using UnityEngine;
 using Photon.Pun;
+using UnityEngine;
 
 //Auteur : Margot, Abdallah et Attika
 
-namespace LastToTheGlobe.Scripts.Avatar
+namespace Assets.LastToTheGlobe.Scripts.Avatar
 {
-    public class CharacterExposerScript : Avatar
+    public class CharacterExposerScript : global::LastToTheGlobe.Scripts.Avatar.Avatar
     {
         public bool debug = true;
         

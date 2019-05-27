@@ -1,4 +1,5 @@
-﻿using LastToTheGlobe.Scripts.Camera;
+﻿using Assets.LastToTheGlobe.Scripts.Avatar;
+using LastToTheGlobe.Scripts.Camera;
 using UnityEngine;
 
 

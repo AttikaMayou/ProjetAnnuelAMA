@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.LastToTheGlobe.Scripts.Avatar;
+using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Pun.UtilityScripts;

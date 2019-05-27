@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Assets.LastToTheGlobe.Scripts.Avatar;
+using Assets.LastToTheGlobe.Scripts.Camera;
 using LastToTheGlobe.Scripts.Camera;
 using LastToTheGlobe.Scripts.Dev.LevelManager;
 using LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV;
@@ -17,7 +19,7 @@ using UnityEngine.Serialization;
 //Auteur : Attika
 //Modification : Margot
 
-namespace LastToTheGlobe.Scripts.Avatar
+namespace Assets.LastToTheGlobe.Scripts.Avatar
 {
     public class AvatarsController : MonoBehaviour
     {

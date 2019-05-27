@@ -1,15 +1,15 @@
-﻿using LastToTheGlobe.Scripts.Avatar;
-using LastToTheGlobe.Scripts.Singleton;
-using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Assets.LastToTheGlobe.Scripts.Avatar;
+using LastToTheGlobe.Scripts.Avatar;
 using LastToTheGlobe.Scripts.Environment.Planets;
+using LastToTheGlobe.Scripts.Singleton;
 using LastToTheGlobe.Scripts.Weapon.Orb;
 using Photon.Pun;
-using UnityEngine.Serialization;
+using UnityEngine;
 
 //Auteur : Attika
 
-namespace LastToTheGlobe.Scripts.Management
+namespace Assets.LastToTheGlobe.Scripts.Management
 {
     public class ColliderDirectoryScript : MonoBehaviourSingleton<ColliderDirectoryScript>
     {

@@ -1,4 +1,5 @@
-﻿using LastToTheGlobe.Scripts.Environment.Planets;
+﻿using Assets.LastToTheGlobe.Scripts.Environment.Planets;
+using LastToTheGlobe.Scripts.Environment.Planets;
 using UnityEngine;
 
 //Auteur : Abdallah
