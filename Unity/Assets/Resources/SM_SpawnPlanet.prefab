@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 578}
   - component: {fileID: 1174}
   - component: {fileID: 1251}
-  - component: {fileID: 1254}
   - component: {fileID: 1253}
   - component: {fileID: 1252}
   - component: {fileID: 1255}
@@ -37,7 +36,7 @@ Transform:
   - {fileID: 576}
   - {fileID: 580}
   - {fileID: 575}
-  - {fileID: 4186147918488248628}
+  - {fileID: 1526199561881979547}
   - {fileID: 574}
   - {fileID: 579}
   m_Father: {fileID: 0}
@@ -70,21 +69,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   planetTransform: {fileID: 578}
   planetCollider: {fileID: 1174}
---- !u!114 &1254
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a5bd6bd42ddbd2419549c2a53b27916, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  planet: {fileID: 0}
-  environmentController: {fileID: 0}
-  myType: 0
 --- !u!114 &1253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -615,6 +599,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 578}
     m_Modifications:
+    - target: {fileID: 1963491872576424134, guid: bf62e091e3a648e449f1ae21a25c6606,
+        type: 3}
+      propertyPath: m_Name
+      value: Jumper
+      objectReference: {fileID: 0}
     - target: {fileID: 3401916670773471376, guid: bf62e091e3a648e449f1ae21a25c6606,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -650,14 +639,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1963491872576424134, guid: bf62e091e3a648e449f1ae21a25c6606,
-        type: 3}
-      propertyPath: m_Name
-      value: Jumper
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf62e091e3a648e449f1ae21a25c6606, type: 3}
---- !u!4 &4186147918488248628 stripped
+--- !u!4 &1526199561881979547 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3401916670773471376, guid: bf62e091e3a648e449f1ae21a25c6606,
     type: 3}

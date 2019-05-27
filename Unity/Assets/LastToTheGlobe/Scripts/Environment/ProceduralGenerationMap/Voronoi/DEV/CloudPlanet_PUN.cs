@@ -13,33 +13,33 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV
         public bool debug = true;
 
         [FormerlySerializedAs("NumberOfVertices")]
-        [SerializeField]
         [Tooltip("Nombre de planètes")]
+        [SerializeField]
         private int numberOfVertices = 10;
         // TODO: changer nombres de vertices en fonction des joueurs connectés
 
-        [SerializeField]
         [Tooltip("Volume de la map")]
+        [SerializeField]
         private float size = 10;
 
-        [SerializeField]
         [Tooltip("Scale minimum d'une planète")]
+        [SerializeField]
         public float scaleMin = 30;
 
-        [SerializeField]
         [Tooltip("Scale maximum d'une planète")]
-        public float scaleMax = 70;
-
         [SerializeField]
+        public float scaleMax = 70;
+        
         [Tooltip("Les planètes les plus répandues")]
+        [SerializeField]
         private GameObject basicPlanet;
 
-        [SerializeField]
         [Tooltip("Planètes spawn joueur")]
+        [SerializeField]
         private GameObject spawnPlanet;
 
-        [SerializeField]
         [Tooltip("Planète de victoire")]
+        [SerializeField]
         private GameObject victoryPlanet;
 
         [SerializeField]
@@ -52,6 +52,8 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV
         private Vertex3[] vertices;
         //public GameObject[] planetTab;
         private PlanetStruct newPlanet;
+
+        private string matName;
 
         public int GetSeed()
         {
@@ -100,7 +102,12 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV
 
 
                 //assignation d'un biome
-                //planet.planetType = planetFeature.CreateBiome(basicPlanet);
+                newPlanet.planetType = PlanetFeature_PUN.CreateBiome(basicPlanet, out matName);
+                //matFrozen = Resources.Load("M_FrozenPlanet", typeof(Material)) as Material;
+                Material mat = Resources.Load(matName, typeof(Material)) as Material;
+                newPlanet.gameObjectPlanet.GetComponent<Renderer>().material = mat;
+
+
 
             }
 
