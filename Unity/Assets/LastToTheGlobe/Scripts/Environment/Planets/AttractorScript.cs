@@ -1,4 +1,5 @@
-﻿using Assets.LastToTheGlobe.Scripts.Management;
+﻿using System.Collections;
+using Assets.LastToTheGlobe.Scripts.Management;
 using Assets.LastToTheGlobe.Scripts.Management.OLD;
 using LastToTheGlobe.Scripts.Management;
 using Photon.Pun;
@@ -28,7 +29,7 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
             if (!ColliderDirectoryScript.Instance.isInitialized)
             {
                 if (debug) Debug.Log("wait before trying to attract players - lobby situation");
-                return;
+                StartCoroutine(DelayOnTriggerEnter(2.0f));
             }
             Debug.Log("ON TRIGGER ENTER" + coll.gameObject.name);
             if (!coll.CompareTag("Player") && !coll.CompareTag("Bullet")) return;
@@ -39,7 +40,7 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
             }
             
             Debug.Log("ON TRIGGER ENTER PUOIT" + coll.gameObject.name);
-            var exposer = PlayerColliderDirectoryScript.Instance.GetExposer(coll);
+            var exposer = ColliderDirectoryScript.Instance.GetCharacterExposer(coll);
             if (!exposer)
             {
                 Debug.Log("couldn't find player/orb in the Directory");
@@ -49,6 +50,11 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
                 Debug.Log(exposer);
                 exposer.attractor = this;
             }
+        }
+
+        private IEnumerator DelayOnTriggerEnter(float time)
+        {
+            yield return new WaitForSeconds(time);
         }
 
         private void OnTriggerExit(Collider coll)

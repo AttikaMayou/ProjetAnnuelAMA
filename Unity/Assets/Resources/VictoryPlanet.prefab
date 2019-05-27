@@ -137,7 +137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planetTransform: {fileID: 581}
-  planetCollider: {fileID: 0}
+  planetCollider: {fileID: 1176}
 --- !u!114 &1260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,7 +153,7 @@ MonoBehaviour:
   debug: 1
   speedRotation: 10
   dirForce: {x: 0, y: 0, z: 0}
-  photonView: {fileID: 0}
+  photonView: {fileID: 1259}
 --- !u!114 &1259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,7 +173,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 0}
-  viewIdField: 69
+  viewIdField: 0
   InstantiationId: 69
   isRuntimeInstantiated: 0
 --- !u!114 &1256

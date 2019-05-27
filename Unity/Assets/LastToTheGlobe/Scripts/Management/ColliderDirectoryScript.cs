@@ -40,6 +40,7 @@ namespace Assets.LastToTheGlobe.Scripts.Management
 
         public void AddCharacterExposer(CharacterExposerScript player)
         {
+            if(debug) Debug.Log("Directory status : " + isInitialized);
             if (!isInitialized) isInitialized = true;
             if (CharacterExposers == null)
             {
