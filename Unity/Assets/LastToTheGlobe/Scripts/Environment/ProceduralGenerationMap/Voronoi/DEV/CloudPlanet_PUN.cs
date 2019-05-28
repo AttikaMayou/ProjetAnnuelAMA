@@ -100,7 +100,7 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV
                 //instanciation assets
                 AssetInstanciation_PUN asset = newPlanet.gameObjectPlanet.GetComponent<AssetInstanciation_PUN>();
                 asset.type = (int)newPlanet.planetType;
-                //asset.SpawnAssets();
+                asset.SpawnAssets();
             }
 
             victoryPlanet = PhotonNetwork.Instantiate(victoryPlanet.name, new Vector3(0, size * Random.Range(1f, 1.2f), 0), Quaternion.identity);
