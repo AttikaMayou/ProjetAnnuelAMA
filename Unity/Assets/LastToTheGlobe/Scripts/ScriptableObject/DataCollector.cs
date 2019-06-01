@@ -9,6 +9,20 @@ public class DataCollector : MonoBehaviour
 
     [SerializeField] private KillingDataListScript dataVault;
     [SerializeField] private bool resetData = true;
+    //pour utiliser une animation curve
+    [SerializeField] AnimationCurve curve;
+
+    /*public void OnEnable()
+    {
+        this.chart = new AnimationCurve();
+        va killCount = 0;
+        foreach (var kPos in this.vault.KillData)
+        {
+            killCount += 1.0f;
+            this.chart.AddKey(kPos.PartyTime, killCount);
+        }
+    }
+    */
 
     public static DataCollector Instance()
     {
@@ -36,4 +50,8 @@ public class DataCollector : MonoBehaviour
     {
         if (instance != null && instance.dataVault != null) instance.dataVault.AddKillPosEntry(avatar.transform.position, Time.time);
     }
+
 }
+
+
+
