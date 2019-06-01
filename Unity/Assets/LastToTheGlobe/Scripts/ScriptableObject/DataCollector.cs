@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Assets.LastToTheGlobe.Scripts.Avatar;
 
 public class DataCollector : MonoBehaviour
 {
@@ -26,14 +27,13 @@ public class DataCollector : MonoBehaviour
         }
             
     }
-    /*
-    public static void RegisterMinionKill(MinionBehaviour m)
+    
+    public static void RegisterEnnemyKill(MonoBehaviour avatar)
     {
-        if (instance != null && instance.dataVault != null) instance.dataVault.AddKillPosEntry(m.transform.position);
+        if (instance != null && instance.dataVault != null) instance.dataVault.AddKillPosEntry(avatar.transform.position);
     }
-    public static void RegisterMinionKillWithTime(MinionBehaviour m)
+    public static void RegisterEnnemyKillWithTime(MonoBehaviour avatar)
     {
-        if (instance != null && instance.dataVault != null) instance.dataVault.AddKillPosEntry(m.transform.position, Time.time);
+        if (instance != null && instance.dataVault != null) instance.dataVault.AddKillPosEntry(avatar.transform.position, Time.time);
     }
-    */
 }
