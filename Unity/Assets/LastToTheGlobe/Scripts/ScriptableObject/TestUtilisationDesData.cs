@@ -9,8 +9,8 @@ public class TestUtilisationDesData : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.F))
         {
+            //appel de la fonction RegisterEnnemyKill si on veut l'ajouter au data
             DataCollector.RegisterEnnemyKillWithTime(this);
-            Debug.Log("ajout de Data");
         }
               
     }

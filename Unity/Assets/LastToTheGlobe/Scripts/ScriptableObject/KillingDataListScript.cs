@@ -16,6 +16,7 @@ public class KillingDataListScript : ScriptableObject
         this.killingDataList.Clear();
     }
 
+    //fonction de data à collecter
     public void AddKillPosEntry(Vector3 pos)
     {
         this.killingDataList.Add(new KillData() { killPosition = pos });
@@ -30,6 +31,8 @@ public class KillingDataListScript : ScriptableObject
         this.killingDataList.Add(data);
     }
 }
+
+//class de datas que l'on veut collecter
     [Serializable]
     public class KillData
     {
