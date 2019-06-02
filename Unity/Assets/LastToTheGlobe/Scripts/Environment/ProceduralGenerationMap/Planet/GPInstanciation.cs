@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using LastToTheGlobe.Scripts.Inventory;
+using UnityEngine;
 
 //Auteur : Margot
 
@@ -14,6 +15,9 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
 
         [SerializeField]
         private GameObject planet;
+
+        [SerializeField]
+        private ChestDictionnary _chestDictionnary;
 
         private int _numberOfTremplin;
         private int _numberOfChest;
@@ -42,11 +46,14 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
                 var planetPosition = gameObject.transform.position;
 
                 var spawnPosition = Random.onUnitSphere * ((planet.transform.localScale.x / 2) + chest.transform.localScale.y - 0.02f) + planet.transform.position;
-                var newTree = Instantiate(chest, spawnPosition, Quaternion.identity) as GameObject;
+                var newChest = Instantiate(chest, spawnPosition, Quaternion.identity) as GameObject;
 
-                newTree.transform.LookAt(planetPosition);
-                newTree.transform.Rotate(-90, 0, 0);
-                newTree.transform.parent = transform;
+
+                _chestDictionnary.chestList.Add(newChest);
+
+                newChest.transform.LookAt(planetPosition);
+                newChest.transform.Rotate(-90, 0, 0);
+                newChest.transform.parent = transform;
             }
         }
 

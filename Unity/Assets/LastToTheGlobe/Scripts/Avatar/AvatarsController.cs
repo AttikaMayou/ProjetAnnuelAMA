@@ -184,6 +184,11 @@ namespace LastToTheGlobe.Scripts.Avatar
 
                 if (intent.Interact)
                 {
+                   
+                }
+
+                if (intent.TakeItem)
+                {
                     
                 }
                 rb.MovePosition(rb.position + tr.TransformDirection(moveIntent) * intent.speed * Time.deltaTime);
