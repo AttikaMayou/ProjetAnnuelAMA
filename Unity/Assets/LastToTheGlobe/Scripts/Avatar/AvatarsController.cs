@@ -194,6 +194,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                     //Debug.LogError("There is no attractor near us !");
                     return;
                 }
+                
                 //TODO : make this master client server like 
                 player.attractor.Attractor(i, -2600.0f);
                 /*if (intent.canJump && player.attractor)
@@ -264,6 +265,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
         /// Called to set the right local target to camera
         private void SetupCamera(int id)
         {
+            if(debug) Debug.Log("Camera setup initialized");
             //if (photonView.IsMine != players[id].characterPhotonView) return;
             if (myCamera.enabled) return;
             myCamera.enabled = true;

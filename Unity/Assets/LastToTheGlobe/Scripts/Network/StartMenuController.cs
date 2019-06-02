@@ -147,7 +147,9 @@ namespace LastToTheGlobe.Scripts.Network
             }
             
             PlayerJoined?.Invoke(i);
+            Debug.Log("PlayerJoined invoked");
             SetCamera?.Invoke(i);
+            Debug.Log("SetCamera invoked");
             GameCanStart?.Invoke();
         }
 
@@ -171,7 +173,9 @@ namespace LastToTheGlobe.Scripts.Network
                 PlayerJoined?.Invoke(i);
                 GameCanStart?.Invoke();
             }
+            Debug.Log("PlayerJoined invoked");
             SetCamera?.Invoke(i);
+            Debug.Log("SetCamera invoked");
         }
         
         #endregion
