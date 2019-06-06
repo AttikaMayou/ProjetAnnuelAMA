@@ -18,6 +18,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         public Rigidbody characterRb;
         public Transform characterTr;
         public Collider characterCollider;
+        public AvatarsController avatarsController;
         [Header("Network Parameters")]
         public PhotonView characterPhotonView;
         public PhotonRigidbodyView characterRbPhotonView;

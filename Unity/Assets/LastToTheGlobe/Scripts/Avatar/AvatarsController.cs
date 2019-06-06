@@ -15,7 +15,7 @@ using UnityEngine.AI;
 using UnityEngine.Serialization;
 
 //Auteur : Attika
-//Modification : Margot
+//Modification : Margot, Abdallah
 
 namespace LastToTheGlobe.Scripts.Avatar
 {
@@ -54,6 +54,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         [SerializeField] private int nbMinPlayers = 2;
         [SerializeField] private float countdown = 10.0f;
         private float _countdownStartValue;
+        private bool _canOpenChest;
         
         [SerializeField] private List<OrbManager> orbsPool = new List<OrbManager>();
         private OrbManager _currentOrb;
@@ -75,6 +76,22 @@ namespace LastToTheGlobe.Scripts.Avatar
             startMenuController.SetCamera += SetupCamera;
             startMenuController.GameCanStart += LaunchGameRoom;
             //startMenuController.GameCanStart += SetSeed;
+        }
+
+        private void OnCollisionEnter(Collision other)
+        {
+            if (other.collider.CompareTag("Chest"))
+            {
+                _canOpenChest = true;
+            }
+        }
+
+        private void OnCollisionExit(Collision other)
+        {
+            if (other.collider.CompareTag("Chest"))
+            {
+                _canOpenChest = false;
+            }
         }
 
         private void FixedUpdate()
@@ -181,10 +198,10 @@ namespace LastToTheGlobe.Scripts.Avatar
                 {
                     
                 }
-
-                if (intent.Interact)
+                print(_canOpenChest);
+                if (intent.Interact && _canOpenChest)
                 {
-                   
+                    print("YOOOOO");
                 }
 
                 if (intent.TakeItem)

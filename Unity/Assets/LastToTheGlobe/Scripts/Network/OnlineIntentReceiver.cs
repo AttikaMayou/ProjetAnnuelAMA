@@ -416,8 +416,11 @@ namespace LastToTheGlobe.Scripts.Network
                 if (debug)
                 {
                     Debug.Log("I get the message : Interact on this avatar : " + playerIndex);
+                    print(Interact);
                 }
                 Interact = true;
+                
+                print(Interact);
             }
         }
         
