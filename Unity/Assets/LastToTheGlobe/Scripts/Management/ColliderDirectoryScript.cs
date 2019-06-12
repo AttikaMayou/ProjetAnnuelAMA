@@ -35,15 +35,32 @@ namespace Assets.LastToTheGlobe.Scripts.Management
         //Get the player whom belongs to the collider
         public CharacterExposerScript GetCharacterExposer(Collider col)
         {
-            if(debug) Debug.Log("Directory status : " + IsInitialized);
-            if(debug) Debug.Log("trying to find player from this collider : " + col);
+            if(debug) Debug.Log("[ColliderDirectoryScript] Directory status : " + IsInitialized);
+            if(debug) Debug.Log("[ColliderDirectoryScript] Trying to find player from this collider : " + col);
             if (!PhotonNetwork.IsMasterClient) return null;
             return _playersDirectory.TryGetValue(col, out _playerValue) ? _playerValue : null;
+        }
+
+        public CharacterExposerScript GetCharacterExposer(int id)
+        {
+            if(debug) Debug.Log("[ColliderDirectoryScript] Trying to find player from this id: " + id);
+            if (id < 0 || id >= CharacterExposers.Count) return null;
+            return !PhotonNetwork.IsMasterClient ? null : CharacterExposers[id];
+        }
+
+        public int GetPlayerId(Collider col)
+        {
+            if (!col) return -1;
+            var player = GetCharacterExposer(col);
+            if (player) return player.Id;
+            Debug.LogErrorFormat("[ColliderDirectoryScript] No CharacterExposer found with this collider {0}", col.name);
+            return -1;
         }
 
         public void AddCharacterExposer(CharacterExposerScript player, out int id)
         {
             if (!IsInitialized) IsInitialized = true;
+            
             if (CharacterExposers == null)
             {
                 CharacterExposers = new List<CharacterExposerScript>();
@@ -55,10 +72,18 @@ namespace Assets.LastToTheGlobe.Scripts.Management
             }
             
             id = AddPlayerInDirectory(player);
+            
+            if (debug)
+            {
+                Debug.Log(id >= 0
+                    ? "[ColliderDirectoryScript] Successful added player to directory"
+                    : "[ColliderDirectoryScript] Failed to add player in directory");
+            }
         }
 
         public void RemoveCharacterExposer(CharacterExposerScript player)
         {
+            player.Id = -1;
             if (CharacterExposers.Contains(player) && player)
             {
                 CharacterExposers.Remove(player);
@@ -67,11 +92,12 @@ namespace Assets.LastToTheGlobe.Scripts.Management
 
         private int AddPlayerInDirectory(CharacterExposerScript player)
         {
-            var id = 0;
-            if(debug) Debug.Log("add one player to directory");
+            var id = -1;
+            if(debug) Debug.Log("[ColliderDirectoryScript] Add one player to directory");
             if (_playersDirectory.ContainsValue(player)) return id;
             _playersDirectory.Add(player.CharacterCollider, player);
-            if(debug) Debug.LogFormat("Directory key : {0} and value : {1}", player.CharacterCollider, player);
+            if(debug) Debug.LogFormat("[ColliderDirectoryScript] Directory key : {0} and value : {1}", 
+                player.CharacterCollider, player);
             return id;
         }
         
@@ -79,11 +105,27 @@ namespace Assets.LastToTheGlobe.Scripts.Management
         
         #region Planets Methods
 
-        public PlanetExposerScript GetPlanetExposerScript(Collider col)
+        public PlanetExposerScript GetPlanetExposer(Collider col)
         {
-            if(debug) Debug.Log("trying to find planet from this collider : " + col);
+            if(debug) Debug.Log("[ColliderDirectoryScript] Trying to find planet from this collider : " + col);
             if (!PhotonNetwork.IsMasterClient) return null;
             return _planetsDirectory.TryGetValue(col, out _planetValue) ? _planetValue : null;
+        }
+        
+        public PlanetExposerScript GetPlanetExposer(int id)
+        {
+            if(debug) Debug.Log("[ColliderDirectoryScript] Trying to find player from this id: " + id);
+            if (id < 0 || id >= PlanetExposers.Count) return null;
+            return !PhotonNetwork.IsMasterClient ? null : PlanetExposers[id];
+        }
+        
+        public int GetPlanetId(Collider col)
+        {
+            if (!col) return -1;
+            var planet = GetPlanetExposer(col);
+            if (planet) return planet.Id;
+            Debug.LogErrorFormat("[ColliderDirectoryScript] No CharacterExposer found with this collider {0}", col.name);
+            return -1;
         }
 
         public void AddPlanetExposer(PlanetExposerScript planet)
@@ -103,10 +145,10 @@ namespace Assets.LastToTheGlobe.Scripts.Management
 
         private void AddPlanetInDirectory(PlanetExposerScript planet)
         {
-            if(debug) Debug.Log("add one planet to directory");
+            if(debug) Debug.Log("[ColliderDirectoryScript] TAd one planet to directory");
             if (_planetsDirectory.ContainsValue(planet)) return;
             _planetsDirectory.Add(planet.PlanetCollider, planet);
-            if(debug) Debug.LogFormat("Directory key : {0} and value : {1}", planet.PlanetCollider, planet);
+            if(debug) Debug.LogFormat("[ColliderDirectoryScript] Directory key : {0} and value : {1}", planet.PlanetCollider, planet);
         }
         
         #endregion
@@ -115,12 +157,19 @@ namespace Assets.LastToTheGlobe.Scripts.Management
 
         public OrbManager GetOrbManager(Collider col)
         {
-            if(debug) Debug.Log("trying to find orb from this collider : " + col);
+            if(debug) Debug.Log("[ColliderDirectoryScript] Trying to find orb from this collider : " + col);
             if (!PhotonNetwork.IsMasterClient) return null;
             return _orbsDirectory.TryGetValue(col, out _orbValue) ? _orbValue : null;
         }
         
-        public void AddOrbManager(OrbManager orb)
+        public OrbManager GetOrbManager(int id)
+        {
+            if(debug) Debug.Log("[ColliderDirectoryScript] Trying to find player from this id: " + id);
+            if (id < 0 || id >= OrbManagers.Count) return null;
+            return !PhotonNetwork.IsMasterClient ? null : OrbManagers[id];
+        }
+        
+        public void AddOrbManager(OrbManager orb, out int id)
         {
             if (OrbManagers == null)
             {
@@ -132,15 +181,26 @@ namespace Assets.LastToTheGlobe.Scripts.Management
                 OrbManagers.Add(orb);
             }
             
-            AddOrbInDirectory(orb);
+            id = AddOrbInDirectory(orb);
         }
 
-        private void AddOrbInDirectory(OrbManager orb)
+        public void RemoveOrbManager(OrbManager orb)
         {
-            if(debug) Debug.Log("add one orb to directory");
-            if (_orbsDirectory.ContainsValue(orb)) return;
+            orb.Id = -1;
+            if (OrbManagers.Contains(orb) && orb)
+            {
+                OrbManagers.Remove(orb);
+            }
+        }
+
+        private int AddOrbInDirectory(OrbManager orb)
+        {
+            var id = -1;
+            if(debug) Debug.Log("[ColliderDirectoryScript] Add one orb to directory");
+            if (_orbsDirectory.ContainsValue(orb)) return id;
             _orbsDirectory.Add(orb.orbCd, orb);
-            if(debug) Debug.LogFormat("Directory key : {0} and value : {1}", orb.orbCd, orb);
+            if(debug) Debug.LogFormat("[ColliderDirectoryScript] Directory key : {0} and value : {1}", orb.orbCd, orb);
+            return id;
         }
         
         #endregion

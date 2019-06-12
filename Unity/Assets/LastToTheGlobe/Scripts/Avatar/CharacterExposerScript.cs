@@ -61,7 +61,6 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
             //only the Master Client remove the player to the directory and reset his ID
             if (!PhotonNetwork.IsMasterClient) return;
             ColliderDirectoryScript.Instance.RemoveCharacterExposer(this);
-            Id  = 0;
         }
     }
 }

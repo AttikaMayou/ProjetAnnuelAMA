@@ -5,11 +5,15 @@ using UnityEngine;
 //Auteur: Abdallah
 //Modification : Attika
 
+//TODO : Refacto this scripts (Attika)
+
 namespace Assets.LastToTheGlobe.Scripts.Weapon.Orb
 {
     public class OrbManager : global::Assets.LastToTheGlobe.Scripts.Avatar.Avatar
     {
         public bool debug = true;
+
+        public int Id;
         
         [Header("Orb Parameters")]
         [SerializeField] private Rigidbody orbRb;
@@ -36,7 +40,7 @@ namespace Assets.LastToTheGlobe.Scripts.Weapon.Orb
             _direction = playerTransform.right;
             _centerPointAttractor = Attractor.transform.position;
             if (!PhotonNetwork.IsMasterClient) return;
-            ColliderDirectoryScript.Instance.AddOrbManager(this);
+            ColliderDirectoryScript.Instance.AddOrbManager(this, out Id);
             if(debug) Debug.Log("add an orb to Directory");
         }
         
@@ -74,6 +78,14 @@ namespace Assets.LastToTheGlobe.Scripts.Weapon.Orb
         public void InitializeOrPosition()
         {
             transform.position = playerTransform.position + playerTransform.forward * 2f;
+        }
+
+        //Dereference itself to the ColliderDirectory and CameraScript when deactivated
+        private void OnDisable()
+        {
+            //only the Master Client remove the orb to the directory and reset his ID
+            if (!PhotonNetwork.IsMasterClient) return;
+            ColliderDirectoryScript.Instance.RemoveOrbManager(this);
         }
     }
 }

@@ -28,6 +28,11 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
         {
             //Only the MasterClient interact with collider and stuff like this
             if (!PhotonNetwork.IsMasterClient) return;
+
+            var playerId = 0;
+            var planetId = 0;
+            
+            photonView.RPC("SetAttractor", RpcTarget.MasterClient, playerId, planetId);
             
             /*if (!ColliderDirectoryScript.Instance.IsInitialized)
             {
@@ -94,8 +99,9 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
         [PunRPC]
         void SetAttractor(int planetId, int playerId)
         {
-            var player = ColliderDirectoryScript.Instance.CharacterExposers[playerId];
-            var planet = ColliderDirectoryScript.Instance.PlanetExposers[planetId];
+            var player = ColliderDirectoryScript.Instance.GetCharacterExposer(playerId);
+            var planet = ColliderDirectoryScript.Instance.GetPlanetExposer(planetId);
+            
             if (debug)
             {
                 Debug.Log("Find the player " + player.name + " from this ID : " + playerId);

@@ -8,6 +8,9 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
 {
     public class PlanetExposerScript : MonoBehaviour
     {
+        //The id value of this planet. Updated at awakening
+        public int Id;
+        
         public Transform PlanetTransform;
         public Collider PlanetCollider;
         public AttractorScript AttractorScript;
