@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Assets.LastToTheGlobe.Scripts.Avatar;
 using Assets.LastToTheGlobe.Scripts.Camera;
+using Assets.LastToTheGlobe.Scripts.Management;
 using Assets.LastToTheGlobe.Scripts.Weapon.Orb;
 using LastToTheGlobe.Scripts.Camera;
 using LastToTheGlobe.Scripts.Dev.LevelManager;
@@ -31,6 +32,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
         [Header("Environment Parameters")]
         //spawn point tab
         private GameObject[] _spawnPointInPlanet;
+        private List<Transform> _spawnPoints;
         private Vector3[] _spawnPos;
         [SerializeField] private CloudPlanet_PUN environmentController;
         private int _seed = 0;
@@ -276,15 +278,18 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
             if(debug) Debug.Log("Camera is set for " + id);
         }
 
-        /// Each time a player join the lobby, we check if we're enough. If yes, we load the GameRoom after a countdown
+        /// Each time a player join the lobby, we check if we're enough.
+        /// If yes, we load the GameRoom after a countdown
         private void LaunchGameRoom()
         {
             if (!PhotonNetwork.IsMasterClient) return;
-            if (PhotonNetwork.IsMasterClient && _seed == 0)
+            if (_seed == 0)
             {
                 // _seed = environmentController.GetSeed();
                 _seed = 10;
                 environmentController.SetSeed(_seed);
+                //TODO : make sure all the planets are being well instantiated before
+                //calling 'FindAllSpawnPoint' 
                 FindAllSpawnPoint();
                 if(debug) Debug.Log("seed is " + _seed);
             }
@@ -297,6 +302,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
             {
                 SendSeedToPlayers(_seed);
             }
+            
             if(!CheckIfEnoughPlayers() || gameLaunched) return;
             onLobby = true;
             startMenuController.ShowLobbyCountdown();
@@ -304,10 +310,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
             StartCoroutine(CountdownBeforeSwitchingScene(_countdownStartValue));
         }
 
-        /// <summary>
-        /// Check if there is enough players to start the game and leave Lobby
-        /// </summary>
-        /// <returns></returns>
+        // Check if there is enough players to start the game and leave Lobby
         private bool CheckIfEnoughPlayers()
         {
             //TODO : refacto this function with Photon functions
@@ -361,21 +364,26 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
 
         private void FindAllSpawnPoint()
         {
-            _spawnPointInPlanet = GameObject.FindGameObjectsWithTag("SpawnPoint");
-            //TODO : do not use tags to find all spawn points
+            foreach (var planet in ColliderDirectoryScript.Instance.PlanetExposers)
+            {
+                if (!planet.IsSpawnPlanet) continue;
+                _spawnPoints.Add(planet.PlanetTransform);
+            }
+            
             if (debug)
             {
                 var i = 0;
-                foreach (var point in _spawnPointInPlanet)
+                foreach (var point in _spawnPoints)
                 {
-                    Debug.Log("Spawn Point : " + i + " is " + point);
+                    Debug.Log("Spawn Point : " + i + " is " + point.gameObject);
                     i++;
                 }
             }
-            _spawnPos = new Vector3[_spawnPointInPlanet.Length + 1];
-            for (var i = 0; i < _spawnPointInPlanet.Length; i++)
+            
+            _spawnPos = new Vector3[_spawnPoints.Count + 1];
+            for (var i = 0; i < _spawnPoints.Count; i++)
             {
-                _spawnPos[i] = _spawnPointInPlanet[i].transform.position;
+                _spawnPos[i] = _spawnPoints[i].position;
             }
         }
 

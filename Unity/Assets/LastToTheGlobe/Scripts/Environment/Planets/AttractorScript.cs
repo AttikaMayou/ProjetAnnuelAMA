@@ -14,7 +14,7 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
     {
         public bool debug = true;
 
-        [SerializeField] private PlanetExposerScript _exposer;
+        public PlanetExposerScript Exposer;
 
         public float speedRotation = 10f;
         public Vector3 DirForce;
@@ -23,7 +23,8 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
         
         public void Attractor(int playerId, float gravity)
         {
-            photonView.RPC("AttractObject", RpcTarget.MasterClient, playerId, gravity);
+            photonView.RPC("AttractObject", RpcTarget.MasterClient,
+                playerId, gravity);
         }
 
         private void OnTriggerEnter(Collider coll)
@@ -33,7 +34,7 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
 
             //Get the ID's of the player and planet with their respective collider
             var playerId = ColliderDirectoryScript.Instance.GetPlayerId(coll);
-            var planetId = ColliderDirectoryScript.Instance.GetPlanetId(_exposer.PlanetCollider);
+            var planetId = ColliderDirectoryScript.Instance.GetPlanetId(Exposer.PlanetCollider);
             
             //If the ID are different from -1 (means that the exposers are enabled),
             //we call the function 'SetAttractor'

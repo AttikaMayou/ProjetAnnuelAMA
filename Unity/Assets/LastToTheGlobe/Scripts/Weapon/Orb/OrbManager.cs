@@ -5,7 +5,7 @@ using UnityEngine;
 //Auteur: Abdallah
 //Modification : Attika
 
-//TODO : Refacto this scripts (Attika)
+//TODO : Refacto this script (Attika)
 
 namespace Assets.LastToTheGlobe.Scripts.Weapon.Orb
 {
@@ -80,7 +80,7 @@ namespace Assets.LastToTheGlobe.Scripts.Weapon.Orb
             transform.position = playerTransform.position + playerTransform.forward * 2f;
         }
 
-        //Dereference itself to the ColliderDirectory and CameraScript when deactivated
+        //Dereference itself to the ColliderDirectory
         private void OnDisable()
         {
             //only the Master Client remove the orb to the directory and reset his ID
