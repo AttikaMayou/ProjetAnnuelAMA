@@ -14,6 +14,8 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
     {
         public bool debug = true;
 
+        [SerializeField] private PlanetExposerScript _exposer;
+
         public float speedRotation = 10f;
         public Vector3 DirForce;
 
@@ -29,10 +31,15 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
             //Only the MasterClient interact with collider and stuff like this
             if (!PhotonNetwork.IsMasterClient) return;
 
-            var playerId = 0;
-            var planetId = 0;
+            //Get ths ID's of the player and planet with their respective collider
+            var playerId = ColliderDirectoryScript.Instance.GetPlayerId(coll);
+            var planetId = ColliderDirectoryScript.Instance.GetPlanetId(_exposer.PlanetCollider);
             
-            photonView.RPC("SetAttractor", RpcTarget.MasterClient, playerId, planetId);
+            //If the ID are different from -1 (means that the exposers are enabled),
+            //we call the function 'SetAttractor'
+            if(planetId != -1 && playerId != -1)
+                photonView.RPC("SetAttractor", RpcTarget.MasterClient,
+                    playerId, planetId);
             
             /*if (!ColliderDirectoryScript.Instance.IsInitialized)
             {
@@ -99,6 +106,7 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
         [PunRPC]
         void SetAttractor(int planetId, int playerId)
         {
+            //Find the exposers from the int parameters (IDs)
             var player = ColliderDirectoryScript.Instance.GetCharacterExposer(playerId);
             var planet = ColliderDirectoryScript.Instance.GetPlanetExposer(planetId);
             
@@ -108,6 +116,7 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
                 Debug.Log("Find the planet " + planet.name + " from this ID : " + planetId);
             }
 
+            //Set the attractor script which ACTUALLY attract player
             player.Attractor = planet.AttractorScript;
         }
     }

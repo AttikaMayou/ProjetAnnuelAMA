@@ -22,7 +22,7 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                ColliderDirectoryScript.Instance.AddPlanetExposer(this);
+                ColliderDirectoryScript.Instance.AddPlanetExposer(this, out Id);
             }
         }
     }
