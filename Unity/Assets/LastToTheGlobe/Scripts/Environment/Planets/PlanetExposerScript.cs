@@ -1,16 +1,16 @@
 ﻿using Assets.LastToTheGlobe.Scripts.Management;
-using LastToTheGlobe.Scripts.Management;
 using Photon.Pun;
 using UnityEngine;
 
 //Auteur : Attika
 
-namespace LastToTheGlobe.Scripts.Environment.Planets
+namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
 {
     public class PlanetExposerScript : MonoBehaviour
     {
-        public Transform planetTransform;
-        public Collider planetCollider;
+        public Transform PlanetTransform;
+        public Collider PlanetCollider;
+        public AttractorScript AttractorScript;
 
         private void OnEnable()
         {

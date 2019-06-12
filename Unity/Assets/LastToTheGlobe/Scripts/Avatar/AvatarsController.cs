@@ -118,8 +118,8 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                 var intent = _activatedIntentReceivers[i];
                 var player = players[i];
 
-                var rb = player.characterRb;
-                var tr = player.characterTr;
+                var rb = player.CharacterRb;
+                var tr = player.CharacterTr;
 
                 if (player == null) continue;
 
@@ -146,7 +146,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                     if (_currentOrb == null)
                     {
                         _currentOrb = GetOrbsWithinPool();
-                        _currentOrb.playerTransform = player.characterTr;
+                        _currentOrb.playerTransform = player.CharacterTr;
                         _currentOrb.Attractor = player.Attractor;
                         _currentOrb.charged = false;
                         _currentOrb.gameObject.SetActive(true);
@@ -164,7 +164,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                     if (_currentOrb == null)
                     {
                         _currentOrb = GetOrbsWithinPool();
-                        _currentOrb.playerTransform = player.characterTr;
+                        _currentOrb.playerTransform = player.CharacterTr;
                         _currentOrb.Attractor = player.Attractor;
                         _currentOrb.charged = true;
                         _currentOrb.gameObject.SetActive(true);
@@ -187,7 +187,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                 }
                 rb.MovePosition(rb.position + tr.TransformDirection(moveIntent) * intent.Speed * Time.deltaTime);
                 tr.Rotate(new Vector3(0, intent.RotationOnX, 0));
-                player.cameraRotatorX.transform.Rotate(new Vector3(-intent.RotationOnY, 0, 0), Space.Self);
+                player.CameraRotatorX.transform.Rotate(new Vector3(-intent.RotationOnY, 0, 0), Space.Self);
 
                 if (player.Attractor == null)
                 {
@@ -269,12 +269,12 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
             //if (photonView.IsMine != players[id].characterPhotonView) return;
             if (myCamera.enabled) return;
             myCamera.enabled = true;
-            myCamera.playerExposer = players[id];
+            myCamera.PlayerExposer = players[id];
             myCamera.InitializeCameraPosition();
-            myCamera.startFollowing = true;
-            players[id].lifeUI = lifeUI;
-            players[id].victoryUI = victoryUI;
-            players[id].defeatUI = defeatUI;
+            myCamera.StartFollowing = true;
+            players[id].LifeUi = lifeUI;
+            players[id].VictoryUi = victoryUI;
+            players[id].DefeatUi = defeatUI;
             if(debug) Debug.Log("Camera is set for " + id);
         }
 
@@ -348,10 +348,10 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
             {
                 if (!players[i].isActiveAndEnabled) break;
                 //TODO : deactivate rb and set isKinematic = false 
-                players[i].characterRootGameObject.transform.position = _spawnPos[i + 1];
+                players[i].CharacterRootGameObject.transform.position = _spawnPos[i + 1];
                 if (debug)
                 {
-                    Debug.Log("Previous pos : " + players[i].characterRootGameObject.transform.position);
+                    Debug.Log("Previous pos : " + players[i].CharacterRootGameObject.transform.position);
                     Debug.Log("Final position : " +_spawnPointInPlanet[i].transform.position);
                     Debug.Log("Local position :  " + _spawnPointInPlanet[i].transform.localPosition);
                 }
@@ -407,13 +407,13 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
         [PunRPC]
         private void ActivateAvatarRPC(int avatarId)
         {
-            players[avatarId].characterRootGameObject.SetActive(true);
+            players[avatarId].CharacterRootGameObject.SetActive(true);
         }
 
         [PunRPC]
         private void DeactivateAvatarRPC(int avatarId)
         {
-            players[avatarId].characterRootGameObject.SetActive(false);
+            players[avatarId].CharacterRootGameObject.SetActive(false);
         }
 
         [PunRPC]

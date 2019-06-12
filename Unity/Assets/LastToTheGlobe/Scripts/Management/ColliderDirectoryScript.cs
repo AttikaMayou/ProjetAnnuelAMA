@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Assets.LastToTheGlobe.Scripts.Avatar;
+using Assets.LastToTheGlobe.Scripts.Environment.Planets;
 using Assets.LastToTheGlobe.Scripts.Weapon.Orb;
 using LastToTheGlobe.Scripts.Environment.Planets;
 using LastToTheGlobe.Scripts.Singleton;
@@ -14,7 +15,7 @@ namespace Assets.LastToTheGlobe.Scripts.Management
     public class ColliderDirectoryScript : MonoBehaviourSingleton<ColliderDirectoryScript>
     {
         public bool debug = true;
-        public bool isInitialized = false;
+        public bool IsInitialized = false;
         
         public List<CharacterExposerScript> CharacterExposers;
         public List<PlanetExposerScript> PlanetExposers;
@@ -33,7 +34,7 @@ namespace Assets.LastToTheGlobe.Scripts.Management
         //Get the player whom belongs to the collider
         public CharacterExposerScript GetCharacterExposer(Collider col)
         {
-            if(debug) Debug.Log("Directory status : " + isInitialized);
+            if(debug) Debug.Log("Directory status : " + IsInitialized);
             if(debug) Debug.Log("trying to find player from this collider : " + col);
             if (!PhotonNetwork.IsMasterClient) return null;
             return _playersDirectory.TryGetValue(col, out _playerValue) ? _playerValue : null;
@@ -41,7 +42,7 @@ namespace Assets.LastToTheGlobe.Scripts.Management
 
         public void AddCharacterExposer(CharacterExposerScript player, out int id)
         {
-            if (!isInitialized) isInitialized = true;
+            if (!IsInitialized) IsInitialized = true;
             if (CharacterExposers == null)
             {
                 CharacterExposers = new List<CharacterExposerScript>();
@@ -68,8 +69,8 @@ namespace Assets.LastToTheGlobe.Scripts.Management
             var id = 0;
             if(debug) Debug.Log("add one player to directory");
             if (_playersDirectory.ContainsValue(player)) return id;
-            _playersDirectory.Add(player.characterCollider, player);
-            if(debug) Debug.LogFormat("Directory key : {0} and value : {1}", player.characterCollider, player);
+            _playersDirectory.Add(player.CharacterCollider, player);
+            if(debug) Debug.LogFormat("Directory key : {0} and value : {1}", player.CharacterCollider, player);
             return id;
         }
         #endregion
@@ -102,8 +103,8 @@ namespace Assets.LastToTheGlobe.Scripts.Management
         {
             if(debug) Debug.Log("add one planet to directory");
             if (_planetsDirectory.ContainsValue(planet)) return;
-            _planetsDirectory.Add(planet.planetCollider, planet);
-            if(debug) Debug.LogFormat("Directory key : {0} and value : {1}", planet.planetCollider, planet);
+            _planetsDirectory.Add(planet.PlanetCollider, planet);
+            if(debug) Debug.LogFormat("Directory key : {0} and value : {1}", planet.PlanetCollider, planet);
         }
         
         #endregion

@@ -26,28 +26,25 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
 
         private void OnTriggerEnter(Collider coll)
         {
-            if (!ColliderDirectoryScript.Instance.isInitialized)
+            if (!ColliderDirectoryScript.Instance.IsInitialized)
             {
                 if (debug) Debug.Log("wait before trying to attract players - lobby situation");
                 StartCoroutine(DelayOnTriggerEnter(2.0f));
             }
-            Debug.Log("ON TRIGGER ENTER" + coll.gameObject.name);
-            if (!coll.CompareTag("Player") && !coll.CompareTag("Bullet")) return;
-            Debug.Log("ON TRIGGER ENTER POUET" + coll.gameObject.name);
-            if (debug)
-            {
-                Debug.Log("there is a player or an orb who entered");
-            }
+            if (debug) Debug.LogFormat("ON TRIGGER ENTER - {0}", coll.gameObject.name);
             
-            Debug.Log("ON TRIGGER ENTER PUOIT" + coll.gameObject.name);
+            if (!coll.CompareTag("Player") /*&& !coll.CompareTag("Bullet")*/) return;
+            
+            if (debug) Debug.Log("there is a player or an orb who entered");
+            
             var exposer = ColliderDirectoryScript.Instance.GetCharacterExposer(coll);
             if (!exposer)
             {
-                Debug.Log("couldn't find player/orb in the Directory");
+                Debug.Log("Couldn't find player/orb in the Directory");
             }
             else
             {
-                Debug.Log(exposer);
+                Debug.LogFormat("Find the exposer : {0}", exposer);
                 exposer.Attractor = this;
             }
         }
@@ -75,8 +72,8 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
         void AttractObject(int playerId, float gravity)
         {
             var player = ColliderDirectoryScript.Instance.CharacterExposers[playerId];
-            var attractedRb = player.characterRb;
-            var body = player.characterTr;
+            var attractedRb = player.CharacterRb;
+            var body = player.CharacterTr;
             //Give the direction of gravity
             var gravityUp = (body.position - transform.position).normalized;
             var bodyUp = body.up;
@@ -89,6 +86,20 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
             rotation = Quaternion.Slerp(rotation, targetRotation, speedRotation * Time.deltaTime);
             body.rotation = rotation;
             DirForce = gravityUp;
+        }
+
+        [PunRPC]
+        void SetAttractor(int planetId, int playerId)
+        {
+            var player = ColliderDirectoryScript.Instance.CharacterExposers[playerId];
+            var planet = ColliderDirectoryScript.Instance.PlanetExposers[planetId];
+            if (debug)
+            {
+                Debug.Log("Find the player " + player.name + " from this ID : " + playerId);
+                Debug.Log("Find the planet " + planet.name + " from this ID : " + planetId);
+            }
+
+            player.Attractor = planet.AttractorScript;
         }
     }
 }
