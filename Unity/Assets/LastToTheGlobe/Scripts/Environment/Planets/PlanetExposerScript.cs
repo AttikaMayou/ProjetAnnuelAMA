@@ -18,12 +18,18 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
         public bool IsSpawnPlanet;
         public Transform SpawnPosition;
 
+        //Reference itself to the ColliderDirectory
         private void OnEnable()
         {
-            if (PhotonNetwork.IsMasterClient)
-            {
-                ColliderDirectoryScript.Instance.AddPlanetExposer(this, out Id);
-            }
+            if (!PhotonNetwork.IsMasterClient) return;
+            ColliderDirectoryScript.Instance.AddPlanetExposer(this, out Id);
+        }
+
+        //Dereference itself to the ColliderDirectory
+        private void OnDisable()
+        {
+            if (!PhotonNetwork.IsMasterClient) return;
+            ColliderDirectoryScript.Instance.RemovePlanetExposer(this);
         }
     }
 }

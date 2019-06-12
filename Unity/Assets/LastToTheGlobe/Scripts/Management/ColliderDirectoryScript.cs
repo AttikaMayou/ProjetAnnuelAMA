@@ -15,11 +15,13 @@ namespace Assets.LastToTheGlobe.Scripts.Management
     public class ColliderDirectoryScript : MonoBehaviourSingleton<ColliderDirectoryScript>
     {
         public bool debug = true;
-        public bool IsInitialized = false;
         
         public List<CharacterExposerScript> CharacterExposers;
+        [SerializeField] private int _activePlayers = 0;
         public List<PlanetExposerScript> PlanetExposers;
+        [SerializeField] private int _activePlanets = 0;
         public List<OrbManager> OrbManagers;
+        [SerializeField] private int _activeOrbs = 0;
         
         private Dictionary<Collider, CharacterExposerScript> _playersDirectory = new Dictionary<Collider, CharacterExposerScript>();
         private CharacterExposerScript _playerValue;
@@ -35,7 +37,6 @@ namespace Assets.LastToTheGlobe.Scripts.Management
         //Get the player whom belongs to the collider
         public CharacterExposerScript GetCharacterExposer(Collider col)
         {
-            if(debug) Debug.Log("[ColliderDirectoryScript] Directory status : " + IsInitialized);
             if(debug) Debug.Log("[ColliderDirectoryScript] Trying to find player from " +
                                 "this collider : " + col);
             if (!PhotonNetwork.IsMasterClient) return null;
@@ -62,8 +63,6 @@ namespace Assets.LastToTheGlobe.Scripts.Management
 
         public void AddCharacterExposer(CharacterExposerScript player, out int id)
         {
-            if (!IsInitialized) IsInitialized = true;
-            
             if (CharacterExposers == null)
             {
                 CharacterExposers = new List<CharacterExposerScript>();
@@ -73,6 +72,8 @@ namespace Assets.LastToTheGlobe.Scripts.Management
             {
                 CharacterExposers.Add(player);
             }
+
+            _activePlayers++;
             
             id = AddPlayerInDirectory(player);
             
@@ -86,6 +87,7 @@ namespace Assets.LastToTheGlobe.Scripts.Management
 
         public void RemoveCharacterExposer(CharacterExposerScript player)
         {
+            _activePlayers--;
             player.Id = -1;
             if (CharacterExposers.Contains(player) && player)
             {
@@ -99,6 +101,7 @@ namespace Assets.LastToTheGlobe.Scripts.Management
             if(debug) Debug.Log("[ColliderDirectoryScript] Add one player to directory");
             if (_playersDirectory.ContainsValue(player)) return id;
             _playersDirectory.Add(player.CharacterCollider, player);
+            id = _activePlayers - 1;
             if(debug) Debug.LogFormat("[ColliderDirectoryScript] Directory key : {0} and value : {1}", 
                 player.CharacterCollider, player);
             return id;
@@ -146,6 +149,8 @@ namespace Assets.LastToTheGlobe.Scripts.Management
                 PlanetExposers.Add(planet);
             }
 
+            _activePlanets++;
+            
             id = AddPlanetInDirectory(planet);
             
             if (debug)
@@ -158,6 +163,7 @@ namespace Assets.LastToTheGlobe.Scripts.Management
 
         public void RemovePlanetExposer(PlanetExposerScript planet)
         {
+            _activePlanets--;
             planet.Id = -1;
             if (PlanetExposers.Contains(planet) && planet)
             {
@@ -171,7 +177,8 @@ namespace Assets.LastToTheGlobe.Scripts.Management
             if(debug) Debug.Log("[ColliderDirectoryScript] Add one planet to directory");
             if (_planetsDirectory.ContainsValue(planet)) return id;
             _planetsDirectory.Add(planet.PlanetCollider, planet);
-            if(debug) Debug.LogFormat("[ColliderDirectoryScript] Directory key : {0} and value : {1}",
+            id = _activePlanets - 1;
+            if(debug) Debug.LogFormat("[ColliderDirectoryScript] Directory key : {0} and value : {1}", 
                 planet.PlanetCollider, planet);
             return id;
         }
@@ -215,6 +222,8 @@ namespace Assets.LastToTheGlobe.Scripts.Management
             {
                 OrbManagers.Add(orb);
             }
+
+            _activeOrbs++;
             
             id = AddOrbInDirectory(orb);
             
@@ -228,6 +237,7 @@ namespace Assets.LastToTheGlobe.Scripts.Management
 
         public void RemoveOrbManager(OrbManager orb)
         {
+            _activeOrbs--;
             orb.Id = -1;
             if (OrbManagers.Contains(orb) && orb)
             {
@@ -241,6 +251,7 @@ namespace Assets.LastToTheGlobe.Scripts.Management
             if(debug) Debug.Log("[ColliderDirectoryScript] Add one orb to directory");
             if (_orbsDirectory.ContainsValue(orb)) return id;
             _orbsDirectory.Add(orb.orbCd, orb);
+            id = _activeOrbs - 1;
             if(debug) Debug.LogFormat("[ColliderDirectoryScript] Directory key : {0} and value : {1}", 
                 orb.orbCd, orb);
             return id;

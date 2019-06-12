@@ -48,13 +48,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
             if (!PhotonNetwork.IsMasterClient) return;
             ColliderDirectoryScript.Instance.AddCharacterExposer(this, out Id);
         }
-
-//        private void LateUpdate()
-//        {
-//            if(debug)
-//                attractorDebug = Attractor;
-//        }
-
+        
         //Dereference itself to the ColliderDirectory and CameraScript when deactivated
         private void OnDisable()
         {

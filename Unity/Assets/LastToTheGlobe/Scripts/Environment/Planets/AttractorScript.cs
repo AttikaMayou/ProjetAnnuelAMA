@@ -56,13 +56,14 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
                 photonView.RPC("RemoveAttractor", RpcTarget.MasterClient,
                     playerId);
         }
-
+        
+        #region RPC Callbacks
         
         //TODO : Refacto this function
         [PunRPC]
         void AttractObject(int playerId, float gravity)
         {
-            var player = ColliderDirectoryScript.Instance.CharacterExposers[playerId];
+            var player = ColliderDirectoryScript.Instance.GetCharacterExposer(playerId);
             var attractedRb = player.CharacterRb;
             var body = player.CharacterTr;
             //Give the direction of gravity
@@ -110,5 +111,7 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
             //Set the attractor to null since the player isn't ACTUALLY attracted by anything
             player.Attractor = null;
         }
+        
+        #endregion
     }
 }
