@@ -26,14 +26,17 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
 
         private void OnTriggerEnter(Collider coll)
         {
-            if (!ColliderDirectoryScript.Instance.IsInitialized)
+            //Only the MasterClient interact with collider and stuff like this
+            if (!PhotonNetwork.IsMasterClient) return;
+            
+            /*if (!ColliderDirectoryScript.Instance.IsInitialized)
             {
                 if (debug) Debug.Log("wait before trying to attract players - lobby situation");
                 StartCoroutine(DelayOnTriggerEnter(2.0f));
             }
             if (debug) Debug.LogFormat("ON TRIGGER ENTER - {0}", coll.gameObject.name);
             
-            if (!coll.CompareTag("Player") /*&& !coll.CompareTag("Bullet")*/) return;
+            if (!coll.CompareTag("Player") /*&& !coll.CompareTag("Bullet")#1#) return;
             
             if (debug) Debug.Log("there is a player or an orb who entered");
             
@@ -46,7 +49,7 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
             {
                 Debug.LogFormat("Find the exposer : {0}", exposer);
                 exposer.Attractor = this;
-            }
+            }*/
         }
 
         private IEnumerator DelayOnTriggerEnter(float time)
@@ -56,16 +59,16 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
 
         private void OnTriggerExit(Collider coll)
         {
-            if (coll.CompareTag("Player"))
-            {
-                var exposer = ColliderDirectoryScript.Instance.GetCharacterExposer(coll);
-                //exposer.attractor = null;
-            }
-            
-            if (coll.CompareTag("Bullet"))
-            {
-                //TODO : add null to attractor of the bullet object
-            }
+//            if (coll.CompareTag("Player"))
+//            {
+//                var exposer = ColliderDirectoryScript.Instance.GetCharacterExposer(coll);
+//                //exposer.attractor = null;
+//            }
+//            
+//            if (coll.CompareTag("Bullet"))
+//            {
+//                //TODO : add null to attractor of the bullet object
+//            }
         }
 
         [PunRPC]

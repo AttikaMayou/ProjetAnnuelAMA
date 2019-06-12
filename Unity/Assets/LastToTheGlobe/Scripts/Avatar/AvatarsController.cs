@@ -129,16 +129,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                     moveIntent += new Vector3(intent.Strafe, 0.0f, intent.Forward);
                 }
 
-                if (intent.Jump)
-                {
-                    if (player.Attractor == null)
-                    {
-                        Debug.LogError("There is no attractor near us !");
-                        return;
-                    }
-                    var jumpDir = player.Attractor.DirForce;
-                    rb.AddForce(jumpDir * 250);
-                }
+               
 
                 if (intent.Shoot)
                 {
@@ -185,6 +176,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                 {
                     
                 }
+                
                 rb.MovePosition(rb.position + tr.TransformDirection(moveIntent) * intent.Speed * Time.deltaTime);
                 tr.Rotate(new Vector3(0, intent.RotationOnX, 0));
                 player.CameraRotatorX.transform.Rotate(new Vector3(-intent.RotationOnY, 0, 0), Space.Self);
@@ -204,6 +196,12 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                 {
                 }*/
 
+                if (intent.Jump)
+                {
+                    var jumpDir = player.Attractor.DirForce;
+                    rb.AddForce(jumpDir * 250);
+                }
+                
             }
         }
 

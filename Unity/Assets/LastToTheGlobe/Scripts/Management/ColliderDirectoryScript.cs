@@ -31,6 +31,7 @@ namespace Assets.LastToTheGlobe.Scripts.Management
         private OrbManager _orbValue;
         
         #region Players Methods
+        
         //Get the player whom belongs to the collider
         public CharacterExposerScript GetCharacterExposer(Collider col)
         {
@@ -73,6 +74,7 @@ namespace Assets.LastToTheGlobe.Scripts.Management
             if(debug) Debug.LogFormat("Directory key : {0} and value : {1}", player.CharacterCollider, player);
             return id;
         }
+        
         #endregion
         
         #region Planets Methods

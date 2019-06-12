@@ -12,6 +12,9 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
         public Collider PlanetCollider;
         public AttractorScript AttractorScript;
 
+        public bool IsSpawnPlanet;
+        public Transform SpawnPosition;
+
         private void OnEnable()
         {
             if (PhotonNetwork.IsMasterClient)
