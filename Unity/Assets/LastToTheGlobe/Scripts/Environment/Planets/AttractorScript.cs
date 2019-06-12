@@ -31,7 +31,7 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
             //Only the MasterClient interact with collider and stuff like this
             if (!PhotonNetwork.IsMasterClient) return;
 
-            //Get ths ID's of the player and planet with their respective collider
+            //Get the ID's of the player and planet with their respective collider
             var playerId = ColliderDirectoryScript.Instance.GetPlayerId(coll);
             var planetId = ColliderDirectoryScript.Instance.GetPlanetId(_exposer.PlanetCollider);
             
@@ -40,49 +40,25 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
             if(planetId != -1 && playerId != -1)
                 photonView.RPC("SetAttractor", RpcTarget.MasterClient,
                     playerId, planetId);
-            
-            /*if (!ColliderDirectoryScript.Instance.IsInitialized)
-            {
-                if (debug) Debug.Log("wait before trying to attract players - lobby situation");
-                StartCoroutine(DelayOnTriggerEnter(2.0f));
-            }
-            if (debug) Debug.LogFormat("ON TRIGGER ENTER - {0}", coll.gameObject.name);
-            
-            if (!coll.CompareTag("Player") /*&& !coll.CompareTag("Bullet")#1#) return;
-            
-            if (debug) Debug.Log("there is a player or an orb who entered");
-            
-            var exposer = ColliderDirectoryScript.Instance.GetCharacterExposer(coll);
-            if (!exposer)
-            {
-                Debug.Log("Couldn't find player/orb in the Directory");
-            }
-            else
-            {
-                Debug.LogFormat("Find the exposer : {0}", exposer);
-                exposer.Attractor = this;
-            }*/
-        }
-
-        private IEnumerator DelayOnTriggerEnter(float time)
-        {
-            yield return new WaitForSeconds(time);
         }
 
         private void OnTriggerExit(Collider coll)
         {
-//            if (coll.CompareTag("Player"))
-//            {
-//                var exposer = ColliderDirectoryScript.Instance.GetCharacterExposer(coll);
-//                //exposer.attractor = null;
-//            }
-//            
-//            if (coll.CompareTag("Bullet"))
-//            {
-//                //TODO : add null to attractor of the bullet object
-//            }
+            //Only the MasterClient interact with collider and stuff like this
+            if (!PhotonNetwork.IsMasterClient) return;
+            
+            //Get ID of the player with his collider
+            var playerId = ColliderDirectoryScript.Instance.GetPlayerId(coll);
+            
+            //If ID is different from -1 (means that the exposer is enabled),
+            //we call the function 'RemoveAttractor'
+            if(playerId != -1)
+                photonView.RPC("RemoveAttractor", RpcTarget.MasterClient,
+                    playerId);
         }
 
+        
+        //TODO : Refacto this function
         [PunRPC]
         void AttractObject(int playerId, float gravity)
         {
@@ -104,7 +80,7 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
         }
 
         [PunRPC]
-        void SetAttractor(int planetId, int playerId)
+        void SetAttractor(int playerId, int planetId)
         {
             //Find the exposers from the int parameters (IDs)
             var player = ColliderDirectoryScript.Instance.GetCharacterExposer(playerId);
@@ -118,6 +94,21 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
 
             //Set the attractor script which ACTUALLY attract player
             player.Attractor = planet.AttractorScript;
+        }
+
+        [PunRPC]
+        void RemoveAttractor(int playerId)
+        {
+            //Find the exposer from the int parameter (ID)
+            var player = ColliderDirectoryScript.Instance.GetCharacterExposer(playerId);
+            
+            if (debug)
+            {
+                Debug.Log("Find the player " + player.name + " from this ID : " + playerId);
+            }
+
+            //Set the attractor to null since the player isn't ACTUALLY attracted by anything
+            player.Attractor = null;
         }
     }
 }
