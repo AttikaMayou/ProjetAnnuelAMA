@@ -9,10 +9,13 @@ using UnityEngine;
 
 namespace Assets.LastToTheGlobe.Scripts.Avatar
 {
-    public class CharacterExposerScript : global::LastToTheGlobe.Scripts.Avatar.Avatar
+    public class CharacterExposerScript : global::Assets.LastToTheGlobe.Scripts.Avatar.Avatar
     {
         public bool debug = true;
 
+        //The id value of this player. Updated at awakening
+        public int Id;
+        
         public GameObject characterRootGameObject;
         [Header("Player Control Parameters")] 
         public Rigidbody characterRb;
@@ -41,17 +44,24 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
         //Reference itself to the ColliderDirectory and CameraScript when activated
         private void OnEnable()
         {
-            //only the Master Client and the player to the directory
-            if (PhotonNetwork.IsMasterClient)
-            {
-                ColliderDirectoryScript.Instance.AddCharacterExposer(this);
-            }
+            //only the Master Client add the player to the directory and get his ID
+            if (!PhotonNetwork.IsMasterClient) return;
+            ColliderDirectoryScript.Instance.AddCharacterExposer(this, out Id);
         }
 
-        private void LateUpdate()
+//        private void LateUpdate()
+//        {
+//            if(debug)
+//                attractorDebug = Attractor;
+//        }
+
+        //Dereference itself to the ColliderDirectory and CameraScript when deactivated
+        private void OnDisable()
         {
-            if(debug)
-                attractorDebug = attractor;
+            //only the Master Client remove the player to the directory and reset his ID
+            if (!PhotonNetwork.IsMasterClient) return;
+            ColliderDirectoryScript.Instance.RemoveCharacterExposer(this);
+            Id  = 0;
         }
     }
 }

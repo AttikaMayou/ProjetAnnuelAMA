@@ -1,15 +1,14 @@
 ﻿using Assets.LastToTheGlobe.Scripts.Environment.Planets;
-using LastToTheGlobe.Scripts.Environment.Planets;
 using UnityEngine;
 
 //Auteur : Abdallah
 
-namespace LastToTheGlobe.Scripts.Avatar
+namespace Assets.LastToTheGlobe.Scripts.Avatar
 {
     public class Avatar : MonoBehaviour
     {
         [HideInInspector]
-        public AttractorScript attractor;
+        public AttractorScript Attractor;
 
         private float _selfGravity = -10.0f;
 

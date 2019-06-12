@@ -29,28 +29,28 @@ namespace LastToTheGlobe.Scripts.Network
                 return;
             }
             
-            forward = Input.GetAxisRaw("Vertical");
-            strafe = Input.GetAxisRaw("Horizontal");
-            rotationOnX = Input.GetAxis("Mouse X");
-            rotationOnY = Input.GetAxis("Mouse Y");
+            Forward = Input.GetAxisRaw("Vertical");
+            Strafe = Input.GetAxisRaw("Horizontal");
+            RotationOnX = Input.GetAxis("Mouse X");
+            RotationOnY = Input.GetAxis("Mouse Y");
 
             //TODO : check if the rotation updates relative to previous rotation
-            photonView.RPC("UpdateCameraRotation", RpcTarget.MasterClient, rotationOnX, rotationOnY);
+            photonView.RPC("UpdateCameraRotation", RpcTarget.MasterClient, RotationOnX, RotationOnY);
             
             //Attack Intent
-            if (Input.GetMouseButton(0) && canShoot)
+            if (Input.GetMouseButton(0) && CanShoot)
             {
-                canShoot = false;
+                CanShoot = false;
             }
             
-            if (!canShoot)
+            if (!CanShoot)
             {
-                loadShotValue += Time.deltaTime;
-                if(loadShotValue >= 1.5f && Input.GetMouseButtonUp(0))
+                LoadShotValue += Time.deltaTime;
+                if(LoadShotValue >= 1.5f && Input.GetMouseButtonUp(0))
                 {
                     //shootLoaded = true;
                     photonView.RPC("LaunchLoadedBulletRPC", RpcTarget.MasterClient);
-                    loadShotValue = 0.0f;
+                    LoadShotValue = 0.0f;
                 }
 
                 if (Input.GetMouseButtonUp(0))
@@ -60,7 +60,7 @@ namespace LastToTheGlobe.Scripts.Network
             }
             
             //Cooldown dash
-            if (!canDash)
+            if (!CanDash)
             {
                 var timer = 0.0f;
                 timer += Time.deltaTime;
@@ -74,7 +74,7 @@ namespace LastToTheGlobe.Scripts.Network
             //Movement Intent
             if (Input.GetKeyDown(KeyCode.Z))// && Math.Abs(forward) <  0.1f && Math.Abs(strafe) < 0.1f)
             {
-                photonView.RPC("MoveForwardRPC", RpcTarget.MasterClient, true, forward, strafe);
+                photonView.RPC("MoveForwardRPC", RpcTarget.MasterClient, true, Forward, Strafe);
             }
             
             if (Input.GetKeyUp(KeyCode.Z))
@@ -84,7 +84,7 @@ namespace LastToTheGlobe.Scripts.Network
 
             if (Input.GetKeyDown(KeyCode.S))// && Math.Abs(forward) <  0.1f && Math.Abs(strafe) < 0.1f)
             {
-                photonView.RPC("MoveBackRPC", RpcTarget.MasterClient, true, forward, strafe);
+                photonView.RPC("MoveBackRPC", RpcTarget.MasterClient, true, Forward, Strafe);
             }
 
             if (Input.GetKeyUp(KeyCode.S))
@@ -94,7 +94,7 @@ namespace LastToTheGlobe.Scripts.Network
 
             if (Input.GetKeyDown(KeyCode.Q))// && Math.Abs(forward) <  0.1f && Math.Abs(strafe) < 0.1f)
             {
-                photonView.RPC("MoveLeftRPC", RpcTarget.MasterClient, true, forward, strafe);
+                photonView.RPC("MoveLeftRPC", RpcTarget.MasterClient, true, Forward, Strafe);
             }
 
             if (Input.GetKeyUp(KeyCode.Q))
@@ -104,7 +104,7 @@ namespace LastToTheGlobe.Scripts.Network
 
             if (Input.GetKeyDown(KeyCode.D))// && Math.Abs(forward) <  0.1f && Math.Abs(strafe) < 0.1f)
             {
-                photonView.RPC("MoveRightRPC", RpcTarget.MasterClient, true, forward, strafe);
+                photonView.RPC("MoveRightRPC", RpcTarget.MasterClient, true, Forward, Strafe);
             }
 
             if (Input.GetKeyUp(KeyCode.D))
@@ -114,24 +114,24 @@ namespace LastToTheGlobe.Scripts.Network
             
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
-                speed = runSpeed;
+                Speed = RunSpeed;
                 photonView.RPC("RunRPC", RpcTarget.MasterClient, true);
             }
 
             if (Input.GetKeyUp(KeyCode.LeftShift))
             {
-                speed = walkSpeed;
+                Speed = WalkSpeed;
                 photonView.RPC("RunRPC", RpcTarget.MasterClient, false);
             }
 
-            if (Input.GetKeyDown(KeyCode.LeftAlt) && canDash)
+            if (Input.GetKeyDown(KeyCode.LeftAlt) && CanDash)
             {
-                speed = dashSpeed;
+                Speed = DashSpeed;
                 photonView.RPC("DashRPC", RpcTarget.MasterClient);
                 //canDash = false;
             }
 
-            if (Input.GetKeyUp(KeyCode.Space) && canJump)
+            if (Input.GetKeyUp(KeyCode.Space) && CanJump)
             {
                 photonView.RPC("JumpRPC", RpcTarget.MasterClient);
             }
@@ -153,7 +153,7 @@ namespace LastToTheGlobe.Scripts.Network
         {
             if (other.gameObject.CompareTag("Planet"))
             {
-                canJump = true;
+                CanJump = true;
             }
         }
 
@@ -169,8 +169,8 @@ namespace LastToTheGlobe.Scripts.Network
                     Debug.Log("I get the message : UpdateRotation on this avatar : " + playerIndex);
                     Debug.Log("X rotation : " + rotationX + " and Y : " + rotationY);
                 }
-                rotationOnX = rotationX;
-                rotationOnY = rotationY;
+                RotationOnX = rotationX;
+                RotationOnY = rotationY;
             }
         }
         
@@ -184,8 +184,8 @@ namespace LastToTheGlobe.Scripts.Network
                     Debug.Log("I get the message : UpdateRotation on this avatar : " + playerIndex);
                     Debug.Log("X rotation : " + rotationX + " and Y : " + rotationY);
                 }
-                rotationOnX = rotationX;
-                rotationOnY = rotationY;
+                RotationOnX = rotationX;
+                RotationOnY = rotationY;
             }
         }
         
@@ -194,15 +194,15 @@ namespace LastToTheGlobe.Scripts.Network
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                speed = walkSpeed;
+                Speed = WalkSpeed;
                 if (debug)
                 {
                     Debug.Log("I get the message : Move Left on this avatar : " + playerIndex);
                     Debug.Log("Strafe value : " + strafeInput + " ; Forward value : " + forwardInput);
                 }
                 MoveLeft = intent;
-                forward = forwardInput;
-                strafe = strafeInput;
+                Forward = forwardInput;
+                Strafe = strafeInput;
             }
         }
         
@@ -211,15 +211,15 @@ namespace LastToTheGlobe.Scripts.Network
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                speed = walkSpeed;
+                Speed = WalkSpeed;
                 if (debug)
                 {
                     Debug.Log("I get the message : Move Left on this avatar : " + playerIndex);
                     Debug.Log("Strafe value : " + strafeInput + " ; Forward value : " + forwardInput);
                 }
                 MoveLeft = intent;
-                forward = forwardInput;
-                strafe = strafeInput;
+                Forward = forwardInput;
+                Strafe = strafeInput;
             }
         }
 
@@ -228,15 +228,15 @@ namespace LastToTheGlobe.Scripts.Network
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                speed = walkSpeed;
+                Speed = WalkSpeed;
                 if (debug)
                 {
                     Debug.Log("I get the message : Move Back on this avatar : " + playerIndex);
                     Debug.Log("Strafe value : " + strafeInput + " ; Forward value : " + forwardInput);
                 }
                 MoveBack = intent;
-                forward = forwardInput;
-                strafe = strafeInput;
+                Forward = forwardInput;
+                Strafe = strafeInput;
             }
         }
         
@@ -245,15 +245,15 @@ namespace LastToTheGlobe.Scripts.Network
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                speed = walkSpeed;
+                Speed = WalkSpeed;
                 if (debug)
                 {
                     Debug.Log("I get the message : Move Back on this avatar : " + playerIndex);
                     Debug.Log("Strafe value : " + strafeInput + " ; Forward value : " + forwardInput);
                 }
                 MoveBack = intent;
-                forward = forwardInput;
-                strafe = strafeInput;
+                Forward = forwardInput;
+                Strafe = strafeInput;
             }
         }
 
@@ -262,15 +262,15 @@ namespace LastToTheGlobe.Scripts.Network
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                speed = walkSpeed;
+                Speed = WalkSpeed;
                 if (debug)
                 {
                     Debug.Log("I get the message : Move Right on this avatar : " + playerIndex);
                     Debug.Log("Strafe value : " + strafeInput + " ; Forward value : " + forwardInput);
                 }
                 MoveRight = intent;
-                forward = forwardInput;
-                strafe = strafeInput;
+                Forward = forwardInput;
+                Strafe = strafeInput;
             }
         }
         
@@ -279,15 +279,15 @@ namespace LastToTheGlobe.Scripts.Network
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                speed = walkSpeed;
+                Speed = WalkSpeed;
                 if (debug)
                 {
                     Debug.Log("I get the message : Move Right on this avatar : " + playerIndex);
                     Debug.Log("Strafe value : " + strafeInput + " ; Forward value : " + forwardInput);
                 }
                 MoveRight = intent;
-                forward = forwardInput;
-                strafe = strafeInput;
+                Forward = forwardInput;
+                Strafe = strafeInput;
             }
         }
 
@@ -296,15 +296,15 @@ namespace LastToTheGlobe.Scripts.Network
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                speed = walkSpeed;
+                Speed = WalkSpeed;
                 if (debug)
                 {
                     Debug.Log("I get the message : Move Forward on this avatar : " + playerIndex);
                     Debug.Log("Strafe value : " + strafeInput + " ; Forward value : " + forwardInput);
                 }
                 MoveForward = intent;
-                forward = forwardInput;
-                strafe = strafeInput;
+                Forward = forwardInput;
+                Strafe = strafeInput;
             }
         }
         
@@ -313,15 +313,15 @@ namespace LastToTheGlobe.Scripts.Network
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                speed = walkSpeed;
+                Speed = WalkSpeed;
                 if (debug)
                 {
                     Debug.Log("I get the message : Move Forward on this avatar : " + playerIndex);
                     Debug.Log("Strafe value : " + strafeInput + " ; Forward value : " + forwardInput);
                 }
                 MoveForward = intent;
-                forward = forwardInput;
-                strafe = strafeInput;
+                Forward = forwardInput;
+                Strafe = strafeInput;
             }
         }
 
@@ -334,7 +334,7 @@ namespace LastToTheGlobe.Scripts.Network
                 {
                     Debug.Log("I get the message : Jump on this avatar : " + playerIndex);
                 }
-                canJump = false;
+                CanJump = false;
                 Jump = true;
             }
         }
@@ -375,7 +375,7 @@ namespace LastToTheGlobe.Scripts.Network
                     Debug.Log("I get the message : Shoot on this avatar : " + playerIndex);
                 }
 
-                canShoot = false;
+                CanShoot = false;
                 Shoot = true;
             }
         }
@@ -390,7 +390,7 @@ namespace LastToTheGlobe.Scripts.Network
                     Debug.Log("I get the message : Shoot Loaded on this avatar : " + playerIndex);
                 }
 
-                canShoot = false;
+                CanShoot = false;
                 ShootLoaded = true;
             }
         }

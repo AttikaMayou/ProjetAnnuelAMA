@@ -15,7 +15,7 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
         public bool debug = true;
 
         public float speedRotation = 10f;
-        public Vector3 dirForce;
+        public Vector3 DirForce;
 
         [SerializeField] private PhotonView photonView;
         
@@ -48,7 +48,7 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
             else
             {
                 Debug.Log(exposer);
-                exposer.attractor = this;
+                exposer.Attractor = this;
             }
         }
 
@@ -88,7 +88,7 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
             var targetRotation = Quaternion.FromToRotation(bodyUp, gravityUp) * rotation;
             rotation = Quaternion.Slerp(rotation, targetRotation, speedRotation * Time.deltaTime);
             body.rotation = rotation;
-            dirForce = gravityUp;
+            DirForce = gravityUp;
         }
     }
 }

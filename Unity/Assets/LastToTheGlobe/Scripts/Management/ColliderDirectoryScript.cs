@@ -39,7 +39,7 @@ namespace Assets.LastToTheGlobe.Scripts.Management
             return _playersDirectory.TryGetValue(col, out _playerValue) ? _playerValue : null;
         }
 
-        public void AddCharacterExposer(CharacterExposerScript player)
+        public void AddCharacterExposer(CharacterExposerScript player, out int id)
         {
             if (!isInitialized) isInitialized = true;
             if (CharacterExposers == null)
@@ -52,15 +52,25 @@ namespace Assets.LastToTheGlobe.Scripts.Management
                 CharacterExposers.Add(player);
             }
             
-            AddPlayerInDirectory(player);
+            id = AddPlayerInDirectory(player);
         }
 
-        private void AddPlayerInDirectory(CharacterExposerScript player)
+        public void RemoveCharacterExposer(CharacterExposerScript player)
         {
+            if (CharacterExposers.Contains(player) && player)
+            {
+                CharacterExposers.Remove(player);
+            }
+        }
+
+        private int AddPlayerInDirectory(CharacterExposerScript player)
+        {
+            var id = 0;
             if(debug) Debug.Log("add one player to directory");
-            if (_playersDirectory.ContainsValue(player)) return;
+            if (_playersDirectory.ContainsValue(player)) return id;
             _playersDirectory.Add(player.characterCollider, player);
             if(debug) Debug.LogFormat("Directory key : {0} and value : {1}", player.characterCollider, player);
+            return id;
         }
         #endregion
         
@@ -131,7 +141,6 @@ namespace Assets.LastToTheGlobe.Scripts.Management
         }
         
         #endregion
-
         
     }
 }

@@ -12,7 +12,7 @@ using UnityEngine;
 
 namespace LastToTheGlobe.Scripts.Avatar
 {
-    public class ThirdPersonController : Avatar
+    public class ThirdPersonController : Assets.LastToTheGlobe.Scripts.Avatar.Avatar
     {
         [SerializeField] private AttractedScript attractedScript;
 
@@ -176,7 +176,7 @@ namespace LastToTheGlobe.Scripts.Avatar
             
             //Apply a stronger force to jump
             if (!Input.GetKey(jumpInput) || _isJumping) return;
-            _jumpDir = attractor.dirForce;
+            _jumpDir = Attractor.DirForce;
             rb.AddForce(_jumpDir * 250);
 
             //To avoid double jump

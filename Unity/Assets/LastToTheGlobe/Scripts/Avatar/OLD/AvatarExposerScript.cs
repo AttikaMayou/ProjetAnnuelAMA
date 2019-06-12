@@ -6,7 +6,7 @@ namespace LastToTheGlobe.Scripts.Avatar
 {
     public class AvatarExposerScript : MonoBehaviour
     {
-        public Avatar avatar;
+        public Assets.LastToTheGlobe.Scripts.Avatar.Avatar avatar;
 
     }
 }

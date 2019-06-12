@@ -126,17 +126,17 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                 if (intent.MoveBack || intent.MoveForward
                                     || intent.MoveRight || intent.MoveLeft)
                 {
-                    moveIntent += new Vector3(intent.strafe, 0.0f, intent.forward);
+                    moveIntent += new Vector3(intent.Strafe, 0.0f, intent.Forward);
                 }
 
                 if (intent.Jump)
                 {
-                    if (player.attractor == null)
+                    if (player.Attractor == null)
                     {
                         Debug.LogError("There is no attractor near us !");
                         return;
                     }
-                    var jumpDir = player.attractor.dirForce;
+                    var jumpDir = player.Attractor.DirForce;
                     rb.AddForce(jumpDir * 250);
                 }
 
@@ -147,11 +147,11 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                     {
                         _currentOrb = GetOrbsWithinPool();
                         _currentOrb.playerTransform = player.characterTr;
-                        _currentOrb.attractor = player.attractor;
+                        _currentOrb.Attractor = player.Attractor;
                         _currentOrb.charged = false;
                         _currentOrb.gameObject.SetActive(true);
                         _currentOrb.InitializeOrPosition();
-                        intent.canShoot = true;
+                        intent.CanShoot = true;
                         intent.Shoot = false;
                         _currentOrb = null;
                         //TODO : when the orb is reset --> canShoot = true
@@ -165,11 +165,11 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                     {
                         _currentOrb = GetOrbsWithinPool();
                         _currentOrb.playerTransform = player.characterTr;
-                        _currentOrb.attractor = player.attractor;
+                        _currentOrb.Attractor = player.Attractor;
                         _currentOrb.charged = true;
                         _currentOrb.gameObject.SetActive(true);
                         _currentOrb.InitializeOrPosition();
-                        intent.canShoot = true;
+                        intent.CanShoot = true;
                         intent.Shoot = false;
                         _currentOrb = null;
                         //TODO : when the orb is reset --> canShoot = true
@@ -185,18 +185,18 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                 {
                     
                 }
-                rb.MovePosition(rb.position + tr.TransformDirection(moveIntent) * intent.speed * Time.deltaTime);
-                tr.Rotate(new Vector3(0, intent.rotationOnX, 0));
-                player.cameraRotatorX.transform.Rotate(new Vector3(-intent.rotationOnY, 0, 0), Space.Self);
+                rb.MovePosition(rb.position + tr.TransformDirection(moveIntent) * intent.Speed * Time.deltaTime);
+                tr.Rotate(new Vector3(0, intent.RotationOnX, 0));
+                player.cameraRotatorX.transform.Rotate(new Vector3(-intent.RotationOnY, 0, 0), Space.Self);
 
-                if (player.attractor == null)
+                if (player.Attractor == null)
                 {
                     //Debug.LogError("There is no attractor near us !");
                     return;
                 }
                 
                 //TODO : make this master client server like 
-                player.attractor.Attractor(i, -2600.0f);
+                player.Attractor.Attractor(i, -2600.0f);
                 /*if (intent.canJump && player.attractor)
                 {
                 }
@@ -237,15 +237,15 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                 intent.MoveRight = false;
                 intent.Run = false;
                 intent.Jump = false;
-                intent.canJump = true;
+                intent.CanJump = true;
                 intent.Dash = false;
-                intent.canDash = true;
+                intent.CanDash = true;
                 intent.Shoot = false;
-                intent.canShoot = true;
+                intent.CanShoot = true;
                 intent.Bump = false;
                 intent.Interact = false;
-                intent.forward = 0.0f;
-                intent.strafe = 0.0f;
+                intent.Forward = 0.0f;
+                intent.Strafe = 0.0f;
             }
         }
 

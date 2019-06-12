@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Assets.LastToTheGlobe.Scripts.Weapon.Orb
 {
-    public class OrbManager : global::LastToTheGlobe.Scripts.Avatar.Avatar
+    public class OrbManager : global::Assets.LastToTheGlobe.Scripts.Avatar.Avatar
     {
         public bool debug = true;
         
@@ -30,11 +30,11 @@ namespace Assets.LastToTheGlobe.Scripts.Weapon.Orb
             //timeUsing = Time.deltaTime;
             _timeUsing = 0.0f;
             maxTimeUsing = 3f;
-            if (!playerTransform || !attractor) return;
+            if (!playerTransform || !Attractor) return;
             _initialPos = playerTransform.position;
             transform.position = playerTransform.position + playerTransform.forward * 2f;
             _direction = playerTransform.right;
-            _centerPointAttractor = attractor.transform.position;
+            _centerPointAttractor = Attractor.transform.position;
             if (!PhotonNetwork.IsMasterClient) return;
             ColliderDirectoryScript.Instance.AddOrbManager(this);
             if(debug) Debug.Log("add an orb to Directory");
