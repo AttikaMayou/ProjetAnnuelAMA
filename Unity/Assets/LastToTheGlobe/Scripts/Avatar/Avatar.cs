@@ -12,19 +12,13 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
 
         private float _selfGravity = -10.0f;
 
-        /// <summary>
-        /// Set the gravity (float)
-        /// </summary>
-        /// <param name="gravity"></param>
+        // Set the gravity (float)
         public void SetGravity(float gravity)
         {
             _selfGravity = gravity;
         }
 
-        /// <summary>
-        /// Return the value of the gravity (float)
-        /// </summary>
-        /// <returns></returns>
+        // Return the value of the gravity (float)
         public float GetGravity()
         {
             return _selfGravity;

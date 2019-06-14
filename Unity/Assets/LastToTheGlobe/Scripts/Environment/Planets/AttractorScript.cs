@@ -44,15 +44,20 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
         
         #region Private Methods
 
+        //The planet detects a collider entered its attraction field 
         private void OnTriggerEnter(Collider other)
         {
             if(debug) Debug.LogFormat("[AttractorScript] {0} get triggered by something : {1}",
                 this.gameObject.name , other.gameObject.name);
-            //The planet detects a collider entered its attraction field 
-            //Send the MasterClient a message to warn him with its own ID
             if(!PhotonNetwork.IsMasterClient) return;
-            var player = ColliderDirectoryScript.Instance.GetPlayerId(other);
-            photonView.RPC("DetectObjectRPC", RpcTarget.MasterClient, Exposer.Id);
+            var playerId = ColliderDirectoryScript.Instance.GetPlayerId(other);
+            //if playerId is different from -1, that means this is a player which hit the planet
+            if (playerId != -1) 
+            {
+                //Send the MasterClient a message to warn him with its own ID and the playerId
+                photonView.RPC("DetectPlayerRPC", RpcTarget.MasterClient,
+                    Exposer.Id, playerId);
+            }
         }
         
         #endregion
@@ -74,15 +79,25 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
         
         #region RPC Callbacks
         
-        //TODO : Refacto this function
-        
-
         [PunRPC]
-        void DetectObjectRPC(int planetId)
+        void DetectPlayerRPC(int planetId, int playerId)
         {
-            if(debug) Debug.Log("[AttractorScript] DetectObject called");
-            var planet = ColliderDirectoryScript.Instance.GetPlanetExposer(planetId);
+            if(debug) Debug.Log("[AttractorScript] DetectPlayerRPC received");
             
+            //Find the exposers from the int parameters (IDs)
+            var planet = ColliderDirectoryScript.Instance.GetPlanetExposer(planetId);
+            var player = ColliderDirectoryScript.Instance.GetCharacterExposer(playerId);
+
+            if (!planet || !player) return;
+            
+            if (debug)
+            {
+                Debug.Log("Found the player " + player.name + " from this ID : " + playerId);
+                Debug.Log("Found the planet " + planet.name + " from this ID : " + planetId);
+            }
+            
+            //Set the attractor script which ACTUALLY attract player
+            player.Attractor = planet.AttractorScript;
         }
 
         /*[PunRPC]

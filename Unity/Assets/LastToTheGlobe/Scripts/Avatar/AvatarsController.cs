@@ -189,8 +189,8 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                     return;
                 }
                 
-                //TODO : make this master client server like 
-                player.Attractor.Attractor(i, -2600.0f);
+                //TODO : uncomment when ready to test Attraction
+                //player.Attractor.Attractor(i, -2600.0f);
                 /*if (intent.canJump && player.attractor)
                 {
                 }

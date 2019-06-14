@@ -58,5 +58,11 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
             if(debug) Debug.LogFormat("[CharacterExposer] OnDisable : {0}", this.gameObject.name);
             ColliderDirectoryScript.Instance.RemoveCharacterExposer(this);
         }
+
+        private void LateUpdate()
+        {
+            if (!debug) return;
+            AttractorDebug = Attractor;
+        }
     }
 }
