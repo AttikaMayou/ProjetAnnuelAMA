@@ -124,7 +124,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                 var rb = player.CharacterRb;
                 var tr = player.CharacterTr;
 
-                if (player == null) continue;
+                if (!player.CharacterRootGameObject.activeSelf) continue;
 
                 if (intent.Move)
                 {
@@ -185,8 +185,9 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
 
                 if (player.Attractor == null)
                 {
-                    //Debug.LogError("There is no attractor near us !");
-                    return;
+                    Debug.LogFormat("[AvatarsController] {0} isn't actually attracted by anything",
+                        player);
+                    continue;
                 }
                 
                 //TODO : uncomment when ready to test Attraction
