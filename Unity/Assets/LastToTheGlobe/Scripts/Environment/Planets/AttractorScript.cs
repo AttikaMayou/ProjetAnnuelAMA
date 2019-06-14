@@ -19,11 +19,29 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
         public Vector3 DirForce;
 
         [SerializeField] private PhotonView photonView;
-        
-        public void Attractor(int playerId, float gravity)
+
+        //TODO : make this in a fixed update  !!
+        public void AttractPlayer(int playerId, float gravity)
         {
-            photonView.RPC("AttractObject", RpcTarget.MasterClient,
-                playerId, gravity);
+            //Only the MasterClient interact with collider and stuff like this
+            if (!PhotonNetwork.IsMasterClient) return;
+            
+            var player = ColliderDirectoryScript.Instance.GetCharacterExposer(playerId);
+            var attractedRb = player.CharacterRb;
+            var body = player.CharacterTr;
+            
+            //Give the direction of gravity
+            var gravityUp = (body.position - Exposer.PlanetTransform.position).normalized;
+            var bodyUp = body.up;
+          
+            attractedRb.AddForce(gravityUp * gravity);
+          
+            //Sync the vertical axe's player (up) with the gravity direction chosen before
+            var rotation = body.rotation;
+            var targetRotation = Quaternion.FromToRotation(bodyUp, gravityUp) * rotation;
+            rotation = Quaternion.Slerp(rotation, targetRotation, speedRotation * Time.deltaTime);
+            body.rotation = rotation;
+            DirForce = gravityUp;
         }
         
         #region Private Methods
@@ -111,26 +129,6 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
             //Set the attractor to null since the player isn't ACTUALLY attracted by anything
             player.Attractor = null;
         }
-
-        /*[PunRPC]
-        void AttractObject(int playerId, float gravity)
-        {
-            var player = ColliderDirectoryScript.Instance.GetCharacterExposer(playerId);
-            var attractedRb = player.CharacterRb;
-            var body = player.CharacterTr;
-            //Give the direction of gravity
-            var gravityUp = (body.position - transform.position).normalized;
-            var bodyUp = body.up;
-          
-            attractedRb.AddForce(gravityUp * gravity);
-          
-            //Sync the vertical axe's player (up) with the gravity direction chosen before
-            var rotation = body.rotation;
-            var targetRotation = Quaternion.FromToRotation(bodyUp, gravityUp) * rotation;
-            rotation = Quaternion.Slerp(rotation, targetRotation, speedRotation * Time.deltaTime);
-            body.rotation = rotation;
-            DirForce = gravityUp;
-        }*/
         
         #endregion
     }

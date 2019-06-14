@@ -190,8 +190,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                     continue;
                 }
                 
-                //TODO : uncomment when ready to test Attraction
-                //player.Attractor.Attractor(i, -2600.0f);
+                player.Attractor.AttractPlayer(i, -2600.0f);
                 /*if (intent.canJump && player.attractor)
                 {
                 }
@@ -199,11 +198,11 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                 {
                 }*/
 
-                if (intent.Jump)
-                {
-                    var jumpDir = player.Attractor.DirForce;
-                    rb.AddForce(jumpDir * 250);
-                }
+//                if (intent.Jump)
+//                {
+//                    var jumpDir = player.Attractor.DirForce;
+//                    rb.AddForce(jumpDir * 250);
+//                }
             }
         }
 
