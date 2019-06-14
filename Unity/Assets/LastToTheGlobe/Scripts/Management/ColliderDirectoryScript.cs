@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using Assets.LastToTheGlobe.Scripts.Avatar;
 using Assets.LastToTheGlobe.Scripts.Environment.Planets;
 using Assets.LastToTheGlobe.Scripts.Weapon.Orb;
@@ -54,6 +55,7 @@ namespace Assets.LastToTheGlobe.Scripts.Management
         public int GetPlayerId(Collider col)
         {
             if (!col) return -1;
+            if (CharacterExposers.Count == 0) StartCoroutine(Wait());
             var player = GetCharacterExposer(col);
             if (player) return player.Id;
             Debug.LogErrorFormat("[ColliderDirectoryScript] No CharacterExposer found with this collider {0}", 
@@ -258,6 +260,12 @@ namespace Assets.LastToTheGlobe.Scripts.Management
         }
         
         #endregion
+
+        private IEnumerator Wait()
+        {
+            if(debug) Debug.Log("[ColliderDirectoryScript] Wait called");
+            yield return new WaitForSeconds(0.5f);
+        }
         
     }
 }

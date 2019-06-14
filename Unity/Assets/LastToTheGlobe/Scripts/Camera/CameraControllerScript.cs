@@ -16,7 +16,9 @@ namespace Assets.LastToTheGlobe.Scripts.Camera
 
         [Header("Balance Parameters")] 
         [SerializeField] private float _yAdd;
+        //Suggested value : 1
         [SerializeField] private float _zAdd;
+        //Suggested value : -5.3
         
         [Header("Local Player References")] 
         public CharacterExposerScript PlayerExposer;

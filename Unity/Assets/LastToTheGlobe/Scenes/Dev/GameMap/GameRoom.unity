@@ -5142,6 +5142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d71c1c4a2c4ef8a46ae5ea8228dcfe1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debug: 1
   mainMenu: {fileID: 1993859181}
   onlinePlayButton: {fileID: 748210842}
   playMenu: {fileID: 1431679985}
@@ -9825,8 +9826,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debug: 1
-  _yAdd: 0
-  _zAdd: 0
+  _yAdd: 1
+  _zAdd: -5.3
   PlayerExposer: {fileID: 0}
   StartFollowing: 0
 --- !u!1 &2041767660
