@@ -72,44 +72,18 @@ namespace LastToTheGlobe.Scripts.Network
             }
             
             //Movement Intent
-            if (Input.GetKeyDown(KeyCode.Z))// && Math.Abs(forward) <  0.1f && Math.Abs(strafe) < 0.1f)
+            if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.S) 
+                                            || Input.GetKeyDown(KeyCode.Q) 
+                                            || Input.GetKeyDown(KeyCode.D))
             {
-                photonView.RPC("MoveForwardRPC", RpcTarget.MasterClient, true, Forward, Strafe);
+                photonView.RPC("MoveRPC", RpcTarget.MasterClient, true, Forward, Strafe);
             }
             
-            if (Input.GetKeyUp(KeyCode.Z))
+            if (Input.GetKeyUp(KeyCode.Z)|| Input.GetKeyUp(KeyCode.S) 
+                                         || Input.GetKeyUp(KeyCode.Q) 
+                                         || Input.GetKeyUp(KeyCode.D))
             {
-                photonView.RPC("MoveForwardRPC", RpcTarget.MasterClient, false, 0, 0);
-            }
-
-            if (Input.GetKeyDown(KeyCode.S))// && Math.Abs(forward) <  0.1f && Math.Abs(strafe) < 0.1f)
-            {
-                photonView.RPC("MoveBackRPC", RpcTarget.MasterClient, true, Forward, Strafe);
-            }
-
-            if (Input.GetKeyUp(KeyCode.S))
-            {
-                photonView.RPC("MoveBackRPC", RpcTarget.MasterClient, false, 0, 0);
-            }
-
-            if (Input.GetKeyDown(KeyCode.Q))// && Math.Abs(forward) <  0.1f && Math.Abs(strafe) < 0.1f)
-            {
-                photonView.RPC("MoveLeftRPC", RpcTarget.MasterClient, true, Forward, Strafe);
-            }
-
-            if (Input.GetKeyUp(KeyCode.Q))
-            {
-                photonView.RPC("MoveLeftRPC", RpcTarget.MasterClient, false, 0, 0);
-            }
-
-            if (Input.GetKeyDown(KeyCode.D))// && Math.Abs(forward) <  0.1f && Math.Abs(strafe) < 0.1f)
-            {
-                photonView.RPC("MoveRightRPC", RpcTarget.MasterClient, true, Forward, Strafe);
-            }
-
-            if (Input.GetKeyUp(KeyCode.D))
-            {
-                photonView.RPC("MoveRightRPC", RpcTarget.MasterClient, false, 0, 0);
+                photonView.RPC("MoveRPC", RpcTarget.MasterClient, false, 0, 0);
             }
             
             if (Input.GetKeyDown(KeyCode.LeftShift))
@@ -188,138 +162,38 @@ namespace LastToTheGlobe.Scripts.Network
                 RotationOnY = rotationY;
             }
         }
-        
-        [PunRPC]
-        void MoveLeftRPC(bool intent, int forwardInput, int strafeInput)
-        {
-            if (PhotonNetwork.IsMasterClient)
-            {
-                Speed = WalkSpeed;
-                if (debug)
-                {
-                    Debug.Log("I get the message : Move Left on this avatar : " + playerIndex);
-                    Debug.Log("Strafe value : " + strafeInput + " ; Forward value : " + forwardInput);
-                }
-                MoveLeft = intent;
-                Forward = forwardInput;
-                Strafe = strafeInput;
-            }
-        }
-        
-        [PunRPC]
-        void MoveLeftRPC(bool intent, float forwardInput, float strafeInput)
-        {
-            if (PhotonNetwork.IsMasterClient)
-            {
-                Speed = WalkSpeed;
-                if (debug)
-                {
-                    Debug.Log("I get the message : Move Left on this avatar : " + playerIndex);
-                    Debug.Log("Strafe value : " + strafeInput + " ; Forward value : " + forwardInput);
-                }
-                MoveLeft = intent;
-                Forward = forwardInput;
-                Strafe = strafeInput;
-            }
-        }
 
         [PunRPC]
-        void MoveBackRPC(bool intent, int forwardInput, int strafeInput)
+        void MoveRPC(bool intent, int forwardInput, int strafeInput)
         {
             if (PhotonNetwork.IsMasterClient)
             {
                 Speed = WalkSpeed;
                 if (debug)
                 {
-                    Debug.Log("I get the message : Move Back on this avatar : " + playerIndex);
-                    Debug.Log("Strafe value : " + strafeInput + " ; Forward value : " + forwardInput);
+                    Debug.LogFormat("I get the message : Move on this avatar : {0}", playerIndex);
+                    Debug.LogFormat("Strafe value : {0}; Forward value : {1}", 
+                        strafeInput, forwardInput);
                 }
-                MoveBack = intent;
+                Move = intent;
                 Forward = forwardInput;
                 Strafe = strafeInput;
             }
         }
         
         [PunRPC]
-        void MoveBackRPC(bool intent, float forwardInput, float strafeInput)
+        void MoveRPC(bool intent, float forwardInput, float strafeInput)
         {
             if (PhotonNetwork.IsMasterClient)
             {
                 Speed = WalkSpeed;
                 if (debug)
                 {
-                    Debug.Log("I get the message : Move Back on this avatar : " + playerIndex);
-                    Debug.Log("Strafe value : " + strafeInput + " ; Forward value : " + forwardInput);
+                    Debug.LogFormat("I get the message : Move on this avatar : {0}", playerIndex);
+                    Debug.LogFormat("Strafe value : {0}; Forward value : {1}", 
+                        strafeInput, forwardInput);
                 }
-                MoveBack = intent;
-                Forward = forwardInput;
-                Strafe = strafeInput;
-            }
-        }
-
-        [PunRPC]
-        void MoveRightRPC(bool intent, int forwardInput, int strafeInput)
-        {
-            if (PhotonNetwork.IsMasterClient)
-            {
-                Speed = WalkSpeed;
-                if (debug)
-                {
-                    Debug.Log("I get the message : Move Right on this avatar : " + playerIndex);
-                    Debug.Log("Strafe value : " + strafeInput + " ; Forward value : " + forwardInput);
-                }
-                MoveRight = intent;
-                Forward = forwardInput;
-                Strafe = strafeInput;
-            }
-        }
-        
-        [PunRPC]
-        void MoveRightRPC(bool intent, float forwardInput, float strafeInput)
-        {
-            if (PhotonNetwork.IsMasterClient)
-            {
-                Speed = WalkSpeed;
-                if (debug)
-                {
-                    Debug.Log("I get the message : Move Right on this avatar : " + playerIndex);
-                    Debug.Log("Strafe value : " + strafeInput + " ; Forward value : " + forwardInput);
-                }
-                MoveRight = intent;
-                Forward = forwardInput;
-                Strafe = strafeInput;
-            }
-        }
-
-        [PunRPC]
-        void MoveForwardRPC(bool intent, int forwardInput, int strafeInput)
-        {
-            if (PhotonNetwork.IsMasterClient)
-            {
-                Speed = WalkSpeed;
-                if (debug)
-                {
-                    Debug.Log("I get the message : Move Forward on this avatar : " + playerIndex);
-                    Debug.Log("Strafe value : " + strafeInput + " ; Forward value : " + forwardInput);
-                }
-                MoveForward = intent;
-                Forward = forwardInput;
-                Strafe = strafeInput;
-            }
-        }
-        
-        [PunRPC]
-        void MoveForwardRPC(bool intent, float forwardInput, float strafeInput)
-        {
-            if (PhotonNetwork.IsMasterClient)
-            {
-                Speed = WalkSpeed;
-                if (debug)
-                {
-                    Debug.Log("I get the message : Move Forward on this avatar : " + playerIndex);
-                    Debug.Log("Strafe value : " + strafeInput + " ; Forward value : " + forwardInput);
-                }
-                MoveForward = intent;
+                Move = intent;
                 Forward = forwardInput;
                 Strafe = strafeInput;
             }

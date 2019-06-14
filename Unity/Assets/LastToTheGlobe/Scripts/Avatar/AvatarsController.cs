@@ -74,8 +74,8 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
             startMenuController.OnlinePlayReady += ChooseAndSubscribeToIntentReceivers;
             startMenuController.PlayerJoined += ActivateAvatar;
             startMenuController.SetCamera += SetupCamera;
-            startMenuController.GameCanStart += LaunchGameRoom;
-            //startMenuController.GameCanStart += SetSeed;
+            //TODO : make sure attraction works before uncomment the following line
+            //startMenuController.GameCanStart += LaunchGameRoom;
         }
 
         private void FixedUpdate()
@@ -100,8 +100,8 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
 
             if (Input.GetKeyDown(KeyCode.L))
             {
-                StopCoroutine(CountdownBeforeSwitchingScene(0.0f));
-                StartCoroutine(CountdownBeforeSwitchingScene(2.0f));
+                StopCoroutine(CountdownBeforeSwitchingScene(.0f));
+                StartCoroutine(CountdownBeforeSwitchingScene(.5f));
             }
 
             if (_activatedIntentReceivers == null
@@ -125,13 +125,10 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
 
                 if (player == null) continue;
 
-                if (intent.MoveBack || intent.MoveForward
-                                    || intent.MoveRight || intent.MoveLeft)
+                if (intent.Move)
                 {
                     moveIntent += new Vector3(intent.Strafe, 0.0f, intent.Forward);
                 }
-
-               
 
                 if (intent.Shoot)
                 {
@@ -231,10 +228,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
             foreach (var intent in _activatedIntentReceivers)
             {
                 intent.enabled = true;
-                intent.MoveBack = false;
-                intent.MoveForward = false;
-                intent.MoveLeft = false;
-                intent.MoveRight = false;
+                intent.Move = false;
                 intent.Run = false;
                 intent.Jump = false;
                 intent.CanJump = true;
@@ -334,7 +328,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
         }
 
         /// Wait the time indicated before teleport players to the spawn points
-        private IEnumerator CountdownBeforeSwitchingScene(float time)
+        private IEnumerator CountdownBeforeSwitchingScene(float time = 2.0f)
         {
             yield return new WaitForSeconds(time);
             
@@ -367,7 +361,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
             foreach (var planet in ColliderDirectoryScript.Instance.PlanetExposers)
             {
                 if (!planet.IsSpawnPlanet) continue;
-                _spawnPoints.Add(planet.PlanetTransform);
+                _spawnPoints.Add(planet.SpawnPosition);
             }
             
             if (debug)
@@ -380,7 +374,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                 }
             }
             
-            _spawnPos = new Vector3[_spawnPoints.Count + 1];
+            _spawnPos = new Vector3[_spawnPoints.Count];
             for (var i = 0; i < _spawnPoints.Count; i++)
             {
                 _spawnPos[i] = _spawnPoints[i].position;
