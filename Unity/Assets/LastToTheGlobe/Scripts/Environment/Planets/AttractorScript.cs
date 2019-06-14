@@ -46,6 +46,8 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
 
         private void OnTriggerEnter(Collider other)
         {
+            if(debug) Debug.LogFormat("[AttractorScript] {0} get triggered by something : {1}",
+                this.gameObject.name , other.gameObject.name);
             //The planet detects a collider entered its attraction field 
             //Send the MasterClient a message to warn him with its own ID
             if(!PhotonNetwork.IsMasterClient) return;
@@ -55,7 +57,7 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
         
         #endregion
 
-        private void OnTriggerExit(Collider coll)
+        /*private void OnTriggerExit(Collider coll)
         {
             //Only the MasterClient interact with collider and stuff like this
             if (!PhotonNetwork.IsMasterClient) return;
@@ -68,7 +70,7 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
             if(playerId != -1)
                 photonView.RPC("RemoveAttractor", RpcTarget.MasterClient,
                     playerId);
-        }
+        }*/
         
         #region RPC Callbacks
         
@@ -78,6 +80,7 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
         [PunRPC]
         void DetectObjectRPC(int planetId)
         {
+            if(debug) Debug.Log("[AttractorScript] DetectObject called");
             var planet = ColliderDirectoryScript.Instance.GetPlanetExposer(planetId);
             
         }

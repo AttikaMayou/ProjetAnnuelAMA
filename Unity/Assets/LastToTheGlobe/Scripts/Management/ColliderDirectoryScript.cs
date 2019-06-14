@@ -123,7 +123,7 @@ namespace Assets.LastToTheGlobe.Scripts.Management
         
         public PlanetExposerScript GetPlanetExposer(int id)
         {
-            if(debug) Debug.Log("[ColliderDirectoryScript] Trying to find player from " +
+            if(debug) Debug.Log("[ColliderDirectoryScript] Trying to find planet from " +
                                 "this id: " + id);
             if (id < 0 || id >= PlanetExposers.Count) return null;
             return !PhotonNetwork.IsMasterClient ? null : PlanetExposers[id];
@@ -134,7 +134,7 @@ namespace Assets.LastToTheGlobe.Scripts.Management
             if (!col) return -1;
             var planet = GetPlanetExposer(col);
             if (planet) return planet.Id;
-            Debug.LogErrorFormat("[ColliderDirectoryScript] No CharacterExposer found with this collider {0}",
+            Debug.LogErrorFormat("[ColliderDirectoryScript] No PlanetExposer found with this collider {0}",
                 col.name);
             return -1;
         }
@@ -198,7 +198,7 @@ namespace Assets.LastToTheGlobe.Scripts.Management
         
         public OrbManager GetOrbManager(int id)
         {
-            if(debug) Debug.Log("[ColliderDirectoryScript] Trying to find player from this id: " + id);
+            if(debug) Debug.Log("[ColliderDirectoryScript] Trying to find orb from this id: " + id);
             if (id < 0 || id >= OrbManagers.Count) return null;
             return !PhotonNetwork.IsMasterClient ? null : OrbManagers[id];
         }

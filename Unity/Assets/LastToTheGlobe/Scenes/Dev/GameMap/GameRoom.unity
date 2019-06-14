@@ -1019,6 +1019,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1253, guid: c83770715bf346641832232e27c6c903, type: 3}
+      propertyPath: debug
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c83770715bf346641832232e27c6c903, type: 3}
 --- !u!1001 &207126876
@@ -3457,11 +3461,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfc74830cdfde3240826067a5a4574b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: 0
+  debug: 1
   CharacterExposers: []
   _activePlayers: 0
-  PlanetExposers: []
-  _activePlanets: 0
+  PlanetExposers:
+  - {fileID: 1832395196}
+  - {fileID: 1513692782}
+  _activePlanets: 2
   OrbManagers: []
   _activeOrbs: 0
 --- !u!1001 &697464774
@@ -7493,6 +7499,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 200661522}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1513692782 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1251, guid: c83770715bf346641832232e27c6c903,
+    type: 3}
+  m_PrefabInstance: {fileID: 200661522}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513692778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22d56e4cfea04bf4696856bb028a9ff7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1523160636 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4530374371546247746, guid: 19083d05772af8b4dbec64b8289d90d4,
@@ -8657,6 +8675,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 9194414417871405397}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1832395196 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1261, guid: 26d4fae48b756154f9ba8c29057cfed4,
+    type: 3}
+  m_PrefabInstance: {fileID: 9194414417871405397}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832395192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22d56e4cfea04bf4696856bb028a9ff7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1832395197 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1262, guid: 26d4fae48b756154f9ba8c29057cfed4,
@@ -12068,6 +12098,10 @@ PrefabInstance:
     - target: {fileID: 582, guid: 26d4fae48b756154f9ba8c29057cfed4, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1262, guid: 26d4fae48b756154f9ba8c29057cfed4, type: 3}
+      propertyPath: debug
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9194414416188521490, guid: 26d4fae48b756154f9ba8c29057cfed4,
         type: 3}

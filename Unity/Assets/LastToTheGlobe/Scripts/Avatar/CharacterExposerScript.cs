@@ -46,6 +46,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
         {
             //only the Master Client add the player to the directory and get his ID
             if (!PhotonNetwork.IsMasterClient) return;
+            if(debug) Debug.LogFormat("[CharacterExposer] OnEnable : {0}", this.gameObject.name);
             ColliderDirectoryScript.Instance.AddCharacterExposer(this, out Id);
         }
         
@@ -54,6 +55,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
         {
             //only the Master Client remove the player to the directory and reset his ID
             if (!PhotonNetwork.IsMasterClient) return;
+            if(debug) Debug.LogFormat("[CharacterExposer] OnDisable : {0}", this.gameObject.name);
             ColliderDirectoryScript.Instance.RemoveCharacterExposer(this);
         }
     }
