@@ -200,7 +200,6 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                     var jumpDir = player.Attractor.DirForce;
                     rb.AddForce(jumpDir * 250);
                 }
-                
             }
         }
 
@@ -243,7 +242,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
             }
         }
 
-        /// Called to activate the avatar root gameObject when a player join the game
+        // Called to activate the avatar root gameObject when a player join the game
         private void ActivateAvatar(int id)
         {
             if (PhotonNetwork.IsConnected)
@@ -256,7 +255,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
             }
         }
 
-        /// Called to set the right local target to camera
+        // Called to set the right local target to camera
         private void SetupCamera(int id)
         {
             if(debug) Debug.Log("Camera setup initialized");
@@ -272,8 +271,8 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
             if(debug) Debug.Log("Camera is set for " + id);
         }
 
-        /// Each time a player join the lobby, we check if we're enough.
-        /// If yes, we load the GameRoom after a countdown
+        // Each time a player join the lobby, we check if we're enough.
+        // If yes, we load the GameRoom after a countdown
         private void LaunchGameRoom()
         {
             if (!PhotonNetwork.IsMasterClient) return;
@@ -327,7 +326,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
             return j >= nbMinPlayers;
         }
 
-        /// Wait the time indicated before teleport players to the spawn points
+        // Wait the time indicated before teleport players to the spawn points
         private IEnumerator CountdownBeforeSwitchingScene(float time = 2.0f)
         {
             yield return new WaitForSeconds(time);

@@ -79,9 +79,9 @@ namespace LastToTheGlobe.Scripts.Network
                 photonView.RPC("MoveRPC", RpcTarget.MasterClient, true, Forward, Strafe);
             }
             
-            if (Input.GetKeyUp(KeyCode.Z)|| Input.GetKeyUp(KeyCode.S) 
-                                         || Input.GetKeyUp(KeyCode.Q) 
-                                         || Input.GetKeyUp(KeyCode.D))
+            if (Input.GetKeyUp(KeyCode.Z) || Input.GetKeyUp(KeyCode.S) 
+                                          || Input.GetKeyUp(KeyCode.Q) 
+                                          || Input.GetKeyUp(KeyCode.D))
             {
                 photonView.RPC("MoveRPC", RpcTarget.MasterClient, false, 0, 0);
             }

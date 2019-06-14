@@ -18,6 +18,8 @@ namespace LastToTheGlobe.Scripts.Network
 {
     public class StartMenuController : MonoBehaviourPunCallbacks
     {
+        public bool debug = true;
+        
         #region Private Variables
 
         [Header("MainMenu Objects")] 
@@ -135,6 +137,7 @@ namespace LastToTheGlobe.Scripts.Network
 
         private IEnumerator InvokePlayerJoinedMethod(int actorNumber)
         {
+            if(debug) Debug.Log("InvokePlayerJoinedMethod IEnumerator called");
             yield return new WaitForSeconds(1.0f);
 
             var i = 0;
@@ -147,14 +150,15 @@ namespace LastToTheGlobe.Scripts.Network
             }
             
             PlayerJoined?.Invoke(i);
-            Debug.Log("PlayerJoined invoked");
+            if(debug) Debug.Log("PlayerJoined invoked");
             SetCamera?.Invoke(i);
-            Debug.Log("SetCamera invoked");
+            if(debug) Debug.Log("SetCamera invoked");
             GameCanStart?.Invoke();
         }
 
         private IEnumerator InvokeRoomJoinedMethod()
         {
+            if(debug) Debug.Log("InvokeRoomJoinedMethod IEnumerator called");
             yield return new WaitForSeconds(1.0f);
             var i = 0;
             for (; i < PlayerNumbering.SortedPlayers.Length; i++)
@@ -173,9 +177,9 @@ namespace LastToTheGlobe.Scripts.Network
                 PlayerJoined?.Invoke(i);
                 GameCanStart?.Invoke();
             }
-            Debug.Log("PlayerJoined invoked");
+            if(debug) Debug.Log("PlayerJoined invoked");
             SetCamera?.Invoke(i);
-            Debug.Log("SetCamera invoked");
+            if(debug) Debug.Log("SetCamera invoked");
         }
         
         #endregion

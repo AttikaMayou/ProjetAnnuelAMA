@@ -5,8 +5,7 @@ using LastToTheGlobe.Scripts.Management;
 using Photon.Pun;
 using UnityEngine;
 
-//Auteur : Abdallah
-//Modification : Attika
+//Auteur : Attika
 
 namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
 {
@@ -27,7 +26,7 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
                 playerId, gravity);
         }
 
-        private void OnTriggerEnter(Collider coll)
+        /*private void OnTriggerEnter(Collider coll)
         {
             //Only the MasterClient interact with collider and stuff like this
             if (!PhotonNetwork.IsMasterClient) return;
@@ -41,7 +40,20 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
             if(planetId != -1 && playerId != -1)
                 photonView.RPC("SetAttractor", RpcTarget.MasterClient,
                     playerId, planetId);
+        }*/
+        
+        #region Private Methods
+
+        private void OnTriggerEnter(Collider other)
+        {
+            //The planet detects a collider entered its attraction field 
+            //Send the MasterClient a message to warn him with its own ID
+            if(!PhotonNetwork.IsMasterClient) return;
+            var player = ColliderDirectoryScript.Instance.GetPlayerId(other);
+            photonView.RPC("DetectObjectRPC", RpcTarget.MasterClient, Exposer.Id);
         }
+        
+        #endregion
 
         private void OnTriggerExit(Collider coll)
         {
@@ -61,7 +73,16 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
         #region RPC Callbacks
         
         //TODO : Refacto this function
+        
+
         [PunRPC]
+        void DetectObjectRPC(int planetId)
+        {
+            var planet = ColliderDirectoryScript.Instance.GetPlanetExposer(planetId);
+            
+        }
+
+        /*[PunRPC]
         void AttractObject(int playerId, float gravity)
         {
             var player = ColliderDirectoryScript.Instance.GetCharacterExposer(playerId);
@@ -70,9 +91,9 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
             //Give the direction of gravity
             var gravityUp = (body.position - transform.position).normalized;
             var bodyUp = body.up;
-
+          
             attractedRb.AddForce(gravityUp * gravity);
-
+          
             //Sync the vertical axe's player (up) with the gravity direction chosen before
             var rotation = body.rotation;
             var targetRotation = Quaternion.FromToRotation(bodyUp, gravityUp) * rotation;
@@ -80,7 +101,7 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
             body.rotation = rotation;
             DirForce = gravityUp;
         }
-
+        
         [PunRPC]
         void SetAttractor(int playerId, int planetId)
         {
@@ -111,7 +132,7 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
 
             //Set the attractor to null since the player isn't ACTUALLY attracted by anything
             player.Attractor = null;
-        }
+        }*/
         
         #endregion
     }
