@@ -131,7 +131,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                     moveIntent += new Vector3(intent.Strafe, 0.0f, intent.Forward);
                 }
 
-                if (intent.Shoot)
+                /*if (intent.Shoot)
                 {
                     if(debug) Debug.Log("[AvatarsController] Shoot intent");
                     if (_currentOrb == null)
@@ -165,7 +165,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                         _currentOrb = null;
                         //TODO : when the orb is reset --> canShoot = true
                     }
-                }
+                }*/
 
                 if (intent.Bump)
                 {

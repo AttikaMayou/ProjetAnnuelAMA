@@ -19,8 +19,7 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
         public Vector3 DirForce;
 
         [SerializeField] private PhotonView photonView;
-
-        //TODO : make this in a fixed update  !!
+        
         public void AttractPlayer(int playerId, float gravity)
         {
             //Only the MasterClient interact with collider and stuff like this
@@ -43,6 +42,7 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
             body.rotation = rotation;
             DirForce = gravityUp;
         }
+        
         
         #region Private Methods
 
