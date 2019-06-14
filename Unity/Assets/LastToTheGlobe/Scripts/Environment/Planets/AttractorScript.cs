@@ -25,22 +25,6 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
             photonView.RPC("AttractObject", RpcTarget.MasterClient,
                 playerId, gravity);
         }
-
-        /*private void OnTriggerEnter(Collider coll)
-        {
-            //Only the MasterClient interact with collider and stuff like this
-            if (!PhotonNetwork.IsMasterClient) return;
-
-            //Get the ID's of the player and planet with their respective collider
-            var playerId = ColliderDirectoryScript.Instance.GetPlayerId(coll);
-            var planetId = ColliderDirectoryScript.Instance.GetPlanetId(Exposer.PlanetCollider);
-            
-            //If the ID are different from -1 (means that the exposers are enabled),
-            //we call the function 'SetAttractor'
-            if(planetId != -1 && playerId != -1)
-                photonView.RPC("SetAttractor", RpcTarget.MasterClient,
-                    playerId, planetId);
-        }*/
         
         #region Private Methods
 
@@ -49,34 +33,43 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
         {
             if(debug) Debug.LogFormat("[AttractorScript] {0} get triggered by something : {1}",
                 this.gameObject.name , other.gameObject.name);
+            
+            //Only the MasterClient interact with collider and stuff like this
             if(!PhotonNetwork.IsMasterClient) return;
+            
             var playerId = ColliderDirectoryScript.Instance.GetPlayerId(other);
+            
             //if playerId is different from -1, that means this is a player which hit the planet
             if (playerId != -1) 
             {
-                //Send the MasterClient a message to warn him with its own ID and the playerId
+                //Send the MasterClient a message to warn him with its own ID and playerId
                 photonView.RPC("DetectPlayerRPC", RpcTarget.MasterClient,
                     Exposer.Id, playerId);
             }
         }
         
-        #endregion
-
-        /*private void OnTriggerExit(Collider coll)
+        //The planet detects a collider exit its attraction field 
+        private void OnTriggerExit(Collider other)
         {
+            if(debug) Debug.LogFormat("[AttractorScript] {1} left {0}",
+                this.gameObject.name , other.gameObject.name);
+            
             //Only the MasterClient interact with collider and stuff like this
             if (!PhotonNetwork.IsMasterClient) return;
+
+            var playerId = ColliderDirectoryScript.Instance.GetPlayerId(other);
             
-            //Get ID of the player with his collider
-            var playerId = ColliderDirectoryScript.Instance.GetPlayerId(coll);
-            
-            //If ID is different from -1 (means that the exposer is enabled),
-            //we call the function 'RemoveAttractor'
-            if(playerId != -1)
-                photonView.RPC("RemoveAttractor", RpcTarget.MasterClient,
+            //if playerId is different from -1, that means this is a player which left the planet
+            if (playerId != -1) 
+            {
+                //Send the MasterClient a message to warn him with playerId
+                photonView.RPC("RemoveAttractorPlayerRPC", RpcTarget.MasterClient, 
                     playerId);
-        }*/
+            }
+        }
         
+        #endregion
+
         #region RPC Callbacks
         
         [PunRPC]
@@ -84,7 +77,7 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
         {
             if(debug) Debug.Log("[AttractorScript] DetectPlayerRPC received");
             
-            //Find the exposers from the int parameters (IDs)
+            //Find exposers from int parameters (IDs)
             var planet = ColliderDirectoryScript.Instance.GetPlanetExposer(planetId);
             var player = ColliderDirectoryScript.Instance.GetCharacterExposer(playerId);
 
@@ -98,6 +91,25 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
             
             //Set the attractor script which ACTUALLY attract player
             player.Attractor = planet.AttractorScript;
+        }
+
+        [PunRPC]
+        void RemoveAttractorPlayerRPC(int playerId)
+        {
+            if(debug) Debug.Log("[AttractorScript] RemoveAttractorPlayerRPC received");
+            
+            //Find exposer from int parameter (ID)
+            var player = ColliderDirectoryScript.Instance.GetCharacterExposer(playerId);
+
+            if (!player) return;
+            
+            if (debug)
+            {
+                Debug.Log("Found the player " + player.name + " from this ID : " + playerId);
+            }
+
+            //Set the attractor to null since the player isn't ACTUALLY attracted by anything
+            player.Attractor = null;
         }
 
         /*[PunRPC]
@@ -118,38 +130,6 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
             rotation = Quaternion.Slerp(rotation, targetRotation, speedRotation * Time.deltaTime);
             body.rotation = rotation;
             DirForce = gravityUp;
-        }
-        
-        [PunRPC]
-        void SetAttractor(int playerId, int planetId)
-        {
-            //Find the exposers from the int parameters (IDs)
-            var player = ColliderDirectoryScript.Instance.GetCharacterExposer(playerId);
-            var planet = ColliderDirectoryScript.Instance.GetPlanetExposer(planetId);
-            
-            if (debug)
-            {
-                Debug.Log("Find the player " + player.name + " from this ID : " + playerId);
-                Debug.Log("Find the planet " + planet.name + " from this ID : " + planetId);
-            }
-
-            //Set the attractor script which ACTUALLY attract player
-            player.Attractor = planet.AttractorScript;
-        }
-
-        [PunRPC]
-        void RemoveAttractor(int playerId)
-        {
-            //Find the exposer from the int parameter (ID)
-            var player = ColliderDirectoryScript.Instance.GetCharacterExposer(playerId);
-            
-            if (debug)
-            {
-                Debug.Log("Find the player " + player.name + " from this ID : " + playerId);
-            }
-
-            //Set the attractor to null since the player isn't ACTUALLY attracted by anything
-            player.Attractor = null;
         }*/
         
         #endregion
