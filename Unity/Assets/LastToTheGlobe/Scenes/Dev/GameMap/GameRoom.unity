@@ -507,6 +507,11 @@ PrefabInstance:
       propertyPath: attractorDebug
       value: 
       objectReference: {fileID: 1832395197}
+    - target: {fileID: 4032840751649765454, guid: 1f452279093f47548bb24503b9a3d21e,
+        type: 3}
+      propertyPath: Id
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f452279093f47548bb24503b9a3d21e, type: 3}
 --- !u!114 &78709048 stripped
@@ -650,16 +655,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba9d0963de15b8b4daedcbd5d4316561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forward: 0
-  strafe: 0
-  speed: 0
-  loadShotValue: 0
-  rotationOnX: 0
-  rotationOnY: 0
-  rotationSpeed: 0
-  canDash: 1
-  canJump: 1
-  canShoot: 1
+  Forward: 0
+  Strafe: 0
+  Speed: 5
+  LoadShotValue: 0
+  RotationOnX: 0
+  RotationOnY: 0
+  RotationSpeed: 5
+  CanDash: 1
+  CanJump: 1
+  CanShoot: 1
   debug: 0
   playerIndex: 0
   photonView: {fileID: 155583048}
@@ -2121,6 +2126,11 @@ PrefabInstance:
       propertyPath: attractorDebug
       value: 
       objectReference: {fileID: 1832395197}
+    - target: {fileID: 4032840751649765454, guid: 1f452279093f47548bb24503b9a3d21e,
+        type: 3}
+      propertyPath: Id
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f452279093f47548bb24503b9a3d21e, type: 3}
 --- !u!114 &436290799 stripped
@@ -2609,16 +2619,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba9d0963de15b8b4daedcbd5d4316561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forward: 0
-  strafe: 0
-  speed: 0
-  loadShotValue: 0
-  rotationOnX: 0
-  rotationOnY: 0
-  rotationSpeed: 0
-  canDash: 1
-  canJump: 1
-  canShoot: 1
+  Forward: 0
+  Strafe: 0
+  Speed: 5
+  LoadShotValue: 0
+  RotationOnX: 0
+  RotationOnY: 0
+  RotationSpeed: 5
+  CanDash: 1
+  CanJump: 1
+  CanShoot: 1
   debug: 0
   playerIndex: 9
   photonView: {fileID: 555129873}
@@ -3054,16 +3064,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba9d0963de15b8b4daedcbd5d4316561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forward: 0
-  strafe: 0
-  speed: 0
-  loadShotValue: 0
-  rotationOnX: 0
-  rotationOnY: 0
-  rotationSpeed: 0
-  canDash: 1
-  canJump: 1
-  canShoot: 1
+  Forward: 0
+  Strafe: 0
+  Speed: 5
+  LoadShotValue: 0
+  RotationOnX: 0
+  RotationOnY: 0
+  RotationSpeed: 5
+  CanDash: 1
+  CanJump: 1
+  CanShoot: 1
   debug: 0
   playerIndex: 3
   photonView: {fileID: 616310086}
@@ -3448,10 +3458,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debug: 0
-  isInitialized: 0
   CharacterExposers: []
+  _activePlayers: 0
   PlanetExposers: []
+  _activePlanets: 0
   OrbManagers: []
+  _activeOrbs: 0
 --- !u!1001 &697464774
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3750,6 +3762,11 @@ PrefabInstance:
       propertyPath: attractorDebug
       value: 
       objectReference: {fileID: 1832395197}
+    - target: {fileID: 4032840751649765454, guid: 1f452279093f47548bb24503b9a3d21e,
+        type: 3}
+      propertyPath: Id
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f452279093f47548bb24503b9a3d21e, type: 3}
 --- !u!114 &725648480 stripped
@@ -4188,16 +4205,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba9d0963de15b8b4daedcbd5d4316561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forward: 0
-  strafe: 0
-  speed: 0
-  loadShotValue: 0
-  rotationOnX: 0
-  rotationOnY: 0
-  rotationSpeed: 0
-  canDash: 1
-  canJump: 1
-  canShoot: 1
+  Forward: 0
+  Strafe: 0
+  Speed: 5
+  LoadShotValue: 0
+  RotationOnX: 0
+  RotationOnY: 0
+  RotationSpeed: 5
+  CanDash: 1
+  CanJump: 1
+  CanShoot: 1
   debug: 0
   playerIndex: 8
   photonView: {fileID: 872339705}
@@ -4411,6 +4428,11 @@ PrefabInstance:
       propertyPath: attractorDebug
       value: 
       objectReference: {fileID: 1832395197}
+    - target: {fileID: 4032840751649765454, guid: 1f452279093f47548bb24503b9a3d21e,
+        type: 3}
+      propertyPath: Id
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f452279093f47548bb24503b9a3d21e, type: 3}
 --- !u!114 &919718686 stripped
@@ -4780,16 +4802,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba9d0963de15b8b4daedcbd5d4316561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forward: 0
-  strafe: 0
-  speed: 0
-  loadShotValue: 0
-  rotationOnX: 0
-  rotationOnY: 0
-  rotationSpeed: 0
-  canDash: 1
-  canJump: 1
-  canShoot: 1
+  Forward: 0
+  Strafe: 0
+  Speed: 5
+  LoadShotValue: 0
+  RotationOnX: 0
+  RotationOnY: 0
+  RotationSpeed: 5
+  CanDash: 1
+  CanJump: 1
+  CanShoot: 1
   debug: 0
   playerIndex: 7
   photonView: {fileID: 973798960}
@@ -5780,16 +5802,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba9d0963de15b8b4daedcbd5d4316561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forward: 0
-  strafe: 0
-  speed: 0
-  loadShotValue: 0
-  rotationOnX: 0
-  rotationOnY: 0
-  rotationSpeed: 0
-  canDash: 1
-  canJump: 1
-  canShoot: 1
+  Forward: 0
+  Strafe: 0
+  Speed: 5
+  LoadShotValue: 0
+  RotationOnX: 0
+  RotationOnY: 0
+  RotationSpeed: 5
+  CanDash: 1
+  CanJump: 1
+  CanShoot: 1
   debug: 0
   playerIndex: 1
   photonView: {fileID: 1195017197}
@@ -5937,6 +5959,11 @@ PrefabInstance:
       propertyPath: attractorDebug
       value: 
       objectReference: {fileID: 1832395197}
+    - target: {fileID: 4032840751649765454, guid: 1f452279093f47548bb24503b9a3d21e,
+        type: 3}
+      propertyPath: Id
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f452279093f47548bb24503b9a3d21e, type: 3}
 --- !u!114 &1214311301 stripped
@@ -6601,16 +6628,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba9d0963de15b8b4daedcbd5d4316561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forward: 0
-  strafe: 0
-  speed: 0
-  loadShotValue: 0
-  rotationOnX: 0
-  rotationOnY: 0
-  rotationSpeed: 0
-  canDash: 1
-  canJump: 1
-  canShoot: 1
+  Forward: 0
+  Strafe: 0
+  Speed: 5
+  LoadShotValue: 0
+  RotationOnX: 0
+  RotationOnY: 0
+  RotationSpeed: 5
+  CanDash: 1
+  CanJump: 1
+  CanShoot: 1
   debug: 0
   playerIndex: 6
   photonView: {fileID: 1350372265}
@@ -7429,6 +7456,11 @@ PrefabInstance:
       propertyPath: attractorDebug
       value: 
       objectReference: {fileID: 1832395197}
+    - target: {fileID: 4032840751649765454, guid: 1f452279093f47548bb24503b9a3d21e,
+        type: 3}
+      propertyPath: Id
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4032840750367864675, guid: 1f452279093f47548bb24503b9a3d21e,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -7607,16 +7639,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba9d0963de15b8b4daedcbd5d4316561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forward: 0
-  strafe: 0
-  speed: 0
-  loadShotValue: 0
-  rotationOnX: 0
-  rotationOnY: 0
-  rotationSpeed: 0
-  canDash: 1
-  canJump: 1
-  canShoot: 1
+  Forward: 0
+  Strafe: 0
+  Speed: 5
+  LoadShotValue: 0
+  RotationOnX: 0
+  RotationOnY: 0
+  RotationSpeed: 5
+  CanDash: 1
+  CanJump: 1
+  CanShoot: 1
   debug: 0
   playerIndex: 2
   photonView: {fileID: 1556246820}
@@ -7871,6 +7903,11 @@ PrefabInstance:
       propertyPath: attractorDebug
       value: 
       objectReference: {fileID: 1832395197}
+    - target: {fileID: 4032840751649765454, guid: 1f452279093f47548bb24503b9a3d21e,
+        type: 3}
+      propertyPath: Id
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f452279093f47548bb24503b9a3d21e, type: 3}
 --- !u!114 &1571886696 stripped
@@ -7935,16 +7972,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba9d0963de15b8b4daedcbd5d4316561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forward: 0
-  strafe: 0
-  speed: 0
-  loadShotValue: 0
-  rotationOnX: 0
-  rotationOnY: 0
-  rotationSpeed: 0
-  canDash: 1
-  canJump: 1
-  canShoot: 1
+  Forward: 0
+  Strafe: 0
+  Speed: 5
+  LoadShotValue: 0
+  RotationOnX: 0
+  RotationOnY: 0
+  RotationSpeed: 5
+  CanDash: 1
+  CanJump: 1
+  CanShoot: 1
   debug: 0
   playerIndex: 5
   photonView: {fileID: 1575713761}
@@ -9118,6 +9155,11 @@ PrefabInstance:
       propertyPath: attractorDebug
       value: 
       objectReference: {fileID: 1832395197}
+    - target: {fileID: 4032840751649765454, guid: 1f452279093f47548bb24503b9a3d21e,
+        type: 3}
+      propertyPath: Id
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f452279093f47548bb24503b9a3d21e, type: 3}
 --- !u!114 &1906278449 stripped
@@ -9299,7 +9341,7 @@ MonoBehaviour:
     spaceCount: 0
     wordCount: 2
     linkCount: 0
-    lineCount: 1
+    lineCount: 2
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 0
@@ -9783,10 +9825,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debug: 1
-  yAdd: 1
-  zAdd: -5.3
-  playerExposer: {fileID: 0}
-  startFollowing: 0
+  _yAdd: 0
+  _zAdd: 0
+  PlayerExposer: {fileID: 0}
+  StartFollowing: 0
 --- !u!1 &2041767660
 GameObject:
   m_ObjectHideFlags: 0
@@ -10069,16 +10111,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba9d0963de15b8b4daedcbd5d4316561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forward: 0
-  strafe: 0
-  speed: 0
-  loadShotValue: 0
-  rotationOnX: 0
-  rotationOnY: 0
-  rotationSpeed: 0
-  canDash: 1
-  canJump: 1
-  canShoot: 1
+  Forward: 0
+  Strafe: 0
+  Speed: 5
+  LoadShotValue: 0
+  RotationOnX: 0
+  RotationOnY: 0
+  RotationSpeed: 5
+  CanDash: 1
+  CanJump: 1
+  CanShoot: 1
   debug: 0
   playerIndex: 4
   photonView: {fileID: 2049556011}
@@ -10876,6 +10918,11 @@ PrefabInstance:
       propertyPath: attractorDebug
       value: 
       objectReference: {fileID: 1832395197}
+    - target: {fileID: 4032840751649765454, guid: 1f452279093f47548bb24503b9a3d21e,
+        type: 3}
+      propertyPath: Id
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f452279093f47548bb24503b9a3d21e, type: 3}
 --- !u!114 &2102408401 stripped
