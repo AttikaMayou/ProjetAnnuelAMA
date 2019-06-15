@@ -9,49 +9,60 @@ using UnityEngine;
 
 namespace Assets.LastToTheGlobe.Scripts.Avatar
 {
-    public class CharacterExposerScript : global::LastToTheGlobe.Scripts.Avatar.Avatar
+    public class CharacterExposerScript : Avatar
     {
         public bool debug = true;
 
-        public GameObject characterRootGameObject;
+        //The id value of this player. Updated at awakening
+        public int Id;
+        
+        public GameObject CharacterRootGameObject;
         [Header("Player Control Parameters")] 
-        public Rigidbody characterRb;
-        public Transform characterTr;
-        public Collider characterCollider;
+        public Rigidbody CharacterRb;
+        public Transform CharacterTr;
+        public Collider CharacterCollider;
         [Header("Network Parameters")]
-        public PhotonView characterPhotonView;
-        public PhotonRigidbodyView characterRbPhotonView;
+        public PhotonView CharacterPhotonView;
+        public PhotonRigidbodyView CharacterRbPhotonView;
         [Header("Camera Control Parameters")] 
-        public GameObject cameraRotatorX;
+        public GameObject CameraRotatorX;
 
-        public AttractorScript attractorDebug;
+        public AttractorScript AttractorDebug;
         
         [Header("UI references")] 
         //public ActivateObjects inventoryUI;
-        public ActivateObjects lifeUI;
-        public ActivateObjects victoryUI;
-        public ActivateObjects defeatUI;
+        public ActivateObjects LifeUi;
+        public ActivateObjects VictoryUi;
+        public ActivateObjects DefeatUi;
         
-        public InventoryScript inventoryScript;
+        public InventoryScript InventoryScript;
         
         //Character Parameters
-        public Vector3 _movedir;
-        public float dashSpeed = 30;
+        public Vector3 Movedir;
+        public float DashSpeed = 30;
 
         //Reference itself to the ColliderDirectory and CameraScript when activated
         private void OnEnable()
         {
-            //only the Master Client and the player to the directory
-            if (PhotonNetwork.IsMasterClient)
-            {
-                ColliderDirectoryScript.Instance.AddCharacterExposer(this);
-            }
+            //only the Master Client add the player to the directory and get his ID
+            if (!PhotonNetwork.IsMasterClient) return;
+            if(debug) Debug.LogFormat("[CharacterExposer] OnEnable : {0}", this.gameObject.name);
+            ColliderDirectoryScript.Instance.AddCharacterExposer(this, out Id);
+        }
+        
+        //Dereference itself to the ColliderDirectory and CameraScript when deactivated
+        private void OnDisable()
+        {
+            //only the Master Client remove the player to the directory and reset his ID
+            if (!PhotonNetwork.IsMasterClient) return;
+            if(debug) Debug.LogFormat("[CharacterExposer] OnDisable : {0}", this.gameObject.name);
+            ColliderDirectoryScript.Instance.RemoveCharacterExposer(this);
         }
 
         private void LateUpdate()
         {
-            if(debug)
-                attractorDebug = attractor;
+            if (!debug) return;
+            AttractorDebug = Attractor;
         }
     }
 }

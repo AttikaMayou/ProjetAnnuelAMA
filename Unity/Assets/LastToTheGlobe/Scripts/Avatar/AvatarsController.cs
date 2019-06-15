@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Assets.LastToTheGlobe.Scripts.Avatar;
 using Assets.LastToTheGlobe.Scripts.Camera;
+using Assets.LastToTheGlobe.Scripts.Management;
 using Assets.LastToTheGlobe.Scripts.Weapon.Orb;
 using LastToTheGlobe.Scripts.Camera;
 using LastToTheGlobe.Scripts.Dev.LevelManager;
@@ -31,6 +32,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
         [Header("Environment Parameters")]
         //spawn point tab
         private GameObject[] _spawnPointInPlanet;
+        private List<Transform> _spawnPoints;
         private Vector3[] _spawnPos;
         [SerializeField] private CloudPlanet_STRUCT environmentController;
         private int _seed = 0;
@@ -72,8 +74,8 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
             startMenuController.OnlinePlayReady += ChooseAndSubscribeToIntentReceivers;
             startMenuController.PlayerJoined += ActivateAvatar;
             startMenuController.SetCamera += SetupCamera;
-            startMenuController.GameCanStart += LaunchGameRoom;
-            //startMenuController.GameCanStart += SetSeed;
+            //TODO : make sure attraction works before uncomment the following line
+            //startMenuController.GameCanStart += LaunchGameRoom;
         }
 
         private void FixedUpdate()
@@ -98,15 +100,16 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
 
             if (Input.GetKeyDown(KeyCode.L))
             {
-                StopCoroutine(CountdownBeforeSwitchingScene(0.0f));
-                StartCoroutine(CountdownBeforeSwitchingScene(2.0f));
+                StopCoroutine(CountdownBeforeSwitchingScene(.0f));
+                StartCoroutine(CountdownBeforeSwitchingScene(.5f));
             }
 
             if (_activatedIntentReceivers == null
                 || players == null
                 || players.Length != _activatedIntentReceivers.Length)
             {
-                Debug.LogError("There is something wrong with avatars and intents setup !");
+                Debug.LogError("[AvatarsController] " +
+                               "There is something wrong with avatars and intents setup !");
                 return;
             }
             
@@ -118,40 +121,28 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                 var intent = _activatedIntentReceivers[i];
                 var player = players[i];
 
-                var rb = player.characterRb;
-                var tr = player.characterTr;
+                var rb = player.CharacterRb;
+                var tr = player.CharacterTr;
 
-                if (player == null) continue;
+                if (!player.CharacterRootGameObject.activeSelf) continue;
 
-                if (intent.MoveBack || intent.MoveForward
-                                    || intent.MoveRight || intent.MoveLeft)
+                if (intent.Move)
                 {
-                    moveIntent += new Vector3(intent.strafe, 0.0f, intent.forward);
+                    moveIntent += new Vector3(intent.Strafe, 0.0f, intent.Forward);
                 }
 
-                if (intent.Jump)
+                /*if (intent.Shoot)
                 {
-                    if (player.attractor == null)
-                    {
-                        Debug.LogError("There is no attractor near us !");
-                        return;
-                    }
-                    var jumpDir = player.attractor.dirForce;
-                    rb.AddForce(jumpDir * 250);
-                }
-
-                if (intent.Shoot)
-                {
-                    if(debug) Debug.Log("Shoot intent");
+                    if(debug) Debug.Log("[AvatarsController] Shoot intent");
                     if (_currentOrb == null)
                     {
                         _currentOrb = GetOrbsWithinPool();
-                        _currentOrb.playerTransform = player.characterTr;
-                        _currentOrb.attractor = player.attractor;
+                        _currentOrb.playerTransform = player.CharacterTr;
+                        _currentOrb.Attractor = player.Attractor;
                         _currentOrb.charged = false;
                         _currentOrb.gameObject.SetActive(true);
                         _currentOrb.InitializeOrPosition();
-                        intent.canShoot = true;
+                        intent.CanShoot = true;
                         intent.Shoot = false;
                         _currentOrb = null;
                         //TODO : when the orb is reset --> canShoot = true
@@ -160,21 +151,21 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
 
                 if (intent.ShootLoaded)
                 {
-                    if(debug) Debug.Log("Loaded shoot intent");
+                    if(debug) Debug.Log("[AvatarsController] Loaded shoot intent");
                     if (_currentOrb == null)
                     {
                         _currentOrb = GetOrbsWithinPool();
-                        _currentOrb.playerTransform = player.characterTr;
-                        _currentOrb.attractor = player.attractor;
+                        _currentOrb.playerTransform = player.CharacterTr;
+                        _currentOrb.Attractor = player.Attractor;
                         _currentOrb.charged = true;
                         _currentOrb.gameObject.SetActive(true);
                         _currentOrb.InitializeOrPosition();
-                        intent.canShoot = true;
+                        intent.CanShoot = true;
                         intent.Shoot = false;
                         _currentOrb = null;
                         //TODO : when the orb is reset --> canShoot = true
                     }
-                }
+                }*/
 
                 if (intent.Bump)
                 {
@@ -185,17 +176,21 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                 {
                     
                 }
-                rb.MovePosition(rb.position + tr.TransformDirection(moveIntent) * intent.speed * Time.deltaTime);
-                tr.Rotate(new Vector3(0, intent.rotationOnX, 0));
-                player.cameraRotatorX.transform.Rotate(new Vector3(-intent.rotationOnY, 0, 0), Space.Self);
+                
+                rb.MovePosition(rb.position + tr.TransformDirection(moveIntent) * 
+                                intent.Speed * Time.deltaTime);
+                tr.Rotate(new Vector3(0, intent.RotationOnX, 0));
+                player.CameraRotatorX.transform.Rotate(new Vector3(-intent.RotationOnY, 
+                    0, 0), Space.Self);
 
-                if (player.attractor == null)
+                if (player.Attractor == null)
                 {
-                    //Debug.LogError("There is no attractor near us !");
-                    return;
+                    Debug.LogFormat("[AvatarsController] {0} isn't actually attracted by anything",
+                        player);
+                    continue;
                 }
-                //TODO : make this master client server like 
-                player.attractor.Attractor(i, -2600.0f);
+                
+                player.Attractor.AttractPlayer(i, -2600.0f);
                 /*if (intent.canJump && player.attractor)
                 {
                 }
@@ -203,6 +198,11 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                 {
                 }*/
 
+//                if (intent.Jump)
+//                {
+//                    var jumpDir = player.Attractor.DirForce;
+//                    rb.AddForce(jumpDir * 250);
+//                }
             }
         }
 
@@ -223,32 +223,29 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
         {
             if (_activatedIntentReceivers == null)
             {
-                Debug.LogError("there is no intent receivers");
+                Debug.LogError("[AvatarsController] There is no intent receivers");
                 return;
             }
 
             foreach (var intent in _activatedIntentReceivers)
             {
                 intent.enabled = true;
-                intent.MoveBack = false;
-                intent.MoveForward = false;
-                intent.MoveLeft = false;
-                intent.MoveRight = false;
+                intent.Move = false;
                 intent.Run = false;
                 intent.Jump = false;
-                intent.canJump = true;
+                intent.CanJump = true;
                 intent.Dash = false;
-                intent.canDash = true;
+                intent.CanDash = true;
                 intent.Shoot = false;
-                intent.canShoot = true;
+                intent.CanShoot = true;
                 intent.Bump = false;
                 intent.Interact = false;
-                intent.forward = 0.0f;
-                intent.strafe = 0.0f;
+                intent.Forward = 0.0f;
+                intent.Strafe = 0.0f;
             }
         }
 
-        /// Called to activate the avatar root gameObject when a player join the game
+        // Called to activate the avatar root gameObject when a player join the game
         private void ActivateAvatar(int id)
         {
             if (PhotonNetwork.IsConnected)
@@ -261,32 +258,36 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
             }
         }
 
-        /// Called to set the right local target to camera
+        // Called to set the right local target to camera
         private void SetupCamera(int id)
         {
+            if(debug) Debug.Log("[AvatarsController] Camera setup initialized");
             //if (photonView.IsMine != players[id].characterPhotonView) return;
             if (myCamera.enabled) return;
             myCamera.enabled = true;
-            myCamera.playerExposer = players[id];
+            myCamera.PlayerExposer = players[id];
             myCamera.InitializeCameraPosition();
-            myCamera.startFollowing = true;
-            players[id].lifeUI = lifeUI;
-            players[id].victoryUI = victoryUI;
-            players[id].defeatUI = defeatUI;
-            if(debug) Debug.Log("Camera is set for " + id);
+            myCamera.StartFollowing = true;
+            players[id].LifeUi = lifeUI;
+            players[id].VictoryUi = victoryUI;
+            players[id].DefeatUi = defeatUI;
+            if(debug) Debug.Log("[AvatarsController] Camera is set for " + id);
         }
 
-        /// Each time a player join the lobby, we check if we're enough. If yes, we load the GameRoom after a countdown
+        // Each time a player join the lobby, we check if we're enough.
+        // If yes, we load the GameRoom after a countdown
         private void LaunchGameRoom()
         {
             if (!PhotonNetwork.IsMasterClient) return;
-            if (PhotonNetwork.IsMasterClient && _seed == 0)
+            if (_seed == 0)
             {
                 // _seed = environmentController.GetSeed();
                 _seed = 10;
                 environmentController.SetSeed(_seed);
+                //TODO : make sure all the planets are being well instantiated before
+                //calling 'FindAllSpawnPoint' 
                 FindAllSpawnPoint();
-                if(debug) Debug.Log("seed is " + _seed);
+                if(debug) Debug.Log("[AvatarsController] Seed is " + _seed);
             }
  
             if (PhotonNetwork.IsConnected)
@@ -297,6 +298,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
             {
                 SendSeedToPlayers(_seed);
             }
+            
             if(!CheckIfEnoughPlayers() || gameLaunched) return;
             onLobby = true;
             startMenuController.ShowLobbyCountdown();
@@ -304,10 +306,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
             StartCoroutine(CountdownBeforeSwitchingScene(_countdownStartValue));
         }
 
-        /// <summary>
-        /// Check if there is enough players to start the game and leave Lobby
-        /// </summary>
-        /// <returns></returns>
+        // Check if there is enough players to start the game and leave Lobby
         private bool CheckIfEnoughPlayers()
         {
             //TODO : refacto this function with Photon functions
@@ -330,14 +329,15 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
             return j >= nbMinPlayers;
         }
 
-        /// Wait the time indicated before teleport players to the spawn points
-        private IEnumerator CountdownBeforeSwitchingScene(float time)
+        // Wait the time indicated before teleport players to the spawn points
+        private IEnumerator CountdownBeforeSwitchingScene(float time = 2.0f)
         {
             yield return new WaitForSeconds(time);
             
             if (_spawnPointInPlanet.Length <= 1)
             {
-                Debug.LogError("There is a problem with the map instantiation");
+                Debug.LogError("[AvatarsController] " +
+                               "There is a problem with the map instantiation");
                 yield break;
             }
             
@@ -346,12 +346,15 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
             {
                 if (!players[i].isActiveAndEnabled) break;
                 //TODO : deactivate rb and set isKinematic = false 
-                players[i].characterRootGameObject.transform.position = _spawnPos[i + 1];
+                players[i].CharacterRootGameObject.transform.position = _spawnPos[i + 1];
                 if (debug)
                 {
-                    Debug.Log("Previous pos : " + players[i].characterRootGameObject.transform.position);
-                    Debug.Log("Final position : " +_spawnPointInPlanet[i].transform.position);
-                    Debug.Log("Local position :  " + _spawnPointInPlanet[i].transform.localPosition);
+                    Debug.Log("[AvatarsController] Previous pos : " 
+                              + players[i].CharacterRootGameObject.transform.position);
+                    Debug.Log("[AvatarsController] Final position : " 
+                              + _spawnPointInPlanet[i].transform.position);
+                    Debug.Log("[AvatarsController] Local position :  " 
+                              + _spawnPointInPlanet[i].transform.localPosition);
                 }
                 yield return new WaitForSeconds(0.5f);
             }
@@ -361,21 +364,26 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
 
         private void FindAllSpawnPoint()
         {
-            _spawnPointInPlanet = GameObject.FindGameObjectsWithTag("SpawnPoint");
-            //TODO : do not use tags to find all spawn points
+            foreach (var planet in ColliderDirectoryScript.Instance.PlanetExposers)
+            {
+                if (!planet.IsSpawnPlanet) continue;
+                _spawnPoints.Add(planet.SpawnPosition);
+            }
+            
             if (debug)
             {
                 var i = 0;
-                foreach (var point in _spawnPointInPlanet)
+                foreach (var point in _spawnPoints)
                 {
-                    Debug.Log("Spawn Point : " + i + " is " + point);
+                    Debug.Log("Spawn Point : " + i + " is " + point.gameObject);
                     i++;
                 }
             }
-            _spawnPos = new Vector3[_spawnPointInPlanet.Length + 1];
-            for (var i = 0; i < _spawnPointInPlanet.Length; i++)
+            
+            _spawnPos = new Vector3[_spawnPoints.Count];
+            for (var i = 0; i < _spawnPoints.Count; i++)
             {
-                _spawnPos[i] = _spawnPointInPlanet[i].transform.position;
+                _spawnPos[i] = _spawnPoints[i].position;
             }
         }
 
@@ -385,16 +393,16 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
             {
                 if (orb.gameObject.activeSelf)
                 {
-                    if(debug) Debug.Log("orb is enabled");
+                    if(debug) Debug.Log("[AvatarsController] Orb is enabled");
                     continue;
                 }
                 else
                 {
-                    if (debug) Debug.Log("Orb selected is " + orb);
+                    if (debug) Debug.Log("[AvatarsController] Orb selected is " + orb);
                     return orb;
                 }
             }
-            if(debug) Debug.Log("There is no orb available");
+            if(debug) Debug.Log("[AvatarsController] There is no orb available");
             return null;
         }
 
@@ -405,13 +413,13 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
         [PunRPC]
         private void ActivateAvatarRPC(int avatarId)
         {
-            players[avatarId].characterRootGameObject.SetActive(true);
+            players[avatarId].CharacterRootGameObject.SetActive(true);
         }
 
         [PunRPC]
         private void DeactivateAvatarRPC(int avatarId)
         {
-            players[avatarId].characterRootGameObject.SetActive(false);
+            players[avatarId].CharacterRootGameObject.SetActive(false);
         }
 
         [PunRPC]

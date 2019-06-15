@@ -32,7 +32,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5107946470935551850}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
@@ -109,13 +109,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13b72d4f03b499d48a31177d5ed082e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orbTransform: {fileID: 5107946470935551621}
+  Attractor: {fileID: 0}
+  debug: 1
+  Id: 0
   orbRb: {fileID: 5107946470935551292}
+  orbCd: {fileID: 5107946470935551282}
   speed: 2
   maxTimeUsing: 2
   charged: 0
   playerTransform: {fileID: 0}
-  attractedScript: {fileID: 5107946470935551255}
 --- !u!114 &5107946470935551255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 249b15e905980bf468684913a564571f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attractor: {fileID: 0}
+  Attractor: {fileID: 0}
   attractedRb: {fileID: 5107946470935551292}
   selfGravity: -15
   isGrounded: 0
@@ -169,7 +171,7 @@ MonoBehaviour:
   - {fileID: 5107946470935551176}
   - {fileID: 5107946470935551219}
   viewIdField: 0
-  InstantiationId: 9
+  InstantiationId: 31
   isRuntimeInstantiated: 0
 --- !u!114 &5107946470935551176
 MonoBehaviour:

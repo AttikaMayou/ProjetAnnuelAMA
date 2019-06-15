@@ -15,7 +15,7 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
         [SerializeField] private bool _launched;
         void Start()
         {
-            attractor = theAttractor;
+            Attractor = theAttractor;
         }
 
         private void Update()

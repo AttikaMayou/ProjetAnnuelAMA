@@ -507,6 +507,11 @@ PrefabInstance:
       propertyPath: attractorDebug
       value: 
       objectReference: {fileID: 1832395197}
+    - target: {fileID: 4032840751649765454, guid: 1f452279093f47548bb24503b9a3d21e,
+        type: 3}
+      propertyPath: Id
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f452279093f47548bb24503b9a3d21e, type: 3}
 --- !u!114 &78709048 stripped
@@ -650,16 +655,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba9d0963de15b8b4daedcbd5d4316561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forward: 0
-  strafe: 0
-  speed: 0
-  loadShotValue: 0
-  rotationOnX: 0
-  rotationOnY: 0
-  rotationSpeed: 0
-  canDash: 1
-  canJump: 1
-  canShoot: 1
+  Forward: 0
+  Strafe: 0
+  Speed: 5
+  LoadShotValue: 0
+  RotationOnX: 0
+  RotationOnY: 0
+  RotationSpeed: 5
+  CanDash: 1
+  CanJump: 1
+  CanShoot: 1
   debug: 0
   playerIndex: 0
   photonView: {fileID: 155583048}
@@ -1013,6 +1018,10 @@ PrefabInstance:
     - target: {fileID: 575, guid: c83770715bf346641832232e27c6c903, type: 3}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1253, guid: c83770715bf346641832232e27c6c903, type: 3}
+      propertyPath: debug
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c83770715bf346641832232e27c6c903, type: 3}
@@ -2121,6 +2130,11 @@ PrefabInstance:
       propertyPath: attractorDebug
       value: 
       objectReference: {fileID: 1832395197}
+    - target: {fileID: 4032840751649765454, guid: 1f452279093f47548bb24503b9a3d21e,
+        type: 3}
+      propertyPath: Id
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f452279093f47548bb24503b9a3d21e, type: 3}
 --- !u!114 &436290799 stripped
@@ -2609,16 +2623,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba9d0963de15b8b4daedcbd5d4316561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forward: 0
-  strafe: 0
-  speed: 0
-  loadShotValue: 0
-  rotationOnX: 0
-  rotationOnY: 0
-  rotationSpeed: 0
-  canDash: 1
-  canJump: 1
-  canShoot: 1
+  Forward: 0
+  Strafe: 0
+  Speed: 5
+  LoadShotValue: 0
+  RotationOnX: 0
+  RotationOnY: 0
+  RotationSpeed: 5
+  CanDash: 1
+  CanJump: 1
+  CanShoot: 1
   debug: 0
   playerIndex: 9
   photonView: {fileID: 555129873}
@@ -3054,16 +3068,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba9d0963de15b8b4daedcbd5d4316561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forward: 0
-  strafe: 0
-  speed: 0
-  loadShotValue: 0
-  rotationOnX: 0
-  rotationOnY: 0
-  rotationSpeed: 0
-  canDash: 1
-  canJump: 1
-  canShoot: 1
+  Forward: 0
+  Strafe: 0
+  Speed: 5
+  LoadShotValue: 0
+  RotationOnX: 0
+  RotationOnY: 0
+  RotationSpeed: 5
+  CanDash: 1
+  CanJump: 1
+  CanShoot: 1
   debug: 0
   playerIndex: 3
   photonView: {fileID: 616310086}
@@ -3447,11 +3461,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfc74830cdfde3240826067a5a4574b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: 0
-  isInitialized: 0
+  debug: 1
   CharacterExposers: []
-  PlanetExposers: []
+  _activePlayers: 0
+  PlanetExposers:
+  - {fileID: 1832395196}
+  - {fileID: 1513692782}
+  _activePlanets: 2
   OrbManagers: []
+  _activeOrbs: 0
 --- !u!1001 &697464774
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3750,6 +3768,11 @@ PrefabInstance:
       propertyPath: attractorDebug
       value: 
       objectReference: {fileID: 1832395197}
+    - target: {fileID: 4032840751649765454, guid: 1f452279093f47548bb24503b9a3d21e,
+        type: 3}
+      propertyPath: Id
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f452279093f47548bb24503b9a3d21e, type: 3}
 --- !u!114 &725648480 stripped
@@ -4188,16 +4211,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba9d0963de15b8b4daedcbd5d4316561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forward: 0
-  strafe: 0
-  speed: 0
-  loadShotValue: 0
-  rotationOnX: 0
-  rotationOnY: 0
-  rotationSpeed: 0
-  canDash: 1
-  canJump: 1
-  canShoot: 1
+  Forward: 0
+  Strafe: 0
+  Speed: 5
+  LoadShotValue: 0
+  RotationOnX: 0
+  RotationOnY: 0
+  RotationSpeed: 5
+  CanDash: 1
+  CanJump: 1
+  CanShoot: 1
   debug: 0
   playerIndex: 8
   photonView: {fileID: 872339705}
@@ -4411,6 +4434,11 @@ PrefabInstance:
       propertyPath: attractorDebug
       value: 
       objectReference: {fileID: 1832395197}
+    - target: {fileID: 4032840751649765454, guid: 1f452279093f47548bb24503b9a3d21e,
+        type: 3}
+      propertyPath: Id
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f452279093f47548bb24503b9a3d21e, type: 3}
 --- !u!114 &919718686 stripped
@@ -4780,16 +4808,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba9d0963de15b8b4daedcbd5d4316561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forward: 0
-  strafe: 0
-  speed: 0
-  loadShotValue: 0
-  rotationOnX: 0
-  rotationOnY: 0
-  rotationSpeed: 0
-  canDash: 1
-  canJump: 1
-  canShoot: 1
+  Forward: 0
+  Strafe: 0
+  Speed: 5
+  LoadShotValue: 0
+  RotationOnX: 0
+  RotationOnY: 0
+  RotationSpeed: 5
+  CanDash: 1
+  CanJump: 1
+  CanShoot: 1
   debug: 0
   playerIndex: 7
   photonView: {fileID: 973798960}
@@ -5120,6 +5148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d71c1c4a2c4ef8a46ae5ea8228dcfe1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debug: 1
   mainMenu: {fileID: 1993859181}
   onlinePlayButton: {fileID: 748210842}
   playMenu: {fileID: 1431679985}
@@ -5153,7 +5182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3bd8c4922724214a931ba95f9398673, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: 0
+  debug: 1
   players:
   - {fileID: 4032840750276786282}
   - {fileID: 1508058190}
@@ -5780,16 +5809,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba9d0963de15b8b4daedcbd5d4316561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forward: 0
-  strafe: 0
-  speed: 0
-  loadShotValue: 0
-  rotationOnX: 0
-  rotationOnY: 0
-  rotationSpeed: 0
-  canDash: 1
-  canJump: 1
-  canShoot: 1
+  Forward: 0
+  Strafe: 0
+  Speed: 5
+  LoadShotValue: 0
+  RotationOnX: 0
+  RotationOnY: 0
+  RotationSpeed: 5
+  CanDash: 1
+  CanJump: 1
+  CanShoot: 1
   debug: 0
   playerIndex: 1
   photonView: {fileID: 1195017197}
@@ -5937,6 +5966,11 @@ PrefabInstance:
       propertyPath: attractorDebug
       value: 
       objectReference: {fileID: 1832395197}
+    - target: {fileID: 4032840751649765454, guid: 1f452279093f47548bb24503b9a3d21e,
+        type: 3}
+      propertyPath: Id
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f452279093f47548bb24503b9a3d21e, type: 3}
 --- !u!114 &1214311301 stripped
@@ -6601,16 +6635,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba9d0963de15b8b4daedcbd5d4316561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forward: 0
-  strafe: 0
-  speed: 0
-  loadShotValue: 0
-  rotationOnX: 0
-  rotationOnY: 0
-  rotationSpeed: 0
-  canDash: 1
-  canJump: 1
-  canShoot: 1
+  Forward: 0
+  Strafe: 0
+  Speed: 5
+  LoadShotValue: 0
+  RotationOnX: 0
+  RotationOnY: 0
+  RotationSpeed: 5
+  CanDash: 1
+  CanJump: 1
+  CanShoot: 1
   debug: 0
   playerIndex: 6
   photonView: {fileID: 1350372265}
@@ -7429,6 +7463,11 @@ PrefabInstance:
       propertyPath: attractorDebug
       value: 
       objectReference: {fileID: 1832395197}
+    - target: {fileID: 4032840751649765454, guid: 1f452279093f47548bb24503b9a3d21e,
+        type: 3}
+      propertyPath: Id
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4032840750367864675, guid: 1f452279093f47548bb24503b9a3d21e,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -7460,6 +7499,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 200661522}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1513692782 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1251, guid: c83770715bf346641832232e27c6c903,
+    type: 3}
+  m_PrefabInstance: {fileID: 200661522}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513692778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22d56e4cfea04bf4696856bb028a9ff7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1523160636 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4530374371546247746, guid: 19083d05772af8b4dbec64b8289d90d4,
@@ -7607,16 +7658,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba9d0963de15b8b4daedcbd5d4316561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forward: 0
-  strafe: 0
-  speed: 0
-  loadShotValue: 0
-  rotationOnX: 0
-  rotationOnY: 0
-  rotationSpeed: 0
-  canDash: 1
-  canJump: 1
-  canShoot: 1
+  Forward: 0
+  Strafe: 0
+  Speed: 5
+  LoadShotValue: 0
+  RotationOnX: 0
+  RotationOnY: 0
+  RotationSpeed: 5
+  CanDash: 1
+  CanJump: 1
+  CanShoot: 1
   debug: 0
   playerIndex: 2
   photonView: {fileID: 1556246820}
@@ -7871,6 +7922,11 @@ PrefabInstance:
       propertyPath: attractorDebug
       value: 
       objectReference: {fileID: 1832395197}
+    - target: {fileID: 4032840751649765454, guid: 1f452279093f47548bb24503b9a3d21e,
+        type: 3}
+      propertyPath: Id
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f452279093f47548bb24503b9a3d21e, type: 3}
 --- !u!114 &1571886696 stripped
@@ -7935,16 +7991,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba9d0963de15b8b4daedcbd5d4316561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forward: 0
-  strafe: 0
-  speed: 0
-  loadShotValue: 0
-  rotationOnX: 0
-  rotationOnY: 0
-  rotationSpeed: 0
-  canDash: 1
-  canJump: 1
-  canShoot: 1
+  Forward: 0
+  Strafe: 0
+  Speed: 5
+  LoadShotValue: 0
+  RotationOnX: 0
+  RotationOnY: 0
+  RotationSpeed: 5
+  CanDash: 1
+  CanJump: 1
+  CanShoot: 1
   debug: 0
   playerIndex: 5
   photonView: {fileID: 1575713761}
@@ -8297,7 +8353,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 17
+  m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -8325,7 +8381,7 @@ MonoBehaviour:
     spaceCount: 5
     wordCount: 5
     linkCount: 0
-    lineCount: 3
+    lineCount: 2
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 0
@@ -8619,6 +8675,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 9194414417871405397}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1832395196 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1261, guid: 26d4fae48b756154f9ba8c29057cfed4,
+    type: 3}
+  m_PrefabInstance: {fileID: 9194414417871405397}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832395192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22d56e4cfea04bf4696856bb028a9ff7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1832395197 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1262, guid: 26d4fae48b756154f9ba8c29057cfed4,
@@ -9118,6 +9186,11 @@ PrefabInstance:
       propertyPath: attractorDebug
       value: 
       objectReference: {fileID: 1832395197}
+    - target: {fileID: 4032840751649765454, guid: 1f452279093f47548bb24503b9a3d21e,
+        type: 3}
+      propertyPath: Id
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f452279093f47548bb24503b9a3d21e, type: 3}
 --- !u!114 &1906278449 stripped
@@ -9271,7 +9344,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 3
+  m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -9783,10 +9856,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debug: 1
-  yAdd: 1
-  zAdd: -5.3
-  playerExposer: {fileID: 0}
-  startFollowing: 0
+  _yAdd: 1
+  _zAdd: -5.3
+  PlayerExposer: {fileID: 0}
+  StartFollowing: 0
 --- !u!1 &2041767660
 GameObject:
   m_ObjectHideFlags: 0
@@ -10069,16 +10142,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba9d0963de15b8b4daedcbd5d4316561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forward: 0
-  strafe: 0
-  speed: 0
-  loadShotValue: 0
-  rotationOnX: 0
-  rotationOnY: 0
-  rotationSpeed: 0
-  canDash: 1
-  canJump: 1
-  canShoot: 1
+  Forward: 0
+  Strafe: 0
+  Speed: 5
+  LoadShotValue: 0
+  RotationOnX: 0
+  RotationOnY: 0
+  RotationSpeed: 5
+  CanDash: 1
+  CanJump: 1
+  CanShoot: 1
   debug: 0
   playerIndex: 4
   photonView: {fileID: 2049556011}
@@ -10876,6 +10949,11 @@ PrefabInstance:
       propertyPath: attractorDebug
       value: 
       objectReference: {fileID: 1832395197}
+    - target: {fileID: 4032840751649765454, guid: 1f452279093f47548bb24503b9a3d21e,
+        type: 3}
+      propertyPath: Id
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f452279093f47548bb24503b9a3d21e, type: 3}
 --- !u!114 &2102408401 stripped
@@ -12020,6 +12098,10 @@ PrefabInstance:
     - target: {fileID: 582, guid: 26d4fae48b756154f9ba8c29057cfed4, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1262, guid: 26d4fae48b756154f9ba8c29057cfed4, type: 3}
+      propertyPath: debug
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9194414416188521490, guid: 26d4fae48b756154f9ba8c29057cfed4,
         type: 3}
