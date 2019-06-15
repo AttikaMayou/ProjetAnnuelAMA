@@ -50,7 +50,7 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV
         private float planetSize = 1;
         private int _seed;
         private Vertex3[] vertices;
-        private PlanetStruct newPlanet;
+        private PlanetClass newPlanet;
         private AssetInstanciation_PUN assetInstance;
 
         private string matName;
@@ -89,7 +89,7 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV
 
                 vertices[i] = new Vertex3(x, y, z);
 
-                newPlanet.planetLocation = vertices[i];
+                //newPlanet.planetLocation = vertices[i];
                 newPlanet.gameObjectPlanet = PhotonNetwork.Instantiate(basicPlanet.name, new Vector3(x, y, z), Quaternion.identity);
                 newPlanet.gameObjectPlanet.transform.localScale = new Vector3(planetSize, planetSize, planetSize);
 

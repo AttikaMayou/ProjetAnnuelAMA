@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Serialization;
+using LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet;
 
 //Auteur : Margot
 
@@ -50,7 +51,8 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV
         //private int _seed;
         //private Vertex3[] planetsLocations;
         //private GameObject[] planets;
-        private PlanetStruct[] planetsData;
+        private PlanetClass[] planetsData;
+        private string matName;
 
 
         /*public int GetSeed()
@@ -59,23 +61,28 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV
     _seed = Random.Range(1, 200);
     return _seed;
 }*/
+        public void SetSeed(int seed)
+        {
+            GenerateMap();
+        }
 
         public void GenerateMap()//int value)
         {
 
-            //CloudPlanet.vertices = new Vertex3[numberOfPlayer + numberOfVertices + 1];
-            //GeneratePlanetsLocations(ref planetsLocations); // new Vertex3[numberOfPlayer + numberOfVertices + 1];
-            GeneratePlanetsLocations();
-            //_seed = value;
-            //Debug.Log("seed dans CloudPlanet :" + _seed);
+            SetPlanetStruct();
 
-            //Debug.Log("scale :" + scaleMin);
-            //planetFeature.CreateBiome(value);
+            //for (int j = 0; j <= numberOfVertices; j++)
+            //{
+                Instantiate(spawnPlanet, new Vector3(0,0,0), Quaternion.identity);
+            //}
+
+            Instantiate(victoryPlanet, new Vector3(0, size * Random.Range(1.2f, 1.5f), 0), Quaternion.identity);
+
         }
 
         //génération aléatoire des points 
         //TODO : set size of the planet and push points
-        private void GeneratePlanetsLocations()
+        private void SetPlanetStruct()
         {
 
             //Random.state = seedServeur;
@@ -88,11 +95,11 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV
                 var y = size * Random.Range(-1f, -1.2f);
                 var z = size * Random.Range(-0.7f, 0.7f);
 
-                //planetsLocations[i] = new Vertex3(x, y, z);
-                //planet = Instantiate(spawnPlanet, new Vector3(x, y, z), Quaternion.identity);
-                //planetTab[i] = planet;
-                //Debug.Log("planet:" + planetTab[0]);
+                planetsData[i].planetID = i;
+                planetsData[i].planetLocation = new Vector3(x, y, z);
+                planetsData[i].gameObjectPlanet = spawnPlanet;
             }
+
 
             //Génération aléatoire des points pour planètes basics
             for (; i <= numberOfVertices; i++)
@@ -101,14 +108,20 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV
                 var y = size * Random.Range(-1.0f, 1.0f);
                 var z = size * Random.Range(-1.0f, 1.0f);
 
-                //planetsLocations[i] = new Vertex3(x, y, z);
-                //planet = Instantiate(basicPlanet, new Vector3(x, y, z), Quaternion.identity);
+                planetsData[i].planetID = i;
+
+                planetsData[i].planetLocation = new Vector3(x, y, z);
+                planetsData[i].radiusPlanet = (float)Random.Range(scaleMin, scaleMax);
+
+                planetsData[i].planetType = PlanetFeature_PUN.CreateBiome(basicPlanet, out matName);
+
+                planetsData[i].gameObjectPlanet = basicPlanet;
+
+                Material mat = Resources.Load(matName, typeof(Material)) as Material;
+                planetsData[i].gameObjectPlanet.GetComponent<Renderer>().material = mat;
+
 
             }
-            //planet = Instantiate(victoryPlanet, new Vector3(0, size * Random.Range(1.2f, 1.5f), 0), Quaternion.identity);
-            Debug.Log("i : " + i);
-            Debug.Log("numberOfPlayer:" + numberOfPlayer);
-            Debug.Log("numberOfVertices :" + numberOfVertices);
         }
 
 

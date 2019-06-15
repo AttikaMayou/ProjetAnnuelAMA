@@ -52,7 +52,7 @@ using UnityEngine.Serialization;
             //private int _seed;
             //private Vertex3[] planetsLocations;
             //private GameObject[] planets;
-            private PlanetStruct[] planetsData;
+            private PlanetClass[] planetsData;
 
 
             /*public int GetSeed()

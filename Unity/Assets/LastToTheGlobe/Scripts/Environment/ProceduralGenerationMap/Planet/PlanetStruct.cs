@@ -16,10 +16,12 @@ public enum AssetType
     Rock
 }
 
-public struct PlanetStruct
+class PlanetClass
 {
+    public int planetID;
+
     //position et radius de la planète
-    public Vertex3 planetLocation;
+    public Vector3 planetLocation;
     public float radiusPlanet;
 
     public GameObject gameObjectPlanet;
