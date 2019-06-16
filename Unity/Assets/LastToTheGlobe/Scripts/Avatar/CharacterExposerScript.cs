@@ -23,6 +23,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
         public Transform CharacterTr;
         public Collider CharacterCollider;
         public HitPointComponent HitPointComponent;
+        public CollisionEnterDispatcherScript CollisionDispatcher;
 
         [Header("Avatar Animation")]
         public Animator CharacterAnimator;

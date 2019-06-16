@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Assets.LastToTheGlobe.Scripts.Avatar;
+using Assets.LastToTheGlobe.Scripts.Network;
 using LastToTheGlobe.Scripts.Network;
 using Photon.Pun;
 

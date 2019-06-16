@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 using Assets.LastToTheGlobe.Scripts.Management;
+using Assets.LastToTheGlobe.Scripts.Network;
 using Photon.Pun;
 using Photon.Pun.UtilityScripts;
 using UnityEditor;

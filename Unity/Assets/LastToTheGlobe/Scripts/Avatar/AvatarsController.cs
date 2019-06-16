@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Assets.LastToTheGlobe.Scripts.Avatar;
 using Assets.LastToTheGlobe.Scripts.Camera;
 using Assets.LastToTheGlobe.Scripts.Management;
+using Assets.LastToTheGlobe.Scripts.Network;
 using Assets.LastToTheGlobe.Scripts.Weapon.Orb;
 using LastToTheGlobe.Scripts.Camera;
 using LastToTheGlobe.Scripts.Dev.LevelManager;
@@ -50,7 +51,22 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
         
         [Header("Game Control Parameters And References")]
         [SerializeField] private StartMenuController startMenuController;
-        [SerializeField] private bool gameStarted;
+        [SerializeField] private bool _gameStarted;
+        private bool GameStarted
+        {
+            get => _gameStarted;
+            set
+            {
+                if (value && !_gameStarted &&(!PhotonNetwork.IsConnected
+                                             || PhotonNetwork.IsMasterClient))
+                {
+                    SubscribeCollisionEffect();
+                }
+
+                _gameStarted = value;
+            }
+        }
+        
         [SerializeField] private bool onLobby;
         [SerializeField] private bool gameLaunched;
         [SerializeField] private int nbMinPlayers = 2;
@@ -66,7 +82,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
 
         private void Awake()
         {
-            gameStarted = false;
+            _gameStarted = false;
             onLobby = false;
             gameLaunched = false;
 
@@ -101,7 +117,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                 return;
             }
 
-            if (!gameStarted) return;
+            if (!_gameStarted) return;
 
             if (Input.GetKeyDown(KeyCode.L))
             {
@@ -251,7 +267,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
         {
             _activatedIntentReceivers = onlineIntentReceivers;
             EnableIntentReceivers();
-            gameStarted = true;
+            _gameStarted = true;
             //Animation
             avatarAnimation.intentReceivers = _activatedIntentReceivers;
         }
@@ -348,7 +364,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
         private bool CheckIfEnoughPlayers()
         {
             //TODO : refacto this function with Photon functions
-            if (!gameStarted) return false;
+            if (!_gameStarted) return false;
 
             var j = 0;
             var i = 0;
@@ -425,6 +441,14 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
             }
         }
 
+        private void SubscribeCollisionEffect()
+        {
+            foreach (var player in players)
+            {
+                player.CollisionDispatcher.CollisionEvent += HandleCollision;
+            }
+        }
+
         private void HandleCollision(CollisionEnterDispatcherScript collisionDispatcher,
             Collider col)
         {
@@ -435,7 +459,8 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                 return;
             }
 
-            avatar.HitPointComponent.Hp -= 1;
+            //TODO : add a logic to know if the shoot was loaded or not so remove hp according to it
+            avatar.HitPointComponent.Hp -= GameVariablesScript.Instance.ShootLoadedDamage;
         }
 
         private OrbManager GetOrbsWithinPool()

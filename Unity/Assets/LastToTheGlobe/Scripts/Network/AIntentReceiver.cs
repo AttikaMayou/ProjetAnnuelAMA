@@ -2,7 +2,7 @@
 
 //Auteur : Margot
 
-namespace LastToTheGlobe.Scripts.Network
+namespace Assets.LastToTheGlobe.Scripts.Network
 {
     public class AIntentReceiver : MonoBehaviour
     {
