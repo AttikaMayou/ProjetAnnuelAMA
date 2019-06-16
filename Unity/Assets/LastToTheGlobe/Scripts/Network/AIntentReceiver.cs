@@ -30,5 +30,6 @@ namespace LastToTheGlobe.Scripts.Network
        protected const float WalkSpeed = 5.0f;
        protected const float RunSpeed = 8.0f;
        protected const float DashSpeed = 15.0f;
+       protected const float ShootLoadTime = 1.5f;
     }
 }

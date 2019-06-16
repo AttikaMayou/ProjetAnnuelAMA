@@ -58,7 +58,7 @@ namespace Assets.LastToTheGlobe.Scripts.Management
             if (CharacterExposers.Count == 0) StartCoroutine(Wait());
             var player = GetCharacterExposer(col);
             if (player) return player.Id;
-            Debug.LogErrorFormat("[ColliderDirectoryScript] No CharacterExposer found with this collider {0}", 
+            Debug.LogWarningFormat("[ColliderDirectoryScript] No CharacterExposer found with this collider {0}", 
                 col.name);
             return -1;
         }
@@ -208,7 +208,7 @@ namespace Assets.LastToTheGlobe.Scripts.Management
             if (!col) return -1;
             var orb = GetOrbManager(col);
             if (orb) return orb.Id;
-            Debug.LogErrorFormat("[ColliderDirectoryScript] No OrbManager found with this collider {0}", 
+            Debug.LogWarningFormat("[ColliderDirectoryScript] No OrbManager found with this collider {0}", 
                 col.name);
             return -1;
         }
@@ -254,7 +254,7 @@ namespace Assets.LastToTheGlobe.Scripts.Management
             if (_orbsDirectory.ContainsValue(orb)) return id;
             _orbsDirectory.Add(orb.OrbCd, orb);
             id = _activeOrbs - 1;
-            if(debug) Debug.LogFormat("[ColliderDirectoryScript] Directory key : {0} and value : {1}", 
+            if(debug) Debug.LogWarningFormat("[ColliderDirectoryScript] Directory key : {0} and value : {1}", 
                 orb.OrbCd, orb);
             return id;
         }

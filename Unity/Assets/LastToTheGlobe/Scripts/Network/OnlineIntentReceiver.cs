@@ -40,10 +40,21 @@ namespace LastToTheGlobe.Scripts.Network
             //Attack Intent
             if (Input.GetMouseButton(0) && CanShoot)
             {
-                CanShoot = false;
+                photonView.RPC("CanShootRPC", RpcTarget.MasterClient, false);
+            }
+
+            if (!CanShoot)
+            {
+                LoadShotValue += Time.deltaTime;
+                if (Input.GetMouseButtonUp(0))
+                {
+                    photonView.RPC(LoadShotValue >= ShootLoadTime ? "LaunchLoadedBulletRPC" : "LaunchBulletRPC",
+                        RpcTarget.MasterClient);
+                    LoadShotValue = 0.0f;
+                }
             }
             
-            if (!CanShoot)
+            /*if (!CanShoot)
             {
                 LoadShotValue += Time.deltaTime;
                 if(LoadShotValue >= 1.5f && Input.GetMouseButtonUp(0))
@@ -57,7 +68,7 @@ namespace LastToTheGlobe.Scripts.Network
                 {
                     photonView.RPC("LaunchBulletRPC", RpcTarget.MasterClient);
                 }
-            }
+            }*/
             
             //Cooldown dash
             if (!CanDash)
@@ -139,8 +150,10 @@ namespace LastToTheGlobe.Scripts.Network
             if (!PhotonNetwork.IsMasterClient) return;
 //            if (debug)
 //            {
-//                Debug.Log("I get the message : UpdateRotation on this avatar : " + playerIndex);
-//                Debug.Log("X rotation : " + rotationX + " and Y : " + rotationY);
+//                Debug.LogFormat("[IntentReceiver] I get the message : UpdateRotation on this avatar : {0}",
+//                    playerIndex);
+//                Debug.LogFormat("[IntentReceiver] X rotation : {0} and Y : {0}", 
+//                    rotationX, rotationY);
 //            }
             RotationOnX = rotationX;
             RotationOnY = rotationY;
@@ -150,11 +163,13 @@ namespace LastToTheGlobe.Scripts.Network
         void UpdateCameraRotation(int rotationX, int rotationY)
         {
             if (!PhotonNetwork.IsMasterClient) return;
-            /* if (debug)
-                {
-                    Debug.Log("I get the message : UpdateRotation on this avatar : " + playerIndex);
-                    Debug.Log("X rotation : " + rotationX + " and Y : " + rotationY);
-                }*/
+//            if (debug)
+//            {
+//                Debug.LogFormat("[IntentReceiver] I get the message : UpdateRotation on this avatar : {0}",
+//                    playerIndex);
+//                Debug.LogFormat("[IntentReceiver] X rotation : {0} and Y : {0}", 
+//                    rotationX, rotationY);
+//            }
             RotationOnX = rotationX;
             RotationOnY = rotationY;
         }
@@ -164,12 +179,13 @@ namespace LastToTheGlobe.Scripts.Network
         {
             if (!PhotonNetwork.IsMasterClient) return;
             Speed = WalkSpeed;
-//                if (debug)
-//                {
-//                    Debug.LogFormat("I get the message : Move on this avatar : {0}", playerIndex);
-//                    Debug.LogFormat("Strafe value : {0}; Forward value : {1}", 
-//                        strafeInput, forwardInput);
-//                }
+//            if (debug)
+//            {
+//                Debug.LogFormat("[IntentReceiver] I get the message : Move on this avatar : {0}", 
+//                    playerIndex);
+//                Debug.LogFormat("[IntentReceiver] Strafe value : {0}; Forward value : {1}", 
+//                    strafeInput, forwardInput);
+//            }
             Move = intent;
             Forward = forwardInput;
             Strafe = strafeInput;
@@ -180,12 +196,13 @@ namespace LastToTheGlobe.Scripts.Network
         {
             if (!PhotonNetwork.IsMasterClient) return;
             Speed = WalkSpeed;
-//                if (debug)
-//                {
-//                    Debug.LogFormat("I get the message : Move on this avatar : {0}", playerIndex);
-//                    Debug.LogFormat("Strafe value : {0}; Forward value : {1}", 
-//                        strafeInput, forwardInput);
-//                }
+//            if (debug)
+//            {
+//                Debug.LogFormat("[IntentReceiver] I get the message : Move on this avatar : {0}",
+//                    playerIndex);
+//                Debug.LogFormat("[IntentReceiver] Strafe value : {0}; Forward value : {1}", 
+//                    strafeInput, forwardInput);
+//            }
             Move = intent;
             Forward = forwardInput;
             Strafe = strafeInput;
@@ -211,7 +228,8 @@ namespace LastToTheGlobe.Scripts.Network
             if (!PhotonNetwork.IsMasterClient) return;
             if (debug)
             {
-                Debug.Log("I get the message : Dash on this avatar : " + playerIndex);
+                Debug.LogFormat("[IntentReceiver] I get the message : Dash on this avatar : {0}",
+                    playerIndex);
             }
             Dash = true;
         }
@@ -220,23 +238,39 @@ namespace LastToTheGlobe.Scripts.Network
         void RunRPC(bool intent)
         {
             if (!PhotonNetwork.IsMasterClient) return;
+            
             if (debug)
             {
-                Debug.Log("I get the message : Run on this avatar : " + playerIndex);
+                Debug.LogFormat("[IntentReceiver] I get the message : Run on this avatar : {0}",
+                    playerIndex);
             }
             Run = intent;
         }
 
         [PunRPC]
+        void CanShootRPC(bool intent)
+        {
+            if (!PhotonNetwork.IsMasterClient) return;
+
+            if (debug)
+            {
+                Debug.LogFormat("[IntentReceiver] I get the message : CanShoot on this avatar : {0} passed to {1}",
+                    playerIndex, intent);
+            }
+
+            CanShoot = intent;
+        }
+        
+        [PunRPC]
         void LaunchBulletRPC()
         {
             if (!PhotonNetwork.IsMasterClient) return;
+            
             if (debug)
             {
-                Debug.Log("I get the message : Shoot on this avatar : " + playerIndex);
+                Debug.LogFormat("[IntentReceiver] I get the message : Shoot on this avatar : {0}",
+                    playerIndex);
             }
-
-            CanShoot = false;
             Shoot = true;
         }
 
@@ -244,12 +278,12 @@ namespace LastToTheGlobe.Scripts.Network
         void LaunchLoadedBulletRPC()
         {
             if (!PhotonNetwork.IsMasterClient) return;
+            
             if (debug)
             {
-                Debug.Log("I get the message : Shoot Loaded on this avatar : " + playerIndex);
+                Debug.LogFormat("[IntentReceiver] I get the message : Shoot Loaded on this avatar : {0}",
+                    playerIndex);
             }
-
-            CanShoot = false;
             ShootLoaded = true;
         }
 
@@ -259,7 +293,8 @@ namespace LastToTheGlobe.Scripts.Network
             if (!PhotonNetwork.IsMasterClient) return;
             if (debug)
             {
-                Debug.Log("I get the message : Bump on this avatar : " + playerIndex);
+                Debug.LogFormat("[IntentReceiver] I get the message : Bump on this avatar : {0}",
+                    playerIndex);
             }
             Bump = true;
         }
@@ -270,7 +305,8 @@ namespace LastToTheGlobe.Scripts.Network
             if (!PhotonNetwork.IsMasterClient) return;
             if (debug)
             {
-                Debug.Log("I get the message : Interact on this avatar : " + playerIndex);
+                Debug.LogFormat("[IntentReceiver] I get the message : Interact on this avatar : {0}",
+                    playerIndex);
             }
             Interact = true;
         }
