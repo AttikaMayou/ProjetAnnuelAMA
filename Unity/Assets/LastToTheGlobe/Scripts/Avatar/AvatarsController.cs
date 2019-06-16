@@ -56,7 +56,9 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
         [SerializeField] private int nbMinPlayers = 2;
         [SerializeField] private float countdown = 10.0f;
         private float _countdownStartValue;
-        
+        private readonly Dictionary<CollisionEnterDispatcherScript, CharacterExposerScript>
+            _dispatcherToCharacterExposer = new Dictionary<CollisionEnterDispatcherScript, CharacterExposerScript>();
+
         [SerializeField] private List<OrbManager> orbsPool = new List<OrbManager>();
         private OrbManager _currentOrb;
         
@@ -423,9 +425,17 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
             }
         }
 
-        private void HandleCollision()
+        private void HandleCollision(CollisionEnterDispatcherScript collisionDispatcher,
+            Collider col)
         {
-            
+            var avatar = ColliderDirectoryScript.Instance.GetCharacterExposer(col);
+            if (!_dispatcherToCharacterExposer.TryGetValue(collisionDispatcher, out var sourceAvatar)
+                || !avatar)
+            {
+                return;
+            }
+
+            avatar.HitPointComponent.Hp -= 1;
         }
 
         private OrbManager GetOrbsWithinPool()
