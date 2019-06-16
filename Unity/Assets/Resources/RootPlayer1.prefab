@@ -217,6 +217,7 @@ GameObject:
   - component: {fileID: 823833752871783993}
   - component: {fileID: 1014064465940019215}
   - component: {fileID: 3647621335996314131}
+  - component: {fileID: 2876196961187294912}
   m_Layer: 0
   m_Name: RootPlayer1
   m_TagString: Player
@@ -278,7 +279,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 4032840751649765441}
-  viewIdField: 2
+  viewIdField: 0
   InstantiationId: 2
   isRuntimeInstantiated: 0
 --- !u!114 &4032840751649765441
@@ -310,7 +311,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Attractor: {fileID: 0}
-  debug: 1
   Id: 0
   CharacterRootGameObject: {fileID: 4032840751649765450}
   CharacterRb: {fileID: 4032840751649765455}
@@ -378,6 +378,18 @@ CapsuleCollider:
   m_Height: 2.244265
   m_Direction: 1
   m_Center: {x: 0, y: 0.102867484, z: 0}
+--- !u!114 &2876196961187294912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4032840751649765450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9d9ed38b53a6a84cb6cd72f489dacf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4427249134638689817
 GameObject:
   m_ObjectHideFlags: 0
@@ -544,15 +556,15 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: e13ab97ed38ebda4681e85d610985f43, type: 2}
-    - target: {fileID: 13700000, guid: eb2e4d21e2f82254ead5f19259ab8176, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 73e74dcd94ebf124998f60ea1db7917b, type: 2}
     - target: {fileID: 13700010, guid: eb2e4d21e2f82254ead5f19259ab8176, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 73e74dcd94ebf124998f60ea1db7917b, type: 2}
     - target: {fileID: 13700012, guid: eb2e4d21e2f82254ead5f19259ab8176, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 73e74dcd94ebf124998f60ea1db7917b, type: 2}
+    - target: {fileID: 13700000, guid: eb2e4d21e2f82254ead5f19259ab8176, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 73e74dcd94ebf124998f60ea1db7917b, type: 2}
@@ -645,7 +657,7 @@ PrefabInstance:
     - target: {fileID: 5107946470935551180, guid: 501d9991fbb3e6b45b291e93d1d426dc,
         type: 3}
       propertyPath: viewIdField
-      value: 30
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5107946470935551180, guid: 501d9991fbb3e6b45b291e93d1d426dc,
         type: 3}
