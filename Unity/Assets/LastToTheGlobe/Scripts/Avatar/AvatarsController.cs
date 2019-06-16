@@ -28,6 +28,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
         [SerializeField] private AIntentReceiver[] onlineIntentReceivers;
         private AIntentReceiver[] _activatedIntentReceivers;
         [SerializeField] private PhotonView photonView;
+        [SerializeField] private AvatarAnimation avatarAnimation;
 
         [Header("Environment Parameters")]
         //spawn point tab
@@ -76,6 +77,8 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
             startMenuController.SetCamera += SetupCamera;
             //TODO : make sure attraction works before uncomment the following line
             //startMenuController.GameCanStart += LaunchGameRoom;
+
+            avatarAnimation.character = players;
         }
 
         private void FixedUpdate()
@@ -247,6 +250,8 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
             _activatedIntentReceivers = onlineIntentReceivers;
             EnableIntentReceivers();
             gameStarted = true;
+            //Animation
+            avatarAnimation.intentReceivers = _activatedIntentReceivers;
         }
 
         /// Activate the intentReceivers and set defaults values

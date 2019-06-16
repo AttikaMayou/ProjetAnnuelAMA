@@ -209,11 +209,11 @@ namespace Assets.LastToTheGlobe.Scripts.Network
         void JumpRPC()
         {
             if (PhotonNetwork.IsMasterClient)
-            {
+            {/*
                 if (debug)
                 {
                     Debug.Log("I get the message : Jump on this avatar : " + playerIndex);
-                }
+                }*/
                 CanJump = false;
                 Jump = true;
             }
