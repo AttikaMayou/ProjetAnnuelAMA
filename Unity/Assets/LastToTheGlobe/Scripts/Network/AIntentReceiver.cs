@@ -8,7 +8,7 @@ namespace LastToTheGlobe.Scripts.Network
     {
        public bool Move { get; set; }
        public bool Run { get; set; }
-       public bool Jump { get; set; }
+       //public bool Jump { get; set; }
        public bool Dash { get; set; }
        public bool Shoot { get; set; }
        
@@ -25,7 +25,7 @@ namespace LastToTheGlobe.Scripts.Network
        public float RotationSpeed = 5.0f;
 
        public bool CanDash = true;
-       public bool CanJump = true;
+       //public bool CanJump = true;
        public bool CanShoot = true;
        protected const float WalkSpeed = 5.0f;
        protected const float RunSpeed = 8.0f;

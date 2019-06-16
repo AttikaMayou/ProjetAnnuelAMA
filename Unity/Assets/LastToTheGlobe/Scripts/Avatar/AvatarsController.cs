@@ -191,18 +191,19 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                 }
                 
                 player.Attractor.AttractPlayer(i, -2600.0f);
+                
                 /*if (intent.canJump && player.attractor)
                 {
                 }
                 else if(!intent.canJump && player.attractor)
                 {
-                }*/
+                }
 
-//                if (intent.Jump)
-//                {
-//                    var jumpDir = player.Attractor.DirForce;
-//                    rb.AddForce(jumpDir * 250);
-//                }
+                if (intent.Jump)
+                {
+                    var jumpDir = player.Attractor.DirForce;
+                    rb.AddForce(jumpDir * 250);
+                }*/
             }
         }
 
@@ -232,8 +233,8 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                 intent.enabled = true;
                 intent.Move = false;
                 intent.Run = false;
-                intent.Jump = false;
-                intent.CanJump = true;
+//                intent.Jump = false;
+//                intent.CanJump = true;
                 intent.Dash = false;
                 intent.CanDash = true;
                 intent.Shoot = false;

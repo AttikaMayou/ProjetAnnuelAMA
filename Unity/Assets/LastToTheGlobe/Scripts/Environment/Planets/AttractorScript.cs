@@ -43,7 +43,7 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
             DirForce = gravityUp;
         }
         
-        
+
         #region Private Methods
 
         //The planet detects a collider entered its attraction field 
