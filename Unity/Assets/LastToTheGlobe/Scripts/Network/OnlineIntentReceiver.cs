@@ -207,7 +207,7 @@ namespace LastToTheGlobe.Scripts.Network
                 if (debug)
                 {
                     Debug.Log("I get the message : Jump on this avatar : " + playerIndex);
-                }*/
+                }
                 CanJump = false;
                 Jump = true;
             }
