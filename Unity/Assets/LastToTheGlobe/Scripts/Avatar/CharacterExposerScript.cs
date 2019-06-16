@@ -11,16 +11,19 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
 {
     public class CharacterExposerScript : Avatar
     {
-        public bool debug = true;
+        public static bool debug = true;
 
         //The id value of this player. Updated at awakening
         public int Id;
         
         public GameObject CharacterRootGameObject;
+        
         [Header("Player Control Parameters")] 
         public Rigidbody CharacterRb;
         public Transform CharacterTr;
         public Collider CharacterCollider;
+        public HitPointComponent HitPointComponent;
+        public CollisionEnterDispatcherScript CollisionDispatcher;
 
         [Header("Avatar Animation")]
         public Animator CharacterAnimator;
@@ -28,6 +31,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
         [Header("Network Parameters")]
         public PhotonView CharacterPhotonView;
         public PhotonRigidbodyView CharacterRbPhotonView;
+        
         [Header("Camera Control Parameters")] 
         public GameObject CameraRotatorX;
 
@@ -63,10 +67,16 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
             ColliderDirectoryScript.Instance.RemoveCharacterExposer(this);
         }
 
-        private void LateUpdate()
+//        private void LateUpdate()
+//        {
+//            if (!debug) return;
+//            AttractorDebug = Attractor;
+//        }
+
+        //TODO : Deactivate Rb when player is teleported
+        public void DeactivateRb()
         {
-            if (!debug) return;
-            AttractorDebug = Attractor;
+            CharacterRb.isKinematic = true;
         }
     }
 }

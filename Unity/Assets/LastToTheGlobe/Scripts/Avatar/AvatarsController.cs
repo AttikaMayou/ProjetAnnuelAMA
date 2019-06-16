@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using Assets.LastToTheGlobe.Scripts.Avatar;
 using Assets.LastToTheGlobe.Scripts.Camera;
 using Assets.LastToTheGlobe.Scripts.Management;
+using Assets.LastToTheGlobe.Scripts.Network;
 using Assets.LastToTheGlobe.Scripts.Weapon.Orb;
+using JetBrains.Annotations;
 using LastToTheGlobe.Scripts.Camera;
 using LastToTheGlobe.Scripts.Dev.LevelManager;
 using LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV;
@@ -22,8 +25,9 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
     public class AvatarsController : MonoBehaviour
     {
         public bool debug = true;
-        
+
         [Header("Photon and Replication Parameters")] 
+        [SerializeField] private Transform[] _startPosition;
         [SerializeField] private CharacterExposerScript[] players;
         [SerializeField] private AIntentReceiver[] onlineIntentReceivers;
         private AIntentReceiver[] _activatedIntentReceivers;
@@ -50,13 +54,30 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
         
         [Header("Game Control Parameters And References")]
         [SerializeField] private StartMenuController startMenuController;
-        [SerializeField] private bool gameStarted;
+        [SerializeField] private bool _gameStarted;
+        private bool GameStarted
+        {
+            get => _gameStarted;
+            set
+            {
+                if (value && !_gameStarted &&(!PhotonNetwork.IsConnected
+                                             || PhotonNetwork.IsMasterClient))
+                {
+                    SubscribeCollisionEffect();
+                }
+
+                _gameStarted = value;
+            }
+        }
+        
         [SerializeField] private bool onLobby;
         [SerializeField] private bool gameLaunched;
         [SerializeField] private int nbMinPlayers = 2;
         [SerializeField] private float countdown = 10.0f;
         private float _countdownStartValue;
-        
+        private readonly Dictionary<CollisionEnterDispatcherScript, CharacterExposerScript>
+            _dispatcherToCharacterExposer = new Dictionary<CollisionEnterDispatcherScript, CharacterExposerScript>();
+
         [SerializeField] private List<OrbManager> orbsPool = new List<OrbManager>();
         private OrbManager _currentOrb;
         
@@ -64,7 +85,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
 
         private void Awake()
         {
-            gameStarted = false;
+            _gameStarted = false;
             onLobby = false;
             gameLaunched = false;
 
@@ -75,6 +96,8 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
             startMenuController.OnlinePlayReady += ChooseAndSubscribeToIntentReceivers;
             startMenuController.PlayerJoined += ActivateAvatar;
             startMenuController.SetCamera += SetupCamera;
+            startMenuController.Disconnected += EndGame;
+            startMenuController.MasterClientSwitched += EndGame;
             //TODO : make sure attraction works before uncomment the following line
             //startMenuController.GameCanStart += LaunchGameRoom;
 
@@ -83,6 +106,12 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
 
        private void FixedUpdate()
         {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                EndGame();
+                return;
+            }
+            
             if (onLobby && !gameLaunched)
             {
                 countdown -= Time.deltaTime;
@@ -99,7 +128,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                 return;
             }
 
-            if (!gameStarted) return;
+            if (!GameStarted) return;
 
             if (Input.GetKeyDown(KeyCode.L))
             {
@@ -238,6 +267,12 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                     rb.AddForce(jumpDir * 250);
                 }*/
             }
+
+//            if (ColliderDirectoryScript.Instance.ActivePlayers == 1)
+//            {
+//                //TODO : active Victory UI for the victorious player
+//                EndGame();
+//            }
         }
 
         #endregion
@@ -248,8 +283,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
         private void ChooseAndSubscribeToIntentReceivers()
         {
             _activatedIntentReceivers = onlineIntentReceivers;
-            EnableIntentReceivers();
-            gameStarted = true;
+            ResetGame();
             //Animation
             avatarAnimation.intentReceivers = _activatedIntentReceivers;
         }
@@ -278,6 +312,17 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                 intent.Interact = false;
                 intent.Forward = 0.0f;
                 intent.Strafe = 0.0f;
+            }
+        }
+
+        private void DisableIntentReceivers()
+        {
+            if (_activatedIntentReceivers == null) return;
+            
+            var i = 0;
+            for (; i < _activatedIntentReceivers.Length; i++)
+            {
+                _activatedIntentReceivers[i].enabled = false;
             }
         }
 
@@ -346,7 +391,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
         private bool CheckIfEnoughPlayers()
         {
             //TODO : refacto this function with Photon functions
-            if (!gameStarted) return false;
+            if (!_gameStarted) return false;
 
             var j = 0;
             var i = 0;
@@ -394,7 +439,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                 }
                 yield return new WaitForSeconds(0.5f);
             }
-
+            
             gameLaunched = true;
         }
 
@@ -423,6 +468,28 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
             }
         }
 
+        private void SubscribeCollisionEffect()
+        {
+            foreach (var player in players)
+            {
+                player.CollisionDispatcher.CollisionEvent += HandleCollision;
+            }
+        }
+
+        private void HandleCollision(CollisionEnterDispatcherScript collisionDispatcher,
+            Collider col)
+        {
+            var avatar = ColliderDirectoryScript.Instance.GetCharacterExposer(col);
+            if (!_dispatcherToCharacterExposer.TryGetValue(collisionDispatcher, out var sourceAvatar)
+                || !avatar)
+            {
+                return;
+            }
+
+            //TODO : add a logic to know if the shoot was loaded or not so remove hp according to it
+            avatar.HitPointComponent.Hp -= GameVariablesScript.Instance.ShootLoadedDamage;
+        }
+
         private OrbManager GetOrbsWithinPool()
         {
             foreach (var orb in orbsPool)
@@ -442,6 +509,44 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
             return null;
         }
 
+        private void ResetGame()
+        {
+            var i = 0;
+            for (; i < players.Length; i++)
+            {
+                var player = players[i];
+                player.CharacterRb.velocity = Vector3.zero;
+                player.CharacterRb.angularVelocity = Vector3.zero;
+                player.CharacterTr.position = _startPosition[i].position;
+                player.CharacterTr.rotation = _startPosition[i].rotation;
+                player.CharacterRbPhotonView.enabled = _activatedIntentReceivers == onlineIntentReceivers;
+            }
+            
+            EnableIntentReceivers();
+            GameStarted = true;
+        }
+
+        private void EndGame()
+        {
+            GameStarted = false;
+            _activatedIntentReceivers = null;
+
+            var i = 0;
+            for (; i < players.Length; i++)
+            {
+                players[i].CharacterRootGameObject.SetActive(false);
+            }
+            
+            startMenuController.ShowMainMenu();
+
+            DisableIntentReceivers();
+            if (PhotonNetwork.IsConnected)
+            {
+                PhotonNetwork.Disconnect();
+            }
+            
+        }
+        
         #endregion
 
         #region RPC Methods

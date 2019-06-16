@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Globalization;
-using LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi;
 using LastToTheGlobe.Scripts.UI;
 using Photon.Pun;
 using Photon.Pun.UtilityScripts;
@@ -14,7 +12,7 @@ using UnityEngine.UI;
 //Auteur : Attika
 //Modification : Margot
 
-namespace LastToTheGlobe.Scripts.Network
+namespace Assets.LastToTheGlobe.Scripts.Network
 {
     public class StartMenuController : MonoBehaviourPunCallbacks
     {

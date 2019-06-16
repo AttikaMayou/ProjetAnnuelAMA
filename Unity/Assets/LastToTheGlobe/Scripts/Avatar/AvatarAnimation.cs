@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Assets.LastToTheGlobe.Scripts.Avatar;
+using Assets.LastToTheGlobe.Scripts.Network;
 using LastToTheGlobe.Scripts.Network;
 using Photon.Pun;
 
@@ -14,9 +15,12 @@ public class AvatarAnimation : MonoBehaviour
     public CharacterExposerScript[] character;
     public AIntentReceiver[] intentReceivers;
 
-
-    void Update()
+    private void Update()
     {
+        if (!PhotonNetwork.IsMasterClient && PhotonNetwork.IsConnected)
+        {
+            return;
+        }
 
         if (intentReceivers == null || character == null)
         {
@@ -25,7 +29,8 @@ public class AvatarAnimation : MonoBehaviour
             return;
         }
 
-        for (int i = 0; i < intentReceivers.Length; i++)
+        var i = 0;
+        for (; i < intentReceivers.Length; i++)
         {
             var intent = intentReceivers[i];
 
@@ -36,11 +41,16 @@ public class AvatarAnimation : MonoBehaviour
             {
                 character[i].CharacterAnimator.SetBool("IsWalking", true);
             }
-            /*else if(intent.Run == true)
+            else if(intent.Run == true)
             {
                 character[i].CharacterAnimator.SetBool("IsRunning", true);
-            }*/
-           else
+                
+                if(debug == true)
+                {
+                    Debug.Log("run ? : {} " + intent.Run);
+                }
+            }
+            else
             {
                 character[i].CharacterAnimator.SetBool("IsWalking", false);
             }
