@@ -268,11 +268,11 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                 }*/
             }
 
-            if (ColliderDirectoryScript.Instance.ActivePlayers == 1)
-            {
-                //TODO : active Victory UI for the victorious player
-                EndGame();
-            }
+//            if (ColliderDirectoryScript.Instance.ActivePlayers == 1)
+//            {
+//                //TODO : active Victory UI for the victorious player
+//                EndGame();
+//            }
         }
 
         #endregion
@@ -540,10 +540,10 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
             startMenuController.ShowMainMenu();
 
             DisableIntentReceivers();
-//            if (PhotonNetwork.IsConnected)
-//            {
-//                PhotonNetwork.Disconnect();
-//            }
+            if (PhotonNetwork.IsConnected)
+            {
+                PhotonNetwork.Disconnect();
+            }
             
         }
         
