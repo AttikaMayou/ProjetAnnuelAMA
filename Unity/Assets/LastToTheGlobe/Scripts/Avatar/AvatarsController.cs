@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using Assets.LastToTheGlobe.Scripts.Avatar;
 using Assets.LastToTheGlobe.Scripts.Camera;
 using Assets.LastToTheGlobe.Scripts.Management;
 using Assets.LastToTheGlobe.Scripts.Network;
 using Assets.LastToTheGlobe.Scripts.Weapon.Orb;
+using JetBrains.Annotations;
 using LastToTheGlobe.Scripts.Camera;
 using LastToTheGlobe.Scripts.Dev.LevelManager;
 using LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV;
@@ -23,8 +25,9 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
     public class AvatarsController : MonoBehaviour
     {
         public bool debug = true;
-        
+
         [Header("Photon and Replication Parameters")] 
+        [SerializeField] private Transform[] _startPosition;
         [SerializeField] private CharacterExposerScript[] players;
         [SerializeField] private AIntentReceiver[] onlineIntentReceivers;
         private AIntentReceiver[] _activatedIntentReceivers;
@@ -93,6 +96,8 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
             startMenuController.OnlinePlayReady += ChooseAndSubscribeToIntentReceivers;
             startMenuController.PlayerJoined += ActivateAvatar;
             startMenuController.SetCamera += SetupCamera;
+            startMenuController.Disconnected += EndGame;
+            startMenuController.MasterClientSwitched += EndGame;
             //TODO : make sure attraction works before uncomment the following line
             //startMenuController.GameCanStart += LaunchGameRoom;
 
@@ -101,6 +106,12 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
 
        private void FixedUpdate()
         {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                EndGame();
+                return;
+            }
+            
             if (onLobby && !gameLaunched)
             {
                 countdown -= Time.deltaTime;
@@ -117,7 +128,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                 return;
             }
 
-            if (!_gameStarted) return;
+            if (!GameStarted) return;
 
             if (Input.GetKeyDown(KeyCode.L))
             {
@@ -256,6 +267,12 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                     rb.AddForce(jumpDir * 250);
                 }*/
             }
+
+            if (ColliderDirectoryScript.Instance.ActivePlayers == 1)
+            {
+                //TODO : active Victory UI for the victorious player
+                EndGame();
+            }
         }
 
         #endregion
@@ -266,8 +283,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
         private void ChooseAndSubscribeToIntentReceivers()
         {
             _activatedIntentReceivers = onlineIntentReceivers;
-            EnableIntentReceivers();
-            _gameStarted = true;
+            ResetGame();
             //Animation
             avatarAnimation.intentReceivers = _activatedIntentReceivers;
         }
@@ -296,6 +312,17 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                 intent.Interact = false;
                 intent.Forward = 0.0f;
                 intent.Strafe = 0.0f;
+            }
+        }
+
+        private void DisableIntentReceivers()
+        {
+            if (_activatedIntentReceivers == null) return;
+            
+            var i = 0;
+            for (; i < _activatedIntentReceivers.Length; i++)
+            {
+                _activatedIntentReceivers[i].enabled = false;
             }
         }
 
@@ -482,6 +509,44 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
             return null;
         }
 
+        private void ResetGame()
+        {
+            var i = 0;
+            for (; i < players.Length; i++)
+            {
+                var player = players[i];
+                player.CharacterRb.velocity = Vector3.zero;
+                player.CharacterRb.angularVelocity = Vector3.zero;
+                player.CharacterTr.position = _startPosition[i].position;
+                player.CharacterTr.rotation = _startPosition[i].rotation;
+                player.CharacterRbPhotonView.enabled = _activatedIntentReceivers == onlineIntentReceivers;
+            }
+            
+            EnableIntentReceivers();
+            GameStarted = true;
+        }
+
+        private void EndGame()
+        {
+            GameStarted = false;
+            _activatedIntentReceivers = null;
+
+            var i = 0;
+            for (; i < players.Length; i++)
+            {
+                players[i].CharacterRootGameObject.SetActive(false);
+            }
+            
+            startMenuController.ShowMainMenu();
+
+            DisableIntentReceivers();
+            if (PhotonNetwork.IsConnected)
+            {
+                PhotonNetwork.Disconnect();
+            }
+            
+        }
+        
         #endregion
 
         #region RPC Methods

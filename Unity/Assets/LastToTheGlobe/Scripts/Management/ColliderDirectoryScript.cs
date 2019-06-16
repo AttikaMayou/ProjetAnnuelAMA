@@ -18,7 +18,7 @@ namespace Assets.LastToTheGlobe.Scripts.Management
         public bool debug = true;
         
         public List<CharacterExposerScript> CharacterExposers;
-        [SerializeField] private int _activePlayers = 0;
+        public int ActivePlayers = 0;
         public List<PlanetExposerScript> PlanetExposers;
         [SerializeField] private int _activePlanets = 0;
         public List<OrbManager> OrbManagers;
@@ -75,7 +75,7 @@ namespace Assets.LastToTheGlobe.Scripts.Management
                 CharacterExposers.Add(player);
             }
 
-            _activePlayers++;
+            ActivePlayers++;
             
             id = AddPlayerInDirectory(player);
             
@@ -89,7 +89,7 @@ namespace Assets.LastToTheGlobe.Scripts.Management
 
         public void RemoveCharacterExposer(CharacterExposerScript player)
         {
-            _activePlayers--;
+            ActivePlayers--;
             player.Id = -1;
             if (CharacterExposers.Contains(player) && player)
             {
@@ -103,7 +103,7 @@ namespace Assets.LastToTheGlobe.Scripts.Management
             if(debug) Debug.Log("[ColliderDirectoryScript] Add one player to directory");
             if (_playersDirectory.ContainsValue(player)) return id;
             _playersDirectory.Add(player.CharacterCollider, player);
-            id = _activePlayers - 1;
+            id = ActivePlayers - 1;
             if(debug) Debug.LogFormat("[ColliderDirectoryScript] Directory key : {0} and value : {1}", 
                 player.CharacterCollider, player);
             return id;
