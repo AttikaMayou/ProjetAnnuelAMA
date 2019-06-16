@@ -110,14 +110,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Attractor: {fileID: 0}
-  debug: 1
   Id: 0
-  orbRb: {fileID: 5107946470935551292}
-  orbCd: {fileID: 5107946470935551282}
+  _orbRb: {fileID: 5107946470935551292}
+  OrbCd: {fileID: 5107946470935551282}
   speed: 2
-  maxTimeUsing: 2
-  charged: 0
-  playerTransform: {fileID: 0}
+  MaxTimeUsing: 5
+  Loaded: 0
+  PlayerTransform: {fileID: 0}
 --- !u!114 &5107946470935551255
 MonoBehaviour:
   m_ObjectHideFlags: 0

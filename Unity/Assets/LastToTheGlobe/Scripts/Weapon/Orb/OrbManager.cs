@@ -31,6 +31,7 @@ namespace Assets.LastToTheGlobe.Scripts.Weapon.Orb
 
         private void OnEnable()
         {
+            if (!PhotonNetwork.IsMasterClient) return;
             //timeUsing = Time.deltaTime;
             _timeUsing = 0.0f;
             MaxTimeUsing = 3f;
@@ -39,13 +40,14 @@ namespace Assets.LastToTheGlobe.Scripts.Weapon.Orb
             transform.position = PlayerTransform.position + PlayerTransform.forward * 2f;
             _direction = PlayerTransform.right;
             _centerPointAttractor = Attractor.transform.position;
-            if (!PhotonNetwork.IsMasterClient) return;
             ColliderDirectoryScript.Instance.AddOrbManager(this, out Id);
             if(debug) Debug.Log("add an orb to Directory");
         }
         
-        private void FixedUpdate () {
-
+        private void FixedUpdate ()
+        {
+            if (!PhotonNetwork.IsMasterClient) return;
+            
             if (Loaded)
             {
                 transform.RotateAround(_centerPointAttractor,_direction,speed);
@@ -55,11 +57,12 @@ namespace Assets.LastToTheGlobe.Scripts.Weapon.Orb
                 _orbRb.MovePosition(transform.position + PlayerTransform.forward);
             }
 
-            if (debug)
-            {
-                print(_timeUsing);
-                print(MaxTimeUsing);
-            }
+//            if (debug)
+//            {
+//                print(_timeUsing);
+//                print(MaxTimeUsing);
+//            }
+
             _timeUsing += Time.deltaTime;
 
             if (!(_timeUsing >= MaxTimeUsing)) return;
@@ -70,13 +73,17 @@ namespace Assets.LastToTheGlobe.Scripts.Weapon.Orb
 
         private void ResetOrb()
         {
+            if (!PhotonNetwork.IsMasterClient) return;
+            
             if(debug) Debug.Log("reset pos of the pooled orb");
+            
             transform.position = _initialPos;
             this.gameObject.SetActive(false);
         }
 
         public void InitializeOrPosition()
         {
+            if (!PhotonNetwork.IsMasterClient) return;
             transform.position = PlayerTransform.position + PlayerTransform.forward * 2f;
         }
 
