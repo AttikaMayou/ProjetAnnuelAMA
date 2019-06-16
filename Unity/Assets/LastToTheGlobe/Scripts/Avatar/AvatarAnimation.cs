@@ -14,20 +14,9 @@ public class AvatarAnimation : MonoBehaviour
     public CharacterExposerScript[] character;
     public AIntentReceiver[] intentReceivers;
 
-    void Start()
-    {
-        
-        //anim = GetComponentInChildren<Animator>();
-    }
-
 
     void Update()
     {
-
-        if (!PhotonNetwork.IsMasterClient && PhotonNetwork.IsConnected)
-        {
-            return;
-        }
 
         if (intentReceivers == null || character == null)
         {

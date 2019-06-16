@@ -1,17 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Assets.LastToTheGlobe.Scripts.Avatar;
 
 public class ChangeTintTextureTest : MonoBehaviour
 {
-    private Renderer rend;
+    private Material mat;
     [SerializeField]
-    private Color color = Color.white;
-    // Start is called before the first frame update
+    private Color color;
+
     void Start()
     {
-        rend = GetComponent<Renderer>();
-        rend.material.color = color;
-    }
+        mat = GetComponent<Renderer>().material;
 
+        if(PhotonNetwork.IsMasterClient)
+        {
+            mat.SetColor("_Color", color);
+        }
+    }
 }
