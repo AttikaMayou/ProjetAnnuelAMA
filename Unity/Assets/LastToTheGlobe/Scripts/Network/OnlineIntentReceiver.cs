@@ -105,10 +105,10 @@ namespace LastToTheGlobe.Scripts.Network
                 //canDash = false;
             }
 
-            if (Input.GetKeyUp(KeyCode.Space) && CanJump)
-            {
-                photonView.RPC("JumpRPC", RpcTarget.MasterClient);
-            }
+//            if (Input.GetKeyUp(KeyCode.Space) && CanJump)
+//            {
+//                photonView.RPC("JumpRPC", RpcTarget.MasterClient);
+//            }
 
             if (Input.GetKeyDown(KeyCode.R))
             {
@@ -123,13 +123,13 @@ namespace LastToTheGlobe.Scripts.Network
             //TODO : Add double jump
         }
 
-        private void OnCollisionEnter(Collision other)
-        {
-            if (other.gameObject.CompareTag("Planet"))
-            {
-                CanJump = true;
-            }
-        }
+//        private void OnCollisionEnter(Collision other)
+//        {
+//            if (other.gameObject.CompareTag("Planet"))
+//            {
+//                CanJump = true;
+//            }
+//        }
 
         #region RPC
 
@@ -199,7 +199,7 @@ namespace LastToTheGlobe.Scripts.Network
             }
         }
 
-        [PunRPC]
+        /*[PunRPC]
         void JumpRPC()
         {
             if (PhotonNetwork.IsMasterClient)
@@ -211,7 +211,7 @@ namespace LastToTheGlobe.Scripts.Network
                 CanJump = false;
                 Jump = true;
             }
-        }
+        }*/
 
         [PunRPC]
         void DashRPC()
