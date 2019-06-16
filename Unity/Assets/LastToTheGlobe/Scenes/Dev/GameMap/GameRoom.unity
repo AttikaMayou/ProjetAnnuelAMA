@@ -251,6 +251,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acd64be9e907e6143a0b5b8b637e4f0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WalkSpeed: 5
+  RunSpeed: 8
+  DashSpeed: 15
+  ShootLoadTime: 1.5
+  ShootDamage: 10
+  ShootLoadedDamage: 50
+  LifeInitial: 100
 --- !u!114 &30151940 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5107946470935551248, guid: 501d9991fbb3e6b45b291e93d1d426dc,

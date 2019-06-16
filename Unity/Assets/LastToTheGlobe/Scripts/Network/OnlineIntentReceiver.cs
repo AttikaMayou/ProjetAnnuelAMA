@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
+using Assets.LastToTheGlobe.Scripts.Management;
 using Photon.Pun;
 using Photon.Pun.UtilityScripts;
 using UnityEditor;
@@ -48,7 +49,7 @@ namespace LastToTheGlobe.Scripts.Network
                 LoadShotValue += Time.deltaTime;
                 if (Input.GetMouseButtonUp(0))
                 {
-                    photonView.RPC(LoadShotValue >= ShootLoadTime ? "LaunchLoadedBulletRPC" : "LaunchBulletRPC",
+                    photonView.RPC(LoadShotValue >= GameVariablesScript.Instance.ShootLoadTime ? "LaunchLoadedBulletRPC" : "LaunchBulletRPC",
                         RpcTarget.MasterClient);
                     LoadShotValue = 0.0f;
                 }
@@ -99,19 +100,19 @@ namespace LastToTheGlobe.Scripts.Network
             
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
-                Speed = RunSpeed;
+                Speed = GameVariablesScript.Instance.RunSpeed;
                 photonView.RPC("RunRPC", RpcTarget.MasterClient, true);
             }
 
             if (Input.GetKeyUp(KeyCode.LeftShift))
             {
-                Speed = WalkSpeed;
+                Speed = GameVariablesScript.Instance.WalkSpeed;
                 photonView.RPC("RunRPC", RpcTarget.MasterClient, false);
             }
 
             if (Input.GetKeyDown(KeyCode.LeftAlt) && CanDash)
             {
-                Speed = DashSpeed;
+                Speed = GameVariablesScript.Instance.DashSpeed;
                 photonView.RPC("DashRPC", RpcTarget.MasterClient);
                 //canDash = false;
             }
@@ -178,7 +179,7 @@ namespace LastToTheGlobe.Scripts.Network
         void MoveRPC(bool intent, int forwardInput, int strafeInput)
         {
             if (!PhotonNetwork.IsMasterClient) return;
-            Speed = WalkSpeed;
+            Speed = GameVariablesScript.Instance.WalkSpeed;
 //            if (debug)
 //            {
 //                Debug.LogFormat("[IntentReceiver] I get the message : Move on this avatar : {0}", 
@@ -195,7 +196,7 @@ namespace LastToTheGlobe.Scripts.Network
         void MoveRPC(bool intent, float forwardInput, float strafeInput)
         {
             if (!PhotonNetwork.IsMasterClient) return;
-            Speed = WalkSpeed;
+            Speed = GameVariablesScript.Instance.WalkSpeed;
 //            if (debug)
 //            {
 //                Debug.LogFormat("[IntentReceiver] I get the message : Move on this avatar : {0}",
