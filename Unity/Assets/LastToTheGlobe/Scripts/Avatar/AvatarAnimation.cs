@@ -36,23 +36,28 @@ public class AvatarAnimation : MonoBehaviour
             {
                 character[i].CharacterAnimator.SetBool("IsWalking", true);
             }
-            else if(intent.Run == true)
+            /*else if(intent.Run == true)
             {
                 character[i].CharacterAnimator.SetBool("IsRunning", true);
-                
-                if(debug == true)
-                {
-                    Debug.Log("run ? : {} " + intent.Run);
-                }
-            }
+            }*/
            else
             {
                 character[i].CharacterAnimator.SetBool("IsWalking", false);
             }
 
-        }
-    }
+            if(intent.Shoot)
+            {
+                character[i].CharacterAnimator.SetBool("IsShooting", true);
 
-    //Functions for players movements
-   
+                if(intent.Shoot && intent.CanShoot)
+                {
+                    character[i].CharacterAnimator.SetBool("ShootLoaded", true);
+                }
+            }
+            else
+            {
+                character[i].CharacterAnimator.SetBool("IsShooting", false);
+            }
+        }
+    }   
 }
