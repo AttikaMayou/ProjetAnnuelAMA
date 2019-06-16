@@ -41,7 +41,7 @@ public class AvatarAnimation : MonoBehaviour
             {
                 character[i].CharacterAnimator.SetBool("IsWalking", true);
             }
-            /*else if(intent.Run == true)
+            else if(intent.Run == true)
             {
                 character[i].CharacterAnimator.SetBool("IsRunning", true);
                 
