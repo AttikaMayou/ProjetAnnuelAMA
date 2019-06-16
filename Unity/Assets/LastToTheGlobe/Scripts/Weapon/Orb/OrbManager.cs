@@ -11,33 +11,33 @@ namespace Assets.LastToTheGlobe.Scripts.Weapon.Orb
 {
     public class OrbManager : global::Assets.LastToTheGlobe.Scripts.Avatar.Avatar
     {
-        public bool debug = true;
+        public static bool debug = true;
 
         public int Id;
         
         [Header("Orb Parameters")]
-        [SerializeField] private Rigidbody orbRb;
-        public Collider orbCd;
+        [SerializeField] private Rigidbody _orbRb;
+        public Collider OrbCd;
         [SerializeField] private float speed = 5.0f;
         private Vector3 _direction;
         private float _timeUsing;
-        public float maxTimeUsing;
+        public float MaxTimeUsing;
         private Vector3 _initialPos;
-        public bool charged;
+        public bool Loaded;
         
         [Header("Player and Attraction References")]
-        public Transform playerTransform;
+        public Transform PlayerTransform;
         private Vector3 _centerPointAttractor;
 
         private void OnEnable()
         {
             //timeUsing = Time.deltaTime;
             _timeUsing = 0.0f;
-            maxTimeUsing = 3f;
-            if (!playerTransform || !Attractor) return;
-            _initialPos = playerTransform.position;
-            transform.position = playerTransform.position + playerTransform.forward * 2f;
-            _direction = playerTransform.right;
+            MaxTimeUsing = 3f;
+            if (!PlayerTransform || !Attractor) return;
+            _initialPos = PlayerTransform.position;
+            transform.position = PlayerTransform.position + PlayerTransform.forward * 2f;
+            _direction = PlayerTransform.right;
             _centerPointAttractor = Attractor.transform.position;
             if (!PhotonNetwork.IsMasterClient) return;
             ColliderDirectoryScript.Instance.AddOrbManager(this, out Id);
@@ -46,38 +46,38 @@ namespace Assets.LastToTheGlobe.Scripts.Weapon.Orb
         
         private void FixedUpdate () {
 
-            if (charged)
+            if (Loaded)
             {
                 transform.RotateAround(_centerPointAttractor,_direction,speed);
             }
             else
             {
-                orbRb.MovePosition(transform.position + playerTransform.forward);
+                _orbRb.MovePosition(transform.position + PlayerTransform.forward);
             }
 
             if (debug)
             {
                 print(_timeUsing);
-                print(maxTimeUsing);
+                print(MaxTimeUsing);
             }
             _timeUsing += Time.deltaTime;
 
-            if (!(_timeUsing >= maxTimeUsing)) return;
+            if (!(_timeUsing >= MaxTimeUsing)) return;
             _timeUsing = 0.0f;
             ResetOrb();
-            charged = false;
+            Loaded = false;
         }
 
         private void ResetOrb()
         {
-            if(debug) Debug.Log("reset pos of the offensive orb");
+            if(debug) Debug.Log("reset pos of the pooled orb");
             transform.position = _initialPos;
             this.gameObject.SetActive(false);
         }
 
         public void InitializeOrPosition()
         {
-            transform.position = playerTransform.position + playerTransform.forward * 2f;
+            transform.position = PlayerTransform.position + PlayerTransform.forward * 2f;
         }
 
         //Dereference itself to the ColliderDirectory

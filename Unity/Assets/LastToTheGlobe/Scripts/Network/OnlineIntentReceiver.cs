@@ -1,15 +1,12 @@
-﻿using System;
-using System.Runtime.CompilerServices;
+﻿using LastToTheGlobe.Scripts.Network;
 using Photon.Pun;
 using Photon.Pun.UtilityScripts;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.Experimental.UIElements;
 
 //Auteur : Margot
 //Modification : Attika
 
-namespace LastToTheGlobe.Scripts.Network
+namespace Assets.LastToTheGlobe.Scripts.Network
 {
     public class OnlineIntentReceiver : AIntentReceiver
     {
@@ -40,10 +37,21 @@ namespace LastToTheGlobe.Scripts.Network
             //Attack Intent
             if (Input.GetMouseButton(0) && CanShoot)
             {
-                CanShoot = false;
+                photonView.RPC("CanShootRPC", RpcTarget.MasterClient, false);
+            }
+
+            if (!CanShoot)
+            {
+                LoadShotValue += Time.deltaTime;
+                if (Input.GetMouseButtonUp(0))
+                {
+                    photonView.RPC(LoadShotValue >= ShootLoadTime ? "LaunchLoadedBulletRPC" : "LaunchBulletRPC",
+                        RpcTarget.MasterClient);
+                    LoadShotValue = 0.0f;
+                }
             }
             
-            if (!CanShoot)
+            /*if (!CanShoot)
             {
                 LoadShotValue += Time.deltaTime;
                 if(LoadShotValue >= 1.5f && Input.GetMouseButtonUp(0))
@@ -57,7 +65,7 @@ namespace LastToTheGlobe.Scripts.Network
                 {
                     photonView.RPC("LaunchBulletRPC", RpcTarget.MasterClient);
                 }
-            }
+            }*/
             
             //Cooldown dash
             if (!CanDash)
@@ -227,6 +235,7 @@ namespace LastToTheGlobe.Scripts.Network
         void RunRPC(bool intent)
         {
             if (!PhotonNetwork.IsMasterClient) return;
+            
             if (debug)
             {
                 Debug.LogFormat("[IntentReceiver] I get the message : Run on this avatar : {0}",
@@ -236,15 +245,14 @@ namespace LastToTheGlobe.Scripts.Network
         }
 
         [PunRPC]
-        void CanShootRPC(int playerId, bool intent)
+        void CanShootRPC(bool intent)
         {
             if (!PhotonNetwork.IsMasterClient) return;
-            if (playerId != playerIndex) return;
 
             if (debug)
             {
-                Debug.LogFormat("[IntentReceiver] I get the message : CanShoot on this avatar : {0}",
-                    playerId);
+                Debug.LogFormat("[IntentReceiver] I get the message : CanShoot on this avatar : {0} passed to {1}",
+                    playerIndex, intent);
             }
 
             CanShoot = intent;
@@ -254,13 +262,12 @@ namespace LastToTheGlobe.Scripts.Network
         void LaunchBulletRPC()
         {
             if (!PhotonNetwork.IsMasterClient) return;
+            
             if (debug)
             {
                 Debug.LogFormat("[IntentReceiver] I get the message : Shoot on this avatar : {0}",
                     playerIndex);
             }
-
-            CanShoot = false;
             Shoot = true;
         }
 
@@ -268,13 +275,12 @@ namespace LastToTheGlobe.Scripts.Network
         void LaunchLoadedBulletRPC()
         {
             if (!PhotonNetwork.IsMasterClient) return;
+            
             if (debug)
             {
                 Debug.LogFormat("[IntentReceiver] I get the message : Shoot Loaded on this avatar : {0}",
                     playerIndex);
             }
-
-            CanShoot = false;
             ShootLoaded = true;
         }
 

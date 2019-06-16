@@ -11,7 +11,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
 {
     public class CharacterExposerScript : Avatar
     {
-        public bool debug = true;
+        public static bool debug = true;
 
         //The id value of this player. Updated at awakening
         public int Id;
@@ -21,9 +21,11 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
         public Rigidbody CharacterRb;
         public Transform CharacterTr;
         public Collider CharacterCollider;
+
         [Header("Network Parameters")]
         public PhotonView CharacterPhotonView;
         public PhotonRigidbodyView CharacterRbPhotonView;
+        
         [Header("Camera Control Parameters")] 
         public GameObject CameraRotatorX;
 

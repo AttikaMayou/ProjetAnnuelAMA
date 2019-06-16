@@ -179,7 +179,7 @@ namespace Assets.LastToTheGlobe.Scripts.Management
             if(debug) Debug.Log("[ColliderDirectoryScript] Add one planet to directory");
             if (_planetsDirectory.ContainsValue(planet)) return id;
             _planetsDirectory.Add(planet.PlanetCollider, planet);
-            id = _activePlanets - 1;
+            id = _activePlanets -1;
             if(debug) Debug.LogFormat("[ColliderDirectoryScript] Directory key : {0} and value : {1}", 
                 planet.PlanetCollider, planet);
             return id;
@@ -252,10 +252,10 @@ namespace Assets.LastToTheGlobe.Scripts.Management
             var id = -1;
             if(debug) Debug.Log("[ColliderDirectoryScript] Add one orb to directory");
             if (_orbsDirectory.ContainsValue(orb)) return id;
-            _orbsDirectory.Add(orb.orbCd, orb);
+            _orbsDirectory.Add(orb.OrbCd, orb);
             id = _activeOrbs - 1;
             if(debug) Debug.LogFormat("[ColliderDirectoryScript] Directory key : {0} and value : {1}", 
-                orb.orbCd, orb);
+                orb.OrbCd, orb);
             return id;
         }
         

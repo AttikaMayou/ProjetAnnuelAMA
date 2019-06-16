@@ -28,7 +28,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
         [SerializeField] private AIntentReceiver[] onlineIntentReceivers;
         private AIntentReceiver[] _activatedIntentReceivers;
         [SerializeField] private PhotonView photonView;
-        
+
         [Header("Environment Parameters")]
         //spawn point tab
         private GameObject[] _spawnPointInPlanet;
@@ -56,7 +56,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
         [SerializeField] private float countdown = 10.0f;
         private float _countdownStartValue;
         
-        [SerializeField] private List<OrbManager> orbsPool = new List<OrbManager>();
+        [SerializeField] private List<OrbManager> _orbsPool = new List<OrbManager>();
         private OrbManager _currentOrb;
         
         #region MonoBehaviour Callbacks
@@ -131,6 +131,17 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                     moveIntent += new Vector3(intent.Strafe, 0.0f, intent.Forward);
                 }
 
+                if (intent.Shoot)
+                {
+                    if(debug) Debug.Log("[AvatarsController] Shoot intent");
+                    
+                }
+
+                if (intent.ShootLoaded)
+                {
+                    if(debug) Debug.Log("[AvatarsController] Loaded shoot intent");
+                }
+                
                 /*if (intent.Shoot)
                 {
                     if(debug) Debug.Log("[AvatarsController] Shoot intent");
@@ -390,18 +401,15 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
 
         private OrbManager GetOrbsWithinPool()
         {
-            foreach (var orb in orbsPool)
+            foreach (var orb in _orbsPool)
             {
                 if (orb.gameObject.activeSelf)
                 {
-                    if(debug) Debug.Log("[AvatarsController] Orb is enabled");
+                    if(debug) Debug.LogFormat("[AvatarsController] Orb {0} is already used", orb.Id);
                     continue;
                 }
-                else
-                {
-                    if (debug) Debug.Log("[AvatarsController] Orb selected is " + orb);
-                    return orb;
-                }
+                if (debug) Debug.LogFormat("[AvatarsController] Orb {0} is selected", orb.Id);
+                return orb;
             }
             if(debug) Debug.Log("[AvatarsController] There is no orb available");
             return null;
