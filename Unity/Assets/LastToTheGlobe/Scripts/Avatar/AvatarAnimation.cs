@@ -14,16 +14,8 @@ public class AvatarAnimation : MonoBehaviour
     public CharacterExposerScript[] character;
     public AIntentReceiver[] intentReceivers;
 
-    void Start()
+    private void Update()
     {
-        
-        //anim = GetComponentInChildren<Animator>();
-    }
-
-
-    void Update()
-    {
-
         if (!PhotonNetwork.IsMasterClient && PhotonNetwork.IsConnected)
         {
             return;
@@ -36,7 +28,8 @@ public class AvatarAnimation : MonoBehaviour
             return;
         }
 
-        for (int i = 0; i < intentReceivers.Length; i++)
+        var i = 0;
+        for (; i < intentReceivers.Length; i++)
         {
             var intent = intentReceivers[i];
 
@@ -56,7 +49,7 @@ public class AvatarAnimation : MonoBehaviour
                     Debug.Log("run ? : {} " + intent.Run);
                 }
             }
-           else
+            else
             {
                 character[i].CharacterAnimator.SetBool("IsWalking", false);
             }
