@@ -439,7 +439,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                 }
                 yield return new WaitForSeconds(0.5f);
             }
-
+            
             gameLaunched = true;
         }
 
