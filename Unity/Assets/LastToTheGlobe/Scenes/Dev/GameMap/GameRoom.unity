@@ -665,7 +665,6 @@ MonoBehaviour:
   CanDash: 1
   CanJump: 1
   CanShoot: 1
-  debug: 0
   playerIndex: 0
   photonView: {fileID: 155583048}
 --- !u!114 &155583048
@@ -2633,7 +2632,6 @@ MonoBehaviour:
   CanDash: 1
   CanJump: 1
   CanShoot: 1
-  debug: 0
   playerIndex: 9
   photonView: {fileID: 555129873}
 --- !u!114 &555129873
@@ -3078,7 +3076,6 @@ MonoBehaviour:
   CanDash: 1
   CanJump: 1
   CanShoot: 1
-  debug: 0
   playerIndex: 3
   photonView: {fileID: 616310086}
 --- !u!114 &616310086
@@ -4221,7 +4218,6 @@ MonoBehaviour:
   CanDash: 1
   CanJump: 1
   CanShoot: 1
-  debug: 0
   playerIndex: 8
   photonView: {fileID: 872339705}
 --- !u!114 &872339705
@@ -4818,7 +4814,6 @@ MonoBehaviour:
   CanDash: 1
   CanJump: 1
   CanShoot: 1
-  debug: 0
   playerIndex: 7
   photonView: {fileID: 973798960}
 --- !u!114 &973798960
@@ -5078,7 +5073,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97b499ac0087c6a48bf103bec179e7d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: 1
+  debug: 0
   numberOfVertices: 30
   size: 400
   scaleMin: 30
@@ -5114,6 +5109,7 @@ GameObject:
   - component: {fileID: 1023363633}
   - component: {fileID: 1023363634}
   - component: {fileID: 1023363635}
+  - component: {fileID: 1023363636}
   m_Layer: 0
   m_Name: ScriptsManagement
   m_TagString: Untagged
@@ -5148,7 +5144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d71c1c4a2c4ef8a46ae5ea8228dcfe1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: 1
+  debug: 0
   mainMenu: {fileID: 1993859181}
   onlinePlayButton: {fileID: 748210842}
   playMenu: {fileID: 1431679985}
@@ -5206,7 +5202,8 @@ MonoBehaviour:
   - {fileID: 872339704}
   - {fileID: 555129872}
   photonView: {fileID: 1023363635}
-  environmentController: {fileID: 997781115}
+  avatarAnimation: {fileID: 1023363636}
+  environmentController: {fileID: 0}
   myCamera: {fileID: 2025786751}
   rotationSpeed: 5
   lifeUI: {fileID: 965428813}
@@ -5271,6 +5268,21 @@ MonoBehaviour:
   viewIdField: 11
   InstantiationId: 11
   isRuntimeInstantiated: 0
+--- !u!114 &1023363636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023363630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e35ad4bba6522a4097ca17b7940db97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debug: 0
+  character: []
+  intentReceivers: []
 --- !u!223 &1044944322 stripped
 Canvas:
   m_CorrespondingSourceObject: {fileID: 7371488152859573526, guid: 0c1104fca7e572f4ba002359e5ef96bc,
@@ -5819,7 +5831,6 @@ MonoBehaviour:
   CanDash: 1
   CanJump: 1
   CanShoot: 1
-  debug: 0
   playerIndex: 1
   photonView: {fileID: 1195017197}
 --- !u!114 &1195017197
@@ -6645,7 +6656,6 @@ MonoBehaviour:
   CanDash: 1
   CanJump: 1
   CanShoot: 1
-  debug: 0
   playerIndex: 6
   photonView: {fileID: 1350372265}
 --- !u!114 &1350372265
@@ -7668,7 +7678,6 @@ MonoBehaviour:
   CanDash: 1
   CanJump: 1
   CanShoot: 1
-  debug: 0
   playerIndex: 2
   photonView: {fileID: 1556246820}
 --- !u!114 &1556246820
@@ -8001,7 +8010,6 @@ MonoBehaviour:
   CanDash: 1
   CanJump: 1
   CanShoot: 1
-  debug: 0
   playerIndex: 5
   photonView: {fileID: 1575713761}
 --- !u!114 &1575713761
@@ -8353,7 +8361,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 0
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -8381,7 +8389,7 @@ MonoBehaviour:
     spaceCount: 5
     wordCount: 5
     linkCount: 0
-    lineCount: 2
+    lineCount: 1
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 0
@@ -9344,7 +9352,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 0
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -9372,7 +9380,7 @@ MonoBehaviour:
     spaceCount: 0
     wordCount: 2
     linkCount: 0
-    lineCount: 2
+    lineCount: 1
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 0
@@ -10152,7 +10160,6 @@ MonoBehaviour:
   CanDash: 1
   CanJump: 1
   CanShoot: 1
-  debug: 0
   playerIndex: 4
   photonView: {fileID: 2049556011}
 --- !u!114 &2049556011
@@ -11315,6 +11322,11 @@ PrefabInstance:
       propertyPath: debug
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8425324522973558286, guid: 1f452279093f47548bb24503b9a3d21e,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e13ab97ed38ebda4681e85d610985f43, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f452279093f47548bb24503b9a3d21e, type: 3}
 --- !u!114 &4032840750276786282 stripped
@@ -12099,6 +12111,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1261, guid: 26d4fae48b756154f9ba8c29057cfed4, type: 3}
+      propertyPath: viewIdField
+      value: 66
+      objectReference: {fileID: 0}
+    - target: {fileID: 1261, guid: 26d4fae48b756154f9ba8c29057cfed4, type: 3}
+      propertyPath: InstantiationId
+      value: 66
+      objectReference: {fileID: 0}
     - target: {fileID: 1262, guid: 26d4fae48b756154f9ba8c29057cfed4, type: 3}
       propertyPath: debug
       value: 1
@@ -12218,14 +12238,6 @@ PrefabInstance:
     - target: {fileID: 1277, guid: 26d4fae48b756154f9ba8c29057cfed4, type: 3}
       propertyPath: InstantiationId
       value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1261, guid: 26d4fae48b756154f9ba8c29057cfed4, type: 3}
-      propertyPath: viewIdField
-      value: 66
-      objectReference: {fileID: 0}
-    - target: {fileID: 1261, guid: 26d4fae48b756154f9ba8c29057cfed4, type: 3}
-      propertyPath: InstantiationId
-      value: 66
       objectReference: {fileID: 0}
     - target: {fileID: 1260, guid: 26d4fae48b756154f9ba8c29057cfed4, type: 3}
       propertyPath: viewIdField

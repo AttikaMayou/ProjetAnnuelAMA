@@ -21,6 +21,10 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
         public Rigidbody CharacterRb;
         public Transform CharacterTr;
         public Collider CharacterCollider;
+
+        [Header("Avatar Animation")]
+        public Animator CharacterAnimator;
+        
         [Header("Network Parameters")]
         public PhotonView CharacterPhotonView;
         public PhotonRigidbodyView CharacterRbPhotonView;

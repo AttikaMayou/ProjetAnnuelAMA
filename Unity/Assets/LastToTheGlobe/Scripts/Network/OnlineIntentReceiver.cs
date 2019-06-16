@@ -13,7 +13,7 @@ namespace LastToTheGlobe.Scripts.Network
 {
     public class OnlineIntentReceiver : AIntentReceiver
     {
-        public bool debug = true;
+        public static bool debug = true;
         
         [SerializeField] private int playerIndex;
 
@@ -153,11 +153,11 @@ namespace LastToTheGlobe.Scripts.Network
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                if (debug)
+               /* if (debug)
                 {
                     Debug.Log("I get the message : UpdateRotation on this avatar : " + playerIndex);
                     Debug.Log("X rotation : " + rotationX + " and Y : " + rotationY);
-                }
+                }*/
                 RotationOnX = rotationX;
                 RotationOnY = rotationY;
             }
@@ -203,11 +203,11 @@ namespace LastToTheGlobe.Scripts.Network
         void JumpRPC()
         {
             if (PhotonNetwork.IsMasterClient)
-            {
+            {/*
                 if (debug)
                 {
                     Debug.Log("I get the message : Jump on this avatar : " + playerIndex);
-                }
+                }*/
                 CanJump = false;
                 Jump = true;
             }
