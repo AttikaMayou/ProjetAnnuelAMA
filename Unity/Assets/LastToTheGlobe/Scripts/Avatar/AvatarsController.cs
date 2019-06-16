@@ -423,6 +423,11 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
             }
         }
 
+        private void HandleCollision()
+        {
+            
+        }
+
         private OrbManager GetOrbsWithinPool()
         {
             foreach (var orb in orbsPool)
