@@ -540,10 +540,10 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
             startMenuController.ShowMainMenu();
 
             DisableIntentReceivers();
-            if (PhotonNetwork.IsConnected)
-            {
-                PhotonNetwork.Disconnect();
-            }
+//            if (PhotonNetwork.IsConnected)
+//            {
+//                PhotonNetwork.Disconnect();
+//            }
             
         }
         
