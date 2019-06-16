@@ -223,7 +223,7 @@ namespace LastToTheGlobe.Scripts.Avatar
             
             if (_timeElapsed >= 1.5f && _launched && Input.GetKeyUp(KeyCode.A))
             {
-                _om.charged = true;
+                _om.Loaded = true;
                 orb.SetActive(true);
                 _timeElapsed = 0;
                 _launched = false;

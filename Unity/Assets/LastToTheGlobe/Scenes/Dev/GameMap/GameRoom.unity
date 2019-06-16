@@ -651,7 +651,6 @@ MonoBehaviour:
   RotationOnY: 0
   RotationSpeed: 5
   CanDash: 1
-  CanJump: 1
   CanShoot: 1
   playerIndex: 0
   photonView: {fileID: 155583048}
@@ -2546,7 +2545,6 @@ MonoBehaviour:
   RotationOnY: 0
   RotationSpeed: 5
   CanDash: 1
-  CanJump: 1
   CanShoot: 1
   playerIndex: 9
   photonView: {fileID: 555129873}
@@ -2966,7 +2964,6 @@ MonoBehaviour:
   RotationOnY: 0
   RotationSpeed: 5
   CanDash: 1
-  CanJump: 1
   CanShoot: 1
   playerIndex: 3
   photonView: {fileID: 616310086}
@@ -4072,7 +4069,6 @@ MonoBehaviour:
   RotationOnY: 0
   RotationSpeed: 5
   CanDash: 1
-  CanJump: 1
   CanShoot: 1
   playerIndex: 8
   photonView: {fileID: 872339705}
@@ -4644,7 +4640,6 @@ MonoBehaviour:
   RotationOnY: 0
   RotationSpeed: 5
   CanDash: 1
-  CanJump: 1
   CanShoot: 1
   playerIndex: 7
   photonView: {fileID: 973798960}
@@ -5022,6 +5017,7 @@ MonoBehaviour:
   - {fileID: 872339704}
   - {fileID: 555129872}
   photonView: {fileID: 1023363635}
+  avatarAnimation: {fileID: 1023363636}
   environmentController: {fileID: 0}
   myCamera: {fileID: 2025786751}
   rotationSpeed: 5
@@ -5034,7 +5030,7 @@ MonoBehaviour:
   gameLaunched: 0
   nbMinPlayers: 2
   countdown: 20
-  _orbsPool: []
+  orbsPool: []
 --- !u!114 &1023363635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5594,7 +5590,6 @@ MonoBehaviour:
   RotationOnY: 0
   RotationSpeed: 5
   CanDash: 1
-  CanJump: 1
   CanShoot: 1
   playerIndex: 1
   photonView: {fileID: 1195017197}
@@ -6407,7 +6402,6 @@ MonoBehaviour:
   RotationOnY: 0
   RotationSpeed: 5
   CanDash: 1
-  CanJump: 1
   CanShoot: 1
   playerIndex: 6
   photonView: {fileID: 1350372265}
@@ -7405,7 +7399,6 @@ MonoBehaviour:
   RotationOnY: 0
   RotationSpeed: 5
   CanDash: 1
-  CanJump: 1
   CanShoot: 1
   playerIndex: 2
   photonView: {fileID: 1556246820}
@@ -7725,7 +7718,6 @@ MonoBehaviour:
   RotationOnY: 0
   RotationSpeed: 5
   CanDash: 1
-  CanJump: 1
   CanShoot: 1
   playerIndex: 5
   photonView: {fileID: 1575713761}
@@ -9815,7 +9807,6 @@ MonoBehaviour:
   RotationOnY: 0
   RotationSpeed: 5
   CanDash: 1
-  CanJump: 1
   CanShoot: 1
   playerIndex: 4
   photonView: {fileID: 2049556011}

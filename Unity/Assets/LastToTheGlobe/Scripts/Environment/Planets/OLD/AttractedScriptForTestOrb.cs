@@ -31,7 +31,7 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
             if (_timeElapsed >= 1.5f && _launched && Input.GetKeyUp(KeyCode.A))
             {
                 print("lol");
-                _om.charged = true;
+                _om.Loaded = true;
                 sphere.SetActive(true);
                 _timeElapsed = 0;
                 _launched = false;

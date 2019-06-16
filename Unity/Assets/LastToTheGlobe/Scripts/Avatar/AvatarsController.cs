@@ -81,7 +81,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
             avatarAnimation.character = players;
         }
 
-        private void FixedUpdate()
+       private void FixedUpdate()
         {
             if (onLobby && !gameLaunched)
             {
@@ -134,6 +134,36 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                     moveIntent += new Vector3(intent.Strafe, 0.0f, intent.Forward);
                 }
 
+                if (intent.Shoot)
+                {
+                    if(debug) Debug.Log("[AvatarsController] Shoot intent");
+                    
+                    var orb = GetOrbsWithinPool();
+                    orb.PlayerTransform = player.CharacterTr;
+                    orb.Attractor = player.Attractor;
+                    orb.Loaded = false;
+                    orb.gameObject.SetActive(true);
+                    orb.InitializeOrPosition();
+                    
+                    intent.Shoot = false;
+                    intent.CanShoot = true;
+                }
+
+                if (intent.ShootLoaded)
+                {
+                    if(debug) Debug.Log("[AvatarsController] Loaded shoot intent");
+                    
+                    var orb = GetOrbsWithinPool();
+                    orb.PlayerTransform = player.CharacterTr;
+                    orb.Attractor = player.Attractor;
+                    orb.Loaded = true;
+                    orb.gameObject.SetActive(true);
+                    orb.InitializeOrPosition();
+                    
+                    intent.ShootLoaded = false;
+                    intent.CanShoot = true;
+                }
+                
                 /*if (intent.Shoot)
                 {
                     if(debug) Debug.Log("[AvatarsController] Shoot intent");
