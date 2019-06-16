@@ -185,7 +185,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
 
                 if (player.Attractor == null)
                 {
-                    Debug.LogFormat("[AvatarsController] {0} isn't actually attracted by anything",
+                    if(debug) Debug.LogFormat("[AvatarsController] {0} isn't actually attracted by anything",
                         player);
                     continue;
                 }
