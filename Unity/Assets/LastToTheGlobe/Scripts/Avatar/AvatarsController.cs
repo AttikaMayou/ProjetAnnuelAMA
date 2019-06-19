@@ -29,7 +29,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
         [Header("Environment Parameters")]
         //spawn point tab
         private GameObject[] _spawnPointInPlanet;
-        private List<Transform> _spawnPoints;
+        private List<Transform> _spawnPoints = new List<Transform>();
         private Vector3[] _spawnPos;
         [SerializeField] private CloudPlanet_PUN environmentController;
         private int _seed = 0;
