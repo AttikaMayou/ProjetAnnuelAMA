@@ -415,7 +415,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
             }
             
             //Teleport players on planets
-            for(var i = 0; i<= players.Length; i++)
+            for(var i = 0; i <= players.Length; i++)
             {
                 if (!players[i].isActiveAndEnabled) break;
                 //TODO : deactivate rb and set isKinematic = false 
