@@ -59,7 +59,7 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV
 
         private void Awake()
         {
-            planetsClass = new PlanetClass[numberOfPlayer];
+            planetsClass = new PlanetClass[numberOfVertices];
             InitializePlanetsClass();
         }
 
