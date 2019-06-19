@@ -439,7 +439,9 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
         {
             foreach (var planet in ColliderDirectoryScript.Instance.PlanetExposers)
             {
+                if (!planet) continue;
                 if (!planet.IsSpawnPlanet) continue;
+                if (_spawnPoints.Contains(planet.SpawnPosition)) continue;
                 _spawnPoints.Add(planet.SpawnPosition);
             }
             

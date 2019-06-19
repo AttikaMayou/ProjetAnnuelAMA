@@ -59,7 +59,7 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV
 
         private void Awake()
         {
-            planetsClass = new PlanetClass[numberOfVertices];
+            planetsClass = new PlanetClass[500];
             InitializePlanetsClass();
         }
 
@@ -119,9 +119,9 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV
                 Material mat = Resources.Load(matName, typeof(Material)) as Material;
                 planetClass.gameObjectPlanet.GetComponent<Renderer>().material = mat;
                 //instanciation assets
-                AssetInstanciation_PUN asset = planetClass.gameObjectPlanet.GetComponent<AssetInstanciation_PUN>();
-                asset.type = (int)planetClass.planetType;
-                asset.SpawnAssets();
+                //AssetInstanciation_PUN asset = planetClass.gameObjectPlanet.GetComponent<AssetInstanciation_PUN>();
+                //asset.type = (int)planetClass.planetType;
+                //asset.SpawnAssets();
             }
 
             PhotonNetwork.Instantiate(victoryPlanet.name, new Vector3(0, size * Random.Range(1f, 1.2f), 0), Quaternion.identity);
