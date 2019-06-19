@@ -192,6 +192,7 @@ MonoBehaviour:
     type: 3}
   chest: {fileID: 0}
   planet: {fileID: 541}
+  _chestDictionnary: {fileID: 0}
 --- !u!114 &1334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,6 +208,7 @@ MonoBehaviour:
   debug: 1
   speedRotation: 10
   dirForce: {x: 0, y: 0, z: 0}
+  photonView: {fileID: 0}
 --- !u!114 &1326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,8 +242,8 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 0}
-  viewIdField: 8
-  InstantiationId: 8
+  viewIdField: 66
+  InstantiationId: 66
   isRuntimeInstantiated: 0
 --- !u!114 &1327
 MonoBehaviour:

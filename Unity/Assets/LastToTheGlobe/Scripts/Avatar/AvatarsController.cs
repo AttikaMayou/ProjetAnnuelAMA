@@ -45,6 +45,9 @@ namespace LastToTheGlobe.Scripts.Avatar
         public ActivateObjects lifeUI;
         public ActivateObjects victoryUI;
         public ActivateObjects defeatUI;
+        public ActivateObjects PlayerInventory;
+        public ActivateObjects ChestInventory;
+        public ActivateObjects Interaction;
         
         [Header("Game Control Parameters And References")]
         [SerializeField] private StartMenuController startMenuController;

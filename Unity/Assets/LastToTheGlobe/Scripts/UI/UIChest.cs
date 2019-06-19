@@ -59,10 +59,12 @@ namespace LastToTheGlobe.Scripts.Inventory
             if (other.gameObject.CompareTag("Player"))
             {
                 CharacterExposerScript characterExposerScript = colliderDirectoryScript.GetCharacterExposer(other);
-                characterExposerScript.characterRootGameObject
-                other.gameObject.SendMessage("CloseToChest", this);
+                //characterExposerScript.characterRootGameObject.
                 MeshRenderer meshRend = GetComponent<MeshRenderer>();
                 meshRend.material.color = Color.green;
+                pressE.gameObject.SetActive(true);
+                playerInventory.gameObject.SetActive(true);
+                chestInventory.gameObject.SetActive(true);
                 //Affiche touche E
                 canOpenChest = true;
                 
@@ -73,11 +75,11 @@ namespace LastToTheGlobe.Scripts.Inventory
         {
             if (other.gameObject.CompareTag("Player"))
             {
-                other.gameObject.SendMessage("AwayFromChest", this);
                 MeshRenderer meshRend = GetComponent<MeshRenderer>();
                 meshRend.material.color = Color.magenta;
                 canOpenChest = false;
                 pressE.gameObject.SetActive(false);
+                chestInventory.gameObject.SetActive(false);
                 
             }
         }

@@ -37,10 +37,10 @@ Transform:
   - {fileID: 809}
   - {fileID: 849}
   - {fileID: 786}
-  - {fileID: 4186147918488248651}
-  - {fileID: 7292236614968577835}
-  - {fileID: 1471107115089055790}
-  - {fileID: 7924258091328604086}
+  - {fileID: 1526199561881979547}
+  - {fileID: 5333726098689762555}
+  - {fileID: 1353015218157239000}
+  - {fileID: 7733827022303227200}
   - {fileID: 784}
   - {fileID: 834}
   m_Father: {fileID: 0}
@@ -103,6 +103,7 @@ MonoBehaviour:
   debug: 1
   speedRotation: 10
   dirForce: {x: 0, y: 0, z: 0}
+  photonView: {fileID: 0}
 --- !u!114 &1305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,8 +123,8 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 0}
-  viewIdField: 65
-  InstantiationId: 65
+  viewIdField: 9
+  InstantiationId: 9
   isRuntimeInstantiated: 0
 --- !u!114 &1328
 MonoBehaviour:
@@ -679,7 +680,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 823edf3c79d566d4d9a591a5fab6cd7b, type: 3}
---- !u!4 &1471107115089055790 stripped
+--- !u!4 &1353015218157239000 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 480913245010094562, guid: 823edf3c79d566d4d9a591a5fab6cd7b,
     type: 3}
@@ -734,7 +735,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf62e091e3a648e449f1ae21a25c6606, type: 3}
---- !u!4 &4186147918488248651 stripped
+--- !u!4 &1526199561881979547 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3401916670773471376, guid: bf62e091e3a648e449f1ae21a25c6606,
     type: 3}
@@ -809,7 +810,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf62e091e3a648e449f1ae21a25c6606, type: 3}
---- !u!4 &7292236614968577835 stripped
+--- !u!4 &5333726098689762555 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3401916670773471376, guid: bf62e091e3a648e449f1ae21a25c6606,
     type: 3}
@@ -884,7 +885,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 823edf3c79d566d4d9a591a5fab6cd7b, type: 3}
---- !u!4 &7924258091328604086 stripped
+--- !u!4 &7733827022303227200 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 480913245010094562, guid: 823edf3c79d566d4d9a591a5fab6cd7b,
     type: 3}
