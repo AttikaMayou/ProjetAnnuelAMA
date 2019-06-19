@@ -59,7 +59,7 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV
         {
             _seed = value;
             GenerateBiome();
-            Debug.Log("enter in SetSeed()");
+            if(debug) Debug.Log("enter in SetSeed()");
         }
 
         //génération aléatoire des points 
