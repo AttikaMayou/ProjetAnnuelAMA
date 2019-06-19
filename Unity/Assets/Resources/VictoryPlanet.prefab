@@ -34,7 +34,7 @@ Transform:
   m_GameObject: {fileID: 235}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 18.544, y: 18.544, z: 18.544}
+  m_LocalScale: {x: 42.58358, y: 42.58358, z: 42.58358}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -96,8 +96,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22d56e4cfea04bf4696856bb028a9ff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planetTransform: {fileID: 581}
-  planetCollider: {fileID: 0}
+  Id: 0
+  PlanetTransform: {fileID: 581}
+  PlanetCollider: {fileID: 1176}
+  AttractorScript: {fileID: 1260}
+  IsSpawnPlanet: 0
+  SpawnPosition: {fileID: 0}
 --- !u!135 &1176
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -136,8 +140,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22d56e4cfea04bf4696856bb028a9ff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planetTransform: {fileID: 581}
-  planetCollider: {fileID: 1176}
+  Id: 0
+  PlanetTransform: {fileID: 0}
+  PlanetCollider: {fileID: 0}
+  AttractorScript: {fileID: 0}
+  IsSpawnPlanet: 0
+  SpawnPosition: {fileID: 0}
 --- !u!114 &1260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,8 +159,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debug: 1
+  Exposer: {fileID: 0}
   speedRotation: 10
-  dirForce: {x: 0, y: 0, z: 0}
+  DirForce: {x: 0, y: 0, z: 0}
   photonView: {fileID: 1259}
 --- !u!114 &1259
 MonoBehaviour:
@@ -173,8 +182,8 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 0}
-  viewIdField: 0
-  InstantiationId: 69
+  viewIdField: 19
+  InstantiationId: 19
   isRuntimeInstantiated: 0
 --- !u!114 &1256
 MonoBehaviour:

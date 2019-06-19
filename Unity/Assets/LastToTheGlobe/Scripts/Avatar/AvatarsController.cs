@@ -1,19 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Text;
-using Assets.LastToTheGlobe.Scripts.Avatar;
 using Assets.LastToTheGlobe.Scripts.Camera;
 using Assets.LastToTheGlobe.Scripts.Management;
 using Assets.LastToTheGlobe.Scripts.Network;
 using Assets.LastToTheGlobe.Scripts.Weapon.Orb;
-using JetBrains.Annotations;
-using LastToTheGlobe.Scripts.Camera;
-using LastToTheGlobe.Scripts.Dev.LevelManager;
 using LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV;
-using LastToTheGlobe.Scripts.Management;
-using LastToTheGlobe.Scripts.Network;
 using LastToTheGlobe.Scripts.UI;
-using LastToTheGlobe.Scripts.Weapon.Orb;
 using Photon.Pun;
 using UnityEngine;
 
@@ -37,7 +29,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
         [Header("Environment Parameters")]
         //spawn point tab
         private GameObject[] _spawnPointInPlanet;
-        private List<Transform> _spawnPoints;
+        private List<Transform> _spawnPoints = new List<Transform>();
         private Vector3[] _spawnPos;
         [SerializeField] private CloudPlanet_PUN environmentController;
         private int _seed = 0;
@@ -98,8 +90,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
             startMenuController.SetCamera += SetupCamera;
             startMenuController.Disconnected += EndGame;
             startMenuController.MasterClientSwitched += EndGame;
-            //TODO : make sure attraction works before uncomment the following line
-            //startMenuController.GameCanStart += LaunchGameRoom;
+            startMenuController.GameCanStart += LaunchGameRoom;
 
             avatarAnimation.character = players;
         }
@@ -364,6 +355,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
             {
                 // _seed = environmentController.GetSeed();
                 _seed = 10;
+                if(debug) Debug.LogFormat("[AvatarsController] Seed is : {0}", _seed);
                 environmentController.SetSeed(_seed);
                 //TODO : make sure all the planets are being well instantiated before
                 //calling 'FindAllSpawnPoint' 
@@ -373,7 +365,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
  
             if (PhotonNetwork.IsConnected)
             {
-                photonView.RPC("SendSeedToPlayers", RpcTarget.Others, _seed);
+                photonView.RPC("SendSeedToPlayers", RpcTarget.OthersBuffered, _seed);
             }
             else
             {
@@ -447,7 +439,9 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
         {
             foreach (var planet in ColliderDirectoryScript.Instance.PlanetExposers)
             {
+                if (!planet) continue;
                 if (!planet.IsSpawnPlanet) continue;
+                if (_spawnPoints.Contains(planet.SpawnPosition)) continue;
                 _spawnPoints.Add(planet.SpawnPosition);
             }
             

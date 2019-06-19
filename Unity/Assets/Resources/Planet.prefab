@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 909}
   - component: {fileID: 1177}
   - component: {fileID: 1178}
-  - component: {fileID: 1264}
   - component: {fileID: 1263}
   - component: {fileID: 1262}
   - component: {fileID: 1261}
@@ -111,58 +110,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 239}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 239f1fc46b7f51d4196d7e4d526d9182, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  planet: {fileID: 239}
-  basicTrees:
-  - {fileID: 5824138353363560962, guid: f17ba4acc49924447a720db0607d5fb2, type: 3}
-  - {fileID: 3457562647987568635, guid: 422e1968d4713e249a0a464fcfa037c9, type: 3}
-  - {fileID: 5136088964744447014, guid: e14d0443a09e18f40a3ef5c587bbdb4f, type: 3}
-  - {fileID: 5069986728450691605, guid: b2f93fb1b108f3f46811e3007ca7edea, type: 3}
-  basicRock:
-  - {fileID: 2803188187778288439, guid: 5100207ad3ce0d94aa535fdb2f257cfd, type: 3}
-  - {fileID: 100002, guid: 6751c9dd76d5c4349a3e18279fe976b5, type: 3}
-  - {fileID: 100002, guid: b9e171cb2798e68449d998d741637915, type: 3}
-  - {fileID: 100002, guid: 5557fc2222dad454dade9623865f0837, type: 3}
-  - {fileID: 100002, guid: 45b3ff8bb6c7e60449fc034075db1a3e, type: 3}
-  - {fileID: 100002, guid: 4e576e625ab8c5c4682891005ea13fe6, type: 3}
-  frozenTrees:
-  - {fileID: 613466991418284497, guid: 030a8f4cefcffc94bbf7cb4f891c4cc3, type: 3}
-  - {fileID: 5703566706496584874, guid: 128f28990aa5e6a4ab41e47e5f6e4520, type: 3}
-  frozenRock:
-  - {fileID: 100002, guid: ab8a2617628f87543b49b960f810628c, type: 3}
-  - {fileID: 100002, guid: c11b710527429f744ab0304135c898b9, type: 3}
-  - {fileID: 100002, guid: 85e7ad73de50348409267db0a10a561a, type: 3}
-  - {fileID: 100002, guid: 37a9f11da876ab549a782670457dc55a, type: 3}
-  - {fileID: 100002, guid: 987bc6907aa38a04e92611bb95b51669, type: 3}
-  - {fileID: 100002, guid: 28d548ec17754a041be5d4eaaa4f314f, type: 3}
-  - {fileID: 100002, guid: bd921404e51fb744f903bc79b0f2d03f, type: 3}
-  - {fileID: 100002, guid: c587a0b47cbfe774bba3b579a20c5289, type: 3}
-  desertTrees:
-  - {fileID: 6568463300627639567, guid: f3a3ceaeaff9682458ed4a4786a0c01c, type: 3}
-  desertRock:
-  - {fileID: 3996990385705146103, guid: 9fde1273f8378f743857a8592a79efc2, type: 3}
-  - {fileID: 2173790081367414557, guid: d7e724b79df9f644cb2a009235bb5471, type: 3}
-  - {fileID: 1113447676687051344, guid: 6afcab66068006c45a813a2a6ddbb413, type: 3}
-  - {fileID: 100002, guid: 3e5faf235fd10f44c9e169ba8b8ca094, type: 3}
-  - {fileID: 100002, guid: 328e601ad2090514094df46da4588eab, type: 3}
-  - {fileID: 100002, guid: 69913ea94ef05034aab52a77f897bce6, type: 3}
-  - {fileID: 100002, guid: 3108d454170f1eb4ab8f2cac89788ae3, type: 3}
-  - {fileID: 100002, guid: d161bde20f19f2240b94f4057008a6bc, type: 3}
-  - {fileID: 100002, guid: 7acb702f0d858b547942f61eb90e1898, type: 3}
-  - {fileID: 100002, guid: 417d7efe09660e44a8d36b78dc776bf5, type: 3}
-  - {fileID: 100002, guid: 1175087b9ddbd4a46982b68c732dab1b, type: 3}
 --- !u!114 &1263
 MonoBehaviour:
   m_ObjectHideFlags: 0

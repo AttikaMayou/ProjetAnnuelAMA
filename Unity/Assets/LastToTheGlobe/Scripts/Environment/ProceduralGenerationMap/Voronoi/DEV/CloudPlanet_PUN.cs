@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 //Auteur : Margot
+//Modifications : Attika
 
 namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV
 {
@@ -44,22 +45,38 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV
 
         [SerializeField]
         private int numberOfPlayer = 10;
-        //TODO : récupérer le nombre de joueurs en jeu
+        //TODO : récupérer le nombre de joueurs en jeu (lobby, avant de lancer le game)
 
         private PlanetFeature_PUN planetFeature;
         private float planetSize = 1;
         private int _seed;
         private Vertex3[] vertices;
-        private PlanetClass newPlanet;
+        private PlanetClass[] planetsClass;
         private AssetInstanciation_PUN assetInstance;
+        private GameObject planet;
 
         private string matName;
 
+        private void Awake()
+        {
+            planetsClass = new PlanetClass[500];
+            InitializePlanetsClass();
+        }
+
+        private void InitializePlanetsClass()
+        {
+            var i = 0;
+            for (; i < planetsClass.Length; i++)
+            {
+                planetsClass[i] = new PlanetClass();
+            }
+        }
+        
         public void SetSeed(int value)
         {
             _seed = value;
             GenerateBiome();
-            Debug.Log("enter in SetSeed()");
+            if(debug) Debug.Log("enter in SetSeed()");
         }
 
         //génération aléatoire des points 
@@ -77,36 +94,37 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV
                 var y = size * Random.Range(-1f, -1.2f);
                 var z = size * Random.Range(-0.7f, 0.7f);
 
-                vertices[i] = new Vertex3(x, y, z);
-                GameObject newPlanet = PhotonNetwork.Instantiate(spawnPlanet.name, new Vector3(x, y, z), Quaternion.identity);
+                //vertices[i] = new Vertex3(x, y, z);
+                PhotonNetwork.Instantiate(spawnPlanet.name, new Vector3(x, y, z), Quaternion.identity);
             }
 
             //Génération aléatoire des points pour planètes basics
-            for (; i <= numberOfVertices; i++)
+            for (i = 0; i <= numberOfVertices; i++)
             {
-
                 planetSize = Random.Range(scaleMin, scaleMax);
                 var x = size * Random.Range(-1.0f, 1.0f);
                 var y = size * Random.Range(-1.0f, 1.0f);
                 var z = size * Random.Range(-1.0f, 1.0f);
 
-                vertices[i] = new Vertex3(x, y, z);
+                //vertices[i] = new Vertex3(x, y, z);
 
                 //newPlanet.planetLocation = vertices[i];
-                newPlanet.gameObjectPlanet = PhotonNetwork.Instantiate(basicPlanet.name, new Vector3(x, y, z), Quaternion.identity);
-                newPlanet.gameObjectPlanet.transform.localScale = new Vector3(planetSize, planetSize, planetSize);
+                var planetGameObject = PhotonNetwork.Instantiate(basicPlanet.name, new Vector3(x, y, z), Quaternion.identity);
+                planetGameObject.transform.localScale = new Vector3(planetSize, planetSize, planetSize);
 
+                var planetClass = planetsClass[i];
+                planetClass.gameObjectPlanet = planetGameObject;
                 //assignation d'un biome
-                newPlanet.planetType = PlanetFeature_PUN.CreateBiome(basicPlanet, out matName);
+                planetClass.planetType = PlanetFeature_PUN.CreateBiome(basicPlanet, out matName);
                 Material mat = Resources.Load(matName, typeof(Material)) as Material;
-                newPlanet.gameObjectPlanet.GetComponent<Renderer>().material = mat;
+                planetClass.gameObjectPlanet.GetComponent<Renderer>().material = mat;
                 //instanciation assets
-                AssetInstanciation_PUN asset = newPlanet.gameObjectPlanet.GetComponent<AssetInstanciation_PUN>();
-                asset.type = (int)newPlanet.planetType;
-                asset.SpawnAssets();
+                //AssetInstanciation_PUN asset = planetClass.gameObjectPlanet.GetComponent<AssetInstanciation_PUN>();
+                //asset.type = (int)planetClass.planetType;
+                //asset.SpawnAssets();
             }
 
-            victoryPlanet = PhotonNetwork.Instantiate(victoryPlanet.name, new Vector3(0, size * Random.Range(1f, 1.2f), 0), Quaternion.identity);
+            PhotonNetwork.Instantiate(victoryPlanet.name, new Vector3(0, size * Random.Range(1f, 1.2f), 0), Quaternion.identity);
             victoryPlanet.transform.localScale = new Vector3(planetSize / 2, planetSize / 2, planetSize / 2);
 
             return vertices;
