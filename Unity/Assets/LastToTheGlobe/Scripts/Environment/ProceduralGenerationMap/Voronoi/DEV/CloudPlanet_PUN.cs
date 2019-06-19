@@ -59,11 +59,14 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV
         {
             _seed = value;
             GenerateBiome();
+            Debug.Log("enter in SetSeed()");
         }
 
         //génération aléatoire des points 
         private Vertex3[] GenerateBiome()
         {
+            Debug.Log("enter in GenerateBiome()");
+
             int i = 0;
             Vertex3[] vertices = new Vertex3[numberOfPlayer + numberOfVertices + 1];
 

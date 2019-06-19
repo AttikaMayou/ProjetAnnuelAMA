@@ -51,29 +51,27 @@ using UnityEngine.Serialization;
             //private PlanetFeature planetFeature;
             //private int _seed;
             //private Vertex3[] planetsLocations;
-            //private GameObject[] planets;
+            private GameObject[] planets;
             private PlanetClass[] planetsData;
 
 
-            /*public int GetSeed()
+        public void SetSeed()
         {
-            Random.seed
-            _seed = Random.Range(1, 200);
-            return _seed;
-        }*/
+            GeneratePlanetsLocations();
+        }
 
-            public void GenerateMap()//int value)
-            {
+            //public void start()//int value)
+            //{
 
                 //CloudPlanet.vertices = new Vertex3[numberOfPlayer + numberOfVertices + 1];
                 //GeneratePlanetsLocations(ref planetsLocations); // new Vertex3[numberOfPlayer + numberOfVertices + 1];
-                GeneratePlanetsLocations();
+                //GeneratePlanetsLocations();
                 //_seed = value;
                 //Debug.Log("seed dans CloudPlanet :" + _seed);
 
                 //Debug.Log("scale :" + scaleMin);
                 //planetFeature.CreateBiome(value);
-            }
+            //}
 
             //génération aléatoire des points 
             //TODO : set size of the planet and push points
@@ -90,9 +88,9 @@ using UnityEngine.Serialization;
                     var y = size * Random.Range(-1f, -1.2f);
                     var z = size * Random.Range(-0.7f, 0.7f);
 
-                    //planetsLocations[i] = new Vertex3(x, y, z);
-                    //planet = Instantiate(spawnPlanet, new Vector3(x, y, z), Quaternion.identity);
-                    //planetTab[i] = planet;
+                //planetsLocations[i] = new Vertex3(x, y, z);
+                    planets[i] = Instantiate(spawnPlanet, new Vector3(x, y, z), Quaternion.identity);
+                    //planet(Tab[i] = planet;
                     //Debug.Log("planet:" + planetTab[0]);
                 }
 
@@ -104,13 +102,10 @@ using UnityEngine.Serialization;
                     var z = size * Random.Range(-1.0f, 1.0f);
 
                     //planetsLocations[i] = new Vertex3(x, y, z);
-                    //planet = Instantiate(basicPlanet, new Vector3(x, y, z), Quaternion.identity);
-
+                   planets[i] = Instantiate(basicPlanet, new Vector3(x, y, z), Quaternion.identity);
                 }
-                //planet = Instantiate(victoryPlanet, new Vector3(0, size * Random.Range(1.2f, 1.5f), 0), Quaternion.identity);
-                Debug.Log("i : " + i);
-                Debug.Log("numberOfPlayer:" + numberOfPlayer);
-                Debug.Log("numberOfVertices :" + numberOfVertices);
+
+                planets[i] = Instantiate(victoryPlanet, new Vector3(0, size * Random.Range(1.2f, 1.5f), 0), Quaternion.identity);
             }
 
 

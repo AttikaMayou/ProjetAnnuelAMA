@@ -56,8 +56,8 @@ namespace LastToTheGlobe.Scripts.Inventory
             if (other.gameObject.CompareTag("Player"))
             {
                 other.gameObject.SendMessage("CloseToChest", this);
-                MeshRenderer meshRend = GetComponent<MeshRenderer>();
-                meshRend.material.color = Color.green;
+                //MeshRenderer meshRend = GetComponent<MeshRenderer>();
+                //meshRend.material.color = Color.green;
                 //Affiche touche E
                 canOpenChest = true;
                 
@@ -70,8 +70,8 @@ namespace LastToTheGlobe.Scripts.Inventory
             if (other.gameObject.CompareTag("Player"))
             {
                 other.gameObject.SendMessage("AwayFromChest", this);
-                MeshRenderer meshRend = GetComponent<MeshRenderer>();
-                meshRend.material.color = Color.magenta;
+                //MeshRenderer meshRend = GetComponent<MeshRenderer>();
+                //meshRend.material.color = Color.magenta;
                 canOpenChest = false;
                 pressE.gameObject.SetActive(false);
                 

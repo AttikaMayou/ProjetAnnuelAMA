@@ -881,7 +881,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 578, guid: c83770715bf346641832232e27c6c903, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1252, guid: c83770715bf346641832232e27c6c903, type: 3}
       propertyPath: viewIdField
@@ -1739,37 +1739,37 @@ PrefabInstance:
     - target: {fileID: 1500373273569727153, guid: ceff46e9b8c61b6468aa9db0b04c7541,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1006.24
       objectReference: {fileID: 0}
     - target: {fileID: 1500373273569727153, guid: ceff46e9b8c61b6468aa9db0b04c7541,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 8.73
       objectReference: {fileID: 0}
     - target: {fileID: 1500373273569727153, guid: ceff46e9b8c61b6468aa9db0b04c7541,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1.97
       objectReference: {fileID: 0}
     - target: {fileID: 1500373273569727153, guid: ceff46e9b8c61b6468aa9db0b04c7541,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.07936347
       objectReference: {fileID: 0}
     - target: {fileID: 1500373273569727153, guid: ceff46e9b8c61b6468aa9db0b04c7541,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.02902544
       objectReference: {fileID: 0}
     - target: {fileID: 1500373273569727153, guid: ceff46e9b8c61b6468aa9db0b04c7541,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 0.34224883
       objectReference: {fileID: 0}
     - target: {fileID: 1500373273569727153, guid: ceff46e9b8c61b6468aa9db0b04c7541,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9358017
       objectReference: {fileID: 0}
     - target: {fileID: 1500373273569727153, guid: ceff46e9b8c61b6468aa9db0b04c7541,
         type: 3}
@@ -1779,18 +1779,33 @@ PrefabInstance:
     - target: {fileID: 1500373273569727153, guid: ceff46e9b8c61b6468aa9db0b04c7541,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -7.393
       objectReference: {fileID: 0}
     - target: {fileID: 1500373273569727153, guid: ceff46e9b8c61b6468aa9db0b04c7541,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -6.2900004
       objectReference: {fileID: 0}
     - target: {fileID: 1500373273569727153, guid: ceff46e9b8c61b6468aa9db0b04c7541,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 40.585003
       objectReference: {fileID: 0}
+    - target: {fileID: 979185769355094630, guid: ceff46e9b8c61b6468aa9db0b04c7541,
+        type: 3}
+      propertyPath: pressE
+      value: 
+      objectReference: {fileID: 744342577}
+    - target: {fileID: 979185769355094630, guid: ceff46e9b8c61b6468aa9db0b04c7541,
+        type: 3}
+      propertyPath: playerInventory
+      value: 
+      objectReference: {fileID: 1626333782}
+    - target: {fileID: 979185769355094630, guid: ceff46e9b8c61b6468aa9db0b04c7541,
+        type: 3}
+      propertyPath: chestInventory
+      value: 
+      objectReference: {fileID: 428598644}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ceff46e9b8c61b6468aa9db0b04c7541, type: 3}
 --- !u!4 &426441273 stripped
@@ -7005,7 +7020,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 5
+  m_firstOverflowCharacterIndex: 17
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -7033,7 +7048,7 @@ MonoBehaviour:
     spaceCount: 5
     wordCount: 5
     linkCount: 0
-    lineCount: 8
+    lineCount: 3
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 0
@@ -7953,7 +7968,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 1
+  m_firstOverflowCharacterIndex: 3
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -7981,7 +7996,7 @@ MonoBehaviour:
     spaceCount: 0
     wordCount: 2
     linkCount: 0
-    lineCount: 5
+    lineCount: 2
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 0
@@ -9990,6 +10005,11 @@ PrefabInstance:
       propertyPath: orbsPool.Array.data[29]
       value: 
       objectReference: {fileID: 1537059700}
+    - target: {fileID: 2003145821851938738, guid: 4b7f65cf3304916429cf26667ac888b2,
+        type: 3}
+      propertyPath: debug
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2003145821851938739, guid: 4b7f65cf3304916429cf26667ac888b2,
         type: 3}
       propertyPath: viewIdField
@@ -10125,6 +10145,11 @@ PrefabInstance:
       propertyPath: PlanetExposers.Array.data[1]
       value: 
       objectReference: {fileID: 1513692782}
+    - target: {fileID: 2003145822190471194, guid: 4b7f65cf3304916429cf26667ac888b2,
+        type: 3}
+      propertyPath: debug
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b7f65cf3304916429cf26667ac888b2, type: 3}
 --- !u!1001 &4032840750276786281

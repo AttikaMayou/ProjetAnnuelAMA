@@ -39,7 +39,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
         private GameObject[] _spawnPointInPlanet;
         private List<Transform> _spawnPoints;
         private Vector3[] _spawnPos;
-        [SerializeField] private CloudPlanet_STRUCT environmentController;
+        [SerializeField] private CloudPlanet_PUN environmentController;
         private int _seed = 0;
 
         [Header("Camera Parameters")] 

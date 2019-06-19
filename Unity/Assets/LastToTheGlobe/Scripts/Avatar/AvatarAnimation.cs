@@ -15,7 +15,7 @@ public class AvatarAnimation : MonoBehaviour
     public CharacterExposerScript[] character;
     public AIntentReceiver[] intentReceivers;
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (!PhotonNetwork.IsMasterClient && PhotonNetwork.IsConnected)
         {
