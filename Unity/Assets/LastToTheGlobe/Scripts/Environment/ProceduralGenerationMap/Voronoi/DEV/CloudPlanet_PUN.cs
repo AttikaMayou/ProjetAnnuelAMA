@@ -52,9 +52,14 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV
         private Vertex3[] vertices;
         private PlanetClass newPlanet;
         private AssetInstanciation_PUN assetInstance;
+        private GameObject planet;
 
         private string matName;
 
+        public void awake()
+        {
+            //planets = new GameObject[numberOfPlayer];
+        }
         public void SetSeed(int value)
         {
             _seed = value;
@@ -77,8 +82,8 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV
                 var y = size * Random.Range(-1f, -1.2f);
                 var z = size * Random.Range(-0.7f, 0.7f);
 
-                vertices[i] = new Vertex3(x, y, z);
-                GameObject newPlanet = PhotonNetwork.Instantiate(spawnPlanet.name, new Vector3(x, y, z), Quaternion.identity);
+                //vertices[i] = new Vertex3(x, y, z);
+                PhotonNetwork.Instantiate(spawnPlanet.name, new Vector3(x, y, z), Quaternion.identity);
             }
 
             //Génération aléatoire des points pour planètes basics
@@ -90,11 +95,12 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV
                 var y = size * Random.Range(-1.0f, 1.0f);
                 var z = size * Random.Range(-1.0f, 1.0f);
 
-                vertices[i] = new Vertex3(x, y, z);
+                //vertices[i] = new Vertex3(x, y, z);
 
                 //newPlanet.planetLocation = vertices[i];
-                newPlanet.gameObjectPlanet = PhotonNetwork.Instantiate(basicPlanet.name, new Vector3(x, y, z), Quaternion.identity);
-                newPlanet.gameObjectPlanet.transform.localScale = new Vector3(planetSize, planetSize, planetSize);
+                var planet = PhotonNetwork.Instantiate(basicPlanet.name, new Vector3(x, y, z), Quaternion.identity);
+                newPlanet.gameObjectPlanet = planet;
+                planet.transform.localScale = new Vector3(planetSize, planetSize, planetSize);
 
                 //assignation d'un biome
                 newPlanet.planetType = PlanetFeature_PUN.CreateBiome(basicPlanet, out matName);
@@ -106,7 +112,7 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV
                 asset.SpawnAssets();
             }
 
-            victoryPlanet = PhotonNetwork.Instantiate(victoryPlanet.name, new Vector3(0, size * Random.Range(1f, 1.2f), 0), Quaternion.identity);
+            PhotonNetwork.Instantiate(victoryPlanet.name, new Vector3(0, size * Random.Range(1f, 1.2f), 0), Quaternion.identity);
             victoryPlanet.transform.localScale = new Vector3(planetSize / 2, planetSize / 2, planetSize / 2);
 
             return vertices;
