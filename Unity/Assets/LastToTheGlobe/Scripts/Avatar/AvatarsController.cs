@@ -545,7 +545,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
 
         #region RPC Methods
 
-        [PunRPC]
+        [PunRPC]collid
         private void ActivateAvatarRPC(int avatarId)
         {
             players[avatarId].CharacterRootGameObject.SetActive(true);
