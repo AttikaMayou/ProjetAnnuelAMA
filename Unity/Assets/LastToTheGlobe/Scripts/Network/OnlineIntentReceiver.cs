@@ -30,6 +30,8 @@ namespace LastToTheGlobe.Scripts.Network
             {
                 return;
             }
+
+            Cursor.lockState = CursorLockMode.Locked; 
             
             Forward = Input.GetAxisRaw("Vertical");
             Strafe = Input.GetAxisRaw("Horizontal");
