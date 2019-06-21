@@ -51,7 +51,7 @@ SphereCollider:
   m_GameObject: {fileID: 232}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 22.955801
   m_Center: {x: 0, y: 0.23370934, z: -2.652464}
@@ -109,7 +109,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 1254}
-  viewIdField: 8
+  viewIdField: 0
   InstantiationId: 8
   isRuntimeInstantiated: 0
 --- !u!114 &1254
