@@ -21,7 +21,7 @@ namespace LastToTheGlobe.Scripts.Network
 
         [SerializeField] private PhotonView photonView;
 
-        private float _dashTime = 1.0f;
+        private float _dashTime = 1.0f; 
         
         private void Update()
         {

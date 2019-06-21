@@ -28,7 +28,6 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
 
         [Header("Environment Parameters")]
         //spawn point tab
-        private GameObject[] _spawnPointInPlanet;
         private List<Transform> _spawnPoints = new List<Transform>();
         private Vector3[] _spawnPos;
         [SerializeField] private CloudPlanet_PUN environmentController;
@@ -407,7 +406,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
         {
             yield return new WaitForSeconds(time);
             
-            if (_spawnPointInPlanet.Length <= 1)
+            if (_spawnPos.Length <= 1)
             {
                 Debug.LogError("[AvatarsController] " +
                                "There is a problem with the map instantiation");
@@ -425,9 +424,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                     Debug.Log("[AvatarsController] Previous pos : " 
                               + players[i].CharacterRootGameObject.transform.position);
                     Debug.Log("[AvatarsController] Final position : " 
-                              + _spawnPointInPlanet[i].transform.position);
-                    Debug.Log("[AvatarsController] Local position :  " 
-                              + _spawnPointInPlanet[i].transform.localPosition);
+                              + _spawnPos[i]);
                 }
                 yield return new WaitForSeconds(0.5f);
             }
