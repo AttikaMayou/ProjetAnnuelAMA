@@ -1,35 +1,32 @@
-﻿using System;
-using System.Runtime.CompilerServices;
-using Assets.LastToTheGlobe.Scripts.Management;
-using Assets.LastToTheGlobe.Scripts.Network;
+﻿using Assets.LastToTheGlobe.Scripts.Management;
 using Photon.Pun;
 using Photon.Pun.UtilityScripts;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.Experimental.UIElements;
 
 //Auteur : Margot
 //Modification : Attika
 
-namespace LastToTheGlobe.Scripts.Network
+namespace Assets.LastToTheGlobe.Scripts.Network
 {
     public class OnlineIntentReceiver : AIntentReceiver
     {
         public static bool debug = true;
         
-        [SerializeField] private int playerIndex;
+        [SerializeField] private int _playerIndex;
 
-        [SerializeField] private PhotonView photonView;
+        [SerializeField] private PhotonView _photonView;
 
-        private float _dashTime = 1.0f;
+        private float _dashTime = 1.0f; 
         
         private void Update()
         {
-            if (PlayerNumbering.SortedPlayers.Length <= playerIndex ||
-                PlayerNumbering.SortedPlayers[playerIndex].ActorNumber != PhotonNetwork.LocalPlayer.ActorNumber)
+            if (PlayerNumbering.SortedPlayers.Length <= _playerIndex ||
+                PlayerNumbering.SortedPlayers[_playerIndex].ActorNumber != PhotonNetwork.LocalPlayer.ActorNumber)
             {
                 return;
             }
+
+            Cursor.lockState = CursorLockMode.Locked; 
             
             Forward = Input.GetAxisRaw("Vertical");
             Strafe = Input.GetAxisRaw("Horizontal");
@@ -37,12 +34,12 @@ namespace LastToTheGlobe.Scripts.Network
             RotationOnY = Input.GetAxis("Mouse Y");
 
             //TODO : check if the rotation updates relative to previous rotation
-            photonView.RPC("UpdateCameraRotation", RpcTarget.MasterClient, RotationOnX, RotationOnY);
+            _photonView.RPC("UpdateCameraRotation", RpcTarget.MasterClient, RotationOnX, RotationOnY);
             
             //Attack Intent
             if (Input.GetMouseButton(0) && CanShoot)
             {
-                photonView.RPC("CanShootRPC", RpcTarget.MasterClient, false);
+                _photonView.RPC("CanShootRPC", RpcTarget.MasterClient, false);
             }
 
             if (!CanShoot)
@@ -50,7 +47,7 @@ namespace LastToTheGlobe.Scripts.Network
                 LoadShotValue += Time.deltaTime;
                 if (Input.GetMouseButtonUp(0))
                 {
-                    photonView.RPC(LoadShotValue >= GameVariablesScript.Instance.ShootLoadTime ? "LaunchLoadedBulletRPC" : "LaunchBulletRPC",
+                    _photonView.RPC(LoadShotValue >= GameVariablesScript.Instance.ShootLoadTime ? "LaunchLoadedBulletRPC" : "LaunchBulletRPC",
                         RpcTarget.MasterClient);
                     LoadShotValue = 0.0f;
                 }
@@ -89,32 +86,32 @@ namespace LastToTheGlobe.Scripts.Network
                                             || Input.GetKeyDown(KeyCode.Q) 
                                             || Input.GetKeyDown(KeyCode.D))
             {
-                photonView.RPC("MoveRPC", RpcTarget.MasterClient, true, Forward, Strafe);
+                _photonView.RPC("MoveRPC", RpcTarget.MasterClient, true, Forward, Strafe);
             }
             
             if (Input.GetKeyUp(KeyCode.Z) || Input.GetKeyUp(KeyCode.S) 
                                           || Input.GetKeyUp(KeyCode.Q) 
                                           || Input.GetKeyUp(KeyCode.D))
             {
-                photonView.RPC("MoveRPC", RpcTarget.MasterClient, false, 0, 0);
+                _photonView.RPC("MoveRPC", RpcTarget.MasterClient, false, 0, 0);
             }
             
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 Speed = GameVariablesScript.Instance.RunSpeed;
-                photonView.RPC("RunRPC", RpcTarget.MasterClient, true);
+                _photonView.RPC("RunRPC", RpcTarget.MasterClient, true);
             }
 
             if (Input.GetKeyUp(KeyCode.LeftShift))
             {
                 Speed = GameVariablesScript.Instance.WalkSpeed;
-                photonView.RPC("RunRPC", RpcTarget.MasterClient, false);
+                _photonView.RPC("RunRPC", RpcTarget.MasterClient, false);
             }
 
             if (Input.GetKeyDown(KeyCode.LeftAlt) && CanDash)
             {
                 Speed = GameVariablesScript.Instance.DashSpeed;
-                photonView.RPC("DashRPC", RpcTarget.MasterClient);
+                _photonView.RPC("DashRPC", RpcTarget.MasterClient);
                 //canDash = false;
             }
 
@@ -125,13 +122,13 @@ namespace LastToTheGlobe.Scripts.Network
 
             if (Input.GetKeyDown(KeyCode.R))
             {
-                photonView.RPC("UseBumpRPC", RpcTarget.MasterClient);
+                _photonView.RPC("UseBumpRPC", RpcTarget.MasterClient);
             }
             
             //Interaction Intent
             if (Input.GetKeyDown(KeyCode.E))
             {
-                photonView.RPC("InteractRPC", RpcTarget.MasterClient);
+                _photonView.RPC("InteractRPC", RpcTarget.MasterClient);
             }
             //TODO : Add double jump
         }
@@ -231,7 +228,7 @@ namespace LastToTheGlobe.Scripts.Network
             if (debug)
             {
                 Debug.LogFormat("[IntentReceiver] I get the message : Dash on this avatar : {0}",
-                    playerIndex);
+                    _playerIndex);
             }
             Dash = true;
         }
@@ -244,7 +241,7 @@ namespace LastToTheGlobe.Scripts.Network
             if (debug)
             {
                 Debug.LogFormat("[IntentReceiver] I get the message : Run on this avatar : {0}",
-                    playerIndex);
+                    _playerIndex);
             }
             Run = intent;
         }
@@ -257,7 +254,7 @@ namespace LastToTheGlobe.Scripts.Network
             if (debug)
             {
                 Debug.LogFormat("[IntentReceiver] I get the message : CanShoot on this avatar : {0} passed to {1}",
-                    playerIndex, intent);
+                    _playerIndex, intent);
             }
 
             CanShoot = intent;
@@ -271,7 +268,7 @@ namespace LastToTheGlobe.Scripts.Network
             if (debug)
             {
                 Debug.LogFormat("[IntentReceiver] I get the message : Shoot on this avatar : {0}",
-                    playerIndex);
+                    _playerIndex);
             }
             Shoot = true;
         }
@@ -284,7 +281,7 @@ namespace LastToTheGlobe.Scripts.Network
             if (debug)
             {
                 Debug.LogFormat("[IntentReceiver] I get the message : Shoot Loaded on this avatar : {0}",
-                    playerIndex);
+                    _playerIndex);
             }
             ShootLoaded = true;
         }
@@ -296,7 +293,7 @@ namespace LastToTheGlobe.Scripts.Network
             if (debug)
             {
                 Debug.LogFormat("[IntentReceiver] I get the message : Bump on this avatar : {0}",
-                    playerIndex);
+                    _playerIndex);
             }
             Bump = true;
         }
@@ -308,7 +305,7 @@ namespace LastToTheGlobe.Scripts.Network
             if (debug)
             {
                 Debug.LogFormat("[IntentReceiver] I get the message : Interact on this avatar : {0}",
-                    playerIndex);
+                    _playerIndex);
             }
             Interact = true;
         }

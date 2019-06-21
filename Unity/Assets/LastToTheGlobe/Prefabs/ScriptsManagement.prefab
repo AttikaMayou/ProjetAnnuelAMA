@@ -53,8 +53,8 @@ MonoBehaviour:
   RotationSpeed: 5
   CanDash: 1
   CanShoot: 1
-  playerIndex: 5
-  photonView: {fileID: 1750419867883068660}
+  _playerIndex: 5
+  _photonView: {fileID: 1750419867883068660}
 --- !u!114 &1750419867883068660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,7 +74,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 0}
-  viewIdField: 37
+  viewIdField: 0
   InstantiationId: 37
   isRuntimeInstantiated: 0
 --- !u!1 &1750419867898336820
@@ -130,8 +130,8 @@ MonoBehaviour:
   RotationSpeed: 5
   CanDash: 1
   CanShoot: 1
-  playerIndex: 2
-  photonView: {fileID: 1750419867898336817}
+  _playerIndex: 2
+  _photonView: {fileID: 1750419867898336817}
 --- !u!114 &1750419867898336817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,7 +151,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 0}
-  viewIdField: 36
+  viewIdField: 0
   InstantiationId: 36
   isRuntimeInstantiated: 0
 --- !u!1 &1750419868091591859
@@ -207,8 +207,8 @@ MonoBehaviour:
   RotationSpeed: 5
   CanDash: 1
   CanShoot: 1
-  playerIndex: 6
-  photonView: {fileID: 1750419868091591868}
+  _playerIndex: 6
+  _photonView: {fileID: 1750419868091591868}
 --- !u!114 &1750419868091591868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,7 +228,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 0}
-  viewIdField: 69
+  viewIdField: 0
   InstantiationId: 69
   isRuntimeInstantiated: 0
 --- !u!1 &1750419868305663231
@@ -284,8 +284,8 @@ MonoBehaviour:
   RotationSpeed: 5
   CanDash: 1
   CanShoot: 1
-  playerIndex: 1
-  photonView: {fileID: 1750419868305663224}
+  _playerIndex: 1
+  _photonView: {fileID: 1750419868305663224}
 --- !u!114 &1750419868305663224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -305,7 +305,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 0}
-  viewIdField: 16
+  viewIdField: 0
   InstantiationId: 16
   isRuntimeInstantiated: 0
 --- !u!1 &1750419868524878141
@@ -361,8 +361,8 @@ MonoBehaviour:
   RotationSpeed: 5
   CanDash: 1
   CanShoot: 1
-  playerIndex: 4
-  photonView: {fileID: 1750419868524878142}
+  _playerIndex: 4
+  _photonView: {fileID: 1750419868524878142}
 --- !u!114 &1750419868524878142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -382,7 +382,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 0}
-  viewIdField: 22
+  viewIdField: 0
   InstantiationId: 22
   isRuntimeInstantiated: 0
 --- !u!1 &1750419869185072378
@@ -478,8 +478,8 @@ MonoBehaviour:
   RotationSpeed: 5
   CanDash: 1
   CanShoot: 1
-  playerIndex: 0
-  photonView: {fileID: 1750419869282182493}
+  _playerIndex: 0
+  _photonView: {fileID: 1750419869282182493}
 --- !u!114 &1750419869282182493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -499,7 +499,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 0}
-  viewIdField: 19
+  viewIdField: 0
   InstantiationId: 19
   isRuntimeInstantiated: 0
 --- !u!1 &1750419869509152059
@@ -682,7 +682,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 0}
-  viewIdField: 65
+  viewIdField: 0
   InstantiationId: 65
   isRuntimeInstantiated: 0
 --- !u!114 &1750419869509152033
@@ -753,8 +753,8 @@ MonoBehaviour:
   RotationSpeed: 5
   CanDash: 1
   CanShoot: 1
-  playerIndex: 7
-  photonView: {fileID: 1750419869596473637}
+  _playerIndex: 7
+  _photonView: {fileID: 1750419869596473637}
 --- !u!114 &1750419869596473637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -774,7 +774,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 0}
-  viewIdField: 17
+  viewIdField: 0
   InstantiationId: 17
   isRuntimeInstantiated: 0
 --- !u!1 &1750419869727293411
@@ -830,8 +830,8 @@ MonoBehaviour:
   RotationSpeed: 5
   CanDash: 1
   CanShoot: 1
-  playerIndex: 8
-  photonView: {fileID: 1750419869727293420}
+  _playerIndex: 8
+  _photonView: {fileID: 1750419869727293420}
 --- !u!114 &1750419869727293420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -851,7 +851,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 0}
-  viewIdField: 18
+  viewIdField: 0
   InstantiationId: 18
   isRuntimeInstantiated: 0
 --- !u!1 &1750419869907780182
@@ -907,8 +907,8 @@ MonoBehaviour:
   RotationSpeed: 5
   CanDash: 1
   CanShoot: 1
-  playerIndex: 3
-  photonView: {fileID: 1750419869907780179}
+  _playerIndex: 3
+  _photonView: {fileID: 1750419869907780179}
 --- !u!114 &1750419869907780179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -928,7 +928,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 0}
-  viewIdField: 20
+  viewIdField: 0
   InstantiationId: 20
   isRuntimeInstantiated: 0
 --- !u!1 &1750419869948001051
@@ -984,8 +984,8 @@ MonoBehaviour:
   RotationSpeed: 5
   CanDash: 1
   CanShoot: 1
-  playerIndex: 9
-  photonView: {fileID: 1750419869948001028}
+  _playerIndex: 9
+  _photonView: {fileID: 1750419869948001028}
 --- !u!114 &1750419869948001028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1005,6 +1005,6 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 0}
-  viewIdField: 21
+  viewIdField: 0
   InstantiationId: 21
   isRuntimeInstantiated: 0
