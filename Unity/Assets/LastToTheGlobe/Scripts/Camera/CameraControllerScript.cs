@@ -55,15 +55,7 @@ namespace Assets.LastToTheGlobe.Scripts.Camera
                 UpdatePosAndRot();
             }
 
-            //raycast to avoid enter in mesh
-            /*RaycastHit hit;
-
-            if (Physics.Raycast(transform.position, PlayerExposer.CharacterTr, 10))
-            { 
-            print("There is something in front of the object!");
-            }*/
-
-    }
+        }
         
         private void UpdatePosAndRot()
         {
@@ -76,5 +68,21 @@ namespace Assets.LastToTheGlobe.Scripts.Camera
             position -= _myTr.rotation * _cameraOffsetOriginal;
             _myTr.position = position;
         }
+
+        /*
+
+        private void AvoidWall(Vector3 fromObjet, ref Vector3 toTarget)
+        {
+            RaycastHit wallHit = new RaycastHit();
+
+            if(Physics.Linecast(fromObjet, toTarget, out wallHit))
+            {
+                toTarget = new Vector3(wallHit.point.x, toTarget.y, wallHit.point.z);
+            }
+        }*/
     }
+
+
+
+
 }
