@@ -1,11 +1,10 @@
 ﻿using LastToTheGlobe.Scripts.Avatar;
-using TMPro;
 using UnityEngine;
 
 //Auteur : Abdallah
 //Modification : Attika
 
-namespace LastToTheGlobe.Scripts.Environment.Planets
+namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
 {
     public class BumperScript : MonoBehaviour
     {

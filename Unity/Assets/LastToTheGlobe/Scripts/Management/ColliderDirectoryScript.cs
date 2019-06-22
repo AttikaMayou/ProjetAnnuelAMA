@@ -23,6 +23,8 @@ namespace Assets.LastToTheGlobe.Scripts.Management
         [SerializeField] private int _activePlanets = 0;
         public List<OrbManager> OrbManagers;
         [SerializeField] private int _activeOrbs = 0;
+        public List<BumperExposerScript> BumperExposers;
+        [SerializeField] private int _activeBumpers = 0;
         
         private Dictionary<Collider, CharacterExposerScript> _playersDirectory = new Dictionary<Collider, CharacterExposerScript>();
         private CharacterExposerScript _playerValue;
@@ -32,6 +34,9 @@ namespace Assets.LastToTheGlobe.Scripts.Management
 
         private Dictionary<Collider, OrbManager> _orbsDirectory = new Dictionary<Collider, OrbManager>();
         private OrbManager _orbValue;
+        
+        private Dictionary<Collider, BumperExposerScript> _bumpersDirectory = new Dictionary<Collider, BumperExposerScript>();
+        private BumperExposerScript _bumperValue;
         
         #region Players Methods
         
@@ -261,6 +266,83 @@ namespace Assets.LastToTheGlobe.Scripts.Management
         
         #endregion
 
+        #region Bumpers Methods
+
+        public BumperExposerScript GetBumperExposer(Collider col)
+        {
+            if(debug) Debug.Log("[ColliderDirectoryScript] Trying to find bumper from " +
+                                "this collider : " + col);
+            if (!PhotonNetwork.IsMasterClient) return null;
+            return _bumpersDirectory.TryGetValue(col, out _bumperValue) ? _bumperValue : null;
+        }
+
+        public BumperExposerScript GetBumperExposer(int id)
+        {
+            if(debug) Debug.Log("[ColliderDirectoryScript] Trying to find bumper from " +
+                                "this id: " + id);
+            if (id < 0 || id >= BumperExposers.Count) return null;
+            return !PhotonNetwork.IsMasterClient ? null : BumperExposers[id];
+        }
+
+        public int GetBumperId(Collider col)
+        {
+            if (!col) return -1;
+            if (BumperExposers.Count == 0) StartCoroutine(Wait());
+            var bumper = GetBumperExposer(col);
+            if (bumper) return bumper.Id;
+            Debug.LogWarningFormat("[ColliderDirectoryScript] No BumperExposer found with this collider {0}", 
+                col.name);
+            return -1;
+        }
+
+        public void AddBumperExposer(BumperExposerScript bumper, out int id)
+        {
+            if (BumperExposers == null)
+            {
+                BumperExposers = new List<BumperExposerScript>();
+            }
+
+            if (!BumperExposers.Contains(bumper) && bumper)
+            {
+                BumperExposers.Add(bumper);
+            }
+
+            _activeBumpers++;
+
+            id = AddBumperInDirectory(bumper);
+
+            if (debug)
+            {
+                Debug.Log(id >= 0
+                    ? "[ColliderDirectoryScript] Successful added bumper to directory"
+                    : "[ColliderDirectoryScript] Failed to add bumper in directory");
+            }
+        }
+
+        public void RemoveBumperExposer(BumperExposerScript bumper)
+        {
+            _activeBumpers--;
+            bumper.Id = -1;
+            if (BumperExposers.Contains(bumper) && bumper)
+            {
+                BumperExposers.Remove(bumper);
+            }
+        }
+        
+        private int AddBumperInDirectory(BumperExposerScript bumper)
+        {
+            var id = -1;
+            if(debug) Debug.Log("[ColliderDirectoryScript] Add one bumper to directory");
+            if (_bumpersDirectory.ContainsValue(bumper)) return id;
+            _bumpersDirectory.Add(bumper.BumperCollider, bumper);
+            id = ActivePlayers - 1;
+            if(debug) Debug.LogFormat("[ColliderDirectoryScript] Directory key : {0} and value : {1}", 
+                bumper.BumperCollider, bumper);
+            return id;
+        }
+        
+        #endregion
+        
         private IEnumerator Wait()
         {
             if(debug) Debug.Log("[ColliderDirectoryScript] Wait called");
