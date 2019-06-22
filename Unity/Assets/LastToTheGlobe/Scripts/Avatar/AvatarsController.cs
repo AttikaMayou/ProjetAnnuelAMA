@@ -96,11 +96,11 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
 
        private void FixedUpdate()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                EndGame();
-                return;
-            }
+//            if (Input.GetKeyDown(KeyCode.Escape))
+//            {
+//                EndGame();
+//                return;
+//            }
             
             if (onLobby && !gameLaunched)
             {
@@ -358,7 +358,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                 environmentController.SetSeed(_seed);
                 //TODO : make sure all the planets are being well instantiated before
                 //calling 'FindAllSpawnPoint' 
-                FindAllSpawnPoint();
+                FindAllSpawnPoints();
                 if(debug) Debug.Log("[AvatarsController] Seed is " + _seed);
             }
  
@@ -417,8 +417,11 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
             for(var i = 0; i <= players.Length; i++)
             {
                 if (!players[i].isActiveAndEnabled) break;
-                //TODO : deactivate rb and set isKinematic = false 
+                players[i].CharacterRb.isKinematic = false;
                 players[i].CharacterRootGameObject.transform.position = _spawnPos[i + 1];
+                yield return new WaitForSeconds(0.5f);
+                players[i].CharacterRb.isKinematic = true;
+                players[i].CharacterRb.useGravity = true;
                 if (debug)
                 {
                     Debug.Log("[AvatarsController] Previous pos : " 
@@ -426,13 +429,12 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                     Debug.Log("[AvatarsController] Final position : " 
                               + _spawnPos[i]);
                 }
-                yield return new WaitForSeconds(0.5f);
             }
             
             gameLaunched = true;
         }
 
-        private void FindAllSpawnPoint()
+        private void FindAllSpawnPoints()
         {
             foreach (var planet in ColliderDirectoryScript.Instance.PlanetExposers)
             {
@@ -440,6 +442,8 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                 if (!planet.IsSpawnPlanet) continue;
                 if (_spawnPoints.Contains(planet.SpawnPosition)) continue;
                 _spawnPoints.Add(planet.SpawnPosition);
+                //Deactivate the collider so the attraction will not work there
+                planet.DeactivateCollider();
             }
             
             if (debug)

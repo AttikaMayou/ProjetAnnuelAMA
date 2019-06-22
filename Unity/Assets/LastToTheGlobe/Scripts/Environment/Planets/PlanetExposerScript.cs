@@ -31,5 +31,15 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
             if (!PhotonNetwork.IsMasterClient) return;
             ColliderDirectoryScript.Instance.RemovePlanetExposer(this);
         }
+
+        public void DeactivateCollider()
+        {
+            PlanetCollider.enabled = false;
+        }
+
+        public void ActivateCollider()
+        {
+            PlanetCollider.enabled = true;
+        }
     }
 }
