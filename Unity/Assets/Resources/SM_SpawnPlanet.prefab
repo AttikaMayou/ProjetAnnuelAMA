@@ -109,7 +109,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 1254}
-  viewIdField: 8
+  viewIdField: 0
   InstantiationId: 8
   isRuntimeInstantiated: 0
 --- !u!114 &1254
@@ -479,6 +479,7 @@ GameObject:
   - component: {fileID: 1162}
   - component: {fileID: 1161}
   - component: {fileID: 1160}
+  - component: {fileID: 3413999942042258251}
   m_Layer: 0
   m_Name: pCube2
   m_TagString: Untagged
@@ -597,6 +598,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.1083078, y: 3.700892, z: 21.665218}
   m_Center: {x: -2.3069615, y: 0, z: 0}
+--- !u!65 &3413999942042258251
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 240}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6, y: 4, z: 0.2}
+  m_Center: {x: 0, y: 0, z: -10.75}
 --- !u!1001 &4186147918488248843
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -417,10 +417,10 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
             for(var i = 0; i <= players.Length; i++)
             {
                 if (!players[i].isActiveAndEnabled) break;
-                players[i].CharacterRb.isKinematic = false;
+                players[i].CharacterRb.isKinematic = true;
                 players[i].CharacterRootGameObject.transform.position = _spawnPos[i + 1];
                 yield return new WaitForSeconds(0.5f);
-                players[i].CharacterRb.isKinematic = true;
+                players[i].CharacterRb.isKinematic = false;
                 players[i].CharacterRb.useGravity = true;
                 if (debug)
                 {
