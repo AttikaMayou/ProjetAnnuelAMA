@@ -10,8 +10,6 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
 
         public BumperExposerScript Exposer;
 
-        [SerializeField] private PhotonView photonView;
-
         public void BumpPlayer(int playerId, float force)
         {
             if (!PhotonNetwork.IsMasterClient) return;
@@ -38,7 +36,7 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
             if (playerId != -1)
             {
                 //Send to MasterClient a message to warn him with its own ID and playerId
-                photonView.RPC("AssignBumperRPC", RpcTarget.MasterClient,
+                Exposer.BumpersPhotonView.RPC("AssignBumperRPC", RpcTarget.MasterClient,
                     Exposer.Id, playerId);
             }
         }
@@ -57,7 +55,7 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
             if (playerId != -1)
             {
                 //Send to MasterClient a message to warn him with its own ID and playerId
-                photonView.RPC("UnassignBumperRPC", RpcTarget.MasterClient,
+                Exposer.BumpersPhotonView.RPC("UnassignBumperRPC", RpcTarget.MasterClient,
                     playerId);
             }
         }

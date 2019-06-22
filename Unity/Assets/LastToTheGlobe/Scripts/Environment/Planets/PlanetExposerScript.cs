@@ -14,6 +14,7 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
         public Transform PlanetTransform;
         public Collider PlanetCollider;
         public AttractorScript AttractorScript;
+        public PhotonView PlanetsPhotonView;
 
         public bool IsSpawnPlanet;
         public Transform SpawnPosition;

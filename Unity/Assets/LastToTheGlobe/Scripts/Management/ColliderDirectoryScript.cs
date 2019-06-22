@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using Assets.LastToTheGlobe.Scripts.Avatar;
 using Assets.LastToTheGlobe.Scripts.Environment.Planets;
 using Assets.LastToTheGlobe.Scripts.Weapon.Orb;
-using LastToTheGlobe.Scripts.Environment.Planets;
 using LastToTheGlobe.Scripts.Singleton;
-using LastToTheGlobe.Scripts.Weapon.Orb;
 using Photon.Pun;
 using UnityEngine;
 
@@ -16,12 +14,17 @@ namespace Assets.LastToTheGlobe.Scripts.Management
     public class ColliderDirectoryScript : MonoBehaviourSingleton<ColliderDirectoryScript>
     {
         public bool debug = true;
+
+        [Header("Photon View to assign")] 
+        public PhotonView BumpersPhotonView;
+        public PhotonView PlanetsPhotonView;
+        public PhotonView OrbsPhotonView;
         
         public List<CharacterExposerScript> CharacterExposers;
         public int ActivePlayers = 0;
         public List<PlanetExposerScript> PlanetExposers;
         [SerializeField] private int _activePlanets = 0;
-        public List<OrbManager> OrbManagers;
+        public List<OrbExposerScript> OrbExposers;
         [SerializeField] private int _activeOrbs = 0;
         public List<BumperExposerScript> BumperExposers;
         [SerializeField] private int _activeBumpers = 0;
@@ -32,8 +35,8 @@ namespace Assets.LastToTheGlobe.Scripts.Management
         private Dictionary<Collider, PlanetExposerScript> _planetsDirectory = new Dictionary<Collider, PlanetExposerScript>();
         private PlanetExposerScript _planetValue;
 
-        private Dictionary<Collider, OrbManager> _orbsDirectory = new Dictionary<Collider, OrbManager>();
-        private OrbManager _orbValue;
+        private Dictionary<Collider, OrbExposerScript> _orbsDirectory = new Dictionary<Collider, OrbExposerScript>();
+        private OrbExposerScript _orbValue;
         
         private Dictionary<Collider, BumperExposerScript> _bumpersDirectory = new Dictionary<Collider, BumperExposerScript>();
         private BumperExposerScript _bumperValue;
@@ -159,6 +162,7 @@ namespace Assets.LastToTheGlobe.Scripts.Management
             _activePlanets++;
             
             id = AddPlanetInDirectory(planet);
+            planet.PlanetsPhotonView = PlanetsPhotonView;
             
             if (debug)
             {
@@ -194,45 +198,46 @@ namespace Assets.LastToTheGlobe.Scripts.Management
         
         #region Orbs Methods
 
-        public OrbManager GetOrbManager(Collider col)
+        public OrbExposerScript GetOrbExposer(Collider col)
         {
             if(debug) Debug.Log("[ColliderDirectoryScript] Trying to find orb from this collider : " + col);
             if (!PhotonNetwork.IsMasterClient) return null;
             return _orbsDirectory.TryGetValue(col, out _orbValue) ? _orbValue : null;
         }
         
-        public OrbManager GetOrbManager(int id)
+        public OrbExposerScript GetOrbExposer(int id)
         {
             if(debug) Debug.Log("[ColliderDirectoryScript] Trying to find orb from this id: " + id);
-            if (id < 0 || id >= OrbManagers.Count) return null;
-            return !PhotonNetwork.IsMasterClient ? null : OrbManagers[id];
+            if (id < 0 || id >= OrbExposers.Count) return null;
+            return !PhotonNetwork.IsMasterClient ? null : OrbExposers[id];
         }
 
         public int GetOrbId(Collider col)
         {
             if (!col) return -1;
-            var orb = GetOrbManager(col);
+            var orb = GetOrbExposer(col);
             if (orb) return orb.Id;
-            Debug.LogWarningFormat("[ColliderDirectoryScript] No OrbManager found with this collider {0}", 
+            Debug.LogWarningFormat("[ColliderDirectoryScript] No OrbExposer found with this collider {0}", 
                 col.name);
             return -1;
         }
         
-        public void AddOrbManager(OrbManager orb, out int id)
+        public void AddOrbExposer(OrbExposerScript orb, out int id)
         {
-            if (OrbManagers == null)
+            if (OrbExposers == null)
             {
-                OrbManagers = new List<OrbManager>();
+                OrbExposers = new List<OrbExposerScript>();
             }
 
-            if (!OrbManagers.Contains(orb) && orb)
+            if (!OrbExposers.Contains(orb) && orb)
             {
-                OrbManagers.Add(orb);
+                OrbExposers.Add(orb);
             }
 
             _activeOrbs++;
             
             id = AddOrbInDirectory(orb);
+            orb.OrbsPhotonView = OrbsPhotonView;
             
             if (debug)
             {
@@ -242,25 +247,25 @@ namespace Assets.LastToTheGlobe.Scripts.Management
             }
         }
 
-        public void RemoveOrbManager(OrbManager orb)
+        public void RemoveOrbExposer(OrbExposerScript orb)
         {
             _activeOrbs--;
             orb.Id = -1;
-            if (OrbManagers.Contains(orb) && orb)
+            if (OrbExposers.Contains(orb) && orb)
             {
-                OrbManagers.Remove(orb);
+                OrbExposers.Remove(orb);
             }
         }
 
-        private int AddOrbInDirectory(OrbManager orb)
+        private int AddOrbInDirectory(OrbExposerScript orb)
         {
             var id = -1;
             if(debug) Debug.Log("[ColliderDirectoryScript] Add one orb to directory");
             if (_orbsDirectory.ContainsValue(orb)) return id;
-            _orbsDirectory.Add(orb.OrbCd, orb);
+            _orbsDirectory.Add(orb.OrbCollider, orb);
             id = _activeOrbs - 1;
             if(debug) Debug.LogWarningFormat("[ColliderDirectoryScript] Directory key : {0} and value : {1}", 
-                orb.OrbCd, orb);
+                orb.OrbCollider, orb);
             return id;
         }
         
@@ -310,6 +315,7 @@ namespace Assets.LastToTheGlobe.Scripts.Management
             _activeBumpers++;
 
             id = AddBumperInDirectory(bumper);
+            bumper.BumpersPhotonView = BumpersPhotonView;
 
             if (debug)
             {

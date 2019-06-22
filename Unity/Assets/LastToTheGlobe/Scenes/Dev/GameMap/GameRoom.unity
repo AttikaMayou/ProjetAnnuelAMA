@@ -6805,7 +6805,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 0
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -6833,7 +6833,7 @@ MonoBehaviour:
     spaceCount: 5
     wordCount: 5
     linkCount: 0
-    lineCount: 2
+    lineCount: 1
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 0
@@ -7753,7 +7753,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 0
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -7781,7 +7781,7 @@ MonoBehaviour:
     spaceCount: 0
     wordCount: 2
     linkCount: 0
-    lineCount: 2
+    lineCount: 1
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 0
@@ -9915,6 +9915,36 @@ PrefabInstance:
       propertyPath: PlanetExposers.Array.data[1]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 102627448006797231, guid: 4b7f65cf3304916429cf26667ac888b2,
+        type: 3}
+      propertyPath: viewIdField
+      value: 77
+      objectReference: {fileID: 0}
+    - target: {fileID: 102627448006797231, guid: 4b7f65cf3304916429cf26667ac888b2,
+        type: 3}
+      propertyPath: InstantiationId
+      value: 77
+      objectReference: {fileID: 0}
+    - target: {fileID: 6156550870422415201, guid: 4b7f65cf3304916429cf26667ac888b2,
+        type: 3}
+      propertyPath: viewIdField
+      value: 78
+      objectReference: {fileID: 0}
+    - target: {fileID: 6156550870422415201, guid: 4b7f65cf3304916429cf26667ac888b2,
+        type: 3}
+      propertyPath: InstantiationId
+      value: 78
+      objectReference: {fileID: 0}
+    - target: {fileID: 4414370369413740760, guid: 4b7f65cf3304916429cf26667ac888b2,
+        type: 3}
+      propertyPath: viewIdField
+      value: 79
+      objectReference: {fileID: 0}
+    - target: {fileID: 4414370369413740760, guid: 4b7f65cf3304916429cf26667ac888b2,
+        type: 3}
+      propertyPath: InstantiationId
+      value: 79
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b7f65cf3304916429cf26667ac888b2, type: 3}
 --- !u!1001 &4032840750276786281
@@ -11056,5 +11086,15 @@ PrefabInstance:
       propertyPath: chest
       value: 
       objectReference: {fileID: 1921455321}
+    - target: {fileID: 4111186757560557148, guid: 26d4fae48b756154f9ba8c29057cfed4,
+        type: 3}
+      propertyPath: viewIdField
+      value: 87
+      objectReference: {fileID: 0}
+    - target: {fileID: 4111186757560557148, guid: 26d4fae48b756154f9ba8c29057cfed4,
+        type: 3}
+      propertyPath: InstantiationId
+      value: 87
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26d4fae48b756154f9ba8c29057cfed4, type: 3}

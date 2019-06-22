@@ -12,6 +12,7 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
         public Transform BumperTransform;
         public Collider BumperCollider;
         public BumpScript BumpScript;
+        public PhotonView BumpersPhotonView;
 
         //Determines whether this bumper is on a spawn planet or not
         public bool IsSpawnBumper;

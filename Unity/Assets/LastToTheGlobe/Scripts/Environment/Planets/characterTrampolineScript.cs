@@ -1,11 +1,10 @@
 ﻿using LastToTheGlobe.Scripts.Avatar;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 //Auteur : Abdallah
 //Modification : Attika
 
-namespace LastToTheGlobe.Scripts.Environment.Planets
+namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
 {
     public class CharacterTrampolineScript : MonoBehaviour
     {

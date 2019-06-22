@@ -2,7 +2,6 @@
 using LastToTheGlobe.Scripts.Dev;
 using LastToTheGlobe.Scripts.Environment.Planets;
 using LastToTheGlobe.Scripts.Inventory;
-using LastToTheGlobe.Scripts.Weapon.Orb;
 using System.Collections;
 using Assets.LastToTheGlobe.Scripts.Weapon.Orb;
 using UnityEngine;

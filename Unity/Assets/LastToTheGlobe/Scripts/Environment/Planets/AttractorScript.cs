@@ -14,8 +14,6 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
 
         public float speedRotation = 10f;
         public Vector3 DirForce;
-
-        [SerializeField] private PhotonView photonView;
         
         public void AttractPlayer(int playerId, float gravity)
         {
@@ -57,7 +55,7 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
             if (playerId != -1) 
             {
                 //Send to MasterClient a message to warn him with its own ID and playerId
-                photonView.RPC("DetectPlayerRPC", RpcTarget.MasterClient,
+                Exposer.PlanetsPhotonView.RPC("DetectPlayerRPC", RpcTarget.MasterClient,
                     Exposer.Id, playerId);
             }
         }
@@ -77,7 +75,7 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
             if (playerId != -1) 
             {
                 //Send to MasterClient a message to warn him with playerId
-                photonView.RPC("RemoveAttractorPlayerRPC", RpcTarget.MasterClient, 
+                Exposer.PlanetsPhotonView.RPC("RemoveAttractorPlayerRPC", RpcTarget.MasterClient, 
                     playerId);
             }
         }

@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 1174}
   - component: {fileID: 1251}
   - component: {fileID: 1253}
-  - component: {fileID: 1252}
-  - component: {fileID: 1254}
+  - component: {fileID: 270006745851972520}
   m_Layer: 8
   m_Name: SM_SpawnPlanet
   m_TagString: Planet
@@ -71,6 +70,7 @@ MonoBehaviour:
   PlanetTransform: {fileID: 578}
   PlanetCollider: {fileID: 1174}
   AttractorScript: {fileID: 1253}
+  PlanetsPhotonView: {fileID: 0}
   IsSpawnPlanet: 1
   SpawnPosition: {fileID: 575}
 --- !u!114 &1253
@@ -88,8 +88,7 @@ MonoBehaviour:
   Exposer: {fileID: 1251}
   speedRotation: 10
   DirForce: {x: 0, y: 0, z: 0}
-  photonView: {fileID: 1252}
---- !u!114 &1252
+--- !u!114 &270006745851972520
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -104,28 +103,13 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 3
+  Synchronization: 0
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 1254}
-  viewIdField: 70
-  InstantiationId: 70
+  - {fileID: 0}
+  viewIdField: 76
+  InstantiationId: 76
   isRuntimeInstantiated: 0
---- !u!114 &1254
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
 --- !u!1 &233
 GameObject:
   m_ObjectHideFlags: 0
@@ -662,6 +646,16 @@ PrefabInstance:
       propertyPath: IsSpawnBumper
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5574098410269293263, guid: bf62e091e3a648e449f1ae21a25c6606,
+        type: 3}
+      propertyPath: viewIdField
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 5574098410269293263, guid: bf62e091e3a648e449f1ae21a25c6606,
+        type: 3}
+      propertyPath: InstantiationId
+      value: 36
+      objectReference: {fileID: 0}
     - target: {fileID: 78829876790285343, guid: bf62e091e3a648e449f1ae21a25c6606,
         type: 3}
       propertyPath: viewIdField
@@ -681,16 +675,6 @@ PrefabInstance:
         type: 3}
       propertyPath: InstantiationId
       value: 72
-      objectReference: {fileID: 0}
-    - target: {fileID: 5574098410269293263, guid: bf62e091e3a648e449f1ae21a25c6606,
-        type: 3}
-      propertyPath: viewIdField
-      value: 71
-      objectReference: {fileID: 0}
-    - target: {fileID: 5574098410269293263, guid: bf62e091e3a648e449f1ae21a25c6606,
-        type: 3}
-      propertyPath: InstantiationId
-      value: 71
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf62e091e3a648e449f1ae21a25c6606, type: 3}

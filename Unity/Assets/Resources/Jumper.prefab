@@ -14,8 +14,6 @@ GameObject:
   - component: {fileID: 8944984179605147246}
   - component: {fileID: 3505739493020897891}
   - component: {fileID: 2250229716091251501}
-  - component: {fileID: 5574098410269293263}
-  - component: {fileID: 6908105128422003660}
   m_Layer: 0
   m_Name: Jumper
   m_TagString: Jumper
@@ -108,7 +106,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Exposer: {fileID: 2250229716091251501}
-  photonView: {fileID: 5574098410269293263}
 --- !u!114 &2250229716091251501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,42 +122,6 @@ MonoBehaviour:
   BumperTransform: {fileID: 3401916670773471376}
   BumperCollider: {fileID: 8944984179605147246}
   BumpScript: {fileID: 3505739493020897891}
+  BumpersPhotonView: {fileID: 0}
   IsSpawnBumper: 0
   GetUsed: 0
---- !u!114 &5574098410269293263
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1963491872576424134}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 6908105128422003660}
-  viewIdField: 0
-  InstantiationId: 17
-  isRuntimeInstantiated: 0
---- !u!114 &6908105128422003660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1963491872576424134}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0

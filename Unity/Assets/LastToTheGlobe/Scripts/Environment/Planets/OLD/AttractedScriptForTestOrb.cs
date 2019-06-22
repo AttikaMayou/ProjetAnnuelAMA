@@ -1,6 +1,5 @@
 ﻿using Assets.LastToTheGlobe.Scripts.Environment.Planets;
 using Assets.LastToTheGlobe.Scripts.Weapon.Orb;
-using LastToTheGlobe.Scripts.Weapon.Orb;
 using UnityEngine;
 
 namespace LastToTheGlobe.Scripts.Environment.Planets

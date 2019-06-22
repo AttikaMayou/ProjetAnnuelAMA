@@ -16,8 +16,7 @@ GameObject:
   - component: {fileID: 1263}
   - component: {fileID: 1262}
   - component: {fileID: 1261}
-  - component: {fileID: 1260}
-  - component: {fileID: 1265}
+  - component: {fileID: 4111186757560557148}
   m_Layer: 0
   m_Name: Planet
   m_TagString: Planet
@@ -141,7 +140,6 @@ MonoBehaviour:
   Exposer: {fileID: 1261}
   speedRotation: 10
   DirForce: {x: 0, y: 0, z: 0}
-  photonView: {fileID: 1260}
 --- !u!114 &1261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,9 +156,10 @@ MonoBehaviour:
   PlanetTransform: {fileID: 582}
   PlanetCollider: {fileID: 1177}
   AttractorScript: {fileID: 1262}
+  PlanetsPhotonView: {fileID: 0}
   IsSpawnPlanet: 0
   SpawnPosition: {fileID: 0}
---- !u!114 &1260
+--- !u!114 &4111186757560557148
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -175,43 +174,10 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 3
+  Synchronization: 0
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 1265}
-  viewIdField: 11
-  InstantiationId: 11
+  - {fileID: 0}
+  viewIdField: 88
+  InstantiationId: 88
   isRuntimeInstantiated: 0
---- !u!114 &1265
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 239}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8efc6b1d64977384eb3405357896c656, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_PositionModel:
-    SynchronizeEnabled: 1
-    TeleportEnabled: 1
-    TeleportIfDistanceGreaterThan: 3
-    InterpolateOption: 2
-    InterpolateMoveTowardsSpeed: 1
-    InterpolateLerpSpeed: 1
-    ExtrapolateOption: 0
-    ExtrapolateSpeed: 1
-    ExtrapolateIncludingRoundTripTime: 1
-    ExtrapolateNumberOfStoredPositions: 1
-  m_RotationModel:
-    SynchronizeEnabled: 1
-    InterpolateOption: 1
-    InterpolateRotateTowardsSpeed: 180
-    InterpolateLerpSpeed: 5
-  m_ScaleModel:
-    SynchronizeEnabled: 1
-    InterpolateOption: 0
-    InterpolateMoveTowardsSpeed: 1
-    InterpolateLerpSpeed: 0
