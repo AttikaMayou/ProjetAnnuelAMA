@@ -2,7 +2,7 @@
 using UnityEngine;
 
 //Auteur : Abdallah
-//Modification : Attika
+//Modification : Attika, Margot
 
 namespace Assets.LastToTheGlobe.Scripts.Camera
 {
@@ -54,7 +54,16 @@ namespace Assets.LastToTheGlobe.Scripts.Camera
             {
                 UpdatePosAndRot();
             }
-        }
+
+            //raycast to avoid enter in mesh
+            /*RaycastHit hit;
+
+            if (Physics.Raycast(transform.position, PlayerExposer.CharacterTr, 10))
+            { 
+            print("There is something in front of the object!");
+            }*/
+
+    }
         
         private void UpdatePosAndRot()
         {
