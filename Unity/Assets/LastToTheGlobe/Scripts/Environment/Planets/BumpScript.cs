@@ -12,9 +12,14 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
 
         [SerializeField] private PhotonView photonView;
 
-        public void BumpPlayer(int playerId)
+        public void BumpPlayer(int playerId, float force)
         {
+            if (!PhotonNetwork.IsMasterClient) return;
+
+            var player = ColliderDirectoryScript.Instance.GetCharacterExposer(playerId);
+            var bumpedRb = player.CharacterRb;
             
+            bumpedRb.AddForce(Exposer.BumperTransform.up * force);
         }
         
         #region Collision Methods

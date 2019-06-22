@@ -9,6 +9,7 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
         //The id value of this bumper. Updated at awakening
         public int Id;
 
+        public Transform BumperTransform;
         public Collider BumperCollider;
         public BumpScript BumpScript;
 

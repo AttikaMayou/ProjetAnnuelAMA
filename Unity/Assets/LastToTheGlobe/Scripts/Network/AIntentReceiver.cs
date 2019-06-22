@@ -11,7 +11,6 @@ namespace Assets.LastToTheGlobe.Scripts.Network
        //public bool Jump { get; set; }
        public bool Dash { get; set; }
        public bool Shoot { get; set; }
-       
        public bool ShootLoaded { get; set; }
        public bool Bump { get; set; }
        public bool Interact { get; set; }
@@ -27,5 +26,6 @@ namespace Assets.LastToTheGlobe.Scripts.Network
        public bool CanDash = true;
        //public bool CanJump = true;
        public bool CanShoot = true;
+       public bool CanBump = true;
     }
 }

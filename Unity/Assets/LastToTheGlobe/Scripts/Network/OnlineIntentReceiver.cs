@@ -53,6 +53,18 @@ namespace Assets.LastToTheGlobe.Scripts.Network
                 }
             }
             
+            //Bump intent
+            if (Input.GetKeyDown(KeyCode.R) && CanBump)
+            {
+                _photonView.RPC("CanBumpRPC", RpcTarget.MasterClient, false);
+                _photonView.RPC("UseBumpRPC", RpcTarget.MasterClient);
+            }
+
+            if (!CanBump)
+            {
+                //TODO : deal with cooldown here   
+            }
+            
             /*if (!CanShoot)
             {
                 LoadShotValue += Time.deltaTime;
@@ -119,27 +131,13 @@ namespace Assets.LastToTheGlobe.Scripts.Network
 //            {
 //                photonView.RPC("JumpRPC", RpcTarget.MasterClient);
 //            }
-
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                _photonView.RPC("UseBumpRPC", RpcTarget.MasterClient);
-            }
             
             //Interaction Intent
             if (Input.GetKeyDown(KeyCode.E))
             {
                 _photonView.RPC("InteractRPC", RpcTarget.MasterClient);
             }
-            //TODO : Add double jump
         }
-
-//        private void OnCollisionEnter(Collision other)
-//        {
-//            if (other.gameObject.CompareTag("Planet"))
-//            {
-//                CanJump = true;
-//            }
-//        }
 
         #region RPC
 
@@ -256,8 +254,20 @@ namespace Assets.LastToTheGlobe.Scripts.Network
                 Debug.LogFormat("[IntentReceiver] I get the message : CanShoot on this avatar : {0} passed to {1}",
                     _playerIndex, intent);
             }
-
             CanShoot = intent;
+        }
+
+        [PunRPC]
+        void CanBumpRPC(bool intent)
+        {
+            if (!PhotonNetwork.IsMasterClient) return;
+
+            if (debug)
+            {
+                Debug.LogFormat("[IntentReceiver] I get the message : CanBump on this avatar : {0} passed to {1}",
+                    _playerIndex, intent);
+            }
+            CanBump = intent;
         }
         
         [PunRPC]
