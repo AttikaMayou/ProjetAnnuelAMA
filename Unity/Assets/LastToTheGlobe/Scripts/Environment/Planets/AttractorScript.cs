@@ -15,7 +15,7 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
         public float speedRotation = 10f;
         public Vector3 DirForce;
         
-        public void AttractPlayer(int playerId, float gravity)
+        public void AttractPlayer(int planetId, int playerId, float gravity)
         {
             //Only the MasterClient interact with collider and stuff like this
             if (!PhotonNetwork.IsMasterClient) return;
@@ -23,9 +23,11 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
             var player = ColliderDirectoryScript.Instance.GetCharacterExposer(playerId);
             var attractedRb = player.CharacterRb;
             var body = player.CharacterTr;
+
+            var planet = ColliderDirectoryScript.Instance.GetPlanetExposer(planetId);
             
             //Give the direction of gravity
-            var gravityUp = (body.position - Exposer.PlanetTransform.position).normalized;
+            var gravityUp = (body.position - planet.PlanetTransform.position).normalized;
             var bodyUp = body.up;
           
             attractedRb.AddForce(gravityUp * gravity);

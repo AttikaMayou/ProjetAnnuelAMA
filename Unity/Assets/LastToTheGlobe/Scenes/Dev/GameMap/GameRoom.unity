@@ -4269,6 +4269,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97b499ac0087c6a48bf103bec179e7d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1043953070 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5362464755270695940, guid: 4b7f65cf3304916429cf26667ac888b2,
+    type: 3}
+  m_PrefabInstance: {fileID: 2003145822580352384}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1043953071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043953070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 917c2123bde88734f9ca74bda0e6f01f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Exposer: {fileID: 0}
+  speedRotation: 10
+  DirForce: {x: 0, y: 0, z: 0}
+--- !u!114 &1043953072 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6156550870422415201, guid: 4b7f65cf3304916429cf26667ac888b2,
+    type: 3}
+  m_PrefabInstance: {fileID: 2003145822580352384}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043953070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!223 &1044944322 stripped
 Canvas:
   m_CorrespondingSourceObject: {fileID: 7371488152859573526, guid: 0c1104fca7e572f4ba002359e5ef96bc,
@@ -10950,6 +10983,10 @@ PrefabInstance:
       propertyPath: InstantiationId
       value: 66
       objectReference: {fileID: 0}
+    - target: {fileID: 1261, guid: 26d4fae48b756154f9ba8c29057cfed4, type: 3}
+      propertyPath: PlanetsPhotonView
+      value: 
+      objectReference: {fileID: 1043953072}
     - target: {fileID: 1262, guid: 26d4fae48b756154f9ba8c29057cfed4, type: 3}
       propertyPath: debug
       value: 1
