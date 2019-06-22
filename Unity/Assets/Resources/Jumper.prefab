@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 8944984179605147246}
   - component: {fileID: 3505739493020897891}
   - component: {fileID: 2250229716091251501}
-  - component: {fileID: 78829876790285343}
-  - component: {fileID: 8163558423635387826}
+  - component: {fileID: 5574098410269293263}
+  - component: {fileID: 6908105128422003660}
   m_Layer: 0
   m_Name: Jumper
   m_TagString: Jumper
@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Exposer: {fileID: 2250229716091251501}
-  photonView: {fileID: 78829876790285343}
+  photonView: {fileID: 5574098410269293263}
 --- !u!114 &2250229716091251501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,7 +126,7 @@ MonoBehaviour:
   BumpScript: {fileID: 3505739493020897891}
   IsSpawnBumper: 0
   GetUsed: 0
---- !u!114 &78829876790285343
+--- !u!114 &5574098410269293263
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,14 +141,14 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 0
+  Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 0}
+  - {fileID: 6908105128422003660}
   viewIdField: 0
-  InstantiationId: 0
+  InstantiationId: 17
   isRuntimeInstantiated: 0
---- !u!114 &8163558423635387826
+--- !u!114 &6908105128422003660
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

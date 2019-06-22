@@ -108,7 +108,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 1254}
-  viewIdField: 8
+  viewIdField: 0
   InstantiationId: 8
   isRuntimeInstantiated: 0
 --- !u!114 &1254
@@ -657,16 +657,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6279156343297692330, guid: bf62e091e3a648e449f1ae21a25c6606,
-        type: 3}
-      propertyPath: viewIdField
-      value: 72
-      objectReference: {fileID: 0}
-    - target: {fileID: 6279156343297692330, guid: bf62e091e3a648e449f1ae21a25c6606,
-        type: 3}
-      propertyPath: InstantiationId
-      value: 72
-      objectReference: {fileID: 0}
     - target: {fileID: 2250229716091251501, guid: bf62e091e3a648e449f1ae21a25c6606,
         type: 3}
       propertyPath: IsSpawnBumper
@@ -681,6 +671,16 @@ PrefabInstance:
         type: 3}
       propertyPath: InstantiationId
       value: 71
+      objectReference: {fileID: 0}
+    - target: {fileID: 6279156343297692330, guid: bf62e091e3a648e449f1ae21a25c6606,
+        type: 3}
+      propertyPath: viewIdField
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 6279156343297692330, guid: bf62e091e3a648e449f1ae21a25c6606,
+        type: 3}
+      propertyPath: InstantiationId
+      value: 72
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf62e091e3a648e449f1ae21a25c6606, type: 3}
