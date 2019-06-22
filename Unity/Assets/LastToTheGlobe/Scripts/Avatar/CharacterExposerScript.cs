@@ -16,9 +16,8 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
         //The id value of this player. Updated at awakening
         public int Id;
         
+        [Header("Player Component References")] 
         public GameObject CharacterRootGameObject;
-        
-        [Header("Player Control Parameters")] 
         public Rigidbody CharacterRb;
         public Transform CharacterTr;
         public Collider CharacterCollider;
@@ -27,6 +26,9 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
 
         [Header("Avatar Animation")]
         public Animator CharacterAnimator;
+
+        [Header("Bumper Reference")] 
+        public BumpScript Bumper;
         
         [Header("Network Parameters")]
         public PhotonView CharacterPhotonView;
@@ -35,8 +37,6 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
         [Header("Camera Control Parameters")] 
         public GameObject CameraRotatorX;
 
-        public AttractorScript AttractorDebug;
-        
         [Header("UI references")] 
         //public ActivateObjects inventoryUI;
         public ActivateObjects LifeUi;

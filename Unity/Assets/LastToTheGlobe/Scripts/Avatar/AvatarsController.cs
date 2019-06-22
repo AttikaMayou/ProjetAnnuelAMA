@@ -221,6 +221,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
 
                 if (intent.Bump)
                 {
+                    if(!player.Bumper) Debug.LogFormat("[AvatarsController] Player {0} is trying to bump but there is no bumper around him", player);
                     
                 }
 

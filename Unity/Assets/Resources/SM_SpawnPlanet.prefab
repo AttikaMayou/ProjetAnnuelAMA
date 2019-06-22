@@ -85,7 +85,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 917c2123bde88734f9ca74bda0e6f01f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: 0
   Exposer: {fileID: 1251}
   speedRotation: 10
   DirForce: {x: 0, y: 0, z: 0}
@@ -657,6 +656,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6279156343297692330, guid: bf62e091e3a648e449f1ae21a25c6606,
+        type: 3}
+      propertyPath: viewIdField
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 6279156343297692330, guid: bf62e091e3a648e449f1ae21a25c6606,
+        type: 3}
+      propertyPath: InstantiationId
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 2250229716091251501, guid: bf62e091e3a648e449f1ae21a25c6606,
+        type: 3}
+      propertyPath: IsSpawnBumper
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 78829876790285343, guid: bf62e091e3a648e449f1ae21a25c6606,
+        type: 3}
+      propertyPath: viewIdField
+      value: 71
+      objectReference: {fileID: 0}
+    - target: {fileID: 78829876790285343, guid: bf62e091e3a648e449f1ae21a25c6606,
+        type: 3}
+      propertyPath: InstantiationId
+      value: 71
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf62e091e3a648e449f1ae21a25c6606, type: 3}

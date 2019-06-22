@@ -4,7 +4,7 @@ using UnityEngine;
 //Auteur : Abdallah
 //Modification : Attika
 
-namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
+namespace Assets.LastToTheGlobe.Scripts.Environment.Planets.OLD
 {
     public class BumperScript : MonoBehaviour
     {

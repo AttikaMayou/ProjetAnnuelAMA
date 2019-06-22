@@ -10,6 +10,7 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
         public int Id;
 
         public Collider BumperCollider;
+        public BumpScript BumpScript;
 
         //Determines whether this bumper is on a spawn planet or not
         public bool IsSpawnBumper;

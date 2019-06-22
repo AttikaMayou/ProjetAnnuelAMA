@@ -8,7 +8,7 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
 {
     public class AttractorScript : MonoBehaviour
     {
-        public bool debug = true;
+        public static bool debug = true;
 
         public PlanetExposerScript Exposer;
 
@@ -99,8 +99,8 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
             
             if (debug)
             {
-                Debug.Log("Found the player " + player.name + " from this ID : " + playerId);
-                Debug.Log("Found the planet " + planet.name + " from this ID : " + planetId);
+                Debug.LogFormat("[AttractorScript] Found the player {0} from this ID : {1}",player.name, playerId);
+                Debug.LogFormat("[AttractorScript] Found the planet {0} from this ID : {1}",planet.name, planetId);
             }
             
             //Set the attractor script which ACTUALLY attract player
@@ -119,7 +119,7 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
             
             if (debug)
             {
-                Debug.Log("Found the player " + player.name + " from this ID : " + playerId);
+                 Debug.LogFormat("[AttractorScript] Found the player {0} from this ID : {1}",player.name, playerId);
             }
 
             //Set the attractor to null since the player isn't ACTUALLY attracted by anything

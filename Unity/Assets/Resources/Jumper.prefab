@@ -12,6 +12,10 @@ GameObject:
   - component: {fileID: 8428924573271557673}
   - component: {fileID: 2669700270276466924}
   - component: {fileID: 8944984179605147246}
+  - component: {fileID: 3505739493020897891}
+  - component: {fileID: 2250229716091251501}
+  - component: {fileID: 78829876790285343}
+  - component: {fileID: 8163558423635387826}
   m_Layer: 0
   m_Name: Jumper
   m_TagString: Jumper
@@ -89,5 +93,73 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.49999994
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3505739493020897891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963491872576424134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7be22090a1fa16a4a8eb87e97549011d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Exposer: {fileID: 2250229716091251501}
+  photonView: {fileID: 78829876790285343}
+--- !u!114 &2250229716091251501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963491872576424134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3347ba99683a77247aa9a8577704056d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Id: 0
+  BumperCollider: {fileID: 8944984179605147246}
+  BumpScript: {fileID: 3505739493020897891}
+  IsSpawnBumper: 0
+  GetUsed: 0
+--- !u!114 &78829876790285343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963491872576424134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 0
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &8163558423635387826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963491872576424134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
