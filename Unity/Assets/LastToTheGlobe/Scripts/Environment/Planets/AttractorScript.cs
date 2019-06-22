@@ -40,8 +40,7 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
             DirForce = gravityUp;
         }
         
-
-        #region Private Methods
+        #region Collision Methods
 
         //The planet detects a collider entered its attraction field 
         private void OnTriggerEnter(Collider other)
@@ -57,7 +56,7 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
             //if playerId is different from -1, that means this is a player which hit the planet
             if (playerId != -1) 
             {
-                //Send the MasterClient a message to warn him with its own ID and playerId
+                //Send to MasterClient a message to warn him with its own ID and playerId
                 photonView.RPC("DetectPlayerRPC", RpcTarget.MasterClient,
                     Exposer.Id, playerId);
             }
@@ -77,7 +76,7 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
             //if playerId is different from -1, that means this is a player which left the planet
             if (playerId != -1) 
             {
-                //Send the MasterClient a message to warn him with playerId
+                //Send to MasterClient a message to warn him with playerId
                 photonView.RPC("RemoveAttractorPlayerRPC", RpcTarget.MasterClient, 
                     playerId);
             }

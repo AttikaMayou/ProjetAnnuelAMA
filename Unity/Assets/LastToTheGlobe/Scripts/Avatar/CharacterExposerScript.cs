@@ -73,10 +73,20 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
 //            AttractorDebug = Attractor;
 //        }
 
-        //TODO : Deactivate Rb when player is teleported
         public void DeactivateRb()
         {
             CharacterRb.isKinematic = true;
+        }
+
+        public void ActivateRb()
+        {
+            CharacterRb.isKinematic = false;
+            CharacterRb.useGravity = true;
+        }
+
+        public void DisableGravity()
+        {
+            CharacterRb.useGravity = false;
         }
     }
 }

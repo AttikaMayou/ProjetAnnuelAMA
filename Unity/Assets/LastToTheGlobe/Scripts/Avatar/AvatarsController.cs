@@ -417,18 +417,15 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
             for(var i = 0; i <= players.Length; i++)
             {
                 if (!players[i].isActiveAndEnabled) break;
-                players[i].CharacterRb.isKinematic = true;
+                players[i].DeactivateRb();
                 players[i].CharacterRootGameObject.transform.position = _spawnPos[i + 1];
                 yield return new WaitForSeconds(0.5f);
-                players[i].CharacterRb.isKinematic = false;
-                players[i].CharacterRb.useGravity = true;
-                if (debug)
-                {
-                    Debug.Log("[AvatarsController] Previous pos : " 
-                              + players[i].CharacterRootGameObject.transform.position);
-                    Debug.Log("[AvatarsController] Final position : " 
-                              + _spawnPos[i]);
-                }
+                players[i].ActivateRb();
+                if (!debug) continue;
+                Debug.Log("[AvatarsController] Previous pos : " 
+                          + players[i].CharacterRootGameObject.transform.position);
+                Debug.Log("[AvatarsController] Final position : " 
+                          + _spawnPos[i]);
             }
             
             gameLaunched = true;
