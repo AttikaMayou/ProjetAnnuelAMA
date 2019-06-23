@@ -4,6 +4,7 @@ using Assets.LastToTheGlobe.Scripts.Camera;
 using Assets.LastToTheGlobe.Scripts.Management;
 using Assets.LastToTheGlobe.Scripts.Network;
 using Assets.LastToTheGlobe.Scripts.Weapon.Orb;
+using Assets.LastToTheGlobe.Scripts.Weapon.Orb.OLD;
 using LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV;
 using LastToTheGlobe.Scripts.UI;
 using Photon.Pun;
@@ -227,7 +228,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                     }
                     else
                     {
-                        player.Bumper.BumpPlayer(i, 9000.0f);
+                        player.Bumper.BumpPlayer(player.Bumper.Exposer.Id,i, 9000.0f);
                     }
                 }
 
@@ -249,7 +250,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                     continue;
                 }
                 
-                player.Attractor.AttractPlayer(i, -2600.0f);
+                player.Attractor.AttractPlayer(player.Attractor.Exposer.Id,i, -2600.0f);
                 
                 /*if (intent.canJump && player.attractor)
                 {

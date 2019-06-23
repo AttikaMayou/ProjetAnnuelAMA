@@ -21,13 +21,13 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
         //Determines whether THIS bumper, which is on a spawn planet, has been used or not
         public bool GetUsed;
 
-        private void OnEnable()
+        private void Awake()
         {
             if (!PhotonNetwork.IsMasterClient) return;
             ColliderDirectoryScript.Instance.AddBumperExposer(this, out Id);
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
             if (!PhotonNetwork.IsMasterClient) return;
             ColliderDirectoryScript.Instance.RemoveBumperExposer(this);

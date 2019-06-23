@@ -20,14 +20,14 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
         public Transform SpawnPosition;
 
         //Reference itself to the ColliderDirectory
-        private void OnEnable()
+        private void Awake()
         {
             if (!PhotonNetwork.IsMasterClient) return;
             ColliderDirectoryScript.Instance.AddPlanetExposer(this, out Id);
         }
 
         //Dereference itself to the ColliderDirectory
-        private void OnDisable()
+        private void OnDestroy()
         {
             if (!PhotonNetwork.IsMasterClient) return;
             ColliderDirectoryScript.Instance.RemovePlanetExposer(this);

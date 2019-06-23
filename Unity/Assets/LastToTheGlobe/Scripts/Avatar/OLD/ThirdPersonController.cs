@@ -4,6 +4,7 @@ using LastToTheGlobe.Scripts.Environment.Planets;
 using LastToTheGlobe.Scripts.Inventory;
 using System.Collections;
 using Assets.LastToTheGlobe.Scripts.Weapon.Orb;
+using Assets.LastToTheGlobe.Scripts.Weapon.Orb.OLD;
 using UnityEngine;
 
 //Auteur : Abdallah

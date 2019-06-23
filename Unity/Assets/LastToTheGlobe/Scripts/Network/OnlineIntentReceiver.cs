@@ -64,23 +64,7 @@ namespace Assets.LastToTheGlobe.Scripts.Network
             {
                 //TODO : deal with cooldown here   
             }
-            
-            /*if (!CanShoot)
-            {
-                LoadShotValue += Time.deltaTime;
-                if(LoadShotValue >= 1.5f && Input.GetMouseButtonUp(0))
-                {
-                    //shootLoaded = true;
-                    photonView.RPC("LaunchLoadedBulletRPC", RpcTarget.MasterClient);
-                    LoadShotValue = 0.0f;
-                }
 
-                if (Input.GetMouseButtonUp(0))
-                {
-                    photonView.RPC("LaunchBulletRPC", RpcTarget.MasterClient);
-                }
-            }*/
-            
             //Cooldown dash
             if (!CanDash)
             {

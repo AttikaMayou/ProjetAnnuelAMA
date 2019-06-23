@@ -6,14 +6,21 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
 {
     public class BumpScript : MonoBehaviour
     {
-        public static bool debug = true;
+        public static bool Debug = true;
 
         public BumperExposerScript Exposer;
 
-        public void BumpPlayer(int playerId, float force)
+        public void BumpPlayer(int bumperId, int playerId, float force)
         {
             if (!PhotonNetwork.IsMasterClient) return;
 
+            if (bumperId != Exposer.Id)
+            {
+                if(Debug) UnityEngine.Debug.LogWarningFormat("[BumpScript] Bumper {0} received order to bump player {1} but it was meant to {2}",
+                    Exposer.Id, playerId, bumperId);
+                return;
+            }
+            
             var player = ColliderDirectoryScript.Instance.GetCharacterExposer(playerId);
             var bumpedRb = player.CharacterRb;
             
@@ -24,7 +31,7 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
 
         private void OnTriggerEnter(Collider other)
         {
-            if(debug) Debug.LogFormat("[BumpScript] {0} get triggered by something : {1}",
+            if(Debug) UnityEngine.Debug.LogFormat("[BumpScript] {0} get triggered by something : {1}",
                 this.gameObject.name, other.gameObject.name);
             
             //Only the Master Client interact with collider and stuff like this
@@ -43,7 +50,7 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
 
         private void OnTriggerExit(Collider other)
         {
-            if(debug) Debug.LogFormat("[BumpScript] {1} left {0}",
+            if(Debug) UnityEngine.Debug.LogFormat("[BumpScript] {1} left {0}",
                 this.gameObject.name, other.gameObject.name);
              
             //Only the Master Client interact with collider and stuff like this
@@ -62,48 +69,5 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
 
         #endregion
         
-        #region RPC Callbacks
-
-        [PunRPC]
-        void AssignBumperRPC(int bumperId, int playerId)
-        {
-            if (debug) Debug.Log("[BumpScript] AssignBumpRPC received");
-            
-            //Fin exposers from int parameters (IDs)
-            var bumper = ColliderDirectoryScript.Instance.GetBumperExposer(bumperId);
-            var player = ColliderDirectoryScript.Instance.GetCharacterExposer(playerId);
-
-            if (!player || !bumper) return;
-
-            if (debug)
-            {
-                Debug.LogFormat("[BumpScript] Found the player {0} from this ID : {1}",player.name, playerId);
-                Debug.LogFormat("[BumpScript] Found the bumper {0} from this ID : {1}",bumper.name, bumperId);
-            }
-            
-            //Set the bumper which is ACTUALLY near player
-            player.Bumper = bumper.BumpScript;
-        }
-
-        [PunRPC]
-        void UnassignBumperRPC(int playerId)
-        {
-            if (debug) Debug.Log("[BumpScript] UnassignBumperRPC received");
-            
-            //Find exposer from int parameter (ID)
-            var player = ColliderDirectoryScript.Instance.GetCharacterExposer(playerId);
-            
-            if (!player) return;
-            
-            if (debug)
-            {
-                Debug.LogFormat("[BumpScript] Found the player {0} from this ID : {1}",player.name, playerId);
-            }
-
-            //Set the bumper to null since the player isn't ACTUALLY near any bumper
-            player.Bumper = null;
-        }
-
-        #endregion
     }
 }
