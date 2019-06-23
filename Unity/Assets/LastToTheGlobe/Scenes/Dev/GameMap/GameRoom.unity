@@ -4078,6 +4078,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7286885728091454299}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1139913042 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2734627141275773018, guid: 7eb1822cd18db924f8fd39629419d649,
+    type: 3}
+  m_PrefabInstance: {fileID: 6515098802273578464}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d99268119346174478b5e1aa299e59cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1171519840 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5107946470935551248, guid: 501d9991fbb3e6b45b291e93d1d426dc,
@@ -8586,6 +8598,11 @@ PrefabInstance:
       propertyPath: orbsPool.Array.data[29]
       value: 
       objectReference: {fileID: 1537059700}
+    - target: {fileID: 2003145821851938738, guid: 4b7f65cf3304916429cf26667ac888b2,
+        type: 3}
+      propertyPath: _lobbyAssets
+      value: 
+      objectReference: {fileID: 1139913042}
     - target: {fileID: 2003145821851938739, guid: 4b7f65cf3304916429cf26667ac888b2,
         type: 3}
       propertyPath: viewIdField
