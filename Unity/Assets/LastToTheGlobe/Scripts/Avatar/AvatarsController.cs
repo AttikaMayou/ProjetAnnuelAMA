@@ -390,9 +390,9 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
         private bool CheckIfEnoughPlayers()
         {
             //TODO : refacto this function with Photon functions
-            if (!_gameStarted) return false;
-
-            var j = 0;
+            //if (!_gameStarted) return false;
+            return false;
+            /*var j = 0;
             var i = 0;
             for (; i < players.Length; i++)
             {
@@ -406,7 +406,7 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
                 }
             }
 
-            return j >= nbMinPlayers;
+            return j >= nbMinPlayers;*/
         }
 
         // Wait the time indicated before teleport players to the spawn points

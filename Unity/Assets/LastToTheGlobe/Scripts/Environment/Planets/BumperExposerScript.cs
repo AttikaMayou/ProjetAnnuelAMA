@@ -23,7 +23,7 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
 
         private void Awake()
         {
-            if (!PhotonNetwork.IsMasterClient) return;
+            //if (!PhotonNetwork.IsMasterClient) return;
             ColliderDirectoryScript.Instance.AddBumperExposer(this, out Id);
         }
 
