@@ -5,7 +5,7 @@ using UnityEngine;
 public class GP_GUISettings : ScriptableObject
 {
     [SerializeField]
-    private int scales = 10;
+    private int scale = 10;
 
     [SerializeField]
     private int depth = 10;
@@ -25,7 +25,7 @@ public class GP_GUISettings : ScriptableObject
         set { depth = value; }
     }
 
-    public int scale
+    public int Scale
     {
         get { return scale; }
         set { scale = value; }
