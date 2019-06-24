@@ -14,7 +14,7 @@ namespace Editor
             EditorGUILayout.BeginVertical();
 
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField("Width : ");
+            EditorGUILayout.LabelField("Scale : ");
             GUISettings.Scale = EditorGUILayout.IntField(GUISettings.Scale);
             EditorGUILayout.EndHorizontal();
 
