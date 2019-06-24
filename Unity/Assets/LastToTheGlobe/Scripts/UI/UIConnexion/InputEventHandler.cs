@@ -7,7 +7,7 @@ public class InputEventHandler : MonoBehaviour
 {
     public TMP_InputField mainInputField;
     [HideInInspector]
-    public bool inputEntered;
+    public bool inputEntered = false;
 
     // Checks if there is anything entered into the input field.
     void LockInput(TMP_InputField input)
@@ -18,6 +18,7 @@ public class InputEventHandler : MonoBehaviour
         }
         else if (input.text.Length == 0)
         {
+            inputEntered = false;
             Debug.Log("Main Input Empty");
         }
     }
@@ -28,4 +29,5 @@ public class InputEventHandler : MonoBehaviour
         //Passes the main input field into the method when "LockInput" is invoked
         mainInputField.onEndEdit.AddListener(delegate {LockInput(mainInputField); });
     }
+
 }
