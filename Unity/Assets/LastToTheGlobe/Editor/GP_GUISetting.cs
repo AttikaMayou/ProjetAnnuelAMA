@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
+//Auteur : Margot
 public class GP_GUISettings : ScriptableObject
 {
+    [SerializeField]
+    private bool isSpawnPlanet = false;
+
     [SerializeField]
     private int scale = 10;
 
@@ -13,6 +16,9 @@ public class GP_GUISettings : ScriptableObject
 
     [SerializeField]
     private PlanetType planetType;
+
+    [SerializeField]
+    private string planetName;
 
     public PlanetType PlanetType
     {
@@ -30,6 +36,18 @@ public class GP_GUISettings : ScriptableObject
     {
         get { return scale; }
         set { scale = value; }
+    }
+
+    public string Name
+    {
+        get { return planetName; }
+        set { planetName = value; }
+    }
+
+    public bool SpawnPlanet
+    {
+        get { return isSpawnPlanet; }
+        set { isSpawnPlanet = value; }
     }
 }
 

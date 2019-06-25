@@ -3,20 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-
+//Auteur : Margot
 namespace Editor
 {
     public class GP_GUI : EditorWindow
     {
         public GP_GUISettings GUISettings { get; set; }
         private GameObject[] forPrefab;
+        private GameObject planet;
+        private Material mat;
 
         public void OnGUI()
         {
             EditorGUILayout.BeginVertical();
 
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField("WIP Scale : ");
+            EditorGUILayout.LabelField("WIP : Is a spawn planet ? : ");
+            GUISettings.SpawnPlanet = EditorGUILayout.Toggle(GUISettings.SpawnPlanet);
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField("Scale : ");
             GUISettings.Scale = EditorGUILayout.IntField(GUISettings.Scale);
             EditorGUILayout.EndHorizontal();
 
@@ -35,7 +42,12 @@ namespace Editor
                 GeneratePlanet();
             }
 
-           if (GUILayout.Button("Save planet "))
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField("Prefab Name : ");
+            GUISettings.Name = EditorGUILayout.TextField(GUISettings.Name);
+            EditorGUILayout.EndHorizontal();
+
+            if (GUILayout.Button("Save planet "))
             {
                 CreatePrefab();
             }
@@ -44,7 +56,7 @@ namespace Editor
             {
                 ResetScene();
             }
-            
+
             EditorGUILayout.EndVertical();
         }
 
@@ -55,12 +67,45 @@ namespace Editor
 
         public void GeneratePlanet()
         {
-            //Create planet sphere and set scale
-            var planet = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            forPrefab[0] = planet;
-            planet.transform.localScale = new Vector3(GUISettings.Scale, GUISettings.Scale, GUISettings.Scale);
+            if(GUISettings.SpawnPlanet = true)
+            {
+               //TODO : spawn planet
+            }
+            else
+            {
+                //Create planet sphere and set scale
+                planet = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                forPrefab[0] = planet;
+                Undo.RegisterCreatedObjectUndo(planet, "Create planets");
+                //SCALE
+                planet.transform.localScale = new Vector3(GUISettings.Scale, GUISettings.Scale, GUISettings.Scale);
 
-            Undo.RegisterCreatedObjectUndo(planet, "Create planets");
+                //----------------------------------PLANET TYPE---------------------------------------------------
+                switch (GUISettings.PlanetType)
+                {
+                    //Planet Material
+                    case PlanetType.Frozen:
+                        {
+                            mat = Resources.Load("M_FrozenPlanet", typeof(Material)) as Material;
+                            break;
+                        }
+                    case PlanetType.Desert:
+                        {
+                            mat = Resources.Load("M_DesertPlanet", typeof(Material)) as Material;
+                            break;
+                        }
+                    case PlanetType.Basic:
+                        {
+                            mat = Resources.Load("M_BasicPlanet", typeof(Material)) as Material;
+                            break;
+                        }
+                    default:
+                        mat = Resources.Load("M_BasicPlanet", typeof(Material)) as Material;
+                        break;
+                }
+                //MATERIAL
+                planet.GetComponent<Renderer>().material = mat;
+            }
         }
         
         public void CreatePrefab()
@@ -73,27 +118,9 @@ namespace Editor
             foreach (GameObject gameObject in forPrefab)
             {
                 //Set the path as within the ressources folder
-                string localPath = "Assets/Resources" + gameObject.name + ".prefab";
- 
-                //Check if the Prefab and/or name already exists at the path
-                if (AssetDatabase.LoadAssetAtPath(localPath, typeof(GameObject)))
-                {
-                    //Create dialog to ask if User is sure they want to overwrite existing Prefab
-                    if (EditorUtility.DisplayDialog("Are you sure?",
-                        "The Prefab already exists. Do you want to overwrite it?",
-                        "Yes",
-                        "No"))
-                    //If the user presses the yes button, create the Prefab
-                    {
-                        CreateNew(gameObject, localPath);
-                    }
-                }
-                //If the name doesn't exist, create the new Prefab
-                else
-                {
-                    Debug.Log(gameObject.name + " is not a Prefab, will convert");
-                    CreateNew(gameObject, localPath);
-                }
+                string localPath = "Assets/Resources/" + GUISettings.Name + ".prefab";
+                CreateNew(gameObject, localPath);
+           
             }
         }
         
@@ -107,10 +134,14 @@ namespace Editor
         //reset object
         public void ResetScene()
         {
+            for (int i = 0; i < forPrefab.Length; i++)
+            {
+                System.Array.Clear(forPrefab, i, 200 - i);
+                Debug.Log("reset");
+            }
             Debug.Log("reset");
             //TODO : supprimer prefab + vider forPrefab[]
         }
-        
-
+       
     }
 }

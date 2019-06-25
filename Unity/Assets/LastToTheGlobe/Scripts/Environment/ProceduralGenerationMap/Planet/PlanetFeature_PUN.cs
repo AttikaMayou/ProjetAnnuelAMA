@@ -6,7 +6,7 @@ using LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi;
 
 namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
 {
-    public class PlanetFeature_PUN 
+    public class PlanetFeature_PUN : MonoBehaviour
     {
         [SerializeField]
         private GameObject planet;
