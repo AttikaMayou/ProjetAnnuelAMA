@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class GP_GUISettings : ScriptableObject
 {
     [SerializeField]
@@ -11,12 +12,12 @@ public class GP_GUISettings : ScriptableObject
     private int depth = 10;
 
     [SerializeField]
-    private float digRate = 0.3f;
+    private PlanetType planetType;
 
-    public float DigRate
+    public PlanetType PlanetType
     {
-        get { return digRate; }
-        set { digRate = value; }
+        get { return planetType; }
+        set { planetType = value; }
     }
 
     public int Depth

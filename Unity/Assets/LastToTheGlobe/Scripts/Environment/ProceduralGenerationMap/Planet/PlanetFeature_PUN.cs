@@ -1,7 +1,6 @@
 ﻿ using UnityEngine;
 using LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi;
  using LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV;
-
 //Auteur : Margot
 //Modifications : Attika
 
