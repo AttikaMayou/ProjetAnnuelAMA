@@ -1,10 +1,11 @@
-﻿using Assets.LastToTheGlobe.Scripts.Management;
+﻿using Assets.LastToTheGlobe.Scripts.Environment.Planets;
+using LastToTheGlobe.Scripts.Management;
 using Photon.Pun;
 using UnityEngine;
 
 //Auteur : Attika
 
-namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
+namespace LastToTheGlobe.Scripts.Environment.Planets
 {
     public class AttractorScript : MonoBehaviour
     {
@@ -61,12 +62,12 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
             var playerId = ColliderDirectoryScript.Instance.GetPlayerId(other);
             
             //if playerId is different from -1, that means this is a player which hit the planet
-            if (playerId != -1) 
-            {
-                //Send to MasterClient a message to warn him with its own ID and playerId
-                Exposer.PlanetsPhotonView.RPC("DetectPlayerRPC", RpcTarget.MasterClient,
-                    Exposer.Id, playerId);
-            }
+//            if (playerId != -1) 
+//            {
+//                //Send to MasterClient a message to warn him with its own ID and playerId
+//                Exposer.PlanetsPhotonView.RPC("DetectPlayerRPC", RpcTarget.MasterClient,
+//                    Exposer.Id, playerId);
+//            }
         }
         
         //The planet detects a collider exit its attraction field 
@@ -81,12 +82,12 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
             var playerId = ColliderDirectoryScript.Instance.GetPlayerId(other);
             
             //if playerId is different from -1, that means this is a player which left the planet
-            if (playerId != -1) 
-            {
-                //Send to MasterClient a message to warn him with playerId
-                Exposer.PlanetsPhotonView.RPC("RemoveAttractorPlayerRPC", RpcTarget.MasterClient, 
-                    playerId);
-            }
+//            if (playerId != -1) 
+//            {
+//                //Send to MasterClient a message to warn him with playerId
+//                Exposer.PlanetsPhotonView.RPC("RemoveAttractorPlayerRPC", RpcTarget.MasterClient, 
+//                    playerId);
+//            }
         }
         
         #endregion

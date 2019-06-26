@@ -9,7 +9,7 @@ using UnityEngine;
 
 //Auteur : Attika
 
-namespace Assets.LastToTheGlobe.Scripts.Management
+namespace LastToTheGlobe.Scripts.Management
 {
     public class ColliderDirectoryScript : MonoBehaviourSingleton<ColliderDirectoryScript>
     {

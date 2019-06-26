@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Assets.LastToTheGlobe.Scripts.Avatar;
 using Assets.LastToTheGlobe.Scripts.Camera;
 using Assets.LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet;
 using Assets.LastToTheGlobe.Scripts.Management;
 using Assets.LastToTheGlobe.Scripts.Network;
-using Assets.LastToTheGlobe.Scripts.Weapon.Orb;
 using Assets.LastToTheGlobe.Scripts.Weapon.Orb.OLD;
 using LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV;
+using LastToTheGlobe.Scripts.Management;
+using LastToTheGlobe.Scripts.Network;
 using LastToTheGlobe.Scripts.UI;
 using Photon.Pun;
 using UnityEngine;
@@ -14,7 +16,7 @@ using UnityEngine;
 //Auteur : Attika
 //Modification : Margot
 
-namespace Assets.LastToTheGlobe.Scripts.Avatar
+namespace LastToTheGlobe.Scripts.Avatar
 {
     public class AvatarsController : MonoBehaviour
     {

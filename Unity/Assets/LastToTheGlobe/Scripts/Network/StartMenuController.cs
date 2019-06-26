@@ -12,7 +12,7 @@ using UnityEngine.UI;
 //Auteur : Attika
 //Modification : Margot
 
-namespace Assets.LastToTheGlobe.Scripts.Network
+namespace LastToTheGlobe.Scripts.Network
 {
     public class StartMenuController : MonoBehaviourPunCallbacks
     {

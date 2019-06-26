@@ -1,8 +1,9 @@
-﻿using Assets.LastToTheGlobe.Scripts.Management;
+﻿using Assets.LastToTheGlobe.Scripts.Environment.Planets;
+using LastToTheGlobe.Scripts.Management;
 using Photon.Pun;
 using UnityEngine;
 
-namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
+namespace LastToTheGlobe.Scripts.Environment.Planets
 {
     public class BumpScript : MonoBehaviour
     {
@@ -40,12 +41,12 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
             var playerId = ColliderDirectoryScript.Instance.GetPlayerId(other);
 
             //if playerId is different from -1, that means this is a player which hit the bumper
-            if (playerId != -1)
-            {
-                //Send to MasterClient a message to warn him with its own ID and playerId
-                Exposer.BumpersPhotonView.RPC("AssignBumperRPC", RpcTarget.MasterClient,
-                    Exposer.Id, playerId);
-            }
+//            if (playerId != -1)
+//            {
+//                //Send to MasterClient a message to warn him with its own ID and playerId
+//                Exposer.BumpersPhotonView.RPC("AssignBumperRPC", RpcTarget.MasterClient,
+//                    Exposer.Id, playerId);
+//            }
         }
 
         private void OnTriggerExit(Collider other)
@@ -59,12 +60,12 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
             var playerId = ColliderDirectoryScript.Instance.GetPlayerId(other);
 
             //if playerId is different from -1, that means this is a player which left the bumper aera
-            if (playerId != -1)
-            {
-                //Send to MasterClient a message to warn him with its own ID and playerId
-                Exposer.BumpersPhotonView.RPC("UnassignBumperRPC", RpcTarget.MasterClient,
-                    playerId);
-            }
+//            if (playerId != -1)
+//            {
+//                //Send to MasterClient a message to warn him with its own ID and playerId
+//                Exposer.BumpersPhotonView.RPC("UnassignBumperRPC", RpcTarget.MasterClient,
+//                    playerId);
+//            }
         }
 
         #endregion

@@ -1,10 +1,11 @@
 ﻿using Assets.LastToTheGlobe.Scripts.Management;
+using LastToTheGlobe.Scripts.Management;
 using Photon.Pun;
 using UnityEngine;
 
 //Auteur : Attika
 
-namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
+namespace LastToTheGlobe.Scripts.Environment.Planets
 {
     public class PlanetsPhotonViewSender : MonoBehaviour
     {
