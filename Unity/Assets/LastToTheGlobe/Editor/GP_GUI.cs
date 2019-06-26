@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet;
+
 
 //Auteur : Margot
 namespace Editor
@@ -9,16 +11,18 @@ namespace Editor
     public class GP_GUI : EditorWindow
     {
         public GP_GUISettings GUISettings { get; set; }
-        private GameObject[] forPrefab;
+        private List<GameObject> forPrefab;
         private GameObject planet;
         private Material mat;
+        private GameObject spawnPlanet;
+        private AssetInstanciation_PUN spawnAsset;
 
         public void OnGUI()
         {
             EditorGUILayout.BeginVertical();
 
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField("WIP : Is a spawn planet ? : ");
+            EditorGUILayout.LabelField("Is a spawn planet ? : ");
             GUISettings.SpawnPlanet = EditorGUILayout.Toggle(GUISettings.SpawnPlanet);
             EditorGUILayout.EndHorizontal();
 
@@ -28,14 +32,20 @@ namespace Editor
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField("WIP PlanetType : ");
+            EditorGUILayout.LabelField("PlanetType : ");
             GUISettings.PlanetType = (PlanetType)EditorGUILayout.EnumPopup(GUISettings.PlanetType);
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField("WIP Depth : ");
-            GUISettings.Depth = EditorGUILayout.IntField(GUISettings.Depth);
+            EditorGUILayout.LabelField("WIP Number of trees : ");
+            GUISettings.NumberOfTree = EditorGUILayout.IntField(GUISettings.NumberOfTree);
             EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField("WIP Number of rock : ");
+            GUISettings.NumberOfRock = EditorGUILayout.IntField(GUISettings.NumberOfRock);
+            EditorGUILayout.EndHorizontal();
+
 
             if (GUILayout.Button("Generate planet"))
             {
@@ -60,22 +70,18 @@ namespace Editor
             EditorGUILayout.EndVertical();
         }
 
-        public void Awake()
-        {
-            forPrefab = new GameObject[200];
-        }
-
         public void GeneratePlanet()
         {
-            if(GUISettings.SpawnPlanet = true)
+            if(GUISettings.SpawnPlanet == true)
             {
-               //TODO : spawn planet
+                spawnPlanet = Instantiate(Resources.Load("SM_SpawnPlanet", typeof(GameObject))) as GameObject;
+                forPrefab[0] = spawnPlanet;
             }
             else
             {
                 //Create planet sphere and set scale
                 planet = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                forPrefab[0] = planet;
+                forPrefab.Add(planet);
                 Undo.RegisterCreatedObjectUndo(planet, "Create planets");
                 //SCALE
                 planet.transform.localScale = new Vector3(GUISettings.Scale, GUISettings.Scale, GUISettings.Scale);
@@ -106,15 +112,14 @@ namespace Editor
                 //MATERIAL
                 planet.GetComponent<Renderer>().material = mat;
             }
+            //SpawnObject
+            //TODO : faire une liste des games objects avec instantiate resources load
+            //spawnAsset.SpawnAssets(GUISettings.NumberOfTree, GUISettings.NumberOfRock, GUISettings.PlanetType, planet);
         }
+
         
         public void CreatePrefab()
         {
-            for (int i = 0; i < forPrefab.Length; i++)
-            {
-                //Debug.Log("[GP_TOOL] tableau de gameobject :" + forPrefab[i].name);
-            }
-
             foreach (GameObject gameObject in forPrefab)
             {
                 //Set the path as within the ressources folder
@@ -134,13 +139,9 @@ namespace Editor
         //reset object
         public void ResetScene()
         {
-            for (int i = 0; i < forPrefab.Length; i++)
-            {
-                System.Array.Clear(forPrefab, i, 200 - i);
-                Debug.Log("reset");
-            }
-            Debug.Log("reset");
-            //TODO : supprimer prefab + vider forPrefab[]
+            DestroyImmediate(forPrefab[0]);
+            forPrefab.Clear();
+            //TODO : vérifier la liste vidée
         }
        
     }

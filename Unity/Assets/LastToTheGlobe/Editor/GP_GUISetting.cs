@@ -12,24 +12,21 @@ public class GP_GUISettings : ScriptableObject
     private int scale = 10;
 
     [SerializeField]
-    private int depth = 10;
-
-    [SerializeField]
     private PlanetType planetType;
 
     [SerializeField]
     private string planetName;
 
+    [SerializeField]
+    private int numberOfTree = 0;
+
+    [SerializeField]
+    private int numberOfRock = 0;
+
     public PlanetType PlanetType
     {
         get { return planetType; }
         set { planetType = value; }
-    }
-
-    public int Depth
-    {
-        get { return depth; }
-        set { depth = value; }
     }
 
     public int Scale
@@ -49,6 +46,17 @@ public class GP_GUISettings : ScriptableObject
         get { return isSpawnPlanet; }
         set { isSpawnPlanet = value; }
     }
-}
 
+    public int NumberOfTree
+    {
+        get { return numberOfTree; }
+        set { numberOfTree = value; }
+    }
+
+    public int NumberOfRock
+    {
+        get { return numberOfRock; }
+        set { numberOfRock = value; }
+    }
+}
 
