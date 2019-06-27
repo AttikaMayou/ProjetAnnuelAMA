@@ -9,10 +9,10 @@ using Random = UnityEngine.Random;
 
 namespace LastToTheGlobe.Editor
 {
-    public class GP_AssetInstanciate : MonoBehaviour
+    public class GP_AssetInstanciate : MonoBehaviour 
     {
 
-        [SerializeField]
+       /* [SerializeField]
         private List<GameObject> basicTrees;
 
         [SerializeField]
@@ -29,25 +29,24 @@ namespace LastToTheGlobe.Editor
 
         [SerializeField]
         private List<GameObject> desertRock;
-
-
+        */
         private GameObject newTree;
+        private GameObject newRock;
         private int randomBasicTrees;
+        private int randomRock;
         private int _numberObjectMax = 1;
         private int _numberTreesMax;
         private int _maxObject;
-        private List<GameObject> _listTrees;
-        private List<GameObject> _listRock;
+        ///private List<GameObject> _listTrees;
+        //private List<GameObject> _listRock;
         private float _randomScaleTree;
         private float _randomScaleRock;
 
         public void CreateAssets(int numberOfTrees, int numberOfRock, PlanetType type, GameObject planet)
         {
-            randomBasicTrees = Random.Range(1, 4);
-            var planetPosition = gameObject.transform.position;
             _numberObjectMax = (int)Random.Range(1, 200);
             _numberTreesMax = (int)Random.Range(0, 50);
-
+/*
             switch ((PlanetType)type)
             {
                 case PlanetType.Frozen:
@@ -66,15 +65,15 @@ namespace LastToTheGlobe.Editor
                     _listTrees = basicTrees;
                     _listRock = basicRock;
                     break;
-            }
-
-            Debug.Log("type dans instanciate = " + type);
+            }*/
+           
             if (numberOfTrees > 0)
             {
                 //Spawn Trees
                 for (int i = 1; i <= numberOfTrees; i++)
                 {
                     _randomScaleTree = Random.Range(0.05f, 0.15f);
+                    randomBasicTrees = Random.Range(1, 4);
 
                     newTree = Instantiate(Resources.Load("SM_Basic_Tree_0" + randomBasicTrees, typeof(GameObject))) as GameObject;
                     var spawnPosition = Random.onUnitSphere * (((planet.transform.localScale.x / 2) - 0.2f) + newTree.transform.localScale.y - 0.1f) + planet.transform.position;
@@ -85,22 +84,23 @@ namespace LastToTheGlobe.Editor
                     //newTree.transform.parent = transform;
                 }
             }
-
+            /*
             //Spawn Rock
             for (var i = _numberTreesMax; i < _numberObjectMax; i++)
             {
+                randomRock = Random.Range(1, 4);
                 _randomScaleRock = Random.Range(0.02f, 0.06f);
 
-                var spawnPosition = Random.onUnitSphere * ((planet.transform.localScale.x / 2) + _listRock[0].transform.localScale.y - 0.05f) + planet.transform.position;
-                var newRock = PhotonNetwork.Instantiate(_listRock[GetRandomRock(type)].name, spawnPosition, Quaternion.identity) as GameObject;
+                newRock = Instantiate(Resources.Load("P_RockDesert_v" + randomRock, typeof(GameObject))) as GameObject;
+                var spawnPosition = Random.onUnitSphere * (((planet.transform.localScale.x / 2) - 0.2f) + newTree.transform.localScale.y - 0.1f) + planet.transform.position;
 
                 newRock.transform.LookAt(planetPosition);
                 newRock.transform.localScale = new Vector3(_randomScaleRock, _randomScaleRock, _randomScaleRock);
                 newRock.transform.Rotate(-90, 0, 0);
-                newRock.transform.parent = transform;
-            }
+                //newRock.transform.parent = transform;
+            }*/
         }
-
+        /*
         private int GetRandomTree(PlanetType type)
         {
             switch ((PlanetType)type)
@@ -134,6 +134,6 @@ namespace LastToTheGlobe.Editor
 
             return 0;
         }
-
+        */
     }
 }

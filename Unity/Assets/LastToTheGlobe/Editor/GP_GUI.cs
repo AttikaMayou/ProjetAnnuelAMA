@@ -47,6 +47,10 @@ namespace Editor
             GUISettings.NumberOfRock = EditorGUILayout.IntField(GUISettings.NumberOfRock);
             EditorGUILayout.EndHorizontal();
 
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField("WIP Number of chest : ");
+            GUISettings.NumberOfChest = EditorGUILayout.IntField(GUISettings.NumberOfChest);
+            EditorGUILayout.EndHorizontal();
 
             if (GUILayout.Button("Generate planet"))
             {
@@ -128,11 +132,13 @@ namespace Editor
                     //newTree.transform.parent = transform;
                 }*/
             }
-            //SpawnObject
+
+            //-----------------------------------SPAWN ASSET-----------------------------------------------
             spawnAsset.CreateAssets(GUISettings.NumberOfTree, GUISettings.NumberOfRock, GUISettings.PlanetType, planet);
 
-            //Spawn Trees
-            
+            //-----------------------------------SPAWN CHEST-----------------------------------------------
+            SpawnChest(GUISettings.NumberOfChest, planet);
+ 
         }
 
 
@@ -164,6 +170,20 @@ namespace Editor
             Debug.Log("liste après: " + list);
             //TODO : vérifier la liste vidée
         }
-       
+
+        private void SpawnChest(int numberOfChest, GameObject planet)
+        {
+            for (int i = 0; i < numberOfChest; i++)
+            {
+                GameObject newChest = Instantiate(Resources.Load("Chest", typeof(GameObject))) as GameObject;
+                var spawnPosition = Random.onUnitSphere * ((planet.transform.localScale.x / 2) + (newChest.transform.localScale.y / 10) / 3f);// /2));// / 2.2f);
+                newChest.transform.position = spawnPosition;
+                newChest.transform.LookAt(planet.transform.position);
+                newChest.transform.Rotate(-90, 0, 0);
+                //TODO : ajout dans liste
+                forPrefab.Insert(i, newChest);
+            }
+        }
+
     }
 }

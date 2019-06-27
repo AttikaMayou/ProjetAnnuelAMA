@@ -23,6 +23,9 @@ public class GP_GUISettings : ScriptableObject
     [SerializeField]
     private int numberOfRock = 0;
 
+    [SerializeField]
+    private int numberOfChest = 0;
+
     public PlanetType PlanetType
     {
         get { return planetType; }
@@ -57,6 +60,12 @@ public class GP_GUISettings : ScriptableObject
     {
         get { return numberOfRock; }
         set { numberOfRock = value; }
+    }
+
+    public int NumberOfChest
+    {
+        get { return numberOfChest; }
+        set { numberOfChest = value; }
     }
 }
 
