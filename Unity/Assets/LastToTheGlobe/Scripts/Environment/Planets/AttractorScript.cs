@@ -9,7 +9,7 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
 {
     public class AttractorScript : MonoBehaviour
     {
-        public static bool Debug = true;
+        public static bool Debug = false;
 
         public PlanetExposerScript Exposer;
 

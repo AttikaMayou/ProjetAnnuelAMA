@@ -20,7 +20,7 @@ namespace LastToTheGlobe.Scripts.Avatar
 {
     public class AvatarsController : MonoBehaviour
     {
-        public bool debug = true;
+        public bool debug = false;
 
         [Header("Photon and Replication Parameters")] 
         [SerializeField] private Transform[] _startPosition;

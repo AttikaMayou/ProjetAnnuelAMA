@@ -1,4 +1,4 @@
-﻿using Assets.LastToTheGlobe.Scripts.Environment.Planets;
+﻿using Assets.LastToTheGlobe.Scripts.Avatar;
 using Assets.LastToTheGlobe.Scripts.Management;
 using LastToTheGlobe.Scripts.Environment.Planets;
 using LastToTheGlobe.Scripts.Inventory;
@@ -9,11 +9,11 @@ using UnityEngine;
 
 //Auteur : Margot, Abdallah et Attika
 
-namespace Assets.LastToTheGlobe.Scripts.Avatar
+namespace LastToTheGlobe.Scripts.Avatar
 {
-    public class CharacterExposerScript : Avatar
+    public class CharacterExposerScript : Assets.LastToTheGlobe.Scripts.Avatar.Avatar
     {
-        public static bool debug = true;
+        public static bool debug = false;
 
         //The id value of this player. Updated at awakening
         public int Id;

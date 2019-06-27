@@ -27,6 +27,26 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1263, guid: 26d4fae48b756154f9ba8c29057cfed4, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263, guid: 26d4fae48b756154f9ba8c29057cfed4, type: 3}
+      propertyPath: chest
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263, guid: 26d4fae48b756154f9ba8c29057cfed4, type: 3}
+      propertyPath: planet
+      value: 
+      objectReference: {fileID: 2734627141275774042}
+    - target: {fileID: 1262, guid: 26d4fae48b756154f9ba8c29057cfed4, type: 3}
+      propertyPath: debug
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1262, guid: 26d4fae48b756154f9ba8c29057cfed4, type: 3}
+      propertyPath: Exposer
+      value: 
+      objectReference: {fileID: 2734627141275773016}
     - target: {fileID: 1261, guid: 26d4fae48b756154f9ba8c29057cfed4, type: 3}
       propertyPath: viewIdField
       value: 66
@@ -51,14 +71,16 @@ PrefabInstance:
       propertyPath: AttractorScript
       value: 
       objectReference: {fileID: 2734627141275773019}
-    - target: {fileID: 1262, guid: 26d4fae48b756154f9ba8c29057cfed4, type: 3}
-      propertyPath: debug
-      value: 1
+    - target: {fileID: 4111186757560557148, guid: 26d4fae48b756154f9ba8c29057cfed4,
+        type: 3}
+      propertyPath: viewIdField
+      value: 76
       objectReference: {fileID: 0}
-    - target: {fileID: 1262, guid: 26d4fae48b756154f9ba8c29057cfed4, type: 3}
-      propertyPath: Exposer
-      value: 
-      objectReference: {fileID: 2734627141275773016}
+    - target: {fileID: 4111186757560557148, guid: 26d4fae48b756154f9ba8c29057cfed4,
+        type: 3}
+      propertyPath: InstantiationId
+      value: 76
+      objectReference: {fileID: 0}
     - target: {fileID: 9194414416188521490, guid: 26d4fae48b756154f9ba8c29057cfed4,
         type: 3}
       propertyPath: m_Name
@@ -182,28 +204,6 @@ PrefabInstance:
     - target: {fileID: 1260, guid: 26d4fae48b756154f9ba8c29057cfed4, type: 3}
       propertyPath: InstantiationId
       value: 66
-      objectReference: {fileID: 0}
-    - target: {fileID: 1263, guid: 26d4fae48b756154f9ba8c29057cfed4, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1263, guid: 26d4fae48b756154f9ba8c29057cfed4, type: 3}
-      propertyPath: chest
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1263, guid: 26d4fae48b756154f9ba8c29057cfed4, type: 3}
-      propertyPath: planet
-      value: 
-      objectReference: {fileID: 2734627141275774042}
-    - target: {fileID: 4111186757560557148, guid: 26d4fae48b756154f9ba8c29057cfed4,
-        type: 3}
-      propertyPath: viewIdField
-      value: 76
-      objectReference: {fileID: 0}
-    - target: {fileID: 4111186757560557148, guid: 26d4fae48b756154f9ba8c29057cfed4,
-        type: 3}
-      propertyPath: InstantiationId
-      value: 76
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26d4fae48b756154f9ba8c29057cfed4, type: 3}

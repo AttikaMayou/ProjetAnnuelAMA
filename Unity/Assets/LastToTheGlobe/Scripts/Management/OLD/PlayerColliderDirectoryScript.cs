@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Assets.LastToTheGlobe.Scripts.Avatar;
+using LastToTheGlobe.Scripts.Avatar;
 using LastToTheGlobe.Scripts.Singleton;
 using Photon.Pun;
 using UnityEngine;

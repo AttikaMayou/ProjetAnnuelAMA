@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Assets.LastToTheGlobe.Scripts.Avatar;
 using Assets.LastToTheGlobe.Scripts.Environment.Planets;
 using Assets.LastToTheGlobe.Scripts.Weapon.Orb;
+using LastToTheGlobe.Scripts.Avatar;
 using LastToTheGlobe.Scripts.Singleton;
 using Photon.Pun;
 using UnityEngine;
@@ -13,7 +14,7 @@ namespace LastToTheGlobe.Scripts.Management
 {
     public class ColliderDirectoryScript : MonoBehaviourSingleton<ColliderDirectoryScript>
     {
-        public bool debug = true;
+        public bool debug = false;
 
         [Header("Photon View to assign")] 
         public PhotonView BumpersPhotonView;
