@@ -1,5 +1,6 @@
 ﻿using LastToTheGlobe.Scripts.Singleton;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 //Auteur : Attika
 
@@ -18,6 +19,10 @@ namespace Assets.LastToTheGlobe.Scripts.Management
         public float ShootLoadTime;
         public int ShootDamage;
         public int ShootLoadedDamage;
+
+        [Header("Cooldown Values")] 
+        public float DashCooldown;
+        public float BumpCooldown;
 
         [Header("Hp Parameters")] 
         public int LifeInitial;

@@ -1,27 +1,31 @@
 ﻿using Assets.LastToTheGlobe.Scripts.Management;
+using Assets.LastToTheGlobe.Scripts.Network;
 using Photon.Pun;
 using Photon.Pun.UtilityScripts;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 //Auteur : Margot
 //Modification : Attika
 
-namespace Assets.LastToTheGlobe.Scripts.Network
+namespace LastToTheGlobe.Scripts.Network
 {
     public class OnlineIntentReceiver : AIntentReceiver
     {
-        public static bool debug = true;
-        
-        [SerializeField] private int _playerIndex;
+        private const bool Debug = true;
 
-        [SerializeField] private PhotonView _photonView;
+        [FormerlySerializedAs("_playerIndex")] [SerializeField] private int playerIndex;
 
-        private float _dashTime = 1.0f; 
+        [FormerlySerializedAs("_photonView")] [SerializeField] private PhotonView photonView;
+
+        //Cooldown Timers
+        private float _bumpTimer;
+        private float _dashTimer;
         
         private void Update()
         {
-            if (PlayerNumbering.SortedPlayers.Length <= _playerIndex ||
-                PlayerNumbering.SortedPlayers[_playerIndex].ActorNumber != PhotonNetwork.LocalPlayer.ActorNumber)
+            if (PlayerNumbering.SortedPlayers.Length <= playerIndex ||
+                PlayerNumbering.SortedPlayers[playerIndex].ActorNumber != PhotonNetwork.LocalPlayer.ActorNumber)
             {
                 return;
             }
@@ -34,12 +38,12 @@ namespace Assets.LastToTheGlobe.Scripts.Network
             RotationOnY = Input.GetAxis("Mouse Y");
 
             //TODO : check if the rotation updates relative to previous rotation
-            _photonView.RPC("UpdateCameraRotation", RpcTarget.MasterClient, RotationOnX, RotationOnY);
+            photonView.RPC("UpdateCameraRotation", RpcTarget.MasterClient, RotationOnX, RotationOnY);
             
             //Attack Intent
             if (Input.GetMouseButton(0) && CanShoot)
             {
-                _photonView.RPC("CanShootRPC", RpcTarget.MasterClient, false);
+                photonView.RPC("CanShootRPC", RpcTarget.MasterClient, false);
             }
 
             if (!CanShoot)
@@ -47,7 +51,7 @@ namespace Assets.LastToTheGlobe.Scripts.Network
                 LoadShotValue += Time.deltaTime;
                 if (Input.GetMouseButtonUp(0))
                 {
-                    _photonView.RPC(LoadShotValue >= GameVariablesScript.Instance.ShootLoadTime ? "LaunchLoadedBulletRPC" : "LaunchBulletRPC",
+                    photonView.RPC(LoadShotValue >= GameVariablesScript.Instance.ShootLoadTime ? "LaunchLoadedBulletRPC" : "LaunchBulletRPC",
                         RpcTarget.MasterClient);
                     LoadShotValue = 0.0f;
                 }
@@ -56,24 +60,28 @@ namespace Assets.LastToTheGlobe.Scripts.Network
             //Bump intent
             if (Input.GetKeyDown(KeyCode.R) && CanBump)
             {
-                _photonView.RPC("CanBumpRPC", RpcTarget.MasterClient, false);
-                _photonView.RPC("UseBumpRPC", RpcTarget.MasterClient);
+                photonView.RPC("CanBumpRPC", RpcTarget.MasterClient, false);
+                photonView.RPC("UseBumpRPC", RpcTarget.MasterClient);
             }
 
             if (!CanBump)
             {
-                //TODO : deal with cooldown here   
+                _bumpTimer += Time.deltaTime;
+                if (_bumpTimer <= GameVariablesScript.Instance.BumpCooldown)
+                {
+                    _bumpTimer = 0.0f;
+                    photonView.RPC("CanBumpRPC", RpcTarget.MasterClient, true);
+                }
             }
 
             //Cooldown dash
             if (!CanDash)
             {
-                var timer = 0.0f;
-                timer += Time.deltaTime;
-                if (timer <= _dashTime)
+                _dashTimer += Time.deltaTime;
+                if (_dashTimer <= GameVariablesScript.Instance.DashCooldown)
                 {
-                    //canDash = true;
-                    return;
+                    _dashTimer = 0.0f;
+                    photonView.RPC("CanDashRPC", RpcTarget.MasterClient, true);
                 }
             }
             
@@ -82,33 +90,33 @@ namespace Assets.LastToTheGlobe.Scripts.Network
                                             || Input.GetKeyDown(KeyCode.Q) 
                                             || Input.GetKeyDown(KeyCode.D))
             {
-                _photonView.RPC("MoveRPC", RpcTarget.MasterClient, true, Forward, Strafe);
+                photonView.RPC("MoveRPC", RpcTarget.MasterClient, true, Forward, Strafe);
             }
             
             if (Input.GetKeyUp(KeyCode.Z) || Input.GetKeyUp(KeyCode.S) 
                                           || Input.GetKeyUp(KeyCode.Q) 
                                           || Input.GetKeyUp(KeyCode.D))
             {
-                _photonView.RPC("MoveRPC", RpcTarget.MasterClient, false, 0, 0);
+                photonView.RPC("MoveRPC", RpcTarget.MasterClient, false, 0.0f, 0.0f);
             }
             
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 Speed = GameVariablesScript.Instance.RunSpeed;
-                _photonView.RPC("RunRPC", RpcTarget.MasterClient, true);
+                photonView.RPC("RunRPC", RpcTarget.MasterClient, true);
             }
 
             if (Input.GetKeyUp(KeyCode.LeftShift))
             {
                 Speed = GameVariablesScript.Instance.WalkSpeed;
-                _photonView.RPC("RunRPC", RpcTarget.MasterClient, false);
+                photonView.RPC("RunRPC", RpcTarget.MasterClient, false);
             }
 
             if (Input.GetKeyDown(KeyCode.LeftAlt) && CanDash)
             {
                 Speed = GameVariablesScript.Instance.DashSpeed;
-                _photonView.RPC("DashRPC", RpcTarget.MasterClient);
-                //canDash = false;
+                photonView.RPC("CanDashRPC", RpcTarget.MasterClient, false);
+                photonView.RPC("DashRPC", RpcTarget.MasterClient);
             }
 
 //            if (Input.GetKeyUp(KeyCode.Space) && CanJump)
@@ -119,7 +127,7 @@ namespace Assets.LastToTheGlobe.Scripts.Network
             //Interaction Intent
             if (Input.GetKeyDown(KeyCode.E))
             {
-                _photonView.RPC("InteractRPC", RpcTarget.MasterClient);
+                photonView.RPC("InteractRPC", RpcTarget.MasterClient);
             }
         }
 
@@ -156,7 +164,7 @@ namespace Assets.LastToTheGlobe.Scripts.Network
         }
 
         [PunRPC]
-        void MoveRPC(bool intent, int forwardInput, int strafeInput)
+        void MoveRpc(bool intent, int forwardInput, int strafeInput)
         {
             if (!PhotonNetwork.IsMasterClient) return;
             Speed = GameVariablesScript.Instance.WalkSpeed;
@@ -173,7 +181,7 @@ namespace Assets.LastToTheGlobe.Scripts.Network
         }
         
         [PunRPC]
-        void MoveRPC(bool intent, float forwardInput, float strafeInput)
+        void MoveRpc(bool intent, float forwardInput, float strafeInput)
         {
             if (!PhotonNetwork.IsMasterClient) return;
             Speed = GameVariablesScript.Instance.WalkSpeed;
@@ -204,102 +212,115 @@ namespace Assets.LastToTheGlobe.Scripts.Network
         }*/
 
         [PunRPC]
-        void DashRPC()
+        void DashRpc()
         {
             if (!PhotonNetwork.IsMasterClient) return;
-            if (debug)
+            if (Debug)
             {
-                Debug.LogFormat("[IntentReceiver] I get the message : Dash on this avatar : {0}",
-                    _playerIndex);
+                UnityEngine.Debug.LogFormat("[IntentReceiver] I get the message : Dash on this avatar : {0}",
+                    playerIndex);
             }
             Dash = true;
         }
 
         [PunRPC]
-        void RunRPC(bool intent)
+        void RunRpc(bool intent)
         {
             if (!PhotonNetwork.IsMasterClient) return;
             
-            if (debug)
+            if (Debug)
             {
-                Debug.LogFormat("[IntentReceiver] I get the message : Run on this avatar : {0}",
-                    _playerIndex);
+                UnityEngine.Debug.LogFormat("[IntentReceiver] I get the message : Run on this avatar : {0}",
+                    playerIndex);
             }
             Run = intent;
         }
 
         [PunRPC]
-        void CanShootRPC(bool intent)
+        void CanShootRpc(bool intent)
         {
             if (!PhotonNetwork.IsMasterClient) return;
 
-            if (debug)
+            if (Debug)
             {
-                Debug.LogFormat("[IntentReceiver] I get the message : CanShoot on this avatar : {0} passed to {1}",
-                    _playerIndex, intent);
+                UnityEngine.Debug.LogFormat("[IntentReceiver] I get the message : CanShoot on this avatar : {0} passed to {1}",
+                    playerIndex, intent);
             }
             CanShoot = intent;
         }
 
         [PunRPC]
-        void CanBumpRPC(bool intent)
+        void CanBumpRpc(bool intent)
         {
             if (!PhotonNetwork.IsMasterClient) return;
 
-            if (debug)
+            if (Debug)
             {
-                Debug.LogFormat("[IntentReceiver] I get the message : CanBump on this avatar : {0} passed to {1}",
-                    _playerIndex, intent);
+                UnityEngine.Debug.LogFormat("[IntentReceiver] I get the message : CanBump on this avatar : {0} passed to {1}",
+                    playerIndex, intent);
             }
             CanBump = intent;
         }
+
+        [PunRPC]
+        void CanDashRpc(bool intent)
+        {
+            if (!PhotonNetwork.IsMasterClient) return;
+
+            if (Debug)
+            {
+                UnityEngine.Debug.LogFormat("[IntentReceiver] I get the message : CanDash on this avatar : {0} passed to {1}",
+                    playerIndex, intent);
+            }
+            CanDash = intent;
+        }
         
         [PunRPC]
-        void LaunchBulletRPC()
+        void LaunchBulletRpc()
         {
             if (!PhotonNetwork.IsMasterClient) return;
             
-            if (debug)
+            if (Debug)
             {
-                Debug.LogFormat("[IntentReceiver] I get the message : Shoot on this avatar : {0}",
-                    _playerIndex);
+                UnityEngine.Debug.LogFormat("[IntentReceiver] I get the message : Shoot on this avatar : {0}",
+                    playerIndex);
             }
             Shoot = true;
         }
 
         [PunRPC]
-        void LaunchLoadedBulletRPC()
+        void LaunchLoadedBulletRpc()
         {
             if (!PhotonNetwork.IsMasterClient) return;
             
-            if (debug)
+            if (Debug)
             {
-                Debug.LogFormat("[IntentReceiver] I get the message : Shoot Loaded on this avatar : {0}",
-                    _playerIndex);
+                UnityEngine.Debug.LogFormat("[IntentReceiver] I get the message : Shoot Loaded on this avatar : {0}",
+                    playerIndex);
             }
             ShootLoaded = true;
         }
 
         [PunRPC]
-        void UseBumpRPC()
+        void UseBumpRpc()
         {
             if (!PhotonNetwork.IsMasterClient) return;
-            if (debug)
+            if (Debug)
             {
-                Debug.LogFormat("[IntentReceiver] I get the message : Bump on this avatar : {0}",
-                    _playerIndex);
+                UnityEngine.Debug.LogFormat("[IntentReceiver] I get the message : Bump on this avatar : {0}",
+                    playerIndex);
             }
             Bump = true;
         }
 
         [PunRPC]
-        void InteractRPC()
+        void InteractRpc()
         {
             if (!PhotonNetwork.IsMasterClient) return;
-            if (debug)
+            if (Debug)
             {
-                Debug.LogFormat("[IntentReceiver] I get the message : Interact on this avatar : {0}",
-                    _playerIndex);
+                UnityEngine.Debug.LogFormat("[IntentReceiver] I get the message : Interact on this avatar : {0}",
+                    playerIndex);
             }
             Interact = true;
         }

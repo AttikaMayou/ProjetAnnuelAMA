@@ -8603,6 +8603,11 @@ PrefabInstance:
       propertyPath: _lobbyAssets
       value: 
       objectReference: {fileID: 1139913042}
+    - target: {fileID: 2003145821851938738, guid: 4b7f65cf3304916429cf26667ac888b2,
+        type: 3}
+      propertyPath: debug
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2003145821851938739, guid: 4b7f65cf3304916429cf26667ac888b2,
         type: 3}
       propertyPath: viewIdField
@@ -8738,6 +8743,11 @@ PrefabInstance:
       propertyPath: PlanetExposers.Array.data[1]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2003145822190471194, guid: 4b7f65cf3304916429cf26667ac888b2,
+        type: 3}
+      propertyPath: debug
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 102627448006797231, guid: 4b7f65cf3304916429cf26667ac888b2,
         type: 3}
       propertyPath: viewIdField
@@ -8757,6 +8767,26 @@ PrefabInstance:
         type: 3}
       propertyPath: InstantiationId
       value: 79
+      objectReference: {fileID: 0}
+    - target: {fileID: 7871001696431406230, guid: 4b7f65cf3304916429cf26667ac888b2,
+        type: 3}
+      propertyPath: debug
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2003145821961145339, guid: 4b7f65cf3304916429cf26667ac888b2,
+        type: 3}
+      propertyPath: debug
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6472368902544805919, guid: 4b7f65cf3304916429cf26667ac888b2,
+        type: 3}
+      propertyPath: debug
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2520377489524518733, guid: 4b7f65cf3304916429cf26667ac888b2,
+        type: 3}
+      propertyPath: debug
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b7f65cf3304916429cf26667ac888b2, type: 3}
@@ -8799,11 +8829,6 @@ PrefabInstance:
     - target: {fileID: 4530374371341051882, guid: 19083d05772af8b4dbec64b8289d90d4,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4530374370747687197, guid: 19083d05772af8b4dbec64b8289d90d4,
-        type: 3}
-      propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4530374371341051883, guid: 19083d05772af8b4dbec64b8289d90d4,
@@ -8909,6 +8934,11 @@ PrefabInstance:
     - target: {fileID: 4530374371341051883, guid: 19083d05772af8b4dbec64b8289d90d4,
         type: 3}
       propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4530374370747687197, guid: 19083d05772af8b4dbec64b8289d90d4,
+        type: 3}
+      propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 294255035830000952, guid: 19083d05772af8b4dbec64b8289d90d4,
@@ -9284,6 +9314,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LobbyPlanet
       objectReference: {fileID: 0}
+    - target: {fileID: 2734627141275773018, guid: 7eb1822cd18db924f8fd39629419d649,
+        type: 3}
+      propertyPath: chest
+      value: 
+      objectReference: {fileID: 1921455321}
     - target: {fileID: 2734627141275774707, guid: 7eb1822cd18db924f8fd39629419d649,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9339,11 +9374,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2734627141275773018, guid: 7eb1822cd18db924f8fd39629419d649,
-        type: 3}
-      propertyPath: chest
-      value: 
-      objectReference: {fileID: 1921455321}
     - target: {fileID: 2734627141275773016, guid: 7eb1822cd18db924f8fd39629419d649,
         type: 3}
       propertyPath: PlanetsPhotonView
