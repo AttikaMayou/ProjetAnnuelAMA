@@ -1,4 +1,6 @@
-﻿using Assets.LastToTheGlobe.Scripts.Environment.Planets;
+﻿using System;
+using System.Collections;
+using Assets.LastToTheGlobe.Scripts.Environment.Planets;
 using LastToTheGlobe.Scripts.Management;
 using Photon.Pun;
 using UnityEngine;
@@ -12,6 +14,8 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
         public static bool Debug = false;
 
         public PlanetExposerScript Exposer;
+
+        private int _i = 0;
 
         public float speedRotation = 10f;
         public Vector3 DirForce;
@@ -53,6 +57,12 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
         //The planet detects a collider entered its attraction field 
         private void OnTriggerEnter(Collider other)
         {
+            if (_i == 1)
+            {
+                return;
+            }
+            _i = 1;
+            
             if(Debug) UnityEngine.Debug.LogFormat("[AttractorScript] {0} get triggered by something : {1}",
                 this.gameObject.name , other.gameObject.name);
             
@@ -62,17 +72,25 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
             var playerId = ColliderDirectoryScript.Instance.GetPlayerId(other);
             
             //if playerId is different from -1, that means this is a player which hit the planet
-//            if (playerId != -1) 
-//            {
-//                //Send to MasterClient a message to warn him with its own ID and playerId
-//                Exposer.PlanetsPhotonView.RPC("DetectPlayerRPC", RpcTarget.MasterClient,
-//                    Exposer.Id, playerId);
-//            }
+            if (playerId != -1) 
+            {
+                //Send to MasterClient a message to warn him with its own ID and playerId
+                Exposer.PlanetsPhotonView.RPC("DetectPlayerRPC", RpcTarget.MasterClient,
+                    Exposer.Id, playerId);
+            }
+
+            StartCoroutine(ResetTrigger());
         }
         
         //The planet detects a collider exit its attraction field 
         private void OnTriggerExit(Collider other)
         {
+            if (_i == 1)
+            {
+                return;
+            }
+            _i = 1;
+            
             if(Debug) UnityEngine.Debug.LogFormat("[AttractorScript] {1} left {0}",
                 this.gameObject.name , other.gameObject.name);
             
@@ -82,12 +100,20 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
             var playerId = ColliderDirectoryScript.Instance.GetPlayerId(other);
             
             //if playerId is different from -1, that means this is a player which left the planet
-//            if (playerId != -1) 
-//            {
-//                //Send to MasterClient a message to warn him with playerId
-//                Exposer.PlanetsPhotonView.RPC("RemoveAttractorPlayerRPC", RpcTarget.MasterClient, 
-//                    playerId);
-//            }
+            if (playerId != -1) 
+            {
+                //Send to MasterClient a message to warn him with playerId
+                Exposer.PlanetsPhotonView.RPC("RemoveAttractorPlayerRPC", RpcTarget.MasterClient, 
+                    playerId);
+            }
+
+            StartCoroutine(ResetTrigger());
+        }
+
+        private IEnumerator ResetTrigger()
+        {
+            yield return new WaitForEndOfFrame();
+            _i = 0;
         }
         
         #endregion

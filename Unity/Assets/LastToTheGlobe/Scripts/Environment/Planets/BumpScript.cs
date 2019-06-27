@@ -1,4 +1,5 @@
-﻿using Assets.LastToTheGlobe.Scripts.Environment.Planets;
+﻿using System.Collections;
+using Assets.LastToTheGlobe.Scripts.Environment.Planets;
 using LastToTheGlobe.Scripts.Management;
 using Photon.Pun;
 using UnityEngine;
@@ -11,6 +12,8 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
 
         public BumperExposerScript Exposer;
 
+        private int _i = 0;
+        
         public void BumpPlayer(int bumperId, int playerId, float force)
         {
             if (!PhotonNetwork.IsMasterClient) return;
@@ -32,6 +35,12 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
 
         private void OnTriggerEnter(Collider other)
         {
+            if (_i == 1)
+            {
+                return;
+            }
+            _i = 1;
+
             if(Debug) UnityEngine.Debug.LogFormat("[BumpScript] {0} get triggered by something : {1}",
                 this.gameObject.name, other.gameObject.name);
             
@@ -41,16 +50,24 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
             var playerId = ColliderDirectoryScript.Instance.GetPlayerId(other);
 
             //if playerId is different from -1, that means this is a player which hit the bumper
-//            if (playerId != -1)
-//            {
-//                //Send to MasterClient a message to warn him with its own ID and playerId
-//                Exposer.BumpersPhotonView.RPC("AssignBumperRPC", RpcTarget.MasterClient,
-//                    Exposer.Id, playerId);
-//            }
+            if (playerId != -1)
+            {
+                //Send to MasterClient a message to warn him with its own ID and playerId
+                Exposer.BumpersPhotonView.RPC("AssignBumperRPC", RpcTarget.MasterClient,
+                    Exposer.Id, playerId);
+            }
+
+            StartCoroutine(ResetTrigger());
         }
 
         private void OnTriggerExit(Collider other)
         {
+            if (_i == 1)
+            {
+                return;
+            }
+            _i = 1;
+            
             if(Debug) UnityEngine.Debug.LogFormat("[BumpScript] {1} left {0}",
                 this.gameObject.name, other.gameObject.name);
              
@@ -60,14 +77,22 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
             var playerId = ColliderDirectoryScript.Instance.GetPlayerId(other);
 
             //if playerId is different from -1, that means this is a player which left the bumper aera
-//            if (playerId != -1)
-//            {
-//                //Send to MasterClient a message to warn him with its own ID and playerId
-//                Exposer.BumpersPhotonView.RPC("UnassignBumperRPC", RpcTarget.MasterClient,
-//                    playerId);
-//            }
+            if (playerId != -1)
+            {
+                //Send to MasterClient a message to warn him with its own ID and playerId
+                Exposer.BumpersPhotonView.RPC("UnassignBumperRPC", RpcTarget.MasterClient,
+                    playerId);
+            }
+            
+            StartCoroutine(ResetTrigger());
         }
 
+        private IEnumerator ResetTrigger()
+        {
+            yield return new WaitForEndOfFrame();
+            _i = 0;
+        }
+        
         #endregion
         
     }
