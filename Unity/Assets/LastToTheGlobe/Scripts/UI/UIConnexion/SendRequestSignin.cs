@@ -11,7 +11,8 @@ public class SendRequestSignin : MonoBehaviour {
     private InputEventHandler _Pseudo;
     private InputEventHandler _Mdp;
     
-    private httpRequest httpRequest = new httpRequest();
+    private httpRequest _httpRequest = new httpRequest();
+    private string _requestResponse;
     
     void Start () {
         yourButton.onClick.AddListener(TaskOnClick);
@@ -24,8 +25,7 @@ public class SendRequestSignin : MonoBehaviour {
         _Mdp = MdpGameObject.GetComponent<InputEventHandler>();
         if (_Pseudo.inputEntered && _Mdp.inputEntered)
         {
-            httpRequest.Signin(_Pseudo.textInput, Hash128.Parse(_Mdp.textInput).ToString());
-            Debug.Log("Requete envoyé!");    
+            StartCoroutine(_httpRequest.SigninRequest(_Pseudo.textInput, Hash128.Compute(_Mdp.textInput).ToString()));    
         }
         else 
         {

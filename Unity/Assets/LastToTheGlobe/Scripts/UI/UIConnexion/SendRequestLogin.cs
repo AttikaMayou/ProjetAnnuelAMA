@@ -11,7 +11,7 @@ public class SendRequestLogin : MonoBehaviour {
     private InputEventHandler _Pseudo;
     private InputEventHandler _Mdp;
     
-    private httpRequest httpRequest = new httpRequest();
+    private httpRequest _httpRequest = new httpRequest();
     
     void Start () {
         yourButton.onClick.AddListener(TaskOnClick);
@@ -25,8 +25,7 @@ public class SendRequestLogin : MonoBehaviour {
         if (_Pseudo.inputEntered && _Mdp.inputEntered)
         {
             
-            httpRequest.Login(_Pseudo.textInput, Hash128.Parse(_Mdp.textInput).ToString());
-            Debug.Log("Requete envoyé!");    
+            StartCoroutine(_httpRequest.LoginRequest(_Pseudo.textInput, Hash128.Compute(_Mdp.textInput).ToString()));  
         }
         else 
         {

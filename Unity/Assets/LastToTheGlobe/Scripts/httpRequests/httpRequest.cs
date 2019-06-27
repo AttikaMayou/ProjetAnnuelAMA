@@ -8,10 +8,11 @@ using UnityEngine.Networking;
 public class httpRequest : MonoBehaviour
 {
     // Start is called before the first frame update
-
+    public string resp;
     // Update is called once per frame
-    IEnumerator LoginRequest(string username, string password)
+    public IEnumerator LoginRequest(string username, string password)
     {
+        
         WWWForm form = new WWWForm();
         form.AddField("Username",username, Encoding.UTF8);
         form.AddField("Password",password, Encoding.UTF8);
@@ -20,13 +21,16 @@ public class httpRequest : MonoBehaviour
         
         if(www.isNetworkError || www.isHttpError) {
             Debug.Log(www.error);
+            yield return null;
         }
-        else {
+        else
+        {
+            resp = www.downloadHandler.text;
             Debug.Log(www.downloadHandler.text);
         }
     }
     
-    IEnumerator SigninRequest(string username, string password)
+    public IEnumerator SigninRequest(string username, string password)
     {
         WWWForm form = new WWWForm();
         form.AddField("Username", username, Encoding.UTF8);
@@ -38,19 +42,11 @@ public class httpRequest : MonoBehaviour
             Debug.Log(www.error);
         }
         else {
+            resp = www.downloadHandler.text;
             Debug.Log(www.downloadHandler.text);
         }
     }
 
-    public void Login(string username, string password)
-    {
-        StartCoroutine(LoginRequest(username, password));
-    }
-
-    public void Signin(string username, string password)
-    {
-        StartCoroutine(SigninRequest(username, password));
-    }
 
     
 }
