@@ -4,6 +4,7 @@ using System.Security.Cryptography;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
 public class httpRequest : MonoBehaviour
 {
@@ -26,7 +27,15 @@ public class httpRequest : MonoBehaviour
         else
         {
             resp = www.downloadHandler.text;
-            Debug.Log(www.downloadHandler.text);
+            if (www.downloadHandler.text.Equals("OK"))
+            {
+                Debug.Log("Hello User "+username);
+                SceneManager.LoadScene("_masterScene");
+            }
+            else
+            {
+                Debug.Log(www.downloadHandler.text);
+            }
         }
     }
     
