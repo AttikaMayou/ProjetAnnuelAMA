@@ -24,7 +24,7 @@ public class GP_GUISettings : ScriptableObject
     private int numberOfRock = 0;
 
     [SerializeField]
-    private int numberOfChest = 0;
+    private int numberOfChest = 1;
 
     public PlanetType PlanetType
     {

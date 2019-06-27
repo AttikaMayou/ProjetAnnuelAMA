@@ -13,10 +13,6 @@ namespace Editor
         private List<GameObject> forPrefab = new List<GameObject>();
         private GameObject planet;
         private Material mat;
-        private GameObject spawnPlanet;
-        private GP_AssetInstanciate spawnAsset;
-        private GameObject newTree;
-        private int randomBasicTrees;
 
         public void OnGUI()
         {
@@ -38,17 +34,17 @@ namespace Editor
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField("WIP Number of trees : ");
+            EditorGUILayout.LabelField("Number of trees : ");
             GUISettings.NumberOfTree = EditorGUILayout.IntField(GUISettings.NumberOfTree);
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField("WIP Number of rock : ");
+            EditorGUILayout.LabelField("WIP Number of rocks : ");
             GUISettings.NumberOfRock = EditorGUILayout.IntField(GUISettings.NumberOfRock);
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField("WIP Number of chest : ");
+            EditorGUILayout.LabelField("Number of chests : ");
             GUISettings.NumberOfChest = EditorGUILayout.IntField(GUISettings.NumberOfChest);
             EditorGUILayout.EndHorizontal();
 
@@ -67,7 +63,12 @@ namespace Editor
                 CreatePrefab();
             }
 
-            if (GUILayout.Button("WIP Create another planet "))
+            if (GUILayout.Button("Create another planet "))
+            {
+                
+            }
+
+            if (GUILayout.Button("Erase previous planet "))
             {
                 ResetScene();
             }
@@ -77,9 +78,9 @@ namespace Editor
 
         public void GeneratePlanet()
         {
-            if(GUISettings.SpawnPlanet == true)
+            if (GUISettings.SpawnPlanet == true)
             {
-                spawnPlanet = Instantiate(Resources.Load("SM_SpawnPlanet", typeof(GameObject))) as GameObject;
+                planet = Instantiate(Resources.Load("SM_SpawnPlanet", typeof(GameObject))) as GameObject;
                 forPrefab.Insert(0, planet);
             }
             else
@@ -88,9 +89,9 @@ namespace Editor
                 planet = GameObject.CreatePrimitive(PrimitiveType.Sphere);
                 forPrefab.Insert(0, planet);
                 Undo.RegisterCreatedObjectUndo(planet, "Create planets");
-                //SCALE
+                //-------------------------------------SCALE------------------------------------------------
                 planet.transform.localScale = new Vector3(GUISettings.Scale, GUISettings.Scale, GUISettings.Scale);
-                //----------------------------------PLANET TYPE---------------------------------------------------
+                //----------------------------------PLANET TYPE---------------------------------------------
                 switch (GUISettings.PlanetType)
                 {
                     //Planet Material
@@ -113,35 +114,21 @@ namespace Editor
                         mat = Resources.Load("M_BasicPlanet", typeof(Material)) as Material;
                         break;
                 }
-                //MATERIAL
+                //----------------------------------MATERIAL------------------------------------------------
                 planet.GetComponent<Renderer>().material = mat;
-/*
-                randomBasicTrees = Random.Range(1, 4);
-
-                for (int i = 1; i <= GUISettings.NumberOfTree; i++)
-                {
-                    //_randomScaleTree = Random.Range(0.05f, 0.15f)
-                    
-                    newTree = Instantiate(Resources.Load("SM_Basic_Tree_0" + randomBasicTrees, typeof(GameObject))) as GameObject;
-                    var spawnPosition = Random.onUnitSphere * (((planet.transform.localScale.x / 2) - 0.2f) + newTree.transform.localScale.y - 0.1f) + planet.transform.position;
-                    newTree.transform.position = spawnPosition;
-                    //newTree.transform.position = new Vector3(0, 0, 0);
-                    newTree.transform.LookAt(planet.transform.position);
-                    //newTree.transform.localScale = new Vector3(_randomScaleTree, _randomScaleTree, _randomScaleTree);
-                    newTree.transform.Rotate(-90, 0, 0);
-                    //newTree.transform.parent = transform;
-                }*/
             }
-
-            //-----------------------------------SPAWN ASSET-----------------------------------------------
-            spawnAsset.CreateAssets(GUISettings.NumberOfTree, GUISettings.NumberOfRock, GUISettings.PlanetType, planet);
-
             //-----------------------------------SPAWN CHEST-----------------------------------------------
             SpawnChest(GUISettings.NumberOfChest, planet);
- 
+
+            //-----------------------------------SPAWN TREES-----------------------------------------------
+            SpawnTrees(GUISettings.NumberOfChest, GUISettings.NumberOfTree, planet, GUISettings.PlanetType);
+
+            //-----------------------------------SPAWN ROCKS-----------------------------------------------
+            SpawnRocks(GUISettings.NumberOfTree, GUISettings.NumberOfRock,  planet, GUISettings.PlanetType);
+
+
         }
-
-
+        
         public void CreatePrefab()
         {
             foreach (GameObject gameObject in forPrefab)
@@ -151,7 +138,7 @@ namespace Editor
                 CreateNew(gameObject, localPath);
             }
         }
-        
+
         public void CreateNew(GameObject planet, string localPath)
         {
             bool success = false;
@@ -159,31 +146,78 @@ namespace Editor
             PrefabUtility.SaveAsPrefabAsset(planet, localPath, out success);
         }
 
-        //reset object
         public void ResetScene()
         {
-            string list = forPrefab[0].name;
-            Debug.Log("reset");
-            Debug.Log(forPrefab[0].name);
-            DestroyImmediate(forPrefab[0]);
+            for (int i = 0; i < forPrefab.Count; i++)
+            {
+                DestroyImmediate(forPrefab[i]);
+            }
+            ClearList();
+        }
+
+        public void ClearList()
+        {
             forPrefab.Clear();
-            Debug.Log("liste après: " + list);
-            //TODO : vérifier la liste vidée
         }
 
         private void SpawnChest(int numberOfChest, GameObject planet)
         {
-            for (int i = 0; i < numberOfChest; i++)
+            for (int i = 1; i <= numberOfChest; i++)
             {
+                //TODO : debug chest on spawnPlanet 
                 GameObject newChest = Instantiate(Resources.Load("Chest", typeof(GameObject))) as GameObject;
                 var spawnPosition = Random.onUnitSphere * ((planet.transform.localScale.x / 2) + (newChest.transform.localScale.y / 10) / 3f);// /2));// / 2.2f);
                 newChest.transform.position = spawnPosition;
                 newChest.transform.LookAt(planet.transform.position);
                 newChest.transform.Rotate(-90, 0, 0);
-                //TODO : ajout dans liste
                 forPrefab.Insert(i, newChest);
             }
         }
+
+        private void SpawnTrees(int numberOfChest, int numberOfTrees, GameObject planet, PlanetType type)
+        {
+            string prefabTree = "Tree_" + type + "_0";
+            float _randomScaleTree = Random.Range(0.05f, 0.15f);
+            int randomBasicTrees;
+            GameObject newTree;
+
+            for (int i = 1; i <= GUISettings.NumberOfTree; i++)
+            {
+
+                randomBasicTrees = Random.Range(1, 5);
+
+                newTree = Instantiate(Resources.Load(prefabTree + randomBasicTrees, typeof(GameObject))) as GameObject;
+                var spawnPosition = Random.onUnitSphere * (((planet.transform.localScale.x / 2) - 0.2f) + newTree.transform.localScale.y - 0.1f) + planet.transform.position;
+                newTree.transform.position = spawnPosition;
+                newTree.transform.LookAt(planet.transform.position);
+                newTree.transform.Rotate(-90, 0, 0);
+                forPrefab.Insert(i + numberOfChest, newTree);
+            }
+        }
+
+        private void SpawnRocks(int numberOfTrees, int numberOfRocks, GameObject planet, PlanetType type)
+        {
+            //TODO : retouche les prefabs pour pas qu'on s'enfonce trop dans la planet
+            string prefabRock = "P_Rock" + type + "_v";
+            float _randomScaleRocks = Random.Range(0.05f, 0.15f);
+            int randomBasicRocks;
+            GameObject newRocks;
+
+            for (int i = 1; i <= GUISettings.NumberOfRock; i++)
+            {
+                randomBasicRocks = Random.Range(1, 5);
+
+                newRocks = Instantiate(Resources.Load(prefabRock + randomBasicRocks, typeof(GameObject))) as GameObject;
+                var spawnPosition = Random.onUnitSphere * (((planet.transform.localScale.x / 2) - 0.2f) + newRocks.transform.localScale.y - 0.1f) + planet.transform.position;
+                newRocks.transform.position = spawnPosition;
+                newRocks.transform.LookAt(planet.transform.position);
+                newRocks.transform.Rotate(-90, 0, 0);
+                forPrefab.Insert(i + numberOfTrees, newRocks);
+            }
+        }
+
+
+
 
     }
 }
