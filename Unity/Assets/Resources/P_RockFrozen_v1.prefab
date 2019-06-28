@@ -255,9 +255,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5201828293040751150}
   - component: {fileID: 10034079619501418}
-  - component: {fileID: 2201550517411385945}
   m_Layer: 0
-  m_Name: P_RockFrozen
+  m_Name: P_RockFrozen_v1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -301,25 +300,10 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 2201550517411385945}
-  viewIdField: 107
+  - {fileID: 0}
+  viewIdField: 0
   InstantiationId: 107
   isRuntimeInstantiated: 0
---- !u!114 &2201550517411385945
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2017108656162862713}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 1
 --- !u!1 &3698101721977837904
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,7 +7,8 @@ public enum PlanetType
 {
     Basic,
     Frozen,
-    Desert
+    Desert,
+    Crystal
 }
 
 public enum AssetType
