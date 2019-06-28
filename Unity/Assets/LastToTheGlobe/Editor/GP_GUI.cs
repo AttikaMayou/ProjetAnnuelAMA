@@ -135,16 +135,10 @@ namespace Editor
             {
                 //Set the path as within the ressources folder
                 string localPath = "Assets/Resources/" + GUISettings.Name + ".prefab";
-                CreateNew(gameObject, localPath);
+                PrefabUtility.SaveAsPrefabAsset(planet, localPath);
             }
         }
 
-        public void CreateNew(GameObject planet, string localPath)
-        {
-            bool success = false;
-            //Create a new Prefab at the path given
-            PrefabUtility.SaveAsPrefabAsset(planet, localPath, out success);
-        }
 
         public void ResetScene()
         {
@@ -166,10 +160,21 @@ namespace Editor
             {
                 //TODO : debug chest on spawnPlanet 
                 GameObject newChest = Instantiate(Resources.Load("Chest", typeof(GameObject))) as GameObject;
-                var spawnPosition = Random.onUnitSphere * ((planet.transform.localScale.x / 2) + (newChest.transform.localScale.y / 10) / 3f);// /2));// / 2.2f);
+                var spawnPosition = new Vector3(0,0,0);
+
+                if (GUISettings.SpawnPlanet == true)
+                {
+                    planet = GameObject.Find("polySurface1");
+                    spawnPosition = Random.onUnitSphere * ((planet.transform.localScale.x / 2) + (newChest.transform.localScale.y) + 2f);
+                }
+                else
+                {
+                    spawnPosition = Random.onUnitSphere * ((planet.transform.localScale.x / 2) + (newChest.transform.localScale.y / 10) / 3f);
+                }
                 newChest.transform.position = spawnPosition;
                 newChest.transform.LookAt(planet.transform.position);
                 newChest.transform.Rotate(-90, 0, 0);
+                newChest.transform.SetParent(planet.transform);
                 forPrefab.Insert(i, newChest);
             }
         }
@@ -185,12 +190,23 @@ namespace Editor
             {
 
                 randomBasicTrees = Random.Range(1, 5);
+                var spawnPosition = new Vector3(0, 0, 0);
 
                 newTree = Instantiate(Resources.Load(prefabTree + randomBasicTrees, typeof(GameObject))) as GameObject;
-                var spawnPosition = Random.onUnitSphere * (((planet.transform.localScale.x / 2) - 0.2f) + newTree.transform.localScale.y - 0.1f) + planet.transform.position;
+
+                if (GUISettings.SpawnPlanet == true)
+                {
+                    planet = GameObject.Find("pCube2");
+                    spawnPosition = Random.onUnitSphere * ((planet.transform.localScale.x / 2) + (newTree.transform.localScale.y) + 11.5f);
+                }
+                else
+                {
+                    spawnPosition = Random.onUnitSphere * (((planet.transform.localScale.x / 2) - 0.2f) + newTree.transform.localScale.y - 0.1f) + planet.transform.position;
+                }
                 newTree.transform.position = spawnPosition;
                 newTree.transform.LookAt(planet.transform.position);
                 newTree.transform.Rotate(-90, 0, 0);
+                newTree.transform.SetParent(planet.transform);
                 forPrefab.Insert(i + numberOfChest, newTree);
             }
         }
@@ -212,6 +228,7 @@ namespace Editor
                 newRocks.transform.position = spawnPosition;
                 newRocks.transform.LookAt(planet.transform.position);
                 newRocks.transform.Rotate(-90, 0, 0);
+                newRocks.transform.SetParent(planet.transform);
                 forPrefab.Insert(i + numberOfTrees, newRocks);
             }
         }
