@@ -9,6 +9,9 @@ public class GP_GUISettings : ScriptableObject
     private bool isSpawnPlanet = false;
 
     [SerializeField]
+    private GameObject[] gameObjectAdd;
+
+    [SerializeField]
     private int scale = 10;
 
     [SerializeField]
@@ -30,6 +33,12 @@ public class GP_GUISettings : ScriptableObject
     {
         get { return planetType; }
         set { planetType = value; }
+    }
+
+    public GameObject[] GameObjectAdd
+    {
+        get { return gameObjectAdd; }
+        set { gameObjectAdd = value; }
     }
 
     public int Scale

@@ -60,14 +60,13 @@ namespace Editor
             GUISettings.Name = EditorGUILayout.TextField(GUISettings.Name);
             EditorGUILayout.EndHorizontal();
 
+            /*EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField("WIP : Add gameObject to prefab : ");
+            GUISettings.GameObjectAdd = (GameObject)EditorGUILayout.ObjectField(GUISettings.GameObjectAdd, typeof(GameObject));
+            EditorGUILayout.EndHorizontal();*/
 
             if (GUILayout.Button("Save planet "))
             {
-                if (GUISettings.Name == null || GUISettings.Name == "lol")
-                {
-                    EditorGUILayout.HelpBox("You need to name your prefab to save it !", MessageType.Error);
-                }
-
                 CreatePrefab();
             }
 
@@ -80,19 +79,23 @@ namespace Editor
             {
                 ResetScene();
             }
-            
+
+            EditorGUILayout.HelpBox("TODO : add gameobject perso à ajouter au prefab" +
+                                    "\n             faire les prefabs de rock basic" +
+                                    "\n             générer le bouton create another (faire un offset de la planet) " +
+                                    "\n             remplacer ce message par des instructions " +
+                                    "\n             GUI plus propre", MessageType.None);
 
             if (GUISettings.PlanetType == PlanetType.Crystal && GUISettings.NumberOfTree > 0)
             {
                 EditorGUILayout.HelpBox("Can't grow any tree on a crystal planet ! \n Please, put 0", MessageType.Warning);
             }
 
-            EditorGUILayout.HelpBox("TODO : \recalculer placement prefab rock + pivot à 0" +
-                                    " \n ajouter la creation de mesh \n" +
-                                    " ajouter option de tesselation en fonction du radius de la planet " +
-                                    "\n générer le bouton create another (faire un offset de la planet) " +
-                                    "\n remplacer ce message par des instructions " +
-                                    "\nGUI plus propre", MessageType.None);
+            if (GUISettings.PlanetType != PlanetType.Basic && GUISettings.SpawnPlanet == true)
+            {
+                EditorGUILayout.HelpBox("Spawn planet can't be another type than basic !", MessageType.Warning);
+            }
+
             EditorGUILayout.EndVertical();
         }
 
@@ -190,11 +193,11 @@ namespace Editor
                 if (GUISettings.SpawnPlanet == true)
                 {
                     planet = GameObject.Find("polySurface1");
-                    spawnPosition = Random.onUnitSphere * ((planet.transform.localScale.x / 2) + (newChest.transform.localScale.y) + 2f);
+                    spawnPosition = Random.onUnitSphere * (planet.transform.localScale.x + newChest.transform.localScale.y + 2.1f );
                 }
                 else
                 {
-                    spawnPosition = Random.onUnitSphere * ((planet.transform.localScale.x / 2) + (newChest.transform.localScale.y / 10) / 3f);
+                    spawnPosition = Random.onUnitSphere * (planet.transform.localScale.x + 0.41f);
                 }
                 newChest.transform.position = spawnPosition;
                 newChest.transform.LookAt(planet.transform.position);
@@ -207,7 +210,6 @@ namespace Editor
         private void SpawnTrees(int numberOfChest, int numberOfTrees, GameObject planet, PlanetType type)
         {
             string prefabTree = "Tree_" + type + "_0";
-            float _randomScaleTree = Random.Range(0.05f, 0.15f);
             int randomBasicTrees;
             GameObject newTree;
 
@@ -221,12 +223,12 @@ namespace Editor
 
                 if (GUISettings.SpawnPlanet == true)
                 {
-                    planet = GameObject.Find("pCube2");
-                    spawnPosition = Random.onUnitSphere * ((planet.transform.localScale.x / 2) + (newTree.transform.localScale.y) + 11.5f);
+                    planet = GameObject.Find("polySurface1");
+                    spawnPosition = Random.onUnitSphere * (planet.transform.localScale.x + newTree.transform.localScale.y + 11.65f);
                 }
                 else
                 {
-                    spawnPosition = Random.onUnitSphere * (((planet.transform.localScale.x / 2) - 0.2f) + newTree.transform.localScale.y - 0.1f) + planet.transform.position;
+                    spawnPosition = Random.onUnitSphere * ((planet.transform.localScale.x + newTree.transform.localScale.y)) + planet.transform.position;
                 }
                 newTree.transform.position = spawnPosition;
                 newTree.transform.LookAt(planet.transform.position);
@@ -240,16 +242,26 @@ namespace Editor
         {
             //TODO : retouche les prefabs pour pas qu'on s'enfonce trop dans la planet
             string prefabRock = "P_Rock" + type + "_v";
-            float _randomScaleRocks = Random.Range(0.05f, 0.15f);
             int randomBasicRocks;
             GameObject newRocks;
+            Vector3 spawnPosition;
 
             for (int i = 1; i <= GUISettings.NumberOfRock; i++)
             {
                 randomBasicRocks = Random.Range(1, 7);
 
                 newRocks = Instantiate(Resources.Load(prefabRock + randomBasicRocks, typeof(GameObject))) as GameObject;
-                var spawnPosition = Random.onUnitSphere * (((planet.transform.localScale.x / 2) - 0.2f) + newRocks.transform.localScale.y - 0.1f) + planet.transform.position;
+
+                if (GUISettings.SpawnPlanet == true)
+                {
+                    planet = GameObject.Find("polySurface1");
+                    spawnPosition = Random.onUnitSphere * (planet.transform.localScale.x + newRocks.transform.localScale.y + 11.5f);
+                }
+                else
+                {
+                    spawnPosition = Random.onUnitSphere * (planet.transform.localScale.x + newRocks.transform.localScale.y) + planet.transform.position;
+                }
+
                 newRocks.transform.position = spawnPosition;
                 newRocks.transform.LookAt(planet.transform.position);
                 newRocks.transform.Rotate(-90, 0, 0);
