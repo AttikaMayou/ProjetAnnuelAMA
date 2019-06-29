@@ -13,15 +13,6 @@ namespace Editor
         private GameObject planet;
         private Material mat;
 
-
-        private Mesh mesh;
-        private int planetResolution = 5;
-        private Vector3 localUp;
-        private Vector3 axeX;
-        private Vector3 axeY;
-        private MeshFilter[] meshFilters;
-        private CreationPlanetMesh[] planetFaces;
-
         public void OnGUI()
         {
             EditorGUILayout.BeginVertical();
@@ -89,11 +80,6 @@ namespace Editor
             {
                 ResetScene();
             }
-
-            if (GUILayout.Button("Test mesh"))
-            {
-                GenerateMesh();
-            }
             
 
             if (GUISettings.PlanetType == PlanetType.Crystal && GUISettings.NumberOfTree > 0)
@@ -120,7 +106,8 @@ namespace Editor
             else
             {
                 //Create planet sphere and set scale
-                planet = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                //planet = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                planet = Instantiate(Resources.Load("SM_Planet", typeof(GameObject))) as GameObject;
                 forPrefab.Insert(0, planet);
                 Undo.RegisterCreatedObjectUndo(planet, "Create planets");
                 //-------------------------------------SCALE------------------------------------------------
@@ -154,7 +141,8 @@ namespace Editor
                         break;
                 }
                 //----------------------------------MATERIAL------------------------------------------------
-                planet.GetComponent<Renderer>().material = mat;
+                //planet.GetComponentsInChildren<Renderer>().GetComponent<Renderer>().material = mat;
+                planet.GetComponentInChildren<Renderer>().material = mat;
             }
             //-----------------------------------SPAWN CHEST-----------------------------------------------
             SpawnChest(GUISettings.NumberOfChest, planet);
@@ -269,95 +257,5 @@ namespace Editor
                 forPrefab.Insert(i + numberOfTrees, newRocks);
             }
         }
-        /*
-        private void CreationPlanetMesh(Mesh mesh, int planetResolution, Vector3 localUp)
-        {
-            this.mesh = mesh;
-            this.planetResolution = planetResolution;
-            this.localUp = localUp;
-
-            axeX = new Vector3(localUp.y, localUp.z, localUp.x);
-            axeY = Vector3.Cross(localUp, axeX);
-        }
-
-        //Creation of vertices and tris
-        /*private void CreateMesh()
-        {
-            Vector3[] vertices = new Vector3[planetResolution * planetResolution];
-            int[] triangles = new int[(planetResolution - 1) * (planetResolution - 1) * 6];
-            int index = 0;
-
-            for (int y = 0; y < planetResolution; y++)
-            {
-                for (int x = 0; x < planetResolution; x++)
-                {
-                    int i = x + y * planetResolution;
-                    Vector2 percent = new Vector2(x, y) / (planetResolution - 1);
-                    Vector3 pointOnUnitCube = localUp + (percent.x - .5f) * 2 * axeX + (percent.y - .5f) * 2 * axeY;
-                    Vector3 pointOnUnitSphere = pointOnUnitCube.normalized;
-                    vertices[i] = pointOnUnitSphere;
-
-                    //Index of vertices to create tris
-                    if (x != planetResolution - 1 && y != planetResolution - 1)
-                    {
-                        triangles[index] = i;
-                        triangles[index + 1] = i + planetResolution + 1;
-                        triangles[index + 2] = i + planetResolution;
-
-                        triangles[index + 3] = i;
-                        triangles[index + 4] = i + 1;
-                        triangles[index + 5] = i + planetResolution + 1;
-
-                        index += 6;
-
-                    }
-                }
-
-                mesh.Clear();
-                //creation of vertices and tris
-                mesh.vertices = vertices;
-                mesh.triangles = triangles;
-                mesh.RecalculateNormals();
-            }
-        }
-        */
-        private void Initialize()
-        {
-            if (meshFilters == null || meshFilters.Length == 0)
-            {
-                meshFilters = new MeshFilter[5];// numberMeshFilters];
-            }
-
-            //planetFaces = new CreationPlanetMesh[numberMeshFilters];
-
-            Vector3[] directions = { Vector3.up, Vector3.down, Vector3.left, Vector3.right, Vector3.forward, Vector3.back };
-
-            for (int i = 0; i < 5; i++) //numberMeshFilters; i++)
-            {
-                if (meshFilters[i] == null)
-                {
-                    GameObject meshObj = new GameObject("PlanetFace");
-                    //meshObj.transform.parent = transform;
-                    meshObj.transform.localScale = new Vector3(10, 10, 10);
-
-                    meshObj.AddComponent<MeshRenderer>().sharedMaterial = new Material(Shader.Find("Standard"));
-                    meshFilters[i] = meshObj.AddComponent<MeshFilter>();
-                    meshFilters[i].sharedMesh = new Mesh();
-                }
-
-                planetFaces[i] = new CreationPlanetMesh(meshFilters[i].sharedMesh, 100, directions[i]);
-            }
-        }
-
-
-        void GenerateMesh()
-        {
-            Initialize();
-            foreach (CreationPlanetMesh face in planetFaces)
-            {
-                face.CreateMesh();
-            }
-        }
-
     }
 }
