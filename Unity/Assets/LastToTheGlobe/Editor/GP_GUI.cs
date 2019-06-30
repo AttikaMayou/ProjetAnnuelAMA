@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 using UnityEditor;
+using UnityEngine;
 
 //Auteur : Margot
-namespace Editor
+namespace LastToTheGlobe.Editor
 {
     public class GP_GUI : EditorWindow
     {
@@ -68,12 +67,13 @@ namespace Editor
             //GUISettings.GameObjectAdd = new Object[GUISettings.NumberOfgameObjectAdd];
             if (GUISettings.NumberOfgameObjectAdd > 0)
             {
-                for (int i = 0; i < GUISettings.NumberOfgameObjectAdd; i++)
+                for (var i = 0; i < GUISettings.NumberOfgameObjectAdd; i++)
                 {
                     EditorGUILayout.BeginHorizontal();
                     EditorGUILayout.LabelField("WIP : Add gameObject to prefab : ");
                     //CE QUI POSE UN PROBLEME : remplacer 0 par i
-                    GUISettings.GameObjectAdd[0] = EditorGUILayout.ObjectField(GUISettings.GameObjectAdd[0], typeof(GameObject), true);
+                    //GUISettings.GameObjectAdd[i] = EditorGUILayout.ObjectField(GUISettings.GameObjectAdd[0], typeof(GameObject), true);
+                    GUISettings.GameObjectAdd.Add(EditorGUILayout.ObjectField(GUISettings.GameObjectAdd[i], typeof(GameObject), true));
                     EditorGUILayout.EndHorizontal();
                 }
             }
