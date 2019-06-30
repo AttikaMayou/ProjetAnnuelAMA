@@ -41,7 +41,7 @@ namespace Editor
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField("WIP Number of rocks : ");
+            EditorGUILayout.LabelField("Number of rocks : ");
             GUISettings.NumberOfRock = EditorGUILayout.IntField(GUISettings.NumberOfRock);
             EditorGUILayout.EndHorizontal();
 
@@ -60,19 +60,27 @@ namespace Editor
             GUISettings.Name = EditorGUILayout.TextField(GUISettings.Name);
             EditorGUILayout.EndHorizontal();
 
-            /*EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField("WIP : Add gameObject to prefab : ");
-            GUISettings.GameObjectAdd = (GameObject)EditorGUILayout.ObjectField(GUISettings.GameObjectAdd, typeof(GameObject));
-            EditorGUILayout.EndHorizontal();*/
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField("Number of object to add : ");
+            GUISettings.NumberOfgameObjectAdd = EditorGUILayout.IntField(GUISettings.NumberOfgameObjectAdd);
+            EditorGUILayout.EndHorizontal();
 
+            //GUISettings.GameObjectAdd[GUISettings.NumberOfgameObjectAdd];
+            /*
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField("WIP : Add gameObject to prefab : ");
+            GUISettings.GameObjectAdd[0] = EditorGUILayout.ObjectField(GUISettings.GameObjectAdd[0], typeof(GameObject), true);
+            EditorGUILayout.EndHorizontal();
+            */
             if (GUILayout.Button("Save planet "))
             {
-                CreatePrefab();
+                CreatePrefab(GUISettings.NumberOfTree, GUISettings.NumberOfChest, GUISettings.NumberOfRock, planet);
             }
 
             if (GUILayout.Button("WIP : Create another planet "))
             {
-
+                CreateAnotherPlanet(planet);
+                ClearList();
             }
 
             if (GUILayout.Button("Erase previous planet "))
@@ -81,10 +89,8 @@ namespace Editor
             }
 
             EditorGUILayout.HelpBox("TODO : add gameobject perso à ajouter au prefab" +
-                                    "\n             faire les prefabs de rock basic" +
                                     "\n             générer le bouton create another (faire un offset de la planet) " +
-                                    "\n             remplacer ce message par des instructions " +
-                                    "\n             GUI plus propre", MessageType.None);
+                                    "\n             remplacer ce message par des instructions ", MessageType.None);
 
             if (GUISettings.PlanetType == PlanetType.Crystal && GUISettings.NumberOfTree > 0)
             {
@@ -159,12 +165,18 @@ namespace Editor
 
         }
 
-        public void CreatePrefab()
-        {
-            foreach (GameObject gameObject in forPrefab)
+        public void CreatePrefab(int numberOfTrees, int numberOfChest, int newRocks, GameObject planet)
+        {/*
+            if (GUISettings.GameObjectAdd != null)
+            {
+                forPrefab.Insert(newRocks + numberOfChest + numberOfTrees + 1, GUISettings.GameObjectAdd[0] as GameObject);
+                forPrefab[newRocks + numberOfChest + numberOfTrees + 1].transform.SetParent(planet.transform);
+            }*/
+
+            foreach (Object gameObject in forPrefab)
             {
                 //Set the path as within the ressources folder
-                string localPath = "Assets/Resources/Planet" + GUISettings.Name + ".prefab";
+                string localPath = "Assets/Resources/PlanetToInstanciate" + GUISettings.Name + ".prefab";
                 PrefabUtility.SaveAsPrefabAsset(planet, localPath);
             }
         }
@@ -181,6 +193,17 @@ namespace Editor
         public void ClearList()
         {
             forPrefab.Clear();
+        }
+
+        public void CreateAnotherPlanet(GameObject planet)
+        {
+            GameObject[] tabPlanet = new GameObject[200];
+            int offset =+ 10;
+            for(int i = 0; i<200 ; i++)
+            {
+                tabPlanet[i] = planet;
+                tabPlanet[i].transform.localPosition = new Vector3(offset * i, 0, 0);
+            }
         }
 
         private void SpawnChest(int numberOfChest, GameObject planet)
@@ -240,7 +263,6 @@ namespace Editor
 
         private void SpawnRocks(int numberOfTrees, int numberOfRocks, GameObject planet, PlanetType type)
         {
-            //TODO : retouche les prefabs pour pas qu'on s'enfonce trop dans la planet
             string prefabRock = "P_Rock" + type + "_v";
             int randomBasicRocks;
             GameObject newRocks;
