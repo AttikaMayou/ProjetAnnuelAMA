@@ -65,13 +65,19 @@ namespace Editor
             GUISettings.NumberOfgameObjectAdd = EditorGUILayout.IntField(GUISettings.NumberOfgameObjectAdd);
             EditorGUILayout.EndHorizontal();
 
-            //GUISettings.GameObjectAdd[GUISettings.NumberOfgameObjectAdd];
-            /*
-            EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField("WIP : Add gameObject to prefab : ");
-            GUISettings.GameObjectAdd[0] = EditorGUILayout.ObjectField(GUISettings.GameObjectAdd[0], typeof(GameObject), true);
-            EditorGUILayout.EndHorizontal();
-            */
+            //GUISettings.GameObjectAdd = new Object[GUISettings.NumberOfgameObjectAdd];
+            if (GUISettings.NumberOfgameObjectAdd > 0)
+            {
+                for (int i = 0; i < GUISettings.NumberOfgameObjectAdd; i++)
+                {
+                    EditorGUILayout.BeginHorizontal();
+                    EditorGUILayout.LabelField("WIP : Add gameObject to prefab : ");
+                    //CE QUI POSE UN PROBLEME : remplacer 0 par i
+                    GUISettings.GameObjectAdd[0] = EditorGUILayout.ObjectField(GUISettings.GameObjectAdd[0], typeof(GameObject), true);
+                    EditorGUILayout.EndHorizontal();
+                }
+            }
+            
             if (GUILayout.Button("Save planet "))
             {
                 CreatePrefab(GUISettings.NumberOfTree, GUISettings.NumberOfChest, GUISettings.NumberOfRock, planet);
@@ -171,8 +177,8 @@ namespace Editor
             {
                 forPrefab.Insert(newRocks + numberOfChest + numberOfTrees + 1, GUISettings.GameObjectAdd[0] as GameObject);
                 forPrefab[newRocks + numberOfChest + numberOfTrees + 1].transform.SetParent(planet.transform);
-            }*/
-
+            }
+            */
             foreach (Object gameObject in forPrefab)
             {
                 //Set the path as within the ressources folder
@@ -198,8 +204,8 @@ namespace Editor
         public void CreateAnotherPlanet(GameObject planet)
         {
             GameObject[] tabPlanet = new GameObject[200];
-            int offset =+ 10;
-            for(int i = 0; i<200 ; i++)
+            int offset = 10;
+            for(int i = 0; i < 200 ; i++)
             {
                 tabPlanet[i] = planet;
                 tabPlanet[i].transform.localPosition = new Vector3(offset * i, 0, 0);
