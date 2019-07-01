@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class SendRequestSignin : MonoBehaviour {
-    public Button yourButton;
+    public Button myButton;
 
     public GameObject PseudoGameObject;
     public GameObject MdpGameObject;
@@ -14,10 +14,7 @@ public class SendRequestSignin : MonoBehaviour {
     private httpRequest _httpRequest = new httpRequest();
     private string _requestResponse;
     
-    void Start () {
-        yourButton.onClick.AddListener(TaskOnClick);
-        
-    }
+    
 
     void TaskOnClick()
     {
