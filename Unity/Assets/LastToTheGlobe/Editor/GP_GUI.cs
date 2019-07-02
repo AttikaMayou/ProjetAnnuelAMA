@@ -11,6 +11,7 @@ namespace LastToTheGlobe.Editor
         private List<GameObject> forPrefab = new List<GameObject>();
         private GameObject planet;
         private Material mat;
+        private int compteur = 0;
 
         public void OnGUI()
         {
@@ -52,6 +53,7 @@ namespace LastToTheGlobe.Editor
             if (GUILayout.Button("Generate planet"))
             {
                 GeneratePlanet();
+                compteur++;
             }
 
             EditorGUILayout.BeginHorizontal();
@@ -82,7 +84,7 @@ namespace LastToTheGlobe.Editor
             
             if (GUILayout.Button("Save planet "))
             {
-                CreatePrefab(GUISettings.NumberOfTree, GUISettings.NumberOfChest, GUISettings.NumberOfRock, planet);
+                CreatePrefab(GUISettings.NumberOfTree, GUISettings.NumberOfChest, GUISettings.NumberOfRock, planet, GUISettings.NumberOfgameObjectAdd);
             }
 
             if (GUILayout.Button("Erase planet "))
@@ -90,15 +92,18 @@ namespace LastToTheGlobe.Editor
                 ResetScene();
             }
 
-            if (GUILayout.Button("WIP : Create another planet "))
+            if (GUILayout.Button("Create another planet "))
             {
-                CreateAnotherPlanet(planet);
+                CreateAnotherPlanet(planet, compteur);
                 ClearList();
             }
 
-            EditorGUILayout.HelpBox("TODO : générer le bouton create another (faire un offset de la planet) " +
-                                    "\n             remplacer ce message par des instructions ", MessageType.None);
+            EditorGUILayout.HelpBox("Instructions : \n\nTo create a planet, choose its scale, type and numbers of assets to instanciate. Then press" +
+                "Generate Planet button.\n\nIf you want to add some custom object, add them to Number Of Object To Add field.\n\n" +
+                "When you're satisfied with the created planet, you can save it with Save Planet button and create another one.\n\n" +
+                "If you want to erase it, press Erase Planet button.", MessageType.None);
 
+            //-----------------------------------------------EXCEPTION------------------------------------------------
             if (GUISettings.PlanetType == PlanetType.Crystal && GUISettings.NumberOfTree > 0)
             {
                 EditorGUILayout.HelpBox("Can't grow any tree on a crystal planet ! \n Please, put 0", MessageType.Warning);
@@ -176,18 +181,21 @@ namespace LastToTheGlobe.Editor
 
         }
 
-        public void CreatePrefab(int numberOfTrees, int numberOfChest, int newRocks, GameObject planet)
-        {/*
+        public void CreatePrefab(int numberOfTrees, int numberOfChest, int newRocks, GameObject planet, int NumberOfgameObjectAdd)
+        {
             if (GUISettings.GameObjectAdd != null)
             {
-                forPrefab.Insert(newRocks + numberOfChest + numberOfTrees + 1, GUISettings.GameObjectAdd[0] as GameObject);
-                forPrefab[newRocks + numberOfChest + numberOfTrees + 1].transform.SetParent(planet.transform);
+                for (int i = 0; i < NumberOfgameObjectAdd; i++)
+                {
+                    forPrefab.Insert(newRocks + numberOfChest + numberOfTrees + 1, GUISettings.GameObjectAdd[i] as GameObject);
+                    forPrefab[newRocks + numberOfChest + numberOfTrees + 1].transform.SetParent(planet.transform);
+                }
             }
-            */
+            
             foreach (Object gameObject in forPrefab)
             {
                 //Set the path as within the ressources folder
-                string localPath = "Assets/Resources/PlanetToInstanciate" + GUISettings.Name + ".prefab";
+                string localPath = "Assets/Resources" + GUISettings.Name + ".prefab";
                 PrefabUtility.SaveAsPrefabAsset(planet, localPath);
             }
         }
@@ -206,15 +214,12 @@ namespace LastToTheGlobe.Editor
             forPrefab.Clear();
         }
 
-        public void CreateAnotherPlanet(GameObject planet)
+        public void CreateAnotherPlanet(GameObject planet, int compteur)
         {
             GameObject[] tabPlanet = new GameObject[200];
-            int offset = 10;
-            for(int i = 0; i < 200 ; i++)
-            {
-                tabPlanet[i] = planet;
-                tabPlanet[i].transform.localPosition = new Vector3(offset * i, 0, 0);
-            }
+            int offset = 100;
+            planet.transform.localPosition = new Vector3(offset * compteur, 0, 0);
+
         }
 
         private void SpawnChest(int numberOfChest, GameObject planet)
