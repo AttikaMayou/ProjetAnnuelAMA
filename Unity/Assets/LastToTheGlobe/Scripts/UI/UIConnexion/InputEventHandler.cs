@@ -1,38 +1,39 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Security.Cryptography;
-using Photon.Pun.UtilityScripts;
-using TMPro;
-using UnityEngine.UI; // Required when Using UI elements.
+﻿using TMPro;
+using UnityEngine;
 
-public class InputEventHandler : MonoBehaviour
+// Required when Using UI elements.
+
+namespace LastToTheGlobe.Scripts.UI.UIConnexion
 {
-    public TMP_InputField mainInputField;
-    [HideInInspector] public bool inputEntered = false;
-    [HideInInspector] public string textInput;
-
-    // Checks if there is anything entered into the input field.
-    void LockInput(TMP_InputField input)
+    public class InputEventHandler : MonoBehaviour
     {
-        if (input.text.Length > 0)
+        public TMP_InputField mainInputField;
+        [HideInInspector] public bool inputEntered = false;
+        [HideInInspector] public string textInput;
+
+        // Checks if there is anything entered into the input field.
+        void LockInput(TMP_InputField input)
         {
-            inputEntered = true;
-            textInput = input.text;
+            if (input.text.Length > 0)
+            {
+                inputEntered = true;
+                textInput = input.text;
 
+            }
+            else if (input.text.Length == 0)
+            {
+                inputEntered = false;
+                Debug.Log("Main Input Empty");
+            }
         }
-        else if (input.text.Length == 0)
+
+        public void Start()
         {
-            inputEntered = false;
-            Debug.Log("Main Input Empty");
+
+            //Adds a listener that invokes the "LockInput" method when the player finishes editing the main input field.
+            //Passes the main input field into the method when "LockInput" is invoked
+            mainInputField.onEndEdit.AddListener(delegate {LockInput(mainInputField); });
         }
+
     }
-
-    public void Start()
-    {
-
-        //Adds a listener that invokes the "LockInput" method when the player finishes editing the main input field.
-        //Passes the main input field into the method when "LockInput" is invoked
-        mainInputField.onEndEdit.AddListener(delegate {LockInput(mainInputField); });
-    }
-
 }

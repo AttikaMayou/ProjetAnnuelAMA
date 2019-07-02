@@ -1,31 +1,39 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
-public class ButtonScript : MonoBehaviour
+//Auteur : Abdallah
+
+namespace LastToTheGlobe.Scripts.UI.UIConnexion
 {
-    public Button myButton;
-    protected GameObject[] toEnable;
-    protected GameObject[] toDisable;
-
-    void Start()
+    public class ButtonScript : MonoBehaviour
     {
-        myButton.onClick.AddListener(TaskOnClick);
-        
-        print("Hola");
-    }
+        public Button myButton;
+        public List<GameObject> toEnable = new List<GameObject>();
+        public List<GameObject> toDisable = new List<GameObject>();
 
-    protected void TaskOnClick()
-    {
-        for (int i = 0; i < toEnable.Length; i++)
-        {
-            toEnable[i].SetActive(true);
+        void Start () {
+            myButton.onClick.AddListener(TaskOnClick);
         }
         
-        for (int i = 0; i < toDisable.Length; i++)
+        protected void TaskOnClick()
         {
-            toDisable[i].SetActive(false);
-        }
+            if (toEnable != null)
+            {
+                for (int i = 0; i < toEnable.Count; i++)
+                {
+                    toEnable[i].SetActive(true);
+                }
+            }
 
+            if (toDisable != null)
+            {
+                for (int i = 0; i < toDisable.Count; i++)
+                {
+                    toDisable[i].SetActive(false);
+                }
+            }
+
+        }
     }
 }
