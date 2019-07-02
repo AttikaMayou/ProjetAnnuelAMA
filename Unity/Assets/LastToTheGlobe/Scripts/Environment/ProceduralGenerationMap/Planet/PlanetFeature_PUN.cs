@@ -1,13 +1,12 @@
 ﻿ using UnityEngine;
 using LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi;
  using LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV;
-
 //Auteur : Margot
 //Modifications : Attika
 
 namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
 {
-    public class PlanetFeature_PUN 
+    public class PlanetFeature_PUN : MonoBehaviour
     {
         [SerializeField]
         private GameObject planet;
