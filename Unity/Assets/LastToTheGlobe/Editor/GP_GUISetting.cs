@@ -9,8 +9,9 @@ public class GP_GUISettings : ScriptableObject
     private bool isSpawnPlanet = false;
 
     [SerializeField]
-    private List<Object> gameObjectAdd = new List<Object>();
+    private GameObject[] gameObjectAdd = new GameObject[200];
 
+    [Range(0, 5)]
     [SerializeField]
     private int numberOfgameObjectAdd;
 
@@ -38,7 +39,7 @@ public class GP_GUISettings : ScriptableObject
         set { planetType = value; }
     }
 
-    public List<Object> GameObjectAdd
+    public GameObject[] GameObjectAdd
     {
         get { return gameObjectAdd; }
         set { gameObjectAdd = value; }

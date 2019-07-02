@@ -64,16 +64,18 @@ namespace LastToTheGlobe.Editor
             GUISettings.NumberOfgameObjectAdd = EditorGUILayout.IntField(GUISettings.NumberOfgameObjectAdd);
             EditorGUILayout.EndHorizontal();
 
-            //GUISettings.GameObjectAdd = new Object[GUISettings.NumberOfgameObjectAdd];
+            if(GUISettings.NumberOfgameObjectAdd > 5)
+            {
+                GUISettings.NumberOfgameObjectAdd = 5;
+            }
+            
             if (GUISettings.NumberOfgameObjectAdd > 0)
             {
-                for (var i = 0; i < GUISettings.NumberOfgameObjectAdd; i++)
+                for (int i = 0; i < GUISettings.NumberOfgameObjectAdd; i++)
                 {
                     EditorGUILayout.BeginHorizontal();
-                    EditorGUILayout.LabelField("WIP : Add gameObject to prefab : ");
-                    //CE QUI POSE UN PROBLEME : remplacer 0 par i
-                    //GUISettings.GameObjectAdd[i] = EditorGUILayout.ObjectField(GUISettings.GameObjectAdd[0], typeof(GameObject), true);
-                    GUISettings.GameObjectAdd.Add(EditorGUILayout.ObjectField(GUISettings.GameObjectAdd[i], typeof(GameObject), true));
+                    EditorGUILayout.LabelField("Add gameObject to prefab : ");
+                    GUISettings.GameObjectAdd[i] = (GameObject)EditorGUILayout.ObjectField(GUISettings.GameObjectAdd[i], typeof(GameObject), true);
                     EditorGUILayout.EndHorizontal();
                 }
             }
@@ -83,24 +85,28 @@ namespace LastToTheGlobe.Editor
                 CreatePrefab(GUISettings.NumberOfTree, GUISettings.NumberOfChest, GUISettings.NumberOfRock, planet);
             }
 
+            if (GUILayout.Button("Erase planet "))
+            {
+                ResetScene();
+            }
+
             if (GUILayout.Button("WIP : Create another planet "))
             {
                 CreateAnotherPlanet(planet);
                 ClearList();
             }
 
-            if (GUILayout.Button("Erase previous planet "))
-            {
-                ResetScene();
-            }
-
-            EditorGUILayout.HelpBox("TODO : add gameobject perso à ajouter au prefab" +
-                                    "\n             générer le bouton create another (faire un offset de la planet) " +
+            EditorGUILayout.HelpBox("TODO : générer le bouton create another (faire un offset de la planet) " +
                                     "\n             remplacer ce message par des instructions ", MessageType.None);
 
             if (GUISettings.PlanetType == PlanetType.Crystal && GUISettings.NumberOfTree > 0)
             {
                 EditorGUILayout.HelpBox("Can't grow any tree on a crystal planet ! \n Please, put 0", MessageType.Warning);
+            }
+
+            if (GUISettings.NumberOfgameObjectAdd >= 5)
+            {
+                EditorGUILayout.HelpBox("You can't add more than 5 GameObjects !", MessageType.Warning);
             }
 
             if (GUISettings.PlanetType != PlanetType.Basic && GUISettings.SpawnPlanet == true)
@@ -121,7 +127,6 @@ namespace LastToTheGlobe.Editor
             else
             {
                 //Create planet sphere and set scale
-                //planet = GameObject.CreatePrimitive(PrimitiveType.Sphere);
                 planet = Instantiate(Resources.Load("SM_Planet", typeof(GameObject))) as GameObject;
                 forPrefab.Insert(0, planet);
                 Undo.RegisterCreatedObjectUndo(planet, "Create planets");
