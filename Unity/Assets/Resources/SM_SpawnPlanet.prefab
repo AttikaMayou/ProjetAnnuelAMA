@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1665}
   - component: {fileID: 1761}
   - component: {fileID: 1762}
-  - component: {fileID: 1799}
+  - component: {fileID: 1769}
   m_Layer: 8
   m_Name: SM_SpawnPlanet
   m_TagString: Planet
@@ -35,7 +35,7 @@ Transform:
   - {fileID: 767}
   - {fileID: 771}
   - {fileID: 766}
-  - {fileID: 1526199561881979547}
+  - {fileID: 4186147918488249921}
   - {fileID: 765}
   - {fileID: 770}
   m_Father: {fileID: 0}
@@ -88,7 +88,7 @@ MonoBehaviour:
   Exposer: {fileID: 1761}
   speedRotation: 10
   DirForce: {x: 0, y: 0, z: 0}
---- !u!114 &1799
+--- !u!114 &1769
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,8 +107,8 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 0}
-  viewIdField: 0
-  InstantiationId: 86
+  viewIdField: 114
+  InstantiationId: 114
   isRuntimeInstantiated: 0
 --- !u!1 &259
 GameObject:
@@ -462,7 +462,7 @@ GameObject:
   - component: {fileID: 1625}
   - component: {fileID: 1624}
   - component: {fileID: 1623}
-  - component: {fileID: 1641}
+  - component: {fileID: 1626}
   m_Layer: 0
   m_Name: pCube2
   m_TagString: Untagged
@@ -581,7 +581,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.1083078, y: 3.700892, z: 21.665218}
   m_Center: {x: -2.3069615, y: 0, z: 0}
---- !u!65 &1641
+--- !u!65 &1626
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -678,7 +678,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf62e091e3a648e449f1ae21a25c6606, type: 3}
---- !u!4 &1526199561881979547 stripped
+--- !u!4 &4186147918488249921 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3401916670773471376, guid: bf62e091e3a648e449f1ae21a25c6606,
     type: 3}

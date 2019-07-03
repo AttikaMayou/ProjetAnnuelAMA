@@ -112,7 +112,7 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
 
         private IEnumerator ResetTrigger()
         {
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForSeconds(0.2f);
             _i = 0;
         }
         
