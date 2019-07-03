@@ -1403,6 +1403,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1252, guid: c83770715bf346641832232e27c6c903, type: 3}
+      propertyPath: viewIdField
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1252, guid: c83770715bf346641832232e27c6c903, type: 3}
+      propertyPath: InstantiationId
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1252, guid: c83770715bf346641832232e27c6c903, type: 3}
+      propertyPath: ObservedComponents.Array.data[0]
+      value: 
+      objectReference: {fileID: 2142864151}
+    - target: {fileID: 1253, guid: c83770715bf346641832232e27c6c903, type: 3}
+      propertyPath: Exposer
+      value: 
+      objectReference: {fileID: 2142864146}
+    - target: {fileID: 1253, guid: c83770715bf346641832232e27c6c903, type: 3}
+      propertyPath: photonView
+      value: 
+      objectReference: {fileID: 2142864149}
     - target: {fileID: 1251, guid: c83770715bf346641832232e27c6c903, type: 3}
       propertyPath: PlanetTransform
       value: 
@@ -1419,26 +1439,6 @@ PrefabInstance:
       propertyPath: SpawnPosition
       value: 
       objectReference: {fileID: 2142864846}
-    - target: {fileID: 1253, guid: c83770715bf346641832232e27c6c903, type: 3}
-      propertyPath: Exposer
-      value: 
-      objectReference: {fileID: 2142864146}
-    - target: {fileID: 1253, guid: c83770715bf346641832232e27c6c903, type: 3}
-      propertyPath: photonView
-      value: 
-      objectReference: {fileID: 2142864149}
-    - target: {fileID: 1252, guid: c83770715bf346641832232e27c6c903, type: 3}
-      propertyPath: viewIdField
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1252, guid: c83770715bf346641832232e27c6c903, type: 3}
-      propertyPath: InstantiationId
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1252, guid: c83770715bf346641832232e27c6c903, type: 3}
-      propertyPath: ObservedComponents.Array.data[0]
-      value: 
-      objectReference: {fileID: 2142864151}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c83770715bf346641832232e27c6c903, type: 3}
 --- !u!4 &2142864819 stripped
