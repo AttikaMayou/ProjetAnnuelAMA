@@ -195,7 +195,7 @@ namespace LastToTheGlobe.Editor
             foreach (Object gameObject in forPrefab)
             {
                 //Set the path as within the ressources folder
-                string localPath = "Assets/Resources" + GUISettings.Name + ".prefab";
+                string localPath = "Assets/Resources/" + GUISettings.Name + ".prefab";
                 PrefabUtility.SaveAsPrefabAsset(planet, localPath);
             }
         }
@@ -226,7 +226,7 @@ namespace LastToTheGlobe.Editor
         {
             for (int i = 1; i <= numberOfChest; i++)
             {
-                GameObject newChest = Instantiate(Resources.Load("Chest", typeof(GameObject))) as GameObject;
+                GameObject newChest = PrefabUtility.InstantiatePrefab(Resources.Load("Chest", typeof(GameObject))) as GameObject;
                 var spawnPosition = new Vector3(0, 0, 0);
 
                 if (GUISettings.SpawnPlanet == true)
@@ -258,7 +258,7 @@ namespace LastToTheGlobe.Editor
                 randomBasicTrees = Random.Range(1, 5);
                 var spawnPosition = new Vector3(0, 0, 0);
 
-                newTree = Instantiate(Resources.Load(prefabTree + randomBasicTrees, typeof(GameObject))) as GameObject;
+                newTree = PrefabUtility.InstantiatePrefab(Resources.Load(prefabTree + randomBasicTrees, typeof(GameObject))) as GameObject;
 
                 if (GUISettings.SpawnPlanet == true)
                 {
@@ -288,7 +288,7 @@ namespace LastToTheGlobe.Editor
             {
                 randomBasicRocks = Random.Range(1, 7);
 
-                newRocks = Instantiate(Resources.Load(prefabRock + randomBasicRocks, typeof(GameObject))) as GameObject;
+                newRocks = PrefabUtility.InstantiatePrefab(Resources.Load(prefabRock + randomBasicRocks, typeof(GameObject))) as GameObject;
 
                 if (GUISettings.SpawnPlanet == true)
                 {

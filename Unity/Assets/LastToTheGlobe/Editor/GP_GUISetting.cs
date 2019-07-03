@@ -30,6 +30,10 @@ public class GP_GUISettings : ScriptableObject
     [SerializeField]
     private int numberOfRock = 0;
 
+    [Range(1, 10)]
+    [SerializeField]
+    private float scaleRock = 1;
+
     [SerializeField]
     private int numberOfChest = 1;
 
@@ -73,6 +77,12 @@ public class GP_GUISettings : ScriptableObject
     {
         get { return numberOfTree; }
         set { numberOfTree = value; }
+    }
+
+    public float ScaleRock
+    {
+        get { return scaleRock; }
+        set { scaleRock = value; }
     }
 
     public int NumberOfRock
