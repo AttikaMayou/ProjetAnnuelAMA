@@ -1835,10 +1835,66 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4709428734015150537, guid: c83770715bf346641832232e27c6c903,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 29
+      objectReference: {fileID: 0}
+    - target: {fileID: 2264620066765926757, guid: c83770715bf346641832232e27c6c903,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 6268003548308568147, guid: c83770715bf346641832232e27c6c903,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 27
+      objectReference: {fileID: 0}
+    - target: {fileID: 4608270682369906930, guid: c83770715bf346641832232e27c6c903,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 26
+      objectReference: {fileID: 0}
     - target: {fileID: 232, guid: c83770715bf346641832232e27c6c903, type: 3}
       propertyPath: m_Name
-      value: SM_SpawnPlanet
+      value: SpawnPlanet_v4
       objectReference: {fileID: 0}
+    - target: {fileID: 1252, guid: c83770715bf346641832232e27c6c903, type: 3}
+      propertyPath: viewIdField
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1252, guid: c83770715bf346641832232e27c6c903, type: 3}
+      propertyPath: InstantiationId
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1252, guid: c83770715bf346641832232e27c6c903, type: 3}
+      propertyPath: ObservedComponents.Array.data[0]
+      value: 
+      objectReference: {fileID: 1834081229}
+    - target: {fileID: 1253, guid: c83770715bf346641832232e27c6c903, type: 3}
+      propertyPath: Exposer
+      value: 
+      objectReference: {fileID: 1834081224}
+    - target: {fileID: 1253, guid: c83770715bf346641832232e27c6c903, type: 3}
+      propertyPath: photonView
+      value: 
+      objectReference: {fileID: 1834081231}
+    - target: {fileID: 1251, guid: c83770715bf346641832232e27c6c903, type: 3}
+      propertyPath: PlanetTransform
+      value: 
+      objectReference: {fileID: 1834081641}
+    - target: {fileID: 1251, guid: c83770715bf346641832232e27c6c903, type: 3}
+      propertyPath: PlanetCollider
+      value: 
+      objectReference: {fileID: 1834081213}
+    - target: {fileID: 1251, guid: c83770715bf346641832232e27c6c903, type: 3}
+      propertyPath: AttractorScript
+      value: 
+      objectReference: {fileID: 1834081230}
+    - target: {fileID: 1251, guid: c83770715bf346641832232e27c6c903, type: 3}
+      propertyPath: SpawnPosition
+      value: 
+      objectReference: {fileID: 1834081556}
     - target: {fileID: 578, guid: c83770715bf346641832232e27c6c903, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1883,42 +1939,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1252, guid: c83770715bf346641832232e27c6c903, type: 3}
-      propertyPath: viewIdField
-      value: 0
+    - target: {fileID: 579, guid: c83770715bf346641832232e27c6c903, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 7.95
       objectReference: {fileID: 0}
-    - target: {fileID: 1252, guid: c83770715bf346641832232e27c6c903, type: 3}
-      propertyPath: InstantiationId
-      value: 3
+    - target: {fileID: 579, guid: c83770715bf346641832232e27c6c903, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.35
       objectReference: {fileID: 0}
-    - target: {fileID: 1252, guid: c83770715bf346641832232e27c6c903, type: 3}
-      propertyPath: ObservedComponents.Array.data[0]
-      value: 
-      objectReference: {fileID: 1834081229}
-    - target: {fileID: 1253, guid: c83770715bf346641832232e27c6c903, type: 3}
-      propertyPath: Exposer
-      value: 
-      objectReference: {fileID: 1834081224}
-    - target: {fileID: 1253, guid: c83770715bf346641832232e27c6c903, type: 3}
-      propertyPath: photonView
-      value: 
-      objectReference: {fileID: 1834081231}
-    - target: {fileID: 1251, guid: c83770715bf346641832232e27c6c903, type: 3}
-      propertyPath: PlanetTransform
-      value: 
-      objectReference: {fileID: 1834081641}
-    - target: {fileID: 1251, guid: c83770715bf346641832232e27c6c903, type: 3}
-      propertyPath: PlanetCollider
-      value: 
-      objectReference: {fileID: 1834081213}
-    - target: {fileID: 1251, guid: c83770715bf346641832232e27c6c903, type: 3}
-      propertyPath: AttractorScript
-      value: 
-      objectReference: {fileID: 1834081230}
-    - target: {fileID: 1251, guid: c83770715bf346641832232e27c6c903, type: 3}
-      propertyPath: SpawnPosition
-      value: 
-      objectReference: {fileID: 1834081556}
+    - target: {fileID: 8311187263484989392, guid: c83770715bf346641832232e27c6c903,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 8311187263484989392, guid: c83770715bf346641832232e27c6c903,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 8311187263484989392, guid: c83770715bf346641832232e27c6c903,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c83770715bf346641832232e27c6c903, type: 3}
 --- !u!135 &1834081213 stripped
