@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using LastToTheGlobe.Scripts.httpRequests;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace LastToTheGlobe.Scripts.UI.UIConnexion

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using LastToTheGlobe.Scripts.httpRequests;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace LastToTheGlobe.Scripts.UI.UIConnexion
@@ -15,7 +16,10 @@ namespace LastToTheGlobe.Scripts.UI.UIConnexion
         private httpRequest _httpRequest = new httpRequest();
         private string _requestResponse;
     
-    
+        void Start () {
+            myButton.onClick.AddListener(TaskOnClick);
+        
+        }
 
         void TaskOnClick()
         {

@@ -1,61 +1,62 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
-public class httpRequest : MonoBehaviour
+namespace LastToTheGlobe.Scripts.httpRequests
 {
-    // Start is called before the first frame update
-    public string resp;
-    // Update is called once per frame
-    public IEnumerator LoginRequest(string username, string password)
+    public class httpRequest : MonoBehaviour
     {
-        
-        WWWForm form = new WWWForm();
-        form.AddField("Username",username, Encoding.UTF8);
-        form.AddField("Password",password, Encoding.UTF8);
-        UnityWebRequest www = UnityWebRequest.Post("https://ebelder.pythonanywhere.com/login", form);
-        yield return www.SendWebRequest();
-        
-        if(www.isNetworkError || www.isHttpError) {
-            Debug.Log(www.error);
-            yield return null;
-        }
-        else
+        // Start is called before the first frame update
+        private ParsedRequest _parsedRequest;
+        // Update is called once per frame
+        public IEnumerator LoginRequest(string username, string password)
         {
-            resp = www.downloadHandler.text;
-            if (www.downloadHandler.text.Equals("OK"))
-            {
-                Debug.Log("Hello User "+username);
-                SceneManager.LoadScene("_masterScene");
+        
+            WWWForm form = new WWWForm();
+            form.AddField("Username",username, Encoding.UTF8);
+            form.AddField("Password",password, Encoding.UTF8);
+            UnityWebRequest www = UnityWebRequest.Post("https://ebelder.pythonanywhere.com/login", form);
+            yield return www.SendWebRequest();
+        
+            if(www.isNetworkError || www.isHttpError) {
+                Debug.Log(www.error);
+                yield return null;
             }
             else
             {
-                Debug.Log(www.downloadHandler.text);
+                _parsedRequest = JsonUtility.FromJson<ParsedRequest>(www.downloadHandler.text);
+                if (_parsedRequest.status.Equals("OK"))
+                {
+                    Debug.Log("Hello User "+username);
+                    SceneManager.LoadScene("_masterScene");
+                }
+                else
+                {
+                    Debug.Log(_parsedRequest.status);
+                }
             }
         }
-    }
     
-    public IEnumerator SigninRequest(string username, string password)
-    {
-        WWWForm form = new WWWForm();
-        form.AddField("Username", username, Encoding.UTF8);
-        form.AddField("Password",password, Encoding.UTF8);
-        UnityWebRequest www = UnityWebRequest.Post("https://ebelder.pythonanywhere.com/signin", form);
-        yield return www.SendWebRequest();
+        public IEnumerator SigninRequest(string username, string password)
+        {
+            WWWForm form = new WWWForm();
+            form.AddField("Username", username, Encoding.UTF8);
+            form.AddField("Password",password, Encoding.UTF8);
+            UnityWebRequest www = UnityWebRequest.Post("https://ebelder.pythonanywhere.com/signin", form);
+            yield return www.SendWebRequest();
         
-        if(www.isNetworkError || www.isHttpError) {
-            Debug.Log(www.error);
+            if(www.isNetworkError || www.isHttpError) {
+                Debug.Log(www.error);
+            }
+            else {
+                _parsedRequest = JsonUtility.FromJson<ParsedRequest>(www.downloadHandler.text);
+                Debug.Log(_parsedRequest.status);
+            }
         }
-        else {
-            resp = www.downloadHandler.text;
-            Debug.Log(www.downloadHandler.text);
-        }
-    }
 
 
     
+    }
 }
