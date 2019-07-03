@@ -2,9 +2,9 @@
 using LastToTheGlobe.Scripts.Dev;
 using LastToTheGlobe.Scripts.Environment.Planets;
 using LastToTheGlobe.Scripts.Inventory;
-using LastToTheGlobe.Scripts.Weapon.Orb;
 using System.Collections;
 using Assets.LastToTheGlobe.Scripts.Weapon.Orb;
+using Assets.LastToTheGlobe.Scripts.Weapon.Orb.OLD;
 using UnityEngine;
 
 //Auteur : Abdallah
@@ -12,7 +12,7 @@ using UnityEngine;
 
 namespace LastToTheGlobe.Scripts.Avatar
 {
-    public class ThirdPersonController : Assets.LastToTheGlobe.Scripts.Avatar.Avatar
+    public class ThirdPersonController : Avatar
     {
         [SerializeField] private AttractedScript attractedScript;
 

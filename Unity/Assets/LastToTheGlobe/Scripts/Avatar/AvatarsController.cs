@@ -4,7 +4,7 @@ using Assets.LastToTheGlobe.Scripts.Avatar;
 using Assets.LastToTheGlobe.Scripts.Camera;
 using Assets.LastToTheGlobe.Scripts.Management;
 using Assets.LastToTheGlobe.Scripts.Network;
-using Assets.LastToTheGlobe.Scripts.Weapon.Orb;
+using Assets.LastToTheGlobe.Scripts.Weapon.Orb.OLD;
 using LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV;
 using LastToTheGlobe.Scripts.Network;
 using LastToTheGlobe.Scripts.UI;
@@ -18,7 +18,7 @@ namespace LastToTheGlobe.Scripts.Avatar
 {
     public class AvatarsController : MonoBehaviour
     {
-        public bool debug = true;
+        public bool debug = false;
 
         [Header("Photon and Replication Parameters")] 
         [SerializeField] private Transform[] _startPosition;
@@ -34,6 +34,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         private Vector3[] _spawnPos;
         [SerializeField] private CloudPlanet_PUN environmentController;
         private int _seed = 0;
+        //[SerializeField] private GPInstanciation _lobbyAssets;
 
         [Header("Camera Parameters")] 
         public CameraControllerScript myCamera;
@@ -94,15 +95,17 @@ namespace LastToTheGlobe.Scripts.Avatar
             startMenuController.GameCanStart += LaunchGameRoom;
 
             avatarAnimation.character = players;
+
+            OnlineIntentReceiver.Debug= debug;
         }
 
        private void FixedUpdate()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                EndGame();
-                return;
-            }
+//            if (Input.GetKeyDown(KeyCode.Escape))
+//            {
+//                EndGame();
+//                return;
+//            }
             
             if (onLobby && !gameLaunched)
             {
@@ -223,7 +226,14 @@ namespace LastToTheGlobe.Scripts.Avatar
 
                 if (intent.Bump)
                 {
-                    
+                    if (!player.Bumper)
+                    {
+                        Debug.LogFormat("[AvatarsController] Player {0} is trying to bump but there is no bumper around him", player);
+                    }
+                    else
+                    {
+                        player.Bumper.BumpPlayer(player.Bumper.Exposer.Id,i, 1300.0f);
+                    }
                 }
 
                 if (intent.Interact)
@@ -231,8 +241,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                     
                 }
                 
-                rb.MovePosition(rb.position + tr.TransformDirection(moveIntent) * 
-                                intent.Speed * Time.deltaTime);
+                rb.MovePosition(rb.position + intent.Speed * Time.deltaTime * tr.TransformDirection(moveIntent));
                 tr.Rotate(new Vector3(0, intent.RotationOnX, 0));
                 player.CameraRotatorX.transform.Rotate(new Vector3(-intent.RotationOnY, 
                     0, 0), Space.Self);
@@ -244,7 +253,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                     continue;
                 }
                 
-                player.Attractor.AttractPlayer(i, -2600.0f);
+                player.Attractor.AttractPlayer(player.Attractor.Exposer.Id,i, -2600.0f);
                 
                 /*if (intent.canJump && player.attractor)
                 {
@@ -360,7 +369,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                 environmentController.SetSeed(_seed);
                 //TODO : make sure all the planets are being well instantiated before
                 //calling 'FindAllSpawnPoint' 
-                FindAllSpawnPoint();
+                FindAllSpawnPoints();
                 if(debug) Debug.Log("[AvatarsController] Seed is " + _seed);
             }
  
@@ -384,9 +393,10 @@ namespace LastToTheGlobe.Scripts.Avatar
         private bool CheckIfEnoughPlayers()
         {
             //TODO : refacto this function with Photon functions
-            if (!_gameStarted) return false;
-
-            var j = 0;
+            //if (!_gameStarted) return false;
+            //_lobbyAssets.enabled = true;
+            return false;
+            /*var j = 0;
             var i = 0;
             for (; i < players.Length; i++)
             {
@@ -400,7 +410,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                 }
             }
 
-            return j >= nbMinPlayers;
+            return j >= nbMinPlayers;*/
         }
 
         // Wait the time indicated before teleport players to the spawn points
@@ -419,22 +429,21 @@ namespace LastToTheGlobe.Scripts.Avatar
             for(var i = 0; i <= players.Length; i++)
             {
                 if (!players[i].isActiveAndEnabled) break;
-                //TODO : deactivate rb and set isKinematic = false 
+                players[i].DeactivateRb();
                 players[i].CharacterRootGameObject.transform.position = _spawnPos[i + 1];
-                if (debug)
-                {
-                    Debug.Log("[AvatarsController] Previous pos : " 
-                              + players[i].CharacterRootGameObject.transform.position);
-                    Debug.Log("[AvatarsController] Final position : " 
-                              + _spawnPos[i]);
-                }
                 yield return new WaitForSeconds(0.5f);
+                players[i].ActivateRb();
+                if (!debug) continue;
+                Debug.Log("[AvatarsController] Previous pos : " 
+                          + players[i].CharacterRootGameObject.transform.position);
+                Debug.Log("[AvatarsController] Final position : " 
+                          + _spawnPos[i]);
             }
             
             gameLaunched = true;
         }
 
-        private void FindAllSpawnPoint()
+        private void FindAllSpawnPoints()
         {
             foreach (var planet in ColliderDirectoryScript.Instance.PlanetExposers)
             {
@@ -442,6 +451,8 @@ namespace LastToTheGlobe.Scripts.Avatar
                 if (!planet.IsSpawnPlanet) continue;
                 if (_spawnPoints.Contains(planet.SpawnPosition)) continue;
                 _spawnPoints.Add(planet.SpawnPosition);
+                //Deactivate the collider so the attraction will not work there
+                planet.DeactivateCollider();
             }
             
             if (debug)

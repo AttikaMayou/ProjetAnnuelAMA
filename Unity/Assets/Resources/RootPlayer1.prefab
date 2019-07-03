@@ -454,8 +454,8 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 4032840751649765441}
-  viewIdField: 8
-  InstantiationId: 8
+  viewIdField: 116
+  InstantiationId: 116
   isRuntimeInstantiated: 0
 --- !u!114 &4032840751649765441
 MonoBehaviour:
@@ -494,10 +494,10 @@ MonoBehaviour:
   HitPointComponent: {fileID: 2876196961187294912}
   CollisionDispatcher: {fileID: 4952198941118172763}
   CharacterAnimator: {fileID: 2713987122217920040}
+  Bumper: {fileID: 0}
   CharacterPhotonView: {fileID: 4032840751649765452}
   CharacterRbPhotonView: {fileID: 4032840751649765441}
   CameraRotatorX: {fileID: 7674971413621576116}
-  AttractorDebug: {fileID: 0}
   LifeUi: {fileID: 0}
   VictoryUi: {fileID: 0}
   DefeatUi: {fileID: 0}
@@ -851,12 +851,12 @@ PrefabInstance:
     - target: {fileID: 5107946470935551180, guid: 501d9991fbb3e6b45b291e93d1d426dc,
         type: 3}
       propertyPath: viewIdField
-      value: 37
+      value: 117
       objectReference: {fileID: 0}
     - target: {fileID: 5107946470935551180, guid: 501d9991fbb3e6b45b291e93d1d426dc,
         type: 3}
       propertyPath: InstantiationId
-      value: 37
+      value: 117
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 501d9991fbb3e6b45b291e93d1d426dc, type: 3}

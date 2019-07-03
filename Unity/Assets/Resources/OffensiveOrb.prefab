@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5107946470935551394}
   - component: {fileID: 5107946470935551282}
   - component: {fileID: 5107946470935551248}
+  - component: {fileID: 1516305853601457330}
   - component: {fileID: 5107946470935551255}
   - component: {fileID: 5107946470935551292}
   - component: {fileID: 5107946470935551180}
@@ -105,7 +106,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5107946470935551850}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13b72d4f03b499d48a31177d5ed082e8, type: 3}
   m_Name: 
@@ -119,6 +120,23 @@ MonoBehaviour:
   MaxTimeUsing: 5
   Loaded: 0
   PlayerTransform: {fileID: 5107946470935551621}
+--- !u!114 &1516305853601457330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5107946470935551850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d30d2643b5001e54e9f3acc9d311131e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Id: 0
+  OrbTransform: {fileID: 5107946470935551621}
+  OrbRb: {fileID: 5107946470935551292}
+  OrbCollider: {fileID: 5107946470935551282}
+  OrbsPhotonView: {fileID: 0}
 --- !u!114 &5107946470935551255
 MonoBehaviour:
   m_ObjectHideFlags: 0

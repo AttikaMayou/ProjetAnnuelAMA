@@ -1,4 +1,6 @@
 ﻿using Assets.LastToTheGlobe.Scripts.Management;
+using LastToTheGlobe.Scripts.Environment.Planets;
+using LastToTheGlobe.Scripts.Management;
 using Photon.Pun;
 using UnityEngine;
 
@@ -14,22 +16,33 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
         public Transform PlanetTransform;
         public Collider PlanetCollider;
         public AttractorScript AttractorScript;
+        public PhotonView PlanetsPhotonView;
 
         public bool IsSpawnPlanet;
         public Transform SpawnPosition;
 
         //Reference itself to the ColliderDirectory
-        private void OnEnable()
+        private void Awake()
         {
             if (!PhotonNetwork.IsMasterClient) return;
             ColliderDirectoryScript.Instance.AddPlanetExposer(this, out Id);
         }
 
         //Dereference itself to the ColliderDirectory
-        private void OnDisable()
+        private void OnDestroy()
         {
             if (!PhotonNetwork.IsMasterClient) return;
             ColliderDirectoryScript.Instance.RemovePlanetExposer(this);
+        }
+
+        public void DeactivateCollider()
+        {
+            PlanetCollider.enabled = false;
+        }
+
+        public void ActivateCollider()
+        {
+            PlanetCollider.enabled = true;
         }
     }
 }

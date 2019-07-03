@@ -1,5 +1,4 @@
-﻿using Assets.LastToTheGlobe.Scripts.Management;
-using Photon.Pun;
+﻿using Photon.Pun;
 using UnityEngine;
 
 //Auteur: Abdallah
@@ -7,12 +6,13 @@ using UnityEngine;
 
 //TODO : Refacto this script (Attika)
 
-namespace Assets.LastToTheGlobe.Scripts.Weapon.Orb
+namespace Assets.LastToTheGlobe.Scripts.Weapon.Orb.OLD
 {
-    public class OrbManager : global::Assets.LastToTheGlobe.Scripts.Avatar.Avatar
+    public class OrbManager : global::LastToTheGlobe.Scripts.Avatar.Avatar
     {
         public bool debug = true;
-
+        //TODO : refacto this (and remove OrbsPhotonViewSender cause we dont need it)
+        
         public int Id;
         
         [Header("Orb Parameters")]
@@ -40,7 +40,7 @@ namespace Assets.LastToTheGlobe.Scripts.Weapon.Orb
             _direction = PlayerTransform.right;
             _centerPointAttractor = Attractor.transform.position;
             if (!PhotonNetwork.IsMasterClient) return;
-            ColliderDirectoryScript.Instance.AddOrbManager(this, out Id);
+            //ColliderDirectoryScript.Instance.AddOrbManager(this, out Id);
             if(debug) Debug.Log("add an orb to Directory");
         }
         
@@ -85,7 +85,7 @@ namespace Assets.LastToTheGlobe.Scripts.Weapon.Orb
         {
             //only the Master Client remove the orb to the directory and reset his ID
             if (!PhotonNetwork.IsMasterClient) return;
-            ColliderDirectoryScript.Instance.RemoveOrbManager(this);
+            //ColliderDirectoryScript.Instance.RemoveOrbManager(this);
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Assets.LastToTheGlobe.Scripts.Avatar;
+using LastToTheGlobe.Scripts.Avatar;
 
 public class ChangeTintTexture : MonoBehaviour
 {
