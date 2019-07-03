@@ -1,8 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Assets.LastToTheGlobe.Scripts.Avatar;
 using Assets.LastToTheGlobe.Scripts.Camera;
-using Assets.LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet;
 using Assets.LastToTheGlobe.Scripts.Management;
 using Assets.LastToTheGlobe.Scripts.Network;
 using Assets.LastToTheGlobe.Scripts.Weapon.Orb.OLD;
@@ -36,7 +34,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         private Vector3[] _spawnPos;
         [SerializeField] private CloudPlanet_PUN environmentController;
         private int _seed = 0;
-        [SerializeField] private GPInstanciation _lobbyAssets;
+        //[SerializeField] private GPInstanciation _lobbyAssets;
 
         [Header("Camera Parameters")] 
         public CameraControllerScript myCamera;
@@ -97,6 +95,8 @@ namespace LastToTheGlobe.Scripts.Avatar
             startMenuController.GameCanStart += LaunchGameRoom;
 
             avatarAnimation.character = players;
+
+            OnlineIntentReceiver.Debug= debug;
         }
 
        private void FixedUpdate()
@@ -394,7 +394,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         {
             //TODO : refacto this function with Photon functions
             //if (!_gameStarted) return false;
-            _lobbyAssets.enabled = true;
+            //_lobbyAssets.enabled = true;
             return false;
             /*var j = 0;
             var i = 0;

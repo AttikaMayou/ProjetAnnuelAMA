@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace LastToTheGlobe.Scripts.Avatar
 {
-    public class CharacterExposerScript : Assets.LastToTheGlobe.Scripts.Avatar.Avatar
+    public class CharacterExposerScript : Avatar
     {
         public static bool debug = false;
 

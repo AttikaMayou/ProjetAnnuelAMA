@@ -12,7 +12,7 @@ namespace LastToTheGlobe.Scripts.Network
 {
     public class OnlineIntentReceiver : AIntentReceiver
     {
-        private const bool Debug = true;
+        public static bool Debug = true;
 
         [FormerlySerializedAs("_playerIndex")] [SerializeField] private int playerIndex;
 
@@ -43,7 +43,7 @@ namespace LastToTheGlobe.Scripts.Network
             //Attack Intent
             if (Input.GetMouseButton(0) && CanShoot)
             {
-                photonView.RPC("CanShootRPC", RpcTarget.MasterClient, false);
+                photonView.RPC("CanShootRpc", RpcTarget.MasterClient, false);
             }
 
             if (!CanShoot)
@@ -51,7 +51,7 @@ namespace LastToTheGlobe.Scripts.Network
                 LoadShotValue += Time.deltaTime;
                 if (Input.GetMouseButtonUp(0))
                 {
-                    photonView.RPC(LoadShotValue >= GameVariablesScript.Instance.ShootLoadTime ? "LaunchLoadedBulletRPC" : "LaunchBulletRPC",
+                    photonView.RPC(LoadShotValue >= GameVariablesScript.Instance.ShootLoadTime ? "LaunchLoadedBulletRpc" : "LaunchBulletRpc",
                         RpcTarget.MasterClient);
                     LoadShotValue = 0.0f;
                 }
@@ -60,8 +60,8 @@ namespace LastToTheGlobe.Scripts.Network
             //Bump intent
             if (Input.GetKeyDown(KeyCode.R) && CanBump)
             {
-                photonView.RPC("CanBumpRPC", RpcTarget.MasterClient, false);
-                photonView.RPC("UseBumpRPC", RpcTarget.MasterClient);
+                photonView.RPC("CanBumpRpc", RpcTarget.MasterClient, false);
+                photonView.RPC("UseBumpRpc", RpcTarget.MasterClient);
             }
 
             if (!CanBump)
@@ -70,7 +70,7 @@ namespace LastToTheGlobe.Scripts.Network
                 if (_bumpTimer <= GameVariablesScript.Instance.BumpCooldown)
                 {
                     _bumpTimer = 0.0f;
-                    photonView.RPC("CanBumpRPC", RpcTarget.MasterClient, true);
+                    photonView.RPC("CanBumpRpc", RpcTarget.MasterClient, true);
                 }
             }
 
@@ -81,7 +81,7 @@ namespace LastToTheGlobe.Scripts.Network
                 if (_dashTimer <= GameVariablesScript.Instance.DashCooldown)
                 {
                     _dashTimer = 0.0f;
-                    photonView.RPC("CanDashRPC", RpcTarget.MasterClient, true);
+                    photonView.RPC("CanDashRpc", RpcTarget.MasterClient, true);
                 }
             }
             
@@ -90,33 +90,33 @@ namespace LastToTheGlobe.Scripts.Network
                                             || Input.GetKeyDown(KeyCode.Q) 
                                             || Input.GetKeyDown(KeyCode.D))
             {
-                photonView.RPC("MoveRPC", RpcTarget.MasterClient, true, Forward, Strafe);
+                photonView.RPC("MoveRpc", RpcTarget.MasterClient, true, Forward, Strafe);
             }
             
             if (Input.GetKeyUp(KeyCode.Z) || Input.GetKeyUp(KeyCode.S) 
                                           || Input.GetKeyUp(KeyCode.Q) 
                                           || Input.GetKeyUp(KeyCode.D))
             {
-                photonView.RPC("MoveRPC", RpcTarget.MasterClient, false, 0.0f, 0.0f);
+                photonView.RPC("MoveRpc", RpcTarget.MasterClient, false, 0.0f, 0.0f);
             }
             
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 Speed = GameVariablesScript.Instance.RunSpeed;
-                photonView.RPC("RunRPC", RpcTarget.MasterClient, true);
+                photonView.RPC("RunRpc", RpcTarget.MasterClient, true);
             }
 
             if (Input.GetKeyUp(KeyCode.LeftShift))
             {
                 Speed = GameVariablesScript.Instance.WalkSpeed;
-                photonView.RPC("RunRPC", RpcTarget.MasterClient, false);
+                photonView.RPC("RunRpc", RpcTarget.MasterClient, false);
             }
 
             if (Input.GetKeyDown(KeyCode.LeftAlt) && CanDash)
             {
                 Speed = GameVariablesScript.Instance.DashSpeed;
-                photonView.RPC("CanDashRPC", RpcTarget.MasterClient, false);
-                photonView.RPC("DashRPC", RpcTarget.MasterClient);
+                photonView.RPC("CanDashRpc", RpcTarget.MasterClient, false);
+                photonView.RPC("DashRpc", RpcTarget.MasterClient);
             }
 
 //            if (Input.GetKeyUp(KeyCode.Space) && CanJump)
@@ -127,10 +127,11 @@ namespace LastToTheGlobe.Scripts.Network
             //Interaction Intent
             if (Input.GetKeyDown(KeyCode.E))
             {
-                photonView.RPC("InteractRPC", RpcTarget.MasterClient);
+                photonView.RPC("InteractRpc", RpcTarget.MasterClient);
             }
         }
-
+        
+        
         #region RPC
 
         [PunRPC]

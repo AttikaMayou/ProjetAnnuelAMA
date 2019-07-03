@@ -12,7 +12,7 @@ using UnityEngine;
 
 namespace LastToTheGlobe.Scripts.Avatar
 {
-    public class ThirdPersonController : Assets.LastToTheGlobe.Scripts.Avatar.Avatar
+    public class ThirdPersonController : Avatar
     {
         [SerializeField] private AttractedScript attractedScript;
 
