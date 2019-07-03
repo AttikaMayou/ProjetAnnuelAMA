@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2003145821961145340}
-  - component: {fileID: 2003145821961145339}
+  - component: {fileID: 4830428919853481937}
   m_Layer: 0
   m_Name: EnvironmentScript
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 2003145823037444675}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2003145821961145339
+--- !u!114 &4830428919853481937
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,18 +40,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2003145821961145338}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97b499ac0087c6a48bf103bec179e7d0, type: 3}
+  m_Script: {fileID: 11500000, guid: eb0e614a64bf3494a98c7ceebad0de7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   debug: 1
-  numberOfVertices: 30
-  size: 400
-  scaleMin: 30
-  scaleMax: 100
-  basicPlanet: {fileID: 0}
-  spawnPlanet: {fileID: 0}
-  victoryPlanet: {fileID: 235, guid: 98010e924c5875f4bbbf318e24ca1c4d, type: 3}
-  numberOfPlayer: 2
+  numberOfVertices: 10
+  size: 10
+  numberOfPlayer: 10
 --- !u!1 &2003145822190471192
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,7 +565,7 @@ PrefabInstance:
         type: 3}
       propertyPath: environmentController
       value: 
-      objectReference: {fileID: 2003145821961145339}
+      objectReference: {fileID: 4830428919853481937}
     - target: {fileID: 1750419869509152039, guid: cafeb0c26d8fe7648988d4d8cc7229af,
         type: 3}
       propertyPath: myCamera
@@ -759,42 +754,42 @@ PrefabInstance:
     - target: {fileID: 1750419869727293420, guid: cafeb0c26d8fe7648988d4d8cc7229af,
         type: 3}
       propertyPath: viewIdField
-      value: 89
+      value: 88
       objectReference: {fileID: 0}
     - target: {fileID: 1750419869727293420, guid: cafeb0c26d8fe7648988d4d8cc7229af,
         type: 3}
       propertyPath: InstantiationId
+      value: 88
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750419869596473637, guid: cafeb0c26d8fe7648988d4d8cc7229af,
+        type: 3}
+      propertyPath: viewIdField
+      value: 85
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750419869596473637, guid: cafeb0c26d8fe7648988d4d8cc7229af,
+        type: 3}
+      propertyPath: InstantiationId
+      value: 85
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750419869907780179, guid: cafeb0c26d8fe7648988d4d8cc7229af,
+        type: 3}
+      propertyPath: viewIdField
+      value: 81
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750419869907780179, guid: cafeb0c26d8fe7648988d4d8cc7229af,
+        type: 3}
+      propertyPath: InstantiationId
+      value: 81
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750419869948001028, guid: cafeb0c26d8fe7648988d4d8cc7229af,
+        type: 3}
+      propertyPath: viewIdField
       value: 89
       objectReference: {fileID: 0}
-    - target: {fileID: 1750419869596473637, guid: cafeb0c26d8fe7648988d4d8cc7229af,
-        type: 3}
-      propertyPath: viewIdField
-      value: 85
-      objectReference: {fileID: 0}
-    - target: {fileID: 1750419869596473637, guid: cafeb0c26d8fe7648988d4d8cc7229af,
-        type: 3}
-      propertyPath: InstantiationId
-      value: 85
-      objectReference: {fileID: 0}
-    - target: {fileID: 1750419869907780179, guid: cafeb0c26d8fe7648988d4d8cc7229af,
-        type: 3}
-      propertyPath: viewIdField
-      value: 81
-      objectReference: {fileID: 0}
-    - target: {fileID: 1750419869907780179, guid: cafeb0c26d8fe7648988d4d8cc7229af,
-        type: 3}
-      propertyPath: InstantiationId
-      value: 81
-      objectReference: {fileID: 0}
-    - target: {fileID: 1750419869948001028, guid: cafeb0c26d8fe7648988d4d8cc7229af,
-        type: 3}
-      propertyPath: viewIdField
-      value: 90
-      objectReference: {fileID: 0}
     - target: {fileID: 1750419869948001028, guid: cafeb0c26d8fe7648988d4d8cc7229af,
         type: 3}
       propertyPath: InstantiationId
-      value: 90
+      value: 89
       objectReference: {fileID: 0}
     - target: {fileID: 1750419869282182493, guid: cafeb0c26d8fe7648988d4d8cc7229af,
         type: 3}

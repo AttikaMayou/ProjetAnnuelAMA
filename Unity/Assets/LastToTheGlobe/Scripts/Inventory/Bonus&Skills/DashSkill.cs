@@ -6,11 +6,11 @@ using UnityEngine.UI;
 
 public class DashSkill : Skills
 {
-    public Image icon;
-    
-    public override void SkillAction()
-    {
-        base.SkillAction();
-        rb.MovePosition(rb.position + rb.transform.TransformDirection(characterExposer._movedir) * characterExposer.dashSpeed * Time.deltaTime);
-    }
+//    public Image icon;
+//    
+//    public override void SkillAction()
+//    {
+//        base.SkillAction();
+//        rb.MovePosition(rb.position + rb.transform.TransformDirection(characterExposer._movedir) * characterExposer.dashSpeed * Time.deltaTime);
+//    }
 }

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Serialization;
 using Photon.Pun;
+using UnityEngine.Experimental.UIElements;
 
 //Auteur : Marhot
 //Modification : Attika
@@ -24,27 +25,7 @@ namespace LastToTheGlobe.Scripts.Environment
         [SerializeField]
         [Tooltip("Volume de la map")]
         private float size = 10;
-
-        [SerializeField]
-        [Tooltip("Scale minimum d'une planète")]
-        public int scaleMin = 30;
-
-        [SerializeField]
-        [Tooltip("Scale maximum d'une planète")]
-        public int scaleMax = 70;
-
-        [SerializeField]
-        [Tooltip("Les planètes les plus répandues")]
-        private GameObject basicPlanet;
-
-        [SerializeField]
-        [Tooltip("Planètes spawn joueur")]
-        private GameObject spawnPlanet;
-
-        [SerializeField]
-        [Tooltip("Planète de victoire")]
-        private GameObject victoryPlanet;
-
+        
         [SerializeField]
         private int numberOfPlayer = 10;
 
@@ -56,8 +37,6 @@ namespace LastToTheGlobe.Scripts.Environment
         //private int _seed;
         //private Vertex3[] planetsLocations;
         private GameObject planet;
-        private PlanetClass[] planetsData;
-
 
         public void Awake()
         {
@@ -70,9 +49,19 @@ namespace LastToTheGlobe.Scripts.Environment
             return indices;
         }
 
+        public void SetIndices(int[] values)
+        {
+            indices = values;
+        }
+        
         public Vector3[] GetVertices()
         {
             return vertices;
+        }
+
+        public void SetVertices(Vector3[] values)
+        {
+            vertices = values;
         }
 
         public void GenerateMap()
@@ -118,15 +107,19 @@ namespace LastToTheGlobe.Scripts.Environment
         //1-4 spawn   1-22 basic planet
         private int[] GenerateIndices()
         {
+            int tmp;
             int i = 0;
             for(i= 0; i<numberOfPlayer; i++)
             {
                 indices[i] = (int)Random.Range(1, 4);
+                Debug.LogFormat("Indice {0} est égal à {1}",i, indices[i]);
             }
 
-            for(; i< numberOfVertices - numberOfPlayer - 1; i++)
+            for(i = numberOfPlayer; i< numberOfVertices + numberOfPlayer; i++)
             {
-                indices[i] = (int)Random.Range(1, 22);
+                tmp = (int)Random.Range(1, 22);
+                indices[i] = tmp == 0 ? 1 : tmp;
+                Debug.LogFormat("Indice {0} est égal à {1}",i, indices[i]);
             }
 
             return indices;
@@ -143,6 +136,7 @@ namespace LastToTheGlobe.Scripts.Environment
             {
                 if (i < numberOfPlayer)
                 {
+                    Debug.Log(spawnPlanet + indices[i]);
                     planet = Instantiate(Resources.Load(spawnPlanet + indices[i]), vertices[i], Quaternion.identity) as GameObject;
                     continue;
                 }
@@ -150,7 +144,9 @@ namespace LastToTheGlobe.Scripts.Environment
                 if(i == vertices.Length - 1)
                 {
                     planet = Instantiate(Resources.Load(victoryPlanet), vertices[i], Quaternion.identity) as GameObject;
+                    continue;
                 }
+                Debug.Log(basicPlanet + indices[i]);
                 planet = Instantiate(Resources.Load(basicPlanet + indices[i]), vertices[i], Quaternion.identity) as GameObject;
 
             }

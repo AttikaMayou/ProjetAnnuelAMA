@@ -16,7 +16,7 @@ namespace LastToTheGlobe.Scripts.Dev
 {
     public class AvatarsController : MonoBehaviourSingleton<AvatarsController>
     {
-        [Header("Photon and Replication Parameters")]
+        /*[Header("Photon and Replication Parameters")]
         [SerializeField] private CharacterExposer[] players;
         
         [SerializeField] private AIntentReceiver[] onlineIntentReceivers;
@@ -212,6 +212,6 @@ namespace LastToTheGlobe.Scripts.Dev
                 Quaternion.identity, 0);
         }
         
-        #endregion
+        #endregion*/
     }
 }

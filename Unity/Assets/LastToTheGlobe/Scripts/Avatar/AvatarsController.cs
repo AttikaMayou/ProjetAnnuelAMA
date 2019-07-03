@@ -5,6 +5,7 @@ using Assets.LastToTheGlobe.Scripts.Camera;
 using Assets.LastToTheGlobe.Scripts.Management;
 using Assets.LastToTheGlobe.Scripts.Network;
 using Assets.LastToTheGlobe.Scripts.Weapon.Orb;
+using LastToTheGlobe.Scripts.Environment;
 using LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV;
 using LastToTheGlobe.Scripts.Network;
 using LastToTheGlobe.Scripts.UI;
@@ -32,7 +33,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         //spawn point tab
         private List<Transform> _spawnPoints = new List<Transform>();
         private Vector3[] _spawnPos;
-        [SerializeField] private CloudPlanet_PUN environmentController;
+        [SerializeField] private CloudPlanet environmentController;
         private int _seed = 0;
 
         [Header("Camera Parameters")] 
@@ -355,22 +356,20 @@ namespace LastToTheGlobe.Scripts.Avatar
             if (_seed == 0)
             {
                 // _seed = environmentController.GetSeed();
-                _seed = 10;
-                if(debug) Debug.LogFormat("[AvatarsController] Seed is : {0}", _seed);
-                environmentController.SetSeed(_seed);
+                _seed = 1;
+                environmentController.GenerateMap();
                 //TODO : make sure all the planets are being well instantiated before
                 //calling 'FindAllSpawnPoint' 
                 FindAllSpawnPoint();
-                if(debug) Debug.Log("[AvatarsController] Seed is " + _seed);
             }
  
             if (PhotonNetwork.IsConnected)
             {
-                photonView.RPC("SendSeedToPlayers", RpcTarget.OthersBuffered, _seed);
+                photonView.RPC("SendSeedToPlayers", RpcTarget.OthersBuffered, environmentController.GetIndices(), environmentController.GetVertices());
             }
             else
             {
-                SendSeedToPlayers(_seed);
+                SendSeedToPlayers(environmentController.GetIndices(), environmentController.GetVertices());
             }
             
             if(!CheckIfEnoughPlayers() || gameLaunched) return;
@@ -557,11 +556,12 @@ namespace LastToTheGlobe.Scripts.Avatar
         }
 
         [PunRPC]
-        private void SendSeedToPlayers(int seed)
+        private void SendSeedToPlayers(int[] indices, Vector3[] vertices)
         {
-            _seed = seed;
-            if (debug) Debug.Log("My seed is : " + seed);
-            //environmentController.SetSeed(_seed);
+            if (PhotonNetwork.IsMasterClient) return;
+            environmentController.SetIndices(indices);
+            environmentController.SetVertices(vertices);
+            environmentController.GenerateMap();
         }
 
         #endregion

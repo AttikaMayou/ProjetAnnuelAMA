@@ -10,7 +10,7 @@ namespace LastToTheGlobe.Scripts.Inventory
 {
     public class UIChest : MonoBehaviour
     {
-        private bool openChest = false;
+        /*private bool openChest = false;
         private bool canOpenChest = false;
         [SerializeField] public Canvas pressE;
         [SerializeField] public Canvas playerInventory;
@@ -77,6 +77,6 @@ namespace LastToTheGlobe.Scripts.Inventory
                 
             }
             
-        }
+        }*/
     }
 }

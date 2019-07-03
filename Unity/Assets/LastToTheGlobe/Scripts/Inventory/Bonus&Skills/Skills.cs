@@ -9,7 +9,7 @@ namespace LastToTheGlobe.Scripts.Inventory
 {
     public class Skills : ScriptableObject
     {
-        public delegate void SkillsMethod();
+        /*public delegate void SkillsMethod();
 
         public Dictionary<string, SkillsMethod> skillsMethods = new Dictionary<string, SkillsMethod>();
         
@@ -39,6 +39,6 @@ namespace LastToTheGlobe.Scripts.Inventory
         private void ConsumeSkill()
         {
             //TODO : erase from the inventory
-        }
+        }*/
     }
 }
