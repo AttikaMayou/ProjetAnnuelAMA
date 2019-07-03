@@ -126,13 +126,13 @@ namespace LastToTheGlobe.Editor
         {
             if (GUISettings.SpawnPlanet == true)
             {
-                planet = Instantiate(Resources.Load("SM_SpawnPlanet", typeof(GameObject))) as GameObject;
+                planet = PrefabUtility.InstantiatePrefab(Resources.Load("SM_SpawnPlanet", typeof(GameObject))) as GameObject;
                 forPrefab.Insert(0, planet);
             }
             else
             {
                 //Create planet sphere and set scale
-                planet = Instantiate(Resources.Load("SM_Planet", typeof(GameObject))) as GameObject;
+                planet = PrefabUtility.InstantiatePrefab(Resources.Load("SM_Planet", typeof(GameObject))) as GameObject;
                 forPrefab.Insert(0, planet);
                 Undo.RegisterCreatedObjectUndo(planet, "Create planets");
                 //-------------------------------------SCALE------------------------------------------------
