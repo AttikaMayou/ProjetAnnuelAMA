@@ -16,7 +16,7 @@ namespace LastToTheGlobe.Scripts.Network
 {
     public class StartMenuController : MonoBehaviourPunCallbacks
     {
-        public bool debug = true;
+        public bool debug = false;
         
         #region Private Variables
 

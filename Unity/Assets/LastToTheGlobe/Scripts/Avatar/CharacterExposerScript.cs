@@ -1,24 +1,25 @@
-﻿using Assets.LastToTheGlobe.Scripts.Environment.Planets;
+﻿using Assets.LastToTheGlobe.Scripts.Avatar;
 using Assets.LastToTheGlobe.Scripts.Management;
+using LastToTheGlobe.Scripts.Environment.Planets;
 using LastToTheGlobe.Scripts.Inventory;
+using LastToTheGlobe.Scripts.Management;
 using LastToTheGlobe.Scripts.UI;
 using Photon.Pun;
 using UnityEngine;
 
 //Auteur : Margot, Abdallah et Attika
 
-namespace Assets.LastToTheGlobe.Scripts.Avatar
+namespace LastToTheGlobe.Scripts.Avatar
 {
     public class CharacterExposerScript : Avatar
     {
-        public static bool debug = true;
+        public static bool debug = false;
 
         //The id value of this player. Updated at awakening
         public int Id;
         
+        [Header("Player Component References")] 
         public GameObject CharacterRootGameObject;
-        
-        [Header("Player Control Parameters")] 
         public Rigidbody CharacterRb;
         public Transform CharacterTr;
         public Collider CharacterCollider;
@@ -27,6 +28,9 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
 
         [Header("Avatar Animation")]
         public Animator CharacterAnimator;
+
+        [Header("Bumper Reference")] 
+        public BumpScript Bumper;
         
         [Header("Network Parameters")]
         public PhotonView CharacterPhotonView;
@@ -35,8 +39,6 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
         [Header("Camera Control Parameters")] 
         public GameObject CameraRotatorX;
 
-        public AttractorScript AttractorDebug;
-        
         [Header("UI references")] 
         //public ActivateObjects inventoryUI;
         public ActivateObjects LifeUi;
@@ -73,10 +75,20 @@ namespace Assets.LastToTheGlobe.Scripts.Avatar
 //            AttractorDebug = Attractor;
 //        }
 
-        //TODO : Deactivate Rb when player is teleported
         public void DeactivateRb()
         {
             CharacterRb.isKinematic = true;
+        }
+
+        public void ActivateRb()
+        {
+            CharacterRb.isKinematic = false;
+            CharacterRb.useGravity = true;
+        }
+
+        public void DisableGravity()
+        {
+            CharacterRb.useGravity = false;
         }
     }
 }

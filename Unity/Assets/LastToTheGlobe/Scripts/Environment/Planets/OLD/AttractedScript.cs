@@ -6,7 +6,7 @@ using UnityEngine.Serialization;
 
 namespace LastToTheGlobe.Scripts.Environment.Planets
 {
-	public class AttractedScript : Assets.LastToTheGlobe.Scripts.Avatar.Avatar 
+	public class AttractedScript : Avatar.Avatar 
 	{
 		[SerializeField]
 		private Rigidbody attractedRb;

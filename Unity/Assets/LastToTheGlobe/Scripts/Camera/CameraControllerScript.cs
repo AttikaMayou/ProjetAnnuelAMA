@@ -1,10 +1,11 @@
-﻿using Assets.LastToTheGlobe.Scripts.Avatar;
+﻿using LastToTheGlobe.Scripts.Avatar;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 //Auteur : Abdallah
 //Modification : Attika, Margot
 
-namespace Assets.LastToTheGlobe.Scripts.Camera
+namespace LastToTheGlobe.Scripts.Camera
 {
     public class CameraControllerScript : MonoBehaviour
     {
@@ -14,16 +15,17 @@ namespace Assets.LastToTheGlobe.Scripts.Camera
 
         private Transform _myTr;
 
+        [FormerlySerializedAs("_yAdd")]
         [Header("Balance Parameters")] 
-        [SerializeField] private float _yAdd;
+        [SerializeField] private float yAdd;
         //Suggested value : 1
-        [SerializeField] private float _zAdd;
+        [FormerlySerializedAs("_zAdd")] [SerializeField] private float zAdd;
         //Suggested value : -5.3
         
-        [Header("Local Player References")] 
-        public CharacterExposerScript PlayerExposer;
+        [FormerlySerializedAs("PlayerExposer")] [Header("Local Player References")] 
+        public CharacterExposerScript playerExposer;
 
-        public bool StartFollowing;
+        [FormerlySerializedAs("StartFollowing")] public bool startFollowing;
 
         private void Awake()
         {
@@ -32,25 +34,25 @@ namespace Assets.LastToTheGlobe.Scripts.Camera
 
         public void InitializeCameraPosition()
         {
-            if(debug) Debug.Log("initialization of the camera");
+            if(debug) Debug.Log("[CameraControllerScript] Initialization of the camera");
             //cameraOffset = Distance between the camera and player
-            if (!PlayerExposer)
+            if (!playerExposer)
             {
-                Debug.LogError("No target player to follow");
+                Debug.LogError("[CameraControllerScript] No target player to follow");
                 return;
             }
             
-            var position = PlayerExposer.CharacterTr.position;
-            var y = position.y + _yAdd;
-            var z = position.z + _zAdd;
+            var position = playerExposer.CharacterTr.position;
+            var y = position.y + yAdd;
+            var z = position.z + zAdd;
             _cameraOffsetOriginal = position - new Vector3(position.x, y, z);
 
-            _myTr.rotation = PlayerExposer.CameraRotatorX.transform.rotation;
+            _myTr.rotation = playerExposer.CameraRotatorX.transform.rotation;
         }
 
         private void FixedUpdate()
         {
-            if (StartFollowing)
+            if (startFollowing)
             {
                 UpdatePosAndRot();
             }
@@ -59,12 +61,12 @@ namespace Assets.LastToTheGlobe.Scripts.Camera
         
         private void UpdatePosAndRot()
         {
-            if (!PlayerExposer) return;
+            if (!playerExposer) return;
 
-            var position = PlayerExposer.CharacterTr.position;
+            var position = playerExposer.CharacterTr.position;
             //transform.forward = playerExposer.characterCollider.transform.forward;
             
-            _myTr.rotation = PlayerExposer.CameraRotatorX.transform.rotation;
+            _myTr.rotation = playerExposer.CameraRotatorX.transform.rotation;
             position -= _myTr.rotation * _cameraOffsetOriginal;
             _myTr.position = position;
         }

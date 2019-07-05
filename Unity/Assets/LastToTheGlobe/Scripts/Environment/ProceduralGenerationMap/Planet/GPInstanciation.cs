@@ -2,7 +2,7 @@
 
 //Auteur : Margot
 
-namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
+namespace Assets.LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
 {
     public class GPInstanciation : MonoBehaviour
     {
