@@ -7245,10 +7245,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debug: 1
-  _yAdd: 1
-  _zAdd: -5.3
-  PlayerExposer: {fileID: 0}
-  StartFollowing: 0
+  yAdd: 1
+  zAdd: -5.3
+  playerExposer: {fileID: 0}
+  startFollowing: 0
 --- !u!1001 &2046206923
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8756,24 +8756,14 @@ PrefabInstance:
       propertyPath: InstantiationId
       value: 79
       objectReference: {fileID: 0}
-    - target: {fileID: 7871001696431406230, guid: 4b7f65cf3304916429cf26667ac888b2,
-        type: 3}
-      propertyPath: debug
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2003145821961145339, guid: 4b7f65cf3304916429cf26667ac888b2,
         type: 3}
       propertyPath: debug
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6472368902544805919, guid: 4b7f65cf3304916429cf26667ac888b2,
+    - target: {fileID: 2003145823761592561, guid: 4b7f65cf3304916429cf26667ac888b2,
         type: 3}
-      propertyPath: debug
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2520377489524518733, guid: 4b7f65cf3304916429cf26667ac888b2,
-        type: 3}
-      propertyPath: debug
+      propertyPath: resetData
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -9297,6 +9287,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1709676989}
     m_Modifications:
+    - target: {fileID: 2734627141275774896, guid: 7eb1822cd18db924f8fd39629419d649,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2734627141275774896, guid: 7eb1822cd18db924f8fd39629419d649,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2734627141275774896, guid: 7eb1822cd18db924f8fd39629419d649,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2734627141275774896, guid: 7eb1822cd18db924f8fd39629419d649,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2734627141275773523, guid: 7eb1822cd18db924f8fd39629419d649,
+        type: 3}
+      propertyPath: PlanetsPhotonView
+      value: 
+      objectReference: {fileID: 1043953072}
     - target: {fileID: 2734627141275773018, guid: 7eb1822cd18db924f8fd39629419d649,
         type: 3}
       propertyPath: chest
@@ -9377,31 +9392,6 @@ PrefabInstance:
       propertyPath: InstantiationId
       value: 76
       objectReference: {fileID: 0}
-    - target: {fileID: 2734627141275774896, guid: 7eb1822cd18db924f8fd39629419d649,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 2734627141275774896, guid: 7eb1822cd18db924f8fd39629419d649,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2734627141275774896, guid: 7eb1822cd18db924f8fd39629419d649,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2734627141275774896, guid: 7eb1822cd18db924f8fd39629419d649,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2734627141275773523, guid: 7eb1822cd18db924f8fd39629419d649,
-        type: 3}
-      propertyPath: PlanetsPhotonView
-      value: 
-      objectReference: {fileID: 1043953072}
     - target: {fileID: 2734627141275773829, guid: 7eb1822cd18db924f8fd39629419d649,
         type: 3}
       propertyPath: viewIdField
