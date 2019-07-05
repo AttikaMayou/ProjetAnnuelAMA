@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 //Auteur : Margot
 
-namespace Assets.LastToTheGlobe.Scripts.Network
+namespace LastToTheGlobe.Scripts.Network
 {
     public class AIntentReceiver : MonoBehaviour
     {
@@ -15,17 +16,18 @@ namespace Assets.LastToTheGlobe.Scripts.Network
        public bool Bump { get; set; }
        public bool Interact { get; set; }
 
-       public float Forward = 0.0f;
-       public float Strafe = 0.0f;
-       public float Speed = 5.0f;
-       public float LoadShotValue = 0.0f;
-       public float RotationOnX = 0.0f;
-       public float RotationOnY = 0.0f;
-       public float RotationSpeed = 5.0f;
+       [FormerlySerializedAs("Forward")] public float forward = 0.0f;
+       [FormerlySerializedAs("Strafe")] public float strafe = 0.0f;
+       [FormerlySerializedAs("Speed")] public float speed = 5.0f;
+       [FormerlySerializedAs("LoadShotValue")] public float loadShotValue = 0.0f;
+       [FormerlySerializedAs("RotationOnX")] public float rotationOnX = 0.0f;
+       [FormerlySerializedAs("RotationOnY")] public float rotationOnY = 0.0f;
+       public bool lockCursor;
+       [FormerlySerializedAs("RotationSpeed")] public float rotationSpeed = 5.0f;
 
-       public bool CanDash = true;
+       [FormerlySerializedAs("CanDash")] public bool canDash = true;
        //public bool CanJump = true;
-       public bool CanShoot = true;
-       public bool CanBump = true;
+       [FormerlySerializedAs("CanShoot")] public bool canShoot = true;
+       [FormerlySerializedAs("CanBump")] public bool canBump = true;
     }
 }

@@ -31,7 +31,7 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
             }
             
             //Set the attractor script which ACTUALLY attract player
-            player.Attractor = planet.AttractorScript;
+            player.Attractor = planet.attractorScript;
         }
 
         [PunRPC]

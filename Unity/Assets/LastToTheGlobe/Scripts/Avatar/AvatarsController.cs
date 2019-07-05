@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Assets.LastToTheGlobe.Scripts.Camera;
 using Assets.LastToTheGlobe.Scripts.Management;
-using Assets.LastToTheGlobe.Scripts.Network;
 using Assets.LastToTheGlobe.Scripts.Weapon.Orb.OLD;
+using LastToTheGlobe.Scripts.Camera;
 using LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi.DEV;
 using LastToTheGlobe.Scripts.Management;
 using LastToTheGlobe.Scripts.Network;
@@ -155,7 +154,7 @@ namespace LastToTheGlobe.Scripts.Avatar
 
                 if (intent.Move)
                 {
-                    moveIntent += new Vector3(intent.Strafe, 0.0f, intent.Forward);
+                    moveIntent += new Vector3(intent.strafe, 0.0f, intent.forward);
                 }
 
                 if (intent.Shoot)
@@ -170,7 +169,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                     orb.InitializeOrPosition();
                     
                     intent.Shoot = false;
-                    intent.CanShoot = true;
+                    intent.canShoot = true;
                 }
 
                 if (intent.ShootLoaded)
@@ -185,7 +184,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                     orb.InitializeOrPosition();
                     
                     intent.ShootLoaded = false;
-                    intent.CanShoot = true;
+                    intent.canShoot = true;
                 }
                 
                 /*if (intent.Shoot)
@@ -241,16 +240,16 @@ namespace LastToTheGlobe.Scripts.Avatar
                     
                 }
                 
-                rb.MovePosition(rb.position + intent.Speed * Time.deltaTime * tr.TransformDirection(moveIntent));
-                tr.Rotate(new Vector3(0, intent.RotationOnX, 0));
-                player.CameraRotatorX.transform.Rotate(new Vector3(-intent.RotationOnY, 
+                rb.MovePosition(rb.position + intent.speed * Time.deltaTime * tr.TransformDirection(moveIntent));
+                tr.Rotate(new Vector3(0, intent.rotationOnX, 0));
+                player.CameraRotatorX.transform.Rotate(new Vector3(-intent.rotationOnY, 
                     0, 0), Space.Self);
                 
                 //Get back to initial values to prevent from network lags and stuff like this
-                intent.RotationOnX = 0.0f;
-                intent.RotationOnY = 0.0f;
-                intent.Strafe = 0.0f;
-                intent.Forward = 0.0f;
+                intent.rotationOnX = 0.0f;
+                intent.rotationOnY = 0.0f;
+                intent.strafe = 0.0f;
+                intent.forward = 0.0f;
 
                 if (player.Attractor == null)
                 {
@@ -259,7 +258,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                     continue;
                 }
                 
-                player.Attractor.AttractPlayer(player.Attractor.Exposer.Id,i, -2600.0f);
+                player.Attractor.AttractPlayer(player.Attractor.Exposer.id,i, -2600.0f);
                 
                 /*if (intent.canJump && player.attractor)
                 {
@@ -312,13 +311,14 @@ namespace LastToTheGlobe.Scripts.Avatar
 //                intent.Jump = false;
 //                intent.CanJump = true;
                 intent.Dash = false;
-                intent.CanDash = true;
+                intent.canDash = true;
                 intent.Shoot = false;
-                intent.CanShoot = true;
+                intent.canShoot = true;
                 intent.Bump = false;
                 intent.Interact = false;
-                intent.Forward = 0.0f;
-                intent.Strafe = 0.0f;
+                intent.forward = 0.0f;
+                intent.strafe = 0.0f;
+                intent.lockCursor = GameVariablesScript.Instance.lockCursor;
             }
         }
 
@@ -353,9 +353,9 @@ namespace LastToTheGlobe.Scripts.Avatar
             //if (photonView.IsMine != players[id].characterPhotonView) return;
             if (myCamera.enabled) return;
             myCamera.enabled = true;
-            myCamera.PlayerExposer = players[id];
+            myCamera.playerExposer = players[id];
             myCamera.InitializeCameraPosition();
-            myCamera.StartFollowing = true;
+            myCamera.startFollowing = true;
             players[id].LifeUi = lifeUI;
             players[id].VictoryUi = victoryUI;
             players[id].DefeatUi = defeatUI;
@@ -451,12 +451,12 @@ namespace LastToTheGlobe.Scripts.Avatar
 
         private void FindAllSpawnPoints()
         {
-            foreach (var planet in ColliderDirectoryScript.Instance.PlanetExposers)
+            foreach (var planet in ColliderDirectoryScript.Instance.planetExposers)
             {
                 if (!planet) continue;
-                if (!planet.IsSpawnPlanet) continue;
-                if (_spawnPoints.Contains(planet.SpawnPosition)) continue;
-                _spawnPoints.Add(planet.SpawnPosition);
+                if (!planet.isSpawnPlanet) continue;
+                if (_spawnPoints.Contains(planet.spawnPosition)) continue;
+                _spawnPoints.Add(planet.spawnPosition);
                 //Deactivate the collider so the attraction will not work there
                 planet.DeactivateCollider();
             }
@@ -497,7 +497,7 @@ namespace LastToTheGlobe.Scripts.Avatar
             }
 
             //TODO : add a logic to know if the shoot was loaded or not so remove hp according to it
-            avatar.HitPointComponent.Hp -= GameVariablesScript.Instance.ShootLoadedDamage;
+            avatar.HitPointComponent.Hp -= GameVariablesScript.Instance.shootLoadedDamage;
         }
 
         private OrbManager GetOrbsWithinPool()

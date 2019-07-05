@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Assets.LastToTheGlobe.Scripts.Avatar;
-using Assets.LastToTheGlobe.Scripts.Network;
 using LastToTheGlobe.Scripts.Avatar;
+using LastToTheGlobe.Scripts.Network;
 using Photon.Pun;
 
 //Auteur : Margot
@@ -34,8 +34,8 @@ public class AvatarAnimation : MonoBehaviour
         {
             var intent = intentReceivers[i];
 
-            character[i].CharacterAnimator.SetFloat("Forward", intent.Forward);
-            character[i].CharacterAnimator.SetFloat("Strafe", intent.Strafe);
+            character[i].CharacterAnimator.SetFloat("Forward", intent.forward);
+            character[i].CharacterAnimator.SetFloat("Strafe", intent.strafe);
 
             if (intent.Move == true)
             {
@@ -59,7 +59,7 @@ public class AvatarAnimation : MonoBehaviour
             {
                 character[i].CharacterAnimator.SetBool("IsShooting", true);
 
-                if(intent.Shoot && intent.CanShoot)
+                if(intent.Shoot && intent.canShoot)
                 {
                     character[i].CharacterAnimator.SetBool("ShootLoaded", true);
                 }

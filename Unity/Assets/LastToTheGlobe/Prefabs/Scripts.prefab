@@ -66,7 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa1f149f771e4e4fbd07ee0b9e7c3bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: 1
+  debug: 0
 --- !u!1 &2003145821961145338
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,15 +281,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acd64be9e907e6143a0b5b8b637e4f0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WalkSpeed: 5
-  RunSpeed: 8
-  DashSpeed: 15
-  ShootLoadTime: 1.5
-  ShootDamage: 10
-  ShootLoadedDamage: 50
-  DashCooldown: 0
-  BumpCooldown: 0
-  LifeInitial: 100
+  walkSpeed: 5
+  runSpeed: 8
+  dashSpeed: 15
+  lockCursor: 0
+  shootLoadTime: 1.5
+  shootDamage: 10
+  shootLoadedDamage: 50
+  dashCooldown: 0
+  bumpCooldown: 0
+  lifeInitial: 100
 --- !u!1 &2003145823037444674
 GameObject:
   m_ObjectHideFlags: 0
@@ -446,7 +447,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da56479f12b838d488f48a14194f08f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: 1
+  debug: 0
 --- !u!1 &5362464755270695940
 GameObject:
   m_ObjectHideFlags: 0
@@ -513,7 +514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5582abbfdcdc7ee499a3e9799ee75eb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: 1
+  debug: 0
 --- !u!1001 &253933429822456469
 PrefabInstance:
   m_ObjectHideFlags: 0

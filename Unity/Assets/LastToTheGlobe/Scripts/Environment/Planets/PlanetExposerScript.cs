@@ -1,31 +1,30 @@
-﻿using Assets.LastToTheGlobe.Scripts.Management;
-using LastToTheGlobe.Scripts.Environment.Planets;
-using LastToTheGlobe.Scripts.Management;
+﻿using LastToTheGlobe.Scripts.Management;
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 //Auteur : Attika
 
-namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
+namespace LastToTheGlobe.Scripts.Environment.Planets
 {
     public class PlanetExposerScript : MonoBehaviour
     {
         //The id value of this planet. Updated at awakening
-        public int Id;
+        [FormerlySerializedAs("Id")] public int id;
         
-        public Transform PlanetTransform;
-        public Collider PlanetCollider;
-        public AttractorScript AttractorScript;
-        public PhotonView PlanetsPhotonView;
+        [FormerlySerializedAs("PlanetTransform")] public Transform planetTransform;
+        [FormerlySerializedAs("PlanetCollider")] public Collider planetCollider;
+        [FormerlySerializedAs("AttractorScript")] public AttractorScript attractorScript;
+        [FormerlySerializedAs("PlanetsPhotonView")] public PhotonView planetsPhotonView;
 
-        public bool IsSpawnPlanet;
-        public Transform SpawnPosition;
+        [FormerlySerializedAs("IsSpawnPlanet")] public bool isSpawnPlanet;
+        [FormerlySerializedAs("SpawnPosition")] public Transform spawnPosition;
 
         //Reference itself to the ColliderDirectory
         private void Awake()
         {
             if (!PhotonNetwork.IsMasterClient) return;
-            ColliderDirectoryScript.Instance.AddPlanetExposer(this, out Id);
+            ColliderDirectoryScript.Instance.AddPlanetExposer(this, out id);
         }
 
         //Dereference itself to the ColliderDirectory
@@ -37,12 +36,12 @@ namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
 
         public void DeactivateCollider()
         {
-            PlanetCollider.enabled = false;
+            planetCollider.enabled = false;
         }
 
         public void ActivateCollider()
         {
-            PlanetCollider.enabled = true;
+            planetCollider.enabled = true;
         }
     }
 }

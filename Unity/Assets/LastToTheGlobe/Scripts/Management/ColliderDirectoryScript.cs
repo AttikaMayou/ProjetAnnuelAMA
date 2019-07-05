@@ -4,9 +4,11 @@ using Assets.LastToTheGlobe.Scripts.Avatar;
 using Assets.LastToTheGlobe.Scripts.Environment.Planets;
 using Assets.LastToTheGlobe.Scripts.Weapon.Orb;
 using LastToTheGlobe.Scripts.Avatar;
+using LastToTheGlobe.Scripts.Environment.Planets;
 using LastToTheGlobe.Scripts.Singleton;
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 //Auteur : Attika
 
@@ -16,19 +18,19 @@ namespace LastToTheGlobe.Scripts.Management
     {
         public bool debug = false;
 
-        [Header("Photon View to assign")] 
-        public PhotonView BumpersPhotonView;
-        public PhotonView PlanetsPhotonView;
-        public PhotonView OrbsPhotonView;
+        [FormerlySerializedAs("BumpersPhotonView")] [Header("Photon View to assign")] 
+        public PhotonView bumpersPhotonView;
+        [FormerlySerializedAs("PlanetsPhotonView")] public PhotonView planetsPhotonView;
+        [FormerlySerializedAs("OrbsPhotonView")] public PhotonView orbsPhotonView;
         
-        public List<CharacterExposerScript> CharacterExposers;
-        public int ActivePlayers = 0;
-        public List<PlanetExposerScript> PlanetExposers;
-        [SerializeField] private int _activePlanets = 0;
-        public List<OrbExposerScript> OrbExposers;
-        [SerializeField] private int _activeOrbs = 0;
-        public List<BumperExposerScript> BumperExposers;
-        [SerializeField] private int _activeBumpers = 0;
+        [FormerlySerializedAs("CharacterExposers")] public List<CharacterExposerScript> characterExposers;
+        [FormerlySerializedAs("ActivePlayers")] public int activePlayers = 0;
+        [FormerlySerializedAs("PlanetExposers")] public List<PlanetExposerScript> planetExposers;
+        [FormerlySerializedAs("_activePlanets")] [SerializeField] private int activePlanets = 0;
+        [FormerlySerializedAs("OrbExposers")] public List<OrbExposerScript> orbExposers;
+        [FormerlySerializedAs("_activeOrbs")] [SerializeField] private int activeOrbs = 0;
+        [FormerlySerializedAs("BumperExposers")] public List<BumperExposerScript> bumperExposers;
+        [FormerlySerializedAs("_activeBumpers")] [SerializeField] private int activeBumpers = 0;
         
         private Dictionary<Collider, CharacterExposerScript> _playersDirectory = new Dictionary<Collider, CharacterExposerScript>();
         private CharacterExposerScript _playerValue;
@@ -57,14 +59,14 @@ namespace LastToTheGlobe.Scripts.Management
         {
             if(debug) Debug.Log("[ColliderDirectoryScript] Trying to find player from " +
                                 "this id: " + id);
-            if (id < 0 || id >= CharacterExposers.Count) return null;
-            return !PhotonNetwork.IsMasterClient ? null : CharacterExposers[id];
+            if (id < 0 || id >= characterExposers.Count) return null;
+            return !PhotonNetwork.IsMasterClient ? null : characterExposers[id];
         }
 
         public int GetPlayerId(Collider col)
         {
             if (!col) return -1;
-            if (CharacterExposers.Count == 0) StartCoroutine(Wait());
+            if (characterExposers.Count == 0) StartCoroutine(Wait());
             var player = GetCharacterExposer(col);
             if (player) return player.Id;
             Debug.LogWarningFormat("[ColliderDirectoryScript] No CharacterExposer found with this collider {0}", 
@@ -74,17 +76,17 @@ namespace LastToTheGlobe.Scripts.Management
 
         public void AddCharacterExposer(CharacterExposerScript player, out int id)
         {
-            if (CharacterExposers == null)
+            if (characterExposers == null)
             {
-                CharacterExposers = new List<CharacterExposerScript>();
+                characterExposers = new List<CharacterExposerScript>();
             }
 
-            if (!CharacterExposers.Contains(player) && player)
+            if (!characterExposers.Contains(player) && player)
             {
-                CharacterExposers.Add(player);
+                characterExposers.Add(player);
             }
 
-            ActivePlayers++;
+            activePlayers++;
             
             id = AddPlayerInDirectory(player);
             
@@ -98,11 +100,11 @@ namespace LastToTheGlobe.Scripts.Management
 
         public void RemoveCharacterExposer(CharacterExposerScript player)
         {
-            ActivePlayers--;
+            activePlayers--;
             player.Id = -1;
-            if (CharacterExposers.Contains(player) && player)
+            if (characterExposers.Contains(player) && player)
             {
-                CharacterExposers.Remove(player);
+                characterExposers.Remove(player);
             }
         }
 
@@ -112,7 +114,7 @@ namespace LastToTheGlobe.Scripts.Management
             if(debug) Debug.Log("[ColliderDirectoryScript] Add one player to directory");
             if (_playersDirectory.ContainsValue(player)) return id;
             _playersDirectory.Add(player.CharacterCollider, player);
-            id = ActivePlayers - 1;
+            id = activePlayers - 1;
             if(debug) Debug.LogFormat("[ColliderDirectoryScript] Directory key : {0} and value : {1}", 
                 player.CharacterCollider, player);
             return id;
@@ -134,15 +136,15 @@ namespace LastToTheGlobe.Scripts.Management
         {
             if(debug) Debug.Log("[ColliderDirectoryScript] Trying to find planet from " +
                                 "this id: " + id);
-            if (id < 0 || id >= PlanetExposers.Count) return null;
-            return !PhotonNetwork.IsMasterClient ? null : PlanetExposers[id];
+            if (id < 0 || id >= planetExposers.Count) return null;
+            return !PhotonNetwork.IsMasterClient ? null : planetExposers[id];
         }
         
         public int GetPlanetId(Collider col)
         {
             if (!col) return -1;
             var planet = GetPlanetExposer(col);
-            if (planet) return planet.Id;
+            if (planet) return planet.id;
             Debug.LogErrorFormat("[ColliderDirectoryScript] No PlanetExposer found with this collider {0}",
                 col.name);
             return -1;
@@ -150,20 +152,20 @@ namespace LastToTheGlobe.Scripts.Management
 
         public void AddPlanetExposer(PlanetExposerScript planet, out int id)
         {
-            if (PlanetExposers == null)
+            if (planetExposers == null)
             {
-                PlanetExposers = new List<PlanetExposerScript>();
+                planetExposers = new List<PlanetExposerScript>();
             }
 
-            if (!PlanetExposers.Contains(planet) && planet)
+            if (!planetExposers.Contains(planet) && planet)
             {
-                PlanetExposers.Add(planet);
+                planetExposers.Add(planet);
             }
 
-            _activePlanets++;
+            activePlanets++;
             
             id = AddPlanetInDirectory(planet);
-            planet.PlanetsPhotonView = PlanetsPhotonView;
+            planet.planetsPhotonView = planetsPhotonView;
             
             if (debug)
             {
@@ -175,11 +177,11 @@ namespace LastToTheGlobe.Scripts.Management
 
         public void RemovePlanetExposer(PlanetExposerScript planet)
         {
-            _activePlanets--;
-            planet.Id = -1;
-            if (PlanetExposers.Contains(planet) && planet)
+            activePlanets--;
+            planet.id = -1;
+            if (planetExposers.Contains(planet) && planet)
             {
-                PlanetExposers.Remove(planet);
+                planetExposers.Remove(planet);
             }
         }
 
@@ -188,10 +190,10 @@ namespace LastToTheGlobe.Scripts.Management
             var id = -1;
             if(debug) Debug.Log("[ColliderDirectoryScript] Add one planet to directory");
             if (_planetsDirectory.ContainsValue(planet)) return id;
-            _planetsDirectory.Add(planet.PlanetCollider, planet);
-            id = _activePlanets - 1;
+            _planetsDirectory.Add(planet.planetCollider, planet);
+            id = activePlanets - 1;
             if(debug) Debug.LogFormat("[ColliderDirectoryScript] Directory key : {0} and value : {1}", 
-                planet.PlanetCollider, planet);
+                planet.planetCollider, planet);
             return id;
         }
         
@@ -209,8 +211,8 @@ namespace LastToTheGlobe.Scripts.Management
         public OrbExposerScript GetOrbExposer(int id)
         {
             if(debug) Debug.Log("[ColliderDirectoryScript] Trying to find orb from this id: " + id);
-            if (id < 0 || id >= OrbExposers.Count) return null;
-            return !PhotonNetwork.IsMasterClient ? null : OrbExposers[id];
+            if (id < 0 || id >= orbExposers.Count) return null;
+            return !PhotonNetwork.IsMasterClient ? null : orbExposers[id];
         }
 
         public int GetOrbId(Collider col)
@@ -225,20 +227,20 @@ namespace LastToTheGlobe.Scripts.Management
         
         public void AddOrbExposer(OrbExposerScript orb, out int id)
         {
-            if (OrbExposers == null)
+            if (orbExposers == null)
             {
-                OrbExposers = new List<OrbExposerScript>();
+                orbExposers = new List<OrbExposerScript>();
             }
 
-            if (!OrbExposers.Contains(orb) && orb)
+            if (!orbExposers.Contains(orb) && orb)
             {
-                OrbExposers.Add(orb);
+                orbExposers.Add(orb);
             }
 
-            _activeOrbs++;
+            activeOrbs++;
             
             id = AddOrbInDirectory(orb);
-            orb.OrbsPhotonView = OrbsPhotonView;
+            orb.OrbsPhotonView = orbsPhotonView;
             
             if (debug)
             {
@@ -250,11 +252,11 @@ namespace LastToTheGlobe.Scripts.Management
 
         public void RemoveOrbExposer(OrbExposerScript orb)
         {
-            _activeOrbs--;
+            activeOrbs--;
             orb.Id = -1;
-            if (OrbExposers.Contains(orb) && orb)
+            if (orbExposers.Contains(orb) && orb)
             {
-                OrbExposers.Remove(orb);
+                orbExposers.Remove(orb);
             }
         }
 
@@ -264,7 +266,7 @@ namespace LastToTheGlobe.Scripts.Management
             if(debug) Debug.Log("[ColliderDirectoryScript] Add one orb to directory");
             if (_orbsDirectory.ContainsValue(orb)) return id;
             _orbsDirectory.Add(orb.OrbCollider, orb);
-            id = _activeOrbs - 1;
+            id = activeOrbs - 1;
             if(debug) Debug.LogWarningFormat("[ColliderDirectoryScript] Directory key : {0} and value : {1}", 
                 orb.OrbCollider, orb);
             return id;
@@ -286,14 +288,14 @@ namespace LastToTheGlobe.Scripts.Management
         {
             if(debug) Debug.Log("[ColliderDirectoryScript] Trying to find bumper from " +
                                 "this id: " + id);
-            if (id < 0 || id >= BumperExposers.Count) return null;
-            return !PhotonNetwork.IsMasterClient ? null : BumperExposers[id];
+            if (id < 0 || id >= bumperExposers.Count) return null;
+            return !PhotonNetwork.IsMasterClient ? null : bumperExposers[id];
         }
 
         public int GetBumperId(Collider col)
         {
             if (!col) return -1;
-            if (BumperExposers.Count == 0) StartCoroutine(Wait());
+            if (bumperExposers.Count == 0) StartCoroutine(Wait());
             var bumper = GetBumperExposer(col);
             if (bumper) return bumper.Id;
             Debug.LogWarningFormat("[ColliderDirectoryScript] No BumperExposer found with this collider {0}", 
@@ -303,20 +305,20 @@ namespace LastToTheGlobe.Scripts.Management
 
         public void AddBumperExposer(BumperExposerScript bumper, out int id)
         {
-            if (BumperExposers == null)
+            if (bumperExposers == null)
             {
-                BumperExposers = new List<BumperExposerScript>();
+                bumperExposers = new List<BumperExposerScript>();
             }
 
-            if (!BumperExposers.Contains(bumper) && bumper)
+            if (!bumperExposers.Contains(bumper) && bumper)
             {
-                BumperExposers.Add(bumper);
+                bumperExposers.Add(bumper);
             }
 
-            _activeBumpers++;
+            activeBumpers++;
 
             id = AddBumperInDirectory(bumper);
-            bumper.BumpersPhotonView = BumpersPhotonView;
+            bumper.BumpersPhotonView = bumpersPhotonView;
 
             if (debug)
             {
@@ -328,11 +330,11 @@ namespace LastToTheGlobe.Scripts.Management
 
         public void RemoveBumperExposer(BumperExposerScript bumper)
         {
-            _activeBumpers--;
+            activeBumpers--;
             bumper.Id = -1;
-            if (BumperExposers.Contains(bumper) && bumper)
+            if (bumperExposers.Contains(bumper) && bumper)
             {
-                BumperExposers.Remove(bumper);
+                bumperExposers.Remove(bumper);
             }
         }
         
@@ -342,7 +344,7 @@ namespace LastToTheGlobe.Scripts.Management
             if(debug) Debug.Log("[ColliderDirectoryScript] Add one bumper to directory");
             if (_bumpersDirectory.ContainsValue(bumper)) return id;
             _bumpersDirectory.Add(bumper.BumperCollider, bumper);
-            id = ActivePlayers - 1;
+            id = activePlayers - 1;
             if(debug) Debug.LogFormat("[ColliderDirectoryScript] Directory key : {0} and value : {1}", 
                 bumper.BumperCollider, bumper);
             return id;

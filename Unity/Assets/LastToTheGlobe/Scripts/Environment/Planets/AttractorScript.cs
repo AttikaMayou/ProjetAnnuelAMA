@@ -25,10 +25,10 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
             //Only the MasterClient interact with collider and stuff like this
             if (!PhotonNetwork.IsMasterClient) return;
 
-            if (planetId != Exposer.Id)
+            if (planetId != Exposer.id)
             {
                 if(Debug) UnityEngine.Debug.LogWarningFormat("[AttractorScript] Planet {0} received order to attract player {1} but it was meant to {2}",
-                    Exposer.Id, playerId, planetId);
+                    Exposer.id, playerId, planetId);
                 return;
             }
             
@@ -39,7 +39,7 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
             var planet = ColliderDirectoryScript.Instance.GetPlanetExposer(planetId);
             
             //Give the direction of gravity
-            var gravityUp = (body.position - planet.PlanetTransform.position).normalized;
+            var gravityUp = (body.position - planet.planetTransform.position).normalized;
             var bodyUp = body.up;
           
             attractedRb.AddForce(gravityUp * gravity);
@@ -75,8 +75,8 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
             if (playerId != -1) 
             {
                 //Send to MasterClient a message to warn him with its own ID and playerId
-                Exposer.PlanetsPhotonView.RPC("DetectPlayerRPC", RpcTarget.MasterClient,
-                    Exposer.Id, playerId);
+                Exposer.planetsPhotonView.RPC("DetectPlayerRPC", RpcTarget.MasterClient,
+                    Exposer.id, playerId);
             }
 
             StartCoroutine(ResetTrigger());
@@ -103,7 +103,7 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
             if (playerId != -1) 
             {
                 //Send to MasterClient a message to warn him with playerId
-                Exposer.PlanetsPhotonView.RPC("RemoveAttractorPlayerRPC", RpcTarget.MasterClient, 
+                Exposer.planetsPhotonView.RPC("RemoveAttractorPlayerRPC", RpcTarget.MasterClient, 
                     playerId);
             }
 
