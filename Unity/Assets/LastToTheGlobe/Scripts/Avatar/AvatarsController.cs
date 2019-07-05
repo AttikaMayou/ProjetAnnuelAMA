@@ -245,6 +245,12 @@ namespace LastToTheGlobe.Scripts.Avatar
                 tr.Rotate(new Vector3(0, intent.RotationOnX, 0));
                 player.CameraRotatorX.transform.Rotate(new Vector3(-intent.RotationOnY, 
                     0, 0), Space.Self);
+                
+                //Get back to initial values to prevent from network lags and stuff like this
+                intent.RotationOnX = 0.0f;
+                intent.RotationOnY = 0.0f;
+                intent.Strafe = 0.0f;
+                intent.Forward = 0.0f;
 
                 if (player.Attractor == null)
                 {

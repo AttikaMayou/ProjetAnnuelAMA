@@ -34,8 +34,8 @@ namespace LastToTheGlobe.Scripts.Network
             
             Forward = Input.GetAxisRaw("Vertical");
             Strafe = Input.GetAxisRaw("Horizontal");
-            RotationOnX = Input.GetAxis("Mouse X");
-            RotationOnY = Input.GetAxis("Mouse Y");
+            RotationOnX = Input.GetAxisRaw("Mouse X");
+            RotationOnY = Input.GetAxisRaw("Mouse Y");
 
             //TODO : check if the rotation updates relative to previous rotation
             photonView.RPC("UpdateCameraRotation", RpcTarget.MasterClient, RotationOnX, RotationOnY);
