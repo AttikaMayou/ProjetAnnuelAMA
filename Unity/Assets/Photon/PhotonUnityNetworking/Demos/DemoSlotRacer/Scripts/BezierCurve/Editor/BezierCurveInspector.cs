@@ -15,7 +15,7 @@ using UnityEngine;
 namespace Photon.Pun.Demo.SlotRacer.Utils
 {
 	[CustomEditor(typeof(BezierCurve))]
-	public class BezierCurveInspector : Editor
+	public class BezierCurveInspector : ScriptableObject
 	{
 		private const int lineSteps = 10;
 		private const float directionScale = 0.5f;
@@ -23,8 +23,9 @@ namespace Photon.Pun.Demo.SlotRacer.Utils
 		private BezierCurve curve;
 		private Transform handleTransform;
 		private Quaternion handleRotation;
+        private BezierCurve target;
 
-		private void OnSceneGUI()
+        private void OnSceneGUI()
 		{
 			curve = target as BezierCurve;
 			handleTransform = curve.transform;

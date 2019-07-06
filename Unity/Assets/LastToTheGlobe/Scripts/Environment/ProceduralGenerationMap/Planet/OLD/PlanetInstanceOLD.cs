@@ -19,7 +19,7 @@ public class PlanetInstanceOLD : MonoBehaviour
     private int numberMeshFilters = 6;
 
     MeshFilter[] meshFilters;
-    CreationPlanetMesh[] planetFaces;
+    //CreationPlanetMesh[] planetFaces;
 
     private void Start()
     {
@@ -34,7 +34,7 @@ public class PlanetInstanceOLD : MonoBehaviour
             meshFilters = new MeshFilter[numberMeshFilters];
         }
 
-        planetFaces = new CreationPlanetMesh[numberMeshFilters];
+        //planetFaces = new CreationPlanetMesh[numberMeshFilters];
 
         Vector3[] directions = { Vector3.up, Vector3.down, Vector3.left, Vector3.right, Vector3.forward, Vector3.back };
 
@@ -51,16 +51,16 @@ public class PlanetInstanceOLD : MonoBehaviour
                 meshFilters[i].sharedMesh = new Mesh();
             }
 
-            planetFaces[i] = new CreationPlanetMesh(meshFilters[i].sharedMesh, resolution, directions[i]);
+            //planetFaces[i] = new CreationPlanetMesh(meshFilters[i].sharedMesh, resolution, directions[i]);
         }
     }
 
     //faces generation
     void GenerateMesh()
     {
-        foreach (CreationPlanetMesh face in planetFaces)
+        //foreach (CreationPlanetMesh face in planetFaces)
         { 
-            face.CreateMesh();
+            //face.CreateMesh();
         }
     }
  }

@@ -15,10 +15,11 @@ using UnityEngine;
 namespace Photon.Pun.Demo.SlotRacer.Utils
 {
 	[CustomEditor(typeof(Line))]
-	public class LineInspector : Editor
+	public class LineInspector : ScriptableObject
 	{
+        private Line target;
 
-		private void OnSceneGUI()
+        private void OnSceneGUI()
 		{
 			Line line = target as Line;
 			Transform handleTransform = line.transform;

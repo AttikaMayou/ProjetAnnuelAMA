@@ -23,7 +23,7 @@ public class DataCollector : MonoBehaviour
         }
     }
     */
-
+    //truc
     public static DataCollector Instance()
     {
         return instance;

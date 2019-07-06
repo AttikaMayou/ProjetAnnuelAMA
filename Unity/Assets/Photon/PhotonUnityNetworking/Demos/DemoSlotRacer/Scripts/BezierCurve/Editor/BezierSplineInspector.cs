@@ -9,13 +9,14 @@
 // <author>developer@exitgames.com</author>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
 using UnityEditor;
 using UnityEngine;
 
 namespace Photon.Pun.Demo.SlotRacer.Utils
 {
 	[CustomEditor(typeof(BezierSpline))]
-	public class BezierSplineInspector : Editor
+	public class BezierSplineInspector : ScriptableObject
 	{
 		private const int stepsPerCurve = 10;
 		private const float directionScale = 0.5f;
@@ -27,13 +28,14 @@ namespace Photon.Pun.Demo.SlotRacer.Utils
 			Color.yellow,
 			Color.cyan
 		};
-
+        
 		private BezierSpline spline;
 		private Transform handleTransform;
 		private Quaternion handleRotation;
 		private int selectedIndex = -1;
+        private BezierSpline target;
 
-		public override void OnInspectorGUI()
+        public void OnInspectorGUI()
 		{
 			spline = target as BezierSpline;
 			EditorGUI.BeginChangeCheck();
@@ -150,5 +152,10 @@ namespace Photon.Pun.Demo.SlotRacer.Utils
 			}
 			return point;
 		}
-	}
+
+        private void Repaint()
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
