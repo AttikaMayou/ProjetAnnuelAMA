@@ -37,7 +37,12 @@ namespace LastToTheGlobe.Scripts.httpRequests
                 if (_parsedLoginSignRequest.status.Equals("OK"))
                 {
                     
-                    Debug.Log("Hello User "+username);
+                    Debug.Log("Hello User " + username);
+                    StaticLoginSigninClass.gameWon = _parsedLoginSignRequest.gameWon;
+                    StaticLoginSigninClass.playerKilled = _parsedLoginSignRequest.playerKilled;
+                    StaticLoginSigninClass.coins= _parsedLoginSignRequest.coins;
+                    StaticLoginSigninClass.itemOwned= _parsedLoginSignRequest.itemOwned;
+                    StaticLoginSigninClass.playerUsername = username;
                     SceneManager.LoadScene("_masterScene");
                 }
                 else
@@ -97,6 +102,27 @@ namespace LastToTheGlobe.Scripts.httpRequests
 
                 requestFinished = true;
             }
+        }
+
+        public IEnumerator BuyFromShopRequest(int idItemBought, string buyer, int coinLeft)
+        {
+            WWWForm form = new WWWForm();
+            form.AddField("Buyer", buyer, Encoding.UTF8);
+            form.AddField("idItem",idItemBought.ToString(), Encoding.UTF8);
+            form.AddField("coinLeft",coinLeft.ToString(), Encoding.UTF8);
+            UnityWebRequest www = UnityWebRequest.Post("https://ebelder.pythonanywhere.com/buy", form);
+            yield return www.SendWebRequest();
+        
+            if(www.isNetworkError || www.isHttpError) {
+                Debug.Log(www.error);
+                yield return null;
+            }
+            else 
+            {
+                Debug.Log(www.downloadHandler.text);
+            }
+            yield return null;
+            requestFinished = true;
         }
     
     }
