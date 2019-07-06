@@ -67,12 +67,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22d56e4cfea04bf4696856bb028a9ff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: 0
-  PlanetTransform: {fileID: 578}
-  PlanetCollider: {fileID: 1174}
-  AttractorScript: {fileID: 1253}
-  IsSpawnPlanet: 1
-  SpawnPosition: {fileID: 575}
+  id: 0
+  planetTransform: {fileID: 578}
+  planetCollider: {fileID: 1174}
+  attractorScript: {fileID: 1253}
+  planetsPhotonView: {fileID: 0}
+  isSpawnPlanet: 1
+  spawnPosition: {fileID: 575}
 --- !u!114 &1253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,11 +86,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 917c2123bde88734f9ca74bda0e6f01f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: 0
   Exposer: {fileID: 1251}
   speedRotation: 10
   DirForce: {x: 0, y: 0, z: 0}
-  photonView: {fileID: 1252}
 --- !u!114 &1252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,8 +108,8 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 1254}
-  viewIdField: 0
-  InstantiationId: 2
+  viewIdField: 65
+  InstantiationId: 65
   isRuntimeInstantiated: 0
 --- !u!114 &1254
 MonoBehaviour:

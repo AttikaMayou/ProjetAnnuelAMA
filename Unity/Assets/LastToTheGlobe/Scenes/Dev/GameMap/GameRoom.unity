@@ -2796,16 +2796,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1709676989}
     m_Modifications:
-    - target: {fileID: 5371657569891794007, guid: f2c53a056b39c3c46b762cd1292836b8,
-        type: 3}
-      propertyPath: viewIdField
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 5371657569891794007, guid: f2c53a056b39c3c46b762cd1292836b8,
-        type: 3}
-      propertyPath: InstantiationId
-      value: 35
-      objectReference: {fileID: 0}
     - target: {fileID: 265, guid: f2c53a056b39c3c46b762cd1292836b8, type: 3}
       propertyPath: m_Name
       value: LobbyPlanet
@@ -2866,6 +2856,41 @@ PrefabInstance:
       propertyPath: InstantiationId
       value: 117
       objectReference: {fileID: 0}
+    - target: {fileID: 5274179040381734909, guid: f2c53a056b39c3c46b762cd1292836b8,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5274179040381734909, guid: f2c53a056b39c3c46b762cd1292836b8,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5274179040381734909, guid: f2c53a056b39c3c46b762cd1292836b8,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5274179040381734909, guid: f2c53a056b39c3c46b762cd1292836b8,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5371657569891794007, guid: f2c53a056b39c3c46b762cd1292836b8,
+        type: 3}
+      propertyPath: viewIdField
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 5371657569891794007, guid: f2c53a056b39c3c46b762cd1292836b8,
+        type: 3}
+      propertyPath: InstantiationId
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 5581744237729166429, guid: f2c53a056b39c3c46b762cd1292836b8,
+        type: 3}
+      propertyPath: planetsPhotonView
+      value: 
+      objectReference: {fileID: 112586765}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2c53a056b39c3c46b762cd1292836b8, type: 3}
 --- !u!4 &722089181 stripped
@@ -2874,6 +2899,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 722089180}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &722089182 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5581744237729166429, guid: f2c53a056b39c3c46b762cd1292836b8,
+    type: 3}
+  m_PrefabInstance: {fileID: 722089180}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22d56e4cfea04bf4696856bb028a9ff7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &724903801
 GameObject:
   m_ObjectHideFlags: 0
@@ -8277,6 +8314,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scripts
       objectReference: {fileID: 0}
+    - target: {fileID: 6156550870422415201, guid: 4b7f65cf3304916429cf26667ac888b2,
+        type: 3}
+      propertyPath: viewIdField
+      value: 78
+      objectReference: {fileID: 0}
+    - target: {fileID: 6156550870422415201, guid: 4b7f65cf3304916429cf26667ac888b2,
+        type: 3}
+      propertyPath: InstantiationId
+      value: 78
+      objectReference: {fileID: 0}
     - target: {fileID: 2003145823037444675, guid: 4b7f65cf3304916429cf26667ac888b2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8786,7 +8833,7 @@ PrefabInstance:
         type: 3}
       propertyPath: planetExposers.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 722089182}
     - target: {fileID: 2003145823761592561, guid: 4b7f65cf3304916429cf26667ac888b2,
         type: 3}
       propertyPath: resetData
@@ -8812,16 +8859,22 @@ PrefabInstance:
       propertyPath: InstantiationId
       value: 79
       objectReference: {fileID: 0}
-    - target: {fileID: 6156550870422415201, guid: 4b7f65cf3304916429cf26667ac888b2,
+    - target: {fileID: 2003145821961145339, guid: 4b7f65cf3304916429cf26667ac888b2,
         type: 3}
-      propertyPath: viewIdField
-      value: 78
-      objectReference: {fileID: 0}
-    - target: {fileID: 6156550870422415201, guid: 4b7f65cf3304916429cf26667ac888b2,
+      propertyPath: victoryPlanet
+      value: 
+      objectReference: {fileID: 235, guid: 98010e924c5875f4bbbf318e24ca1c4d, type: 3}
+    - target: {fileID: 2003145821961145339, guid: 4b7f65cf3304916429cf26667ac888b2,
         type: 3}
-      propertyPath: InstantiationId
-      value: 78
-      objectReference: {fileID: 0}
+      propertyPath: basicPlanet
+      value: 
+      objectReference: {fileID: 5274179040381768669, guid: f2c53a056b39c3c46b762cd1292836b8,
+        type: 3}
+    - target: {fileID: 2003145821961145339, guid: 4b7f65cf3304916429cf26667ac888b2,
+        type: 3}
+      propertyPath: spawnPlanet
+      value: 
+      objectReference: {fileID: 232, guid: c83770715bf346641832232e27c6c903, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b7f65cf3304916429cf26667ac888b2, type: 3}
 --- !u!114 &4032840750276786282 stripped
@@ -8851,11 +8904,6 @@ PrefabInstance:
     - target: {fileID: 4530374371341051882, guid: 19083d05772af8b4dbec64b8289d90d4,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4530374370747687197, guid: 19083d05772af8b4dbec64b8289d90d4,
-        type: 3}
-      propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4530374371341051883, guid: 19083d05772af8b4dbec64b8289d90d4,
@@ -8961,6 +9009,11 @@ PrefabInstance:
     - target: {fileID: 4530374371341051883, guid: 19083d05772af8b4dbec64b8289d90d4,
         type: 3}
       propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4530374370747687197, guid: 19083d05772af8b4dbec64b8289d90d4,
+        type: 3}
+      propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 294255035830000952, guid: 19083d05772af8b4dbec64b8289d90d4,
