@@ -35,7 +35,7 @@ Transform:
   - {fileID: 767}
   - {fileID: 771}
   - {fileID: 766}
-  - {fileID: 4186147918488249921}
+  - {fileID: 1526199561881979547}
   - {fileID: 765}
   - {fileID: 770}
   m_Father: {fileID: 0}
@@ -66,13 +66,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22d56e4cfea04bf4696856bb028a9ff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: 0
-  PlanetTransform: {fileID: 769}
-  PlanetCollider: {fileID: 1665}
-  AttractorScript: {fileID: 1762}
-  PlanetsPhotonView: {fileID: 0}
-  IsSpawnPlanet: 1
-  SpawnPosition: {fileID: 766}
+  id: 0
+  planetTransform: {fileID: 769}
+  planetCollider: {fileID: 1665}
+  attractorScript: {fileID: 1762}
+  planetsPhotonView: {fileID: 0}
+  isSpawnPlanet: 1
+  spawnPosition: {fileID: 766}
 --- !u!114 &1762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -678,7 +678,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf62e091e3a648e449f1ae21a25c6606, type: 3}
---- !u!4 &4186147918488249921 stripped
+--- !u!4 &1526199561881979547 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3401916670773471376, guid: bf62e091e3a648e449f1ae21a25c6606,
     type: 3}

@@ -152,13 +152,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22d56e4cfea04bf4696856bb028a9ff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: 0
-  PlanetTransform: {fileID: 773}
-  PlanetCollider: {fileID: 1668}
-  AttractorScript: {fileID: 1767}
-  PlanetsPhotonView: {fileID: 0}
-  IsSpawnPlanet: 0
-  SpawnPosition: {fileID: 0}
+  id: 0
+  planetTransform: {fileID: 773}
+  planetCollider: {fileID: 1668}
+  attractorScript: {fileID: 1767}
+  planetsPhotonView: {fileID: 0}
+  isSpawnPlanet: 0
+  spawnPosition: {fileID: 0}
 --- !u!114 &1771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,6 +178,6 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 0}
-  viewIdField: 87
-  InstantiationId: 87
+  viewIdField: 116
+  InstantiationId: 116
   isRuntimeInstantiated: 0

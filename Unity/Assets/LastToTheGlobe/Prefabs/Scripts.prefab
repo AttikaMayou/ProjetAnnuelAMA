@@ -110,12 +110,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97b499ac0087c6a48bf103bec179e7d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: 1
+  debug: 0
   numberOfVertices: 30
   size: 400
   scaleMin: 30
   scaleMax: 100
-  basicPlanet: {fileID: 265, guid: 26d4fae48b756154f9ba8c29057cfed4, type: 3}
+  basicPlanet: {fileID: 265, guid: f2c53a056b39c3c46b762cd1292836b8, type: 3}
   spawnPlanet: {fileID: 258, guid: c83770715bf346641832232e27c6c903, type: 3}
   victoryPlanet: {fileID: 261, guid: 98010e924c5875f4bbbf318e24ca1c4d, type: 3}
   numberOfPlayer: 2
@@ -162,19 +162,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfc74830cdfde3240826067a5a4574b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: 1
-  BumpersPhotonView: {fileID: 102627448006797231}
-  PlanetsPhotonView: {fileID: 6156550870422415201}
-  OrbsPhotonView: {fileID: 4414370369413740760}
-  CharacterExposers: []
-  ActivePlayers: 0
-  PlanetExposers:
+  debug: 0
+  bumpersPhotonView: {fileID: 102627448006797231}
+  planetsPhotonView: {fileID: 6156550870422415201}
+  orbsPhotonView: {fileID: 4414370369413740760}
+  characterExposers: []
+  activePlayers: 0
+  planetExposers:
   - {fileID: 0}
-  _activePlanets: 2
-  OrbExposers: []
-  _activeOrbs: 0
-  BumperExposers: []
-  _activeBumpers: 0
+  activePlanets: 2
+  orbExposers: []
+  activeOrbs: 0
+  bumperExposers: []
+  activeBumpers: 0
 --- !u!1 &2003145822489458437
 GameObject:
   m_ObjectHideFlags: 0

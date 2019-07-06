@@ -33,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 261}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 16.715668, y: 16.715668, z: 16.715668}
+  m_LocalScale: {x: 23.87077, y: 23.87077, z: 23.87077}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -95,13 +95,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22d56e4cfea04bf4696856bb028a9ff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: 0
-  PlanetTransform: {fileID: 772}
-  PlanetCollider: {fileID: 1667}
-  AttractorScript: {fileID: 1765}
-  PlanetsPhotonView: {fileID: 0}
-  IsSpawnPlanet: 0
-  SpawnPosition: {fileID: 0}
+  id: 0
+  planetTransform: {fileID: 772}
+  planetCollider: {fileID: 1667}
+  attractorScript: {fileID: 1765}
+  planetsPhotonView: {fileID: 0}
+  isSpawnPlanet: 0
+  spawnPosition: {fileID: 0}
 --- !u!135 &1667
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -140,13 +140,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22d56e4cfea04bf4696856bb028a9ff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: 0
-  PlanetTransform: {fileID: 0}
-  PlanetCollider: {fileID: 0}
-  AttractorScript: {fileID: 0}
-  PlanetsPhotonView: {fileID: 0}
-  IsSpawnPlanet: 0
-  SpawnPosition: {fileID: 0}
+  id: 0
+  planetTransform: {fileID: 0}
+  planetCollider: {fileID: 0}
+  attractorScript: {fileID: 0}
+  planetsPhotonView: {fileID: 0}
+  isSpawnPlanet: 0
+  spawnPosition: {fileID: 0}
 --- !u!114 &1765
 MonoBehaviour:
   m_ObjectHideFlags: 0
