@@ -70,6 +70,7 @@ namespace LastToTheGlobe.Scripts.Environment
             {
                 GenerateLocation();
                 GenerateIndices();
+                //DistanceBetweenPlanet();
             }
             InstantiatePlanet();
         }
@@ -91,16 +92,18 @@ namespace LastToTheGlobe.Scripts.Environment
             }
 
             //Génération aléatoire des points pour planètes basics
-            for (; i <= numberOfVertices; i++)
+            for (i = numberOfPlayer; i <= numberOfVertices + numberOfPlayer -1; i++)
             {
                 var x = size * Random.Range(-1.0f, 1.0f);
-                var y = size * Random.Range(-1.0f, 1.0f);
+                var y = size * Random.Range(-0.7f, 1.0f);
                 var z = size * Random.Range(-1.0f, 1.0f);
 
                 vertices[i] = new Vector3(x, y, z);
             }
 
             vertices[i] = new Vector3(size * Random.Range(1f, 1.2f), size * Random.Range(1f, 1.2f), size * Random.Range(1f, 1.2f));
+
+
             return vertices;
         }
 
@@ -112,14 +115,14 @@ namespace LastToTheGlobe.Scripts.Environment
             for(i= 0; i<numberOfPlayer; i++)
             {
                 indices[i] = (int)Random.Range(1, 4);
-                Debug.LogFormat("Indice {0} est égal à {1}",i, indices[i]);
+                //Debug.LogFormat("Indice {0} est égal à {1}",i, indices[i]);
             }
 
             for(i = numberOfPlayer; i< numberOfVertices + numberOfPlayer; i++)
             {
                 tmp = (int)Random.Range(1, 22);
                 indices[i] = tmp == 0 ? 1 : tmp;
-                Debug.LogFormat("Indice {0} est égal à {1}",i, indices[i]);
+                //Debug.LogFormat("Indice {0} est égal à {1}",i, indices[i]);
             }
 
             return indices;
@@ -134,45 +137,55 @@ namespace LastToTheGlobe.Scripts.Environment
 
             for (int i = 0; i < vertices.Length; i++)
             {
-                if (i < numberOfPlayer)
+                if (Distance(vertices[i], vertices[i + 1]) >= 50)
                 {
-                    Debug.Log(spawnPlanet + indices[i]);
-                    planet = Instantiate(Resources.Load(spawnPlanet + indices[i]), vertices[i], Quaternion.identity) as GameObject;
-                    continue;
+                    Debug.LogFormat("Distance between {0} et {1} = {2} ", i, i + 1, Distance(vertices[i], vertices[i + 1]));
+
+                    if (i < numberOfPlayer)
+                    {
+                        planet = Instantiate(Resources.Load(spawnPlanet + indices[i]), vertices[i], Quaternion.identity) as GameObject;
+                        continue;
+                    }
+
+                    //Debug.Log(basicPlanet + indices[i]);
+                    planet = Instantiate(Resources.Load(basicPlanet + indices[i]), vertices[i], Quaternion.identity) as GameObject;
+                }
+                else
+                {
+                    Debug.LogFormat("collision entre {0} et {1}", i, i + 1);
+                    Debug.LogFormat("Distance between {0} et {1} = {2} ", i, i + 1, Distance(vertices[i], vertices[i + 1]));
                 }
 
-                if(i == vertices.Length - 1)
+                if (i <= vertices.Length - 1)
                 {
-                    planet = Instantiate(Resources.Load(victoryPlanet), vertices[i], Quaternion.identity) as GameObject;
-                    continue;
+                    planet = Instantiate(Resources.Load(victoryPlanet), new Vector3(0, size * Random.Range(1.1f, 2f), 0), Quaternion.identity) as GameObject;
                 }
-                Debug.Log(basicPlanet + indices[i]);
-                planet = Instantiate(Resources.Load(basicPlanet + indices[i]), vertices[i], Quaternion.identity) as GameObject;
 
             }
         }
 
-
-        /* distance entre les points
-        for (int i = 0; i < NumberOfVertices; i++)
+        private void DistanceBetweenPlanet()
         {
-            if (i == 0)
+            //distance entre les points
+            for (int i = 0; i < numberOfVertices; i++)
             {
-                float distance = vertices[i].DistancePlanet(vertices[i].x, vertices[i].y, vertices[i].z);
+                Debug.LogFormat("Distance between {0} et {1} = {2} ", i, i + 1, Distance(vertices[i], vertices[i + 1]));
 
-                Debug.Log("distance à i = 0  :" + distance);
+                if (Distance(vertices[i], vertices[i+1]) <= 50)
+                {
+                    Debug.LogFormat("collision entre {0} et {1}",i, i+1);
+                }
             }
-            else
-            {
-                float distance = vertices[i].DistancePlanet(vertices[i - 1].x, vertices[i - 1].y, vertices[i - 1].z);
-                Debug.Log("distance à i > 0 :" + distance);
-                Debug.Log("Position[0]:" + vertices[i].x);
-                Debug.Log("Position[0] de i-1:" + vertices[i - 1].x);
-                Debug.Log("i = " + i);
-                Debug.Log("i-1 =" + (i-1));
-            }
+        }
 
-        }*/
+        private float Distance(Vector3 Position, Vector3 Position2)
+        {
+            float x = Position.x - Position2.x;
+            float y = Position.y - Position2.y;
+            float z = Position.z - Position2.z;
+            //distance euclidienne entre 2 points de l'espace
+            return Mathf.Round(Mathf.Sqrt(Mathf.Pow(x, 2) + Mathf.Pow(y, 2) + Mathf.Pow(z, 2)));
+        }
                 
     }
 }

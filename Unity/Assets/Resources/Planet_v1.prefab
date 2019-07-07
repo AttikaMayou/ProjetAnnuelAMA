@@ -166,11 +166,21 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 15
       objectReference: {fileID: 0}
-    - target: {fileID: 5274179040384027933, guid: f2c53a056b39c3c46b762cd1292836b8,
+    - target: {fileID: 5371657569891794007, guid: f2c53a056b39c3c46b762cd1292836b8,
         type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: viewIdField
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5371657569891794007, guid: f2c53a056b39c3c46b762cd1292836b8,
+        type: 3}
+      propertyPath: InstantiationId
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 5371657569891794007, guid: f2c53a056b39c3c46b762cd1292836b8,
+        type: 3}
+      propertyPath: ObservedComponents.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 35cb2efc2dd1358448faf2c14e658555, type: 2}
+      objectReference: {fileID: 4313999894823724460}
     - target: {fileID: 5581744237729166429, guid: f2c53a056b39c3c46b762cd1292836b8,
         type: 3}
       propertyPath: PlanetTransform
@@ -186,26 +196,31 @@ PrefabInstance:
       propertyPath: AttractorScript
       value: 
       objectReference: {fileID: 4836596585296442693}
+    - target: {fileID: 5581744237729166429, guid: f2c53a056b39c3c46b762cd1292836b8,
+        type: 3}
+      propertyPath: planetTransform
+      value: 
+      objectReference: {fileID: 4798130816187304610}
+    - target: {fileID: 5581744237729166429, guid: f2c53a056b39c3c46b762cd1292836b8,
+        type: 3}
+      propertyPath: planetCollider
+      value: 
+      objectReference: {fileID: 2057911848619918077}
+    - target: {fileID: 5581744237729166429, guid: f2c53a056b39c3c46b762cd1292836b8,
+        type: 3}
+      propertyPath: attractorScript
+      value: 
+      objectReference: {fileID: 4836596585296442693}
+    - target: {fileID: 5274179040384027933, guid: f2c53a056b39c3c46b762cd1292836b8,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 35cb2efc2dd1358448faf2c14e658555, type: 2}
     - target: {fileID: 5240164197673119770, guid: f2c53a056b39c3c46b762cd1292836b8,
         type: 3}
       propertyPath: Exposer
       value: 
       objectReference: {fileID: 5103019992381567234}
-    - target: {fileID: 5371657569891794007, guid: f2c53a056b39c3c46b762cd1292836b8,
-        type: 3}
-      propertyPath: viewIdField
-      value: 28
-      objectReference: {fileID: 0}
-    - target: {fileID: 5371657569891794007, guid: f2c53a056b39c3c46b762cd1292836b8,
-        type: 3}
-      propertyPath: InstantiationId
-      value: 28
-      objectReference: {fileID: 0}
-    - target: {fileID: 5371657569891794007, guid: f2c53a056b39c3c46b762cd1292836b8,
-        type: 3}
-      propertyPath: ObservedComponents.Array.data[0]
-      value: 
-      objectReference: {fileID: 4313999894823724460}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2c53a056b39c3c46b762cd1292836b8, type: 3}
 --- !u!4 &4798130816187304610 stripped
