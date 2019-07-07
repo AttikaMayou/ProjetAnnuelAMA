@@ -69,19 +69,24 @@ namespace LastToTheGlobe.Scripts.Camera
             _myTr.rotation = playerExposer.CameraRotatorX.transform.rotation;
             position -= _myTr.rotation * _cameraOffsetOriginal;
             _myTr.position = position;
+
+            AvoidWall(playerExposer.CharacterTr.position, _myTr.position);
+            Debug.DrawLine(playerExposer.CharacterTr.position, _myTr.position);
+
         }
 
-        /*
-
-        private void AvoidWall(Vector3 fromObjet, ref Vector3 toTarget)
+        private void AvoidWall(Vector3 fromObjet, Vector3 camera)
         {
             RaycastHit wallHit = new RaycastHit();
+            Vector3 toTarget;
 
-            if(Physics.Linecast(fromObjet, toTarget, out wallHit))
+            toTarget = camera - fromObjet;
+
+            if (Physics.Raycast(fromObjet, toTarget, out wallHit))
             {
-                toTarget = new Vector3(wallHit.point.x, toTarget.y, wallHit.point.z);
+                _myTr.position = wallHit.point;
             }
-        }*/
+        }
     }
 
 

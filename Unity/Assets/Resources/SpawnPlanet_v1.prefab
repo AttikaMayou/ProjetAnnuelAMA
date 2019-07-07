@@ -1355,42 +1355,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1251, guid: c83770715bf346641832232e27c6c903, type: 3}
-      propertyPath: PlanetTransform
-      value: 
-      objectReference: {fileID: 2142864819}
-    - target: {fileID: 1251, guid: c83770715bf346641832232e27c6c903, type: 3}
-      propertyPath: PlanetCollider
-      value: 
-      objectReference: {fileID: 2142864231}
-    - target: {fileID: 1251, guid: c83770715bf346641832232e27c6c903, type: 3}
-      propertyPath: AttractorScript
-      value: 
-      objectReference: {fileID: 2142864148}
-    - target: {fileID: 1251, guid: c83770715bf346641832232e27c6c903, type: 3}
-      propertyPath: SpawnPosition
-      value: 
-      objectReference: {fileID: 2142864846}
-    - target: {fileID: 1253, guid: c83770715bf346641832232e27c6c903, type: 3}
-      propertyPath: Exposer
-      value: 
-      objectReference: {fileID: 2142864146}
-    - target: {fileID: 1253, guid: c83770715bf346641832232e27c6c903, type: 3}
-      propertyPath: photonView
-      value: 
-      objectReference: {fileID: 2142864149}
-    - target: {fileID: 1252, guid: c83770715bf346641832232e27c6c903, type: 3}
-      propertyPath: viewIdField
-      value: 36
+    - target: {fileID: 232, guid: c83770715bf346641832232e27c6c903, type: 3}
+      propertyPath: m_Name
+      value: SpawnPlanet_v1
       objectReference: {fileID: 0}
-    - target: {fileID: 1252, guid: c83770715bf346641832232e27c6c903, type: 3}
-      propertyPath: InstantiationId
-      value: 36
-      objectReference: {fileID: 0}
-    - target: {fileID: 1252, guid: c83770715bf346641832232e27c6c903, type: 3}
-      propertyPath: ObservedComponents.Array.data[0]
-      value: 
-      objectReference: {fileID: 2142864151}
     - target: {fileID: 578, guid: c83770715bf346641832232e27c6c903, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1435,6 +1403,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1251, guid: c83770715bf346641832232e27c6c903, type: 3}
+      propertyPath: PlanetTransform
+      value: 
+      objectReference: {fileID: 2142864819}
+    - target: {fileID: 1251, guid: c83770715bf346641832232e27c6c903, type: 3}
+      propertyPath: PlanetCollider
+      value: 
+      objectReference: {fileID: 2142864231}
+    - target: {fileID: 1251, guid: c83770715bf346641832232e27c6c903, type: 3}
+      propertyPath: AttractorScript
+      value: 
+      objectReference: {fileID: 2142864148}
+    - target: {fileID: 1251, guid: c83770715bf346641832232e27c6c903, type: 3}
+      propertyPath: SpawnPosition
+      value: 
+      objectReference: {fileID: 2142864846}
+    - target: {fileID: 1253, guid: c83770715bf346641832232e27c6c903, type: 3}
+      propertyPath: Exposer
+      value: 
+      objectReference: {fileID: 2142864146}
+    - target: {fileID: 1253, guid: c83770715bf346641832232e27c6c903, type: 3}
+      propertyPath: photonView
+      value: 
+      objectReference: {fileID: 2142864149}
+    - target: {fileID: 1252, guid: c83770715bf346641832232e27c6c903, type: 3}
+      propertyPath: viewIdField
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1252, guid: c83770715bf346641832232e27c6c903, type: 3}
+      propertyPath: InstantiationId
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 1252, guid: c83770715bf346641832232e27c6c903, type: 3}
+      propertyPath: ObservedComponents.Array.data[0]
+      value: 
+      objectReference: {fileID: 2142864151}
     - target: {fileID: 4709428734015150537, guid: c83770715bf346641832232e27c6c903,
         type: 3}
       propertyPath: m_RootOrder
@@ -1454,10 +1458,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 232, guid: c83770715bf346641832232e27c6c903, type: 3}
-      propertyPath: m_Name
-      value: SpawnPlanet_v1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c83770715bf346641832232e27c6c903, type: 3}
