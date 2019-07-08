@@ -1,66 +1,76 @@
-﻿using System;
-using System.Runtime.CompilerServices;
+﻿using Assets.LastToTheGlobe.Scripts.Management;
 using Photon.Pun;
 using Photon.Pun.UtilityScripts;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.Experimental.UIElements;
 
 //Auteur : Margot
 //Modification : Attika
 
-namespace LastToTheGlobe.Scripts.Network
+namespace Assets.LastToTheGlobe.Scripts.Network
 {
     public class OnlineIntentReceiver : AIntentReceiver
     {
-        public bool debug = true;
+        public static bool debug = true;
         
-        [SerializeField] private int playerIndex;
+        [SerializeField] private int _playerIndex;
 
-        [SerializeField] private PhotonView photonView;
+        [SerializeField] private PhotonView _photonView;
 
-        private float _dashTime = 1.0f;
+        private float _dashTime = 1.0f; 
         
         private void Update()
         {
-            if (PlayerNumbering.SortedPlayers.Length <= playerIndex ||
-                PlayerNumbering.SortedPlayers[playerIndex].ActorNumber != PhotonNetwork.LocalPlayer.ActorNumber)
+            if (PlayerNumbering.SortedPlayers.Length <= _playerIndex ||
+                PlayerNumbering.SortedPlayers[_playerIndex].ActorNumber != PhotonNetwork.LocalPlayer.ActorNumber)
             {
                 return;
             }
+
+            Cursor.lockState = CursorLockMode.Locked; 
             
-            forward = Input.GetAxisRaw("Vertical");
-            strafe = Input.GetAxisRaw("Horizontal");
-            rotationOnX = Input.GetAxis("Mouse X");
-            rotationOnY = Input.GetAxis("Mouse Y");
+            Forward = Input.GetAxisRaw("Vertical");
+            Strafe = Input.GetAxisRaw("Horizontal");
+            RotationOnX = Input.GetAxis("Mouse X");
+            RotationOnY = Input.GetAxis("Mouse Y");
 
             //TODO : check if the rotation updates relative to previous rotation
-            photonView.RPC("UpdateCameraRotation", RpcTarget.MasterClient, rotationOnX, rotationOnY);
+            _photonView.RPC("UpdateCameraRotation", RpcTarget.MasterClient, RotationOnX, RotationOnY);
             
             //Attack Intent
-            if (Input.GetMouseButton(0) && canShoot)
+            if (Input.GetMouseButton(0) && CanShoot)
             {
-                canShoot = false;
+                _photonView.RPC("CanShootRPC", RpcTarget.MasterClient, false);
+            }
+
+            if (!CanShoot)
+            {
+                LoadShotValue += Time.deltaTime;
+                if (Input.GetMouseButtonUp(0))
+                {
+                    _photonView.RPC(LoadShotValue >= GameVariablesScript.Instance.ShootLoadTime ? "LaunchLoadedBulletRPC" : "LaunchBulletRPC",
+                        RpcTarget.MasterClient);
+                    LoadShotValue = 0.0f;
+                }
             }
             
-            if (!canShoot)
+            /*if (!CanShoot)
             {
-                loadShotValue += Time.deltaTime;
-                if(loadShotValue >= 1.5f && Input.GetMouseButtonUp(0))
+                LoadShotValue += Time.deltaTime;
+                if(LoadShotValue >= 1.5f && Input.GetMouseButtonUp(0))
                 {
                     //shootLoaded = true;
                     photonView.RPC("LaunchLoadedBulletRPC", RpcTarget.MasterClient);
-                    loadShotValue = 0.0f;
+                    LoadShotValue = 0.0f;
                 }
 
                 if (Input.GetMouseButtonUp(0))
                 {
                     photonView.RPC("LaunchBulletRPC", RpcTarget.MasterClient);
                 }
-            }
+            }*/
             
             //Cooldown dash
-            if (!canDash)
+            if (!CanDash)
             {
                 var timer = 0.0f;
                 timer += Time.deltaTime;
@@ -72,346 +82,227 @@ namespace LastToTheGlobe.Scripts.Network
             }
             
             //Movement Intent
-            if (Input.GetKeyDown(KeyCode.Z))// && Math.Abs(forward) <  0.1f && Math.Abs(strafe) < 0.1f)
+            if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.S) 
+                                            || Input.GetKeyDown(KeyCode.Q) 
+                                            || Input.GetKeyDown(KeyCode.D))
             {
-                photonView.RPC("MoveForwardRPC", RpcTarget.MasterClient, true, forward, strafe);
+                _photonView.RPC("MoveRPC", RpcTarget.MasterClient, true, Forward, Strafe);
             }
             
-            if (Input.GetKeyUp(KeyCode.Z))
+            if (Input.GetKeyUp(KeyCode.Z) || Input.GetKeyUp(KeyCode.S) 
+                                          || Input.GetKeyUp(KeyCode.Q) 
+                                          || Input.GetKeyUp(KeyCode.D))
             {
-                photonView.RPC("MoveForwardRPC", RpcTarget.MasterClient, false, 0, 0);
-            }
-
-            if (Input.GetKeyDown(KeyCode.S))// && Math.Abs(forward) <  0.1f && Math.Abs(strafe) < 0.1f)
-            {
-                photonView.RPC("MoveBackRPC", RpcTarget.MasterClient, true, forward, strafe);
-            }
-
-            if (Input.GetKeyUp(KeyCode.S))
-            {
-                photonView.RPC("MoveBackRPC", RpcTarget.MasterClient, false, 0, 0);
-            }
-
-            if (Input.GetKeyDown(KeyCode.Q))// && Math.Abs(forward) <  0.1f && Math.Abs(strafe) < 0.1f)
-            {
-                photonView.RPC("MoveLeftRPC", RpcTarget.MasterClient, true, forward, strafe);
-            }
-
-            if (Input.GetKeyUp(KeyCode.Q))
-            {
-                photonView.RPC("MoveLeftRPC", RpcTarget.MasterClient, false, 0, 0);
-            }
-
-            if (Input.GetKeyDown(KeyCode.D))// && Math.Abs(forward) <  0.1f && Math.Abs(strafe) < 0.1f)
-            {
-                photonView.RPC("MoveRightRPC", RpcTarget.MasterClient, true, forward, strafe);
-            }
-
-            if (Input.GetKeyUp(KeyCode.D))
-            {
-                photonView.RPC("MoveRightRPC", RpcTarget.MasterClient, false, 0, 0);
+                _photonView.RPC("MoveRPC", RpcTarget.MasterClient, false, 0, 0);
             }
             
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
-                speed = runSpeed;
-                photonView.RPC("RunRPC", RpcTarget.MasterClient, true);
+                Speed = GameVariablesScript.Instance.RunSpeed;
+                _photonView.RPC("RunRPC", RpcTarget.MasterClient, true);
             }
 
             if (Input.GetKeyUp(KeyCode.LeftShift))
             {
-                speed = walkSpeed;
-                photonView.RPC("RunRPC", RpcTarget.MasterClient, false);
+                Speed = GameVariablesScript.Instance.WalkSpeed;
+                _photonView.RPC("RunRPC", RpcTarget.MasterClient, false);
             }
 
-            if (Input.GetKeyDown(KeyCode.LeftAlt) && canDash)
+            if (Input.GetKeyDown(KeyCode.LeftAlt) && CanDash)
             {
-                speed = dashSpeed;
-                photonView.RPC("DashRPC", RpcTarget.MasterClient);
+                Speed = GameVariablesScript.Instance.DashSpeed;
+                _photonView.RPC("DashRPC", RpcTarget.MasterClient);
                 //canDash = false;
             }
 
-            if (Input.GetKeyUp(KeyCode.Space) && canJump)
-            {
-                photonView.RPC("JumpRPC", RpcTarget.MasterClient);
-            }
+//            if (Input.GetKeyUp(KeyCode.Space) && CanJump)
+//            {
+//                photonView.RPC("JumpRPC", RpcTarget.MasterClient);
+//            }
 
             if (Input.GetKeyDown(KeyCode.R))
             {
-                photonView.RPC("UseBumpRPC", RpcTarget.MasterClient);
+                _photonView.RPC("UseBumpRPC", RpcTarget.MasterClient);
             }
             
             //Interaction Intent
             if (Input.GetKeyDown(KeyCode.E))
             {
-                photonView.RPC("InteractRPC", RpcTarget.MasterClient);
+                _photonView.RPC("InteractRPC", RpcTarget.MasterClient);
             }
             //TODO : Add double jump
         }
 
-        private void OnCollisionEnter(Collision other)
-        {
-            if (other.gameObject.CompareTag("Planet"))
-            {
-                canJump = true;
-            }
-        }
+//        private void OnCollisionEnter(Collision other)
+//        {
+//            if (other.gameObject.CompareTag("Planet"))
+//            {
+//                CanJump = true;
+//            }
+//        }
 
         #region RPC
 
         [PunRPC]
         void UpdateCameraRotation(float rotationX, float rotationY)
         {
-            if (PhotonNetwork.IsMasterClient)
-            {
-                if (debug)
-                {
-                    Debug.Log("I get the message : UpdateRotation on this avatar : " + playerIndex);
-                    Debug.Log("X rotation : " + rotationX + " and Y : " + rotationY);
-                }
-                rotationOnX = rotationX;
-                rotationOnY = rotationY;
-            }
+            if (!PhotonNetwork.IsMasterClient) return;
+//            if (debug)
+//            {
+//                Debug.LogFormat("[IntentReceiver] I get the message : UpdateRotation on this avatar : {0}",
+//                    playerIndex);
+//                Debug.LogFormat("[IntentReceiver] X rotation : {0} and Y : {0}", 
+//                    rotationX, rotationY);
+//            }
+            RotationOnX = rotationX;
+            RotationOnY = rotationY;
         }
         
         [PunRPC]
         void UpdateCameraRotation(int rotationX, int rotationY)
         {
-            if (PhotonNetwork.IsMasterClient)
-            {
-                if (debug)
-                {
-                    Debug.Log("I get the message : UpdateRotation on this avatar : " + playerIndex);
-                    Debug.Log("X rotation : " + rotationX + " and Y : " + rotationY);
-                }
-                rotationOnX = rotationX;
-                rotationOnY = rotationY;
-            }
-        }
-        
-        [PunRPC]
-        void MoveLeftRPC(bool intent, int forwardInput, int strafeInput)
-        {
-            if (PhotonNetwork.IsMasterClient)
-            {
-                speed = walkSpeed;
-                if (debug)
-                {
-                    Debug.Log("I get the message : Move Left on this avatar : " + playerIndex);
-                    Debug.Log("Strafe value : " + strafeInput + " ; Forward value : " + forwardInput);
-                }
-                MoveLeft = intent;
-                forward = forwardInput;
-                strafe = strafeInput;
-            }
-        }
-        
-        [PunRPC]
-        void MoveLeftRPC(bool intent, float forwardInput, float strafeInput)
-        {
-            if (PhotonNetwork.IsMasterClient)
-            {
-                speed = walkSpeed;
-                if (debug)
-                {
-                    Debug.Log("I get the message : Move Left on this avatar : " + playerIndex);
-                    Debug.Log("Strafe value : " + strafeInput + " ; Forward value : " + forwardInput);
-                }
-                MoveLeft = intent;
-                forward = forwardInput;
-                strafe = strafeInput;
-            }
+            if (!PhotonNetwork.IsMasterClient) return;
+//            if (debug)
+//            {
+//                Debug.LogFormat("[IntentReceiver] I get the message : UpdateRotation on this avatar : {0}",
+//                    playerIndex);
+//                Debug.LogFormat("[IntentReceiver] X rotation : {0} and Y : {0}", 
+//                    rotationX, rotationY);
+//            }
+            RotationOnX = rotationX;
+            RotationOnY = rotationY;
         }
 
         [PunRPC]
-        void MoveBackRPC(bool intent, int forwardInput, int strafeInput)
+        void MoveRPC(bool intent, int forwardInput, int strafeInput)
         {
-            if (PhotonNetwork.IsMasterClient)
-            {
-                speed = walkSpeed;
-                if (debug)
-                {
-                    Debug.Log("I get the message : Move Back on this avatar : " + playerIndex);
-                    Debug.Log("Strafe value : " + strafeInput + " ; Forward value : " + forwardInput);
-                }
-                MoveBack = intent;
-                forward = forwardInput;
-                strafe = strafeInput;
-            }
+            if (!PhotonNetwork.IsMasterClient) return;
+            Speed = GameVariablesScript.Instance.WalkSpeed;
+//            if (debug)
+//            {
+//                Debug.LogFormat("[IntentReceiver] I get the message : Move on this avatar : {0}", 
+//                    playerIndex);
+//                Debug.LogFormat("[IntentReceiver] Strafe value : {0}; Forward value : {1}", 
+//                    strafeInput, forwardInput);
+//            }
+            Move = intent;
+            Forward = forwardInput;
+            Strafe = strafeInput;
         }
         
         [PunRPC]
-        void MoveBackRPC(bool intent, float forwardInput, float strafeInput)
+        void MoveRPC(bool intent, float forwardInput, float strafeInput)
         {
-            if (PhotonNetwork.IsMasterClient)
-            {
-                speed = walkSpeed;
-                if (debug)
-                {
-                    Debug.Log("I get the message : Move Back on this avatar : " + playerIndex);
-                    Debug.Log("Strafe value : " + strafeInput + " ; Forward value : " + forwardInput);
-                }
-                MoveBack = intent;
-                forward = forwardInput;
-                strafe = strafeInput;
-            }
+            if (!PhotonNetwork.IsMasterClient) return;
+            Speed = GameVariablesScript.Instance.WalkSpeed;
+//            if (debug)
+//            {
+//                Debug.LogFormat("[IntentReceiver] I get the message : Move on this avatar : {0}",
+//                    playerIndex);
+//                Debug.LogFormat("[IntentReceiver] Strafe value : {0}; Forward value : {1}", 
+//                    strafeInput, forwardInput);
+//            }
+            Move = intent;
+            Forward = forwardInput;
+            Strafe = strafeInput;
         }
 
-        [PunRPC]
-        void MoveRightRPC(bool intent, int forwardInput, int strafeInput)
-        {
-            if (PhotonNetwork.IsMasterClient)
-            {
-                speed = walkSpeed;
-                if (debug)
-                {
-                    Debug.Log("I get the message : Move Right on this avatar : " + playerIndex);
-                    Debug.Log("Strafe value : " + strafeInput + " ; Forward value : " + forwardInput);
-                }
-                MoveRight = intent;
-                forward = forwardInput;
-                strafe = strafeInput;
-            }
-        }
-        
-        [PunRPC]
-        void MoveRightRPC(bool intent, float forwardInput, float strafeInput)
-        {
-            if (PhotonNetwork.IsMasterClient)
-            {
-                speed = walkSpeed;
-                if (debug)
-                {
-                    Debug.Log("I get the message : Move Right on this avatar : " + playerIndex);
-                    Debug.Log("Strafe value : " + strafeInput + " ; Forward value : " + forwardInput);
-                }
-                MoveRight = intent;
-                forward = forwardInput;
-                strafe = strafeInput;
-            }
-        }
-
-        [PunRPC]
-        void MoveForwardRPC(bool intent, int forwardInput, int strafeInput)
-        {
-            if (PhotonNetwork.IsMasterClient)
-            {
-                speed = walkSpeed;
-                if (debug)
-                {
-                    Debug.Log("I get the message : Move Forward on this avatar : " + playerIndex);
-                    Debug.Log("Strafe value : " + strafeInput + " ; Forward value : " + forwardInput);
-                }
-                MoveForward = intent;
-                forward = forwardInput;
-                strafe = strafeInput;
-            }
-        }
-        
-        [PunRPC]
-        void MoveForwardRPC(bool intent, float forwardInput, float strafeInput)
-        {
-            if (PhotonNetwork.IsMasterClient)
-            {
-                speed = walkSpeed;
-                if (debug)
-                {
-                    Debug.Log("I get the message : Move Forward on this avatar : " + playerIndex);
-                    Debug.Log("Strafe value : " + strafeInput + " ; Forward value : " + forwardInput);
-                }
-                MoveForward = intent;
-                forward = forwardInput;
-                strafe = strafeInput;
-            }
-        }
-
-        [PunRPC]
+        /*[PunRPC]
         void JumpRPC()
         {
             if (PhotonNetwork.IsMasterClient)
-            {
+            {/*
                 if (debug)
                 {
                     Debug.Log("I get the message : Jump on this avatar : " + playerIndex);
                 }
-                canJump = false;
+                CanJump = false;
                 Jump = true;
             }
-        }
+        }*/
 
         [PunRPC]
         void DashRPC()
         {
-            if (PhotonNetwork.IsMasterClient)
+            if (!PhotonNetwork.IsMasterClient) return;
+            if (debug)
             {
-                if (debug)
-                {
-                    Debug.Log("I get the message : Dash on this avatar : " + playerIndex);
-                }
-                Dash = true;
+                Debug.LogFormat("[IntentReceiver] I get the message : Dash on this avatar : {0}",
+                    _playerIndex);
             }
+            Dash = true;
         }
 
         [PunRPC]
         void RunRPC(bool intent)
         {
-            if (PhotonNetwork.IsMasterClient)
-            { 
-                if (debug)
-                {
-                    Debug.Log("I get the message : Run on this avatar : " + playerIndex);
-                }
-                Run = intent;
+            if (!PhotonNetwork.IsMasterClient) return;
+            
+            if (debug)
+            {
+                Debug.LogFormat("[IntentReceiver] I get the message : Run on this avatar : {0}",
+                    _playerIndex);
             }
+            Run = intent;
         }
 
         [PunRPC]
+        void CanShootRPC(bool intent)
+        {
+            if (!PhotonNetwork.IsMasterClient) return;
+
+            if (debug)
+            {
+                Debug.LogFormat("[IntentReceiver] I get the message : CanShoot on this avatar : {0} passed to {1}",
+                    _playerIndex, intent);
+            }
+
+            CanShoot = intent;
+        }
+        
+        [PunRPC]
         void LaunchBulletRPC()
         {
-            if (PhotonNetwork.IsMasterClient)
+            if (!PhotonNetwork.IsMasterClient) return;
+            
+            if (debug)
             {
-                if (debug)
-                {
-                    Debug.Log("I get the message : Shoot on this avatar : " + playerIndex);
-                }
-
-                canShoot = false;
-                Shoot = true;
+                Debug.LogFormat("[IntentReceiver] I get the message : Shoot on this avatar : {0}",
+                    _playerIndex);
             }
+            Shoot = true;
         }
 
         [PunRPC]
         void LaunchLoadedBulletRPC()
         {
-            if (PhotonNetwork.IsMasterClient)
+            if (!PhotonNetwork.IsMasterClient) return;
+            
+            if (debug)
             {
-                if (debug)
-                {
-                    Debug.Log("I get the message : Shoot Loaded on this avatar : " + playerIndex);
-                }
-
-                canShoot = false;
-                ShootLoaded = true;
+                Debug.LogFormat("[IntentReceiver] I get the message : Shoot Loaded on this avatar : {0}",
+                    _playerIndex);
             }
+            ShootLoaded = true;
         }
 
         [PunRPC]
         void UseBumpRPC()
         {
-            if (PhotonNetwork.IsMasterClient)
+            if (!PhotonNetwork.IsMasterClient) return;
+            if (debug)
             {
-                if (debug)
-                {
-                    Debug.Log("I get the message : Bump on this avatar : " + playerIndex);
-                }
-                Bump = true;
+                Debug.LogFormat("[IntentReceiver] I get the message : Bump on this avatar : {0}",
+                    _playerIndex);
             }
+            Bump = true;
         }
 
         [PunRPC]
         void InteractRPC()
         {
-            if (PhotonNetwork.IsMasterClient)
+            if (!PhotonNetwork.IsMasterClient) return;
+            if (debug)
             {
                 if (debug)
                 {
@@ -422,6 +313,7 @@ namespace LastToTheGlobe.Scripts.Network
                 
                 print(Interact);
             }
+            Interact = true;
         }
         
         #endregion

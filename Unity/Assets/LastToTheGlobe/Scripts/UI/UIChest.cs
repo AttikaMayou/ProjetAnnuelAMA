@@ -1,8 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using LastToTheGlobe.Scripts.Avatar;
-using LastToTheGlobe.Scripts.Management;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,27 +12,22 @@ namespace LastToTheGlobe.Scripts.Inventory
     {
         private bool openChest = false;
         private bool canOpenChest = false;
-        [SerializeField] public Collider selfCollider;
-        [SerializeField] public ColliderDirectoryScript colliderDirectoryScript;
+        [SerializeField] public Canvas pressE;
+        [SerializeField] public Canvas playerInventory;
+        [SerializeField] public Canvas chestInventory;
         [HideInInspector] public bool playerOpenChest = false;
-        private List<string> _aroundChest = new List<string>();
         
         void Start()
         {
+            pressE.gameObject.SetActive(false);
+            playerInventory.gameObject.SetActive(false);
+            chestInventory.gameObject.SetActive(false);
             openChest = false;
             canOpenChest = false;
         }
 
         void Update()
         {
-            foreach (var var in _aroundChest)
-            {
-                Debug.Log(var);
-            }
-            if (_aroundChest.Contains("Player"))
-            {
-                Debug.Log("There is a player !");
-            }
 
             if (playerOpenChest)
             {
@@ -54,40 +46,37 @@ namespace LastToTheGlobe.Scripts.Inventory
             }
         }
 
-        private void OnTriggerEnter(Collider other)
+        public void OnResponseCloseToChest()
         {
             
-            Debug.Log(other.gameObject.tag);
+        }
+        
+        void OnCollisionEnter(Collision other)
+        {
             if (other.gameObject.CompareTag("Player"))
             {
-                _aroundChest.Add(other.gameObject.tag);
-                CharacterExposerScript characterExposerScript = colliderDirectoryScript.GetCharacterExposer(other);
-                characterExposerScript.Interaction.SetActive(true);
-                characterExposerScript.avatarsController._canOpenChest = true;
-                //characterExposerScript.avatarsController.PlayerInventory.Activation();
-                //characterExposerScript.avatarsController.Interaction.Activation();
-                MeshRenderer meshRend = GetComponent<MeshRenderer>();
-                meshRend.material.color = Color.green;
+                other.gameObject.SendMessage("CloseToChest", this);
+                //MeshRenderer meshRend = GetComponent<MeshRenderer>();
+                //meshRend.material.color = Color.green;
                 //Affiche touche E
                 canOpenChest = true;
                 
             }
+                
         }
-
-        private void OnTriggerExit(Collider other)
+        
+        void OnCollisionExit(Collision other)
         {
-            
             if (other.gameObject.CompareTag("Player"))
             {
-                CharacterExposerScript characterExposerScript = colliderDirectoryScript.GetCharacterExposer(other);
-                characterExposerScript.Interaction.SetActive(false);
-                characterExposerScript.avatarsController._canOpenChest = false;
-                MeshRenderer meshRend = GetComponent<MeshRenderer>();
-                meshRend.material.color = Color.magenta;
+                other.gameObject.SendMessage("AwayFromChest", this);
+                //MeshRenderer meshRend = GetComponent<MeshRenderer>();
+                //meshRend.material.color = Color.magenta;
                 canOpenChest = false;
-
+                pressE.gameObject.SetActive(false);
                 
             }
+            
         }
     }
 }

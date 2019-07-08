@@ -1,4 +1,5 @@
-﻿using LastToTheGlobe.Scripts.Avatar;
+﻿using Assets.LastToTheGlobe.Scripts.Avatar;
+using LastToTheGlobe.Scripts.Avatar;
 using LastToTheGlobe.Scripts.Singleton;
 using UnityEngine;
 
@@ -47,7 +48,7 @@ namespace LastToTheGlobe.Scripts.Camera
             _cameraOffsetOriginal = position - new Vector3(position.x, y, z);
             
             //Initializing rotation
-            _myTransform.rotation = targetPlayer.transform.rotation * playerExposer.cameraRotatorX.transform.rotation;
+            _myTransform.rotation = targetPlayer.transform.rotation * playerExposer.CameraRotatorX.transform.rotation;
         }
 
         private void FixedUpdate()
@@ -65,7 +66,7 @@ namespace LastToTheGlobe.Scripts.Camera
             //Update the player's position each frame
             var position = targetPlayer.transform.position;
             _myTransform.position = position;
-            _myTransform.rotation = targetPlayer.transform.rotation * playerExposer.cameraRotatorX.transform.rotation;
+            _myTransform.rotation = targetPlayer.transform.rotation * playerExposer.CameraRotatorX.transform.rotation;
             _myTransform.position -= _myTransform.rotation * _cameraOffsetOriginal; 
         }
 

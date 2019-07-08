@@ -55,8 +55,8 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 769}
-  viewIdField: 2
-  InstantiationId: 2
+  viewIdField: 81
+  InstantiationId: 81
   isRuntimeInstantiated: 0
 --- !u!114 &769
 MonoBehaviour:
@@ -397,7 +397,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orbTransform: {fileID: 360}
-  orbRb: {fileID: 0}
   playerExposer: {fileID: 767}
   speed: 1
 --- !u!114 &806
@@ -419,8 +418,8 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 801}
-  viewIdField: 7
-  InstantiationId: 7
+  viewIdField: 82
+  InstantiationId: 82
   isRuntimeInstantiated: 0
 --- !u!114 &801
 MonoBehaviour:
@@ -847,6 +846,9 @@ MonoBehaviour:
   selfPlayerAttractedScript: {fileID: 766}
   selfOrbAttractedScript: {fileID: 763}
   characterCollider: {fileID: 736}
+  inventoryScript: {fileID: 0}
+  _movedir: {x: 0, y: 0, z: 0}
+  dashSpeed: 30
 --- !u!114 &1893538762791976952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -873,7 +875,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 249b15e905980bf468684913a564571f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attractor: {fileID: 0}
+  Attractor: {fileID: 0}
   attractedRb: {fileID: 721}
   selfGravity: -10
   isGrounded: 0
@@ -889,7 +891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30668e97013b0d54e87f126ec814219c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attractor: {fileID: 0}
+  Attractor: {fileID: 0}
   attractedScript: {fileID: 766}
   playerExposer: {fileID: 767}
   myCamera: {fileID: 0}
@@ -900,11 +902,12 @@ MonoBehaviour:
   jumpSpeed: 5
   dashSpeed: 20
   orb: {fileID: 134}
+  _om: {fileID: 0}
   orbSpawned: {fileID: 134}
   offensiveOrbInput: 97
   jumpInput: 32
   runInput: 304
-  dashInput: 308
+  skillInput: 0
 --- !u!114 &797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -924,8 +927,8 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 798}
-  viewIdField: 9
-  InstantiationId: 9
+  viewIdField: 84
+  InstantiationId: 84
   isRuntimeInstantiated: 0
 --- !u!114 &798
 MonoBehaviour:
@@ -1433,12 +1436,12 @@ PrefabInstance:
     - target: {fileID: 5107946470935551180, guid: 501d9991fbb3e6b45b291e93d1d426dc,
         type: 3}
       propertyPath: viewIdField
-      value: 8
+      value: 83
       objectReference: {fileID: 0}
     - target: {fileID: 5107946470935551180, guid: 501d9991fbb3e6b45b291e93d1d426dc,
         type: 3}
       propertyPath: InstantiationId
-      value: 8
+      value: 83
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 501d9991fbb3e6b45b291e93d1d426dc, type: 3}

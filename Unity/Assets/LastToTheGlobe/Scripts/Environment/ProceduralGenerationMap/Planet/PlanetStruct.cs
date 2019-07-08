@@ -16,11 +16,15 @@ public enum AssetType
     Rock
 }
 
-public struct PlanetStruct
+class PlanetClass
 {
+    public int planetID;
+
     //position et radius de la planète
-    public Vertex3 planetLocation;
+    public Vector3 planetLocation;
     public float radiusPlanet;
+
+    public GameObject gameObjectPlanet;
 
     //type de planète
     public PlanetType planetType;
@@ -28,6 +32,7 @@ public struct PlanetStruct
 
     // assets sur cette planète
     public AssetStruct[] planetAssets;
+    //TODO : ajout fonction set scale + fonction set material
 
 }
 

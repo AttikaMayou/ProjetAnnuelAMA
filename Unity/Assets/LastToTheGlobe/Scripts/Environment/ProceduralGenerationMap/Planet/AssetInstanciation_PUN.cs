@@ -11,10 +11,10 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
 {
     public class AssetInstanciation_PUN : MonoBehaviour
     {
+        public int type;
+
         [SerializeField]
         private GameObject planet;
-        [SerializeField]
-        private PlanetFeature_PUN planetFt;
 
         [SerializeField]
         private List<GameObject> basicTrees;
@@ -42,13 +42,13 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
         private float _randomScaleTree;
         private float _randomScaleRock;
 
-        private void Start()
+        public void SpawnAssets()
         {
             var planetPosition = gameObject.transform.position;
             _numberObjectMax = (int)Random.Range(1, 200);
             _numberTreesMax = (int)Random.Range(0, 50);
 
-            switch (planetFt.myType)
+            switch ((PlanetType) type)
             {
                 case PlanetType.Frozen:
                     _listTrees = frozenTrees;
@@ -76,7 +76,7 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
                     _randomScaleTree = Random.Range(0.05f, 0.15f);
 
                     var spawnPosition = Random.onUnitSphere * ((planet.transform.localScale.x / 2) + _listTrees[0].transform.localScale.y - 0.02f) + planet.transform.position;
-                    var newTree = Instantiate(_listTrees[GetRandomTree()], spawnPosition, Quaternion.identity) as GameObject;
+                    var newTree = PhotonNetwork.Instantiate(_listTrees[GetRandomTree()].name, spawnPosition, Quaternion.identity) as GameObject;
 
                     newTree.transform.LookAt(planetPosition);
                     newTree.transform.localScale = new Vector3(_randomScaleTree, _randomScaleTree, _randomScaleTree);
@@ -91,7 +91,7 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
                 _randomScaleRock = Random.Range(0.02f, 0.06f);
 
                 var spawnPosition = Random.onUnitSphere * ((planet.transform.localScale.x / 2) + _listRock[0].transform.localScale.y - 0.05f) + planet.transform.position;
-                var newRock = Instantiate(_listRock[GetRandomRock()], spawnPosition, Quaternion.identity) as GameObject;
+                var newRock = PhotonNetwork.Instantiate(_listRock[GetRandomRock()].name, spawnPosition, Quaternion.identity) as GameObject;
 
                 newRock.transform.LookAt(planetPosition);
                 newRock.transform.localScale = new Vector3(_randomScaleRock, _randomScaleRock, _randomScaleRock);
@@ -102,7 +102,7 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
 
         private int GetRandomTree()
         {
-            switch (planetFt.myType)
+            switch ((PlanetType)type)
             {
                 case PlanetType.Frozen:
                     return (int)Random.Range(0, frozenTrees.Count - 1);
@@ -119,7 +119,7 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
 
         private int GetRandomRock()
         {
-            switch (planetFt.myType)
+            switch ((PlanetType)type)
             {
                 case PlanetType.Frozen:
                     return (int)Random.Range(0, frozenRock.Count - 1);

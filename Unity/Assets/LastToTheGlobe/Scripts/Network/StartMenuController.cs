@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Globalization;
-using LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi;
 using LastToTheGlobe.Scripts.UI;
 using Photon.Pun;
 using Photon.Pun.UtilityScripts;
@@ -14,10 +12,12 @@ using UnityEngine.UI;
 //Auteur : Attika
 //Modification : Margot
 
-namespace LastToTheGlobe.Scripts.Network
+namespace Assets.LastToTheGlobe.Scripts.Network
 {
     public class StartMenuController : MonoBehaviourPunCallbacks
     {
+        public bool debug = true;
+        
         #region Private Variables
 
         [Header("MainMenu Objects")] 
@@ -135,6 +135,7 @@ namespace LastToTheGlobe.Scripts.Network
 
         private IEnumerator InvokePlayerJoinedMethod(int actorNumber)
         {
+            if(debug) Debug.Log("[StartMenuController] InvokePlayerJoinedMethod IEnumerator called");
             yield return new WaitForSeconds(1.0f);
 
             var i = 0;
@@ -147,12 +148,16 @@ namespace LastToTheGlobe.Scripts.Network
             }
             
             PlayerJoined?.Invoke(i);
+            if(debug) Debug.Log("[StartMenuController] PlayerJoined invoked");
             SetCamera?.Invoke(i);
+            if(debug) Debug.Log("[StartMenuController] SetCamera invoked");
             GameCanStart?.Invoke();
         }
 
         private IEnumerator InvokeRoomJoinedMethod()
         {
+            //This is the actual method called in the connection process
+            if(debug) Debug.Log("[StartMenuController] InvokeRoomJoinedMethod IEnumerator called");
             yield return new WaitForSeconds(1.0f);
             var i = 0;
             for (; i < PlayerNumbering.SortedPlayers.Length; i++)
@@ -171,7 +176,9 @@ namespace LastToTheGlobe.Scripts.Network
                 PlayerJoined?.Invoke(i);
                 GameCanStart?.Invoke();
             }
+            if(debug) Debug.Log("[StartMenuController] PlayerJoined invoked");
             SetCamera?.Invoke(i);
+            if(debug) Debug.Log("[StartMenuController] SetCamera invoked");
         }
         
         #endregion
@@ -228,7 +235,7 @@ namespace LastToTheGlobe.Scripts.Network
 
         public override void OnJoinRoomFailed(short returnCode, string message)
         {
-            Debug.LogError("OnJoinRoomFailed() was called by PUN. \nCreate a new room.");
+            Debug.LogError("[StartMenuController] OnJoinRoomFailed() was called by PUN. \nCreate a new room.");
             PhotonNetwork.CreateRoom(null, new RoomOptions()
             {
                 MaxPlayers = (byte) maxPlayersPerRoom

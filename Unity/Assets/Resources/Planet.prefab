@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &541
+--- !u!1 &239
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,18 +8,16 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 880}
-  - component: {fileID: 1156}
-  - component: {fileID: 1019}
-  - component: {fileID: 1200}
-  - component: {fileID: 1201}
-  - component: {fileID: 1336}
-  - component: {fileID: 1337}
-  - component: {fileID: 1335}
-  - component: {fileID: 1334}
-  - component: {fileID: 1326}
-  - component: {fileID: 1324}
-  - component: {fileID: 1327}
+  - component: {fileID: 582}
+  - component: {fileID: 1043}
+  - component: {fileID: 909}
+  - component: {fileID: 1177}
+  - component: {fileID: 1178}
+  - component: {fileID: 1263}
+  - component: {fileID: 1262}
+  - component: {fileID: 1261}
+  - component: {fileID: 1260}
+  - component: {fileID: 1265}
   m_Layer: 0
   m_Name: Planet
   m_TagString: Planet
@@ -27,13 +25,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &880
+--- !u!4 &582
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 541}
+  m_GameObject: {fileID: 239}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -95.81063, y: 82.3881, z: -363.6667}
   m_LocalScale: {x: 21, y: 21, z: 21}
@@ -41,21 +39,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &1156
+--- !u!33 &1043
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 541}
+  m_GameObject: {fileID: 239}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &1019
+--- !u!23 &909
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 541}
+  m_GameObject: {fileID: 239}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -86,150 +84,103 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &1200
+--- !u!135 &1177
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 541}
+  m_GameObject: {fileID: 239}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.8619496
   m_Center: {x: 0, y: -0.022469567, z: -0.006162008}
---- !u!135 &1201
+--- !u!135 &1178
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 541}
+  m_GameObject: {fileID: 239}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1336
+--- !u!114 &1263
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 541}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a5bd6bd42ddbd2419549c2a53b27916, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  planet: {fileID: 541}
-  environmentController: {fileID: 0}
-  myType: 0
---- !u!114 &1337
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 541}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 239f1fc46b7f51d4196d7e4d526d9182, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  planet: {fileID: 541}
-  planetFt: {fileID: 1336}
-  basicTrees:
-  - {fileID: 100002, guid: e395a9683976cad4a8026fc75262df60, type: 3}
-  - {fileID: 100002, guid: 316195a121f1e3d4d86fc20bc4d2efb0, type: 3}
-  - {fileID: 100002, guid: e35658e14eca4104cbfdadd9b7b91e57, type: 3}
-  - {fileID: 100002, guid: e9617eb9a3d7643478771e5d0f1d64f7, type: 3}
-  basicRock:
-  - {fileID: 100002, guid: bef5520269dc9224a843b7739af6bae4, type: 3}
-  - {fileID: 100002, guid: 6751c9dd76d5c4349a3e18279fe976b5, type: 3}
-  - {fileID: 100002, guid: b9e171cb2798e68449d998d741637915, type: 3}
-  - {fileID: 100002, guid: 5557fc2222dad454dade9623865f0837, type: 3}
-  - {fileID: 100002, guid: 45b3ff8bb6c7e60449fc034075db1a3e, type: 3}
-  - {fileID: 100002, guid: 4e576e625ab8c5c4682891005ea13fe6, type: 3}
-  frozenTrees:
-  - {fileID: 100002, guid: d112be487ad492f4986d1294f631481a, type: 3}
-  - {fileID: 100002, guid: 9d05eb18e7440e54f866c6748c300369, type: 3}
-  frozenRock:
-  - {fileID: 100002, guid: ab8a2617628f87543b49b960f810628c, type: 3}
-  - {fileID: 100002, guid: c11b710527429f744ab0304135c898b9, type: 3}
-  - {fileID: 100002, guid: 85e7ad73de50348409267db0a10a561a, type: 3}
-  - {fileID: 100002, guid: 37a9f11da876ab549a782670457dc55a, type: 3}
-  - {fileID: 100002, guid: 987bc6907aa38a04e92611bb95b51669, type: 3}
-  - {fileID: 100002, guid: 28d548ec17754a041be5d4eaaa4f314f, type: 3}
-  - {fileID: 100002, guid: bd921404e51fb744f903bc79b0f2d03f, type: 3}
-  - {fileID: 100002, guid: c587a0b47cbfe774bba3b579a20c5289, type: 3}
-  desertTrees:
-  - {fileID: 100002, guid: 2cae1b5f170f1b846996d17bff1d8aae, type: 3}
-  desertRock:
-  - {fileID: 100002, guid: 3e5faf235fd10f44c9e169ba8b8ca094, type: 3}
-  - {fileID: 100002, guid: 328e601ad2090514094df46da4588eab, type: 3}
-  - {fileID: 100002, guid: 69913ea94ef05034aab52a77f897bce6, type: 3}
-  - {fileID: 100002, guid: 3108d454170f1eb4ab8f2cac89788ae3, type: 3}
-  - {fileID: 100002, guid: d161bde20f19f2240b94f4057008a6bc, type: 3}
-  - {fileID: 100002, guid: 7acb702f0d858b547942f61eb90e1898, type: 3}
-  - {fileID: 100002, guid: 417d7efe09660e44a8d36b78dc776bf5, type: 3}
-  - {fileID: 100002, guid: 1175087b9ddbd4a46982b68c732dab1b, type: 3}
---- !u!114 &1335
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 541}
-  m_Enabled: 1
+  m_GameObject: {fileID: 239}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d99268119346174478b5e1aa299e59cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tremplin: {fileID: 1963491872576424134, guid: bf62e091e3a648e449f1ae21a25c6606,
     type: 3}
+<<<<<<< HEAD
   chest: {fileID: 0}
   planet: {fileID: 541}
   _chestDictionnary: {fileID: 0}
 --- !u!114 &1334
+=======
+  chest: {fileID: 1500373273569727166, guid: ceff46e9b8c61b6468aa9db0b04c7541, type: 3}
+  planet: {fileID: 239}
+--- !u!114 &1262
+>>>>>>> master
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 541}
+  m_GameObject: {fileID: 239}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 917c2123bde88734f9ca74bda0e6f01f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: 1
+  debug: 0
+  Exposer: {fileID: 1261}
   speedRotation: 10
+<<<<<<< HEAD
   dirForce: {x: 0, y: 0, z: 0}
   photonView: {fileID: 0}
 --- !u!114 &1326
+=======
+  DirForce: {x: 0, y: 0, z: 0}
+  photonView: {fileID: 1260}
+--- !u!114 &1261
+>>>>>>> master
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 541}
+  m_GameObject: {fileID: 239}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 22d56e4cfea04bf4696856bb028a9ff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planetTransform: {fileID: 880}
-  planetCollider: {fileID: 1200}
---- !u!114 &1324
+  Id: 0
+  PlanetTransform: {fileID: 582}
+  PlanetCollider: {fileID: 1177}
+  AttractorScript: {fileID: 1262}
+  IsSpawnPlanet: 0
+  SpawnPosition: {fileID: 0}
+--- !u!114 &1260
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 541}
+  m_GameObject: {fileID: 239}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
@@ -238,25 +189,49 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 0
+  Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
+<<<<<<< HEAD
   - {fileID: 0}
   viewIdField: 66
   InstantiationId: 66
+=======
+  - {fileID: 1265}
+  viewIdField: 69
+  InstantiationId: 69
+>>>>>>> master
   isRuntimeInstantiated: 0
---- !u!114 &1327
+--- !u!114 &1265
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 541}
+  m_GameObject: {fileID: 239}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Script: {fileID: 11500000, guid: 8efc6b1d64977384eb3405357896c656, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
+  m_PositionModel:
+    SynchronizeEnabled: 1
+    TeleportEnabled: 1
+    TeleportIfDistanceGreaterThan: 3
+    InterpolateOption: 2
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 1
+    ExtrapolateOption: 0
+    ExtrapolateSpeed: 1
+    ExtrapolateIncludingRoundTripTime: 1
+    ExtrapolateNumberOfStoredPositions: 1
+  m_RotationModel:
+    SynchronizeEnabled: 1
+    InterpolateOption: 1
+    InterpolateRotateTowardsSpeed: 180
+    InterpolateLerpSpeed: 5
+  m_ScaleModel:
+    SynchronizeEnabled: 1
+    InterpolateOption: 0
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 0

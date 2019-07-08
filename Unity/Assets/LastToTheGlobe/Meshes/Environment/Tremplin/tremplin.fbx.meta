@@ -1,22 +1,16 @@
 fileFormatVersion: 2
-guid: 45b3ff8bb6c7e60449fc034075db1a3e
+guid: 773e775afb6cd3241a74f3f80d5ae906
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: SM_Basic_Rock_05
-    100002: //RootNode
-    400000: SM_Basic_Rock_05
-    400002: //RootNode
-    2100000: BasicShader
-    2300000: SM_Basic_Rock_05
-    3300000: SM_Basic_Rock_05
-    4300000: SM_Basic_Rock_05
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: BasicShader
-    second: {fileID: 2100000, guid: 3cc3248648d33f340b51ce2ff307456c, type: 2}
+    100000: //RootNode
+    400000: //RootNode
+    2100000: lambert1
+    2100002: lambert2
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: pCylinder1
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
@@ -78,7 +72,7 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-  importAnimation: 0
+  importAnimation: 1
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2

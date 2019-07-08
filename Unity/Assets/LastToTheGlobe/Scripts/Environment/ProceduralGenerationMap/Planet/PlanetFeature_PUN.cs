@@ -7,7 +7,7 @@ using LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Voronoi;
 
 namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
 {
-    public class PlanetFeature_PUN : MonoBehaviour
+    public class PlanetFeature_PUN 
     {
         [SerializeField]
         private GameObject planet;
@@ -17,59 +17,40 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
 
         public PlanetType myType = PlanetType.Basic;
 
-        private int _scaleMax;
-        private int _scaleMin;
-
-        private int _seed;
-        private float _scale;
+        private float _scaleMax;
+        private float _scaleMin;
         private int _indexRandom;
 
-
-        private int GetScaleMinFromCloudPlanet()
-        {
-            _scaleMax = environmentController.scaleMax;
-            return _scaleMax;
-        }
-
-        private int GetScaleMaxFromCloudPlanet()
-        {
-            _scaleMin = environmentController.scaleMax;
-            return _scaleMin;
-        }
-
         //retourne le type de planet et set son material
-        public PlanetType CreateBiome(int _seed)
+        public static PlanetType CreateBiome(GameObject planet, out string mat) 
         {
-            _indexRandom = _seed % 3;
-            myType = (PlanetType)_indexRandom;
-
-            Debug.Log("seed dans planetFeature :" + _seed);
-
-            switch (myType)
+            var type = (int)Random.Range(1f, 4f); 
+            
+            switch ((PlanetType)type)
             {
                 //Planet Material
                 case PlanetType.Frozen:
                 {
-                    var matFrozen = Resources.Load("M_FrozenPlanet", typeof(Material)) as Material;
-                    planet.GetComponent<Renderer>().material = matFrozen;
+                    mat = "M_FrozenPlanet";
                     break;
                 }
                 case PlanetType.Desert:
                 {
-                    var matDesert = Resources.Load("M_DesertPlanet", typeof(Material)) as Material;
-                    planet.GetComponent<Renderer>().material = matDesert;
+                    mat = "M_DesertPlanet";
                     break;
                 }
                 case PlanetType.Basic:
                 {
-                    var matBasic = Resources.Load("M_BasicPlanet", typeof(Material)) as Material;
-                    planet.GetComponent<Renderer>().material = matBasic;
+                    mat = "M_BasicPlanet";
                     break;
                 }
+                default:
+                    mat = "M_BasicPlanet";
+                    break;
             }
 
-            return myType;
-
+            return (PlanetType) type;
+      
 
         }
 

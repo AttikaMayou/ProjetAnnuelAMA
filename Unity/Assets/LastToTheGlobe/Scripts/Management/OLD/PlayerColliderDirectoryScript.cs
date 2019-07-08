@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
-using LastToTheGlobe.Scripts.Avatar;
-using LastToTheGlobe.Scripts.Dev;
+using Assets.LastToTheGlobe.Scripts.Avatar;
 using LastToTheGlobe.Scripts.Singleton;
 using Photon.Pun;
 using UnityEngine;
@@ -8,7 +7,7 @@ using UnityEngine;
 //Auteur : Abdallah
 //Modification : Attika
 
-namespace LastToTheGlobe.Scripts.Management
+namespace Assets.LastToTheGlobe.Scripts.Management.OLD
 {
     public class PlayerColliderDirectoryScript : MonoBehaviourSingleton<PlayerColliderDirectoryScript>
     {
@@ -60,8 +59,8 @@ namespace LastToTheGlobe.Scripts.Management
                 Debug.Log("directory already contains player");
                 return;
             }
-            _directory.Add(player.characterCollider, player);
-            Debug.Log("Directory key : " + player.characterCollider + " and value : " + player);
+            _directory.Add(player.CharacterCollider, player);
+            Debug.Log("Directory key : " + player.CharacterCollider + " and value : " + player);
         }
         
     }

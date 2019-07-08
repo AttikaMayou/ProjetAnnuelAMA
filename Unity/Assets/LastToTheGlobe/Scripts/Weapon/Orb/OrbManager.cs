@@ -1,69 +1,71 @@
-﻿using LastToTheGlobe.Scripts.Environment.Planets;
-using LastToTheGlobe.Scripts.Management;
+﻿using Assets.LastToTheGlobe.Scripts.Management;
 using Photon.Pun;
-//using NUnit.Framework.Constraints;
 using UnityEngine;
 
 //Auteur: Abdallah
 //Modification : Attika
 
-namespace LastToTheGlobe.Scripts.Weapon.Orb
+//TODO : Refacto this script (Attika)
+
+namespace Assets.LastToTheGlobe.Scripts.Weapon.Orb
 {
-    public class OrbManager : Avatar.Avatar
+    public class OrbManager : global::Assets.LastToTheGlobe.Scripts.Avatar.Avatar
     {
         public bool debug = true;
+
+        public int Id;
         
         [Header("Orb Parameters")]
-        [SerializeField] private Rigidbody orbRb;
-        public Collider orbCd;
+        [SerializeField] private Rigidbody _orbRb;
+        public Collider OrbCd;
         [SerializeField] private float speed = 5.0f;
         private Vector3 _direction;
         private float _timeUsing;
-        public float maxTimeUsing;
+        public float MaxTimeUsing;
         private Vector3 _initialPos;
-        public bool charged;
+        public bool Loaded;
         
         [Header("Player and Attraction References")]
-        public Transform playerTransform;
+        public Transform PlayerTransform;
         private Vector3 _centerPointAttractor;
 
         private void OnEnable()
         {
             //timeUsing = Time.deltaTime;
             _timeUsing = 0.0f;
-            maxTimeUsing = 3f;
-            if (!playerTransform || !attractor) return;
-            _initialPos = playerTransform.position;
-            transform.position = playerTransform.position + playerTransform.forward * 2f;
-            _direction = playerTransform.right;
-            _centerPointAttractor = attractor.transform.position;
+            MaxTimeUsing = 3f;
+            if (!PlayerTransform || !Attractor) return;
+            _initialPos = PlayerTransform.position;
+            transform.position = PlayerTransform.position + PlayerTransform.forward * 2f;
+            _direction = PlayerTransform.right;
+            _centerPointAttractor = Attractor.transform.position;
             if (!PhotonNetwork.IsMasterClient) return;
-            ColliderDirectoryScript.Instance.AddOrbManager(this);
+            ColliderDirectoryScript.Instance.AddOrbManager(this, out Id);
             if(debug) Debug.Log("add an orb to Directory");
         }
         
         private void FixedUpdate () {
 
-            if (charged)
+            if (Loaded)
             {
                 transform.RotateAround(_centerPointAttractor,_direction,speed);
             }
             else
             {
-                orbRb.MovePosition(transform.position + playerTransform.forward);
+                _orbRb.MovePosition(transform.position + PlayerTransform.forward);
             }
 
             if (debug)
             {
                 print(_timeUsing);
-                print(maxTimeUsing);
+                print(MaxTimeUsing);
             }
             _timeUsing += Time.deltaTime;
 
-            if (!(_timeUsing >= maxTimeUsing)) return;
+            if (!(_timeUsing >= MaxTimeUsing)) return;
             _timeUsing = 0.0f;
             ResetOrb();
-            charged = false;
+            Loaded = false;
         }
 
         private void ResetOrb()
@@ -75,7 +77,15 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb
 
         public void InitializeOrPosition()
         {
-            transform.position = playerTransform.position + playerTransform.forward * 2f;
+            transform.position = PlayerTransform.position + PlayerTransform.forward * 2f;
+        }
+
+        //Dereference itself to the ColliderDirectory
+        private void OnDisable()
+        {
+            //only the Master Client remove the orb to the directory and reset his ID
+            if (!PhotonNetwork.IsMasterClient) return;
+            ColliderDirectoryScript.Instance.RemoveOrbManager(this);
         }
     }
 }

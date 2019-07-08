@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.LastToTheGlobe.Scripts.Avatar;
+using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Pun.UtilityScripts;
@@ -36,7 +37,7 @@ namespace LastToTheGlobe.Scripts.Avatar
 
         private void OnCollisionEnter(Collision other)
         {
-            if (other.gameObject.CompareTag("Bullet") && myExposer.characterPhotonView.IsMine)
+            if (other.gameObject.CompareTag("Bullet") && myExposer.CharacterPhotonView.IsMine)
             {
                 if(myLife <= 0)
                 {
@@ -49,7 +50,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                     textHealth.text = "Health :" + myLife;
                 }
 
-                myExposer.characterPhotonView.RPC("MajMine", RpcTarget.Others, myLife);
+                myExposer.CharacterPhotonView.RPC("MajMine", RpcTarget.Others, myLife);
             }
             else
             {

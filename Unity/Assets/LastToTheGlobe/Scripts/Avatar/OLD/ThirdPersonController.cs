@@ -4,6 +4,7 @@ using LastToTheGlobe.Scripts.Environment.Planets;
 using LastToTheGlobe.Scripts.Inventory;
 using LastToTheGlobe.Scripts.Weapon.Orb;
 using System.Collections;
+using Assets.LastToTheGlobe.Scripts.Weapon.Orb;
 using UnityEngine;
 
 //Auteur : Abdallah
@@ -11,7 +12,7 @@ using UnityEngine;
 
 namespace LastToTheGlobe.Scripts.Avatar
 {
-    public class ThirdPersonController : Avatar
+    public class ThirdPersonController : Assets.LastToTheGlobe.Scripts.Avatar.Avatar
     {
         [SerializeField] private AttractedScript attractedScript;
 
@@ -170,7 +171,7 @@ namespace LastToTheGlobe.Scripts.Avatar
             
             //Apply a stronger force to jump
             if (!Input.GetKey(jumpInput) || _isJumping) return;
-            _jumpDir = attractor.dirForce;
+            _jumpDir = Attractor.DirForce;
             rb.AddForce(_jumpDir * 250);
 
             //To avoid double jump
@@ -217,7 +218,7 @@ namespace LastToTheGlobe.Scripts.Avatar
             
             if (_timeElapsed >= 1.5f && _launched && Input.GetKeyUp(KeyCode.A))
             {
-                _om.charged = true;
+                _om.Loaded = true;
                 orb.SetActive(true);
                 _timeElapsed = 0;
                 _launched = false;

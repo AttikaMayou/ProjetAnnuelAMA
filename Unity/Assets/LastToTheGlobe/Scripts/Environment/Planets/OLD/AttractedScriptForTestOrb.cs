@@ -1,4 +1,6 @@
-﻿using LastToTheGlobe.Scripts.Weapon.Orb;
+﻿using Assets.LastToTheGlobe.Scripts.Environment.Planets;
+using Assets.LastToTheGlobe.Scripts.Weapon.Orb;
+using LastToTheGlobe.Scripts.Weapon.Orb;
 using UnityEngine;
 
 namespace LastToTheGlobe.Scripts.Environment.Planets
@@ -13,7 +15,7 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
         [SerializeField] private bool _launched;
         void Start()
         {
-            attractor = theAttractor;
+            Attractor = theAttractor;
         }
 
         private void Update()
@@ -29,7 +31,7 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
             if (_timeElapsed >= 1.5f && _launched && Input.GetKeyUp(KeyCode.A))
             {
                 print("lol");
-                _om.charged = true;
+                _om.Loaded = true;
                 sphere.SetActive(true);
                 _timeElapsed = 0;
                 _launched = false;
