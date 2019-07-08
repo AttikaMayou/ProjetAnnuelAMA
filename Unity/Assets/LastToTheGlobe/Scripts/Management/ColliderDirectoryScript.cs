@@ -18,7 +18,7 @@ namespace LastToTheGlobe.Scripts.Management
         public List<PlanetExposerScript> planetExposers;
         public List<OrbManager> orbManagers;
         
-        private Dictionary<Collider, CharacterExposerScript> _playersDirectory = new Dictionary<Collider, CharacterExposerScript>();
+        public Dictionary<Collider, CharacterExposerScript> _playersDirectory = new Dictionary<Collider, CharacterExposerScript>();
         private CharacterExposerScript _playerValue;
         
         private Dictionary<Collider, PlanetExposerScript> _planetsDirectory = new Dictionary<Collider, PlanetExposerScript>();
@@ -31,6 +31,7 @@ namespace LastToTheGlobe.Scripts.Management
         //Get the player whom belongs to the collider
         public CharacterExposerScript GetCharacterExposer(Collider col)
         {
+            
             if(debug) Debug.Log("trying to find player from this collider : " + col);
             if (!PhotonNetwork.IsMasterClient) return null;
             return _playersDirectory.TryGetValue(col, out _playerValue) ? _playerValue : null;

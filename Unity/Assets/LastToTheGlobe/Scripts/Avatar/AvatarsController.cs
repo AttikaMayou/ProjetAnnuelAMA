@@ -45,9 +45,6 @@ namespace LastToTheGlobe.Scripts.Avatar
         public ActivateObjects lifeUI;
         public ActivateObjects victoryUI;
         public ActivateObjects defeatUI;
-        public ActivateObjects PlayerInventory;
-        public ActivateObjects ChestInventory;
-        public ActivateObjects Interaction;
         
         [Header("Game Control Parameters And References")]
         [SerializeField] private StartMenuController startMenuController;
@@ -56,8 +53,9 @@ namespace LastToTheGlobe.Scripts.Avatar
         [SerializeField] private bool gameLaunched;
         [SerializeField] private int nbMinPlayers = 2;
         [SerializeField] private float countdown = 10.0f;
+        [SerializeField] public bool _canOpenChest;
         private float _countdownStartValue;
-        private bool _canOpenChest;
+        
         
         [SerializeField] private List<OrbManager> orbsPool = new List<OrbManager>();
         private OrbManager _currentOrb;
@@ -81,8 +79,11 @@ namespace LastToTheGlobe.Scripts.Avatar
             //startMenuController.GameCanStart += SetSeed;
         }
 
+        
+
         private void OnCollisionEnter(Collision other)
         {
+            
             if (other.collider.CompareTag("Chest"))
             {
                 _canOpenChest = true;
