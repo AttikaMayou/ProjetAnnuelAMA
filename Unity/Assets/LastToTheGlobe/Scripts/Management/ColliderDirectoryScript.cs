@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Assets.LastToTheGlobe.Scripts.Avatar;
-using Assets.LastToTheGlobe.Scripts.Environment.Planets;
 using Assets.LastToTheGlobe.Scripts.Weapon.Orb;
 using LastToTheGlobe.Scripts.Avatar;
+using LastToTheGlobe.Scripts.Chest;
 using LastToTheGlobe.Scripts.Environment.Planets;
 using LastToTheGlobe.Scripts.Singleton;
 using Photon.Pun;
@@ -18,19 +18,22 @@ namespace LastToTheGlobe.Scripts.Management
     {
         public bool debug = false;
 
-        [FormerlySerializedAs("BumpersPhotonView")] [Header("Photon View to assign")] 
+        [Header("Photon View to assign")] 
         public PhotonView bumpersPhotonView;
-        [FormerlySerializedAs("PlanetsPhotonView")] public PhotonView planetsPhotonView;
-        [FormerlySerializedAs("OrbsPhotonView")] public PhotonView orbsPhotonView;
+        public PhotonView planetsPhotonView;
+        public PhotonView orbsPhotonView;
+        public PhotonView chestPhotonView;
         
-        [FormerlySerializedAs("CharacterExposers")] public List<CharacterExposerScript> characterExposers;
-        [FormerlySerializedAs("ActivePlayers")] public int activePlayers = 0;
-        [FormerlySerializedAs("PlanetExposers")] public List<PlanetExposerScript> planetExposers;
-        [FormerlySerializedAs("_activePlanets")] [SerializeField] private int activePlanets = 0;
-        [FormerlySerializedAs("OrbExposers")] public List<OrbExposerScript> orbExposers;
-        [FormerlySerializedAs("_activeOrbs")] [SerializeField] private int activeOrbs = 0;
-        [FormerlySerializedAs("BumperExposers")] public List<BumperExposerScript> bumperExposers;
-        [FormerlySerializedAs("_activeBumpers")] [SerializeField] private int activeBumpers = 0;
+        public List<CharacterExposerScript> characterExposers;
+        public int activePlayers = 0;
+        public List<PlanetExposerScript> planetExposers;
+        [SerializeField] private int activePlanets = 0;
+        public List<OrbExposerScript> orbExposers;
+        [SerializeField] private int activeOrbs = 0;
+        public List<BumperExposerScript> bumperExposers;
+        [SerializeField] private int activeBumpers = 0;
+        public List<ChestExposerScript> chestExposers;
+        public int activeChests = 0;
         
         private Dictionary<Collider, CharacterExposerScript> _playersDirectory = new Dictionary<Collider, CharacterExposerScript>();
         private CharacterExposerScript _playerValue;
@@ -43,6 +46,9 @@ namespace LastToTheGlobe.Scripts.Management
         
         private Dictionary<Collider, BumperExposerScript> _bumpersDirectory = new Dictionary<Collider, BumperExposerScript>();
         private BumperExposerScript _bumperValue;
+        
+        private Dictionary<Collider, ChestExposerScript> _chestsDirectory = new Dictionary<Collider, ChestExposerScript>();
+        private ChestExposerScript _chestValue;
         
         #region Players Methods
         
@@ -348,6 +354,34 @@ namespace LastToTheGlobe.Scripts.Management
             if(debug) Debug.LogFormat("[ColliderDirectoryScript] Directory key : {0} and value : {1}", 
                 bumper.BumperCollider, bumper);
             return id;
+        }
+        
+        #endregion
+        
+        #region Chest Method
+        
+        public ChestExposerScript GetChestExposer(Collider col)
+        {
+            if(debug) Debug.Log("[ColliderDirectoryScript] Trying to find chest from this collider : " + col);
+            if (!PhotonNetwork.IsMasterClient) return null;
+            return _chestsDirectory.TryGetValue(col, out _chestValue) ? _chestValue : null;
+        }
+        
+        public ChestExposerScript GetChestExposer(int id)
+        {
+            if(debug) Debug.Log("[ColliderDirectoryScript] Trying to find bumper from this id: " + id);
+            if (id < 0 || id >= chestExposers.Count) return null;
+            return !PhotonNetwork.IsMasterClient ? null : chestExposers[id];
+        }
+        
+        public int GetChestId(Collider col)
+        {
+            if (!col) return -1;
+            if (chestExposers.Count == 0) StartCoroutine(Wait());
+            var chest = GetChestExposer(col);
+            if (chest) return chest.Id;
+            Debug.LogWarningFormat("[ColliderDirectoryScript] No ChestExposer found with this collider {0}", col.name);
+            return -1;
         }
         
         #endregion

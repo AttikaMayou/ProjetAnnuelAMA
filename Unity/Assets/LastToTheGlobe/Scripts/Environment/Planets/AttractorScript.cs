@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using Assets.LastToTheGlobe.Scripts.Environment.Planets;
 using LastToTheGlobe.Scripts.Management;
 using Photon.Pun;
 using UnityEngine;

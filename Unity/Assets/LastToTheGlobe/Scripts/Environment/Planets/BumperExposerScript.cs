@@ -1,10 +1,8 @@
-﻿using Assets.LastToTheGlobe.Scripts.Management;
-using LastToTheGlobe.Scripts.Environment.Planets;
-using LastToTheGlobe.Scripts.Management;
+﻿using LastToTheGlobe.Scripts.Management;
 using Photon.Pun;
 using UnityEngine;
 
-namespace Assets.LastToTheGlobe.Scripts.Environment.Planets
+namespace LastToTheGlobe.Scripts.Environment.Planets
 {
     public class BumperExposerScript : MonoBehaviour
     {
