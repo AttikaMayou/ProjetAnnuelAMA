@@ -31,6 +31,9 @@ namespace LastToTheGlobe.Scripts.Avatar
 
         [Header("Bumper Reference")] 
         public BumpScript Bumper;
+
+        [Header("Chest Reference")] 
+        public ChestScript Chest;
         
         [Header("Network Parameters")]
         public PhotonView CharacterPhotonView;

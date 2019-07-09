@@ -384,6 +384,53 @@ namespace LastToTheGlobe.Scripts.Management
             return -1;
         }
         
+        public void AddChestExposer(ChestExposerScript chest, out int id)
+        {
+            if (chestExposers == null)
+            {
+                chestExposers = new List<ChestExposerScript>();
+            }
+
+            if (!chestExposers.Contains(chest) && chest)
+            {
+                chestExposers.Add(chest);
+            }
+
+            activeChests++;
+
+            id = AddChestInDirectory(chest);
+            chest.ChestPhotonView = bumpersPhotonView;
+
+            if (debug)
+            {
+                Debug.Log(id >= 0
+                    ? "[ColliderDirectoryScript] Successful added chest to directory"
+                    : "[ColliderDirectoryScript] Failed to add chest in directory");
+            }
+        }
+        
+        public void RemoveChestExposer(ChestExposerScript chest)
+        {
+            activeChests--;
+            chest.Id = -1;
+            if (chestExposers.Contains(chest) && chest)
+            {
+                chestExposers.Remove(chest);
+            }
+        }
+        
+        private int AddChestInDirectory(ChestExposerScript chest)
+        {
+            var id = -1;
+            if(debug) Debug.Log("[ColliderDirectoryScript] Add one chest to directory");
+            if (_chestsDirectory.ContainsValue(chest)) return id;
+            _chestsDirectory.Add(chest.ChestCollider, chest);
+            id = activePlayers - 1;
+            if(debug) Debug.LogFormat("[ColliderDirectoryScript] Directory key : {0} and value : {1}", 
+                chest.ChestCollider, chest);
+            return id;
+        }
+        
         #endregion
         
         private IEnumerator Wait()
