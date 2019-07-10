@@ -16,6 +16,8 @@ public class ItemSlotInventory : MonoBehaviourSingleton<ItemSlotInventory>, IDro
     [SerializeField]
     private Image removeButtonIcon;
     public InventoryScript inventoryScript;
+
+    public GameObject itemOfSlot;
     
     public GameObject item
     {
@@ -25,7 +27,6 @@ public class ItemSlotInventory : MonoBehaviourSingleton<ItemSlotInventory>, IDro
             {
                 return transform.GetChild(0).gameObject;
             }
-
             return null;
         }
     }
@@ -41,6 +42,7 @@ public class ItemSlotInventory : MonoBehaviourSingleton<ItemSlotInventory>, IDro
         //Ajout de l'icon dans le slot si vide
         if(!item)
         {
+             
             ObjectScript objToAdd = ScriptableObject.CreateInstance<ObjectScript>();
             DragIconInventory.item.transform.SetParent(transform);
             removeButton.interactable = true;
@@ -75,6 +77,11 @@ public class ItemSlotInventory : MonoBehaviourSingleton<ItemSlotInventory>, IDro
             removeButton.enabled = false;
             removeButton.interactable = false;
         }
+    }
+
+    private void Update()
+    {
+        
     }
 
     public void OnRemoveButton()

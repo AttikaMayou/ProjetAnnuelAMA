@@ -47,6 +47,10 @@ namespace LastToTheGlobe.Scripts.Avatar
         public ActivateObjects LifeUi;
         public ActivateObjects VictoryUi;
         public ActivateObjects DefeatUi;
+
+        public GameObject Interaction;
+        public GameObject ChestInventory;
+        public GameObject PlayerInventory;
         
         public InventoryScript InventoryScript;
         
