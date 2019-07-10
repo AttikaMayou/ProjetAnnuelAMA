@@ -40,8 +40,8 @@ namespace LastToTheGlobe.Scripts.Environment.Planets.OLD
                 sphere.SetActive(true);
                 _timeElapsed = 0;
                 _launched = false;
-            }*/
+            }
             
-        }
+        }*/
     }
 }
