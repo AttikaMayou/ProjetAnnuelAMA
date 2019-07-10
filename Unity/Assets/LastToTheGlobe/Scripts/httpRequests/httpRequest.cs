@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Text;
+using LastToTheGlobe.Scripts.httpRequests.JSONParsedClasses;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
@@ -8,12 +9,10 @@ namespace LastToTheGlobe.Scripts.httpRequests
 {
     public class httpRequest : MonoBehaviour
     {
-        // Start is called before the first frame update
         private ParsedLoginSignRequest _parsedLoginSignRequest;
         private ParsedShopRequest _parsedShopRequest;
         public bool requestFinished = false;
         
-        // Update is called once per frame
         public IEnumerator LoginRequest(string username, string password)
         {
         
