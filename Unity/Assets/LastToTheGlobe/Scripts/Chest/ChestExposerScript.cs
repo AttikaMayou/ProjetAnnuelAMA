@@ -17,6 +17,8 @@ namespace LastToTheGlobe.Scripts.Chest
         private void Awake()
         {
             if (!PhotonNetwork.IsMasterClient) return;
+            
+            //ICI OU S'EST ARRETER LE TAFF TU DEVAIS VOIR POURQUOI LE CHEST SE METTAIS PAS DANS LE COLLIDER ETC ETC ETC ALLER SALUT !
             Debug.Log("Hi !");
             ColliderDirectoryScript.Instance.AddChestExposer(this, out Id);
         }
