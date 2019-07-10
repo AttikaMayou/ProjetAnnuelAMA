@@ -75,6 +75,7 @@ namespace LastToTheGlobe.Scripts.Camera
 
         }
 
+
         private void AvoidWall(Vector3 fromObjet, Vector3 camera)
         {
             RaycastHit wallHit = new RaycastHit();
