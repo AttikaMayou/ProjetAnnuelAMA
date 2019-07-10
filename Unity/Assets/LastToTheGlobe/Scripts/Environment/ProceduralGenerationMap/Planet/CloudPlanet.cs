@@ -29,13 +29,10 @@ namespace LastToTheGlobe.Scripts.Environment
         [SerializeField]
         private int numberOfPlayer = 10;
 
-        private Vector3[] vertices;
+        public Vector3[] vertices;
         private int[] indices;
         //TODO : récupérer le nombre de joueurs en jeu --> ColliderDirectoryScript.Instance.characterExposers.Count()
 
-        //private PlanetFeature planetFeature;
-        //private int _seed;
-        //private Vertex3[] planetsLocations;
         private GameObject planet;
 
         public void Awake()
@@ -70,7 +67,6 @@ namespace LastToTheGlobe.Scripts.Environment
             {
                 GenerateLocation();
                 GenerateIndices();
-                //DistanceBetweenPlanet();
             }
             InstantiatePlanet();
         }
@@ -78,7 +74,6 @@ namespace LastToTheGlobe.Scripts.Environment
         //Génération du tableau de locations
         private Vector3[] GenerateLocation()
         {
-            //Random.state = seedServeur;
             int i = 0;
 
             //Génération aléatoire des points pour planètes spawns
@@ -115,14 +110,12 @@ namespace LastToTheGlobe.Scripts.Environment
             for(i= 0; i<numberOfPlayer; i++)
             {
                 indices[i] = (int)Random.Range(1, 4);
-                //Debug.LogFormat("Indice {0} est égal à {1}",i, indices[i]);
             }
 
             for(i = numberOfPlayer; i< numberOfVertices + numberOfPlayer; i++)
             {
                 tmp = (int)Random.Range(1, 22);
                 indices[i] = tmp == 0 ? 1 : tmp;
-                //Debug.LogFormat("Indice {0} est égal à {1}",i, indices[i]);
             }
 
             return indices;
@@ -135,46 +128,29 @@ namespace LastToTheGlobe.Scripts.Environment
             string basicPlanet = "Planet_v";
             string victoryPlanet = "VictoryPlanet";
 
-            for (int i = 0; i < vertices.Length; i++)
+            for (int i = 0; i < vertices.Length - 1 ; i++)
             {
-                if (Distance(vertices[i], vertices[i + 1]) >= 50)
-                {
-                    Debug.LogFormat("Distance between {0} et {1} = {2} ", i, i + 1, Distance(vertices[i], vertices[i + 1]));
 
+                if (Distance(vertices[i], vertices[i + 1]) >= 100 && i != vertices.Length - 2)
+                {
                     if (i < numberOfPlayer)
                     {
                         planet = Instantiate(Resources.Load(spawnPlanet + indices[i]), vertices[i], Quaternion.identity) as GameObject;
                         continue;
                     }
 
-                    //Debug.Log(basicPlanet + indices[i]);
                     planet = Instantiate(Resources.Load(basicPlanet + indices[i]), vertices[i], Quaternion.identity) as GameObject;
                 }
-                else
-                {
-                    Debug.LogFormat("collision entre {0} et {1}", i, i + 1);
-                    Debug.LogFormat("Distance between {0} et {1} = {2} ", i, i + 1, Distance(vertices[i], vertices[i + 1]));
-                }
-
-                if (i <= vertices.Length - 1)
+                else if(i == vertices.Length - 2)
                 {
                     planet = Instantiate(Resources.Load(victoryPlanet), new Vector3(0, size * Random.Range(1.1f, 2f), 0), Quaternion.identity) as GameObject;
                 }
-
-            }
-        }
-
-        private void DistanceBetweenPlanet()
-        {
-            //distance entre les points
-            for (int i = 0; i < numberOfVertices; i++)
-            {
-                Debug.LogFormat("Distance between {0} et {1} = {2} ", i, i + 1, Distance(vertices[i], vertices[i + 1]));
-
-                if (Distance(vertices[i], vertices[i+1]) <= 50)
+                else
                 {
-                    Debug.LogFormat("collision entre {0} et {1}",i, i+1);
+                    
+                    continue;
                 }
+
             }
         }
 
