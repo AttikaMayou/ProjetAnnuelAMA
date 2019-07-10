@@ -2,6 +2,8 @@
 using UnityEngine.Serialization;
 using Photon.Pun;
 using UnityEngine.Experimental.UIElements;
+using LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet;
+using LastToTheGlobe.Scripts.Management;
 
 //Auteur : Marhot
 //Modification : Attika
@@ -29,8 +31,10 @@ namespace LastToTheGlobe.Scripts.Environment
         [SerializeField]
         private int numberOfPlayer = 10;
 
-        public Vector3[] vertices;
+        private Vector3[] vertices;
         private int[] indices;
+        private Vector3[] planetSize;
+        private Vector3[] positionTremplin;
         //TODO : récupérer le nombre de joueurs en jeu --> ColliderDirectoryScript.Instance.characterExposers.Count()
 
         private GameObject planet;
@@ -39,6 +43,8 @@ namespace LastToTheGlobe.Scripts.Environment
         {
             vertices = new Vector3[numberOfPlayer + numberOfVertices + 1];
             indices = new int[numberOfPlayer + numberOfVertices];
+            planetSize = new Vector3[numberOfPlayer + numberOfVertices];
+            positionTremplin = new Vector3[GameVariablesScript.Instance.nbreOfTremplin * numberOfVertices];
         }
 
         public int[] GetIndices()
@@ -107,6 +113,7 @@ namespace LastToTheGlobe.Scripts.Environment
         {
             int tmp;
             int i = 0;
+
             for(i= 0; i<numberOfPlayer; i++)
             {
                 indices[i] = (int)Random.Range(1, 4);
@@ -136,10 +143,12 @@ namespace LastToTheGlobe.Scripts.Environment
                     if (i < numberOfPlayer)
                     {
                         planet = Instantiate(Resources.Load(spawnPlanet + indices[i]), vertices[i], Quaternion.identity) as GameObject;
+                        planetSize[i] = planet.transform.localScale;
                         continue;
                     }
 
                     planet = Instantiate(Resources.Load(basicPlanet + indices[i]), vertices[i], Quaternion.identity) as GameObject;
+                    planetSize[i] = planet.transform.localScale;
                 }
                 else if(i == vertices.Length - 2)
                 {
@@ -154,7 +163,7 @@ namespace LastToTheGlobe.Scripts.Environment
             }
         }
 
-        private float Distance(Vector3 Position, Vector3 Position2)
+        public float Distance(Vector3 Position, Vector3 Position2)
         {
             float x = Position.x - Position2.x;
             float y = Position.y - Position2.y;
@@ -162,7 +171,28 @@ namespace LastToTheGlobe.Scripts.Environment
             //distance euclidienne entre 2 points de l'espace
             return Mathf.Round(Mathf.Sqrt(Mathf.Pow(x, 2) + Mathf.Pow(y, 2) + Mathf.Pow(z, 2)));
         }
-                
+
+
+        private Vector3[] SetTremplinLocation(Vector3[] planetSize, int[] tabIndices)
+        {
+            //TODO : changer en fonction de la taille des planètes
+            // faire en sorte qu'ils soient toujours vers d'autres planètes
+
+            for (var i = 0; i <= positionTremplin.Length; i++)
+            {
+                var planetPosition = gameObject.transform.position;
+
+                var spawnPosition = new Vector3(0, planet.transform.localScale.y, 0);
+                var newTP = Instantiate(tremplin, spawnPosition, Quaternion.identity) as GameObject;
+
+                newTP.transform.LookAt(planetPosition);
+                newTP.transform.Rotate(-90, 0, 0);
+                newTP.transform.parent = transform;
+            }
+
+            return Vector3[] positionTremplin;
+        }
+
     }
 }
     
