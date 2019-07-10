@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using LastToTheGlobe.Scripts.httpRequests;
+using LastToTheGlobe.Scripts.httpRequests.JSONParsedClasses;
 using UnityEngine;
 using UnityEngine.UI;
 
