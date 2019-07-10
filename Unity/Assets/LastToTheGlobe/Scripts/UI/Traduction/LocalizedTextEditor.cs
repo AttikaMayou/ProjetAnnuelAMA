@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
-using System.IO;
+﻿using UnityEngine;
 
-public class LocalizedTextEditor : EditorWindow
+namespace LastToTheGlobe.Scripts.UI.Traduction
 {
-    public LocalizationData localizationData;
+    public class LocalizedTextEditor : MonoBehaviour
+    {
+        /*public LocalizationData localizationData;
 
     [MenuItem("Window/Localized Text Editor")]
     static void Init()
@@ -67,5 +65,7 @@ public class LocalizedTextEditor : EditorWindow
     {
         localizationData = new LocalizationData();
     }
+*/
 
+    }
 }

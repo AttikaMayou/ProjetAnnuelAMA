@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Assets.LastToTheGlobe.Scripts.Management;
-using Assets.LastToTheGlobe.Scripts.Weapon.Orb.OLD;
 using LastToTheGlobe.Scripts.Camera;
 using LastToTheGlobe.Scripts.Environment;
 using LastToTheGlobe.Scripts.Management;
 using LastToTheGlobe.Scripts.Network;
 using LastToTheGlobe.Scripts.UI;
+using LastToTheGlobe.Scripts.Weapon.Orb.OLD;
 using Photon.Pun;
 using UnityEngine;
 
@@ -157,7 +157,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                     moveIntent += new Vector3(intent.strafe, 0.0f, intent.forward);
                 }
 
-                if (intent.Shoot)
+                /*if (intent.Shoot)
                 {
                     if(debug) Debug.Log("[AvatarsController] Shoot intent");
                     
@@ -185,7 +185,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                     
                     intent.ShootLoaded = false;
                     intent.canShoot = true;
-                }
+                }*/
                 
                 /*if (intent.Shoot)
                 {
@@ -201,7 +201,6 @@ namespace LastToTheGlobe.Scripts.Avatar
                         intent.CanShoot = true;
                         intent.Shoot = false;
                         _currentOrb = null;
-                        //TODO : when the orb is reset --> canShoot = true
                     }
                 }
 
@@ -219,7 +218,6 @@ namespace LastToTheGlobe.Scripts.Avatar
                         intent.CanShoot = true;
                         intent.Shoot = false;
                         _currentOrb = null;
-                        //TODO : when the orb is reset --> canShoot = true
                     }
                 }*/
 
@@ -375,12 +373,13 @@ namespace LastToTheGlobe.Scripts.Avatar
                 //TODO : make sure all the planets are being well instantiated before
                 //calling 'FindAllSpawnPoint' 
                 FindAllSpawnPoints();
-                if(debug) Debug.Log("[AvatarsController] Seed is " + _seed);
+                if(debug) Debug.Log("[AvatarsController] Seed generated.");
             }
  
             if (PhotonNetwork.IsConnected)
             {
-                photonView.RPC("SendSeedToPlayers", RpcTarget.OthersBuffered, _seed);
+                Debug.LogFormat("[AvatarsController] SI am calling send seed to players and I aaaaam the Master ? {0}", PhotonNetwork.IsMasterClient);
+                photonView.RPC("SendSeedToPlayers", RpcTarget.OthersBuffered, environmentController.GetIndices(), environmentController.GetVertices());
             }
             else
             {

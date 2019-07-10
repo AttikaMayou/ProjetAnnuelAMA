@@ -2,15 +2,12 @@
 using UnityEngine;
 
 //Auteur: Abdallah
-//Modification : Attika
 
-//TODO : Refacto this script (Attika)
-
-namespace Assets.LastToTheGlobe.Scripts.Weapon.Orb.OLD
+namespace LastToTheGlobe.Scripts.Weapon.Orb.OLD
 {
     public class OrbManager : global::LastToTheGlobe.Scripts.Avatar.Avatar
     {
-        public bool debug = true;
+        /*public bool debug = true;
         //TODO : refacto this (and remove OrbsPhotonViewSender cause we dont need it)
         
         public int Id;
@@ -86,6 +83,6 @@ namespace Assets.LastToTheGlobe.Scripts.Weapon.Orb.OLD
             //only the Master Client remove the orb to the directory and reset his ID
             if (!PhotonNetwork.IsMasterClient) return;
             //ColliderDirectoryScript.Instance.RemoveOrbManager(this);
-        }
+        }*/
     }
 }
