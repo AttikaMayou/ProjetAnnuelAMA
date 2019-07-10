@@ -29,7 +29,7 @@ namespace LastToTheGlobe.Scripts.Environment
         [SerializeField]
         private int numberOfPlayer = 10;
 
-        private Vector3[] vertices;
+        public Vector3[] vertices;
         private int[] indices;
         //TODO : récupérer le nombre de joueurs en jeu --> ColliderDirectoryScript.Instance.characterExposers.Count()
 
@@ -152,8 +152,10 @@ namespace LastToTheGlobe.Scripts.Environment
                 }
                 else
                 {
+                    
                     Debug.LogFormat("collision entre {0} et {1}", i, i + 1);
                     Debug.LogFormat("Distance between {0} et {1} = {2} ", i, i + 1, Distance(vertices[i], vertices[i + 1]));
+                    continue;
                 }
 
                 if (i <= vertices.Length - 1)
