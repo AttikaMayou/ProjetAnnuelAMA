@@ -177,10 +177,14 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
             //On créé un tableau de Vector3 qui contiendra les positions des tremplins 
             Vector3[] locations = new Vector3[GameVariablesScript.Instance.nbreOfTremplin];
 
-            //x = x de la planète la plus proche - le x de notre planète 
-            //y = radius de la planète
-            //z = z de la planète la plus proche - le z de notre planète
+            //1) On récupère x planètes les plus proches de la planète correspondante à l'ID en paramètre (x = nbreOfTremplin) 
+            //
             
+            //2) Pour chaque planète trouvée : on récupère le point le plus proche de cette planète (à l'aide de la fonction Collider.ClosestPoint)
+            //Pour récupérer le Collider : ColliderDirectoryScript.Instance.GetPlanetExposer(planetId) --> renvoie le collider de la planète à l'id donné
+            
+            //3) On l'ajoute au tableau de position
+
             return locations;
         }
 
