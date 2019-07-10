@@ -12,9 +12,8 @@ GameObject:
   - component: {fileID: 5107946470935551359}
   - component: {fileID: 5107946470935551394}
   - component: {fileID: 5107946470935551282}
-  - component: {fileID: 5107946470935551248}
-  - component: {fileID: 5107946470935551255}
   - component: {fileID: 5107946470935551292}
+  - component: {fileID: 2224972135892227524}
   m_Layer: 0
   m_Name: OffensiveOrb
   m_TagString: Bullet
@@ -95,43 +94,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5107946470935551248
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5107946470935551850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13b72d4f03b499d48a31177d5ed082e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Attractor: {fileID: 0}
-  debug: 1
-  Id: 0
-  _orbRb: {fileID: 5107946470935551292}
-  OrbCd: {fileID: 5107946470935551282}
-  speed: 2
-  MaxTimeUsing: 5
-  Loaded: 0
-  PlayerTransform: {fileID: 5107946470935551621}
---- !u!114 &5107946470935551255
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5107946470935551850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 249b15e905980bf468684913a564571f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Attractor: {fileID: 0}
-  attractedRb: {fileID: 5107946470935551292}
-  selfGravity: -15
-  isGrounded: 0
 --- !u!54 &5107946470935551292
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -148,6 +110,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2224972135892227524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5107946470935551850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d30d2643b5001e54e9f3acc9d311131e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Id: 0
+  OrbTransform: {fileID: 5107946470935551621}
+  OrbRb: {fileID: 5107946470935551292}
+  OrbCollider: {fileID: 5107946470935551282}
+  OrbsPhotonView: {fileID: 0}
 --- !u!1001 &8044786319319486963
 PrefabInstance:
   m_ObjectHideFlags: 0

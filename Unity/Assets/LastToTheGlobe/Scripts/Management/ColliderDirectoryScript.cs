@@ -6,6 +6,7 @@ using LastToTheGlobe.Scripts.Avatar;
 using LastToTheGlobe.Scripts.Chest;
 using LastToTheGlobe.Scripts.Environment.Planets;
 using LastToTheGlobe.Scripts.Singleton;
+using LastToTheGlobe.Scripts.Weapon.Orb;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.Serialization;
