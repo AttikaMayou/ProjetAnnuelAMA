@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
-using UnityEngine.Serialization;
 
 //Auteur : Abdallah
 //Modification : Attika
 
-namespace LastToTheGlobe.Scripts.Environment.Planets
+namespace LastToTheGlobe.Scripts.Environment.Planets.OLD
 {
 	public class AttractedScript : Avatar.Avatar 
 	{
