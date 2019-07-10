@@ -81,9 +81,11 @@ namespace LastToTheGlobe.Scripts.Camera
             Vector3 toTarget;
 
             toTarget = camera - fromObjet;
+            Debug.Log("avoidWall function enter");
 
             if (Physics.Raycast(fromObjet, toTarget, out wallHit))
             {
+                Debug.Log("hit");
                 _myTr.position = wallHit.point;
             }
         }

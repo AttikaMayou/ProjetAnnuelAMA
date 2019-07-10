@@ -131,7 +131,7 @@ namespace LastToTheGlobe.Scripts.Environment
             for (int i = 0; i < vertices.Length - 1 ; i++)
             {
 
-                if (Distance(vertices[i], vertices[i + 1]) >= 100 && i != vertices.Length - 2)
+                if (Distance(vertices[i], vertices[i + 1]) >= 150 && i != vertices.Length - 2)
                 {
                     if (i < numberOfPlayer)
                     {
@@ -143,7 +143,7 @@ namespace LastToTheGlobe.Scripts.Environment
                 }
                 else if(i == vertices.Length - 2)
                 {
-                    planet = Instantiate(Resources.Load(victoryPlanet), new Vector3(0, size * Random.Range(1.1f, 2f), 0), Quaternion.identity) as GameObject;
+                    planet = Instantiate(Resources.Load(victoryPlanet), new Vector3(0, size * 1.2f, 0), Quaternion.identity) as GameObject;
                 }
                 else
                 {

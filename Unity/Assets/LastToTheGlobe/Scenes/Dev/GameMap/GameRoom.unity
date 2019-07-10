@@ -21,7 +21,7 @@ RenderSettings:
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.885413, g: 0.9361948, b: 0.9528302, a: 1}
-  m_AmbientEquatorColor: {r: 0.13915095, g: 0.35068315, b: 0.5, a: 1}
+  m_AmbientEquatorColor: {r: 0.5712887, g: 0.7765041, b: 0.9245283, a: 1}
   m_AmbientGroundColor: {r: 1, g: 1, b: 1, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 1
@@ -1445,17 +1445,17 @@ PrefabInstance:
     - target: {fileID: 1500373273569727153, guid: ceff46e9b8c61b6468aa9db0b04c7541,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1006.24
+      value: -1005.929
       objectReference: {fileID: 0}
     - target: {fileID: 1500373273569727153, guid: ceff46e9b8c61b6468aa9db0b04c7541,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.73
+      value: 8.353
       objectReference: {fileID: 0}
     - target: {fileID: 1500373273569727153, guid: ceff46e9b8c61b6468aa9db0b04c7541,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.97
+      value: -1.882
       objectReference: {fileID: 0}
     - target: {fileID: 1500373273569727153, guid: ceff46e9b8c61b6468aa9db0b04c7541,
         type: 3}
@@ -5902,7 +5902,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e03010f59f7484147830c10d233c106d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPos: {x: 0, y: -660, z: 0}
+  startPos: {x: 0, y: -1000, z: 0}
 --- !u!135 &1650047700
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5969,8 +5969,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1650047698}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 538.14996, y: 538.14996, z: 538.14996}
+  m_LocalPosition: {x: 0, y: -1000, z: 0}
+  m_LocalScale: {x: 747.275, y: 747.275, z: 747.275}
   m_Children: []
   m_Father: {fileID: 1261707274}
   m_RootOrder: 0
