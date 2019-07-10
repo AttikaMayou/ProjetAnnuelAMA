@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Assets.LastToTheGlobe.Scripts.Management;
 using LastToTheGlobe.Scripts.Camera;
 using LastToTheGlobe.Scripts.Environment;
+using LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet;
 using LastToTheGlobe.Scripts.Management;
 using LastToTheGlobe.Scripts.Network;
 using LastToTheGlobe.Scripts.UI;

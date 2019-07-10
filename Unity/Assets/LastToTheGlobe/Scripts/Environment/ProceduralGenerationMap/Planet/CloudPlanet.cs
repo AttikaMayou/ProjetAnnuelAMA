@@ -1,15 +1,13 @@
-﻿using UnityEngine;
-using UnityEngine.Serialization;
+﻿using LastToTheGlobe.Scripts.Management;
 using Photon.Pun;
-using UnityEngine.Experimental.UIElements;
-using LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet;
-using LastToTheGlobe.Scripts.Management;
+using UnityEngine;
+using UnityEngine.Serialization;
 
 //Auteur : Marhot
 //Modification : Attika
 
 //[ExecuteInEditMode]
-namespace LastToTheGlobe.Scripts.Environment
+namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
     {
     public class CloudPlanet : MonoBehaviour
     {
@@ -173,24 +171,17 @@ namespace LastToTheGlobe.Scripts.Environment
         }
 
 
-        private Vector3[] SetTremplinLocation(Vector3[] planetSize, int[] tabIndices)
+        //Cette fonction renvoie la position des tremplins pour la planète à l'Id 'planetId' de taille 'planetSize'
+        private Vector3[] SetTremplinLocation(Vector3 planetSize, int planetId)
         {
-            //TODO : changer en fonction de la taille des planètes
-            // faire en sorte qu'ils soient toujours vers d'autres planètes
+            //On créé un tableau de Vector3 qui contiendra les positions des tremplins 
+            Vector3[] locations = new Vector3[GameVariablesScript.Instance.nbreOfTremplin];
 
-            for (var i = 0; i <= positionTremplin.Length; i++)
-            {
-                var planetPosition = gameObject.transform.position;
-
-                var spawnPosition = new Vector3(0, planet.transform.localScale.y, 0);
-                var newTP = Instantiate(tremplin, spawnPosition, Quaternion.identity) as GameObject;
-
-                newTP.transform.LookAt(planetPosition);
-                newTP.transform.Rotate(-90, 0, 0);
-                newTP.transform.parent = transform;
-            }
-
-            return Vector3[] positionTremplin;
+            //x = x de la planète la plus proche - le x de notre planète 
+            //y = radius de la planète
+            //z = z de la planète la plus proche - le z de notre planète
+            
+            return locations;
         }
 
     }
