@@ -1,11 +1,10 @@
-﻿using Assets.LastToTheGlobe.Scripts.Management;
-using LastToTheGlobe.Scripts.Management;
+﻿using LastToTheGlobe.Scripts.Management;
 using Photon.Pun;
 using UnityEngine;
 
 //Auteur : Attika
 
-namespace Assets.LastToTheGlobe.Scripts.Weapon.Orb
+namespace LastToTheGlobe.Scripts.Weapon.Orb
 {
     public class OrbExposerScript : MonoBehaviour
     {

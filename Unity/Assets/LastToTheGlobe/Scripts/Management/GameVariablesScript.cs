@@ -27,5 +27,8 @@ namespace LastToTheGlobe.Scripts.Management
 
         [FormerlySerializedAs("LifeInitial")] [Header("Hp Parameters")] 
         public int lifeInitial;
+
+        [Header("Environment Parameters")]
+        public int nbreOfTremplin;
     }
 }
