@@ -135,7 +135,7 @@ namespace LastToTheGlobe.Scripts.Environment
             string basicPlanet = "Planet_v";
             string victoryPlanet = "VictoryPlanet";
 
-            for (int i = 0; i < vertices.Length; i++)
+            for (int i = 0; i < vertices.Length - 1 ; i++)
             {
                 if (Distance(vertices[i], vertices[i + 1]) >= 50)
                 {

@@ -3313,6 +3313,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13b72d4f03b499d48a31177d5ed082e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &860377163 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5433230794704909864, guid: 4b7f65cf3304916429cf26667ac888b2,
+    type: 3}
+  m_PrefabInstance: {fileID: 2003145822580352384}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb0e614a64bf3494a98c7ceebad0de7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &864420561 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2212207739455034101, guid: 2df7f3c3150fe8547bfefd3adb06d4d1,
@@ -8319,6 +8331,24 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5433230794704909864, guid: 4b7f65cf3304916429cf26667ac888b2,
+        type: 3}
+      propertyPath: debug
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: victoryPlanet
+      value: 
+      objectReference: {fileID: 235, guid: 98010e924c5875f4bbbf318e24ca1c4d, type: 3}
+    - target: {fileID: 0}
+      propertyPath: basicPlanet
+      value: 
+      objectReference: {fileID: 5274179040381768669, guid: f2c53a056b39c3c46b762cd1292836b8,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: spawnPlanet
+      value: 
+      objectReference: {fileID: 232, guid: c83770715bf346641832232e27c6c903, type: 3}
     - target: {fileID: 2003145823037444674, guid: 4b7f65cf3304916429cf26667ac888b2,
         type: 3}
       propertyPath: m_Name
@@ -8704,6 +8734,11 @@ PrefabInstance:
       propertyPath: debug
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2003145821851938738, guid: 4b7f65cf3304916429cf26667ac888b2,
+        type: 3}
+      propertyPath: environmentController
+      value: 
+      objectReference: {fileID: 860377163}
     - target: {fileID: 2003145821851938739, guid: 4b7f65cf3304916429cf26667ac888b2,
         type: 3}
       propertyPath: viewIdField
@@ -8869,22 +8904,6 @@ PrefabInstance:
       propertyPath: InstantiationId
       value: 79
       objectReference: {fileID: 0}
-    - target: {fileID: 2003145821961145339, guid: 4b7f65cf3304916429cf26667ac888b2,
-        type: 3}
-      propertyPath: victoryPlanet
-      value: 
-      objectReference: {fileID: 235, guid: 98010e924c5875f4bbbf318e24ca1c4d, type: 3}
-    - target: {fileID: 2003145821961145339, guid: 4b7f65cf3304916429cf26667ac888b2,
-        type: 3}
-      propertyPath: basicPlanet
-      value: 
-      objectReference: {fileID: 5274179040381768669, guid: f2c53a056b39c3c46b762cd1292836b8,
-        type: 3}
-    - target: {fileID: 2003145821961145339, guid: 4b7f65cf3304916429cf26667ac888b2,
-        type: 3}
-      propertyPath: spawnPlanet
-      value: 
-      objectReference: {fileID: 232, guid: c83770715bf346641832232e27c6c903, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b7f65cf3304916429cf26667ac888b2, type: 3}
 --- !u!114 &4032840750276786282 stripped
