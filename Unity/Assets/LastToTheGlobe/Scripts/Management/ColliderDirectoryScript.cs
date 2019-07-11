@@ -12,6 +12,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 //Auteur : Attika
+//Modif : Abdallah
 
 namespace LastToTheGlobe.Scripts.Management
 {
@@ -370,7 +371,7 @@ namespace LastToTheGlobe.Scripts.Management
         
         public ChestExposerScript GetChestExposer(int id)
         {
-            if(debug) Debug.Log("[ColliderDirectoryScript] Trying to find bumper from this id: " + id);
+            if(debug) Debug.Log("[ColliderDirectoryScript] Trying to find chest from this id: " + id);
             if (id < 0 || id >= chestExposers.Count) return null;
             return !PhotonNetwork.IsMasterClient ? null : chestExposers[id];
         }
@@ -383,6 +384,54 @@ namespace LastToTheGlobe.Scripts.Management
             if (chest) return chest.Id;
             Debug.LogWarningFormat("[ColliderDirectoryScript] No ChestExposer found with this collider {0}", col.name);
             return -1;
+        }
+        
+        public void AddChestExposer(ChestExposerScript chest, out int id)
+        {
+            if (chestExposers == null)
+            {
+                chestExposers = new List<ChestExposerScript>();
+            }
+
+            if (!chestExposers.Contains(chest) && chest)
+            {
+                chestExposers.Add(chest);
+            }
+
+            activeChests++;
+
+            id = AddChestInDirectory(chest);
+            print("Helllo !!!!!!!!");
+            chest.ChestPhotonView = chestPhotonView;
+
+            if (debug)
+            {
+                Debug.Log(id >= 0
+                    ? "[ColliderDirectoryScript] Successful added chest to directory"
+                    : "[ColliderDirectoryScript] Failed to add chest in directory");
+            }
+        }
+        
+        public void RemoveChestExposer(ChestExposerScript chest)
+        {
+            activeChests--;
+            chest.Id = -1;
+            if (chestExposers.Contains(chest) && chest)
+            {
+                chestExposers.Remove(chest);
+            }
+        }
+        
+        private int AddChestInDirectory(ChestExposerScript chest)
+        {
+            var id = -1;
+            if(debug) Debug.Log("[ColliderDirectoryScript] Add one chest to directory");
+            if (_chestsDirectory.ContainsValue(chest)) return id;
+            _chestsDirectory.Add(chest.ChestCollider, chest);
+            id = activePlayers - 1;
+            if(debug) Debug.LogFormat("[ColliderDirectoryScript] Directory key : {0} and value : {1}", 
+                chest.ChestCollider, chest);
+            return id;
         }
         
         #endregion

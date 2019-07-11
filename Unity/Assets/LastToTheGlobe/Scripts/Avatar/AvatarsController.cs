@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Assets.LastToTheGlobe.Scripts.Management;
 using LastToTheGlobe.Scripts.Camera;
+using LastToTheGlobe.Scripts.Chest;
 using LastToTheGlobe.Scripts.Environment;
 using LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet;
 using LastToTheGlobe.Scripts.Management;
@@ -34,11 +35,16 @@ namespace LastToTheGlobe.Scripts.Avatar
         private Vector3[] _spawnPos;
         [SerializeField] private CloudPlanet environmentController;
         private int _seed = 0;
+
+        private int _chestSeed;
         //[SerializeField] private GPInstanciation _lobbyAssets;
 
         [Header("Camera Parameters")] 
         public CameraControllerScript myCamera;
         [SerializeField] private float rotationSpeed = 5.0f;
+
+
+        private List<ChestExposerScript> chestExposers;
 
         [Header("UI Parameters")] 
         //public ActivateObjects inventoryUI;
@@ -97,9 +103,15 @@ namespace LastToTheGlobe.Scripts.Avatar
             avatarAnimation.character = players;
 
             OnlineIntentReceiver.Debug= debug;
+            
+            //Setting seed for chests
+            
+            _chestSeed = Random.Range(0,255);
+
         }
 
-       private void FixedUpdate()
+
+        private void FixedUpdate()
         {
 //            if (Input.GetKeyDown(KeyCode.Escape))
 //            {
@@ -381,10 +393,12 @@ namespace LastToTheGlobe.Scripts.Avatar
             {
                 Debug.LogFormat("[AvatarsController] SI am calling send seed to players and I aaaaam the Master ? {0}", PhotonNetwork.IsMasterClient);
                 photonView.RPC("SendSeedToPlayers", RpcTarget.OthersBuffered, environmentController.GetIndices(), environmentController.GetVertices());
+                SendChestSeedToPlayers(_chestSeed);
             }
             else
             {
                 SendSeedToPlayers(environmentController.GetIndices(), environmentController.GetVertices());
+                
             }
             
             if(!CheckIfEnoughPlayers() || gameLaunched) return;
@@ -579,6 +593,17 @@ namespace LastToTheGlobe.Scripts.Avatar
             environmentController.SetIndices(indices);
             environmentController.SetVertices(vertices);
             environmentController.GenerateMap();
+        }
+
+        [PunRPC]
+        private void SendChestSeedToPlayers(int seed)
+        {
+            print("Hi from Avatar controller seed = "+seed);
+            foreach (var player in players)
+            {
+                
+                player.seedChest = seed;
+            }
         }
 
         #endregion

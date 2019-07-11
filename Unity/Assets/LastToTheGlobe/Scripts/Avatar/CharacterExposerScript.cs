@@ -31,6 +31,10 @@ namespace LastToTheGlobe.Scripts.Avatar
 
         [Header("Bumper Reference")] 
         public BumpScript Bumper;
+
+        [Header("Chest Reference")] 
+        public ChestScript Chest;
+        public int seedChest;
         
         [Header("Network Parameters")]
         public PhotonView CharacterPhotonView;
@@ -44,6 +48,10 @@ namespace LastToTheGlobe.Scripts.Avatar
         public ActivateObjects LifeUi;
         public ActivateObjects VictoryUi;
         public ActivateObjects DefeatUi;
+
+        public GameObject Interaction;
+        public GameObject ChestInventory;
+        public GameObject PlayerInventory;
         
         public InventoryScript InventoryScript;
         
@@ -59,7 +67,8 @@ namespace LastToTheGlobe.Scripts.Avatar
             if(debug) Debug.LogFormat("[CharacterExposer] OnEnable : {0}", this.gameObject.name);
             ColliderDirectoryScript.Instance.AddCharacterExposer(this, out Id);
         }
-        
+
+
         //Dereference itself to the ColliderDirectory and CameraScript when deactivated
         private void OnDisable()
         {
