@@ -32,7 +32,6 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
         private Vector3[] vertices;
         private int[] indices;
         private Vector3[] planetSize;
-        private Vector3[] positionTremplin;
         //TODO : récupérer le nombre de joueurs en jeu --> ColliderDirectoryScript.Instance.characterExposers.Count()
 
         private GameObject planet;
@@ -42,7 +41,6 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
             vertices = new Vector3[numberOfPlayer + numberOfVertices + 1];
             indices = new int[numberOfPlayer + numberOfVertices];
             planetSize = new Vector3[numberOfPlayer + numberOfVertices];
-            positionTremplin = new Vector3[GameVariablesScript.Instance.nbreOfTremplin * numberOfVertices];
         }
 
         public int[] GetIndices()
@@ -155,13 +153,14 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
 
             }
 
-            for(int i = 0; i < vertices.Length - 1; i++)
+            for(int i = 0; i < vertices.Length - 2; i++)
             {
                 Vector3 lookingAt;
                 Vector3 tremplinLocation = SetTremplinLocation(i, out lookingAt);
-                tremplinLocation.y = planetSize[i].y;
+                //tremplinLocation.y = planetSize[i].y;
                 GameObject tremplin = Instantiate(Resources.Load("Jumper"), tremplinLocation, Quaternion.identity) as GameObject;
-                tremplin.transform.LookAt(lookingAt);
+                //set l'orientation
+                tremplin.transform.LookAt(-vertices[i]);
             }
         }
 
@@ -202,6 +201,7 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
                 }
             }
 
+            Debug.LogFormat("Nearest planet : {0} at position {1}", min, vertices[j]);
             lookingAt = vertices[j];
             return  ColliderDirectoryScript.Instance.GetPlanetExposer(planetId).planetGroundCollider.ClosestPoint(vertices[j]);
            
