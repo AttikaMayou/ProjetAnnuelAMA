@@ -17,7 +17,7 @@ namespace LastToTheGlobe.Scripts.Management
 {
     public class ColliderDirectoryScript : MonoBehaviourSingleton<ColliderDirectoryScript>
     {
-        public bool debug = false;
+        public bool debug = true;
 
         [Header("Photon View to assign")] 
         public PhotonView bumpersPhotonView;
