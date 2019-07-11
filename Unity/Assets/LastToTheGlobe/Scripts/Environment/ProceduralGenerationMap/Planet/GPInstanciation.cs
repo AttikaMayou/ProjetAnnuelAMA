@@ -6,36 +6,41 @@ using LastToTheGlobe.Scripts.Environment;
 namespace Assets.LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
 {
     public class GPInstanciation : MonoBehaviour
-    {
+    {/*
         [SerializeField]
         private GameObject tremplin;
 
-        private Vector3 tabPosition;
+        //to return
+        private Vector3[] tabPositionTremplin;
 
+        private CloudPlanet cloudPlanetInstance;
+        private int[] tabIndices;
         private int _numberOfTremplin;
+        private GameObject planet;
+        private Vector3[] size;
 
-        private void Start()
+        private void InstantiateTremplin(Vector3[] , int[] tabIndices)
         {
             _numberOfTremplin = Random.Range(1, 5);
             //TODO : changer en fonction de la taille des planètes
             // faire en sorte qu'ils soient toujours vers d'autres planètes
 
-            //tabPosition = CloudPlanet.vert
+            size = cloudPlanetInstance.planetSize;
+            tabIndices = cloudPlanetInstance.GetIndices();
 
             for (var i = 0; i <= _numberOfTremplin; i++)
             {
                 var planetPosition = gameObject.transform.position;
 
-                //var spawnPosition = Random.onUnitSphere * ((planet.transform.localScale.x / 2) + tremplin.transform.localScale.y - 0.02f) + planet.transform.position;
-                //var newTree = Instantiate(tremplin, spawnPosition, Quaternion.identity) as GameObject;
+                var spawnPosition = new Vector3(0, planet.transform.localScale.y, 0);
+                var newTP = Instantiate(tremplin, spawnPosition, Quaternion.identity) as GameObject;
 
-                /*newTree.transform.LookAt(planetPosition);
-                newTree.transform.Rotate(-90, 0, 0);
-                newTree.transform.parent = transform;
-                */
+                newTP.transform.LookAt(planetPosition);
+                newTP.transform.Rotate(-90, 0, 0);
+                newTP.transform.parent = transform;
             }
         }
-
+        */
 
     }
 }

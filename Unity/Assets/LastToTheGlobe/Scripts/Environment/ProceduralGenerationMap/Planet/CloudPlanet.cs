@@ -1,13 +1,13 @@
-﻿using UnityEngine;
-using UnityEngine.Serialization;
+﻿using LastToTheGlobe.Scripts.Management;
 using Photon.Pun;
-using UnityEngine.Experimental.UIElements;
+using UnityEngine;
+using UnityEngine.Serialization;
 
 //Auteur : Marhot
 //Modification : Attika
 
 //[ExecuteInEditMode]
-namespace LastToTheGlobe.Scripts.Environment
+namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
     {
     public class CloudPlanet : MonoBehaviour
     {
@@ -29,8 +29,10 @@ namespace LastToTheGlobe.Scripts.Environment
         [SerializeField]
         private int numberOfPlayer = 10;
 
-        public Vector3[] vertices;
+        private Vector3[] vertices;
         private int[] indices;
+        private Vector3[] planetSize;
+        private Vector3[] positionTremplin;
         //TODO : récupérer le nombre de joueurs en jeu --> ColliderDirectoryScript.Instance.characterExposers.Count()
 
         private GameObject planet;
@@ -39,6 +41,8 @@ namespace LastToTheGlobe.Scripts.Environment
         {
             vertices = new Vector3[numberOfPlayer + numberOfVertices + 1];
             indices = new int[numberOfPlayer + numberOfVertices];
+            planetSize = new Vector3[numberOfPlayer + numberOfVertices];
+            positionTremplin = new Vector3[GameVariablesScript.Instance.nbreOfTremplin * numberOfVertices];
         }
 
         public int[] GetIndices()
@@ -107,6 +111,7 @@ namespace LastToTheGlobe.Scripts.Environment
         {
             int tmp;
             int i = 0;
+
             for(i= 0; i<numberOfPlayer; i++)
             {
                 indices[i] = (int)Random.Range(1, 4);
@@ -131,30 +136,36 @@ namespace LastToTheGlobe.Scripts.Environment
             for (int i = 0; i < vertices.Length - 1 ; i++)
             {
 
-                if (Distance(vertices[i], vertices[i + 1]) >= 100 && i != vertices.Length - 2)
+                if (Distance(vertices[i], vertices[i + 1]) >= 150 && i != vertices.Length - 2)
                 {
                     if (i < numberOfPlayer)
                     {
                         planet = Instantiate(Resources.Load(spawnPlanet + indices[i]), vertices[i], Quaternion.identity) as GameObject;
+                        planetSize[i] = planet.transform.localScale;
                         continue;
                     }
 
                     planet = Instantiate(Resources.Load(basicPlanet + indices[i]), vertices[i], Quaternion.identity) as GameObject;
+                    planetSize[i] = planet.transform.localScale;
                 }
                 else if(i == vertices.Length - 2)
                 {
-                    planet = Instantiate(Resources.Load(victoryPlanet), new Vector3(0, size * Random.Range(1.1f, 2f), 0), Quaternion.identity) as GameObject;
-                }
-                else
-                {
-                    
-                    continue;
+                    planet = Instantiate(Resources.Load(victoryPlanet), new Vector3(0, size * 1.2f, 0), Quaternion.identity) as GameObject;
                 }
 
             }
+
+            for(int i = 0; i < vertices.Length - 1; i++)
+            {
+                Vector3 lookingAt;
+                Vector3 tremplinLocation = SetTremplinLocation(i, out lookingAt);
+                tremplinLocation.y = planetSize[i].y;
+                GameObject tremplin = Instantiate(Resources.Load("Jumper"), tremplinLocation, Quaternion.identity) as GameObject;
+                tremplin.transform.LookAt(lookingAt);
+            }
         }
 
-        private float Distance(Vector3 Position, Vector3 Position2)
+        public float Distance(Vector3 Position, Vector3 Position2)
         {
             float x = Position.x - Position2.x;
             float y = Position.y - Position2.y;
@@ -162,7 +173,44 @@ namespace LastToTheGlobe.Scripts.Environment
             //distance euclidienne entre 2 points de l'espace
             return Mathf.Round(Mathf.Sqrt(Mathf.Pow(x, 2) + Mathf.Pow(y, 2) + Mathf.Pow(z, 2)));
         }
-                
+
+
+        //Cette fonction renvoie la position des tremplins pour la planète à l'Id 'planetId' de taille 'planetSize'
+        private Vector3 SetTremplinLocation(int planetId, out Vector3 lookingAt)
+        {
+            //On créé un tableau de Vector3 qui contiendra les positions des tremplins 
+
+            //1) On récupère x planètes les plus proches de la planète correspondante à l'ID en paramètre (x = nbreOfTremplin) 
+            //
+
+            var min = 1000f;
+            var j = 0;
+
+            for (int i = 0; i < indices.Length; i++)
+            {
+                if(i == planetId)
+                {
+                    continue;
+                }
+
+                var minTemp = Distance(vertices[planetId], vertices[i]);
+
+                if (minTemp <= min)
+                {
+                    min = minTemp;
+                    j = i;
+                }
+            }
+
+            lookingAt = vertices[j];
+            return  ColliderDirectoryScript.Instance.GetPlanetExposer(planetId).planetGroundCollider.ClosestPoint(vertices[j]);
+           
+            //2) Pour chaque planète trouvée : on récupère le point le plus proche de cette planète (à l'aide de la fonction Collider.ClosestPoint)
+            //Pour récupérer le Collider : ColliderDirectoryScript.Instance.GetPlanetExposer(planetId) --> renvoie le collider de la planète à l'id donné
+
+            //3) On l'ajoute au tableau de position
+        }
+
     }
 }
     

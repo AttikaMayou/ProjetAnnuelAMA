@@ -30,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5274179040381768669}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -122,6 +122,7 @@ MonoBehaviour:
   id: 0
   planetTransform: {fileID: 5274179040381734909}
   planetCollider: {fileID: 1668843725423265698}
+  planetGroundCollider: {fileID: 3663078464008334531}
   attractorScript: {fileID: 5240164197673119770}
   planetsPhotonView: {fileID: 0}
   isSpawnPlanet: 0

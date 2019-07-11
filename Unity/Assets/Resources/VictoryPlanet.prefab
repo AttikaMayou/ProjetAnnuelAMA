@@ -97,6 +97,7 @@ MonoBehaviour:
   id: 0
   planetTransform: {fileID: 581}
   planetCollider: {fileID: 1176}
+  planetGroundCollider: {fileID: 1175}
   attractorScript: {fileID: 1260}
   planetsPhotonView: {fileID: 0}
   isSpawnPlanet: 0
@@ -142,6 +143,7 @@ MonoBehaviour:
   id: 0
   planetTransform: {fileID: 0}
   planetCollider: {fileID: 0}
+  planetGroundCollider: {fileID: 0}
   attractorScript: {fileID: 0}
   planetsPhotonView: {fileID: 0}
   isSpawnPlanet: 0

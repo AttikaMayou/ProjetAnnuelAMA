@@ -1,12 +1,11 @@
-﻿using Assets.LastToTheGlobe.Scripts.Weapon.Orb;
-using Assets.LastToTheGlobe.Scripts.Weapon.Orb.OLD;
+﻿using LastToTheGlobe.Scripts.Weapon.Orb.OLD;
 using UnityEngine;
 
-namespace LastToTheGlobe.Scripts.Environment.Planets
+namespace LastToTheGlobe.Scripts.Environment.Planets.OLD
 {
     public class AttractedScriptForTestOrb : AttractedScript
     {
-        // Start is called before the first frame update
+        /*// Start is called before the first frame update
         [SerializeField] private AttractorScript theAttractor;
         [SerializeField] private GameObject sphere;
         [SerializeField] private OrbManager _om;
@@ -43,6 +42,6 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
                 _launched = false;
             }
             
-        }
+        }*/
     }
 }

@@ -68,6 +68,7 @@ MonoBehaviour:
   id: 0
   planetTransform: {fileID: 578}
   planetCollider: {fileID: 1174}
+  planetGroundCollider: {fileID: 8642066895564130031}
   attractorScript: {fileID: 1253}
   planetsPhotonView: {fileID: 0}
   isSpawnPlanet: 1
@@ -111,7 +112,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 233}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.33, y: 0.2, z: -7.38}
+  m_LocalPosition: {x: 0.09, y: 0.74, z: -10.36}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 578}
@@ -142,7 +143,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 236}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.115, y: 1.149969, z: 5.691}
+  m_LocalPosition: {x: -0.35, y: 2.088, z: 8.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 578}
@@ -211,7 +212,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 238}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.115, y: 1.149969, z: -9.044}
+  m_LocalPosition: {x: 0.115, y: 1.98, z: -9.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 578}
@@ -529,17 +530,17 @@ PrefabInstance:
     - target: {fileID: 3401916670773471376, guid: bf62e091e3a648e449f1ae21a25c6606,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.092976406
+      value: 0.09
       objectReference: {fileID: 0}
     - target: {fileID: 3401916670773471376, guid: bf62e091e3a648e449f1ae21a25c6606,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.093
+      value: 0.74
       objectReference: {fileID: 0}
     - target: {fileID: 3401916670773471376, guid: bf62e091e3a648e449f1ae21a25c6606,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.4319935
+      value: 8.52
       objectReference: {fileID: 0}
     - target: {fileID: 3401916670773471376, guid: bf62e091e3a648e449f1ae21a25c6606,
         type: 3}

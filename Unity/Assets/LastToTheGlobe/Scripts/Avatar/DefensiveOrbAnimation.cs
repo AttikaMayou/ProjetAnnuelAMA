@@ -3,9 +3,9 @@
 
 //TODO : refacto this in another script 
 
-using Assets.LastToTheGlobe.Scripts.Weapon.Orb;
+using LastToTheGlobe.Scripts.Weapon.Orb;
 
-namespace Assets.LastToTheGlobe.Scripts.Avatar
+namespace LastToTheGlobe.Scripts.Avatar
 {
     public class DefensiveOrbAnimation : OrbExposerScript
     {
