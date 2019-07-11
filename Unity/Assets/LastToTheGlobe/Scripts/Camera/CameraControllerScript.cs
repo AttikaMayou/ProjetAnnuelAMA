@@ -71,7 +71,7 @@ namespace LastToTheGlobe.Scripts.Camera
             _myTr.position = position;
 
             AvoidWall(playerExposer.CharacterTr.position, _myTr.position);
-            Debug.DrawLine(playerExposer.CharacterTr.position, _myTr.position);
+            //Debug.DrawLine(playerExposer.CharacterTr.position, _myTr.position);
 
         }
 

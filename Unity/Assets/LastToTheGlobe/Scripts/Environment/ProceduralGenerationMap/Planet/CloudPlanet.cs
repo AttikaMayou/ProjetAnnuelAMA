@@ -45,6 +45,11 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
             positionTremplin = new Vector3[GameVariablesScript.Instance.nbreOfTremplin * numberOfVertices];
         }
 
+        public void Update()
+        {
+            SetTremplinLocation();
+        }
+
         public int[] GetIndices()
         {
             return indices;
@@ -172,17 +177,52 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
 
 
         //Cette fonction renvoie la position des tremplins pour la planète à l'Id 'planetId' de taille 'planetSize'
-        private Vector3[] SetTremplinLocation(Vector3 planetSize, int planetId)
+        private Vector3[] SetTremplinLocation()
         {
             //On créé un tableau de Vector3 qui contiendra les positions des tremplins 
             Vector3[] locations = new Vector3[GameVariablesScript.Instance.nbreOfTremplin];
+            Vector3[] locationsNearest = new Vector3[GameVariablesScript.Instance.nbreOfTremplin];
 
             //1) On récupère x planètes les plus proches de la planète correspondante à l'ID en paramètre (x = nbreOfTremplin) 
             //
-            
+            for (int i = 0; i < indices.Length; i++)
+            {
+                var min = 1000f;
+                var min2 = 1000f;
+                var min3 = 1000f;
+
+                for (int j = 0; j < vertices.Length - 2; j+=2)
+                {
+                    var minTemp = Distance(vertices[j], vertices[j + 1]);
+
+                    if (min >= minTemp)
+                    {
+                        min3 = minTemp;
+                        min2 = minTemp;
+                        min = minTemp;
+                        locationsNearest[i] = vertices[j + 1];
+                    }
+                    else if (min2 >= minTemp)
+                    {
+                        min3 = min2;
+                        min2 = minTemp;
+                        locationsNearest[i + 1] = vertices[j + 1];
+                    }
+                    else if (min3 >= minTemp)
+                    {
+                        min3 = minTemp;
+                        locationsNearest[i + 2] = vertices[j + 1];
+                    }
+
+                    Debug.LogFormat("3 minimum : {0}, {1}, {2} à index : {3}", min, min2, min3, i);
+                }
+
+                //locations[i] = ColliderDirectoryScript.Instance.GetPlanetExposer(planetId[i]).ClosestPoint(locationsNearest[i]);
+            }
+
             //2) Pour chaque planète trouvée : on récupère le point le plus proche de cette planète (à l'aide de la fonction Collider.ClosestPoint)
             //Pour récupérer le Collider : ColliderDirectoryScript.Instance.GetPlanetExposer(planetId) --> renvoie le collider de la planète à l'id donné
-            
+
             //3) On l'ajoute au tableau de position
 
             return locations;
