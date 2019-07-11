@@ -1,37 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
-using Majestic.Scripts.Localization;
 using UnityEngine;
 
 namespace LastToTheGlobe.Scripts.Localization
 {
-	public class LocalizationManager {
-
-		private static SystemLanguage language;
-		private static Dictionary<string, string> dictionary = new Dictionary<string, string>();
+	public class LocalizationManager 
+	{
+		private static SystemLanguage _language;
+		private static Dictionary<string, string> _dictionary = new Dictionary<string, string>();
 	
 		public static void SetLanguage(SystemLanguage lang)
 		{
-			var result = Array.Find(SupportedLanguages.langs, systemLanguage => systemLanguage == lang);
-			if (result != default(SystemLanguage))
+			var result = Array.Find(SupportedLanguages.Langs, systemLanguage => systemLanguage == lang);
+			if (result != default)
 			{
-				language = result;
+				_language = result;
 			}
 			else
 			{
 				Debug.LogError("Unsupported lang " + lang + ", fallback to english.");
-				language = SystemLanguage.English;
+				_language = SystemLanguage.English;
 			}
 
+			//TODO : récupérer la usersave et sauvegarder le langage choisi
 //			UserSaveManager.GetUserSave().preferredLanguage = language;
 //			UserSaveManager.SaveSettings();
 		
-			dictionary.Clear();
-			//var textDictionary = PatchManager.Instance.GetAsset<TextAsset>("Localization/" + language);
-			//ParseTextDictionary(textDictionary, dictionary);
+			_dictionary.Clear();
+			var textDictionary = Resources.Load("Localization" + _language) as TextAsset;
+			ParseTextDictionary(textDictionary, _dictionary);
+			
 			Localizer.UpdateLocalization();
 		}
-
+		
 		private static void ParseTextDictionary(TextAsset txt, Dictionary<string, string> dict)
 		{
 			var lines = txt.text.Split(new[]{"\n", "\r", "\r\n"}, StringSplitOptions.None);
@@ -53,7 +54,7 @@ namespace LastToTheGlobe.Scripts.Localization
 
 					if (content.Length == 0)
 					{
-						Debug.LogError(txt.name + " : content at line " + lineIndex + " for key " + key + " is empty");
+						Debug.LogError(txt.name + " : Content at line " + lineIndex + " for key " + key + " is empty");
 						continue;
 					}
 				
@@ -67,24 +68,14 @@ namespace LastToTheGlobe.Scripts.Localization
 
 		public static SystemLanguage GetLanguage()
 		{
-			return language;
+			return _language;
 		}
 
 		public static string LocalizeText(string ID)
 		{
-			var translation = dictionary[ID];
+			var translation = _dictionary[ID];
 
 			return translation;
 		}
-
-//		public static Sprite LocalizeSprite(string id)
-//		{
-//			return PatchManager.Instance.GetAsset<Sprite>("Localization/" + language.ToString() + "/Sprites/" + id);
-//		}
-//
-//		public static AudioClip LocalizeAudio(string id)
-//		{
-//			return PatchManager.Instance.GetAsset<AudioClip>("Localization/" + language.ToString() + "/Audio/" + id);
-//		}
 	}
 }
