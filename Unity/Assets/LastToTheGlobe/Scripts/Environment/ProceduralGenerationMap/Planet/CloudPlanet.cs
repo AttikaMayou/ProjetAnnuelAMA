@@ -157,9 +157,11 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
 
             for(int i = 0; i < vertices.Length - 1; i++)
             {
-                Vector3 tremplinLocation = SetTremplinLocation(i);
+                Vector3 lookingAt;
+                Vector3 tremplinLocation = SetTremplinLocation(i, out lookingAt);
                 tremplinLocation.y = planetSize[i].y;
                 GameObject tremplin = Instantiate(Resources.Load("Jumper"), tremplinLocation, Quaternion.identity) as GameObject;
+                tremplin.transform.LookAt(lookingAt);
             }
         }
 
@@ -174,7 +176,7 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
 
 
         //Cette fonction renvoie la position des tremplins pour la planète à l'Id 'planetId' de taille 'planetSize'
-        private Vector3 SetTremplinLocation(int planetId)
+        private Vector3 SetTremplinLocation(int planetId, out Vector3 lookingAt)
         {
             //On créé un tableau de Vector3 qui contiendra les positions des tremplins 
 
@@ -200,7 +202,8 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
                 }
             }
 
-            return  ColliderDirectoryScript.Instance.GetPlanetExposer(planetId).planetCollider.ClosestPoint(vertices[j]);
+            lookingAt = vertices[j];
+            return  ColliderDirectoryScript.Instance.GetPlanetExposer(planetId).planetGroundCollider.ClosestPoint(vertices[j]);
            
             //2) Pour chaque planète trouvée : on récupère le point le plus proche de cette planète (à l'aide de la fonction Collider.ClosestPoint)
             //Pour récupérer le Collider : ColliderDirectoryScript.Instance.GetPlanetExposer(planetId) --> renvoie le collider de la planète à l'id donné

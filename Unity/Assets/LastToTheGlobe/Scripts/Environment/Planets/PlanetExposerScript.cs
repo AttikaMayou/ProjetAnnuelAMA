@@ -14,6 +14,7 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
         
         [FormerlySerializedAs("PlanetTransform")] public Transform planetTransform;
         [FormerlySerializedAs("PlanetCollider")] public Collider planetCollider;
+        public Collider planetGroundCollider;
         [FormerlySerializedAs("AttractorScript")] public AttractorScript attractorScript;
         [FormerlySerializedAs("PlanetsPhotonView")] public PhotonView planetsPhotonView;
 
