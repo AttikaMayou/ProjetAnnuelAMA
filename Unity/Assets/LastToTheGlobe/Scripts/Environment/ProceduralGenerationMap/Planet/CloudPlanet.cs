@@ -152,15 +152,10 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
                 {
                     planet = Instantiate(Resources.Load(victoryPlanet), new Vector3(0, size * 1.2f, 0), Quaternion.identity) as GameObject;
                 }
-                else
-                {
-                    
-                    continue;
-                }
 
             }
 
-            for(int i = 0; i < vertices.Length; i++)
+            for(int i = 0; i < vertices.Length - 1; i++)
             {
                 Vector3 tremplinLocation = SetTremplinLocation(i);
                 tremplinLocation.y = planetSize[i].y;
