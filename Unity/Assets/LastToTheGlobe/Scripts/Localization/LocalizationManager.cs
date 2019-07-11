@@ -21,11 +21,7 @@ namespace LastToTheGlobe.Scripts.Localization
 				Debug.LogError("Unsupported lang " + lang + ", fallback to english.");
 				_language = SystemLanguage.English;
 			}
-
-			//TODO : récupérer la usersave et sauvegarder le langage choisi
-//			UserSaveManager.GetUserSave().preferredLanguage = language;
-//			UserSaveManager.SaveSettings();
-		
+			
 			_dictionary.Clear();
 			var textDictionary = Resources.Load("Localization" + _language) as TextAsset;
 			ParseTextDictionary(textDictionary, _dictionary);
