@@ -8,8 +8,7 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb.OLD
     public class OrbManager : global::LastToTheGlobe.Scripts.Avatar.Avatar
     {
         /*public bool debug = true;
-        //TODO : refacto this (and remove OrbsPhotonViewSender cause we dont need it)
-        
+         
         public int Id;
         
         [Header("Orb Parameters")]

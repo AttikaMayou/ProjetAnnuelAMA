@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 //Auteur : Attika
+//Modifications : Margot
 
 namespace LastToTheGlobe.Scripts.Management
 {
@@ -10,22 +11,25 @@ namespace LastToTheGlobe.Scripts.Management
     {
         //TODO : initialize values there hen its definitely ok and add 'const' attribute 
         
-        [FormerlySerializedAs("WalkSpeed")] [Header("Movement Parameters")] 
+        [Header("Movement Parameters")] 
         public int walkSpeed;
-        [FormerlySerializedAs("RunSpeed")] public int runSpeed;
-        [FormerlySerializedAs("DashSpeed")] public int dashSpeed;
+        public int runSpeed;
+        public int dashSpeed;
         public bool lockCursor;
 
-        [FormerlySerializedAs("ShootLoadTime")] [Header("Shoot Parameters")] 
+        [Header("Shoot Parameters")] 
         public float shootLoadTime;
-        [FormerlySerializedAs("ShootDamage")] public int shootDamage;
-        [FormerlySerializedAs("ShootLoadedDamage")] public int shootLoadedDamage;
+        public int shootDamage;
+        public int shootLoadedDamage;
 
-        [FormerlySerializedAs("DashCooldown")] [Header("Cooldown Values")] 
+        [Header("Orb Defensive Parameters")] 
+        public float orbSpeed;
+
+        [Header("Cooldown Values")] 
         public float dashCooldown;
-        [FormerlySerializedAs("BumpCooldown")] public float bumpCooldown;
+        public float bumpCooldown;
 
-        [FormerlySerializedAs("LifeInitial")] [Header("Hp Parameters")] 
+        [Header("Hp Parameters")] 
         public int lifeInitial;
 
         [Header("Environment Parameters")]
