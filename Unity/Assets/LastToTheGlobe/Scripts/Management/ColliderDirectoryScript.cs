@@ -12,6 +12,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 //Auteur : Attika
+//Modif : Abdallah
 
 namespace LastToTheGlobe.Scripts.Management
 {
@@ -370,7 +371,7 @@ namespace LastToTheGlobe.Scripts.Management
         
         public ChestExposerScript GetChestExposer(int id)
         {
-            if(debug) Debug.Log("[ColliderDirectoryScript] Trying to find bumper from this id: " + id);
+            if(debug) Debug.Log("[ColliderDirectoryScript] Trying to find chest from this id: " + id);
             if (id < 0 || id >= chestExposers.Count) return null;
             return !PhotonNetwork.IsMasterClient ? null : chestExposers[id];
         }
@@ -400,7 +401,8 @@ namespace LastToTheGlobe.Scripts.Management
             activeChests++;
 
             id = AddChestInDirectory(chest);
-            chest.ChestPhotonView = bumpersPhotonView;
+            print("Helllo !!!!!!!!");
+            chest.ChestPhotonView = chestPhotonView;
 
             if (debug)
             {

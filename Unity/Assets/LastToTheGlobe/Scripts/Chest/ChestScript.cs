@@ -14,6 +14,18 @@ public class ChestScript : MonoBehaviour
     public bool Debug;
 
     public ChestExposerScript Exposer;
+    public ChestContentManagerScript chestContentManagerScript;
+
+    private float _content;
+
+    
+
+    public void GenerateChestItem(int seed)
+    {
+        Random.InitState(seed);
+        _content = Random.Range(0, 3);
+        print("Seed généré avec succès : "+seed);
+    }
     
     private void OnTriggerEnter(Collider other)
     {
@@ -39,9 +51,11 @@ public class ChestScript : MonoBehaviour
                 Exposer.Id, playerId);
         }
 
+        GenerateChestItem(Exposer.seedChest);
+
         StartCoroutine(ResetTrigger());
     }
-    
+
     private void OnTriggerExit(Collider other)
     {
         if (_i == 1)

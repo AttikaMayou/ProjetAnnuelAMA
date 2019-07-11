@@ -31,12 +31,14 @@ public class ChestsPhotonViewSender : MonoBehaviour
             
         //Set the chest which is ACTUALLY near player
         player.Chest = chest.ChestScript;
+        chest.seedChest = player.seedChest;
+        print(player.seedChest);
     }
 
     [PunRPC]
     void UnassignChestRPC(int playerId)
     {
-        if (debug) Debug.Log("[ChestsPhotonViewSender] UnassignBumperRPC received");
+        if (debug) Debug.Log("[ChestsPhotonViewSender] UnassignChestRPC received");
             
         //Find exposer from int parameter (ID)
         var player = ColliderDirectoryScript.Instance.GetCharacterExposer(playerId);
@@ -49,8 +51,10 @@ public class ChestsPhotonViewSender : MonoBehaviour
         }
 
         //Set the chest to null since the player isn't ACTUALLY near any chest
-        player.Bumper = null;
+        player.Chest = null;
     }
+    
+    
 
     #endregion
 }
