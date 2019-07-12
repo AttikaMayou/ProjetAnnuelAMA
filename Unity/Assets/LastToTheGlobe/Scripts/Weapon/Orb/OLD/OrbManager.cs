@@ -10,8 +10,9 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb.OLD
         public bool debug = true;
          
         public int Id;
-        
+
         [Header("Orb Parameters")]
+        [SerializeField] private OrbExposerScript exposer;
         [SerializeField] private Rigidbody _orbRb;
         public Collider OrbCd;
         [SerializeField] private float speed = 5.0f;
