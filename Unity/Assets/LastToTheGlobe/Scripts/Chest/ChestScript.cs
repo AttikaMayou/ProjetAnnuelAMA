@@ -16,24 +16,14 @@ public class ChestScript : MonoBehaviour
     public ChestExposerScript Exposer;
     public ChestContentManagerScript chestContentManagerScript;
 
-    private float _content;
-
     
 
-    public void GenerateChestItem(int seed)
+    public void AssignAndGen()
     {
-        Random.InitState(seed);
-        _content = Random.Range(0, 3);
-        print("Seed généré avec succès : "+seed);
+        Exposer.ChestPhotonView.RPC("AssignChestRPC", RpcTarget.MasterClient, 0, 0);
+        chestContentManagerScript.GenerateChestItem(Exposer.seedChest);
+        
     }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            Exposer.ChestPhotonView.RPC("AssignChestRPC", RpcTarget.MasterClient, 0, 0);
-        }
-}
 
     private void OnTriggerEnter(Collider other)
     {
@@ -62,7 +52,7 @@ public class ChestScript : MonoBehaviour
                 Exposer.Id, playerId);
         }
 
-        GenerateChestItem(Exposer.seedChest);
+        chestContentManagerScript.GenerateChestItem(Exposer.seedChest);
 
         StartCoroutine(ResetTrigger());
     }

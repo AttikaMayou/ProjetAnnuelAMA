@@ -31,6 +31,7 @@ namespace LastToTheGlobe.Scripts.Inventory
         /// <param name="obj"></param>
         public void AddObjectInInventory(ObjectScript obj)
         {
+            Debug.LogFormat("Objet ajouté à l'inventaire : {0}", obj.objectName);
             if(objectsInInventory.Contains(obj) || IsInventoryFull()) return;
             objectsInInventory.Add(obj);
             obj.SetObjectInInventory(true);

@@ -52,20 +52,16 @@ public class ItemSlotInventory : MonoBehaviourSingleton<ItemSlotInventory>, IDro
                 
                 objToAdd.itemType = ObjectScript._typeOfItem.Consumable;
                 objToAdd.objectName = DragIconInventory.name;
-                objToAdd.lifePoint = DragIconInventory.lifePoint;
-                inventoryScript.AddObjectInInventory(objToAdd);
             }
             else if (DragIconInventory.itemType == DragIconInventory._typeOfItem.Bonus)
             {
                 objToAdd.itemType = ObjectScript._typeOfItem.Bonus;
                 objToAdd.objectName = DragIconInventory.name;
-                inventoryScript.AddObjectInInventory(objToAdd);
             }
             else
             {
                 objToAdd.itemType = ObjectScript._typeOfItem.Skill;
-                objToAdd.objectName = DragIconInventory.name;
-                inventoryScript.AddObjectInInventory(objToAdd);                
+                objToAdd.objectName = DragIconInventory.name;              
             }
         }
     }
@@ -81,7 +77,12 @@ public class ItemSlotInventory : MonoBehaviourSingleton<ItemSlotInventory>, IDro
 
     private void Update()
     {
-        
+        if(item)
+        {
+            removeButton.enabled = true;
+            removeButton.interactable = true;
+        }
+        transform.GetChild(0);
     }
 
     public void OnRemoveButton()

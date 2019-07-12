@@ -386,6 +386,8 @@ GameObject:
   - component: {fileID: 4032840751649765455}
   - component: {fileID: 4032840751649765452}
   - component: {fileID: 4032840751649765441}
+  - component: {fileID: 835860696850617462}
+  - component: {fileID: 5482628297410016006}
   - component: {fileID: 4032840751649765454}
   - component: {fileID: 1014064465940019215}
   - component: {fileID: 3647621335996314131}
@@ -472,6 +474,35 @@ MonoBehaviour:
   m_SynchronizeAngularVelocity: 1
   m_TeleportEnabled: 1
   m_TeleportIfDistanceGreaterThan: 3
+--- !u!114 &835860696850617462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4032840751649765450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a27b0e1003d49734ca467b3a788e9c45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selfExposer: {fileID: 0}
+  InventoryExposer: {fileID: 0}
+--- !u!114 &5482628297410016006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4032840751649765450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74ac870affe43ce4299b6c7d4ac9d277, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nbSlots: 4
+  isFull: 0
+  objectsInInventory: []
 --- !u!114 &4032840751649765454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -494,12 +525,17 @@ MonoBehaviour:
   CollisionDispatcher: {fileID: 4952198941118172763}
   CharacterAnimator: {fileID: 2713987122217920040}
   Bumper: {fileID: 0}
+  Chest: {fileID: 0}
+  seedChest: 0
   CharacterPhotonView: {fileID: 4032840751649765452}
   CharacterRbPhotonView: {fileID: 4032840751649765441}
   CameraRotatorX: {fileID: 7674971413621576116}
   LifeUi: {fileID: 0}
   VictoryUi: {fileID: 0}
   DefeatUi: {fileID: 0}
+  Interaction: {fileID: 0}
+  ChestInventory: {fileID: 0}
+  PlayerInventory: {fileID: 0}
   InventoryScript: {fileID: 0}
   Movedir: {x: 0, y: 0, z: 0}
   DashSpeed: 30
@@ -742,15 +778,15 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 73e74dcd94ebf124998f60ea1db7917b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb2e4d21e2f82254ead5f19259ab8176, type: 3}
---- !u!4 &2713987122210949570 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400010, guid: eb2e4d21e2f82254ead5f19259ab8176,
-    type: 3}
-  m_PrefabInstance: {fileID: 2713987122210558792}
-  m_PrefabAsset: {fileID: 0}
 --- !u!95 &2713987122217920040 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 9500000, guid: eb2e4d21e2f82254ead5f19259ab8176,
+    type: 3}
+  m_PrefabInstance: {fileID: 2713987122210558792}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2713987122210949570 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400010, guid: eb2e4d21e2f82254ead5f19259ab8176,
     type: 3}
   m_PrefabInstance: {fileID: 2713987122210558792}
   m_PrefabAsset: {fileID: 0}
