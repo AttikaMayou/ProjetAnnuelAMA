@@ -70,7 +70,7 @@ namespace LastToTheGlobe.Scripts.Camera
             position -= _myTr.rotation * _cameraOffsetOriginal;
             _myTr.position = position;
 
-            AvoidWall(playerExposer.CharacterTr.position, _myTr.position);
+            //AvoidWall(playerExposer.CharacterTr.position, _myTr.position);
             //Debug.DrawLine(playerExposer.CharacterTr.position, _myTr.position);
 
         }

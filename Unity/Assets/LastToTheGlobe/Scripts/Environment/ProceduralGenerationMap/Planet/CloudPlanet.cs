@@ -33,14 +33,15 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
         private int[] indices;
         private Vector3[] planetSize;
         //TODO : récupérer le nombre de joueurs en jeu --> ColliderDirectoryScript.Instance.characterExposers.Count()
-
         private GameObject planet;
+        Vector3[] lookAt;
 
         public void Awake()
         {
             vertices = new Vector3[numberOfPlayer + numberOfVertices + 1];
             indices = new int[numberOfPlayer + numberOfVertices];
             planetSize = new Vector3[numberOfPlayer + numberOfVertices];
+            lookAt = new Vector3[numberOfPlayer + numberOfVertices];
         }
 
         public int[] GetIndices()
@@ -140,10 +141,12 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
                     {
                         planet = Instantiate(Resources.Load(spawnPlanet + indices[i]), vertices[i], Quaternion.identity) as GameObject;
                         planetSize[i] = planet.transform.localScale;
+                        lookAt[i] = vertices[i];
                         continue;
                     }
 
                     planet = Instantiate(Resources.Load(basicPlanet + indices[i]), vertices[i], Quaternion.identity) as GameObject;
+                    lookAt[i] = vertices[i];
                     planetSize[i] = planet.transform.localScale;
                 }
                 else if(i == vertices.Length - 2)
@@ -153,14 +156,14 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
 
             }
 
-            for(int i = 0; i < vertices.Length - 2; i++)
+            for(int i = 0; i < vertices.Length - 3; i++)
             {
-                Vector3 lookingAt;
-                Vector3 tremplinLocation = SetTremplinLocation(i, out lookingAt);
+                Vector3 tremplinLocation = SetTremplinLocation(i);
                 //tremplinLocation.y = planetSize[i].y;
                 GameObject tremplin = Instantiate(Resources.Load("Jumper"), tremplinLocation, Quaternion.identity) as GameObject;
                 //set l'orientation
-                tremplin.transform.LookAt(-vertices[i]);
+                tremplin.transform.LookAt(lookAt[i], Vector3.up);
+                //Debug.LogFormat("lookAt du tremplin de location {0} == {1}", tremplinLocation, lookAt[i]);
             }
         }
 
@@ -175,7 +178,7 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
 
 
         //Cette fonction renvoie la position des tremplins pour la planète à l'Id 'planetId' de taille 'planetSize'
-        private Vector3 SetTremplinLocation(int planetId, out Vector3 lookingAt)
+        private Vector3 SetTremplinLocation(int planetId)
         {
             //On créé un tableau de Vector3 qui contiendra les positions des tremplins 
 
@@ -201,8 +204,6 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
                 }
             }
 
-            Debug.LogFormat("Nearest planet : {0} at position {1}", min, vertices[j]);
-            lookingAt = vertices[j];
             return  ColliderDirectoryScript.Instance.GetPlanetExposer(planetId).planetGroundCollider.ClosestPoint(vertices[j]);
            
             //2) Pour chaque planète trouvée : on récupère le point le plus proche de cette planète (à l'aide de la fonction Collider.ClosestPoint)
