@@ -26,9 +26,18 @@ public class ChestScript : MonoBehaviour
         _content = Random.Range(0, 3);
         print("Seed généré avec succès : "+seed);
     }
-    
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            Exposer.ChestPhotonView.RPC("AssignChestRPC", RpcTarget.MasterClient, 0, 0);
+        }
+}
+
     private void OnTriggerEnter(Collider other)
     {
+        
         if (_i == 1)
         {
             return;
@@ -43,6 +52,8 @@ public class ChestScript : MonoBehaviour
 
         var playerId = ColliderDirectoryScript.Instance.GetPlayerId(other);
 
+        
+        
         //if playerId is different from -1, that means this is a player which near the chest
         if (playerId != -1)
         {
