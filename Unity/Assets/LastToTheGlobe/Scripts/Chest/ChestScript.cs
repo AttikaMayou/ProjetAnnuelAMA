@@ -15,11 +15,14 @@ public class ChestScript : MonoBehaviour
 
     public ChestExposerScript Exposer;
     public ChestContentManagerScript chestContentManagerScript;
+    public bool Generated = false;
 
     
 
     public void AssignAndGen()
     {
+        if(Generated) return;
+        Generated = true;
         Exposer.ChestPhotonView.RPC("AssignChestRPC", RpcTarget.MasterClient, 0, 0);
         chestContentManagerScript.GenerateChestItem(Exposer.seedChest);
         

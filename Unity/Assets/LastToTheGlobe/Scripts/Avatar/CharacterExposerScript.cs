@@ -40,6 +40,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         public PhotonView CharacterPhotonView;
         public PhotonRigidbodyView CharacterRbPhotonView;
         
+        
         [Header("Camera Control Parameters")] 
         public GameObject CameraRotatorX;
 
@@ -53,7 +54,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         public GameObject ChestInventory;
         public GameObject PlayerInventory;
         
-        public InventoryScript InventoryScript;
+        public InventoryScript inventoryScript;
         
         //Character Parameters
         public Vector3 Movedir;

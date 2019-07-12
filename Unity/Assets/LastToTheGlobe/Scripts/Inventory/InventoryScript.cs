@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Photon.Pun.UtilityScripts;
 using UnityEngine;
 using UnityEngine.Experimental.PlayerLoop;
@@ -13,6 +14,7 @@ namespace LastToTheGlobe.Scripts.Inventory
         [SerializeField] private int nbSlots = 4;
         public bool isFull;
         public List<ObjectScript> objectsInInventory = new List<ObjectScript>();
+        public List<string> objectsName = new List<string>();
 
         private void Awake()
         {
@@ -31,11 +33,16 @@ namespace LastToTheGlobe.Scripts.Inventory
         /// <param name="obj"></param>
         public void AddObjectInInventory(ObjectScript obj)
         {
-            Debug.LogFormat("Objet ajouté à l'inventaire : {0}", obj.objectName);
-            if(objectsInInventory.Contains(obj) || IsInventoryFull()) return;
-            objectsInInventory.Add(obj);
-            obj.SetObjectInInventory(true);
-            SetInventoryStatus();
+            
+            
+            if (!objectsInInventory.Contains(obj) && !IsInventoryFull())
+            {
+                Debug.LogFormat("Objet ajouté à l'inventaire : {0}", obj.objectName);
+                objectsName.Append(obj.objectName);
+                objectsInInventory.Add(obj);
+                obj.SetObjectInInventory(true);
+                SetInventoryStatus();
+            }
         }
 
         private void DeleteObjectFromInventory(ObjectScript obj)

@@ -7,4 +7,5 @@ public class PlayerInventoryExposer : MonoBehaviour
 
     public List<GameObject> playerSlot;
 
+    
 }
