@@ -17,7 +17,7 @@ namespace LastToTheGlobe.Scripts.Chest
         
         private void Awake()
         {
-            print(ChestPhotonView);
+            //print(ChestPhotonView);
             if (!PhotonNetwork.IsMasterClient) return;
             ColliderDirectoryScript.Instance.AddChestExposer(this, out Id);
         }

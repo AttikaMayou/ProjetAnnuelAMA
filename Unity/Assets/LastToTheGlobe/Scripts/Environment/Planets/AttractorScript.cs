@@ -26,7 +26,7 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
 
             if (planetId != Exposer.id)
             {
-                if(Debug) UnityEngine.Debug.LogWarningFormat("[AttractorScript] Planet {0} received order to attract player {1} but it was meant to {2}",
+                if(Debug) UnityEngine.Debug.LogWarningFormat("[AttractorScript] Planet {0} received order to attract player {1} but it was meant to planet {2}",
                     Exposer.id, playerId, planetId);
                 return;
             }

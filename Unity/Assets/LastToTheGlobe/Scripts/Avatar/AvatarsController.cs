@@ -8,6 +8,7 @@ using LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet;
 using LastToTheGlobe.Scripts.Management;
 using LastToTheGlobe.Scripts.Network;
 using LastToTheGlobe.Scripts.UI;
+using LastToTheGlobe.Scripts.Weapon.Orb;
 using LastToTheGlobe.Scripts.Weapon.Orb.OLD;
 using Photon.Pun;
 using UnityEngine;
@@ -169,8 +170,8 @@ namespace LastToTheGlobe.Scripts.Avatar
                 {
                     moveIntent += new Vector3(intent.strafe, 0.0f, intent.forward);
                 }
-
-                /*if (intent.Shoot)
+                
+                if (intent.Shoot)
                 {
                     if(debug) Debug.Log("[AvatarsController] Shoot intent");
                     
@@ -198,7 +199,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                     
                     intent.ShootLoaded = false;
                     intent.canShoot = true;
-                }*/
+                }
                 
                 /*if (intent.Shoot)
                 {
@@ -391,7 +392,7 @@ namespace LastToTheGlobe.Scripts.Avatar
  
             if (PhotonNetwork.IsConnected)
             {
-                Debug.LogFormat("[AvatarsController] SI am calling send seed to players and I aaaaam the Master ? {0}", PhotonNetwork.IsMasterClient);
+                Debug.LogFormat("[AvatarsController] I am calling send seed to players and I aaaaam the Master ? {0}", PhotonNetwork.IsMasterClient);
                 photonView.RPC("SendSeedToPlayers", RpcTarget.OthersBuffered, environmentController.GetIndices(), environmentController.GetVertices());
                 SendChestSeedToPlayers(_chestSeed);
             }
@@ -598,7 +599,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         [PunRPC]
         private void SendChestSeedToPlayers(int seed)
         {
-            print("Hi from Avatar controller seed = "+seed);
+            //print("Hi from Avatar controller seed = " + seed);
             foreach (var player in players)
             {
                 

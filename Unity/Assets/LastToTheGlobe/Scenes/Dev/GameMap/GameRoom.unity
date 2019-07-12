@@ -5960,7 +5960,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 27
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -5988,7 +5988,7 @@ MonoBehaviour:
     spaceCount: 5
     wordCount: 5
     linkCount: 0
-    lineCount: 2
+    lineCount: 1
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 0
@@ -6687,7 +6687,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 4
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -6715,7 +6715,7 @@ MonoBehaviour:
     spaceCount: 0
     wordCount: 2
     linkCount: 0
-    lineCount: 2
+    lineCount: 1
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 0
@@ -8287,6 +8287,11 @@ PrefabInstance:
       propertyPath: countdown
       value: 
       objectReference: {fileID: 1947161234}
+    - target: {fileID: 2003145821851938738, guid: 4b7f65cf3304916429cf26667ac888b2,
+        type: 3}
+      propertyPath: orbsPool.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2003145821851938738, guid: 4b7f65cf3304916429cf26667ac888b2,
         type: 3}
       propertyPath: _startPosition.Array.data[0]

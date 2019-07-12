@@ -7,7 +7,7 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb.OLD
 {
     public class OrbManager : global::LastToTheGlobe.Scripts.Avatar.Avatar
     {
-        /*public bool debug = true;
+        public bool debug = true;
          
         public int Id;
         
@@ -82,6 +82,6 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb.OLD
             //only the Master Client remove the orb to the directory and reset his ID
             if (!PhotonNetwork.IsMasterClient) return;
             //ColliderDirectoryScript.Instance.RemoveOrbManager(this);
-        }*/
+        }
     }
 }
