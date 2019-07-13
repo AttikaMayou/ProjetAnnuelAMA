@@ -90,10 +90,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d68f8f37f5b9a3c42bde861b85dd983b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemSlot: []
-  pools:
-  - {fileID: 7993500728675279036, guid: 7aaae33e99856a946b8dffe0b25b9d87, type: 3}
-  - {fileID: 80584939656699893, guid: 8062414e6e91ac443b9af466dff57010, type: 3}
+  itemSlot:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  pools: []
 --- !u!23 &410905913185573141
 MeshRenderer:
   m_ObjectHideFlags: 0
