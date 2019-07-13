@@ -246,9 +246,13 @@ namespace LastToTheGlobe.Scripts.Avatar
                     }
                 }
 
-                if (intent.Interact)
+                if (!intent.canDash)
                 {
-                    
+                    if (player.inventoryScript.isItemInInventory("Dash"))
+                    {
+                        print("Done !");
+                        intent.canDash = true;
+                    }
                 }
                 
                 rb.MovePosition(rb.position + intent.speed * Time.deltaTime * tr.TransformDirection(moveIntent));

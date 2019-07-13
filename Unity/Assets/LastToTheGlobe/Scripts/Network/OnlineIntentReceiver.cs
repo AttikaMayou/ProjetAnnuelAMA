@@ -22,6 +22,8 @@ namespace LastToTheGlobe.Scripts.Network
         private float _bumpTimer;
         private float _dashTimer;
 
+        private bool _dashCooldownDone = true;
+
         private void Update()
         {
             if (PlayerNumbering.SortedPlayers.Length <= playerIndex ||
@@ -75,7 +77,7 @@ namespace LastToTheGlobe.Scripts.Network
             }
 
             //Cooldown dash
-            if (!canDash)
+            if (!_dashCooldownDone)
             {
                 _dashTimer += Time.deltaTime;
                 if (_dashTimer <= GameVariablesScript.Instance.dashCooldown)
@@ -112,11 +114,13 @@ namespace LastToTheGlobe.Scripts.Network
                 photonView.RPC("RunRpc", RpcTarget.MasterClient, false);
             }
 
-            if (Input.GetKeyDown(KeyCode.LeftAlt) && canDash)
+            if (Input.GetKeyDown(KeyCode.LeftAlt) && canDash && _dashCooldownDone)
             {
+                print("I WANNA DASH LEAUL !");
                 speed = GameVariablesScript.Instance.dashSpeed;
                 photonView.RPC("CanDashRpc", RpcTarget.MasterClient, false);
                 photonView.RPC("DashRpc", RpcTarget.MasterClient);
+                _dashCooldownDone = false;
             }
 
 //            if (Input.GetKeyUp(KeyCode.Space) && CanJump)
@@ -273,7 +277,7 @@ namespace LastToTheGlobe.Scripts.Network
                 UnityEngine.Debug.LogFormat("[IntentReceiver] I get the message : CanDash on this avatar : {0} passed to {1}",
                     playerIndex, intent);
             }
-            canDash = intent;
+            _dashCooldownDone = intent;
         }
         
         [PunRPC]

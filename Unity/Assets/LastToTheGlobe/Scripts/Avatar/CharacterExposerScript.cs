@@ -68,7 +68,7 @@ namespace LastToTheGlobe.Scripts.Avatar
             if (!PhotonNetwork.IsMasterClient) return;
             if(debug) Debug.LogFormat("[CharacterExposer] OnEnable : {0}", this.gameObject.name);
             ColliderDirectoryScript.Instance.AddCharacterExposer(this, out Id);
-            InventoryExposer.id = Id;
+            InventoryExposer.playerId = Id;
 
         }
 

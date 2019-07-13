@@ -40,7 +40,6 @@ public class ItemSlotInventory : MonoBehaviourSingleton<ItemSlotInventory>, IDro
         {
              
             ObjectScript objToAdd = ScriptableObject.CreateInstance<ObjectScript>();
-            print(transform.name);
             DragIconInventory.item.transform.SetParent(transform);
             removeButton.interactable = true;
             removeButtonIcon.enabled = true;

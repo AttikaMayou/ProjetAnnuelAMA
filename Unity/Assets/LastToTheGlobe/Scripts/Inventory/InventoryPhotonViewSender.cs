@@ -38,7 +38,6 @@ public class InventoryPhotonViewSender : MonoBehaviour
     {
         var player = ColliderDirectoryScript.Instance.GetCharacterExposer(playerid);
         
-        print("Hi !");
         if(!player.inventoryScript.isItemInInventory(itemName))
         {
             print("Healed :D");

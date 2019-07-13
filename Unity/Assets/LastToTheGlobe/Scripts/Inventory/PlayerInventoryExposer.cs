@@ -7,17 +7,17 @@ using UnityEngine;
 
 public class PlayerInventoryExposer : MonoBehaviour
 {
-    public int id;
+    //Set in characterExposer
+    public int playerId;
     public List<GameObject> playerSlot;
 
     [SerializeField] private PhotonView photonView;
 
     public void OnUsedItem(int id)
     {
-        print("Hi !");
-        if (playerSlot[id].transform.childCount > 2 && playerSlot[id].transform.GetChild(2).CompareTag("Potion"))
+        if (playerSlot[id].transform.childCount > 2 && playerSlot[id].transform.GetChild(0).CompareTag("Potion"))
         {
-            
+            photonView.RPC("WantToUseItem", RpcTarget.MasterClient, playerSlot[id].transform.GetChild(0).tag, playerId);
         }
         else
         {
