@@ -14,7 +14,7 @@ namespace LastToTheGlobe.Scripts.Inventory
         [SerializeField] private int nbSlots = 4;
         public bool isFull;
         public List<ObjectScript> objectsInInventory = new List<ObjectScript>();
-        public List<string> objectsName = new List<string>();
+        private List<string> objectsName = new List<string>();
 
         private void Awake()
         {
@@ -35,10 +35,10 @@ namespace LastToTheGlobe.Scripts.Inventory
         {
             
             
-            if (!objectsInInventory.Contains(obj) && !IsInventoryFull())
+            if (!objectsName.Contains(obj.objectName) && !IsInventoryFull())
             {
                 Debug.LogFormat("Objet ajouté à l'inventaire : {0}", obj.objectName);
-                objectsName.Append(obj.objectName);
+                objectsName.Add(obj.objectName);
                 objectsInInventory.Add(obj);
                 obj.SetObjectInInventory(true);
                 SetInventoryStatus();
@@ -49,6 +49,7 @@ namespace LastToTheGlobe.Scripts.Inventory
         {
             if (!objectsInInventory.Contains(obj)) return;
             objectsInInventory.Remove(obj);
+            objectsName.Remove(obj.objectName);
             SetInventoryStatus();
         }
         
@@ -63,6 +64,7 @@ namespace LastToTheGlobe.Scripts.Inventory
                 obj.SetObjectInInventory(false);
                 //TODO : add action in ObjectScript --> set object free
             }
+            objectsName.Clear();
             objectsInInventory.Clear();
             SetInventoryStatus();
         }

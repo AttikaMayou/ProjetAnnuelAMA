@@ -50,12 +50,17 @@ public class ChestScript : MonoBehaviour
         //if playerId is different from -1, that means this is a player which near the chest
         if (playerId != -1)
         {
+            
             //Send to MasterClient a message to warn him with its own ID and playerId
             Exposer.ChestPhotonView.RPC("AssignChestRPC", RpcTarget.MasterClient,
                 Exposer.Id, playerId);
         }
 
-        chestContentManagerScript.GenerateChestItem(Exposer.seedChest);
+        if (!Generated)
+        {
+            Generated = true;
+            chestContentManagerScript.GenerateChestItem(Exposer.seedChest);
+        }
 
         StartCoroutine(ResetTrigger());
     }

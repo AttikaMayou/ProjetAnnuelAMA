@@ -455,8 +455,8 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 4032840751649765441}
-  viewIdField: 0
-  InstantiationId: 113
+  viewIdField: 33
+  InstantiationId: 33
   isRuntimeInstantiated: 0
 --- !u!114 &4032840751649765441
 MonoBehaviour:
@@ -486,8 +486,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a27b0e1003d49734ca467b3a788e9c45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selfExposer: {fileID: 0}
+  selfExposer: {fileID: 4032840751649765454}
   InventoryExposer: {fileID: 0}
+  inventoryScript: {fileID: 5482628297410016006}
 --- !u!114 &5482628297410016006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -536,7 +537,7 @@ MonoBehaviour:
   Interaction: {fileID: 0}
   ChestInventory: {fileID: 0}
   PlayerInventory: {fileID: 0}
-  InventoryScript: {fileID: 0}
+  inventoryScript: {fileID: 0}
   Movedir: {x: 0, y: 0, z: 0}
   DashSpeed: 30
 --- !u!114 &1014064465940019215

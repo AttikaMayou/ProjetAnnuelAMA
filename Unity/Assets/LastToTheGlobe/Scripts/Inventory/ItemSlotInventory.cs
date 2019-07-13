@@ -11,13 +11,9 @@ using UnityEngine.UI;
 
 public class ItemSlotInventory : MonoBehaviourSingleton<ItemSlotInventory>, IDropHandler
 {
-    [SerializeField]
-    private Button removeButton;
-    [SerializeField]
-    private Image removeButtonIcon;
+    [SerializeField]private Button removeButton;
+    [SerializeField]private Image removeButtonIcon;
     public InventoryScript inventoryScript;
-
-    public GameObject itemOfSlot;
     
     public GameObject item
     {
@@ -88,6 +84,11 @@ public class ItemSlotInventory : MonoBehaviourSingleton<ItemSlotInventory>, IDro
     public void OnRemoveButton()
     {
         ClearSlot();
+    }
+
+    public void OnUsedItem()
+    {
+        
     }
 }
 
