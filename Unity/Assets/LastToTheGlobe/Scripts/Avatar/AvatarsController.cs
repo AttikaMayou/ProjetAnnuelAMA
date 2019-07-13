@@ -182,6 +182,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                     orb.InitializeOrPosition();
                     
                     intent.Shoot = false;
+                    StartCoroutine(CooldownReset(GameVariablesScript.Instance.shootCooldown));
                     intent.canShoot = true;
                 }
 
@@ -197,6 +198,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                     orb.InitializeOrPosition();
                     
                     intent.ShootLoaded = false;
+                    StartCoroutine(CooldownReset(GameVariablesScript.Instance.shootCooldown));
                     intent.canShoot = true;
                 }
                 
@@ -244,6 +246,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                     {
                         player.Bumper.BumpPlayer(player.Bumper.exposer.Id,i,  GameVariablesScript.Instance.bumpersForce);
                     }
+                    StartCoroutine(CooldownReset(GameVariablesScript.Instance.bumpCooldown));
                     intent.Bump = false;
                 }
 
@@ -572,6 +575,11 @@ namespace LastToTheGlobe.Scripts.Avatar
                 PhotonNetwork.Disconnect();
             }
             
+        }
+
+        private IEnumerator CooldownReset(float time)
+        {
+            yield return new WaitForSeconds(time);
         }
         
         #endregion

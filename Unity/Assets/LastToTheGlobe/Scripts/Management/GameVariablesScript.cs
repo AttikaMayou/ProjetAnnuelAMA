@@ -20,8 +20,9 @@ namespace LastToTheGlobe.Scripts.Management
         [Header("Gravity Parameters")] 
         public float planetsGravity;
         public float bumpersForce;
-        
+
         [Header("Shoot Parameters")] 
+        public float shootCooldown;
         public float shootLoadTime;
         public int shootDamage;
         public int shootLoadedDamage;
