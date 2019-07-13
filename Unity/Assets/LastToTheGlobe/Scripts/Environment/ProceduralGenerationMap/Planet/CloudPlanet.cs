@@ -31,8 +31,6 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
 
         private Vector3[] vertices;
         private int[] indices;
-        private Vector3[] planetSize;
-        //TODO : récupérer le nombre de joueurs en jeu --> ColliderDirectoryScript.Instance.characterExposers.Count()
         private GameObject planet;
         Vector3[] lookAt;
 
@@ -40,7 +38,6 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
         {
             vertices = new Vector3[numberOfPlayer + numberOfVertices + 1];
             indices = new int[numberOfPlayer + numberOfVertices];
-            planetSize = new Vector3[numberOfPlayer + numberOfVertices];
             lookAt = new Vector3[numberOfPlayer + numberOfVertices];
         }
 
@@ -140,14 +137,12 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
                     if (i < numberOfPlayer)
                     {
                         planet = Instantiate(Resources.Load(spawnPlanet + indices[i]), vertices[i], Quaternion.identity) as GameObject;
-                        planetSize[i] = planet.transform.localScale;
                         lookAt[i] = vertices[i];
                         continue;
                     }
 
                     planet = Instantiate(Resources.Load(basicPlanet + indices[i]), vertices[i], Quaternion.identity) as GameObject;
                     lookAt[i] = vertices[i];
-                    planetSize[i] = planet.transform.localScale;
                 }
                 else if(i == vertices.Length - 2)
                 {
@@ -156,14 +151,13 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
 
             }
 
-            for(int i = 0; i < vertices.Length - 3; i++)
+            for(int i = numberOfPlayer; i < vertices.Length - 3; i++)
             {
                 Vector3 tremplinLocation = SetTremplinLocation(i);
-                //tremplinLocation.y = planetSize[i].y;
                 GameObject tremplin = Instantiate(Resources.Load("Jumper"), tremplinLocation, Quaternion.identity) as GameObject;
                 //set l'orientation
-                tremplin.transform.LookAt(lookAt[i], Vector3.up);
-                tremplin.transform.Rotate(95, 0, 0);
+                tremplin.transform.LookAt(vertices[i], Vector3.down);
+                tremplin.transform.Rotate(90, 0, 0);
                 //Debug.LogFormat("lookAt du tremplin de location {0} == {1}", tremplinLocation, lookAt[i]);
             }
         }
