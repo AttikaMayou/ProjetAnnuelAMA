@@ -352,6 +352,7 @@ MonoBehaviour:
   lockCursor: 0
   planetsGravity: -10
   bumpersForce: 100
+  shootCooldown: 1
   shootLoadTime: 1.5
   shootDamage: 10
   shootLoadedDamage: 50
@@ -359,7 +360,7 @@ MonoBehaviour:
   lifeTimeOrb: 3
   orbDefensiveSpeed: 2
   dashCooldown: 0
-  bumpCooldown: 0
+  bumpCooldown: 5
   lifeInitial: 100
   nbreOfTremplin: 1
 --- !u!1 &2003145823037444674

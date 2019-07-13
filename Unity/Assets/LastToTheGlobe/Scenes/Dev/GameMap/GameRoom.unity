@@ -2110,6 +2110,11 @@ PrefabInstance:
       propertyPath: Exposer
       value: 
       objectReference: {fileID: 1629062614}
+    - target: {fileID: 4063325908617021068, guid: bf62e091e3a648e449f1ae21a25c6606,
+        type: 3}
+      propertyPath: exposer
+      value: 
+      objectReference: {fileID: 1629062614}
     - target: {fileID: 7950339713354577059, guid: bf62e091e3a648e449f1ae21a25c6606,
         type: 3}
       propertyPath: m_Size.x
@@ -9367,6 +9372,11 @@ PrefabInstance:
     - target: {fileID: 2005994772269204461, guid: 4b7f65cf3304916429cf26667ac888b2,
         type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2003145822602656098, guid: 4b7f65cf3304916429cf26667ac888b2,
+        type: 3}
+      propertyPath: shootCooldown
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7871001696431406230, guid: 4b7f65cf3304916429cf26667ac888b2,
