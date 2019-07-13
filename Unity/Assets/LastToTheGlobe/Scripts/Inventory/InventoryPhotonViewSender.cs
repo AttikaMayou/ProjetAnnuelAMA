@@ -5,6 +5,8 @@ using LastToTheGlobe.Scripts.Management;
 using Photon.Pun;
 using UnityEngine;
 
+//Auteur : Abdallah
+
 public class InventoryPhotonViewSender : MonoBehaviour
 {
     [PunRPC]
@@ -28,7 +30,23 @@ public class InventoryPhotonViewSender : MonoBehaviour
         objectToAdd.isConsume = false;
         objectToAdd.isInInventory = true;
         
-        player.inventoryScript.AddObjectInInventory(objectToAdd);
+        player.inventoryScript.AddObjectInInventory(objectToAdd);   
+    }
+
+    [PunRPC]
+    void WantToUseItem(string itemName, int playerid)
+    {
+        var player = ColliderDirectoryScript.Instance.GetCharacterExposer(playerid);
         
+        print("Hi !");
+        if(!player.inventoryScript.isItemInInventory(itemName))
+        {
+            print("Healed :D");
+        }
+        else
+        {
+            print("You don't have this item dude");
+        }
+
     }
 }

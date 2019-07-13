@@ -19,7 +19,7 @@ public class ItemSlotInventory : MonoBehaviourSingleton<ItemSlotInventory>, IDro
     {
         get
         {
-            if(transform.childCount > 1)
+            if(transform.childCount > 2)
             {
                 return transform.GetChild(0).gameObject;
             }
@@ -40,6 +40,7 @@ public class ItemSlotInventory : MonoBehaviourSingleton<ItemSlotInventory>, IDro
         {
              
             ObjectScript objToAdd = ScriptableObject.CreateInstance<ObjectScript>();
+            print(transform.name);
             DragIconInventory.item.transform.SetParent(transform);
             removeButton.interactable = true;
             removeButtonIcon.enabled = true;

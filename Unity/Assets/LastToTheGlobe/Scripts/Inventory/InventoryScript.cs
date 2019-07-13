@@ -35,7 +35,7 @@ namespace LastToTheGlobe.Scripts.Inventory
         {
             
             
-            if (!objectsName.Contains(obj.objectName) && !IsInventoryFull())
+            if (!isItemInInventory(obj.objectName) && !IsInventoryFull())
             {
                 Debug.LogFormat("Objet ajouté à l'inventaire : {0}", obj.objectName);
                 objectsName.Add(obj.objectName);
@@ -85,6 +85,11 @@ namespace LastToTheGlobe.Scripts.Inventory
         public bool IsInventoryFull()
         {
             return isFull;
+        }
+
+        public bool isItemInInventory(string itemName)
+        {
+            return objectsName.Contains(itemName);
         }
     }
 }

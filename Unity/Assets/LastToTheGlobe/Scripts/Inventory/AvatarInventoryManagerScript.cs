@@ -7,10 +7,11 @@ using LastToTheGlobe.Scripts.Inventory;
 using Photon.Pun;
 using UnityEngine;
 
+//Auteur : Abdallah
+
 public class AvatarInventoryManagerScript : MonoBehaviour
 {
     public CharacterExposerScript selfExposer;
-    public PlayerInventoryExposer InventoryExposer;
 
     [SerializeField] private PhotonView inventoryPhotonView;
 
@@ -26,13 +27,15 @@ public class AvatarInventoryManagerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        foreach (var item in InventoryExposer.playerSlot)
+        //Check if an item have been added
+        foreach (var item in selfExposer.InventoryExposer.playerSlot)
         {
             if (item.transform.childCount > 2)
             {
                 string tag = item.transform.GetChild(2).tag;
                 if (!item.transform.GetChild(2).CompareTag("Untagged"))
                 {
+                    //Send RPC to add item
                     inventoryPhotonView.RPC("AddItemToInventory", RpcTarget.MasterClient, tag, selfExposer.Id);
                 }
             }

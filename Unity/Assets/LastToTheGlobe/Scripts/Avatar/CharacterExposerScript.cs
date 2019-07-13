@@ -50,10 +50,11 @@ namespace LastToTheGlobe.Scripts.Avatar
         public ActivateObjects VictoryUi;
         public ActivateObjects DefeatUi;
 
+        [Header("Inventory references")]
         public GameObject Interaction;
         public GameObject ChestInventory;
         public GameObject PlayerInventory;
-        
+        public PlayerInventoryExposer InventoryExposer;
         public InventoryScript inventoryScript;
         
         //Character Parameters
@@ -67,6 +68,8 @@ namespace LastToTheGlobe.Scripts.Avatar
             if (!PhotonNetwork.IsMasterClient) return;
             if(debug) Debug.LogFormat("[CharacterExposer] OnEnable : {0}", this.gameObject.name);
             ColliderDirectoryScript.Instance.AddCharacterExposer(this, out Id);
+            InventoryExposer.id = Id;
+
         }
 
 
