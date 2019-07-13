@@ -401,8 +401,8 @@ namespace LastToTheGlobe.Scripts.Management
             activeChests++;
 
             id = AddChestInDirectory(chest);
-            //print("Helllo !!!!!!!!");
             chest.ChestPhotonView = chestPhotonView;
+            Debug.LogFormat("First ChestPhotonView {0} And Now Second chestPhotonView {1}", chest.ChestPhotonView, chestPhotonView);
 
             if (debug)
             {

@@ -40,20 +40,22 @@ namespace LastToTheGlobe.Scripts.Avatar
         public PhotonView CharacterPhotonView;
         public PhotonRigidbodyView CharacterRbPhotonView;
         
+        
         [Header("Camera Control Parameters")] 
         public GameObject CameraRotatorX;
 
-//        [Header("UI references")] 
-//        //public ActivateObjects inventoryUI;
-//        public ActivateObjects LifeUi;
-//        public ActivateObjects VictoryUi;
-//        public ActivateObjects DefeatUi;
-//
-//        public GameObject Interaction;
-//        public GameObject ChestInventory;
-//        public GameObject PlayerInventory;
-//        
-//        public InventoryScript InventoryScript;
+        [Header("UI references")] 
+        //public ActivateObjects inventoryUI;
+        public ActivateObjects LifeUi;
+        public ActivateObjects VictoryUi;
+        public ActivateObjects DefeatUi;
+
+        [Header("Inventory references")]
+        public GameObject Interaction;
+        public GameObject ChestInventory;
+        public GameObject PlayerInventory;
+        public PlayerInventoryExposer InventoryExposer;
+        public InventoryScript inventoryScript;
         
         //Character Parameters
         public Vector3 Movedir;
@@ -66,6 +68,8 @@ namespace LastToTheGlobe.Scripts.Avatar
             if (!PhotonNetwork.IsMasterClient) return;
             if(debug) Debug.LogFormat("[CharacterExposer] OnEnable : {0}", this.gameObject.name);
             ColliderDirectoryScript.Instance.AddCharacterExposer(this, out Id);
+            InventoryExposer.playerId = Id;
+
         }
 
 

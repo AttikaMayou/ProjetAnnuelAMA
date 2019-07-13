@@ -15,20 +15,22 @@ public class ChestScript : MonoBehaviour
 
     public ChestExposerScript Exposer;
     public ChestContentManagerScript chestContentManagerScript;
-
-    private float _content;
+    public bool Generated = false;
 
     
 
-    public void GenerateChestItem(int seed)
+    public void AssignAndGen()
     {
-        Random.InitState(seed);
-        _content = Random.Range(0, 3);
-        print("Seed généré avec succès : "+seed);
+        if(Generated) return;
+        Generated = true;
+        Exposer.ChestPhotonView.RPC("AssignChestRPC", RpcTarget.MasterClient, 0, 0);
+        chestContentManagerScript.GenerateChestItem(Exposer.seedChest);
+        
     }
-    
+
     private void OnTriggerEnter(Collider other)
     {
+        
         if (_i == 1)
         {
             return;
@@ -43,15 +45,22 @@ public class ChestScript : MonoBehaviour
 
         var playerId = ColliderDirectoryScript.Instance.GetPlayerId(other);
 
+        
+        
         //if playerId is different from -1, that means this is a player which near the chest
         if (playerId != -1)
         {
+            
             //Send to MasterClient a message to warn him with its own ID and playerId
             Exposer.ChestPhotonView.RPC("AssignChestRPC", RpcTarget.MasterClient,
                 Exposer.Id, playerId);
         }
 
-        GenerateChestItem(Exposer.seedChest);
+        if (!Generated)
+        {
+            Generated = true;
+            chestContentManagerScript.GenerateChestItem(Exposer.seedChest);
+        }
 
         StartCoroutine(ResetTrigger());
     }

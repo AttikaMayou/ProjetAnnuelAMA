@@ -7,18 +7,15 @@ public class ChestContentManagerScript : MonoBehaviour
     
     
     public List<GameObject> itemSlot;
-    public List<GameObject> item;
-    
+    public List<GameObject> pools;
+    private int _content;
     
     // Start is called before the first frame update
-    void Start()
+    public void GenerateChestItem(int seed)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Random.InitState(seed);
+        _content = Random.Range(0, 2);
+        print("Seed généré avec succès : "+seed);
+        pools[_content].transform.GetChild(0).transform.parent = itemSlot[0].transform;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Photon.Pun.UtilityScripts;
 using UnityEngine;
 using UnityEngine.Experimental.PlayerLoop;
@@ -13,6 +14,7 @@ namespace LastToTheGlobe.Scripts.Inventory
         [SerializeField] private int nbSlots = 4;
         public bool isFull;
         public List<ObjectScript> objectsInInventory = new List<ObjectScript>();
+        private List<string> objectsName = new List<string>();
 
         private void Awake()
         {
@@ -31,16 +33,22 @@ namespace LastToTheGlobe.Scripts.Inventory
         /// <param name="obj"></param>
         public void AddObjectInInventory(ObjectScript obj)
         {
-            if(objectsInInventory.Contains(obj) || IsInventoryFull()) return;
-            objectsInInventory.Add(obj);
-            obj.SetObjectInInventory(true);
-            SetInventoryStatus();
+            
+            
+            if (!isItemInInventory(obj.objectName) && !IsInventoryFull())
+            {
+                objectsName.Add(obj.objectName);
+                objectsInInventory.Add(obj);
+                obj.SetObjectInInventory(true);
+                SetInventoryStatus();
+            }
         }
 
         private void DeleteObjectFromInventory(ObjectScript obj)
         {
             if (!objectsInInventory.Contains(obj)) return;
             objectsInInventory.Remove(obj);
+            objectsName.Remove(obj.objectName);
             SetInventoryStatus();
         }
         
@@ -55,6 +63,7 @@ namespace LastToTheGlobe.Scripts.Inventory
                 obj.SetObjectInInventory(false);
                 //TODO : add action in ObjectScript --> set object free
             }
+            objectsName.Clear();
             objectsInInventory.Clear();
             SetInventoryStatus();
         }
@@ -75,6 +84,11 @@ namespace LastToTheGlobe.Scripts.Inventory
         public bool IsInventoryFull()
         {
             return isFull;
+        }
+
+        public bool isItemInInventory(string itemName)
+        {
+            return objectsName.Contains(itemName);
         }
     }
 }

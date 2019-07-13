@@ -246,9 +246,12 @@ namespace LastToTheGlobe.Scripts.Avatar
                     }
                 }
 
-                if (intent.Interact)
+                if (!intent.canDash)
                 {
-                    
+                    if (player.inventoryScript.isItemInInventory("Dash"))
+                    {
+                        intent.canDash = true;
+                    }
                 }
                 
                 rb.MovePosition(rb.position + intent.speed * Time.deltaTime * tr.TransformDirection(moveIntent));
@@ -598,7 +601,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         [PunRPC]
         private void SendChestSeedToPlayers(int seed)
         {
-            //print("Hi from Avatar controller seed = " + seed);
+            if (debug) print("Hi from Avatar controller seed = "+seed);
             foreach (var player in players)
             {
                 

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 //Auteur : Attika
 //Modification : Abdallah
@@ -9,7 +10,6 @@ namespace LastToTheGlobe.Scripts.Inventory
     {
         public bool isInInventory;
         public bool isConsume;
-        public float lifePoint = 0;
         public string objectName;
         public enum _typeOfItem
         {

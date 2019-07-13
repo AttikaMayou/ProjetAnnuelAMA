@@ -1456,7 +1456,7 @@ PrefabInstance:
     - target: {fileID: 1500373273569727153, guid: ceff46e9b8c61b6468aa9db0b04c7541,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.353
+      value: 14.86
       objectReference: {fileID: 0}
     - target: {fileID: 1500373273569727153, guid: ceff46e9b8c61b6468aa9db0b04c7541,
         type: 3}
@@ -1518,6 +1518,11 @@ PrefabInstance:
       propertyPath: chestInventory
       value: 
       objectReference: {fileID: 428598644}
+    - target: {fileID: 5393934025834226259, guid: ceff46e9b8c61b6468aa9db0b04c7541,
+        type: 3}
+      propertyPath: ChestPhotonView
+      value: 
+      objectReference: {fileID: 469697851}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ceff46e9b8c61b6468aa9db0b04c7541, type: 3}
 --- !u!4 &426441273 stripped
@@ -1887,6 +1892,47 @@ PrefabInstance:
       objectReference: {fileID: 428598644}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8cddc35d2b34c69408a3b0f5fc60b752, type: 3}
+--- !u!1 &469697849 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4755549704856934751, guid: 4b7f65cf3304916429cf26667ac888b2,
+    type: 3}
+  m_PrefabInstance: {fileID: 2003145822580352384}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &469697851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 469697849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 0
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  viewIdField: 79
+  InstantiationId: 79
+  isRuntimeInstantiated: 0
+--- !u!114 &469697852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 469697849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d42dfbe97558c948828434d4ace2c8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debug: 0
 --- !u!1001 &473597606
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4657,6 +4703,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2df7f3c3150fe8547bfefd3adb06d4d1, type: 3}
+--- !u!1 &1257460754 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2212207739455034102, guid: 2df7f3c3150fe8547bfefd3adb06d4d1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1971802022}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1261707273
 GameObject:
   m_ObjectHideFlags: 0
@@ -6236,7 +6288,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 27
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -6264,7 +6316,7 @@ MonoBehaviour:
     spaceCount: 5
     wordCount: 5
     linkCount: 0
-    lineCount: 1
+    lineCount: 2
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 0
@@ -6854,6 +6906,12 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &1905312612 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2212207739455034102, guid: 2df7f3c3150fe8547bfefd3adb06d4d1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1296129704}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1906278449 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4642014389271681466, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
@@ -6999,7 +7057,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 4
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -7027,7 +7085,7 @@ MonoBehaviour:
     spaceCount: 0
     wordCount: 2
     linkCount: 0
-    lineCount: 1
+    lineCount: 2
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 0
@@ -8060,6 +8118,7 @@ GameObject:
   - component: {fileID: 2067582489}
   - component: {fileID: 2067582490}
   - component: {fileID: 2067582491}
+  - component: {fileID: 2067582492}
   m_Layer: 5
   m_Name: ChestInventory
   m_TagString: Untagged
@@ -8122,6 +8181,27 @@ MonoBehaviour:
   m_Spacing: {x: 20, y: 40}
   m_Constraint: 1
   m_ConstraintCount: 2
+--- !u!114 &2067582492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2067582488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d68f8f37f5b9a3c42bde861b85dd983b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemSlot:
+  - {fileID: 185317305}
+  - {fileID: 1206705314}
+  - {fileID: 1905312612}
+  - {fileID: 1257460754}
+  item:
+  - {fileID: 4174023185678567276, guid: 8cddc35d2b34c69408a3b0f5fc60b752, type: 3}
+  - {fileID: 6755710489323588106, guid: 4b2536abf866cd84c9991518b65b4d9e, type: 3}
+  - {fileID: 4937797630151723974, guid: c6c50b1f2ef86db4fb6268a7e13253ba, type: 3}
 --- !u!1001 &2070599298
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9064,6 +9144,11 @@ PrefabInstance:
       objectReference: {fileID: 1523160636}
     - target: {fileID: 2003145822190471194, guid: 4b7f65cf3304916429cf26667ac888b2,
         type: 3}
+      propertyPath: chestExposers.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2003145822190471194, guid: 4b7f65cf3304916429cf26667ac888b2,
+        type: 3}
       propertyPath: PlanetExposers.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -9077,6 +9162,16 @@ PrefabInstance:
       propertyPath: planetExposers.Array.data[0]
       value: 
       objectReference: {fileID: 722089182}
+    - target: {fileID: 2003145822190471194, guid: 4b7f65cf3304916429cf26667ac888b2,
+        type: 3}
+      propertyPath: chestPhotonView
+      value: 
+      objectReference: {fileID: 469697851}
+    - target: {fileID: 2003145822190471194, guid: 4b7f65cf3304916429cf26667ac888b2,
+        type: 3}
+      propertyPath: chestExposers.Array.data[0]
+      value: 
+      objectReference: {fileID: 1451390875}
     - target: {fileID: 2003145823761592561, guid: 4b7f65cf3304916429cf26667ac888b2,
         type: 3}
       propertyPath: resetData
@@ -9095,12 +9190,12 @@ PrefabInstance:
     - target: {fileID: 4414370369413740760, guid: 4b7f65cf3304916429cf26667ac888b2,
         type: 3}
       propertyPath: viewIdField
-      value: 79
+      value: 34
       objectReference: {fileID: 0}
     - target: {fileID: 4414370369413740760, guid: 4b7f65cf3304916429cf26667ac888b2,
         type: 3}
       propertyPath: InstantiationId
-      value: 79
+      value: 34
       objectReference: {fileID: 0}
     - target: {fileID: 2005994772269204461, guid: 4b7f65cf3304916429cf26667ac888b2,
         type: 3}
@@ -10012,6 +10107,11 @@ PrefabInstance:
         type: 3}
       propertyPath: InstantiationId
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8618825590530793953, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
+        type: 3}
+      propertyPath: ObservedComponentsFoldoutOpen
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7679710086647998673, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
         type: 3}
