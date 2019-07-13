@@ -9,10 +9,12 @@ using UnityEngine;
 
 public class InventoryPhotonViewSender : MonoBehaviour
 {
+    public bool debug;
+    
     [PunRPC]
     void AddItemToInventory(string itemName, int playerid)
     {
-        Debug.LogFormat("Le joueur avec l'id {0} veux ajouter un {1}", playerid, itemName);
+        if (debug) Debug.LogFormat("Le joueur avec l'id {0} veux ajouter un {1}", playerid, itemName);
         var player = ColliderDirectoryScript.Instance.GetCharacterExposer(playerid);
         
         var objectToAdd = new ObjectScript();

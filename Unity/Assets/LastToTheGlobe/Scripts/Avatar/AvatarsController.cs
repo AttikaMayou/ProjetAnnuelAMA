@@ -250,7 +250,6 @@ namespace LastToTheGlobe.Scripts.Avatar
                 {
                     if (player.inventoryScript.isItemInInventory("Dash"))
                     {
-                        print("Done !");
                         intent.canDash = true;
                     }
                 }
@@ -602,7 +601,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         [PunRPC]
         private void SendChestSeedToPlayers(int seed)
         {
-            print("Hi from Avatar controller seed = "+seed);
+            if (debug) print("Hi from Avatar controller seed = "+seed);
             foreach (var player in players)
             {
                 

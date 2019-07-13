@@ -20,7 +20,6 @@ public class AvatarInventoryManagerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        selfExposer.ChestInventory.SetActive(false);
         selfExposer.PlayerInventory.SetActive(false);
     }
 

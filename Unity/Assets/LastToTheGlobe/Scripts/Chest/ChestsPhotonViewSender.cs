@@ -25,7 +25,7 @@ namespace LastToTheGlobe.Scripts.Chest
             var chest = ColliderDirectoryScript.Instance.GetChestExposer(chestId);
             var player = ColliderDirectoryScript.Instance.GetCharacterExposer(playerId);
 
-            Debug.LogFormat("Ce joueur : {0} et ce coffre: {1}", player, chest);
+           
             
             if (!player || !chest) return;
 
@@ -39,7 +39,7 @@ namespace LastToTheGlobe.Scripts.Chest
             player.Chest = chest.ChestScript;
             chest.seedChest = player.seedChest;
             
-            Debug.LogFormat("Ce joueur : {0} possède la seed suivante : {1}", playerId, player.seedChest);
+            if (debug) Debug.LogFormat("Ce joueur : {0} possède la seed suivante : {1}", playerId, player.seedChest);
             
         }
 

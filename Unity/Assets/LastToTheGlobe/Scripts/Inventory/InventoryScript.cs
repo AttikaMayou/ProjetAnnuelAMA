@@ -37,7 +37,6 @@ namespace LastToTheGlobe.Scripts.Inventory
             
             if (!isItemInInventory(obj.objectName) && !IsInventoryFull())
             {
-                Debug.LogFormat("Objet ajouté à l'inventaire : {0}", obj.objectName);
                 objectsName.Add(obj.objectName);
                 objectsInInventory.Add(obj);
                 obj.SetObjectInInventory(true);

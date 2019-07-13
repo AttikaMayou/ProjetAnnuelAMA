@@ -116,7 +116,6 @@ namespace LastToTheGlobe.Scripts.Network
 
             if (Input.GetKeyDown(KeyCode.LeftAlt) && canDash && _dashCooldownDone)
             {
-                print("I WANNA DASH LEAUL !");
                 speed = GameVariablesScript.Instance.dashSpeed;
                 photonView.RPC("CanDashRpc", RpcTarget.MasterClient, false);
                 photonView.RPC("DashRpc", RpcTarget.MasterClient);
