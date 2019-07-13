@@ -21,9 +21,11 @@ namespace LastToTheGlobe.Scripts.Management
         public float shootLoadTime;
         public int shootDamage;
         public int shootLoadedDamage;
+        public float orbOffensiveSpeed;
+        public float lifeTimeOrb;
 
         [Header("Orb Defensive Parameters")] 
-        public float orbSpeed;
+        public float orbDefensiveSpeed;
 
         [Header("Cooldown Values")] 
         public float dashCooldown;

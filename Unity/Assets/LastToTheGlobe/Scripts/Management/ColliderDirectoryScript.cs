@@ -227,7 +227,7 @@ namespace LastToTheGlobe.Scripts.Management
         {
             if (!col) return -1;
             var orb = GetOrbExposer(col);
-            if (orb) return orb.Id;
+            if (orb) return orb.id;
             Debug.LogWarningFormat("[ColliderDirectoryScript] No OrbExposer found with this collider {0}", 
                 col.name);
             return -1;
@@ -248,7 +248,7 @@ namespace LastToTheGlobe.Scripts.Management
             activeOrbs++;
             
             id = AddOrbInDirectory(orb);
-            orb.OrbsPhotonView = orbsPhotonView;
+            orb.orbsPhotonView = orbsPhotonView;
             
             if (debug)
             {
@@ -261,7 +261,7 @@ namespace LastToTheGlobe.Scripts.Management
         public void RemoveOrbExposer(OrbExposerScript orb)
         {
             activeOrbs--;
-            orb.Id = -1;
+            orb.id = -1;
             if (orbExposers.Contains(orb) && orb)
             {
                 orbExposers.Remove(orb);
@@ -273,10 +273,10 @@ namespace LastToTheGlobe.Scripts.Management
             var id = -1;
             if(debug) Debug.Log("[ColliderDirectoryScript] Add one orb to directory");
             if (_orbsDirectory.ContainsValue(orb)) return id;
-            _orbsDirectory.Add(orb.OrbCollider, orb);
+            _orbsDirectory.Add(orb.orbCollider, orb);
             id = activeOrbs - 1;
             if(debug) Debug.LogWarningFormat("[ColliderDirectoryScript] Directory key : {0} and value : {1}", 
-                orb.OrbCollider, orb);
+                orb.orbCollider, orb);
             return id;
         }
         

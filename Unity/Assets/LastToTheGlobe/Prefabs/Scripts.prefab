@@ -114,7 +114,6 @@ MonoBehaviour:
   numberOfVertices: 15
   size: 350
   numberOfPlayer: 5
-  vertices: []
 --- !u!1 &2003145822190471192
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,9 +286,13 @@ MonoBehaviour:
   shootLoadTime: 1.5
   shootDamage: 10
   shootLoadedDamage: 50
+  orbOffensiveSpeed: 5
+  lifeTimeOrb: 3
+  orbDefensiveSpeed: 2
   dashCooldown: 0
   bumpCooldown: 0
   lifeInitial: 100
+  nbreOfTremplin: 1
 --- !u!1 &2003145823037444674
 GameObject:
   m_ObjectHideFlags: 0

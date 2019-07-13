@@ -387,7 +387,6 @@ GameObject:
   - component: {fileID: 4032840751649765452}
   - component: {fileID: 4032840751649765441}
   - component: {fileID: 4032840751649765454}
-  - component: {fileID: 1014064465940019215}
   - component: {fileID: 3647621335996314131}
   - component: {fileID: 2876196961187294912}
   - component: {fileID: 4952198941118172763}
@@ -494,36 +493,20 @@ MonoBehaviour:
   CollisionDispatcher: {fileID: 4952198941118172763}
   CharacterAnimator: {fileID: 2713987122217920040}
   Bumper: {fileID: 0}
+  Chest: {fileID: 0}
+  seedChest: 0
   CharacterPhotonView: {fileID: 4032840751649765452}
   CharacterRbPhotonView: {fileID: 4032840751649765441}
   CameraRotatorX: {fileID: 7674971413621576116}
   LifeUi: {fileID: 0}
   VictoryUi: {fileID: 0}
   DefeatUi: {fileID: 0}
+  Interaction: {fileID: 0}
+  ChestInventory: {fileID: 0}
+  PlayerInventory: {fileID: 0}
   InventoryScript: {fileID: 0}
   Movedir: {x: 0, y: 0, z: 0}
   DashSpeed: 30
---- !u!114 &1014064465940019215
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4032840751649765450}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 619285616129e784abaf8d005dc104b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defeat: {fileID: 0}
-  lifeUI: {fileID: 0}
-  lifeStartingPoint: 100
-  attackDmg: 0
-  inLife: 1
-  myLife: 100
-  myExposer: {fileID: 4032840751649765454}
-  textHealth: {fileID: 0}
-  textHeathOther: {fileID: 0}
 --- !u!136 &3647621335996314131
 CapsuleCollider:
   m_ObjectHideFlags: 0

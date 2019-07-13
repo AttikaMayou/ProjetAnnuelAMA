@@ -9,7 +9,6 @@ using LastToTheGlobe.Scripts.Management;
 using LastToTheGlobe.Scripts.Network;
 using LastToTheGlobe.Scripts.UI;
 using LastToTheGlobe.Scripts.Weapon.Orb;
-using LastToTheGlobe.Scripts.Weapon.Orb.OLD;
 using Photon.Pun;
 using UnityEngine;
 
@@ -176,9 +175,9 @@ namespace LastToTheGlobe.Scripts.Avatar
                     if(debug) Debug.Log("[AvatarsController] Shoot intent");
                     
                     var orb = GetOrbsWithinPool();
-                    orb.PlayerTransform = player.CharacterTr;
+                    orb.exposer.playerExposer = player;
                     orb.Attractor = player.Attractor;
-                    orb.Loaded = false;
+                    orb.loaded = false;
                     orb.gameObject.SetActive(true);
                     orb.InitializeOrPosition();
                     
@@ -191,9 +190,9 @@ namespace LastToTheGlobe.Scripts.Avatar
                     if(debug) Debug.Log("[AvatarsController] Loaded shoot intent");
                     
                     var orb = GetOrbsWithinPool();
-                    orb.PlayerTransform = player.CharacterTr;
+                    orb.exposer.playerExposer = player;
                     orb.Attractor = player.Attractor;
-                    orb.Loaded = true;
+                    orb.loaded = true;
                     orb.gameObject.SetActive(true);
                     orb.InitializeOrPosition();
                     
@@ -368,9 +367,9 @@ namespace LastToTheGlobe.Scripts.Avatar
             myCamera.playerExposer = players[id];
             myCamera.InitializeCameraPosition();
             myCamera.startFollowing = true;
-            players[id].LifeUi = lifeUI;
-            players[id].VictoryUi = victoryUI;
-            players[id].DefeatUi = defeatUI;
+//            players[id].LifeUi = lifeUI;
+//            players[id].VictoryUi = victoryUI;
+//            players[id].DefeatUi = defeatUI;
             if(debug) Debug.Log("[AvatarsController] Camera is set for " + id);
         }
 

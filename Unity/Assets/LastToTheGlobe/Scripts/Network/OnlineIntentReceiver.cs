@@ -14,9 +14,9 @@ namespace LastToTheGlobe.Scripts.Network
     {
         public static bool Debug = true;
 
-        [FormerlySerializedAs("_playerIndex")] [SerializeField] private int playerIndex;
+        [SerializeField] private int playerIndex;
 
-        [FormerlySerializedAs("_photonView")] [SerializeField] private PhotonView photonView;
+        [SerializeField] private PhotonView photonView;
 
         //Cooldown Timers
         private float _bumpTimer;

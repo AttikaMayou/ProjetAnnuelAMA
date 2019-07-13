@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using LastToTheGlobe.Scripts.Avatar;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class AvatarInventoryManagerScript : MonoBehaviour
+namespace LastToTheGlobe.Scripts.Inventory
 {
+    public class AvatarInventoryManagerScript : MonoBehaviour
+    {/*
     public CharacterExposerScript selfExposer;
     
     // Start is called before the first frame update
@@ -22,5 +21,6 @@ public class AvatarInventoryManagerScript : MonoBehaviour
         {
             
         }
+    }*/
     }
 }

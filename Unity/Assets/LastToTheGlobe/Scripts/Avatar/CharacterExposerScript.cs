@@ -43,17 +43,17 @@ namespace LastToTheGlobe.Scripts.Avatar
         [Header("Camera Control Parameters")] 
         public GameObject CameraRotatorX;
 
-        [Header("UI references")] 
-        //public ActivateObjects inventoryUI;
-        public ActivateObjects LifeUi;
-        public ActivateObjects VictoryUi;
-        public ActivateObjects DefeatUi;
-
-        public GameObject Interaction;
-        public GameObject ChestInventory;
-        public GameObject PlayerInventory;
-        
-        public InventoryScript InventoryScript;
+//        [Header("UI references")] 
+//        //public ActivateObjects inventoryUI;
+//        public ActivateObjects LifeUi;
+//        public ActivateObjects VictoryUi;
+//        public ActivateObjects DefeatUi;
+//
+//        public GameObject Interaction;
+//        public GameObject ChestInventory;
+//        public GameObject PlayerInventory;
+//        
+//        public InventoryScript InventoryScript;
         
         //Character Parameters
         public Vector3 Movedir;
@@ -78,12 +78,6 @@ namespace LastToTheGlobe.Scripts.Avatar
             ColliderDirectoryScript.Instance.RemoveCharacterExposer(this);
         }
 
-//        private void LateUpdate()
-//        {
-//            if (!debug) return;
-//            AttractorDebug = Attractor;
-//        }
-
         public void DeactivateRb()
         {
             CharacterRb.isKinematic = true;
@@ -98,6 +92,11 @@ namespace LastToTheGlobe.Scripts.Avatar
         public void DisableGravity()
         {
             CharacterRb.useGravity = false;
+        }
+
+        public void EnableGravity()
+        {
+            CharacterRb.useGravity = true;
         }
     }
 }

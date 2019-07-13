@@ -6,7 +6,7 @@ using Photon.Pun.UtilityScripts;
 using LastToTheGlobe.Scripts.UI;
 
 //Auteur : Attika
-//modification : Margot
+//Modifications : Margot
 
 namespace LastToTheGlobe.Scripts.Avatar
 {

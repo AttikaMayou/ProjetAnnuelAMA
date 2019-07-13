@@ -35,7 +35,7 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb
             _timeSpend %= (Mathf.PI * 2);
 
             _transform.RotateAround(player.CharacterTr.position, player.CharacterTr.up, 
-                GameVariablesScript.Instance.orbSpeed);
+                GameVariablesScript.Instance.orbDefensiveSpeed);
             
             _transform.Translate(new Vector3(0,Mathf.Cos(_timeSpend) * 
                                                 Time.deltaTime/2,0),Space.Self);
