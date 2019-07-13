@@ -66,6 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fa972a2dc47e474c93943c86004a1c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debug: 0
 --- !u!1 &920022874792486276
 GameObject:
   m_ObjectHideFlags: 0
@@ -349,6 +350,8 @@ MonoBehaviour:
   runSpeed: 8
   dashSpeed: 15
   lockCursor: 0
+  planetsGravity: -10
+  bumpersForce: 100
   shootLoadTime: 1.5
   shootDamage: 10
   shootLoadedDamage: 50
