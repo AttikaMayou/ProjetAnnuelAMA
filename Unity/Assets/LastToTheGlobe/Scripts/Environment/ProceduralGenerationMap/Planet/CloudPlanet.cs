@@ -163,6 +163,7 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
                 GameObject tremplin = Instantiate(Resources.Load("Jumper"), tremplinLocation, Quaternion.identity) as GameObject;
                 //set l'orientation
                 tremplin.transform.LookAt(lookAt[i], Vector3.up);
+                tremplin.transform.Rotate(95, 0, 0);
                 //Debug.LogFormat("lookAt du tremplin de location {0} == {1}", tremplinLocation, lookAt[i]);
             }
         }
@@ -188,7 +189,7 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
             var min = 1000f;
             var j = 0;
 
-            for (int i = 0; i < indices.Length; i++)
+            for (int i = numberOfPlayer; i < indices.Length; i++)
             {
                 if(i == planetId)
                 {
