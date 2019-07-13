@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5107946470935551255}
   - component: {fileID: 5107946470935551292}
   - component: {fileID: 2224972135892227524}
+  - component: {fileID: 6265944264852442678}
   m_Layer: 0
   m_Name: OffensiveOrb
   m_TagString: Bullet
@@ -139,11 +140,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d30d2643b5001e54e9f3acc9d311131e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: 0
-  OrbTransform: {fileID: 5107946470935551621}
-  OrbRb: {fileID: 5107946470935551292}
-  OrbCollider: {fileID: 5107946470935551282}
-  OrbsPhotonView: {fileID: 0}
+  id: 0
+  orbTransform: {fileID: 5107946470935551621}
+  orbRb: {fileID: 5107946470935551292}
+  orbCollider: {fileID: 5107946470935551282}
+  orbsPhotonView: {fileID: 0}
+  playerExposer: {fileID: 0}
+--- !u!114 &6265944264852442678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5107946470935551850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b72d4f03b499d48a31177d5ed082e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Attractor: {fileID: 0}
+  debug: 1
+  exposer: {fileID: 2224972135892227524}
+  loaded: 0
 --- !u!1001 &8044786319319486963
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -151,11 +169,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5107946470935551621}
     m_Modifications:
-    - target: {fileID: 4759597811360328833, guid: d2b6d4005a1be0d479815af782e279da,
-        type: 3}
-      propertyPath: m_Name
-      value: OrbParticuleSystem
-      objectReference: {fileID: 0}
     - target: {fileID: 4002388626375183279, guid: d2b6d4005a1be0d479815af782e279da,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -210,6 +223,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4759597811360328833, guid: d2b6d4005a1be0d479815af782e279da,
+        type: 3}
+      propertyPath: m_Name
+      value: OrbParticuleSystem
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2b6d4005a1be0d479815af782e279da, type: 3}

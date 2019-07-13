@@ -18,11 +18,17 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb
         private float _timeUsing;
         private Vector3 _initialPos;
         public bool loaded;
-        
         private Vector3 _centerPointAttractor;
+        private bool _getUsed;
 
-        private void FixedUpdate () {
-
+        private void Awake()
+        {
+            _getUsed = false;
+        }
+        
+        private void FixedUpdate ()
+        {
+            if (!_getUsed) return;
             if (loaded)
             {
                 transform.RotateAround(_centerPointAttractor,_direction, GameVariablesScript.Instance.orbOffensiveSpeed);
@@ -42,6 +48,7 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb
 
         private void ResetOrb()
         {
+            _getUsed = false;
             if(debug) Debug.LogFormat("[OrbManager] Reset position of the offensive orb {0}", exposer.id);
             exposer.orbRb.isKinematic = true;
             transform.position = _initialPos;
@@ -49,7 +56,7 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb
         }
 
         public void InitializeOrPosition()
-        {  
+        {
             _timeUsing = 0.0f;
             if (!Attractor || !exposer.playerExposer) return;
             _playerPosition = exposer.playerExposer.CharacterTr.position;
@@ -58,6 +65,7 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb
             _centerPointAttractor = Attractor.transform.position;
             transform.position = _playerPosition + exposer.playerExposer.CharacterTr.forward * 2f;
             exposer.orbRb.isKinematic = false;
+            _getUsed = true;
         }
     }
 }
