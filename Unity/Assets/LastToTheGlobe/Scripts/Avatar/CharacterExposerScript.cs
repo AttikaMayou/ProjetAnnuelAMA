@@ -49,11 +49,11 @@ namespace LastToTheGlobe.Scripts.Avatar
         public ActivateObjects LifeUi;
         public ActivateObjects VictoryUi;
         public ActivateObjects DefeatUi;
+        public Canvas Interaction;
+        public Canvas inventory;
+        public Canvas chest;
 
         [Header("Inventory references")]
-        public GameObject Interaction;
-        public GameObject ChestInventory;
-        public GameObject PlayerInventory;
         public PlayerInventoryExposer InventoryExposer;
         public InventoryScript inventoryScript;
         

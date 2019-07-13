@@ -17,7 +17,7 @@ public class PlayerInventoryExposer : MonoBehaviour
     {
         if (playerSlot[id].transform.childCount > 2 && playerSlot[id].transform.GetChild(0).CompareTag("Potion"))
         {
-            photonView.RPC("WantToUseItem", RpcTarget.MasterClient, playerSlot[id].transform.GetChild(0).tag, playerId);
+            photonView.RPC("WantToUseItem", RpcTarget.MasterClient, playerSlot[id].transform.GetChild(0).tag, playerId, id);
         }
         else
         {

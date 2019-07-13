@@ -51,8 +51,8 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 0}
-  viewIdField: 35
-  InstantiationId: 35
+  viewIdField: 0
+  InstantiationId: 1
   isRuntimeInstantiated: 0
 --- !u!114 &5484316895738787760
 MonoBehaviour:
@@ -66,6 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fa972a2dc47e474c93943c86004a1c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debug: 0
 --- !u!1 &920022874792486276
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,6 +240,8 @@ MonoBehaviour:
   activeBumpers: 0
   chestExposers: []
   activeChests: 0
+  DashPool: {fileID: 0}
+  PotionPool: {fileID: 0}
 --- !u!1 &2003145822489458437
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,8 +572,8 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 0}
-  viewIdField: 79
-  InstantiationId: 79
+  viewIdField: 0
+  InstantiationId: 8
   isRuntimeInstantiated: 0
 --- !u!114 &7137239157384656248
 MonoBehaviour:

@@ -36,17 +36,18 @@ public class InventoryPhotonViewSender : MonoBehaviour
     }
 
     [PunRPC]
-    void WantToUseItem(string itemName, int playerid)
+    void WantToUseItem(string itemName, int playerid, int idSlot)
     {
         var player = ColliderDirectoryScript.Instance.GetCharacterExposer(playerid);
         
-        if(!player.inventoryScript.isItemInInventory(itemName))
+        if(player.inventoryScript.isItemInInventory(itemName))
         {
             print("Healed :D");
+            GameObject.Destroy(player.InventoryExposer.playerSlot[idSlot].transform.GetChild(0).gameObject);
         }
         else
         {
-            print("You don't have this item dude");
+           print("You dont have this item"); 
         }
 
     }

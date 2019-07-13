@@ -86,9 +86,6 @@ public class ItemSlotInventory : MonoBehaviourSingleton<ItemSlotInventory>, IDro
         ClearSlot();
     }
 
-    public void OnUsedItem()
-    {
-        
-    }
+    
 }
 

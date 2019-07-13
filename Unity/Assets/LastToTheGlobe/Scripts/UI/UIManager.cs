@@ -8,8 +8,8 @@ using Photon.Pun;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private Canvas playerInventory;
-    [SerializeField] private Canvas tutorial;
+    [SerializeField] private GameObject playerInventory;
+    [SerializeField] private GameObject tutorial;
     [SerializeField] private Text nbPlayerText;
     [SerializeField] private int life;
 
@@ -18,8 +18,8 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-        playerInventory.enabled = false;
-        tutorial.enabled = false;
+        playerInventory.SetActive(false);
+        tutorial.SetActive(false);
     }
 
     void Update()
@@ -29,23 +29,23 @@ public class UIManager : MonoBehaviour
         {
             if(!canOpenInventory)
             {
-                playerInventory.enabled = true;
+                playerInventory.SetActive(true);
                 canOpenInventory = true;
             }
             else if(canOpenInventory)
             {
-                playerInventory.enabled = false;
+                playerInventory.SetActive(false);
                 canOpenInventory = false;
             }
         }
         //UI Tutorial
         if (Input.GetKey(KeyCode.F1))
         {
-            tutorial.enabled = true;
+            tutorial.SetActive(true);
         }
         else
         {
-            tutorial.enabled = false;
+            tutorial.SetActive(false);
         }
     }
 

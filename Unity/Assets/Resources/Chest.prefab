@@ -78,7 +78,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Debug: 0
   Exposer: {fileID: 5393934025834226259}
-  chestContentManagerScript: {fileID: 7740479760871516055}
 --- !u!114 &7740479760871516055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,7 +91,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemSlot: []
-  item: []
+  pools:
+  - {fileID: 7993500728675279036, guid: 7aaae33e99856a946b8dffe0b25b9d87, type: 3}
+  - {fileID: 80584939656699893, guid: 8062414e6e91ac443b9af466dff57010, type: 3}
 --- !u!23 &410905913185573141
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -147,6 +148,7 @@ MonoBehaviour:
   ChestScript: {fileID: 3017485550999319243}
   ChestCollider: {fileID: 5799656346328344748}
   ChestPhotonView: {fileID: 0}
+  chestContentManagerScript: {fileID: 7740479760871516055}
 --- !u!1001 &1500373274113223297
 PrefabInstance:
   m_ObjectHideFlags: 0

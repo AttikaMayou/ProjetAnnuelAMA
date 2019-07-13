@@ -13,7 +13,7 @@ public class ChestContentManagerScript : MonoBehaviour
     // Start is called before the first frame update
     public void GenerateChestItem(int seed)
     {
-        Random.InitState(seed);
+        Random.InitState(0);
         _content = Random.Range(0, 2);
         print("Seed généré avec succès : "+seed);
         pools[_content].transform.GetChild(0).transform.parent = itemSlot[0].transform;

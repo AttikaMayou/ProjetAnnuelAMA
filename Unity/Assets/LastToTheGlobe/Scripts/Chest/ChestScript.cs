@@ -14,8 +14,7 @@ public class ChestScript : MonoBehaviour
     public bool Debug;
 
     public ChestExposerScript Exposer;
-    public ChestContentManagerScript chestContentManagerScript;
-    public bool Generated = false;
+    private bool Generated;
 
     
 
@@ -24,7 +23,7 @@ public class ChestScript : MonoBehaviour
         if(Generated) return;
         Generated = true;
         Exposer.ChestPhotonView.RPC("AssignChestRPC", RpcTarget.MasterClient, 0, 0);
-        chestContentManagerScript.GenerateChestItem(Exposer.seedChest);
+        Exposer.chestContentManagerScript.GenerateChestItem(Exposer.seedChest);
         
     }
 
@@ -59,7 +58,7 @@ public class ChestScript : MonoBehaviour
         if (!Generated)
         {
             Generated = true;
-            chestContentManagerScript.GenerateChestItem(Exposer.seedChest);
+            Exposer.chestContentManagerScript.GenerateChestItem(Exposer.seedChest);
         }
 
         StartCoroutine(ResetTrigger());

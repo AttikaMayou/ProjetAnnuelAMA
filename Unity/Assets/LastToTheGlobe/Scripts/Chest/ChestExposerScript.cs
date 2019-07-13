@@ -14,6 +14,7 @@ namespace LastToTheGlobe.Scripts.Chest
         
         public Collider ChestCollider;
         public PhotonView ChestPhotonView;
+        public ChestContentManagerScript chestContentManagerScript;
         
         private void Awake()
         {
