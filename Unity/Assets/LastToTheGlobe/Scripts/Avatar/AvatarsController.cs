@@ -242,8 +242,9 @@ namespace LastToTheGlobe.Scripts.Avatar
                     }
                     else
                     {
-                        player.Bumper.BumpPlayer(player.Bumper.Exposer.Id,i, 1300.0f);
+                        player.Bumper.BumpPlayer(player.Bumper.exposer.Id,i,  GameVariablesScript.Instance.bumpersForce);
                     }
+                    intent.Bump = false;
                 }
 
                 if (!intent.canDash)
@@ -272,7 +273,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                     continue;
                 }
                 
-                player.Attractor.AttractPlayer(player.Attractor.Exposer.id,i, -2600.0f);
+                player.Attractor.AttractPlayer(player.Attractor.Exposer.id,i, GameVariablesScript.Instance.planetsGravity);
                 
                 /*if (intent.canJump && player.attractor)
                 {

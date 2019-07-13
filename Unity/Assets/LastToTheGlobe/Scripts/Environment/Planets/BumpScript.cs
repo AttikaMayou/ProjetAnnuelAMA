@@ -2,6 +2,7 @@
 using LastToTheGlobe.Scripts.Management;
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace LastToTheGlobe.Scripts.Environment.Planets
 {
@@ -9,7 +10,7 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
     {
         public static bool Debug = false;
 
-        public BumperExposerScript Exposer;
+        [FormerlySerializedAs("Exposer")] public BumperExposerScript exposer;
 
         private int _i = 0;
         
@@ -17,17 +18,17 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
         {
             if (!PhotonNetwork.IsMasterClient) return;
 
-            if (bumperId != Exposer.Id)
+            if (bumperId != exposer.Id)
             {
                 if(Debug) UnityEngine.Debug.LogWarningFormat("[BumpScript] Bumper {0} received order to bump player {1} but it was meant to {2}",
-                    Exposer.Id, playerId, bumperId);
+                    exposer.Id, playerId, bumperId);
                 return;
             }
             
             var player = ColliderDirectoryScript.Instance.GetCharacterExposer(playerId);
             var bumpedRb = player.CharacterRb;
             
-            bumpedRb.AddForce(Exposer.BumperTransform.up * force);
+            bumpedRb.AddForce(exposer.BumperTransform.up * force);
         }
         
         #region Collision Methods
@@ -52,8 +53,8 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
             if (playerId != -1)
             {
                 //Send to MasterClient a message to warn him with its own ID and playerId
-                Exposer.BumpersPhotonView.RPC("AssignBumperRPC", RpcTarget.MasterClient,
-                    Exposer.Id, playerId);
+                exposer.BumpersPhotonView.RPC("AssignBumperRPC", RpcTarget.MasterClient,
+                    exposer.Id, playerId);
             }
 
             StartCoroutine(ResetTrigger());
@@ -79,7 +80,7 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
             if (playerId != -1)
             {
                 //Send to MasterClient a message to warn him with its own ID and playerId
-                Exposer.BumpersPhotonView.RPC("UnassignBumperRPC", RpcTarget.MasterClient,
+                exposer.BumpersPhotonView.RPC("UnassignBumperRPC", RpcTarget.MasterClient,
                     playerId);
             }
             

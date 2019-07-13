@@ -17,6 +17,10 @@ namespace LastToTheGlobe.Scripts.Management
         public int dashSpeed;
         public bool lockCursor;
 
+        [Header("Gravity Parameters")] 
+        public float planetsGravity;
+        public float bumpersForce;
+        
         [Header("Shoot Parameters")] 
         public float shootLoadTime;
         public int shootDamage;
