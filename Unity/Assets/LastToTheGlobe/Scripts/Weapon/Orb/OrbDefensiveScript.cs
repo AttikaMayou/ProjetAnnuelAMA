@@ -18,7 +18,15 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb
 
         private void Awake()
         {
+            if (!player)
+            {
+                gameObject.SetActive(false);
+                return;
+            }
+            _timeSpend = 0.0f;
             _transform = transform;
+            initialPosition = _transform.localPosition;
+            initialRotation = _transform.localRotation;
         }
         
         private void OnEnable()
