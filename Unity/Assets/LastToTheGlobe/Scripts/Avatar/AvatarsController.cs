@@ -36,7 +36,6 @@ namespace LastToTheGlobe.Scripts.Avatar
         [SerializeField] private CloudPlanet environmentController;
         private int _seed = 0;
 
-        private int _chestSeed;
         //[SerializeField] private GPInstanciation _lobbyAssets;
 
         [Header("Camera Parameters")] 
@@ -106,7 +105,6 @@ namespace LastToTheGlobe.Scripts.Avatar
             
             //Setting seed for chests
             
-            _chestSeed = Random.Range(0,255);
 
         }
 
@@ -396,7 +394,6 @@ namespace LastToTheGlobe.Scripts.Avatar
             {
                 Debug.LogFormat("[AvatarsController] I am calling send seed to players and I aaaaam the Master ? {0}", PhotonNetwork.IsMasterClient);
                 photonView.RPC("SendSeedToPlayers", RpcTarget.OthersBuffered, environmentController.GetIndices(), environmentController.GetVertices());
-                SendChestSeedToPlayers(_chestSeed);
             }
             else
             {
@@ -598,16 +595,6 @@ namespace LastToTheGlobe.Scripts.Avatar
             environmentController.GenerateMap();
         }
 
-        [PunRPC]
-        private void SendChestSeedToPlayers(int seed)
-        {
-            if (debug) print("Hi from Avatar controller seed = "+seed);
-            foreach (var player in players)
-            {
-                
-                player.seedChest = seed;
-            }
-        }
 
         #endregion
     }

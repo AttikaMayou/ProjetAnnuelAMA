@@ -35,12 +35,13 @@ namespace LastToTheGlobe.Scripts.Chest
                 Debug.LogFormat("[ChestsPhotonViewSender] Found the chest {0} from this ID : {1}",chest.name, chestId);
             }
             
+            var _chestSeed = Random.Range(0,255);            
             //Set the chest which is ACTUALLY near player
             player.Chest = chest.ChestScript;
-            chest.seedChest = player.seedChest;
+            chest.seedChest = _chestSeed;
             player.Interaction.enabled = true;
             
-            if (debug) Debug.LogFormat("Ce joueur : {0} possède la seed suivante : {1}", playerId, player.seedChest);
+            if (debug) Debug.LogFormat("Ce joueur : {0} possède la seed suivante : {1}", playerId, _chestSeed);
             
         }
 

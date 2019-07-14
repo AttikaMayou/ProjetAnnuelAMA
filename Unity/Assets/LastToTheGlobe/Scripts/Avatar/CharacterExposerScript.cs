@@ -34,7 +34,6 @@ namespace LastToTheGlobe.Scripts.Avatar
 
         [Header("Chest Reference")] 
         public ChestScript Chest;
-        public int seedChest;
         
         [Header("Network Parameters")]
         public PhotonView CharacterPhotonView;
@@ -60,6 +59,13 @@ namespace LastToTheGlobe.Scripts.Avatar
         //Character Parameters
         public Vector3 Movedir;
         public float DashSpeed = 30;
+
+
+        private void Start()
+        {
+            /*inventory.SetActive(false);
+            chest.SetActive(false);*/
+        }
 
         //Reference itself to the ColliderDirectory and CameraScript when activated
         private void OnEnable()

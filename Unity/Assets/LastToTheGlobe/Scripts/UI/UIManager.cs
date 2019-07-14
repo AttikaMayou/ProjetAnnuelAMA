@@ -12,7 +12,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject tutorial;
     [SerializeField] private Text nbPlayerText;
     [SerializeField] private int life;
-
     private bool canOpenInventory = false;
 
 
