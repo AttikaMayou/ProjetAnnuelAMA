@@ -241,17 +241,17 @@ namespace LastToTheGlobe.Scripts.Avatar
                         intent.canDash = true;
                     }
                 }
-                
+
                 rb.MovePosition(rb.position + intent.speed * Time.deltaTime * tr.TransformDirection(moveIntent));
                 tr.Rotate(new Vector3(0, intent.rotationOnX, 0));
                 player.CameraRotatorX.transform.Rotate(new Vector3(-intent.rotationOnY, 
                     0, 0), Space.Self);
                 
                 //Get back to initial values to prevent from network lags and stuff like this
-                  intent.rotationOnX = 0.0f;
-                  intent.rotationOnY = 0.0f;
-                  intent.strafe = 0.0f;
-                  intent.forward = 0.0f;
+                  //intent.rotationOnX = 0.0f;
+                  //intent.rotationOnY = 0.0f;
+                  //intent.strafe = 0.0f;
+                  //intent.forward = 0.0f;
 
                 if (player.Attractor == null)
                 {

@@ -188,7 +188,7 @@ namespace LastToTheGlobe.Scripts.Network
             rotationOnX = rotationX;
             rotationOnY = rotationY;
         }
-
+        /*
         [PunRPC]
         void MoveRpc(bool intent, int forwardInput, int strafeInput)
         {
@@ -205,7 +205,7 @@ namespace LastToTheGlobe.Scripts.Network
             forward = forwardInput;
             strafe = strafeInput;
         }
-        
+        */
         [PunRPC]
         void MoveRpc(bool intent, float forwardInput, float strafeInput)
         {
