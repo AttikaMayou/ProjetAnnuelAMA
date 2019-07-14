@@ -94,27 +94,5 @@ namespace LastToTheGlobe.Scripts.Inventory
         {
             return objectsName.Contains(itemName);
         }
-
-        private void Update()
-        {
-            
-            if (Input.GetKeyDown(KeyCode.E) && exposer.Chest)
-            {
-                if (chestState)
-                {
-                    
-                    exposer.chest.enabled = false;
-                    exposer.chest.sortingOrder = 10;
-                    exposer.Interaction.enabled = true;
-                    chestState = false;
-                }
-                else
-                {
-                    exposer.chest.enabled = true;
-                    exposer.Interaction.enabled = false;
-                    chestState = true;
-                }
-            }
-        }
     }
 }
