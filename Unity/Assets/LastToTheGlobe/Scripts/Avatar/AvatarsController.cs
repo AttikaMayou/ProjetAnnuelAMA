@@ -261,21 +261,8 @@ namespace LastToTheGlobe.Scripts.Avatar
                 }
                 
                 player.Attractor.AttractPlayer(player.Attractor.exposer.id,i, GameVariablesScript.Instance.planetsGravity);
-                
-                /*if (intent.canJump && player.attractor)
-                {
-                }
-                else if(!intent.canJump && player.attractor)
-                {
-                }
-
-                if (intent.Jump)
-                {
-                    var jumpDir = player.Attractor.DirForce;
-                    rb.AddForce(jumpDir * 250);
-                }*/
             }
-
+            
 //            if (ColliderDirectoryScript.Instance.ActivePlayers == 1)
 //            {
 //                //TODO : active Victory UI for the victorious player
@@ -292,6 +279,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         {
             _activatedIntentReceivers = onlineIntentReceivers;
             ResetGame();
+            
             //Animation
             avatarAnimation.intentReceivers = _activatedIntentReceivers;
         }
@@ -310,8 +298,6 @@ namespace LastToTheGlobe.Scripts.Avatar
                 intent.enabled = true;
                 intent.Move = false;
                 intent.Run = false;
-//                intent.Jump = false;
-//                intent.CanJump = true;
                 intent.Dash = false;
                 intent.canDash = true;
                 intent.Shoot = false;
@@ -352,7 +338,6 @@ namespace LastToTheGlobe.Scripts.Avatar
         private void SetupCamera(int id)
         {
             if(debug) Debug.Log("[AvatarsController] Camera setup initialized");
-            //if (photonView.IsMine != players[id].characterPhotonView) return;
             if (myCamera.enabled) return;
             myCamera.enabled = true;
             myCamera.playerExposer = players[id];
@@ -371,11 +356,8 @@ namespace LastToTheGlobe.Scripts.Avatar
             if (!PhotonNetwork.IsMasterClient) return;
             if (_seed == 0)
             {
-                // _seed = environmentController.GetSeed();
                 _seed = 1;
                 environmentController.GenerateMap();
-                //TODO : make sure all the planets are being well instantiated before
-                //calling 'FindAllSpawnPoint' 
                 FindAllSpawnPoints();
                 if(debug) Debug.Log("[AvatarsController] Seed generated.");
             }
