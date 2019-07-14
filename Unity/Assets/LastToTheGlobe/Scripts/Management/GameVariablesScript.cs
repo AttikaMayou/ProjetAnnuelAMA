@@ -42,5 +42,8 @@ namespace LastToTheGlobe.Scripts.Management
 
         [Header("Environment Parameters")]
         public int nbreOfTremplin;
+        public float timeToReachTarget;
+        public Vector3 target;
+        public Vector3 startPos = new Vector3(0, -1000, 0);
     }
 }
