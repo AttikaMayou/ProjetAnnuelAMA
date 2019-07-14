@@ -369,6 +369,9 @@ MonoBehaviour:
   bumpCooldown: 5
   lifeInitial: 100
   nbreOfTremplin: 1
+  timeToReachTarget: 800
+  target: {x: 0, y: 0, z: 0}
+  startPos: {x: 0, y: -1200, z: 0}
 --- !u!1 &2003145823037444674
 GameObject:
   m_ObjectHideFlags: 0
@@ -1261,12 +1264,12 @@ PrefabInstance:
     - target: {fileID: 1750419869948001028, guid: cafeb0c26d8fe7648988d4d8cc7229af,
         type: 3}
       propertyPath: viewIdField
-      value: 33
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1750419869948001028, guid: cafeb0c26d8fe7648988d4d8cc7229af,
         type: 3}
       propertyPath: InstantiationId
-      value: 33
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1750419869282182493, guid: cafeb0c26d8fe7648988d4d8cc7229af,
         type: 3}
