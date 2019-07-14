@@ -77,6 +77,26 @@ PrefabInstance:
       propertyPath: exposer
       value: 
       objectReference: {fileID: 8034665199465114451}
+    - target: {fileID: 4918055204924546434, guid: bf62e091e3a648e449f1ae21a25c6606,
+        type: 3}
+      propertyPath: BumperTransform
+      value: 
+      objectReference: {fileID: 357655168405790273}
+    - target: {fileID: 4918055204924546434, guid: bf62e091e3a648e449f1ae21a25c6606,
+        type: 3}
+      propertyPath: BumperCollider
+      value: 
+      objectReference: {fileID: 5987773952606439051}
+    - target: {fileID: 4918055204924546434, guid: bf62e091e3a648e449f1ae21a25c6606,
+        type: 3}
+      propertyPath: BumpScript
+      value: 
+      objectReference: {fileID: 1415107927639076957}
+    - target: {fileID: 4918055204924546434, guid: bf62e091e3a648e449f1ae21a25c6606,
+        type: 3}
+      propertyPath: IsSpawnBumper
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7950339713354577059, guid: bf62e091e3a648e449f1ae21a25c6606,
         type: 3}
       propertyPath: m_Size.y
@@ -97,21 +117,6 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: -0.044274807
       objectReference: {fileID: 0}
-    - target: {fileID: 4918055204924546434, guid: bf62e091e3a648e449f1ae21a25c6606,
-        type: 3}
-      propertyPath: BumperTransform
-      value: 
-      objectReference: {fileID: 357655168405790273}
-    - target: {fileID: 4918055204924546434, guid: bf62e091e3a648e449f1ae21a25c6606,
-        type: 3}
-      propertyPath: BumperCollider
-      value: 
-      objectReference: {fileID: 5987773952606439051}
-    - target: {fileID: 4918055204924546434, guid: bf62e091e3a648e449f1ae21a25c6606,
-        type: 3}
-      propertyPath: BumpScript
-      value: 
-      objectReference: {fileID: 1415107927639076957}
     - target: {fileID: 6285788776414149113, guid: bf62e091e3a648e449f1ae21a25c6606,
         type: 3}
       propertyPath: m_LocalRotation.x
