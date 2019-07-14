@@ -242,7 +242,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                     continue;
                 }
                 
-                player.Attractor.AttractPlayer(player.Attractor.Exposer.id,i, GameVariablesScript.Instance.planetsGravity);
+                player.Attractor.AttractPlayer(player.Attractor.exposer.id,i, GameVariablesScript.Instance.planetsGravity);
                 
                 /*if (intent.canJump && player.attractor)
                 {

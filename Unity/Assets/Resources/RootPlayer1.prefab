@@ -528,7 +528,6 @@ MonoBehaviour:
   CharacterAnimator: {fileID: 2713987122217920040}
   Bumper: {fileID: 0}
   Chest: {fileID: 0}
-  seedChest: 0
   CharacterPhotonView: {fileID: 4032840751649765452}
   CharacterRbPhotonView: {fileID: 4032840751649765441}
   CameraRotatorX: {fileID: 7674971413621576116}
@@ -540,8 +539,6 @@ MonoBehaviour:
   chest: {fileID: 0}
   InventoryExposer: {fileID: 0}
   inventoryScript: {fileID: 5482628297410016006}
-  Movedir: {x: 0, y: 0, z: 0}
-  DashSpeed: 30
 --- !u!114 &823833752871783993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -851,6 +848,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 9119331540730783350, guid: 03bb1ee27d326e446961caff5e6fe21e,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 4032840751649765454}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03bb1ee27d326e446961caff5e6fe21e, type: 3}
 --- !u!4 &984574832223659048 stripped

@@ -122,6 +122,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a5865873835bab449dc38a31ef00be1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  initialPosition: {x: 0, y: 0, z: 0}
+  initialRotation: {x: 0, y: 0, z: 0, w: 0}
+  orbTransform: {fileID: 3096348836995314485}
 --- !u!1 &4734071459841855682
 GameObject:
   m_ObjectHideFlags: 0

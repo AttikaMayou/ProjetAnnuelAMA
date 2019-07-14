@@ -2,6 +2,7 @@
 using LastToTheGlobe.Scripts.Avatar;
 using LastToTheGlobe.Scripts.Management;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 //Auteur : Attika
 
@@ -14,7 +15,7 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb
         [SerializeField] private Quaternion initialRotation;
 
         private float _timeSpend;
-        private Transform _transform;
+        [SerializeField] private Transform orbTransform;
 
         private void Awake()
         {
@@ -24,9 +25,8 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb
                 return;
             }
             _timeSpend = 0.0f;
-            _transform = transform;
-            initialPosition = _transform.localPosition;
-            initialRotation = _transform.localRotation;
+            initialPosition = orbTransform.localPosition;
+            initialRotation = orbTransform.localRotation;
         }
         
         private void OnEnable()
@@ -37,9 +37,8 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb
                 return;
             }
             _timeSpend = 0.0f;
-            _transform = transform;
-            initialPosition = _transform.localPosition;
-            initialRotation = _transform.localRotation;
+            initialPosition = orbTransform.localPosition;
+            initialRotation = orbTransform.localRotation;
         }
 
         private void FixedUpdate()
@@ -47,18 +46,18 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb
             _timeSpend += Time.deltaTime;
             _timeSpend %= (Mathf.PI * 2);
 
-            _transform.RotateAround(player.CharacterTr.position, player.CharacterTr.up, 
+            orbTransform.RotateAround(player.CharacterTr.position, player.CharacterTr.up, 
                 GameVariablesScript.Instance.orbDefensiveSpeed);
             
-            _transform.Translate(new Vector3(0,Mathf.Cos(_timeSpend) * 
+            orbTransform.Translate(new Vector3(0,Mathf.Cos(_timeSpend) * 
                                                 Time.deltaTime/2,0),Space.Self);
         }
 
         private void OnDisable()
         {
             _timeSpend = 0.0f;
-            _transform.position = initialPosition;
-            _transform.rotation = initialRotation;
+            orbTransform.position = initialPosition;
+            orbTransform.rotation = initialRotation;
         }
     }
 }

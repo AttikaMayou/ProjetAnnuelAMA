@@ -50,9 +50,9 @@ SphereCollider:
   m_GameObject: {fileID: 232}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 22.955801
+  m_Radius: 35
   m_Center: {x: 0, y: 0.23370934, z: -2.652464}
 --- !u!114 &1251
 MonoBehaviour:
@@ -68,7 +68,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   planetTransform: {fileID: 578}
-  planetCollider: {fileID: 1174}
+  planetGravityField: {fileID: 1174}
   planetGroundCollider: {fileID: 8642066895564130031}
   attractorScript: {fileID: 1253}
   planetsPhotonView: {fileID: 0}
@@ -86,9 +86,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 917c2123bde88734f9ca74bda0e6f01f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Exposer: {fileID: 1251}
-  speedRotation: 10
-  DirForce: {x: 0, y: 0, z: 0}
+  exposer: {fileID: 1251}
 --- !u!1 &233
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,7 +97,7 @@ GameObject:
   m_Component:
   - component: {fileID: 575}
   m_Layer: 0
-  m_Name: SpawnPlayer
+  m_Name: SpawnPlayerPosition
   m_TagString: SpawnPoint
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -269,7 +267,7 @@ GameObject:
   - component: {fileID: 3283866516665864931}
   - component: {fileID: 3283866516666863651}
   m_Layer: 0
-  m_Name: polySurface2
+  m_Name: Tube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -347,7 +345,7 @@ GameObject:
   - component: {fileID: 3283866516666863653}
   - component: {fileID: 8642066895564130031}
   m_Layer: 0
-  m_Name: polySurface1
+  m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -438,7 +436,7 @@ GameObject:
   - component: {fileID: 3283866516666863655}
   - component: {fileID: 6696405350532593711}
   m_Layer: 0
-  m_Name: pCube2
+  m_Name: Boyau
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -598,6 +596,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 578}
     m_Modifications:
+    - target: {fileID: 1963491872576424134, guid: bf62e091e3a648e449f1ae21a25c6606,
+        type: 3}
+      propertyPath: m_Name
+      value: Jumper (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 3401916670773471376, guid: bf62e091e3a648e449f1ae21a25c6606,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -652,11 +655,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1963491872576424134, guid: bf62e091e3a648e449f1ae21a25c6606,
-        type: 3}
-      propertyPath: m_Name
-      value: Jumper (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf62e091e3a648e449f1ae21a25c6606, type: 3}

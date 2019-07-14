@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1042}
   - component: {fileID: 908}
   - component: {fileID: 1257}
-  - component: {fileID: 1176}
   - component: {fileID: 1175}
   - component: {fileID: 1258}
   - component: {fileID: 1260}
@@ -33,7 +32,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 47.20662, y: 47.20662, z: 47.20662}
-  m_Children: []
+  m_Children:
+  - {fileID: 1199948053158017797}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -96,25 +96,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   planetTransform: {fileID: 581}
-  planetCollider: {fileID: 1176}
+  planetGravityField: {fileID: 0}
   planetGroundCollider: {fileID: 1175}
   attractorScript: {fileID: 1260}
   planetsPhotonView: {fileID: 0}
   isSpawnPlanet: 0
   spawnPosition: {fileID: 0}
---- !u!135 &1176
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 235}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.7
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &1175
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -141,10 +128,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
-  planetTransform: {fileID: 0}
-  planetCollider: {fileID: 0}
-  planetGroundCollider: {fileID: 0}
-  attractorScript: {fileID: 0}
+  planetTransform: {fileID: 581}
+  planetGravityField: {fileID: 1306083693237573872}
+  planetGroundCollider: {fileID: 1175}
+  attractorScript: {fileID: 1260}
   planetsPhotonView: {fileID: 0}
   isSpawnPlanet: 0
   spawnPosition: {fileID: 0}
@@ -160,6 +147,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 917c2123bde88734f9ca74bda0e6f01f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Exposer: {fileID: 0}
-  speedRotation: 10
-  DirForce: {x: 0, y: 0, z: 0}
+  exposer: {fileID: 1257}
+--- !u!1 &2027927673582530209
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1199948053158017797}
+  - component: {fileID: 1306083693237573872}
+  m_Layer: 0
+  m_Name: GravityField
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1199948053158017797
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2027927673582530209}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 581}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1306083693237573872
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2027927673582530209}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 5
+  m_Center: {x: 0, y: 0, z: 0}

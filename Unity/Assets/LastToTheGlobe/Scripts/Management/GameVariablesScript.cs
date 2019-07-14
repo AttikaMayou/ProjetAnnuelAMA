@@ -19,6 +19,7 @@ namespace LastToTheGlobe.Scripts.Management
 
         [Header("Gravity Parameters")] 
         public float planetsGravity;
+        public float speedPlanetRotation;
         public float bumpersForce;
 
         [Header("Shoot Parameters")] 

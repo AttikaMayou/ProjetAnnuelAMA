@@ -201,10 +201,10 @@ namespace LastToTheGlobe.Scripts.Management
             var id = -1;
             if(debug) Debug.Log("[ColliderDirectoryScript] Add one planet to directory");
             if (_planetsDirectory.ContainsValue(planet)) return id;
-            _planetsDirectory.Add(planet.planetCollider, planet);
+            _planetsDirectory.Add(planet.planetGravityField, planet);
             id = activePlanets - 1;
             if(debug) Debug.LogFormat("[ColliderDirectoryScript] Directory key : {0} and value : {1}", 
-                planet.planetCollider, planet);
+                planet.planetGravityField, planet);
             return id;
         }
         

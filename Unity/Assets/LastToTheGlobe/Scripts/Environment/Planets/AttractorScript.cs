@@ -3,6 +3,7 @@ using System.Collections;
 using LastToTheGlobe.Scripts.Management;
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 //Auteur : Attika
 
@@ -12,22 +13,19 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
     {
         public static bool Debug = false;
 
-        public PlanetExposerScript Exposer;
+        public PlanetExposerScript exposer;
 
         private int _i = 0;
 
-        public float speedRotation = 10f;
-        public Vector3 DirForce;
-        
         public void AttractPlayer(int planetId, int playerId, float gravity)
         {
             //Only the MasterClient interact with collider and stuff like this
             if (!PhotonNetwork.IsMasterClient) return;
 
-            if (planetId != Exposer.id)
+            if (planetId != exposer.id)
             {
                 if(Debug) UnityEngine.Debug.LogWarningFormat("[AttractorScript] Planet {0} received order to attract player {1} but it was meant to planet {2}",
-                    Exposer.id, playerId, planetId);
+                    exposer.id, playerId, planetId);
                 return;
             }
             
@@ -46,9 +44,8 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
             //Sync the vertical axe's player (up) with the gravity direction chosen before
             var rotation = body.rotation;
             var targetRotation = Quaternion.FromToRotation(bodyUp, gravityUp) * rotation;
-            rotation = Quaternion.Slerp(rotation, targetRotation, speedRotation * Time.deltaTime);
+            rotation = Quaternion.Slerp(rotation, targetRotation, GameVariablesScript.Instance.speedPlanetRotation * Time.deltaTime);
             body.rotation = rotation;
-            DirForce = gravityUp;
         }
         
         #region Collision Methods
@@ -74,8 +71,8 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
             if (playerId != -1) 
             {
                 //Send to MasterClient a message to warn him with its own ID and playerId
-                Exposer.planetsPhotonView.RPC("DetectPlayerRPC", RpcTarget.MasterClient,
-                    Exposer.id, playerId);
+                exposer.planetsPhotonView.RPC("DetectPlayerRPC", RpcTarget.MasterClient,
+                    exposer.id, playerId);
             }
 
             StartCoroutine(ResetTrigger());
@@ -102,7 +99,7 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
             if (playerId != -1) 
             {
                 //Send to MasterClient a message to warn him with playerId
-                Exposer.planetsPhotonView.RPC("RemoveAttractorPlayerRPC", RpcTarget.MasterClient, 
+                exposer.planetsPhotonView.RPC("RemoveAttractorPlayerRPC", RpcTarget.MasterClient, 
                     playerId);
             }
 
