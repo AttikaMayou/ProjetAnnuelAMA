@@ -66,7 +66,7 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
             if(!PhotonNetwork.IsMasterClient) return;
             
             var playerId = ColliderDirectoryScript.Instance.GetPlayerId(other);
-            
+
             //if playerId is different from -1, that means this is a player which hit the planet
             if (playerId != -1) 
             {
