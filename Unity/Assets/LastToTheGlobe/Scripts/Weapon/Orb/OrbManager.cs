@@ -7,7 +7,7 @@ using UnityEngine.Serialization;
 
 namespace LastToTheGlobe.Scripts.Weapon.Orb
 {
-    public class OrbManager : global::LastToTheGlobe.Scripts.Avatar.Avatar
+    public class OrbManager : MonoBehaviour
     {
         public bool debug = true;
         
@@ -58,11 +58,11 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb
         public void InitializeOrPosition()
         {
             _timeUsing = 0.0f;
-            if (!Attractor || !exposer.playerExposer) return;
+            if (!exposer.Attractor || !exposer.playerExposer) return;
             _playerPosition = exposer.playerExposer.CharacterTr.position;
             _initialPos = _playerPosition;
             _direction = exposer.playerExposer.CharacterTr.right;
-            _centerPointAttractor = Attractor.transform.position;
+            _centerPointAttractor = exposer.Attractor.transform.position;
             transform.position = _playerPosition + exposer.playerExposer.CharacterTr.forward * 2f;
             exposer.orbRb.isKinematic = false;
             _getUsed = true;

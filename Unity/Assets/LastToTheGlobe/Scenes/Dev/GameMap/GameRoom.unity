@@ -4177,11 +4177,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1709676989}
     m_Modifications:
-    - target: {fileID: 1963491872576424134, guid: bf62e091e3a648e449f1ae21a25c6606,
-        type: 3}
-      propertyPath: m_Name
-      value: Jumper
-      objectReference: {fileID: 0}
     - target: {fileID: 3401916670773471376, guid: bf62e091e3a648e449f1ae21a25c6606,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4247,6 +4242,16 @@ PrefabInstance:
       propertyPath: exposer
       value: 
       objectReference: {fileID: 1629062614}
+    - target: {fileID: 1963491872576424134, guid: bf62e091e3a648e449f1ae21a25c6606,
+        type: 3}
+      propertyPath: m_Name
+      value: Jumper
+      objectReference: {fileID: 0}
+    - target: {fileID: 4918055204924546434, guid: bf62e091e3a648e449f1ae21a25c6606,
+        type: 3}
+      propertyPath: BumpersPhotonView
+      value: 
+      objectReference: {fileID: 611257431}
     - target: {fileID: 7950339713354577059, guid: bf62e091e3a648e449f1ae21a25c6606,
         type: 3}
       propertyPath: m_Size.x
@@ -10235,6 +10240,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1329303219}
   m_CullTransparentMesh: 0
+--- !u!114 &1330510958 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5240164197673119770, guid: f2c53a056b39c3c46b762cd1292836b8,
+    type: 3}
+  m_PrefabInstance: {fileID: 722089180}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 917c2123bde88734f9ca74bda0e6f01f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1342064916 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2212207739455034102, guid: 2df7f3c3150fe8547bfefd3adb06d4d1,
@@ -15422,6 +15439,11 @@ PrefabInstance:
       propertyPath: countdown
       value: 
       objectReference: {fileID: 1947161234}
+    - target: {fileID: 2003145821851938736, guid: 4b7f65cf3304916429cf26667ac888b2,
+        type: 3}
+      propertyPath: debug
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2003145821851938738, guid: 4b7f65cf3304916429cf26667ac888b2,
         type: 3}
       propertyPath: _startPosition.Array.data[0]
@@ -15692,6 +15714,76 @@ PrefabInstance:
       propertyPath: orbsPool.Array.data[29]
       value: 
       objectReference: {fileID: 1439131526}
+    - target: {fileID: 2003145821851938738, guid: 4b7f65cf3304916429cf26667ac888b2,
+        type: 3}
+      propertyPath: debug
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2003145821851938738, guid: 4b7f65cf3304916429cf26667ac888b2,
+        type: 3}
+      propertyPath: startPosition.Array.data[0]
+      value: 
+      objectReference: {fileID: 520925791}
+    - target: {fileID: 2003145821851938738, guid: 4b7f65cf3304916429cf26667ac888b2,
+        type: 3}
+      propertyPath: startPosition.Array.data[1]
+      value: 
+      objectReference: {fileID: 1117963734}
+    - target: {fileID: 2003145821851938738, guid: 4b7f65cf3304916429cf26667ac888b2,
+        type: 3}
+      propertyPath: startPosition.Array.data[2]
+      value: 
+      objectReference: {fileID: 2083665605}
+    - target: {fileID: 2003145821851938738, guid: 4b7f65cf3304916429cf26667ac888b2,
+        type: 3}
+      propertyPath: startPosition.Array.data[3]
+      value: 
+      objectReference: {fileID: 417739707}
+    - target: {fileID: 2003145821851938738, guid: 4b7f65cf3304916429cf26667ac888b2,
+        type: 3}
+      propertyPath: startPosition.Array.data[4]
+      value: 
+      objectReference: {fileID: 1051002310}
+    - target: {fileID: 2003145821851938738, guid: 4b7f65cf3304916429cf26667ac888b2,
+        type: 3}
+      propertyPath: startPosition.Array.data[5]
+      value: 
+      objectReference: {fileID: 444824251}
+    - target: {fileID: 2003145821851938738, guid: 4b7f65cf3304916429cf26667ac888b2,
+        type: 3}
+      propertyPath: startPosition.Array.data[6]
+      value: 
+      objectReference: {fileID: 1998236168}
+    - target: {fileID: 2003145821851938738, guid: 4b7f65cf3304916429cf26667ac888b2,
+        type: 3}
+      propertyPath: startPosition.Array.data[7]
+      value: 
+      objectReference: {fileID: 1754449648}
+    - target: {fileID: 2003145821851938738, guid: 4b7f65cf3304916429cf26667ac888b2,
+        type: 3}
+      propertyPath: startPosition.Array.data[8]
+      value: 
+      objectReference: {fileID: 324977272}
+    - target: {fileID: 2003145821851938738, guid: 4b7f65cf3304916429cf26667ac888b2,
+        type: 3}
+      propertyPath: startPosition.Array.data[9]
+      value: 
+      objectReference: {fileID: 1103505072}
+    - target: {fileID: 2003145821851938738, guid: 4b7f65cf3304916429cf26667ac888b2,
+        type: 3}
+      propertyPath: lifeUi
+      value: 
+      objectReference: {fileID: 965428813}
+    - target: {fileID: 2003145821851938738, guid: 4b7f65cf3304916429cf26667ac888b2,
+        type: 3}
+      propertyPath: victoryUi
+      value: 
+      objectReference: {fileID: 1377665779}
+    - target: {fileID: 2003145821851938738, guid: 4b7f65cf3304916429cf26667ac888b2,
+        type: 3}
+      propertyPath: defeatUi
+      value: 
+      objectReference: {fileID: 1895880734}
     - target: {fileID: 2003145821851938739, guid: 4b7f65cf3304916429cf26667ac888b2,
         type: 3}
       propertyPath: viewIdField
@@ -17037,19 +17129,9 @@ PrefabInstance:
       objectReference: {fileID: 507155606}
     - target: {fileID: 4642014390699481277, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
         type: 3}
-      propertyPath: Interaction
+      propertyPath: Attractor
       value: 
-      objectReference: {fileID: 744342577}
-    - target: {fileID: 4642014390699481277, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
-        type: 3}
-      propertyPath: inventory
-      value: 
-      objectReference: {fileID: 1626333782}
-    - target: {fileID: 4642014390699481277, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
-        type: 3}
-      propertyPath: chest
-      value: 
-      objectReference: {fileID: 428598644}
+      objectReference: {fileID: 1330510958}
     - target: {fileID: 4642014390723583332, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
         type: 3}
       propertyPath: InventoryExposer
@@ -17057,19 +17139,9 @@ PrefabInstance:
       objectReference: {fileID: 507155606}
     - target: {fileID: 4642014390723583332, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
         type: 3}
-      propertyPath: inventory
+      propertyPath: Attractor
       value: 
-      objectReference: {fileID: 1626333782}
-    - target: {fileID: 4642014390723583332, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
-        type: 3}
-      propertyPath: Interaction
-      value: 
-      objectReference: {fileID: 744342577}
-    - target: {fileID: 4642014390723583332, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
-        type: 3}
-      propertyPath: chest
-      value: 
-      objectReference: {fileID: 428598644}
+      objectReference: {fileID: 1330510958}
     - target: {fileID: 4642014389897354709, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
         type: 3}
       propertyPath: InventoryExposer
@@ -17077,19 +17149,9 @@ PrefabInstance:
       objectReference: {fileID: 507155606}
     - target: {fileID: 4642014389897354709, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
         type: 3}
-      propertyPath: Interaction
+      propertyPath: Attractor
       value: 
-      objectReference: {fileID: 744342577}
-    - target: {fileID: 4642014389897354709, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
-        type: 3}
-      propertyPath: inventory
-      value: 
-      objectReference: {fileID: 1626333782}
-    - target: {fileID: 4642014389897354709, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
-        type: 3}
-      propertyPath: chest
-      value: 
-      objectReference: {fileID: 428598644}
+      objectReference: {fileID: 1330510958}
     - target: {fileID: 4642014390391149207, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
         type: 3}
       propertyPath: InventoryExposer
@@ -17097,19 +17159,9 @@ PrefabInstance:
       objectReference: {fileID: 507155606}
     - target: {fileID: 4642014390391149207, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
         type: 3}
-      propertyPath: Interaction
+      propertyPath: Attractor
       value: 
-      objectReference: {fileID: 744342577}
-    - target: {fileID: 4642014390391149207, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
-        type: 3}
-      propertyPath: inventory
-      value: 
-      objectReference: {fileID: 1626333782}
-    - target: {fileID: 4642014390391149207, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
-        type: 3}
-      propertyPath: chest
-      value: 
-      objectReference: {fileID: 428598644}
+      objectReference: {fileID: 1330510958}
     - target: {fileID: 4642014389412901390, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
         type: 3}
       propertyPath: InventoryExposer
@@ -17117,19 +17169,9 @@ PrefabInstance:
       objectReference: {fileID: 507155606}
     - target: {fileID: 4642014389412901390, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
         type: 3}
-      propertyPath: Interaction
+      propertyPath: Attractor
       value: 
-      objectReference: {fileID: 744342577}
-    - target: {fileID: 4642014389412901390, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
-        type: 3}
-      propertyPath: inventory
-      value: 
-      objectReference: {fileID: 1626333782}
-    - target: {fileID: 4642014389412901390, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
-        type: 3}
-      propertyPath: chest
-      value: 
-      objectReference: {fileID: 428598644}
+      objectReference: {fileID: 1330510958}
     - target: {fileID: 4642014389673065927, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
         type: 3}
       propertyPath: InventoryExposer
@@ -17137,19 +17179,9 @@ PrefabInstance:
       objectReference: {fileID: 507155606}
     - target: {fileID: 4642014389673065927, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
         type: 3}
-      propertyPath: Interaction
+      propertyPath: Attractor
       value: 
-      objectReference: {fileID: 744342577}
-    - target: {fileID: 4642014389673065927, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
-        type: 3}
-      propertyPath: inventory
-      value: 
-      objectReference: {fileID: 1626333782}
-    - target: {fileID: 4642014389673065927, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
-        type: 3}
-      propertyPath: chest
-      value: 
-      objectReference: {fileID: 428598644}
+      objectReference: {fileID: 1330510958}
     - target: {fileID: 4642014389743177709, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
         type: 3}
       propertyPath: InventoryExposer
@@ -17157,19 +17189,9 @@ PrefabInstance:
       objectReference: {fileID: 507155606}
     - target: {fileID: 4642014389743177709, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
         type: 3}
-      propertyPath: Interaction
+      propertyPath: Attractor
       value: 
-      objectReference: {fileID: 744342577}
-    - target: {fileID: 4642014389743177709, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
-        type: 3}
-      propertyPath: inventory
-      value: 
-      objectReference: {fileID: 1626333782}
-    - target: {fileID: 4642014389743177709, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
-        type: 3}
-      propertyPath: chest
-      value: 
-      objectReference: {fileID: 428598644}
+      objectReference: {fileID: 1330510958}
     - target: {fileID: 4642014389271681466, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
         type: 3}
       propertyPath: InventoryExposer
@@ -17177,19 +17199,9 @@ PrefabInstance:
       objectReference: {fileID: 507155606}
     - target: {fileID: 4642014389271681466, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
         type: 3}
-      propertyPath: Interaction
+      propertyPath: Attractor
       value: 
-      objectReference: {fileID: 744342577}
-    - target: {fileID: 4642014389271681466, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
-        type: 3}
-      propertyPath: inventory
-      value: 
-      objectReference: {fileID: 1626333782}
-    - target: {fileID: 4642014389271681466, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
-        type: 3}
-      propertyPath: chest
-      value: 
-      objectReference: {fileID: 428598644}
+      objectReference: {fileID: 1330510958}
     - target: {fileID: 4642014389191699802, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
         type: 3}
       propertyPath: InventoryExposer
@@ -17197,19 +17209,9 @@ PrefabInstance:
       objectReference: {fileID: 507155606}
     - target: {fileID: 4642014389191699802, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
         type: 3}
-      propertyPath: Interaction
+      propertyPath: Attractor
       value: 
-      objectReference: {fileID: 744342577}
-    - target: {fileID: 4642014389191699802, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
-        type: 3}
-      propertyPath: inventory
-      value: 
-      objectReference: {fileID: 1626333782}
-    - target: {fileID: 4642014389191699802, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
-        type: 3}
-      propertyPath: chest
-      value: 
-      objectReference: {fileID: 428598644}
+      objectReference: {fileID: 1330510958}
     - target: {fileID: 8618825590530793955, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
         type: 3}
       propertyPath: InventoryExposer
@@ -17217,19 +17219,9 @@ PrefabInstance:
       objectReference: {fileID: 507155606}
     - target: {fileID: 8618825590530793955, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
         type: 3}
-      propertyPath: inventory
+      propertyPath: Attractor
       value: 
-      objectReference: {fileID: 1626333782}
-    - target: {fileID: 8618825590530793955, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
-        type: 3}
-      propertyPath: chest
-      value: 
-      objectReference: {fileID: 428598644}
-    - target: {fileID: 8618825590530793955, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
-        type: 3}
-      propertyPath: Interaction
-      value: 
-      objectReference: {fileID: 744342577}
+      objectReference: {fileID: 1330510958}
     - target: {fileID: 8618825591043032873, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -17385,55 +17377,6 @@ PrefabInstance:
       propertyPath: InstantiationId
       value: 17
       objectReference: {fileID: 0}
-    - target: {fileID: 8936736871396245858, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
-        type: 3}
-      propertyPath: inventoryPhotonView
-      value: 
-      objectReference: {fileID: 1527447860}
-    - target: {fileID: 8936736871191033218, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
-        type: 3}
-      propertyPath: inventoryPhotonView
-      value: 
-      objectReference: {fileID: 1527447860}
-    - target: {fileID: 8936736871074324022, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
-        type: 3}
-      propertyPath: inventoryPhotonView
-      value: 
-      objectReference: {fileID: 1527447860}
-    - target: {fileID: 8936736870780801535, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
-        type: 3}
-      propertyPath: inventoryPhotonView
-      value: 
-      objectReference: {fileID: 1527447860}
-    - target: {fileID: 8936736870853026773, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
-        type: 3}
-      propertyPath: inventoryPhotonView
-      value: 
-      objectReference: {fileID: 1527447860}
-    - target: {fileID: 8936736870489207277, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
-        type: 3}
-      propertyPath: inventoryPhotonView
-      value: 
-      objectReference: {fileID: 1527447860}
-    - target: {fileID: 8936736870163054255, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
-        type: 3}
-      propertyPath: inventoryPhotonView
-      value: 
-      objectReference: {fileID: 1527447860}
-    - target: {fileID: 8936736869930284165, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
-        type: 3}
-      propertyPath: inventoryPhotonView
-      value: 
-      objectReference: {fileID: 1527447860}
-    - target: {fileID: 8936736869704855900, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
-        type: 3}
-      propertyPath: inventoryPhotonView
-      value: 
-      objectReference: {fileID: 1527447860}
-    - target: {fileID: 5472486654643146203, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
-        type: 3}
-      propertyPath: inventoryPhotonView
-      value: 
-      objectReference: {fileID: 1527447860}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5405840249576855444, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c, type: 3}

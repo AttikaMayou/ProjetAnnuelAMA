@@ -1,8 +1,8 @@
 ﻿using LastToTheGlobe.Scripts.Avatar;
+using LastToTheGlobe.Scripts.Environment.Planets;
 using LastToTheGlobe.Scripts.Management;
 using Photon.Pun;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 //Auteur : Attika
 
@@ -13,14 +13,17 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb
         public static bool Debug = true;
 
         //The id value of this orb. Updated at awakening
-        [FormerlySerializedAs("Id")] public int id;
+        public int id;
 
-        [FormerlySerializedAs("OrbTransform")] 
+         
         [Header("Component References")] 
         public Transform orbTransform;
-        [FormerlySerializedAs("OrbRb")] public Rigidbody orbRb;
-        [FormerlySerializedAs("OrbCollider")] public Collider orbCollider;
-        [FormerlySerializedAs("OrbsPhotonView")] public PhotonView orbsPhotonView;
+        public Rigidbody orbRb;
+        public Collider orbCollider;
+        public PhotonView orbsPhotonView;
+        
+        [Header("Gravity Parameters")]
+        public AttractorScript Attractor;
         
         [Header("Player Parameters")] 
         public CharacterExposerScript playerExposer;

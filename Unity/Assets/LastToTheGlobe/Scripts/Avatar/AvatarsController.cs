@@ -11,6 +11,7 @@ using LastToTheGlobe.Scripts.UI;
 using LastToTheGlobe.Scripts.Weapon.Orb;
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 //Auteur : Attika
 //Modification : Margot
@@ -19,10 +20,11 @@ namespace LastToTheGlobe.Scripts.Avatar
 {
     public class AvatarsController : MonoBehaviour
     {
-        public bool debug = false;
+        public bool debug = true;
 
+        [FormerlySerializedAs("_startPosition")]
         [Header("Photon and Replication Parameters")] 
-        [SerializeField] private Transform[] _startPosition;
+        [SerializeField] private Transform[] startPosition;
         [SerializeField] private CharacterExposerScript[] players;
         [SerializeField] private AIntentReceiver[] onlineIntentReceivers;
         private AIntentReceiver[] _activatedIntentReceivers;
@@ -43,29 +45,29 @@ namespace LastToTheGlobe.Scripts.Avatar
         [SerializeField] private float rotationSpeed = 5.0f;
 
 
-        private List<ChestExposerScript> chestExposers;
+        private List<ChestExposerScript> _chestExposers;
 
-        [Header("UI Parameters")] 
+        [FormerlySerializedAs("lifeUI")] [Header("UI Parameters")] 
         //public ActivateObjects inventoryUI;
-        public ActivateObjects lifeUI;
-        public ActivateObjects victoryUI;
-        public ActivateObjects defeatUI;
+        public ActivateObjects lifeUi;
+        [FormerlySerializedAs("victoryUI")] public ActivateObjects victoryUi;
+        [FormerlySerializedAs("defeatUI")] public ActivateObjects defeatUi;
         
         [Header("Game Control Parameters And References")]
         [SerializeField] private StartMenuController startMenuController;
-        [SerializeField] private bool _gameStarted;
+        [FormerlySerializedAs("_gameStarted")] [SerializeField] private bool gameStarted;
         private bool GameStarted
         {
-            get => _gameStarted;
+            get => gameStarted;
             set
             {
-                if (value && !_gameStarted &&(!PhotonNetwork.IsConnected
+                if (value && !gameStarted &&(!PhotonNetwork.IsConnected
                                              || PhotonNetwork.IsMasterClient))
                 {
                     SubscribeCollisionEffect();
                 }
 
-                _gameStarted = value;
+                gameStarted = value;
             }
         }
         
@@ -84,7 +86,7 @@ namespace LastToTheGlobe.Scripts.Avatar
 
         private void Awake()
         {
-            _gameStarted = false;
+            gameStarted = false;
             onLobby = false;
             gameLaunched = false;
 
@@ -174,7 +176,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                     
                     var orb = GetOrbsWithinPool();
                     orb.exposer.playerExposer = player;
-                    orb.Attractor = player.Attractor;
+                    orb.exposer.Attractor = player.Attractor;
                     orb.loaded = false;
                     orb.gameObject.SetActive(true);
                     orb.InitializeOrPosition();
@@ -190,7 +192,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                     
                     var orb = GetOrbsWithinPool();
                     orb.exposer.playerExposer = player;
-                    orb.Attractor = player.Attractor;
+                    orb.exposer.Attractor = player.Attractor;
                     orb.loaded = true;
                     orb.gameObject.SetActive(true);
                     orb.InitializeOrPosition();
@@ -338,11 +340,11 @@ namespace LastToTheGlobe.Scripts.Avatar
         {
             if (PhotonNetwork.IsConnected)
             {
-                photonView.RPC("ActivateAvatarRPC", RpcTarget.AllBuffered, id);
+                photonView.RPC("ActivateAvatarRpc", RpcTarget.AllBuffered, id);
             }
             else
             {
-                ActivateAvatarRPC(id);
+                ActivateAvatarRpc(id);
             }
         }
 
@@ -528,8 +530,8 @@ namespace LastToTheGlobe.Scripts.Avatar
                 var player = players[i];
                 player.CharacterRb.velocity = Vector3.zero;
                 player.CharacterRb.angularVelocity = Vector3.zero;
-                player.CharacterTr.position = _startPosition[i].position;
-                player.CharacterTr.rotation = _startPosition[i].rotation;
+                player.CharacterTr.position = startPosition[i].position;
+                player.CharacterTr.rotation = startPosition[i].rotation;
                 player.CharacterRbPhotonView.enabled = _activatedIntentReceivers == onlineIntentReceivers;
             }
             
@@ -568,13 +570,13 @@ namespace LastToTheGlobe.Scripts.Avatar
         #region RPC Methods
 
         [PunRPC]
-        private void ActivateAvatarRPC(int avatarId)
+        private void ActivateAvatarRpc(int avatarId)
         {
             players[avatarId].CharacterRootGameObject.SetActive(true);
         }
-
+        
         [PunRPC]
-        private void DeactivateAvatarRPC(int avatarId)
+        private void DeactivateAvatarRpc(int avatarId)
         {
             players[avatarId].CharacterRootGameObject.SetActive(false);
         }

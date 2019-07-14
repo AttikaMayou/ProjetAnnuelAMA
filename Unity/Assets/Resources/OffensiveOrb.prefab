@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5107946470935551359}
   - component: {fileID: 5107946470935551394}
   - component: {fileID: 5107946470935551282}
-  - component: {fileID: 5107946470935551255}
   - component: {fileID: 5107946470935551292}
   - component: {fileID: 2224972135892227524}
   - component: {fileID: 6265944264852442678}
@@ -96,22 +95,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5107946470935551255
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5107946470935551850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 249b15e905980bf468684913a564571f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Attractor: {fileID: 0}
-  attractedRb: {fileID: 5107946470935551292}
-  selfGravity: -15
-  isGrounded: 0
 --- !u!54 &5107946470935551292
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -145,6 +128,7 @@ MonoBehaviour:
   orbRb: {fileID: 5107946470935551292}
   orbCollider: {fileID: 5107946470935551282}
   orbsPhotonView: {fileID: 0}
+  Attractor: {fileID: 0}
   playerExposer: {fileID: 0}
 --- !u!114 &6265944264852442678
 MonoBehaviour:
@@ -158,7 +142,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13b72d4f03b499d48a31177d5ed082e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Attractor: {fileID: 0}
   debug: 1
   exposer: {fileID: 2224972135892227524}
   loaded: 0
@@ -169,6 +152,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5107946470935551621}
     m_Modifications:
+    - target: {fileID: 4759597811360328833, guid: d2b6d4005a1be0d479815af782e279da,
+        type: 3}
+      propertyPath: m_Name
+      value: OrbParticuleSystem
+      objectReference: {fileID: 0}
     - target: {fileID: 4002388626375183279, guid: d2b6d4005a1be0d479815af782e279da,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -223,11 +211,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4759597811360328833, guid: d2b6d4005a1be0d479815af782e279da,
-        type: 3}
-      propertyPath: m_Name
-      value: OrbParticuleSystem
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2b6d4005a1be0d479815af782e279da, type: 3}

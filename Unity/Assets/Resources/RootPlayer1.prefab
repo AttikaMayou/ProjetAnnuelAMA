@@ -216,7 +216,6 @@ GameObject:
   - component: {fileID: 835860696850617462}
   - component: {fileID: 5482628297410016006}
   - component: {fileID: 4032840751649765454}
-  - component: {fileID: 823833752871783993}
   - component: {fileID: 1014064465940019215}
   - component: {fileID: 3647621335996314131}
   - component: {fileID: 2876196961187294912}
@@ -365,22 +364,6 @@ MonoBehaviour:
   chest: {fileID: 0}
   InventoryExposer: {fileID: 0}
   inventoryScript: {fileID: 5482628297410016006}
---- !u!114 &823833752871783993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4032840751649765450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 249b15e905980bf468684913a564571f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Attractor: {fileID: 0}
-  attractedRb: {fileID: 4032840751649765455}
-  selfGravity: -10
-  isGrounded: 0
 --- !u!114 &1014064465940019215
 MonoBehaviour:
   m_ObjectHideFlags: 0

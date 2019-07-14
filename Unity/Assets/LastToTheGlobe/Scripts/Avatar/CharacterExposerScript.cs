@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace LastToTheGlobe.Scripts.Avatar
 {
-    public class CharacterExposerScript : Avatar
+    public class CharacterExposerScript : MonoBehaviour
     {
         public static bool debug = false;
 
@@ -29,6 +29,9 @@ namespace LastToTheGlobe.Scripts.Avatar
         [Header("Avatar Animation")]
         public Animator CharacterAnimator;
 
+        [Header("Planets Reference")]
+        public AttractorScript Attractor;
+        
         [Header("Bumper Reference")] 
         public BumpScript Bumper;
 
