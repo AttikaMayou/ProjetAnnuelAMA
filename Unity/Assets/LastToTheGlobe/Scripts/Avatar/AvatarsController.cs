@@ -208,15 +208,25 @@ namespace LastToTheGlobe.Scripts.Avatar
                     }
                     else
                     {
+                        Debug.LogFormat("Spawn Bumper ? {0}", player.Bumper.exposer.IsSpawnBumper);
+
                         if (player.Bumper.exposer.IsSpawnBumper)
                         {
+                            float timeToReachTarget = 0;
+                            float time = 0;
                             //TODO : add cinematic launch here
-                            
+                            time += Time.deltaTime / timeToReachTarget;
+                            player.DisableGravity();
+                            player.DeactivateRb();
+                            player.CharacterTr.position = Vector3.Lerp(player.CharacterTr.position, new Vector3(player.CharacterTr.position.x, player.CharacterTr.position.y + 10f, player.CharacterTr.position.z), time);
+                            player.ActivateRb();
+                            //player.Attractor.exposer.
+
                         }
-                        else
+                        /*else
                         {
                             player.Bumper.BumpPlayer(player.Bumper.exposer.Id,i,  GameVariablesScript.Instance.bumpersForce);
-                        }
+                        }*/
                     }
                     StartCoroutine(CooldownReset(GameVariablesScript.Instance.bumpCooldown));
                     intent.Bump = false;
