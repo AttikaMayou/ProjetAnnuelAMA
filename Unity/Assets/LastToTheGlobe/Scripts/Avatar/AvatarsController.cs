@@ -208,11 +208,9 @@ namespace LastToTheGlobe.Scripts.Avatar
                     }
                     else
                     {
-                        player.DisableGravity();
                         player.Bumper.BumpPlayer(player.Bumper.exposer.Id,i,  GameVariablesScript.Instance.bumpersForce);
                     }
                     StartCoroutine(CooldownReset(GameVariablesScript.Instance.bumpCooldown));
-                    player.EnableGravity();
                     intent.Bump = false;
                 }
 
