@@ -57,9 +57,6 @@ namespace LastToTheGlobe.Scripts.Avatar
         public PlayerInventoryExposer InventoryExposer;
         public InventoryScript inventoryScript;
         
-        //Character Parameters
-        public Vector3 Movedir;
-        public float DashSpeed = 30;
 
         //Reference itself to the ColliderDirectory and CameraScript when activated
         private void OnEnable()

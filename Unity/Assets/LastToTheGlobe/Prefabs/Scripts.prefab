@@ -51,8 +51,8 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 0}
-  viewIdField: 30
-  InstantiationId: 30
+  viewIdField: 10
+  InstantiationId: 10
   isRuntimeInstantiated: 0
 --- !u!114 &5484316895738787760
 MonoBehaviour:
@@ -361,7 +361,7 @@ MonoBehaviour:
   orbOffensiveSpeed: 5
   lifeTimeOrb: 3
   orbDefensiveSpeed: 2
-  dashCooldown: 0
+  dashCooldown: 5
   bumpCooldown: 5
   lifeInitial: 100
   nbreOfTremplin: 1
@@ -508,8 +508,8 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 0}
-  viewIdField: 16
-  InstantiationId: 16
+  viewIdField: 14
+  InstantiationId: 14
   isRuntimeInstantiated: 0
 --- !u!114 &6472368902544805919
 MonoBehaviour:
@@ -577,8 +577,8 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 0}
-  viewIdField: 31
-  InstantiationId: 31
+  viewIdField: 24
+  InstantiationId: 8
   isRuntimeInstantiated: 0
 --- !u!114 &7137239157384656248
 MonoBehaviour:
@@ -612,8 +612,8 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 0}
-  viewIdField: 34
-  InstantiationId: 31
+  viewIdField: 8
+  InstantiationId: 8
   isRuntimeInstantiated: 0
 --- !u!114 &469697852
 MonoBehaviour:
@@ -1145,12 +1145,12 @@ PrefabInstance:
     - target: {fileID: 1750419869509152038, guid: cafeb0c26d8fe7648988d4d8cc7229af,
         type: 3}
       propertyPath: viewIdField
-      value: 1
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1750419869509152038, guid: cafeb0c26d8fe7648988d4d8cc7229af,
         type: 3}
       propertyPath: InstantiationId
-      value: 1
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1750419869727293421, guid: cafeb0c26d8fe7648988d4d8cc7229af,
         type: 3}
@@ -1250,102 +1250,102 @@ PrefabInstance:
     - target: {fileID: 1750419869727293420, guid: cafeb0c26d8fe7648988d4d8cc7229af,
         type: 3}
       propertyPath: viewIdField
-      value: 13
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 1750419869727293420, guid: cafeb0c26d8fe7648988d4d8cc7229af,
         type: 3}
       propertyPath: InstantiationId
-      value: 13
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 1750419869596473637, guid: cafeb0c26d8fe7648988d4d8cc7229af,
         type: 3}
       propertyPath: viewIdField
-      value: 11
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 1750419869596473637, guid: cafeb0c26d8fe7648988d4d8cc7229af,
         type: 3}
       propertyPath: InstantiationId
-      value: 11
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 1750419869907780179, guid: cafeb0c26d8fe7648988d4d8cc7229af,
         type: 3}
       propertyPath: viewIdField
-      value: 5
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 1750419869907780179, guid: cafeb0c26d8fe7648988d4d8cc7229af,
         type: 3}
       propertyPath: InstantiationId
-      value: 5
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 1750419869948001028, guid: cafeb0c26d8fe7648988d4d8cc7229af,
         type: 3}
       propertyPath: viewIdField
-      value: 15
+      value: 33
       objectReference: {fileID: 0}
     - target: {fileID: 1750419869948001028, guid: cafeb0c26d8fe7648988d4d8cc7229af,
         type: 3}
       propertyPath: InstantiationId
-      value: 15
+      value: 33
       objectReference: {fileID: 0}
     - target: {fileID: 1750419869282182493, guid: cafeb0c26d8fe7648988d4d8cc7229af,
         type: 3}
       propertyPath: viewIdField
-      value: 2
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 1750419869282182493, guid: cafeb0c26d8fe7648988d4d8cc7229af,
         type: 3}
       propertyPath: InstantiationId
-      value: 2
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 1750419868524878142, guid: cafeb0c26d8fe7648988d4d8cc7229af,
         type: 3}
       propertyPath: viewIdField
-      value: 6
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 1750419868524878142, guid: cafeb0c26d8fe7648988d4d8cc7229af,
         type: 3}
       propertyPath: InstantiationId
-      value: 6
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 1750419868091591868, guid: cafeb0c26d8fe7648988d4d8cc7229af,
         type: 3}
       propertyPath: viewIdField
-      value: 9
+      value: 37
       objectReference: {fileID: 0}
     - target: {fileID: 1750419868091591868, guid: cafeb0c26d8fe7648988d4d8cc7229af,
         type: 3}
       propertyPath: InstantiationId
-      value: 9
+      value: 37
       objectReference: {fileID: 0}
     - target: {fileID: 1750419867898336817, guid: cafeb0c26d8fe7648988d4d8cc7229af,
         type: 3}
       propertyPath: viewIdField
-      value: 4
+      value: 38
       objectReference: {fileID: 0}
     - target: {fileID: 1750419867898336817, guid: cafeb0c26d8fe7648988d4d8cc7229af,
         type: 3}
       propertyPath: InstantiationId
-      value: 4
+      value: 38
       objectReference: {fileID: 0}
     - target: {fileID: 1750419867883068660, guid: cafeb0c26d8fe7648988d4d8cc7229af,
         type: 3}
       propertyPath: viewIdField
-      value: 7
+      value: 39
       objectReference: {fileID: 0}
     - target: {fileID: 1750419867883068660, guid: cafeb0c26d8fe7648988d4d8cc7229af,
         type: 3}
       propertyPath: InstantiationId
-      value: 7
+      value: 39
       objectReference: {fileID: 0}
     - target: {fileID: 1750419868305663224, guid: cafeb0c26d8fe7648988d4d8cc7229af,
         type: 3}
       propertyPath: viewIdField
-      value: 3
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 1750419868305663224, guid: cafeb0c26d8fe7648988d4d8cc7229af,
         type: 3}
       propertyPath: InstantiationId
-      value: 3
+      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cafeb0c26d8fe7648988d4d8cc7229af, type: 3}

@@ -15,6 +15,11 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb
 
         private float _timeSpend;
         private Transform _transform;
+
+        private void Awake()
+        {
+            _transform = transform;
+        }
         
         private void OnEnable()
         {
