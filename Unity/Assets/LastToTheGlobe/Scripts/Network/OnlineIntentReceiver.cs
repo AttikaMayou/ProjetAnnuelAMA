@@ -173,7 +173,7 @@ namespace LastToTheGlobe.Scripts.Network
             rotationOnX = rotationX;
             rotationOnY = rotationY;
         }
-        
+        /*
         [PunRPC]
         void UpdateCameraRotation(int rotationX, int rotationY)
         {
