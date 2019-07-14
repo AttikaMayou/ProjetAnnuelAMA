@@ -160,10 +160,10 @@ namespace LastToTheGlobe.Scripts.Avatar
                 var intent = _activatedIntentReceivers[i];
                 var player = players[i];
 
-                var rb = player.CharacterRb;
-                var tr = player.CharacterTr;
+                var rb = player.characterRb;
+                var tr = player.characterTr;
 
-                if (!player.CharacterRootGameObject.activeSelf) continue;
+                if (!player.characterRootGameObject.activeSelf) continue;
 
                 if (intent.Move)
                 {
@@ -176,10 +176,10 @@ namespace LastToTheGlobe.Scripts.Avatar
                     
                     var orb = GetOrbsWithinPool();
                     orb.exposer.playerExposer = player;
-                    orb.exposer.Attractor = player.Attractor;
+                    orb.exposer.Attractor = player.attractor;
                     orb.loaded = false;
-                    orb.gameObject.SetActive(true);
                     orb.InitializeOrPosition();
+                    orb.gameObject.SetActive(true);
                     
                     intent.Shoot = false;
                     StartCoroutine(CooldownReset(GameVariablesScript.Instance.shootCooldown));
@@ -192,10 +192,10 @@ namespace LastToTheGlobe.Scripts.Avatar
                     
                     var orb = GetOrbsWithinPool();
                     orb.exposer.playerExposer = player;
-                    orb.exposer.Attractor = player.Attractor;
+                    orb.exposer.Attractor = player.attractor;
                     orb.loaded = true;
-                    orb.gameObject.SetActive(true);
                     orb.InitializeOrPosition();
+                    orb.gameObject.SetActive(true);
                     
                     intent.ShootLoaded = false;
                     StartCoroutine(CooldownReset(GameVariablesScript.Instance.shootCooldown));
@@ -204,24 +204,24 @@ namespace LastToTheGlobe.Scripts.Avatar
 
                 if (intent.Bump)
                 {
-                    if (!player.Bumper)
+                    if (!player.bumper)
                     {
                         Debug.LogFormat("[AvatarsController] Player {0} is trying to bump but there is no bumper around him", player);
                     }
                     else
                     {
-                        Debug.LogFormat("Spawn Bumper ? {0}", player.Bumper.exposer.IsSpawnBumper);
+                        Debug.LogFormat("Spawn Bumper ? {0}", player.bumper.exposer.IsSpawnBumper);
 
-                        if (player.Bumper.exposer.IsSpawnBumper)
+                        if (player.bumper.exposer.IsSpawnBumper)
                         {
                             float timeToReachTarget = 0;
                             float time = 0;
                             //TODO : add cinematic launch here
                             time += Time.deltaTime / timeToReachTarget;
-                            player.DisableGravity();
+                            //player.DisableGravity();
                             //player.DeactivateRb();
-                            player.CharacterTr.position = Vector3.Lerp(player.CharacterTr.position, new Vector3(player.CharacterTr.position.x, player.CharacterTr.position.y + 10f, player.CharacterTr.position.z), time);
-                            player.ActivateRb();
+                            player.characterTr.position = Vector3.Lerp(player.characterTr.position, new Vector3(player.characterTr.position.x, player.characterTr.position.y + 10f, player.characterTr.position.z), time);
+                            //player.ActivateRb();
                             //player.Attractor.exposer.
 
                         }
@@ -244,7 +244,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                 
                 rb.MovePosition(rb.position + intent.speed * Time.deltaTime * tr.TransformDirection(moveIntent));
                 tr.Rotate(new Vector3(0, intent.rotationOnX, 0));
-                player.CameraRotatorX.transform.Rotate(new Vector3(-intent.rotationOnY, 
+                player.cameraRotatorX.transform.Rotate(new Vector3(-intent.rotationOnY, 
                     0, 0), Space.Self);
                 
                 //Get back to initial values to prevent from network lags and stuff like this
@@ -253,14 +253,14 @@ namespace LastToTheGlobe.Scripts.Avatar
                   intent.strafe = 0.0f;
                   intent.forward = 0.0f;
 
-                if (player.Attractor == null)
+                if (player.attractor == null)
                 {
                     if(debug) Debug.LogFormat("[AvatarsController] {0} isn't actually attracted by anything",
                         player);
                     continue;
                 }
                 
-                player.Attractor.AttractPlayer(player.Attractor.exposer.id,i, GameVariablesScript.Instance.planetsGravity);
+                player.attractor.AttractPlayer(player.attractor.exposer.id,i, GameVariablesScript.Instance.planetsGravity);
             }
             
 //            if (ColliderDirectoryScript.Instance.ActivePlayers == 1)
@@ -377,7 +377,7 @@ namespace LastToTheGlobe.Scripts.Avatar
             onLobby = true;
             startMenuController.ShowLobbyCountdown();
             //TODO : call this for all players
-            StartCoroutine(CountdownBeforeSwitchingScene(_countdownStartValue));
+            //StartCoroutine(CountdownBeforeSwitchingScene(_countdownStartValue));
         }
 
         // Check if there is enough players to start the game and leave Lobby
@@ -421,12 +421,12 @@ namespace LastToTheGlobe.Scripts.Avatar
             {
                 if (!players[i].isActiveAndEnabled) break;
                 players[i].DeactivateRb();
-                players[i].CharacterRootGameObject.transform.position = _spawnPos[i + 1];
+                players[i].characterRootGameObject.transform.position = _spawnPos[i + 1];
                 yield return new WaitForSeconds(0.5f);
                 players[i].ActivateRb();
                 if (!debug) continue;
                 Debug.Log("[AvatarsController] Previous pos : " 
-                          + players[i].CharacterRootGameObject.transform.position);
+                          + players[i].characterRootGameObject.transform.position);
                 Debug.Log("[AvatarsController] Final position : " 
                           + _spawnPos[i]);
             }
@@ -467,7 +467,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         {
             foreach (var player in players)
             {
-                player.CollisionDispatcher.CollisionEvent += HandleCollision;
+                player.collisionDispatcher.CollisionEvent += HandleCollision;
             }
         }
 
@@ -482,7 +482,7 @@ namespace LastToTheGlobe.Scripts.Avatar
             }
 
             //TODO : add a logic to know if the shoot was loaded or not so remove hp according to it
-            avatar.HitPointComponent.Hp -= GameVariablesScript.Instance.shootLoadedDamage;
+            avatar.hitPointComponent.Hp -= GameVariablesScript.Instance.shootLoadedDamage;
         }
 
         private OrbManager GetOrbsWithinPool()
@@ -492,7 +492,6 @@ namespace LastToTheGlobe.Scripts.Avatar
                 if (orb.gameObject.activeSelf)
                 {
                     if(debug) Debug.Log("[AvatarsController] Orb is enabled");
-                    continue;
                 }
                 else
                 {
@@ -510,11 +509,11 @@ namespace LastToTheGlobe.Scripts.Avatar
             for (; i < players.Length; i++)
             {
                 var player = players[i];
-                player.CharacterRb.velocity = Vector3.zero;
-                player.CharacterRb.angularVelocity = Vector3.zero;
-                player.CharacterTr.position = startPosition[i].position;
-                player.CharacterTr.rotation = startPosition[i].rotation;
-                player.CharacterRbPhotonView.enabled = _activatedIntentReceivers == onlineIntentReceivers;
+                player.characterRb.velocity = Vector3.zero;
+                player.characterRb.angularVelocity = Vector3.zero;
+                player.characterTr.position = startPosition[i].position;
+                player.characterTr.rotation = startPosition[i].rotation;
+                player.characterRbPhotonView.enabled = _activatedIntentReceivers == onlineIntentReceivers;
             }
             
             EnableIntentReceivers();
@@ -529,7 +528,7 @@ namespace LastToTheGlobe.Scripts.Avatar
             var i = 0;
             for (; i < players.Length; i++)
             {
-                players[i].CharacterRootGameObject.SetActive(false);
+                players[i].characterRootGameObject.SetActive(false);
             }
             
             startMenuController.ShowMainMenu();
@@ -554,13 +553,13 @@ namespace LastToTheGlobe.Scripts.Avatar
         [PunRPC]
         private void ActivateAvatarRpc(int avatarId)
         {
-            players[avatarId].CharacterRootGameObject.SetActive(true);
+            players[avatarId].characterRootGameObject.SetActive(true);
         }
         
         [PunRPC]
         private void DeactivateAvatarRpc(int avatarId)
         {
-            players[avatarId].CharacterRootGameObject.SetActive(false);
+            players[avatarId].characterRootGameObject.SetActive(false);
         }
 
         [PunRPC]

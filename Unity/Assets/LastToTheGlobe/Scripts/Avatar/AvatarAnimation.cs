@@ -34,16 +34,16 @@ public class AvatarAnimation : MonoBehaviour
         {
             var intent = intentReceivers[i];
 
-            character[i].CharacterAnimator.SetFloat("Forward", intent.forward);
-            character[i].CharacterAnimator.SetFloat("Strafe", intent.strafe);
+            character[i].characterAnimator.SetFloat("Forward", intent.forward);
+            character[i].characterAnimator.SetFloat("Strafe", intent.strafe);
 
             if (intent.Move == true)
             {
-                character[i].CharacterAnimator.SetBool("IsWalking", true);
+                character[i].characterAnimator.SetBool("IsWalking", true);
             }
             else if(intent.Run == true)
             {
-                character[i].CharacterAnimator.SetBool("IsRunning", true);
+                character[i].characterAnimator.SetBool("IsRunning", true);
                 
                 if(debug == true)
                 {
@@ -52,21 +52,21 @@ public class AvatarAnimation : MonoBehaviour
             }
             else
             {
-                character[i].CharacterAnimator.SetBool("IsWalking", false);
+                character[i].characterAnimator.SetBool("IsWalking", false);
             }
 
             if(intent.Shoot)
             {
-                character[i].CharacterAnimator.SetBool("IsShooting", true);
+                character[i].characterAnimator.SetBool("IsShooting", true);
 
                 if(intent.Shoot && intent.canShoot)
                 {
-                    character[i].CharacterAnimator.SetBool("ShootLoaded", true);
+                    character[i].characterAnimator.SetBool("ShootLoaded", true);
                 }
             }
             else
             {
-                character[i].CharacterAnimator.SetBool("IsShooting", false);
+                character[i].characterAnimator.SetBool("IsShooting", false);
             }
         }
     }   

@@ -148,7 +148,7 @@ namespace LastToTheGlobe.Scripts.Network
             //Interaction Intent
             if (Input.GetKeyDown(KeyCode.E))
             {
-                if (playerExposer.Chest)
+                if (playerExposer.chestCanvas)
                 {
                     photonView.RPC("InteractRpc", RpcTarget.MasterClient);    
                 }
@@ -354,14 +354,14 @@ namespace LastToTheGlobe.Scripts.Network
                     
                 playerExposer.chest.enabled = false;
                 playerExposer.inventory.enabled = false;
-                playerExposer.Interaction.enabled = true;
+                playerExposer.interaction.enabled = true;
                 inChest = false;
             }
             else
             {
                 playerExposer.chest.enabled = true;
                 playerExposer.inventory.enabled = true;
-                playerExposer.Interaction.enabled = false;
+                playerExposer.interaction.enabled = false;
                 inChest = true;
             }
             Interact = true;

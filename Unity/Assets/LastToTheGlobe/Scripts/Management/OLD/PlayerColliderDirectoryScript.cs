@@ -60,8 +60,8 @@ namespace Assets.LastToTheGlobe.Scripts.Management.OLD
                 Debug.Log("directory already contains player");
                 return;
             }
-            _directory.Add(player.CharacterCollider, player);
-            Debug.Log("Directory key : " + player.CharacterCollider + " and value : " + player);
+            _directory.Add(player.characterCollider, player);
+            Debug.Log("Directory key : " + player.characterCollider + " and value : " + player);
         }
         
     }

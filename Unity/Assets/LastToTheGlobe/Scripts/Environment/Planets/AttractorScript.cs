@@ -30,8 +30,8 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
             }
             
             var player = ColliderDirectoryScript.Instance.GetCharacterExposer(playerId);
-            var attractedRb = player.CharacterRb;
-            var body = player.CharacterTr;
+            var attractedRb = player.characterRb;
+            var body = player.characterTr;
 
             var planet = ColliderDirectoryScript.Instance.GetPlanetExposer(planetId);
             

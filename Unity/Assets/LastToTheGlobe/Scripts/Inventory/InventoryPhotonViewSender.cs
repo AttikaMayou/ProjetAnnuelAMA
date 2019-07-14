@@ -43,7 +43,7 @@ public class InventoryPhotonViewSender : MonoBehaviour
         if(player.inventoryScript.isItemInInventory(itemName))
         {
             print("Healed :D");
-            GameObject.Destroy(player.InventoryExposer.playerSlot[idSlot].transform.GetChild(0).gameObject);
+            GameObject.Destroy(player.inventoryExposer.playerSlot[idSlot].transform.GetChild(0).gameObject);
         }
         else
         {

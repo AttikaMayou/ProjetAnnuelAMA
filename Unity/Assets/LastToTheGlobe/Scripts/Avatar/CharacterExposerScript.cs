@@ -6,6 +6,7 @@ using LastToTheGlobe.Scripts.Management;
 using LastToTheGlobe.Scripts.UI;
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 //Auteur : Margot, Abdallah et Attika
 
@@ -13,68 +14,60 @@ namespace LastToTheGlobe.Scripts.Avatar
 {
     public class CharacterExposerScript : MonoBehaviour
     {
-        public static bool debug = false;
+        public static bool Debug = false;
 
         //The id value of this player. Updated at awakening
-        public int Id;
+        [FormerlySerializedAs("Id")] public int id;
         
-        [Header("Player Component References")] 
-        public GameObject CharacterRootGameObject;
-        public Rigidbody CharacterRb;
-        public Transform CharacterTr;
-        public Collider CharacterCollider;
-        public HitPointComponent HitPointComponent;
-        public CollisionEnterDispatcherScript CollisionDispatcher;
+        [FormerlySerializedAs("CharacterRootGameObject")] [Header("Player Component References")] 
+        public GameObject characterRootGameObject;
+        [FormerlySerializedAs("CharacterRb")] public Rigidbody characterRb;
+        [FormerlySerializedAs("CharacterTr")] public Transform characterTr;
+        [FormerlySerializedAs("CharacterCollider")] public Collider characterCollider;
+        [FormerlySerializedAs("HitPointComponent")] public HitPointComponent hitPointComponent;
+        [FormerlySerializedAs("CollisionDispatcher")] public CollisionEnterDispatcherScript collisionDispatcher;
 
-        [Header("Avatar Animation")]
-        public Animator CharacterAnimator;
+        [FormerlySerializedAs("CharacterAnimator")] [Header("Avatar Animation")]
+        public Animator characterAnimator;
 
-        [Header("Planets Reference")]
-        public AttractorScript Attractor;
+        [FormerlySerializedAs("Attractor")] [Header("Planets Reference")]
+        public AttractorScript attractor;
         
-        [Header("Bumper Reference")] 
-        public BumpScript Bumper;
+        [FormerlySerializedAs("Bumper")] [Header("Bumper Reference")] 
+        public BumpScript bumper;
 
-        [Header("Chest Reference")] 
-        public ChestScript Chest;
+        [FormerlySerializedAs("Chest")] [Header("Chest Reference")] 
+        public ChestScript chest;
         
-        [Header("Network Parameters")]
-        public PhotonView CharacterPhotonView;
-        public PhotonRigidbodyView CharacterRbPhotonView;
+        [FormerlySerializedAs("CharacterPhotonView")] [Header("Network Parameters")]
+        public PhotonView characterPhotonView;
+        [FormerlySerializedAs("CharacterRbPhotonView")] public PhotonRigidbodyView characterRbPhotonView;
         
         
-        [Header("Camera Control Parameters")] 
-        public GameObject CameraRotatorX;
+        [FormerlySerializedAs("CameraRotatorX")] [Header("Camera Control Parameters")] 
+        public GameObject cameraRotatorX;
 
-        [Header("UI references")] 
+        [FormerlySerializedAs("LifeUi")] [Header("UI references")] 
         //public ActivateObjects inventoryUI;
-        public ActivateObjects LifeUi;
-        public ActivateObjects VictoryUi;
-        public ActivateObjects DefeatUi;
-        public Canvas Interaction;
+        public ActivateObjects lifeUi;
+        [FormerlySerializedAs("VictoryUi")] public ActivateObjects victoryUi;
+        [FormerlySerializedAs("DefeatUi")] public ActivateObjects defeatUi;
+        [FormerlySerializedAs("Interaction")] public Canvas interaction;
         public Canvas inventory;
-        public Canvas chest;
+        public Canvas chestCanvas;
 
-        [Header("Inventory references")]
-        public PlayerInventoryExposer InventoryExposer;
+        [FormerlySerializedAs("InventoryExposer")] [Header("Inventory references")]
+        public PlayerInventoryExposer inventoryExposer;
         public InventoryScript inventoryScript;
-        
-
-
-        private void Start()
-        {
-            /*inventory.SetActive(false);
-            chest.SetActive(false);*/
-        }
 
         //Reference itself to the ColliderDirectory and CameraScript when activated
         private void OnEnable()
         {
             //only the Master Client add the player to the directory and get his ID
             if (!PhotonNetwork.IsMasterClient) return;
-            if(debug) Debug.LogFormat("[CharacterExposer] OnEnable : {0}", this.gameObject.name);
-            ColliderDirectoryScript.Instance.AddCharacterExposer(this, out Id);
-            InventoryExposer.playerId = Id;
+            if(Debug) UnityEngine.Debug.LogFormat("[CharacterExposer] OnEnable : {0}", this.gameObject.name);
+            ColliderDirectoryScript.Instance.AddCharacterExposer(this, out id);
+            inventoryExposer.playerId = id;
 
         }
 
@@ -84,29 +77,28 @@ namespace LastToTheGlobe.Scripts.Avatar
         {
             //only the Master Client remove the player to the directory and reset his ID
             if (!PhotonNetwork.IsMasterClient) return;
-            if(debug) Debug.LogFormat("[CharacterExposer] OnDisable : {0}", this.gameObject.name);
+            if(Debug) UnityEngine.Debug.LogFormat("[CharacterExposer] OnDisable : {0}", this.gameObject.name);
             ColliderDirectoryScript.Instance.RemoveCharacterExposer(this);
         }
 
         public void DeactivateRb()
         {
-            CharacterRb.isKinematic = true;
+            characterRb.isKinematic = true;
         }
 
         public void ActivateRb()
         {
-            CharacterRb.isKinematic = false;
-            CharacterRb.useGravity = true;
+            characterRb.isKinematic = false;
         }
 
         public void DisableGravity()
         {
-            CharacterRb.useGravity = false;
+            characterRb.useGravity = false;
         }
 
         public void EnableGravity()
         {
-            CharacterRb.useGravity = true;
+            characterRb.useGravity = true;
         }
     }
 }

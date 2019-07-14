@@ -33,7 +33,7 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
             player.DisableGravity();
             
             //Set the attractor script which ACTUALLY attract player
-            player.Attractor = planet.attractorScript;
+            player.attractor = planet.attractorScript;
         }
 
         [PunRPC]
@@ -54,7 +54,7 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
             player.EnableGravity();
             
             //Set the attractor to null since the player isn't ACTUALLY attracted by anything
-            player.Attractor = null;
+            player.attractor = null;
         }
         
         #endregion

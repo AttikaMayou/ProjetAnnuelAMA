@@ -29,7 +29,7 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
             }
             
             //Set the bumper which is ACTUALLY near player
-            player.Bumper = bumper.BumpScript;
+            player.bumper = bumper.BumpScript;
         }
 
         [PunRPC]
@@ -48,7 +48,7 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
             }
 
             //Set the bumper to null since the player isn't ACTUALLY near any bumper
-            player.Bumper = null;
+            player.bumper = null;
         }
 
         #endregion

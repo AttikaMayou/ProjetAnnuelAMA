@@ -39,9 +39,9 @@ namespace LastToTheGlobe.Scripts.Chest
             
             var _chestSeed = Random.Range(0,255);            
             //Set the chest which is ACTUALLY near player
-            player.Chest = chest.ChestScript;
+            player.chest = chest.ChestScript;
             chest.seedChest = _chestSeed;
-            player.Interaction.enabled = true;
+            player.interaction.enabled = true;
             
             if (debug) Debug.LogFormat("Ce joueur : {0} possède la seed suivante : {1}", playerId, _chestSeed);
             
@@ -63,8 +63,8 @@ namespace LastToTheGlobe.Scripts.Chest
             }
 
             //Set the chest to null since the player isn't ACTUALLY near any chest
-            player.Chest = null;
-            player.Interaction.enabled = false;
+            player.chest = null;
+            player.interaction.enabled = false;
 
         }
     

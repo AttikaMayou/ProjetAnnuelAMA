@@ -18,14 +18,14 @@ namespace LastToTheGlobe.Scripts.Inventory
         private void Update()
         {
             //Check if an item have been added
-            foreach (var item in selfExposer.InventoryExposer.playerSlot)
+            foreach (var item in selfExposer.inventoryExposer.playerSlot)
             {
                 if (item.transform.childCount > 2 && !item.transform.GetChild(2).CompareTag("Untagged"))
                 {
                     item.transform.GetChild(2).SetAsFirstSibling();
                     //Send RPC to add item
                 
-                    inventoryPhotonView.RPC("AddItemToInventory", RpcTarget.MasterClient, item.transform.GetChild(0).tag, selfExposer.Id);
+                    inventoryPhotonView.RPC("AddItemToInventory", RpcTarget.MasterClient, item.transform.GetChild(0).tag, selfExposer.id);
                 
                 }
             }

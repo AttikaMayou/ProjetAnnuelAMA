@@ -79,7 +79,7 @@ namespace LastToTheGlobe.Scripts.Management
             if (!col) return -1;
             if (characterExposers.Count == 0) StartCoroutine(Wait());
             var player = GetCharacterExposer(col);
-            if (player) return player.Id;
+            if (player) return player.id;
             Debug.LogWarningFormat("[ColliderDirectoryScript] No CharacterExposer found with this collider {0}", 
                 col.name);
             return -1;
@@ -112,7 +112,7 @@ namespace LastToTheGlobe.Scripts.Management
         public void RemoveCharacterExposer(CharacterExposerScript player)
         {
             activePlayers--;
-            player.Id = -1;
+            player.id = -1;
             if (characterExposers.Contains(player) && player)
             {
                 characterExposers.Remove(player);
@@ -124,10 +124,10 @@ namespace LastToTheGlobe.Scripts.Management
             var id = -1;
             if(debug) Debug.Log("[ColliderDirectoryScript] Add one player to directory");
             if (_playersDirectory.ContainsValue(player)) return id;
-            _playersDirectory.Add(player.CharacterCollider, player);
+            _playersDirectory.Add(player.characterCollider, player);
             id = activePlayers - 1;
             if(debug) Debug.LogFormat("[ColliderDirectoryScript] Directory key : {0} and value : {1}", 
-                player.CharacterCollider, player);
+                player.characterCollider, player);
             return id;
         }
         

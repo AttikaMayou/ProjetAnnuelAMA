@@ -281,8 +281,8 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 4032840751649765441}
-  viewIdField: 0
-  InstantiationId: 33
+  viewIdField: 6
+  InstantiationId: 6
   isRuntimeInstantiated: 0
 --- !u!114 &4032840751649765441
 MonoBehaviour:
@@ -342,27 +342,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c61369ebc022f6745b37935ddf02f61c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Attractor: {fileID: 0}
-  Id: 0
-  CharacterRootGameObject: {fileID: 4032840751649765450}
-  CharacterRb: {fileID: 4032840751649765455}
-  CharacterTr: {fileID: 4032840751649765453}
-  CharacterCollider: {fileID: 3647621335996314131}
-  HitPointComponent: {fileID: 2876196961187294912}
-  CollisionDispatcher: {fileID: 4952198941118172763}
-  CharacterAnimator: {fileID: 2713987122217920040}
-  Bumper: {fileID: 0}
-  Chest: {fileID: 0}
-  CharacterPhotonView: {fileID: 4032840751649765452}
-  CharacterRbPhotonView: {fileID: 4032840751649765441}
-  CameraRotatorX: {fileID: 7674971413621576116}
-  LifeUi: {fileID: 0}
-  VictoryUi: {fileID: 0}
-  DefeatUi: {fileID: 0}
-  Interaction: {fileID: 0}
-  inventory: {fileID: 0}
+  id: 0
+  characterRootGameObject: {fileID: 4032840751649765450}
+  characterRb: {fileID: 4032840751649765455}
+  characterTr: {fileID: 4032840751649765453}
+  characterCollider: {fileID: 3647621335996314131}
+  hitPointComponent: {fileID: 2876196961187294912}
+  collisionDispatcher: {fileID: 4952198941118172763}
+  characterAnimator: {fileID: 2713987122217920040}
+  attractor: {fileID: 0}
+  bumper: {fileID: 0}
   chest: {fileID: 0}
-  InventoryExposer: {fileID: 0}
+  characterPhotonView: {fileID: 4032840751649765452}
+  characterRbPhotonView: {fileID: 4032840751649765441}
+  cameraRotatorX: {fileID: 7674971413621576116}
+  lifeUi: {fileID: 0}
+  victoryUi: {fileID: 0}
+  defeatUi: {fileID: 0}
+  interaction: {fileID: 0}
+  inventory: {fileID: 0}
+  chestCanvas: {fileID: 0}
+  inventoryExposer: {fileID: 0}
   inventoryScript: {fileID: 5482628297410016006}
 --- !u!114 &1014064465940019215
 MonoBehaviour:

@@ -13,12 +13,12 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb
         
         [Header("Orb Parameters")]
         public OrbExposerScript exposer;
-        private Vector3 _playerPosition;
-        private Vector3 _direction;
+        [SerializeField] private Vector3 _playerPosition;
+        [SerializeField] private Vector3 _direction;
         private float _timeUsing;
-        private Vector3 _initialPos;
+        [SerializeField] private Vector3 _initialPos;
         public bool loaded;
-        private Vector3 _centerPointAttractor;
+        [SerializeField] private Vector3 _centerPointAttractor;
         private bool _getUsed;
 
         private void Awake()
@@ -35,7 +35,7 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb
             }
             else
             {
-                exposer.orbRb.MovePosition(transform.position + exposer.playerExposer.CharacterTr.forward);
+                exposer.orbRb.MovePosition(transform.position + exposer.playerExposer.characterTr.forward);
             }
             
             _timeUsing += Time.deltaTime;
@@ -59,11 +59,14 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb
         {
             _timeUsing = 0.0f;
             if (!exposer.Attractor || !exposer.playerExposer) return;
-            _playerPosition = exposer.playerExposer.CharacterTr.position;
+            _playerPosition = exposer.playerExposer.characterTr.position;
+            if(debug) Debug.LogFormat("[OrbManager] Player position : {0}", _playerPosition);
             _initialPos = _playerPosition;
-            _direction = exposer.playerExposer.CharacterTr.right;
+            _direction = exposer.playerExposer.characterTr.right;
+            if(debug) Debug.LogFormat("[OrbManager] Direction : {0}", _direction);
             _centerPointAttractor = exposer.Attractor.transform.position;
-            transform.position = _playerPosition + exposer.playerExposer.CharacterTr.forward * 2f;
+            if(debug) Debug.LogFormat("[OrbManager] Center point attractor : {0}", _centerPointAttractor);
+            transform.position = _playerPosition + exposer.playerExposer.characterTr.forward * 2f;
             exposer.orbRb.isKinematic = false;
             _getUsed = true;
         }
