@@ -38,6 +38,7 @@ namespace LastToTheGlobe.Scripts.Management
         public int activeChests = 0;
         public GameObject DashPool;
         public GameObject PotionPool;
+        public List<GameObject> chestItemSlot;
         
         private Dictionary<Collider, CharacterExposerScript> _playersDirectory = new Dictionary<Collider, CharacterExposerScript>();
         private CharacterExposerScript _playerValue;
@@ -408,6 +409,7 @@ namespace LastToTheGlobe.Scripts.Management
             chest.ChestPhotonView = chestPhotonView;
             chest.chestContentManagerScript.pools.Add(DashPool);
             chest.chestContentManagerScript.pools.Add(PotionPool);
+            chest.chestContentManagerScript.itemSlot = chestItemSlot;
 
             if (debug)
             {

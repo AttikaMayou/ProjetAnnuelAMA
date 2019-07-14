@@ -1,4 +1,5 @@
-﻿using LastToTheGlobe.Scripts.Management;
+﻿using System.Collections.Generic;
+using LastToTheGlobe.Scripts.Management;
 using Photon.Pun;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ namespace LastToTheGlobe.Scripts.Chest
         // Start is called before the first frame update
 
         public bool debug;
+        //public List<GameObject> itemSlot;
     
         #region RPC Callbacks
 
