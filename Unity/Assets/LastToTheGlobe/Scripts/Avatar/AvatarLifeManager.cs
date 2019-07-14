@@ -37,7 +37,7 @@ namespace LastToTheGlobe.Scripts.Avatar
 
         private void OnCollisionEnter(Collision other)
         {
-            if (other.gameObject.CompareTag("Bullet") && myExposer.CharacterPhotonView.IsMine)
+            /*if (other.gameObject.CompareTag("Bullet") && myExposer.CharacterPhotonView.IsMine)
             {
                 if(myLife <= 0)
                 {
@@ -55,12 +55,12 @@ namespace LastToTheGlobe.Scripts.Avatar
             else
             {
                 return;
-            }
+            }*/
         }
 
         private void Update()
         {
-            if(Input.GetKeyDown(KeyCode.P))
+            /*if(Input.GetKeyDown(KeyCode.P))
             {
                 if (myLife <= 0)
                 {
@@ -77,7 +77,7 @@ namespace LastToTheGlobe.Scripts.Avatar
             {
                 inLife = false;
                 //myExposer.defeatUI.Activation();
-            }
+            }*/
         }
 
         [PunRPC]

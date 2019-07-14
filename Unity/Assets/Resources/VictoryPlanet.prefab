@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 581}
   - component: {fileID: 1042}
   - component: {fileID: 908}
-  - component: {fileID: 1257}
   - component: {fileID: 1175}
   - component: {fileID: 1258}
   - component: {fileID: 1260}
@@ -82,26 +81,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &1257
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 235}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22d56e4cfea04bf4696856bb028a9ff7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 0
-  planetTransform: {fileID: 581}
-  planetGravityField: {fileID: 0}
-  planetGroundCollider: {fileID: 1175}
-  attractorScript: {fileID: 1260}
-  planetsPhotonView: {fileID: 0}
-  isSpawnPlanet: 0
-  spawnPosition: {fileID: 0}
 --- !u!135 &1175
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -147,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 917c2123bde88734f9ca74bda0e6f01f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  exposer: {fileID: 1257}
+  exposer: {fileID: 0}
 --- !u!1 &2027927673582530209
 GameObject:
   m_ObjectHideFlags: 0
