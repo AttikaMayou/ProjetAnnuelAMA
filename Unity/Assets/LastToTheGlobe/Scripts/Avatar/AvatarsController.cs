@@ -217,7 +217,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                             //TODO : add cinematic launch here
                             time += Time.deltaTime / timeToReachTarget;
                             player.DisableGravity();
-                            player.DeactivateRb();
+                            //player.DeactivateRb();
                             player.CharacterTr.position = Vector3.Lerp(player.CharacterTr.position, new Vector3(player.CharacterTr.position.x, player.CharacterTr.position.y + 10f, player.CharacterTr.position.z), time);
                             player.ActivateRb();
                             //player.Attractor.exposer.
@@ -246,10 +246,10 @@ namespace LastToTheGlobe.Scripts.Avatar
                     0, 0), Space.Self);
                 
                 //Get back to initial values to prevent from network lags and stuff like this
-                intent.rotationOnX = 0.0f;
-                intent.rotationOnY = 0.0f;
-                intent.strafe = 0.0f;
-                intent.forward = 0.0f;
+                  intent.rotationOnX = 0.0f;
+                  intent.rotationOnY = 0.0f;
+                  intent.strafe = 0.0f;
+                  intent.forward = 0.0f;
 
                 if (player.Attractor == null)
                 {
