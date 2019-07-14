@@ -201,40 +201,6 @@ namespace LastToTheGlobe.Scripts.Avatar
                     StartCoroutine(CooldownReset(GameVariablesScript.Instance.shootCooldown));
                     intent.canShoot = true;
                 }
-                
-                /*if (intent.Shoot)
-                {
-                    if(debug) Debug.Log("[AvatarsController] Shoot intent");
-                    if (_currentOrb == null)
-                    {
-                        _currentOrb = GetOrbsWithinPool();
-                        _currentOrb.playerTransform = player.CharacterTr;
-                        _currentOrb.Attractor = player.Attractor;
-                        _currentOrb.charged = false;
-                        _currentOrb.gameObject.SetActive(true);
-                        _currentOrb.InitializeOrPosition();
-                        intent.CanShoot = true;
-                        intent.Shoot = false;
-                        _currentOrb = null;
-                    }
-                }
-
-                if (intent.ShootLoaded)
-                {
-                    if(debug) Debug.Log("[AvatarsController] Loaded shoot intent");
-                    if (_currentOrb == null)
-                    {
-                        _currentOrb = GetOrbsWithinPool();
-                        _currentOrb.playerTransform = player.CharacterTr;
-                        _currentOrb.Attractor = player.Attractor;
-                        _currentOrb.charged = true;
-                        _currentOrb.gameObject.SetActive(true);
-                        _currentOrb.InitializeOrPosition();
-                        intent.CanShoot = true;
-                        intent.Shoot = false;
-                        _currentOrb = null;
-                    }
-                }*/
 
                 if (intent.Bump)
                 {
@@ -244,9 +210,11 @@ namespace LastToTheGlobe.Scripts.Avatar
                     }
                     else
                     {
+                        player.DisableGravity();
                         player.Bumper.BumpPlayer(player.Bumper.exposer.Id,i,  GameVariablesScript.Instance.bumpersForce);
                     }
                     StartCoroutine(CooldownReset(GameVariablesScript.Instance.bumpCooldown));
+                    player.EnableGravity();
                     intent.Bump = false;
                 }
 
