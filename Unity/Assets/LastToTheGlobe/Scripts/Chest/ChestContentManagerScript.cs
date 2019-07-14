@@ -16,6 +16,7 @@ public class ChestContentManagerScript : MonoBehaviour
         Random.InitState(seed);
         _content = Random.Range(0, 2);
         print("Seed généré avec succès : "+seed);
-        pools[_content].transform.GetChild(0).transform.parent = itemSlot[0].transform;
+        pools[_content].transform.GetChild(0).transform.SetParent(itemSlot[0].transform);
+        itemSlot[0].transform.GetChild(1).gameObject.SetActive(true);
     }
 }

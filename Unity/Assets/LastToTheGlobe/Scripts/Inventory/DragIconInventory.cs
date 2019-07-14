@@ -11,6 +11,7 @@ using System.Collections;
 
 public class DragIconInventory : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    public RectTransform rect;
     public static GameObject item;
     public static string name;
     public enum _typeOfItem
@@ -30,6 +31,11 @@ public class DragIconInventory : MonoBehaviour, IBeginDragHandler, IDragHandler,
     void Awake()
     {
         canvasGroup = GetComponent<CanvasGroup>();
+    }
+
+    private void OnEnable()
+    {
+        rect.localScale = new Vector3(1,1,1);
     }
 
     public void OnBeginDrag(PointerEventData eventData)

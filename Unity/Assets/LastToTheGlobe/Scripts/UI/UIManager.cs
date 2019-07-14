@@ -1,58 +1,58 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.UI;
+﻿using Photon.Pun;
 using UnityEngine;
-using Photon.Pun;
+using UnityEngine.UI;
 
 //Auteur: Margot
 
-public class UIManager : MonoBehaviour
+namespace LastToTheGlobe.Scripts.UI
 {
-    [SerializeField] private Canvas playerInventory;
-    [SerializeField] private Canvas tutorial;
-    [SerializeField] private Text nbPlayerText;
-    [SerializeField] private int life;
-
-    private bool canOpenInventory = false;
-
-
-    void Start()
+    public class UIManager : MonoBehaviour
     {
-        playerInventory.enabled = false;
-        tutorial.enabled = false;
-    }
+        [SerializeField] private GameObject playerInventory;
+        [SerializeField] private GameObject tutorial;
+        [SerializeField] private Text nbPlayerText;
+        [SerializeField] private int life;
+        private bool canOpenInventory = false;
 
-    void Update()
-    {
-        //UI Inventory
-        if (Input.GetKeyDown(KeyCode.I))
+
+        void Start()
         {
-            if(!canOpenInventory)
+            playerInventory.SetActive(false);
+            tutorial.SetActive(false);
+        }
+
+        void Update()
+        {
+            //UI Inventory
+            if (Input.GetKeyDown(KeyCode.I))
             {
-                playerInventory.enabled = true;
-                canOpenInventory = true;
+                if(!canOpenInventory)
+                {
+                    playerInventory.SetActive(true);
+                    canOpenInventory = true;
+                }
+                else if(canOpenInventory)
+                {
+                    playerInventory.SetActive(false);
+                    canOpenInventory = false;
+                }
             }
-            else if(canOpenInventory)
+            //UI Tutorial
+            if (Input.GetKey(KeyCode.F1))
             {
-                playerInventory.enabled = false;
-                canOpenInventory = false;
+                tutorial.SetActive(true);
+            }
+            else
+            {
+                tutorial.SetActive(false);
             }
         }
-        //UI Tutorial
-        if (Input.GetKey(KeyCode.F1))
-        {
-            tutorial.enabled = true;
-        }
-        else
-        {
-            tutorial.enabled = false;
-        }
-    }
 
-    //Player currently in the game
-    public void updateNbPlayer()
-    {
-        int nbPlayers = PhotonNetwork.PlayerList.Length;
-        nbPlayerText.text = "Joueurs : " + nbPlayers.ToString();
+        //Player currently in the game
+        public void updateNbPlayer()
+        {
+            int nbPlayers = PhotonNetwork.PlayerList.Length;
+            nbPlayerText.text = "Joueurs : " + nbPlayers.ToString();
+        }
     }
 }

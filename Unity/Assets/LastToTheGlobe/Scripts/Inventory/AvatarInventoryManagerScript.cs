@@ -14,10 +14,6 @@ namespace LastToTheGlobe.Scripts.Inventory
 
         private ObjectScript _objectToAdd;
 
-        private void Awake()
-        {
-            selfExposer.PlayerInventory.SetActive(false);
-        }
 
         private void Update()
         {

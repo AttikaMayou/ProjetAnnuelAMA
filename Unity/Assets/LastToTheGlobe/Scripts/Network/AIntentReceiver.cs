@@ -16,6 +16,8 @@ namespace LastToTheGlobe.Scripts.Network
        public bool Bump { get; set; }
        public bool Interact { get; set; }
 
+       
+
        [FormerlySerializedAs("Forward")] public float forward = 0.0f;
        [FormerlySerializedAs("Strafe")] public float strafe = 0.0f;
        [FormerlySerializedAs("Speed")] public float speed = 5.0f;
@@ -23,6 +25,7 @@ namespace LastToTheGlobe.Scripts.Network
        [FormerlySerializedAs("RotationOnX")] public float rotationOnX = 0.0f;
        [FormerlySerializedAs("RotationOnY")] public float rotationOnY = 0.0f;
        public bool lockCursor;
+       public bool inChest;
        [FormerlySerializedAs("RotationSpeed")] public float rotationSpeed = 5.0f;
 
        [FormerlySerializedAs("CanDash")] public bool canDash = true;

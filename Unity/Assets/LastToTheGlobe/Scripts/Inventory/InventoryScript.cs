@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using LastToTheGlobe.Scripts.Avatar;
 using Photon.Pun.UtilityScripts;
 using UnityEngine;
 using UnityEngine.Experimental.PlayerLoop;
+
 
 //Auteur : Attika
 //Modification : Abdallah
@@ -12,7 +14,9 @@ namespace LastToTheGlobe.Scripts.Inventory
     public class InventoryScript : MonoBehaviour
     {
         [SerializeField] private int nbSlots = 4;
+        [SerializeField] private CharacterExposerScript exposer;
         public bool isFull;
+        private bool chestState;
         public List<ObjectScript> objectsInInventory = new List<ObjectScript>();
         private List<string> objectsName = new List<string>();
 

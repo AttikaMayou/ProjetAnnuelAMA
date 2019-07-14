@@ -34,7 +34,6 @@ namespace LastToTheGlobe.Scripts.Avatar
 
         [Header("Chest Reference")] 
         public ChestScript Chest;
-        public int seedChest;
         
         [Header("Network Parameters")]
         public PhotonView CharacterPhotonView;
@@ -49,14 +48,21 @@ namespace LastToTheGlobe.Scripts.Avatar
         public ActivateObjects LifeUi;
         public ActivateObjects VictoryUi;
         public ActivateObjects DefeatUi;
+        public Canvas Interaction;
+        public Canvas inventory;
+        public Canvas chest;
 
         [Header("Inventory references")]
-        public GameObject Interaction;
-        public GameObject ChestInventory;
-        public GameObject PlayerInventory;
         public PlayerInventoryExposer InventoryExposer;
         public InventoryScript inventoryScript;
         
+
+
+        private void Start()
+        {
+            /*inventory.SetActive(false);
+            chest.SetActive(false);*/
+        }
 
         //Reference itself to the ColliderDirectory and CameraScript when activated
         private void OnEnable()

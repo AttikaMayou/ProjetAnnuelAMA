@@ -36,6 +36,8 @@ namespace LastToTheGlobe.Scripts.Management
         [SerializeField] private int activeBumpers = 0;
         public List<ChestExposerScript> chestExposers;
         public int activeChests = 0;
+        public GameObject DashPool;
+        public GameObject PotionPool;
         
         private Dictionary<Collider, CharacterExposerScript> _playersDirectory = new Dictionary<Collider, CharacterExposerScript>();
         private CharacterExposerScript _playerValue;
@@ -401,8 +403,11 @@ namespace LastToTheGlobe.Scripts.Management
             activeChests++;
 
             id = AddChestInDirectory(chest);
+            chest.Id = id;
+            print(id);
             chest.ChestPhotonView = chestPhotonView;
-            Debug.LogFormat("First ChestPhotonView {0} And Now Second chestPhotonView {1}", chest.ChestPhotonView, chestPhotonView);
+            chest.chestContentManagerScript.pools.Add(DashPool);
+            chest.chestContentManagerScript.pools.Add(PotionPool);
 
             if (debug)
             {
@@ -428,7 +433,7 @@ namespace LastToTheGlobe.Scripts.Management
             if(debug) Debug.Log("[ColliderDirectoryScript] Add one chest to directory");
             if (_chestsDirectory.ContainsValue(chest)) return id;
             _chestsDirectory.Add(chest.ChestCollider, chest);
-            id = activePlayers - 1;
+            id = activeChests - 1;
             if(debug) Debug.LogFormat("[ColliderDirectoryScript] Directory key : {0} and value : {1}", 
                 chest.ChestCollider, chest);
             return id;
