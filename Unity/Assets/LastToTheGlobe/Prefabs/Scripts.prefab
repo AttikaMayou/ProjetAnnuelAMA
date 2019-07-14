@@ -233,7 +233,7 @@ MonoBehaviour:
   activePlayers: 0
   planetExposers:
   - {fileID: 0}
-  activePlanets: 2
+  activePlanets: 1
   orbExposers: []
   activeOrbs: 0
   bumperExposers:
@@ -242,8 +242,9 @@ MonoBehaviour:
   chestExposers:
   - {fileID: 0}
   activeChests: 0
-  DashPool: {fileID: 0}
-  PotionPool: {fileID: 0}
+  dashPool: {fileID: 0}
+  potionPool: {fileID: 0}
+  chestItemSlot: []
 --- !u!1 &2003145822489458437
 GameObject:
   m_ObjectHideFlags: 0
@@ -355,6 +356,7 @@ MonoBehaviour:
   dashSpeed: 15
   lockCursor: 0
   planetsGravity: -10
+  speedPlanetRotation: 0
   bumpersForce: 5000
   shootCooldown: 1
   shootLoadTime: 1.5

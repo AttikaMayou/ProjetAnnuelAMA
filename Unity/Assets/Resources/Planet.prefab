@@ -39,7 +39,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 210465077424565093}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 5
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   planetTransform: {fileID: 5274179040381734909}
-  planetCollider: {fileID: 3432029267358783805}
+  planetGravityField: {fileID: 3432029267358783805}
   planetGroundCollider: {fileID: 3663078464008334531}
   attractorScript: {fileID: 5240164197673119770}
   planetsPhotonView: {fileID: 0}
@@ -170,6 +170,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 917c2123bde88734f9ca74bda0e6f01f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Exposer: {fileID: 5581744237729166429}
-  speedRotation: 10
-  DirForce: {x: 0, y: 0, z: 0}
+  exposer: {fileID: 5581744237729166429}

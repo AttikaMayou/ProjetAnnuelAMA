@@ -7381,7 +7381,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &919718686 stripped
 MonoBehaviour:
@@ -15264,6 +15264,16 @@ PrefabInstance:
       propertyPath: InstantiationId
       value: 62
       objectReference: {fileID: 0}
+    - target: {fileID: 102627448006797231, guid: 4b7f65cf3304916429cf26667ac888b2,
+        type: 3}
+      propertyPath: viewIdField
+      value: 63
+      objectReference: {fileID: 0}
+    - target: {fileID: 102627448006797231, guid: 4b7f65cf3304916429cf26667ac888b2,
+        type: 3}
+      propertyPath: InstantiationId
+      value: 63
+      objectReference: {fileID: 0}
     - target: {fileID: 372620352878008541, guid: 4b7f65cf3304916429cf26667ac888b2,
         type: 3}
       propertyPath: viewIdField
@@ -15819,16 +15829,16 @@ PrefabInstance:
       propertyPath: chestItemSlot.Array.data[3]
       value: 
       objectReference: {fileID: 1257460754}
-    - target: {fileID: 102627448006797231, guid: 4b7f65cf3304916429cf26667ac888b2,
+    - target: {fileID: 2003145822190471194, guid: 4b7f65cf3304916429cf26667ac888b2,
         type: 3}
-      propertyPath: viewIdField
-      value: 63
-      objectReference: {fileID: 0}
-    - target: {fileID: 102627448006797231, guid: 4b7f65cf3304916429cf26667ac888b2,
+      propertyPath: dashPool
+      value: 
+      objectReference: {fileID: 619492899}
+    - target: {fileID: 2003145822190471194, guid: 4b7f65cf3304916429cf26667ac888b2,
         type: 3}
-      propertyPath: InstantiationId
-      value: 63
-      objectReference: {fileID: 0}
+      propertyPath: potionPool
+      value: 
+      objectReference: {fileID: 849259783}
     - target: {fileID: 4414370369413740760, guid: 4b7f65cf3304916429cf26667ac888b2,
         type: 3}
       propertyPath: viewIdField
@@ -16010,6 +16020,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1119439281828780249, guid: f846f5579a0e9ab4b829d5e791690c57,
+        type: 3}
+      propertyPath: photonView
+      value: 
+      objectReference: {fileID: 1527447860}
     - target: {fileID: 6127932796883133049, guid: f846f5579a0e9ab4b829d5e791690c57,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -16115,11 +16130,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1119439281828780249, guid: f846f5579a0e9ab4b829d5e791690c57,
-        type: 3}
-      propertyPath: photonView
-      value: 
-      objectReference: {fileID: 1527447860}
     - target: {fileID: 5456565453165573784, guid: f846f5579a0e9ab4b829d5e791690c57,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -17061,7 +17071,7 @@ PrefabInstance:
     - target: {fileID: 8618825591043032873, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8618825591043032873, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
         type: 3}

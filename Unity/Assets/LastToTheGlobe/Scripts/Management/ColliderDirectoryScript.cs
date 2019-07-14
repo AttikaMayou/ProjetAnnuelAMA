@@ -36,8 +36,8 @@ namespace LastToTheGlobe.Scripts.Management
         [SerializeField] private int activeBumpers = 0;
         public List<ChestExposerScript> chestExposers;
         public int activeChests = 0;
-        public GameObject DashPool;
-        public GameObject PotionPool;
+        [FormerlySerializedAs("DashPool")] public GameObject dashPool;
+        [FormerlySerializedAs("PotionPool")] public GameObject potionPool;
         public List<GameObject> chestItemSlot;
         
         private Dictionary<Collider, CharacterExposerScript> _playersDirectory = new Dictionary<Collider, CharacterExposerScript>();
@@ -405,10 +405,9 @@ namespace LastToTheGlobe.Scripts.Management
 
             id = AddChestInDirectory(chest);
             chest.Id = id;
-            print(id);
             chest.ChestPhotonView = chestPhotonView;
-            chest.chestContentManagerScript.pools.Add(DashPool);
-            chest.chestContentManagerScript.pools.Add(PotionPool);
+            chest.chestContentManagerScript.pools.Add(dashPool);
+            chest.chestContentManagerScript.pools.Add(potionPool);
             chest.chestContentManagerScript.itemSlot = chestItemSlot;
 
             if (debug)
