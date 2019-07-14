@@ -208,7 +208,15 @@ namespace LastToTheGlobe.Scripts.Avatar
                     }
                     else
                     {
-                        player.Bumper.BumpPlayer(player.Bumper.exposer.Id,i,  GameVariablesScript.Instance.bumpersForce);
+                        if (player.Bumper.exposer.IsSpawnBumper)
+                        {
+                            //TODO : add cinematic launch here
+                            
+                        }
+                        else
+                        {
+                            player.Bumper.BumpPlayer(player.Bumper.exposer.Id,i,  GameVariablesScript.Instance.bumpersForce);
+                        }
                     }
                     StartCoroutine(CooldownReset(GameVariablesScript.Instance.bumpCooldown));
                     intent.Bump = false;

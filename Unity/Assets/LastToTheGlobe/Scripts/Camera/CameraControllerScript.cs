@@ -56,7 +56,6 @@ namespace LastToTheGlobe.Scripts.Camera
             {
                 UpdatePosAndRot();
             }
-
         }
         
         private void UpdatePosAndRot()
