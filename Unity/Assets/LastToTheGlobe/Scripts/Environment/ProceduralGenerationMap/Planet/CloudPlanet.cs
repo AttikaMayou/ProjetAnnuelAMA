@@ -132,7 +132,7 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
             for (int i = 0; i < vertices.Length - 1 ; i++)
             {
 
-                if (Distance(vertices[i], vertices[i + 1]) >= 150 && i != vertices.Length - 2)
+                if (Distance(vertices[i], vertices[i + 1]) >= 200 && i != vertices.Length - 2)
                 {
                     if (i < numberOfPlayer)
                     {

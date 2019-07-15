@@ -58,12 +58,12 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb
         public void InitializeOrPosition()
         {
             _timeUsing = 0.0f;
-            if (!exposer.Attractor || !exposer.playerExposer) return;
+            //if (!exposer.Attractor || !exposer.playerExposer) return;
             _playerPosition = exposer.playerExposer.CharacterTr.position;
             _initialPos = _playerPosition;
             _direction = exposer.playerExposer.CharacterTr.right;
-            _centerPointAttractor = exposer.Attractor.transform.position;
-            transform.position = _playerPosition + exposer.playerExposer.CharacterTr.forward * 2f;
+            //_centerPointAttractor = exposer.Attractor.transform.position;
+            transform.position = _initialPos + exposer.playerExposer.CharacterTr.forward * 2f;
             exposer.orbRb.isKinematic = false;
             _getUsed = true;
         }

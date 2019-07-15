@@ -176,7 +176,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                     
                     var orb = GetOrbsWithinPool();
                     orb.exposer.playerExposer = player;
-                    orb.exposer.Attractor = player.Attractor;
+                   // orb.exposer.Attractor = player.Attractor;
                     orb.loaded = false;
                     orb.gameObject.SetActive(true);
                     orb.InitializeOrPosition();
@@ -256,8 +256,8 @@ namespace LastToTheGlobe.Scripts.Avatar
 
                 if (player.Attractor == null)
                 {
-                    if(debug) Debug.LogFormat("[AvatarsController] {0} isn't actually attracted by anything",
-                        player);
+                    //if(debug) Debug.LogFormat("[AvatarsController] {0} isn't actually attracted by anything",
+                      //  player);
                     continue;
                 }
                 
