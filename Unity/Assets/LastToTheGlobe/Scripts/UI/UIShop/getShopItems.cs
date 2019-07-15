@@ -21,46 +21,24 @@ public class getShopItems : MonoBehaviour
     
     public List<GameObject> toEnable = new List<GameObject>();
     public List<GameObject> toDisable = new List<GameObject>();
-    
+
+    public ButtonScript buttonScript;
+    private bool shopOpen;
     private httpRequest _httpRequest = new httpRequest();
     private string _requestResponse;
     
     void Start () {
-        myButton.onClick.AddListener(TaskOnClick);
+        //myButton.onClick.AddListener(TaskOnClick);
         
     }
 
-    void TaskOnClick()
+    void Awake()
     {
+        print("Trying to load shop");
         StartCoroutine(_httpRequest.ShopRequest());
+        
 
     }
 
-    private void Update()
-    {
-        if (_httpRequest.requestFinished)
-        {
-            DisableAndEnable();
-        }
-    }
     
-    private void DisableAndEnable()
-    {
-        if (toEnable != null)
-        {
-            for (int i = 0; i < toEnable.Count; i++)
-            {
-                toEnable[i].SetActive(true);
-            }
-        }
-
-        if (toDisable != null)
-        {
-            for (int i = 0; i < toDisable.Count; i++)
-            {
-                toDisable[i].SetActive(false);
-            }
-        }
-
-    }
 }

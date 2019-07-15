@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
+//Auteur : Abdallah
+
 namespace LastToTheGlobe.Scripts.httpRequests
 {
     public class httpRequest : MonoBehaviour
@@ -89,6 +91,7 @@ namespace LastToTheGlobe.Scripts.httpRequests
                 if (_parsedShopRequest.status.Equals("OK"))
                 {
                     StaticShopClass.itemName = _parsedShopRequest.itemName;
+                    print(StaticShopClass.itemName[0]);
                     StaticShopClass.itemPrice = _parsedShopRequest.itemPrice;
                     StaticShopClass.itemColor = _parsedShopRequest.itemColor;
 

@@ -8,32 +8,59 @@ namespace LastToTheGlobe.Scripts.UI.UIConnexion
 {
     public class ButtonScript : MonoBehaviour
     {
-        public Button myButton;
-        public List<GameObject> toEnable = new List<GameObject>();
-        public List<GameObject> toDisable = new List<GameObject>();
+        public bool shopOpen;
+        public Button shopButton;
+        public Button returnButton;
+        public List<GameObject> shop = new List<GameObject>();
+        public List<GameObject> menu = new List<GameObject>();
 
         void Start () {
-            myButton.onClick.AddListener(TaskOnClick);
+            shopButton.onClick.AddListener(toShop);
+            returnButton.onClick.AddListener(toMenu);
         }
         
-        protected void TaskOnClick()
+        public void toMenu()
         {
-            if (toEnable != null)
+            if (menu != null)
             {
-                for (int i = 0; i < toEnable.Count; i++)
+                for (int i = 0; i < menu.Count; i++)
                 {
-                    toEnable[i].SetActive(true);
+                    print("Enabled");
+                    menu[i].SetActive(true);
                 }
             }
 
-            if (toDisable != null)
+            if (shop != null)
             {
-                for (int i = 0; i < toDisable.Count; i++)
+                for (int i = 0; i < shop.Count; i++)
                 {
-                    toDisable[i].SetActive(false);
+                    print("Disabled");
+                    shop[i].SetActive(false);
                 }
             }
 
+        }
+
+        public void toShop()
+        {
+            shopOpen = true;
+            if (shop != null)
+            {
+                for (int i = 0; i < shop.Count; i++)
+                {
+                    print("Enabled");
+                    shop[i].SetActive(true);
+                }
+            }
+
+            if (menu != null)
+            {
+                for (int i = 0; i < menu.Count; i++)
+                {
+                    print("Disabled");
+                    menu[i].SetActive(false);
+                }
+            }
         }
     }
 }
