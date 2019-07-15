@@ -43,14 +43,15 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
             //Give the direction of gravity
             var gravityUp = (body.position - planet.planetTransform.position).normalized;
             var bodyUp = body.up;
-            
             attractedRb.AddForce(gravityUp * gravity);
-          
+
             //Sync the vertical axe's player (up) with the gravity direction chosen before
             var rotation = body.rotation;
-            var targetRotation = Quaternion.FromToRotation(bodyUp, gravityUp) * rotation;
-            rotation = Quaternion.Slerp(rotation, targetRotation, GameVariablesScript.Instance.speedPlanetRotation * Time.deltaTime);
-            body.rotation = rotation;
+            Quaternion targetRotation = Quaternion.FromToRotation(player.CharacterTr.up, gravityUp) * player.CharacterTr.rotation;
+            player.CharacterTr.rotation = Quaternion.Slerp(player.CharacterTr.rotation, targetRotation, 50f * Time.deltaTime);
+            //body.rotation = rotation;
+
+
         }
         
         #region Collision Methods
