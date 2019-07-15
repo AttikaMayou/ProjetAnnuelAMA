@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Assets.LastToTheGlobe.Scripts.Management;
 using LastToTheGlobe.Scripts.Camera;
 using LastToTheGlobe.Scripts.Chest;
@@ -33,9 +34,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         [SerializeField] private AvatarAnimation avatarAnimation;
 
         [Header("Environment Parameters")]
-        //spawn point tab
-        private List<Transform> _spawnPoints = new List<Transform>();
-        private Vector3[] _spawnPos;
+        private List<int> _spawnPos = new List<int>();
         [SerializeField] private CloudPlanet environmentController;
         private int _seed = 0;
 
@@ -395,7 +394,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         {
             yield return new WaitForSeconds(time);
             
-            if (_spawnPos.Length <= 1)
+            if (_spawnPos.Count <= 1)
             {
                 Debug.LogError("[AvatarsController] " +
                                "There is a problem with the map instantiation");
@@ -406,10 +405,11 @@ namespace LastToTheGlobe.Scripts.Avatar
             for(var i = 0; i <= players.Length; i++)
             {
                 if (!players[i].isActiveAndEnabled) break;
-                players[i].DeactivateRb();
-                players[i].CharacterRootGameObject.transform.position = _spawnPos[i];
+                var planet = ColliderDirectoryScript.Instance.GetPlanetExposer(_spawnPos[i]);
+                if (planet == null) continue;
+                players[i].CharacterRootGameObject.transform.position =planet.spawnPosition.position;
+                players[i].Attractor = planet.attractorScript;
                 yield return new WaitForSeconds(0.5f);
-                players[i].ActivateRb();
                 if (!debug) continue;
                 Debug.Log("[AvatarsController] Previous pos : " 
                           + players[i].CharacterRootGameObject.transform.position);
@@ -426,26 +426,8 @@ namespace LastToTheGlobe.Scripts.Avatar
             {
                 if (!planet) continue;
                 if (!planet.isSpawnPlanet) continue;
-                if (_spawnPoints.Contains(planet.spawnPosition)) continue;
-                _spawnPoints.Add(planet.spawnPosition);
-                //Deactivate the collider so the attraction will not work there
-                planet.DeactivateCollider();
-            }
-            
-            if (debug)
-            {
-                var i = 0;
-                foreach (var point in _spawnPoints)
-                {
-                    Debug.Log("Spawn Point : " + i + " is " + point.gameObject);
-                    i++;
-                }
-            }
-            
-            _spawnPos = new Vector3[_spawnPoints.Count];
-            for (var i = 0; i < _spawnPoints.Count; i++)
-            {
-                _spawnPos[i] = _spawnPoints[i].position;
+                if (_spawnPos.Contains(planet.id)) continue;
+                _spawnPos.Add(planet.id);
             }
         }
 
