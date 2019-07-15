@@ -58,8 +58,8 @@ namespace LastToTheGlobe.Scripts.Network
             {
                 photonView.RPC("CanShootRpc", RpcTarget.MasterClient, false);
             }
-
-            if (canShoot)
+            //TODO : debbug
+            if (!canShoot)
             {
                 loadShotValue += Time.deltaTime;
                 if (Input.GetMouseButtonUp(0))
