@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8262509169874911793}
   - component: {fileID: 3432029267358783805}
+  - component: {fileID: 6673240430177537995}
   m_Layer: 0
   m_Name: GravityField
   m_TagString: Untagged
@@ -44,6 +45,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6673240430177537995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 210465077424565093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 917c2123bde88734f9ca74bda0e6f01f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  exposer: {fileID: 5581744237729166429}
 --- !u!1 &5274179040381768669
 GameObject:
   m_ObjectHideFlags: 0
@@ -57,7 +71,6 @@ GameObject:
   - component: {fileID: 5274179040384027933}
   - component: {fileID: 3663078464008334531}
   - component: {fileID: 5581744237729166429}
-  - component: {fileID: 5240164197673119770}
   m_Layer: 0
   m_Name: Planet
   m_TagString: Untagged
@@ -154,20 +167,7 @@ MonoBehaviour:
   planetTransform: {fileID: 5274179040381734909}
   planetGravityField: {fileID: 3432029267358783805}
   planetGroundCollider: {fileID: 3663078464008334531}
-  attractorScript: {fileID: 5240164197673119770}
+  attractorScript: {fileID: 6673240430177537995}
   planetsPhotonView: {fileID: 0}
   isSpawnPlanet: 0
   spawnPosition: {fileID: 0}
---- !u!114 &5240164197673119770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5274179040381768669}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 917c2123bde88734f9ca74bda0e6f01f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  exposer: {fileID: 5581744237729166429}

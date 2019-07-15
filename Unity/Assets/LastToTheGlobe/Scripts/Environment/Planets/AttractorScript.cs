@@ -11,11 +11,16 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
 {
     public class AttractorScript : MonoBehaviour
     {
-        public static bool Debug = false;
+        public static bool Debug = true;
 
         public PlanetExposerScript exposer;
 
         private int _i = 0;
+
+        private void Awake()
+        {
+            _i = 0;
+        }
 
         public void AttractPlayer(int planetId, int playerId, float gravity)
         {
@@ -59,8 +64,8 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
             }
             _i = 1;
             
-            if(Debug) UnityEngine.Debug.LogFormat("[AttractorScript] {0} get triggered by something : {1}",
-                this.gameObject.name , other.gameObject.name);
+            if(Debug) UnityEngine.Debug.LogFormat("[AttractorScript] {0} on planet {2} get triggered by something : {1}",
+                this.gameObject.name , other.gameObject.name, exposer.id);
             
             //Only the MasterClient interact with collider and stuff like this
             if(!PhotonNetwork.IsMasterClient) return;
@@ -87,8 +92,8 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
             }
             _i = 1;
             
-            if(Debug) UnityEngine.Debug.LogFormat("[AttractorScript] {1} left {0}",
-                this.gameObject.name , other.gameObject.name);
+            if(Debug) UnityEngine.Debug.LogFormat("[AttractorScript] {1} left {0} on planet {2}",
+                this.gameObject.name , other.gameObject.name, exposer.id);
             
             //Only the MasterClient interact with collider and stuff like this
             if (!PhotonNetwork.IsMasterClient) return;

@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 908}
   - component: {fileID: 1175}
   - component: {fileID: 1258}
-  - component: {fileID: 1260}
   m_Layer: 0
   m_Name: VictoryPlanet
   m_TagString: Planet
@@ -110,23 +109,10 @@ MonoBehaviour:
   planetTransform: {fileID: 581}
   planetGravityField: {fileID: 1306083693237573872}
   planetGroundCollider: {fileID: 1175}
-  attractorScript: {fileID: 1260}
+  attractorScript: {fileID: 6674602336239229083}
   planetsPhotonView: {fileID: 0}
   isSpawnPlanet: 0
   spawnPosition: {fileID: 0}
---- !u!114 &1260
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 235}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 917c2123bde88734f9ca74bda0e6f01f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  exposer: {fileID: 0}
 --- !u!1 &2027927673582530209
 GameObject:
   m_ObjectHideFlags: 0
@@ -137,6 +123,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1199948053158017797}
   - component: {fileID: 1306083693237573872}
+  - component: {fileID: 6674602336239229083}
   m_Layer: 0
   m_Name: GravityField
   m_TagString: Untagged
@@ -171,3 +158,16 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6674602336239229083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2027927673582530209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 917c2123bde88734f9ca74bda0e6f01f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  exposer: {fileID: 1258}

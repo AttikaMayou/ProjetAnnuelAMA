@@ -246,14 +246,6 @@ namespace LastToTheGlobe.Scripts.Avatar
                 tr.Rotate(new Vector3(0, intent.rotationOnX, 0));
                 //myCamera.transform.Rotate(new Vector3(-intent.rotationOnY, 0, 0));
 
-
-                
-                //Get back to initial values to prevent from network lags and stuff like this
-                  //intent.rotationOnX = 0.0f;
-                  //intent.rotationOnY = 0.0f;
-                  //intent.strafe = 0.0f;
-                  //intent.forward = 0.0f;
-
                 if (player.Attractor == null)
                 {
                     //if(debug) Debug.LogFormat("[AvatarsController] {0} isn't actually attracted by anything",

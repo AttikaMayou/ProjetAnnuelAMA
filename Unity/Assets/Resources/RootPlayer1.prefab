@@ -342,7 +342,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c61369ebc022f6745b37935ddf02f61c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Attractor: {fileID: 0}
   Id: 0
   CharacterRootGameObject: {fileID: 4032840751649765450}
   CharacterRb: {fileID: 4032840751649765455}
@@ -351,6 +350,7 @@ MonoBehaviour:
   HitPointComponent: {fileID: 2876196961187294912}
   CollisionDispatcher: {fileID: 4952198941118172763}
   CharacterAnimator: {fileID: 2713987122217920040}
+  Attractor: {fileID: 0}
   Bumper: {fileID: 0}
   Chest: {fileID: 0}
   CharacterPhotonView: {fileID: 4032840751649765452}
