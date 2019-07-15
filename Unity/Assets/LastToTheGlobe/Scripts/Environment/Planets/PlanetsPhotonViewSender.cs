@@ -30,8 +30,6 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
                 Debug.LogFormat("[PlanetsPhotonViewSender] Found the planet {0} from this ID : {1}",planet.name, planetId);
             }
             
-            player.DisableGravity();
-            
             //Set the attractor script which ACTUALLY attract player
             player.Attractor = planet.attractorScript;
         }
@@ -50,8 +48,6 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
             {
                 Debug.LogFormat("[PlanetsPhotonViewSender] Found the player {0} from this ID : {1}",player.name, playerId);
             }
-            
-            player.EnableGravity();
             
             //Set the attractor to null since the player isn't ACTUALLY attracted by anything
             player.Attractor = null;

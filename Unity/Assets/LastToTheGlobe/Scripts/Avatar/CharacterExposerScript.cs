@@ -99,17 +99,6 @@ namespace LastToTheGlobe.Scripts.Avatar
         public void ActivateRb()
         {
             CharacterRb.isKinematic = false;
-            CharacterRb.useGravity = true;
-        }
-
-        public void DisableGravity()
-        {
-            CharacterRb.useGravity = false;
-        }
-
-        public void EnableGravity()
-        {
-            CharacterRb.useGravity = true;
         }
     }
 }
