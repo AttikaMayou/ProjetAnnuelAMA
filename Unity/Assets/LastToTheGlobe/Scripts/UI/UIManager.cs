@@ -8,8 +8,8 @@ namespace LastToTheGlobe.Scripts.UI
 {
     public class UIManager : MonoBehaviour
     {
-        [SerializeField] private GameObject playerInventory;
-        [SerializeField] private GameObject tutorial;
+        [SerializeField] private Canvas playerInventory;
+        [SerializeField] private Canvas tutorial;
         [SerializeField] private Text nbPlayerText;
         [SerializeField] private int life;
         private bool canOpenInventory = false;
@@ -17,8 +17,8 @@ namespace LastToTheGlobe.Scripts.UI
 
         void Start()
         {
-            playerInventory.SetActive(false);
-            tutorial.SetActive(false);
+            playerInventory.enabled = false;
+            tutorial.enabled = false;
         }
 
         void Update()
@@ -28,23 +28,23 @@ namespace LastToTheGlobe.Scripts.UI
             {
                 if(!canOpenInventory)
                 {
-                    playerInventory.SetActive(true);
+                    playerInventory.enabled = true;
                     canOpenInventory = true;
                 }
                 else if(canOpenInventory)
                 {
-                    playerInventory.SetActive(false);
+                    playerInventory.enabled = false;
                     canOpenInventory = false;
                 }
             }
             //UI Tutorial
             if (Input.GetKey(KeyCode.F1))
             {
-                tutorial.SetActive(true);
+                tutorial.enabled = true;
             }
             else
             {
-                tutorial.SetActive(false);
+                tutorial.enabled = false;
             }
         }
 

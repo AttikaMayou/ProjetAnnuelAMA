@@ -29,6 +29,7 @@ namespace LastToTheGlobe.Scripts.Inventory
                 
                 }
             }
+            
         }
     }
 }

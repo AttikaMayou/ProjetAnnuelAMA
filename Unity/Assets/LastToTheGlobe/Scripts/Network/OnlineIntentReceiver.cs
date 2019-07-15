@@ -342,6 +342,7 @@ namespace LastToTheGlobe.Scripts.Network
         [PunRPC]
         void InteractRpc()
         {
+            print("Hi");
             if (!PhotonNetwork.IsMasterClient) return;
             if (Debug)
             {

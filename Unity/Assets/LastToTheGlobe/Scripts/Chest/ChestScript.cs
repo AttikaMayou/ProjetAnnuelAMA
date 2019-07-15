@@ -52,7 +52,7 @@ public class ChestScript : MonoBehaviour
             
             //Send to MasterClient a message to warn him with its own ID and playerId
             Exposer.ChestPhotonView.RPC("AssignChestRPC", RpcTarget.MasterClient,
-                Exposer.Id, playerId);
+                Exposer.ChestCollider, playerId);
         }
 
         if (!Generated)
