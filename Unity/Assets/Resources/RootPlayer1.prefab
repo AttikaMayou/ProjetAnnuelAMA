@@ -355,6 +355,7 @@ MonoBehaviour:
   Chest: {fileID: 0}
   CharacterPhotonView: {fileID: 4032840751649765452}
   CharacterRbPhotonView: {fileID: 4032840751649765441}
+  avatarLifeManager: {fileID: 0}
   CameraRotatorX: {fileID: 7674971413621576116}
   LifeUi: {fileID: 0}
   VictoryUi: {fileID: 0}
@@ -380,7 +381,7 @@ MonoBehaviour:
   lifeUI: {fileID: 0}
   lifeStartingPoint: 100
   attackDmg: 0
-  inLife: 1
+  alive: 1
   myLife: 100
   myExposer: {fileID: 4032840751649765454}
   textHealth: {fileID: 0}
@@ -626,6 +627,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DefensiveOrb
+      objectReference: {fileID: 0}
+    - target: {fileID: 3096348836995314394, guid: 03bb1ee27d326e446961caff5e6fe21e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3096348836995314485, guid: 03bb1ee27d326e446961caff5e6fe21e,
         type: 3}
