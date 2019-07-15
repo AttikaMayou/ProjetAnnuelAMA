@@ -17,24 +17,25 @@ namespace LastToTheGlobe.Scripts.Chest
         
 
         [PunRPC]
-        void AssignChestRPC(int chestId, int playerId)
+        void AssignChestRPC(Collider chestCol, int playerId)
         {
             
 
             if (debug) Debug.Log("[ChestsPhotonViewSender] AssignChestRPC received");
             
             //Fin exposers from int parameters (IDs)
-            var chest = ColliderDirectoryScript.Instance.GetChestExposer(chestId);
+            var chest = ColliderDirectoryScript.Instance.GetChestExposer(chestCol);
             var player = ColliderDirectoryScript.Instance.GetCharacterExposer(playerId);
 
-           
+           print("________"+chest);
+           print("________"+player);
             
             if (!player || !chest) return;
 
             if (debug)
             {
                 Debug.LogFormat("[ChestsPhotonViewSender] Found the player {0} from this ID : {1}",player.name, playerId);
-                Debug.LogFormat("[ChestsPhotonViewSender] Found the chest {0} from this ID : {1}",chest.name, chestId);
+                Debug.LogFormat("[ChestsPhotonViewSender] Found the chest {0} from this ID : {1}",chest.name, chest.Id);
             }
             
             var _chestSeed = Random.Range(0,255);            

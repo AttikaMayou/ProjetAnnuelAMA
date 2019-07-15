@@ -20,6 +20,7 @@ namespace LastToTheGlobe.Scripts.Chest
         {
             
             if (!PhotonNetwork.IsMasterClient) return;
+            print(this + "____________" + Id);
             ColliderDirectoryScript.Instance.AddChestExposer(this, out Id);
         }
 
