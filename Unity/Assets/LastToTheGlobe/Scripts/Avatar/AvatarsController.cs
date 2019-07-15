@@ -238,9 +238,9 @@ namespace LastToTheGlobe.Scripts.Avatar
                 
                 player.Attractor.AttractPlayer(player.Attractor.exposer.id,i, GameVariablesScript.Instance.planetsGravity);
             }
-            
+
             if(!gameLaunched) return;
-            if (ColliderDirectoryScript.Instance.activePlayers <= 1)
+            /*if (ColliderDirectoryScript.Instance.activePlayers <= 3)
             {
                 foreach (var player in players)
                 {
@@ -249,8 +249,8 @@ namespace LastToTheGlobe.Scripts.Avatar
                     player.CharacterRootGameObject.SetActive(false);
                 }
                 //TODO : active Victory UI for the victorious player
-                EndGame();
-            }
+                //EndGame();
+            }*/
         }
 
         #endregion
@@ -404,7 +404,7 @@ namespace LastToTheGlobe.Scripts.Avatar
             {
                 if (!players[i].isActiveAndEnabled) break;
                 players[i].DeactivateRb();
-                players[i].CharacterRootGameObject.transform.position = _spawnPos[i + 1];
+                players[i].CharacterRootGameObject.transform.position = _spawnPos[i];
                 yield return new WaitForSeconds(0.5f);
                 players[i].ActivateRb();
                 if (!debug) continue;
