@@ -15,17 +15,16 @@ namespace LastToTheGlobe.Scripts.Camera
 
         private Transform _myTr;
 
-        [FormerlySerializedAs("_yAdd")]
         [Header("Balance Parameters")] 
         [SerializeField] private float yAdd;
         //Suggested value : 1
-        [FormerlySerializedAs("_zAdd")] [SerializeField] private float zAdd;
+        [SerializeField] private float zAdd;
         //Suggested value : -5.3
         
-        [FormerlySerializedAs("PlayerExposer")] [Header("Local Player References")] 
+        [Header("Local Player References")] 
         public CharacterExposerScript playerExposer;
 
-        [FormerlySerializedAs("StartFollowing")] public bool startFollowing;
+        public bool startFollowing;
 
         private void Awake()
         {
