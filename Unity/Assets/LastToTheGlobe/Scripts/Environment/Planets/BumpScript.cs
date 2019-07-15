@@ -26,8 +26,6 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
             }
             
             var player = ColliderDirectoryScript.Instance.GetCharacterExposer(playerId);
-            var bumpedRb = player.CharacterRb;
-            //bumpedRb.AddForce(exposer.BumperTransform.up * force);
             player.CharacterRb.MovePosition(exposer.BumperTransform.up * force);
         }
         
