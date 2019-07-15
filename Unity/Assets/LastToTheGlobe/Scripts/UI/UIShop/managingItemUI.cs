@@ -16,11 +16,13 @@ public class managingItemUI : MonoBehaviour
     public Button rightButton;
 
     [Header("Buying Skins Buttons")] public Button[] buyingButtons;
+    [Header("Select Items")] public Button[] selectButtons;
     
     //Text Assigné de gauche a droite
     [Header("Texts")] 
     public Text[] textsName;
     public Text[] Sold;
+    public Text Select;
     public Text playerMoney;
     
     private int _baseIndex = 0;
@@ -47,6 +49,10 @@ public class managingItemUI : MonoBehaviour
         buyingButtons[1].onClick.AddListener(()=>BuyingEventHandler(1));
         buyingButtons[2].onClick.AddListener(()=>BuyingEventHandler(2));
         
+        selectButtons[0].onClick.AddListener(()=>SelectItem(0));
+        selectButtons[1].onClick.AddListener(()=>SelectItem(1));
+        selectButtons[2].onClick.AddListener(()=>SelectItem(2));
+        
         _itemName = StaticShopClass.itemName;
         _itemPrice = StaticShopClass.itemPrice;
         _itemColor = StaticShopClass.itemColor;
@@ -63,6 +69,7 @@ public class managingItemUI : MonoBehaviour
             textsName[i].text = _itemName[_baseIndex + i];
             if (StaticLoginSigninClass.itemOwned[_baseIndex + i] != 0)
             {
+                selectButtons[i].gameObject.SetActive(true);
                 Sold[i].text = "Sold Out !";
             }
             else
@@ -71,6 +78,8 @@ public class managingItemUI : MonoBehaviour
             }
             
         }
+        
+        
 
         playerMoney.text = _playerCoins.ToString();
     }
@@ -91,6 +100,14 @@ public class managingItemUI : MonoBehaviour
         }
        
     }
+
+    public void SelectItem(int idButton)
+    {
+        PlayerPreferences.colorSelected = _itemColor[_baseIndex + idButton];
+        Select.text = "The color picked is : " + PlayerPreferences.colorSelected;
+
+    }
+        
 
     void PreviousItem()
     {

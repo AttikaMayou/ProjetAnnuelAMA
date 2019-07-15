@@ -18,7 +18,7 @@ namespace LastToTheGlobe.Scripts.UI.UIConnexion
             shopButton.onClick.AddListener(toShop);
             returnButton.onClick.AddListener(toMenu);
         }
-        
+
         public void toMenu()
         {
             if (menu != null)
