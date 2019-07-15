@@ -10,6 +10,7 @@ using LastToTheGlobe.Scripts.Network;
 using LastToTheGlobe.Scripts.UI;
 using LastToTheGlobe.Scripts.Weapon.Orb;
 using Photon.Pun;
+using Photon.Pun.UtilityScripts;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -112,7 +113,7 @@ namespace LastToTheGlobe.Scripts.Avatar
 
 
         private void Update()
-        {
+        {   
 //            if (Input.GetKeyDown(KeyCode.Escape))
 //            {
 //                EndGame();
@@ -177,6 +178,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                     var orb = GetOrbsWithinPool();
                     orb.exposer.playerExposer = player;
                    // orb.exposer.Attractor = player.Attractor;
+                    orb.Color.material.color = player.colorPreferences;
                     orb.loaded = false;
                     orb.gameObject.SetActive(true);
                     orb.InitializeOrPosition();
@@ -191,6 +193,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                     if(debug) Debug.Log("[AvatarsController] Loaded shoot intent");
                     
                     var orb = GetOrbsWithinPool();
+                    orb.Color.material.color = player.colorPreferences;
                     orb.exposer.playerExposer = player;
                     orb.exposer.Attractor = player.Attractor;
                     orb.loaded = true;

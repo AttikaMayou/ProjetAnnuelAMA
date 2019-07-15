@@ -5959,11 +5959,6 @@ PrefabInstance:
       propertyPath: OrbsPhotonView
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 6265944264852442678, guid: 501d9991fbb3e6b45b291e93d1d426dc,
-        type: 3}
-      propertyPath: otherExposer
-      value: 
-      objectReference: {fileID: 1906278449}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 501d9991fbb3e6b45b291e93d1d426dc, type: 3}
 --- !u!4 &632598952 stripped
@@ -12057,7 +12052,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 27
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -12085,7 +12080,7 @@ MonoBehaviour:
     spaceCount: 5
     wordCount: 5
     linkCount: 0
-    lineCount: 1
+    lineCount: 2
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 0
@@ -13482,7 +13477,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 4
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -13510,7 +13505,7 @@ MonoBehaviour:
     spaceCount: 0
     wordCount: 2
     linkCount: 0
-    lineCount: 1
+    lineCount: 2
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 0
@@ -15106,11 +15101,6 @@ PrefabInstance:
       propertyPath: OrbsPhotonView
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 6265944264852442678, guid: 501d9991fbb3e6b45b291e93d1d426dc,
-        type: 3}
-      propertyPath: otherExposer
-      value: 
-      objectReference: {fileID: 1906278449}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 501d9991fbb3e6b45b291e93d1d426dc, type: 3}
 --- !u!4 &2117038399 stripped
@@ -17249,11 +17239,6 @@ PrefabInstance:
       propertyPath: DefeatUi
       value: 
       objectReference: {fileID: 287905551}
-    - target: {fileID: 8759103765823658491, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
-        type: 3}
-      propertyPath: attackDmg
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 4642014389271681466, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
         type: 3}
       propertyPath: InventoryExposer
@@ -17523,6 +17508,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8759103765823658491, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
+        type: 3}
+      propertyPath: attackDmg
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5654569758463140258, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
         type: 3}

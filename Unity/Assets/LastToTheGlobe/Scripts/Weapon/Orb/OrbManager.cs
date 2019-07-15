@@ -14,6 +14,8 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb
         
         [Header("Orb Parameters")]
         public OrbExposerScript exposer;
+
+        public Renderer Color;
         private Vector3 _playerPosition;
         private Vector3 _direction;
         private float _timeUsing;

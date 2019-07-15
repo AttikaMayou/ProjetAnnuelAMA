@@ -6,6 +6,7 @@ using LastToTheGlobe.Scripts.Management;
 using LastToTheGlobe.Scripts.UI;
 using Photon.Pun;
 using UnityEngine;
+using Random = System.Random;
 
 //Auteur : Margot, Abdallah et Attika
 
@@ -44,6 +45,8 @@ namespace LastToTheGlobe.Scripts.Avatar
 
         [Header("LifeManager References")] 
         public AvatarLifeManager avatarLifeManager;
+
+        [Header("Color Preferences")] public Color colorPreferences;
         
         
         [Header("Camera Control Parameters")] 
@@ -66,6 +69,35 @@ namespace LastToTheGlobe.Scripts.Avatar
 
         private void Start()
         {
+            switch (PlayerPreferences.colorSelected)
+            {
+                default:
+                    colorPreferences = Color.white;
+                    break;
+                case "red":
+                    colorPreferences = Color.red;
+                    break;
+                
+                case "black":
+                    colorPreferences = Color.black;
+                    break;
+                
+                case "yellow":
+                    colorPreferences = Color.yellow;
+                    break;
+                
+                case "green":
+                    colorPreferences = Color.green;
+                    break;
+                
+                case "magenta":
+                    colorPreferences = Color.magenta;
+                    break;
+                
+                case "blue":
+                    colorPreferences = Color.blue;
+                    break;
+            }
             /*inventory.SetActive(false);
             chest.SetActive(false);*/
         }
