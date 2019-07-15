@@ -111,7 +111,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         }
 
 
-        private void FixedUpdate()
+        private void Update()
         {
 //            if (Input.GetKeyDown(KeyCode.Escape))
 //            {
