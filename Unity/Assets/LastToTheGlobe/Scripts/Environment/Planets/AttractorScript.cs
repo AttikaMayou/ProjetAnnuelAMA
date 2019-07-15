@@ -27,6 +27,9 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
             //Only the MasterClient interact with collider and stuff like this
             if (!PhotonNetwork.IsMasterClient) return;
 
+            if(Debug) UnityEngine.Debug.LogFormat("[AttractorScript] Planet {0} received order to attract player {1}",
+                exposer.id, playerId);
+            
             if (planetId != exposer.id)
             {
                 if(Debug) UnityEngine.Debug.LogWarningFormat("[AttractorScript] Planet {0} received order to attract player {1} but it was meant to planet {2}",
@@ -42,7 +45,11 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
             
             //Give the direction of gravity
             var gravityUp = (body.position - planet.planetTransform.position).normalized;
+            if(Debug) UnityEngine.Debug.LogFormat("[AttractorScript] gravityUp value :  {0}",
+                gravityUp);
             var bodyUp = body.up;
+            if(Debug) UnityEngine.Debug.LogFormat("[AttractorScript] bodyUp value :  {0}",
+                bodyUp);
           
             attractedRb.AddForce(gravityUp * gravity);
           
