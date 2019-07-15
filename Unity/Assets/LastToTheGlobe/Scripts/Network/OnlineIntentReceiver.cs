@@ -54,12 +54,12 @@ namespace LastToTheGlobe.Scripts.Network
             photonView.RPC("UpdateCameraRotation", RpcTarget.MasterClient, rotationOnX, rotationOnY);
 
             //Attack Intent
-            if (Input.GetMouseButton(0) && canShoot && !inChest)
+            if (Input.GetMouseButton(0) && !inChest && canShoot)
             {
                 photonView.RPC("CanShootRpc", RpcTarget.MasterClient, false);
             }
 
-            if (!canShoot)
+            if (canShoot)
             {
                 loadShotValue += Time.deltaTime;
                 if (Input.GetMouseButtonUp(0))

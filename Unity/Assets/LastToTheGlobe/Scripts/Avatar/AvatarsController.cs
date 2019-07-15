@@ -172,7 +172,7 @@ namespace LastToTheGlobe.Scripts.Avatar
                 
                 if (intent.Shoot)
                 {
-                    if(debug) Debug.Log("[AvatarsController] Shoot intent");
+                    if(debug) Debug.LogFormat("[AvatarsController]  Player {0} Shoot intent", player);
                     
                     var orb = GetOrbsWithinPool();
                     orb.exposer.playerExposer = player;

@@ -170,8 +170,7 @@ namespace LastToTheGlobe.Scripts.Environment.ProceduralGenerationMap.Planet
             //distance euclidienne entre 2 points de l'espace
             return Mathf.Round(Mathf.Sqrt(Mathf.Pow(x, 2) + Mathf.Pow(y, 2) + Mathf.Pow(z, 2)));
         }
-
-
+        
         //Cette fonction renvoie la position des tremplins pour la planète à l'Id 'planetId' de taille 'planetSize'
         private Vector3 SetTremplinLocation(int planetId)
         {
