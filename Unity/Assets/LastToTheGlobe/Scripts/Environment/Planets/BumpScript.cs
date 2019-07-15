@@ -28,7 +28,10 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
             var player = ColliderDirectoryScript.Instance.GetCharacterExposer(playerId);
             var bumpedRb = player.CharacterRb;
             //bumpedRb.AddForce(exposer.BumperTransform.up * force);
-            player.CharacterRb.MovePosition(exposer.BumperTransform.up * force);
+            //player.CharacterTr.MovePosition(exposer.BumperTransform.up * force);
+            //player.CharacterTr.Translate(force * Time.smoothDeltaTime);
+            player.CharacterTr.Translate(Vector3.up * force * Time.deltaTime);
+            //new Vector3(exposer.BumperTransform.up * force * Time.deltaTime);
         }
         
         #region Collision Methods
