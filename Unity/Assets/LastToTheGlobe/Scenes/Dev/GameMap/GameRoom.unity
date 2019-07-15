@@ -4082,6 +4082,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1709676989}
     m_Modifications:
+    - target: {fileID: 1963491872576424134, guid: bf62e091e3a648e449f1ae21a25c6606,
+        type: 3}
+      propertyPath: m_Name
+      value: Jumper
+      objectReference: {fileID: 0}
     - target: {fileID: 3401916670773471376, guid: bf62e091e3a648e449f1ae21a25c6606,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4147,11 +4152,6 @@ PrefabInstance:
       propertyPath: exposer
       value: 
       objectReference: {fileID: 1629062614}
-    - target: {fileID: 1963491872576424134, guid: bf62e091e3a648e449f1ae21a25c6606,
-        type: 3}
-      propertyPath: m_Name
-      value: Jumper
-      objectReference: {fileID: 0}
     - target: {fileID: 4918055204924546434, guid: bf62e091e3a648e449f1ae21a25c6606,
         type: 3}
       propertyPath: BumpersPhotonView
@@ -5840,6 +5840,11 @@ PrefabInstance:
       propertyPath: InstantiationId
       value: 33
       objectReference: {fileID: 0}
+    - target: {fileID: 6265944264852442678, guid: 501d9991fbb3e6b45b291e93d1d426dc,
+        type: 3}
+      propertyPath: otherExposer
+      value: 
+      objectReference: {fileID: 1906278449}
     - target: {fileID: 1516305853601457330, guid: 501d9991fbb3e6b45b291e93d1d426dc,
         type: 3}
       propertyPath: OrbsPhotonView
@@ -15114,6 +15119,11 @@ PrefabInstance:
       propertyPath: InstantiationId
       value: 32
       objectReference: {fileID: 0}
+    - target: {fileID: 6265944264852442678, guid: 501d9991fbb3e6b45b291e93d1d426dc,
+        type: 3}
+      propertyPath: otherExposer
+      value: 
+      objectReference: {fileID: 1906278449}
     - target: {fileID: 1516305853601457330, guid: 501d9991fbb3e6b45b291e93d1d426dc,
         type: 3}
       propertyPath: OrbsPhotonView
@@ -17406,6 +17416,16 @@ PrefabInstance:
         type: 3}
       propertyPath: InstantiationId
       value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 4642014389271681470, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8759103765823658491, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c,
+        type: 3}
+      propertyPath: attackDmg
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5405840249576855444, guid: 63aed0bb1b2cb1e41b32a4c68aaf3e5c, type: 3}

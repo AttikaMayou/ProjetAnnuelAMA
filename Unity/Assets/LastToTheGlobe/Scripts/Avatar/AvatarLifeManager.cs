@@ -1,4 +1,5 @@
 ﻿using Assets.LastToTheGlobe.Scripts.Avatar;
+using LastToTheGlobe.Scripts.Management;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
@@ -28,6 +29,7 @@ namespace LastToTheGlobe.Scripts.Avatar
         [SerializeField]
         private Text textHeathOther;
 
+        private Collider selfCollider;
         private void Awake()
         {
             myLife = lifeStartingPoint;
@@ -35,10 +37,8 @@ namespace LastToTheGlobe.Scripts.Avatar
             //myExposer.lifeUI.Activation();
         }
 
-        private void OnCollisionEnter(Collision other)
+        public void InflictDamage()
         {
-            /*if (other.gameObject.CompareTag("Bullet") && myExposer.CharacterPhotonView.IsMine)
-            {
                 if(myLife <= 0)
                 {
                     textHealth.text = "Health : 0";
@@ -49,27 +49,25 @@ namespace LastToTheGlobe.Scripts.Avatar
                     myLife -= attackDmg;
                     textHealth.text = "Health :" + myLife;
                 }
+                
+                Debug.LogFormat("The player with id {0} has updated HP : {1}", myExposer.Id, myLife);
 
                 myExposer.CharacterPhotonView.RPC("MajMine", RpcTarget.Others, myLife);
-            }
-            else
-            {
-                return;
-            }*/
+            
         }
 
         private void Update()
         {
-            /*if(Input.GetKeyDown(KeyCode.P))
+            if(Input.GetKeyDown(KeyCode.P))
             {
                 if (myLife <= 0)
                 {
-                    textHealth.text = "Health : 0";
+                    //textHealth.text = "Health : 0";
                 }
                 else
                 {
                     myLife -= 10;
-                    textHealth.text = "Health : " + myLife;
+                    //textHealth.text = "Health : " + myLife;
                 }
             }
 
@@ -77,13 +75,13 @@ namespace LastToTheGlobe.Scripts.Avatar
             {
                 inLife = false;
                 //myExposer.defeatUI.Activation();
-            }*/
+            }
         }
 
         [PunRPC]
         void MajMine()
         {
-            textHeathOther.text = "Health :" + myLife;
+            //textHeathOther.text = "Health :" + myLife;
         }
     }
 }

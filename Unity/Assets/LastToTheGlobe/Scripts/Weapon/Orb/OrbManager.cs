@@ -1,4 +1,5 @@
-﻿using LastToTheGlobe.Scripts.Management;
+﻿using LastToTheGlobe.Scripts.Avatar;
+using LastToTheGlobe.Scripts.Management;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -20,7 +21,7 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb
         public bool loaded;
         private Vector3 _centerPointAttractor;
         private bool _getUsed;
-
+        public CharacterExposerScript otherExposer;
         private void Awake()
         {
             _getUsed = false;
@@ -44,6 +45,22 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb
             _timeUsing = 0.0f;
             loaded = false;
             ResetOrb();
+        }
+
+        private void OnCollisionEnter(Collision other)
+        {
+            //Dont forget to uncomment this for final version
+            //otherExposer = ColliderDirectoryScript.Instance.GetCharacterExposer(other.collider);
+            
+            if (other.gameObject.CompareTag("Player"))
+            {    
+                if (otherExposer != exposer.playerExposer)
+                {
+                    
+                    exposer.orbsPhotonView.RPC("InflictDamage",RpcTarget.MasterClient, exposer.id, otherExposer.Id);
+                    ResetOrb();
+                }
+            }
         }
 
         private void ResetOrb()

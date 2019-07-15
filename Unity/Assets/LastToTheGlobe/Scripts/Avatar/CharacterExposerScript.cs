@@ -41,6 +41,9 @@ namespace LastToTheGlobe.Scripts.Avatar
         [Header("Network Parameters")]
         public PhotonView CharacterPhotonView;
         public PhotonRigidbodyView CharacterRbPhotonView;
+
+        [Header("LifeManager References")] 
+        public AvatarLifeManager avatarLifeManager;
         
         
         [Header("Camera Control Parameters")] 
