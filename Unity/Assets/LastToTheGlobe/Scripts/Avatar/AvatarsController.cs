@@ -264,11 +264,18 @@ namespace LastToTheGlobe.Scripts.Avatar
                 player.Attractor.AttractPlayer(player.Attractor.exposer.id,i, GameVariablesScript.Instance.planetsGravity);
             }
             
-//            if (ColliderDirectoryScript.Instance.ActivePlayers == 1)
-//            {
-//                //TODO : active Victory UI for the victorious player
-//                EndGame();
-//            }
+            if(!gameLaunched) return;
+            if (ColliderDirectoryScript.Instance.activePlayers <= 1)
+            {
+                foreach (var player in players)
+                {
+                    if(!player.avatarLifeManager.alive) return;
+                    player.VictoryUi.Activation();
+                    player.CharacterRootGameObject.SetActive(false);
+                }
+                //TODO : active Victory UI for the victorious player
+                EndGame();
+            }
         }
 
         #endregion

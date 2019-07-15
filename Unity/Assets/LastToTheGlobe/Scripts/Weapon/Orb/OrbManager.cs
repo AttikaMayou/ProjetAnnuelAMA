@@ -50,14 +50,15 @@ namespace LastToTheGlobe.Scripts.Weapon.Orb
         private void OnCollisionEnter(Collision other)
         {
             //Dont forget to uncomment this for final version
-            //otherExposer = ColliderDirectoryScript.Instance.GetCharacterExposer(other.collider);
+            otherExposer = ColliderDirectoryScript.Instance.GetCharacterExposer(other.collider);
             
             if (other.gameObject.CompareTag("Player"))
             {    
                 if (otherExposer != exposer.playerExposer)
                 {
-                    
-                    exposer.orbsPhotonView.RPC("InflictDamage",RpcTarget.MasterClient, exposer.id, otherExposer.Id);
+                    print(exposer);
+                    print("The Player i want to hurt " +otherExposer.Id);
+                    exposer.orbsPhotonView.RPC("InflictDamage",RpcTarget.MasterClient, exposer.playerExposer.Id, otherExposer.Id);
                     ResetOrb();
                 }
             }
