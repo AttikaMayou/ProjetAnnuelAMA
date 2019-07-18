@@ -7,6 +7,9 @@ using UnityEngine;
 using Assets.LastToTheGlobe.Scripts.Avatar;
 using LastToTheGlobe.Scripts.httpRequests;
 using UnityEngine.Networking;
+using LastToTheGlobe.Scripts.Environment.Planets;
+
+
 using Random = System.Random;
 
 public class DataCollector : MonoBehaviour
@@ -14,6 +17,7 @@ public class DataCollector : MonoBehaviour
     private static DataCollector instance;
 
     [SerializeField] private KillingDataListScript dataVault;
+    [SerializeField] private PlayerInTime dataVaultPlanet;
     [SerializeField] private bool resetData = true;
     private static bool requestFinished;
     //pour utiliser une animation curve
@@ -61,6 +65,27 @@ public class DataCollector : MonoBehaviour
     {
         if (instance != null && instance.dataVault != null) instance.dataVault.AddKillPosEntry(avatar.transform.position, Time.time);
     }
+
+    //Planet data
+    public static void RegisterPlanet(PlanetExposerScript planet)
+    {
+        if (instance != null && instance.dataVaultPlanet != null)
+        {
+            var randTime = Time.time;
+            var randChestNumber = UnityEngine.Random.Range(0, 5);
+            var randTimeChest = Time.time + 50;
+
+            instance.dataVaultPlanet.AddidPlanet(planet.id);
+            instance.dataVaultPlanet.AddTimeEntryCollider(randTime);
+            instance.dataVaultPlanet.AddTimeExitCollider(randTime + 10);
+            instance.dataVaultPlanet.AddnumberOfChest(randChestNumber);
+            instance.dataVaultPlanet.AddtimeChestOpened(randTimeChest);
+        }
+    }
+
+
+
+
 
     public static void RegisterDeathByLayer(MonoBehaviour avatar)
     {
