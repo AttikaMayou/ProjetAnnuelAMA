@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using LastToTheGlobe.Scripts.httpRequests;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "KillingDataListScript", menuName = "ScriptableData", order = 1)]
@@ -25,11 +26,18 @@ public class KillingDataListScript : ScriptableObject
     {
         this.killingDataList.Add(new KillData() { killPosition = pos, killTime = timeStamp });
     }
+    public void AddKillPosEntry(Vector3 pos, float timeStamp, int layer)
+    {
+        this.killingDataList.Add(new KillData() { killPosition = pos, killTime = timeStamp , layerKilledOn = layer});
+        
+    }
+    
 
     public void AddPlayerKill(KillData data)
     {
         this.killingDataList.Add(data);
     }
+
 }
 
 //class de datas que l'on veut collecter
@@ -38,5 +46,6 @@ public class KillingDataListScript : ScriptableObject
     {
         public Vector3 killPosition;
         public float killTime;
-        public PlanetType killOnTypePlanet;
+        public int layerKilledOn;
+        //public PlanetType killOnTypePlanet;
     }

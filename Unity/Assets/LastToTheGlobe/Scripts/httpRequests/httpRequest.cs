@@ -126,6 +126,27 @@ namespace LastToTheGlobe.Scripts.httpRequests
             yield return null;
             requestFinished = true;
         }
+        
+        
+        public IEnumerator dataSendRequest()
+        {
+            requestFinished = false;
+            //Ici la Requete est de type GET donc il n'y à pas de form à envoyé
+            
+            UnityWebRequest www = UnityWebRequest.Get("https://ebelder.pythonanywhere.com/data");
+            yield return www.SendWebRequest();
+            if(www.isNetworkError || www.isHttpError) {
+                Debug.Log(www.error);
+                requestFinished = true;
+                yield return null;
+            }
+            else
+            {
+                
+                Debug.Log(www.downloadHandler.text);
+                requestFinished = true;
+            }
+        }
     
     }
 }
