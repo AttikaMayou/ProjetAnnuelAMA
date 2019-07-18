@@ -54,7 +54,16 @@ public class DataCollector : MonoBehaviour
         {
             instance.dataVault.ResetData();
         }
-            
+
+        if (instance == null)
+        {
+            instance = this;
+        }
+        if (this.resetData)
+        {
+            instance.dataVaultPlanet.ResetData();
+        }
+
     }
     
     public static void RegisterEnnemyKill(MonoBehaviour avatar)

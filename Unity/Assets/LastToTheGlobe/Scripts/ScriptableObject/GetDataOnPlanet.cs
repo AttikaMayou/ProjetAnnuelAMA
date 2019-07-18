@@ -13,7 +13,7 @@ public class GetDataOnPlanet : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.G))
         {
-            Debug.Log("c'est rentrer lol");
+            Debug.Log("J'appuie sur G");
             DataCollector.RegisterPlanet(planet);
 
         }

@@ -1,5 +1,6 @@
 ﻿using LastToTheGlobe.Scripts.Management;
 using Photon.Pun;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -20,6 +21,8 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
 
         public bool isSpawnPlanet;
         public Transform spawnPosition;
+
+        public Dictionary<int, float> timeOnPlanetByPlayer = new Dictionary<int, float>();
 
         //Reference itself to the ColliderDirectory
         private void Awake()

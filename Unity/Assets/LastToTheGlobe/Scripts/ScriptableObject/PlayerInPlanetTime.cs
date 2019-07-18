@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerInTime : ScriptableObject
 {
     [SerializeField]
-    private List<PlanetTimeData> PlanetDataList;
+    private List<PlanetTimeData> PlanetDataList = new List<PlanetTimeData>();
 
     public List<PlanetTimeData> publicPlanetDataList => this.PlanetDataList;
 

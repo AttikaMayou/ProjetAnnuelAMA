@@ -11,6 +11,7 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
 {
     public class AttractorScript : MonoBehaviour
     {
+
         public static bool Debug = true;
 
         public PlanetExposerScript exposer;
@@ -79,6 +80,7 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
                 //Send to MasterClient a message to warn him with its own ID and playerId
                 exposer.planetsPhotonView.RPC("DetectPlayerRPC", RpcTarget.MasterClient,
                     exposer.id, playerId);
+                exposer.timeOnPlanetByPlayer.Add(playerId, 0);
             }
 
             StartCoroutine(ResetTrigger());
@@ -107,6 +109,7 @@ namespace LastToTheGlobe.Scripts.Environment.Planets
                 //Send to MasterClient a message to warn him with playerId
                 exposer.planetsPhotonView.RPC("RemoveAttractorPlayerRPC", RpcTarget.MasterClient, 
                     playerId);
+                exposer.timeOnPlanetByPlayer.Add(playerId, 30);
             }
 
             StartCoroutine(ResetTrigger());
