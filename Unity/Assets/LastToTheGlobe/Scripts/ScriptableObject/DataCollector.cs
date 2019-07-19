@@ -8,8 +8,7 @@ using Assets.LastToTheGlobe.Scripts.Avatar;
 using LastToTheGlobe.Scripts.httpRequests;
 using UnityEngine.Networking;
 using LastToTheGlobe.Scripts.Environment.Planets;
-
-
+using LastToTheGlobe.Scripts.ScriptableObject;
 using Random = System.Random;
 
 public class DataCollector : MonoBehaviour
@@ -18,6 +17,7 @@ public class DataCollector : MonoBehaviour
 
     [SerializeField] private KillingDataListScript dataVault;
     [SerializeField] private PlayerInTime dataVaultPlanet;
+    [SerializeField] private BumpersDataScript dataVaultBumper;
     [SerializeField] private bool resetData = true;
     private static bool requestFinished;
     //pour utiliser une animation curve
@@ -42,6 +42,7 @@ public class DataCollector : MonoBehaviour
         {
             instance.dataVault.ResetData();
             instance.dataVaultPlanet.ResetData();
+            instance.dataVaultBumper.ResetData();
         }
     }
     
@@ -52,6 +53,15 @@ public class DataCollector : MonoBehaviour
     public static void RegisterEnnemyKillWithTime(MonoBehaviour avatar)
     {
         if (instance != null && instance.dataVault != null) instance.dataVault.AddKillPosEntry(avatar.transform.position, Time.time);
+    }
+
+    public static void RegisterBumper(BumperExposerScript bumper)
+    {
+        if (instance == null || instance.dataVaultBumper ! == null) return;
+        var id = bumper.Id;
+        var pos = bumper.BumperTransform.position;
+        
+        instance.dataVaultBumper.AddBumperData(id, pos);
     }
 
     //Planet data
