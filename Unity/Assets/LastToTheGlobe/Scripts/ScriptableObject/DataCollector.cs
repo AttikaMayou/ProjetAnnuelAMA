@@ -27,18 +27,6 @@ public class DataCollector : MonoBehaviour
     private float[] _timeArray = new float[10];
     private int[] _layerArray = new int[10];
 
-    /*public void OnEnable()
-    {
-        this.chart = new AnimationCurve();
-        va killCount = 0;
-        foreach (var kPos in this.vault.KillData)
-        {
-            killCount += 1.0f;
-            this.chart.AddKey(kPos.PartyTime, killCount);
-        }
-    }
-    */
-    //truc
     public static DataCollector Instance()
     {
         return instance;
@@ -53,17 +41,8 @@ public class DataCollector : MonoBehaviour
         if (this.resetData)
         {
             instance.dataVault.ResetData();
-        }
-
-        if (instance == null)
-        {
-            instance = this;
-        }
-        if (this.resetData)
-        {
             instance.dataVaultPlanet.ResetData();
         }
-
     }
     
     public static void RegisterEnnemyKill(MonoBehaviour avatar)
@@ -80,21 +59,26 @@ public class DataCollector : MonoBehaviour
     {
         if (instance != null && instance.dataVaultPlanet != null)
         {
-            var randTime = Time.time;
-            var randChestNumber = UnityEngine.Random.Range(0, 5);
-            var randTimeChest = Time.time + 50;
+            var id = UnityEngine.Random.Range(0, 23);
+            var randTimeEnter = UnityEngine.Random.Range(10f, 30f);
+            var randTimeExit = UnityEngine.Random.Range(20f, 50f);
+            var randChestNumber = UnityEngine.Random.Range(1, 5);
+            var randTimeChest = UnityEngine.Random.Range(15f, 40f);
+            //int numberOfPlayer = UnityEngine.Random.Range(0, 2);
+            int numberOfPlayer = 1;
+            float timeOnPlanet = randTimeExit - randTimeEnter;
 
-            instance.dataVaultPlanet.AddidPlanet(planet.id);
-            instance.dataVaultPlanet.AddTimeEntryCollider(randTime);
-            instance.dataVaultPlanet.AddTimeExitCollider(randTime + 10);
-            instance.dataVaultPlanet.AddnumberOfChest(randChestNumber);
-            instance.dataVaultPlanet.AddtimeChestOpened(randTimeChest);
+            if (numberOfPlayer == 0)
+            {
+                randTimeChest = 0;
+                randTimeEnter = 0;
+                randTimeExit = 0;
+                timeOnPlanet = 0;
+            }
+
+            instance.dataVaultPlanet.AddidPlanet(id, randChestNumber, numberOfPlayer, randTimeEnter, randTimeExit, randTimeChest, timeOnPlanet);
         }
     }
-
-
-
-
 
     public static void RegisterDeathByLayer(MonoBehaviour avatar)
     {

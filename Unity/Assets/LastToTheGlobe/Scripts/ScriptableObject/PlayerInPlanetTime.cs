@@ -17,25 +17,9 @@ public class PlayerInTime : ScriptableObject
     }
 
     //fonction de data à collecter
-    public void AddidPlanet(int IdPlanet)
+    public void AddidPlanet(int IdPlanet, int numberOfChest, int numberOfPlayer, float EnterTime, float ExitTime,  float timeChestOpened, float timeOnPlanet)
     {
-        this.PlanetDataList.Add(new PlanetTimeData() { IdPlanet = IdPlanet });
-    }
-    public void AddTimeEntryCollider(float EnterTime)
-    {
-        this.PlanetDataList.Add(new PlanetTimeData() {EnterTime = EnterTime });
-    }
-    public void AddTimeExitCollider(float ExitTime)
-    {
-        this.PlanetDataList.Add(new PlanetTimeData() { ExitTime = ExitTime });
-    }
-    public void AddnumberOfChest(int numberOfChest)
-    {
-        this.PlanetDataList.Add(new PlanetTimeData() { numberOfChest = numberOfChest });
-    }
-    public void AddtimeChestOpened(float timeChestOpened)
-    {
-        this.PlanetDataList.Add(new PlanetTimeData() { timeChestOpened = timeChestOpened });
+        this.PlanetDataList.Add(new PlanetTimeData() { IdPlanet = IdPlanet, numberOfChest = numberOfChest, numberOfPlayer = numberOfPlayer, EnterTime = EnterTime, ExitTime = ExitTime, timeChestOpened = timeChestOpened, timeOnPlanet = timeOnPlanet });
     }
 }
 
@@ -45,10 +29,11 @@ public class PlanetTimeData
 {
     public int IdPlanet;
     public int numberOfChest;
+    public int numberOfPlayer;
     public float EnterTime;
     public float ExitTime;
-    public int numberOfPlayer;
     public float timeChestOpened;
+    public float timeOnPlanet;
 }
 
 
