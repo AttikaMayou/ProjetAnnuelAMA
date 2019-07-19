@@ -8,7 +8,7 @@ using UnityEditor;
 // lets you visualize some info of the transform
 
 [CustomEditor(typeof(HandleExample))]
-class LabelHandle : Editor
+class LabelHandle : UnityEditor.Editor
 {
     void OnSceneGUI()
     {

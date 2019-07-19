@@ -4,6 +4,13 @@ namespace LastToTheGlobe.Scripts.ScriptableObject
 {
     public class BumpersDataScript : MonoBehaviour
     {
-        //Contenu data scriptable object Attika
+        
+    }
+
+    public class BumpersData
+    {
+        public int BumperId;
+        public Vector3 BumperPos;
+        public Vector3 KillPos;
     }
 }
