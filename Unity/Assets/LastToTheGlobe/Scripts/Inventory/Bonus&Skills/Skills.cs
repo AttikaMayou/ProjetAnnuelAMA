@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace LastToTheGlobe.Scripts.Inventory
 {
-    public class Skills : ScriptableObject
+    public class Skills : UnityEngine.ScriptableObject
     {
         /*public delegate void SkillsMethod();
 

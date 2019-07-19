@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace LastToTheGlobe.Scripts.Inventory
 {
-    public class ObjectScript : ScriptableObject
+    public class ObjectScript : UnityEngine.ScriptableObject
     {
         public bool isInInventory;
         public bool isConsume;
